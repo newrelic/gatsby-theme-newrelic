@@ -1,12 +1,16 @@
 [![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
 
-# [Name of Project] [build badges go here when available]
+# gatsby-theme-newrelic
 
->[Brief description - what is the project and value does it provide? How often should users expect to get releases? How is versioning set up? Where does this project want to go?]
+TODO
 
 ## Installation
 
-> [Include a step-by-step procedure on how to get your code installed. Be sure to include any third-party dependencies that need to be installed separately]
+```sh
+git clone git@github.com:newrelic/gatsby-theme-newrelic.git
+cd gatsby-theme-newrelic
+yarn
+```
 
 ## Getting Started
 >[Simple steps to start working with the software similar to a "Hello World"]
