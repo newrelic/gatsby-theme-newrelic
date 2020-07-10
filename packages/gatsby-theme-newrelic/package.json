@@ -1,0 +1,21 @@
+{
+  "name": "@newrelic/gatsby-theme-newrelic",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "gatsby build",
+    "clean": "gatsby clean",
+    "develop": "gatsby develop"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.24.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "gatsby": "^2.24.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
