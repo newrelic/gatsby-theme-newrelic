@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@newrelic/eslint-plugin-newrelic": "^0.3.0",
+    "@newrelic/eslint-plugin-newrelic": "newrelic/eslint-plugin-newrelic#master",
     "eslint": "^7.4.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react-hooks": "^4.0.8",
