@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "gatsby develop -p 8001",
     "clean": "gatsby clean"
   },
   "dependencies": {
