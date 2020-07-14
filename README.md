@@ -2,7 +2,9 @@
 
 # gatsby-theme-newrelic
 
-TODO
+This repo contains Gatsby themes used by New Relic Gatsby sites, including the
+[Developer Website](https://developer.newrelic.com) and [Open Source
+Website](https://opensource.newrelic.com).
 
 ## Installation
 
@@ -14,25 +16,34 @@ yarn
 
 ## Getting Started
 
-> [Simple steps to start working with the software similar to a "Hello World"]
+To edit content in the theme itself, run the following command:
+
+```sh
+yarn workspace @newrelic/gatsby-theme-newrelic develop
+```
+
+You can use the demo site to test out your changes. To run the demo site, run
+the following command:
+
+```sh
+yarn workspace demo develop
+```
+
+To browse the demo site, visit http://localhost:8001 in your browser.
 
 ## Usage
 
-> [**Optional** - Include more thorough instructions on how to use the software. This section might not be needed if the Getting Started section is enough. Remove this section if it's not needed.]
-
-## Building
-
-> [**Optional** - Include this section if users will need to follow specific instructions to build the software from source. Be sure to include any third party build dependencies that need to be installed separately. Remove this section if it's not needed.]
+This package is currently in development 🛠.Usage information will be created as
+the library undergoes development.
 
 ## Testing
 
-> [**Optional** - Include instructions on how to run tests if we include tests with the codebase. Remove this section if it's not needed.]
+This package is currently in development 🛠. Test information will be created as
+the library undergoes development.
 
 ## Support
 
 New Relic hosts and moderates an online forum where customers can interact with New Relic employees as well as other customers to get help and share best practices. Like all official New Relic open source projects, there's a related Community topic in the New Relic Explorers Hub. You can find this project's topic/threads here:
-
-> Add the url for the support thread here
 
 ## Contributing
 
@@ -43,4 +54,4 @@ If you have any questions, or to execute our corporate CLA, required if your con
 
 gatsby-theme-newrelic is licensed under the [Apache 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
-> [If applicable: The gatsby-theme-newrelic also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.]
+> The gatsby-theme-newrelic also uses source code from third-party libraries. You can find full details on which libraries are used and the terms under which they are licensed in the third-party notices document.
