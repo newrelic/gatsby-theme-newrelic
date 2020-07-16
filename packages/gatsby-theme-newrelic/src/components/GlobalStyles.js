@@ -155,9 +155,24 @@ const darkMode = css`
   }
 `;
 
-// const fonts = css``;
+const fonts = css`
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+  @import url('https://use.typekit.net/pnb6qnj.css');
+  @import url('https://fonts.googleapis.com/css2?family=Ovo&display=swap');
+
+  --primary-font-family: 'open sans', sans-serif;
+  --secondary-font-family: 'effra', sans-serif;
+  --tertiary-font-family: 'Ovo', serif;
+  --code-font: 'Menlo', 'Consolas', monospace;
+`;
+
+const global = css`
+  --height-global-header: 30px;
+  --height-mobile-nav-bar: 60px;
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+`;
+
 // const reset = css``;
-// const global = css``;
 
 const GlobalStyles = () => (
   <Global
@@ -165,6 +180,8 @@ const GlobalStyles = () => (
       ${colors}
       ${lightMode}
       ${darkMode}
+      ${fonts}
+      ${global}
     `}
   />
 );
