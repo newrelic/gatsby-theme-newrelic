@@ -4,7 +4,6 @@ import GlobalStyles from '../src/components/GlobalStyles';
 
 const wrapPageElement = ({ element }) => (
   <>
-    <h2>Why am I not showing up?</h2>
     <GlobalStyles />
     {element}
   </>
