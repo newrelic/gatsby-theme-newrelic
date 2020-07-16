@@ -5,6 +5,8 @@ module.exports = ({ robots = {} }) => {
       'gatsby-plugin-react-helmet',
       'gatsby-plugin-sitemap',
       'gatsby-plugin-use-dark-mode',
+      'gatsby-transformer-sharp',
+      'gatsby-plugin-sharp',
       {
         resolve: 'gatsby-source-filesystem',
         options: {

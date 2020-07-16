@@ -28,9 +28,11 @@
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-robots-txt": "^1.5.1",
+    "gatsby-plugin-sharp": "^2.6.19",
     "gatsby-plugin-sitemap": "^2.4.11",
     "gatsby-plugin-use-dark-mode": "^1.1.2",
     "gatsby-source-filesystem": "^2.3.19",
+    "gatsby-transformer-sharp": "^2.5.11",
     "use-dark-mode": "^2.3.1"
   }
 }
