@@ -1,4 +1,4 @@
-module.exports = ({ robots = {} }) => {
+module.exports = ({ newrelic, robots = {} }) => {
   return {
     plugins: [
       'gatsby-plugin-emotion',
@@ -20,6 +20,10 @@ module.exports = ({ robots = {} }) => {
           policy: [{ userAgent: '*', allow: '/' }],
           ...robots,
         },
+      },
+      newrelic && {
+        resolve: 'gatsby-plugin-newrelic',
+        options: newrelic,
       },
     ].filter(Boolean),
   };

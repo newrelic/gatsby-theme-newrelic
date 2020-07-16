@@ -926,7 +926,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.0", "@babel/runtime@^7.5.5":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.0", "@babel/runtime@^7.5.5":
   version "7.10.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.5.tgz#303d8bd440ecd5a491eae6117fd3367698674c5c"
   integrity sha512-otddXKhdNn7d0ptoFRHtMLa8LqDxLYwTjB4nYgM1yy5N6gU/MUf8zqyyLltCH3yAVitBzmwK4us+DD0l/MauAg==
@@ -6083,6 +6083,13 @@ gatsby-plugin-emotion@^4.3.10:
   dependencies:
     "@babel/runtime" "^7.10.3"
     "@emotion/babel-preset-css-prop" "^10.0.27"
+
+gatsby-plugin-newrelic@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-newrelic/-/gatsby-plugin-newrelic-1.0.2.tgz#5d2831a59cc49e9652f3beed1ff6a0183967a15f"
+  integrity sha512-TWVysdMSuSRbzAAdHK+aZYxmMPQJDygvT1sKApApJBhVQ79ElBRiBnqIE5vDU26WH6sjqaxf8RlZFzmNWZ6n+A==
+  dependencies:
+    "@babel/runtime" "^7.0.0"
 
 gatsby-plugin-page-creator@^2.3.17:
   version "2.3.17"
