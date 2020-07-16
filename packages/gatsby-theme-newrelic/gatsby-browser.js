@@ -1,6 +1,4 @@
 // tell Gatsby to use the wrapPageElement component
-// const wrapPageElement = require('./gatsby/wrap-page-element');
+const wrapPageElement = require('./gatsby/wrap-page-element').default;
 
-// module.exports = {
-//   wrapPageElement,
-// };
+exports.wrapPageElement = wrapPageElement;
