@@ -1,3 +1,15 @@
 module.exports = {
-  plugins: ['@newrelic/gatsby-theme-newrelic'],
+  plugins: [
+    {
+      resolve: '@newrelic/gatsby-theme-newrelic',
+      options: {
+        newrelic: {
+          configs: {
+            staging: {},
+            production: {},
+          },
+        },
+      },
+    },
+  ],
 };
