@@ -30,6 +30,7 @@
     "gatsby-plugin-robots-txt": "^1.5.1",
     "gatsby-plugin-sitemap": "^2.4.11",
     "gatsby-plugin-use-dark-mode": "^1.1.2",
+    "gatsby-source-filesystem": "^2.3.19",
     "use-dark-mode": "^2.3.1"
   }
 }

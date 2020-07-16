@@ -6,6 +6,13 @@ module.exports = ({ robots = {} }) => {
       'gatsby-plugin-sitemap',
       'gatsby-plugin-use-dark-mode',
       {
+        resolve: 'gatsby-source-filesystem',
+        options: {
+          name: 'images',
+          path: 'src/images',
+        },
+      },
+      {
         resolve: 'gatsby-plugin-robots-txt',
         options: {
           policy: [{ userAgent: '*', allow: '/' }],
