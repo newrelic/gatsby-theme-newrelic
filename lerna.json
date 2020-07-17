@@ -1,0 +1,12 @@
+{
+  "packages": ["packages/*", "demo"],
+  "version": "fixed",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "conventionalCommits": true,
+      "yes": true
+    }
+  }
+}
