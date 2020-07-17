@@ -9,7 +9,7 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@newrelic/gatsby-theme-newrelic": "^1.0.1",
+    "@newrelic/gatsby-theme-newrelic": "*",
     "gatsby": "^2.24.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
