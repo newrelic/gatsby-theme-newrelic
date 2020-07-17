@@ -206,7 +206,7 @@ const reset = css`
 
   p {
     margin-top: 0;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
   }
 
   h1,
@@ -216,7 +216,7 @@ const reset = css`
   h5,
   h6 {
     margin-top: 0;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
     font-weight: 600;
     font-family: var(--primary-font-family);
     color: var(--heading-text-color);
@@ -224,7 +224,7 @@ const reset = css`
 
   input[type='text'] {
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 0.25rem;
     height: 2rem;
     box-sizing: border-box;
     transition: all 0.1s var(--ease-out-quad);
@@ -244,9 +244,9 @@ const reset = css`
   }
 
   blockquote {
-    border-left: 4px solid var(--border-color);
-    padding: 15px 5px 20px 20px;
-    margin: 25px 50px 25px 20px;
+    border-left: 0.25rem solid var(--border-color);
+    padding: 0.94rem 0.31rem 1.25rem 1.25rem;
+    margin: 1.56rem 3.13rem 1.56rem 1.25rem;
   }
 
   pre {
