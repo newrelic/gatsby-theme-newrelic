@@ -34,6 +34,7 @@
     "gatsby-plugin-use-dark-mode": "^1.1.2",
     "gatsby-source-filesystem": "^2.3.19",
     "gatsby-transformer-sharp": "^2.5.11",
+    "polished": "^3.6.5",
     "use-dark-mode": "^2.3.1"
   }
 }

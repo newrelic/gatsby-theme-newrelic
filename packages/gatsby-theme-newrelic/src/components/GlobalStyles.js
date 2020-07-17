@@ -1,4 +1,5 @@
 import React from 'react';
+import { normalize } from 'polished';
 import { Global, css } from '@emotion/core';
 
 const colors = css`
@@ -257,6 +258,7 @@ const reset = css`
 const GlobalStyles = () => (
   <Global
     styles={css`
+      ${normalize()}
       ${colors}
       ${lightMode}
       ${darkMode}
