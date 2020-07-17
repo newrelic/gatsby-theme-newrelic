@@ -15,20 +15,15 @@ yarn
 
 ## Getting started
 
-To edit content in the theme itself, run the following command:
-
-```sh
-yarn workspace @newrelic/gatsby-theme-newrelic develop
-```
-
-You can use the demo site to test out your changes. To run the demo site, run
-the following command:
+You can use the demo site to test out changes to the theme. To run the demo
+site, run the following command:
 
 ```sh
 yarn workspace demo develop
 ```
 
-To browse the demo site, visit http://localhost:8001 in your browser.
+To browse the demo site, visit [http://localhost:8001](http://localhost:8001) in
+your browser.
 
 ## Usage
 
