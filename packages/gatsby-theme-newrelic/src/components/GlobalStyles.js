@@ -179,17 +179,9 @@ const global = css`
     }
   }
 
-  :global {
-    .intro-text {
-      color: var(--secondary-text-color);
-      font-size: 1.125rem;
-      line-height: 2rem;
-    }
-
-    .site-container {
-      max-width: 1600px;
-      margin: 0 auto;
-    }
+  .site-container {
+    max-width: 1600px;
+    margin: 0 auto;
   }
 `;
 
