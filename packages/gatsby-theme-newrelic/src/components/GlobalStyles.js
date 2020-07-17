@@ -179,11 +179,6 @@ const global = css`
       color: var(--color-dark-500);
     }
   }
-
-  .site-container {
-    max-width: 1600px;
-    margin: 0 auto;
-  }
 `;
 
 const reset = css`
