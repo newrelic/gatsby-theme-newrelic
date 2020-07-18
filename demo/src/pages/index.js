@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button } from '@newrelic/gatsby-theme-newrelic';
+import { Button, NewRelicLogo } from '@newrelic/gatsby-theme-newrelic';
 
 const IndexPage = () => (
   <div>
+    <NewRelicLogo />
     <h1>Hello, World</h1>
     <p>This is a test</p>
     <Button
