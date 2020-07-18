@@ -157,10 +157,6 @@ const darkMode = css`
 `;
 
 const fonts = css`
-  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
-  @import url('https://use.typekit.net/pnb6qnj.css');
-  @import url('https://fonts.googleapis.com/css2?family=Ovo&display=swap');
-
   --primary-font-family: 'open sans', sans-serif;
   --secondary-font-family: 'effra', sans-serif;
   --tertiary-font-family: 'Ovo', serif;

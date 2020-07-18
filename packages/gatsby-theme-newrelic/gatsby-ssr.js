@@ -1,4 +1,4 @@
-// tell Gatsby to use the wrapPageElement component
-const wrapPageElement = require('./gatsby/wrap-page-element').default;
+import wrapPageElement from './gatsby/wrap-page-element';
+import onPreRenderHTML from './gatsby/on-pre-render-html';
 
-exports.wrapPageElement = wrapPageElement;
+export { onPreRenderHTML, wrapPageElement };
