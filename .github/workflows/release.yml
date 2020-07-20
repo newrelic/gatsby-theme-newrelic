@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    - main
+
+env:
+  BOT_NAME: nr-opensource-bot
+  BOT_EMAIL: opensource+bot@newrelic.com
+
+jobs:
+  checkout-and-install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+
+      - name: Cache node_modules
+        id: cache-node
+        uses: actions/cache@v2
+        env:
+          cache-name: node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+
+      - name: Install Dependencies
+        run: npm ci
+
+  generate-release:
+    runs-on: ubuntu-latest
+    needs: [checkout-and-install]
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+
+      - name: Cache node_modules
+        id: cache-node
+        uses: actions/cache@v2
+        env:
+          cache-name: node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Lerna Publish
+        run: npx lerna publish
