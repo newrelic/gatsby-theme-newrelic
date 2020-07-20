@@ -3,6 +3,7 @@ name: Release
 on:
   push:
     - main
+    - zstickles/release
 
 env:
   BOT_NAME: nr-opensource-bot
@@ -57,4 +58,10 @@ jobs:
         run: npm ci
 
       - name: Lerna Publish
-        run: npx lerna publish
+        env:
+          GIT_AUTHOR_NAME: ${{ env.BOT_NAME }}
+          GIT_AUTHOR_EMAIL: ${{ env.BOT_EMAIL }}
+          GIT_COMMITTER_NAME: ${{ env.BOT_NAME }}
+          GIT_COMMITTER_EMAIL: ${{ env.BOT_EMAIL }}
+          GITHUB_TOKEN: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
+        run: npm run release
