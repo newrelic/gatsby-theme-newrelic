@@ -1,5 +1,8 @@
-module.exports = ({ newrelic, robots = {} }) => {
+module.exports = ({ newrelic, repository, robots = {} }) => {
   return {
+    siteMetadata: {
+      repository,
+    },
     plugins: [
       'gatsby-plugin-emotion',
       'gatsby-plugin-react-helmet',
