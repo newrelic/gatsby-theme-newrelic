@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - zstickles/release
 
 env:
   BOT_NAME: nr-opensource-bot
