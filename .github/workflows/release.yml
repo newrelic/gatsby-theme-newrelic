@@ -19,20 +19,26 @@ jobs:
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
+        with:
+          node-version: 12
 
-      - name: Cache node_modules
-        id: cache-node
-        uses: actions/cache@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Download Cached Dependencies
+        id: cache-node-modules
+        uses: actions/cache@v1
         env:
           cache-name: node-modules
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
 
       - name: Install Dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile
 
   generate-release:
     runs-on: ubuntu-latest
@@ -56,7 +62,7 @@ jobs:
             ${{ runner.os }}-${{ env.cache-name }}-
 
       - name: Install Dependencies
-        run: npm ci
+        run: yarn install
 
       - name: Lerna Publish
         env:
@@ -65,4 +71,4 @@ jobs:
           GIT_COMMITTER_NAME: ${{ env.BOT_NAME }}
           GIT_COMMITTER_EMAIL: ${{ env.BOT_EMAIL }}
           GITHUB_TOKEN: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
-        run: npm run release
+        run: yarn release
