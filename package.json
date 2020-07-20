@@ -5,9 +5,6 @@
     "demo",
     "packages/*"
   ],
-  "scripts": {
-    "release": "lerna publish"
-  },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
     "eslint": "^7.4.0",
