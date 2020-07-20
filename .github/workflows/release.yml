@@ -2,8 +2,9 @@ name: Release
 
 on:
   push:
-    - main
-    - zstickles/release
+    branches:
+      - main
+      - zstickles/release
 
 env:
   BOT_NAME: nr-opensource-bot
