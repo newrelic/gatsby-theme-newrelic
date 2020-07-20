@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.1 (2020-07-20)
+
+**Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
+
+
+
+
+
 # [0.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/@newrelic/gatsby-theme-newrelic@1.0.1...@newrelic/gatsby-theme-newrelic@0.1.0) (2020-07-20)
 
 

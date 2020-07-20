@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "demo",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "Apache-2.0",
   "scripts": {
     "build": "gatsby build",
@@ -9,7 +9,7 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@newrelic/gatsby-theme-newrelic": "^0.1.0",
+    "@newrelic/gatsby-theme-newrelic": "^0.1.1",
     "gatsby": "^2.24.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
