@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.1.5 (2020-07-20)
+
+
+### Bug Fixes
+
+* use absolute URL for registry ([bc9c0d4](https://github.com/newrelic/gatsby-theme-newrelic/commit/bc9c0d4e442f55494712092c28c19fc6aed4e6c4))
+
+
+
+
+
 ## 0.1.4 (2020-07-20)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
