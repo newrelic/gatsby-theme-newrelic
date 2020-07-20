@@ -72,4 +72,4 @@ jobs:
           GIT_COMMITTER_EMAIL: ${{ env.BOT_EMAIL }}
           GITHUB_TOKEN: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-        run: yarn release --registry //registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
+        run: yarn release --registry https://registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN
