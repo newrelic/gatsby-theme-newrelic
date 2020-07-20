@@ -71,5 +71,5 @@ jobs:
           GIT_COMMITTER_NAME: ${{ env.BOT_NAME }}
           GIT_COMMITTER_EMAIL: ${{ env.BOT_EMAIL }}
           GITHUB_TOKEN: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
         run: yarn release
