@@ -1,0 +1,19 @@
+{
+  "name": "gatsby-theme-newrelic",
+  "private": true,
+  "workspaces": [
+    "demo",
+    "packages/*"
+  ],
+  "scripts": {
+    "release": "lerna publish"
+  },
+  "devDependencies": {
+    "@newrelic/eslint-plugin-newrelic": "^0.3.1",
+    "eslint": "^7.4.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "lerna": "^3.22.1",
+    "prettier": "^2.0.5"
+  }
+}

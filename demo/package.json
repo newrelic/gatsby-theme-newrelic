@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "demo",
+  "version": "1.1.8",
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop -p 8001",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@newrelic/gatsby-theme-newrelic": "^0.1.8",
+    "gatsby": "^2.24.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}

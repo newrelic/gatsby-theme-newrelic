@@ -1,0 +1,120 @@
+name: PR Merged
+
+on:
+  push:
+    branches:
+      - develop
+
+env:
+  BOT_NAME: nr-opensource-bot
+  BOT_EMAIL: opensource+bot@newrelic.com
+
+jobs:
+  generate-third-party-notices:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout fetch-depth: 2 because there's a check to see if package.json
+      # was updated, and need at least 2 commits for the check to function properly
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Download Cached Deps
+        id: cache-node-modules
+        uses: actions/cache@v1
+        env:
+          cache-name: node-modules
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ env.cache-name }}-
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Install OSS CLI
+        run: |
+          yarn global add @newrelic/newrelic-oss-cli
+
+      - name: Generate Third Party Notices
+        id: generate-notices
+        run: |
+          if [ ! -f "third_party_manifest.json" ]; then
+            echo "::error::third_party_manifest.json is missing. Must generate using the newrelic-oss-cli."
+            exit 1
+          fi
+          # latest commit
+          LATEST_COMMIT=$(git rev-parse HEAD)
+          # latest commit where package.json was changed
+          LAST_CHANGED_COMMIT=$(git log -1 --format=format:%H --full-diff package.json)
+          if [ $LAST_CHANGED_COMMIT = $LATEST_COMMIT ]; then
+            git config user.email "${{ env.BOT_EMAIL }}"
+            git config user.name "${{ env.BOT_NAME }}"
+            oss third-party manifest
+            oss third-party notices
+            git add third_party_manifest.json
+            git add THIRD_PARTY_NOTICES.md
+            git commit -m 'chore: update third-party manifest and notices [skip-cd]'
+            echo "::set-output name=commit::true"
+          else
+            echo "No change in package.json, not regenerating third-party notices"
+          fi
+
+      - name: Temporarily disable "required_pull_request_reviews" branch protection
+        id: disable-branch-protection
+        if: always()
+        uses: actions/github-script@v1
+        with:
+          github-token: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
+          previews: luke-cage-preview
+          script: |
+            const result = await github.repos.updateBranchProtection({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              branch: 'develop',
+              required_status_checks: null,
+              restrictions: null,
+              enforce_admins: null,
+              required_pull_request_reviews: null
+            })
+            console.log("Result:", result)
+
+      - name: Push Commit
+        if: steps.generate-notices.outputs.commit == 'true'
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
+          branch: develop
+
+      - name: Re-enable "required_pull_request_reviews" branch protection
+        id: enable-branch-protection
+        if: always()
+        uses: actions/github-script@v1
+        with:
+          github-token: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
+          previews: luke-cage-preview
+          script: |
+            const result = await github.repos.updateBranchProtection({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              branch: 'develop',
+              required_status_checks: null,
+              restrictions: null,
+              enforce_admins: true,
+              required_pull_request_reviews: {
+                dismiss_stale_reviews: true,
+                required_approving_review_count: 1
+              }
+            })
+            console.log("Result:", result)
