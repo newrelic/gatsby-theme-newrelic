@@ -34,10 +34,6 @@ const ActionLink = styled(ExternalLink)`
 `;
 
 const styles = {
-  actionLink: css`
-    display: flex;
-    align-items: center;
-  `,
   actionIcon: css`
     transition: all 0.2s ease-out;
     color: var(--secondary-text-color);
@@ -52,6 +48,9 @@ const GlobalHeader = ({ editLink, className }) => {
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
       site {
+        layout {
+          maxWidth
+        }
         siteMetadata {
           repository
         }
@@ -59,7 +58,10 @@ const GlobalHeader = ({ editLink, className }) => {
     }
   `);
 
-  const { repository } = site.siteMetadata;
+  const {
+    layout,
+    siteMetadata: { repository },
+  } = site;
 
   return (
     <div
@@ -81,6 +83,8 @@ const GlobalHeader = ({ editLink, className }) => {
           height: 30px;
           display: flex;
           justify-content: space-between;
+          max-width: ${layout.maxWidth};
+          margin: 0 auto;
         `}
       >
         <nav
@@ -92,7 +96,6 @@ const GlobalHeader = ({ editLink, className }) => {
         >
           <ExternalLink
             href="https://newrelic.com/"
-            className={styles.logoContainer}
             css={css`
               display: flex;
               align-items: center;
@@ -117,7 +120,7 @@ const GlobalHeader = ({ editLink, className }) => {
                 Developers
               </NavLink>
             </li>
-            <li className={styles.leftSideLinkItem}>
+            <li>
               <NavLink href="https://opensource.newrelic.com/">
                 Open Source
               </NavLink>
