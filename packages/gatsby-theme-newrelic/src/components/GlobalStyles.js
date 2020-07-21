@@ -162,8 +162,6 @@ const fonts = css`
 `;
 
 const global = css`
-  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
   ::placeholder {
     color: var(--color-neutrals-500);
 
@@ -208,18 +206,6 @@ const reset = css`
     font-weight: 600;
     font-family: var(--primary-font-family);
     color: var(--heading-text-color);
-  }
-
-  input[type='text'] {
-    border: 1px solid var(--border-color);
-    border-radius: 0.25rem;
-    height: 2rem;
-    box-sizing: border-box;
-    transition: all 0.1s var(--ease-out-quad);
-
-    &:hover {
-      border-color: var(--border-hover-color);
-    }
   }
 
   ul {
