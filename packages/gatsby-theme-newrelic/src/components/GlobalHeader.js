@@ -49,6 +49,7 @@ const GlobalHeader = ({ editLink, className }) => {
     query GlobalHeaderQuery {
       site {
         layout {
+          contentPadding
           maxWidth
         }
         siteMetadata {
@@ -85,6 +86,7 @@ const GlobalHeader = ({ editLink, className }) => {
           justify-content: space-between;
           max-width: ${layout.maxWidth};
           margin: 0 auto;
+          padding: 0 ${layout.contentPadding};
         `}
       >
         <nav
