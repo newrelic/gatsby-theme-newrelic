@@ -11,7 +11,7 @@ import {
 
 const IndexPage = ({ data }) => (
   <>
-    <GlobalHeader />
+    <GlobalHeader editUrl="https://github.com/newrelic/gatsby-theme-newrelic/tree/develop/demo/src/pages/index.js" />
     <div
       css={css`
         margin: 0 auto;
