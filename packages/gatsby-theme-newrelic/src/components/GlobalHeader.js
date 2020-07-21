@@ -28,12 +28,11 @@ const NavLink = styled(ExternalLink)`
   }
 `;
 
-const ActionLink = styled(ExternalLink)`
-  display: flex;
-  align-items: center;
-`;
-
 const styles = {
+  actionLink: css`
+    display: flex;
+    align-items: center;
+  `,
   actionIcon: css`
     transition: all 0.2s ease-out;
     color: var(--secondary-text-color);
@@ -153,24 +152,27 @@ const GlobalHeader = ({ editLink, className }) => {
         >
           {editLink && (
             <li>
-              <ActionLink href={editLink}>
+              <ExternalLink css={styles.actionLink} href={editLink}>
                 <Icon
                   css={styles.actionIcon}
                   name={Icon.TYPE.EDIT}
                   size="0.875rem"
                 />
-              </ActionLink>
+              </ExternalLink>
             </li>
           )}
           {repository && (
             <li>
-              <ActionLink href={`${repository}/issues/new/choose`}>
+              <ExternalLink
+                css={styles.actionLink}
+                href={`${repository}/issues/new/choose`}
+              >
                 <Icon
                   css={styles.actionIcon}
                   name={Icon.TYPE.GITHUB}
                   size="0.875rem"
                 />
-              </ActionLink>
+              </ExternalLink>
             </li>
           )}
           <li>
