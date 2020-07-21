@@ -7,6 +7,7 @@ import ExternalLink from './ExternalLink';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import GlobalNavLink from './GlobalNavLink';
+import useMedia from 'use-media';
 
 const styles = {
   actionLink: css`
@@ -38,6 +39,9 @@ const GlobalHeader = ({ editUrl, className }) => {
       }
     }
   `);
+
+  const hideLogoText = useMedia({ maxWidth: '600px' });
+  const hideMenuLinks = useMedia({ maxWidth: '530px' });
 
   const {
     layout,
@@ -84,7 +88,7 @@ const GlobalHeader = ({ editUrl, className }) => {
               margin-right: 1rem;
             `}
           >
-            <NewRelicLogo />
+            <NewRelicLogo omitText={hideLogoText} />
           </ExternalLink>
 
           <ul
@@ -135,7 +139,7 @@ const GlobalHeader = ({ editUrl, className }) => {
             }
           `}
         >
-          {editUrl && (
+          {editUrl && !hideMenuLinks && (
             <li>
               <ExternalLink css={styles.actionLink} href={editUrl}>
                 <Icon
@@ -146,7 +150,7 @@ const GlobalHeader = ({ editUrl, className }) => {
               </ExternalLink>
             </li>
           )}
-          {repository && (
+          {repository && !hideMenuLinks && (
             <li>
               <ExternalLink
                 css={styles.actionLink}
