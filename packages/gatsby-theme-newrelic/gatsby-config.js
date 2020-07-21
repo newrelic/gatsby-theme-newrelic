@@ -1,4 +1,4 @@
-module.exports = ({ newrelic, repository, robots = {} }) => {
+module.exports = ({ newrelic, repository = '', robots = {} }) => {
   return {
     siteMetadata: {
       repository,
