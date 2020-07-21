@@ -2,20 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import FeatherSVG from './FeatherSVG';
-import mirrorKeys from '../utils/mirrorKeys';
+import constantize from '../utils/constantize';
+import transformKeys from '../utils/transformKeys';
 
 const FEATHER_ICONS = {
-  EDIT: (
+  edit: (
     <>
       <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
       <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
     </>
   ),
-  GITHUB: (
+  github: (
     <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
   ),
-  MOON: <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />,
-  SUN: (
+  moon: <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />,
+  sun: (
     <>
       <circle cx="12" cy="12" r="5" />
       <line x1="12" y1="1" x2="12" y2="3" />
@@ -30,9 +31,12 @@ const FEATHER_ICONS = {
   ),
 };
 
-const TYPES = mirrorKeys({
-  ...FEATHER_ICONS,
-});
+const TYPES = transformKeys(
+  {
+    ...FEATHER_ICONS,
+  },
+  constantize
+);
 
 const Icon = ({ name, size, ...props }) => {
   const featherIcon = FEATHER_ICONS[name];
@@ -55,7 +59,7 @@ const Icon = ({ name, size, ...props }) => {
 };
 
 Icon.propTypes = {
-  name: PropTypes.oneOf(Object.keys(TYPES)).isRequired,
+  name: PropTypes.oneOf(Object.values(TYPES)).isRequired,
   size: PropTypes.string,
 };
 
