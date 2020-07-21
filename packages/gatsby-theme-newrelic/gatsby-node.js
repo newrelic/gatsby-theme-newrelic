@@ -18,6 +18,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
   createTypes(`
     type SiteLayout @dontInfer {
+      contentPadding: String
       maxWidth: String
     }
   `);
