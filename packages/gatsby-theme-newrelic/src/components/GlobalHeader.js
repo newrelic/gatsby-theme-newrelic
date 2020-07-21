@@ -2,31 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql, useStaticQuery } from 'gatsby';
-import styled from '@emotion/styled';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
-
-const NavLink = styled(ExternalLink)`
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 0.25rem 9px;
-  color: var(--secondary-text-color);
-  font-size: 0.6875rem;
-  transition: 0.2s;
-
-  &:hover {
-    background-color: var(--color-neutrals-200);
-    color: var(--color-neutrals-700);
-
-    .dark-mode & {
-      background-color: var(--color-dark-200);
-      color: var(--color-dark-700);
-    }
-  }
-`;
+import GlobalNavLink from './GlobalNavLink';
 
 const styles = {
   actionLink: css`
@@ -53,6 +33,7 @@ const GlobalHeader = ({ editLink, className }) => {
         }
         siteMetadata {
           repository
+          siteUrl
         }
       }
     }
@@ -117,20 +98,24 @@ const GlobalHeader = ({ editLink, className }) => {
             `}
           >
             <li>
-              <NavLink href="https://developer.newrelic.com/">
+              <GlobalNavLink href="https://developer.newrelic.com/">
                 Developers
-              </NavLink>
+              </GlobalNavLink>
             </li>
             <li>
-              <NavLink href="https://opensource.newrelic.com/">
+              <GlobalNavLink href="https://opensource.newrelic.com/">
                 Open Source
-              </NavLink>
+              </GlobalNavLink>
             </li>
             <li>
-              <NavLink href="https://docs.newrelic.com/">Documentation</NavLink>
+              <GlobalNavLink href="https://docs.newrelic.com/">
+                Documentation
+              </GlobalNavLink>
             </li>
             <li>
-              <NavLink href="https://discuss.newrelic.com/">Community</NavLink>
+              <GlobalNavLink href="https://discuss.newrelic.com/">
+                Community
+              </GlobalNavLink>
             </li>
           </ul>
         </nav>
