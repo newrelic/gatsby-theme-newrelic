@@ -1,11 +1,17 @@
 import React from 'react';
-import { Button, Icon, NewRelicLogo } from '@newrelic/gatsby-theme-newrelic';
+import {
+  Button,
+  Icon,
+  GlobalHeader,
+  NewRelicLogo,
+} from '@newrelic/gatsby-theme-newrelic';
 
 const IndexPage = () => (
   <div>
+    <GlobalHeader />
     <NewRelicLogo />
     <div>
-      Check it out on <Icon type={Icon.TYPE.GITHUB} />
+      Check it out on <Icon name={Icon.TYPE.GITHUB} />
     </div>
     <h1>Hello, World</h1>
     <p>This is a test</p>
