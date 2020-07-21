@@ -34,8 +34,8 @@ const TYPES = mirrorKeys({
   ...FEATHER_ICONS,
 });
 
-const Icon = ({ type, size, ...props }) => {
-  const featherIcon = FEATHER_ICONS[type];
+const Icon = ({ name, size, ...props }) => {
+  const featherIcon = FEATHER_ICONS[name];
 
   if (featherIcon) {
     return (
@@ -51,11 +51,11 @@ const Icon = ({ type, size, ...props }) => {
     );
   }
 
-  throw new Error(`Icon: ${type} did not match a known icon`);
+  throw new Error(`Icon: ${name} did not match a known icon`);
 };
 
 Icon.propTypes = {
-  type: PropTypes.oneOf(Object.keys(TYPES)),
+  name: PropTypes.oneOf(Object.keys(TYPES)).isRequired,
   size: PropTypes.string,
 };
 

@@ -8,9 +8,9 @@ const DarkModeToggle = ({ className, size }) => {
 
   return (
     <Icon
+      name={darkMode.value ? Icon.TYPE.SUN : Icon.TYPE.MOON}
       className={className}
       size={size}
-      type={darkMode.value ? Icon.TYPE.SUN : Icon.TYPE.MOON}
       onClick={darkMode.toggle}
     />
   );
