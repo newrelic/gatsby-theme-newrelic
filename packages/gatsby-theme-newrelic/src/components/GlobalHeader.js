@@ -23,7 +23,7 @@ const styles = {
   `,
 };
 
-const GlobalHeader = ({ editLink, className }) => {
+const GlobalHeader = ({ editUrl, className }) => {
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
       site {
@@ -135,9 +135,9 @@ const GlobalHeader = ({ editLink, className }) => {
             }
           `}
         >
-          {editLink && (
+          {editUrl && (
             <li>
-              <ExternalLink css={styles.actionLink} href={editLink}>
+              <ExternalLink css={styles.actionLink} href={editUrl}>
                 <Icon
                   css={styles.actionIcon}
                   name={Icon.TYPE.EDIT}
@@ -171,7 +171,7 @@ const GlobalHeader = ({ editLink, className }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
-  editLink: PropTypes.string,
+  editUrl: PropTypes.string,
 };
 
 export default GlobalHeader;
