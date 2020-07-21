@@ -23,8 +23,8 @@ exports.createSchemaCustomization = ({ actions }) => {
   `);
 };
 
-exports.createResolvers = ({ createResolvers }, pluginOptions) => {
-  const { layout = {} } = pluginOptions;
+exports.createResolvers = ({ createResolvers }, themeOptions) => {
+  const { layout = {} } = themeOptions;
 
   createResolvers({
     Site: {
