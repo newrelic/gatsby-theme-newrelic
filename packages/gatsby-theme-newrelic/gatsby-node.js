@@ -53,6 +53,7 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
         'ruby',
         'shell',
         'sql',
+        'graphql',
         ...(prism.languages || []),
       ]),
     },
