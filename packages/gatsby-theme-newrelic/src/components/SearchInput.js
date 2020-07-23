@@ -41,7 +41,6 @@ const SearchInput = ({
           transform: translateY(-50%);
         `}
         name={Icon.TYPE.SEARCH}
-        size={size}
       />
       <StyledInput
         value={value}
@@ -61,11 +60,11 @@ const SearchInput = ({
               cursor: pointer;
             }
           `}
-          onKeyDown={(e) => e.preventDefault()}
+          onKeyDown={handleKeyDown}
           type="button"
           size={size}
         >
-          <StyledIcon name={Icon.TYPE.X} size={size} />
+          <StyledIcon name={Icon.TYPE.X} />
         </StyledButton>
       )}
     </StyledContainer>
@@ -109,10 +108,8 @@ const styles = {
 };
 
 const StyledContainer = styled.div`
-  display: flex;
   position: relative;
-  flex-direction: column;
-  width: ${(props) => (props.width ? props.width : '100%')};
+  width: ${(props) => props.width || '100%'};
   ${({ size }) => size && styles.size[size].container}
 `;
 
@@ -132,11 +129,9 @@ const StyledInput = styled.input`
 `;
 
 const StyledIcon = styled(Icon)`
-  align-items: center;
-  display: block;
-  font-size: 1rem;
   stroke: var(--primary-text-color);
   height: var(--icon-size);
+  width: var(--icon-size);
 `;
 
 const StyledButton = styled.button`
