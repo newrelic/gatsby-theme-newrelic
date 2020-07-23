@@ -6,5 +6,6 @@ export { default as Icon } from './src/components/Icon';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 
 export { default as formatCode } from './src/utils/formatCode';
+export { default as useClipboard } from './src/hooks/useClipboard';
 export { default as useFormattedCode } from './src/hooks/useFormattedCode';
 export { default as useTimeout } from './src/hooks/useTimeout';
