@@ -5,9 +5,7 @@ import { css } from '@emotion/core';
 import {
   Button,
   CodeBlock,
-  Icon,
   GlobalHeader,
-  NewRelicLogo,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const codeSample = `
@@ -29,54 +27,61 @@ const liveCodeSample = `
 <Button variant={Button.VARIANT.PRIMARY} onClick={() => alert('Hello!')}>Hello!</Button>
 `;
 
-const IndexPage = ({ data }) => (
-  <>
-    <GlobalHeader editUrl="https://github.com/newrelic/gatsby-theme-newrelic/tree/develop/demo/src/pages/index.js" />
-    <div
-      css={css`
-        margin: 0 auto;
-        padding: ${data.site.layout.contentPadding};
-        max-width: ${data.site.layout.maxWidth};
-      `}
-    >
-      <NewRelicLogo />
-      <div>
-        Check it out on <Icon name={Icon.TYPE.GITHUB} />
+const IndexPage = ({ data }) => {
+  const { layout, siteMetadata } = data.site;
+
+  return (
+    <>
+      <GlobalHeader
+        editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
+      />
+      <div
+        css={css`
+          margin: 0 auto;
+          padding: ${layout.contentPadding};
+          max-width: ${layout.maxWidth};
+        `}
+      >
+        <h1>Hello, demo</h1>
+        <p>
+          This is a demo site that can be used to preview features of the New
+          Relic Gatsby theme. Feel free to add examples to this site to showcase
+          features.
+        </p>
+        <h2>A code block</h2>
+        <CodeBlock
+          copyable
+          lineNumbers
+          highlightedLines="5-7,11"
+          fileName="src/components/Button.js"
+          language="jsx"
+        >
+          {codeSample}
+        </CodeBlock>
+        <h2>A live editable code block w/ preview</h2>
+        <CodeBlock
+          copyable
+          lineNumbers
+          preview
+          live
+          fileName="src/components/Button.js"
+          language="jsx"
+          scope={{ Button }}
+        >
+          {liveCodeSample}
+        </CodeBlock>
+        <h2>A button</h2>
+        <Button
+          onClick={() => console.log('IT IS NOT')}
+          variant={Button.VARIANT.PRIMARY}
+          size={Button.SIZE.LARGE}
+        >
+          Or is it?
+        </Button>
       </div>
-      <h1>Hello, World</h1>
-      <p>This is a test</p>
-      <h2>A button</h2>
-      <CodeBlock
-        copyable
-        lineNumbers
-        highlightedLines="5-7,11"
-        fileName="src/components/Button.js"
-        language="jsx"
-      >
-        {codeSample}
-      </CodeBlock>
-      <h2>A live editable button w/ preview</h2>
-      <CodeBlock
-        copyable
-        lineNumbers
-        preview
-        live
-        fileName="src/components/Button.js"
-        language="jsx"
-        scope={{ Button }}
-      >
-        {liveCodeSample}
-      </CodeBlock>
-      <Button
-        onClick={() => console.log('IT IS NOT')}
-        variant={Button.VARIANT.PRIMARY}
-        size={Button.SIZE.LARGE}
-      >
-        Or is it?
-      </Button>
-    </div>
-  </>
-);
+    </>
+  );
+};
 
 IndexPage.propTypes = {
   data: PropTypes.object,
@@ -88,6 +93,9 @@ export const pageQuery = graphql`
       layout {
         contentPadding
         maxWidth
+      }
+      siteMetadata {
+        repository
       }
     }
   }
