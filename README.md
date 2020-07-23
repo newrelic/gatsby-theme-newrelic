@@ -52,10 +52,10 @@ You can configure `gatsby-theme-newrelic` for use with any set of docs using the
 
 Easily create buttons in different styles.
 
-| Prop    | Type   | Required | Description                                                                                |
-| ------- | ------ | -------- | ------------------------------------------------------------------------------------------ |
-| variant | string | yes      | Configures the variant of the button. Must either be `'plain'`, `'primary'`, or `'normal'` |
-| size    | string | no       | Configures the size of the button. Can be configured to `'small'`                          |
+| Prop    | Type   | Required | Description                                                                                                                        |
+| ------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| variant | string | yes      | Configures the variant of the button. Must either be `Button.VARIANT.PLAIN`, `Button.VARIANT.PRIMARY`, and `Button.VARIANT.NORMAL` |
+| size    | string | no       | Configures the size of the button. Can be configured to `'small'`                                                                  |
 
 ## Usage
 
