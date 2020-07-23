@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FeatherIcon from './FeatherIcon';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
+import Icon from './Icon';
 
 const SIZES = {
   MEDIUM: 'medium',
@@ -27,16 +27,22 @@ const SearchInput = ({
   };
 
   return (
-    <StyledContainer width={width} className={className} style={style}>
-      <StyledButton
-        onClick={handleClick}
-        css={value && clearButtonStyles}
-        onKeyDown={(e) => e.preventDefault()}
-        type="button"
+    <StyledContainer
+      width={width}
+      className={className}
+      style={style}
+      size={size}
+    >
+      <StyledIcon
+        css={css`
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+        `}
+        name={Icon.TYPE.SEARCH}
         size={size}
-      >
-        <StyledFeatherIcon name={value ? 'x' : 'search'} size={size} />
-      </StyledButton>
+      />
       <StyledInput
         value={value}
         size={size}
@@ -44,6 +50,24 @@ const SearchInput = ({
         type="text"
         onKeyDown={handleKeyDown}
       />
+      {value && (
+        <StyledButton
+          onClick={handleClick}
+          css={css`
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            &:hover {
+              cursor: pointer;
+            }
+          `}
+          onKeyDown={(e) => e.preventDefault()}
+          type="button"
+          size={size}
+        >
+          <StyledIcon name={Icon.TYPE.X} size={size} />
+        </StyledButton>
+      )}
     </StyledContainer>
   );
 };
@@ -66,30 +90,19 @@ const styles = {
     [SIZES.MEDIUM]: {
       input: css`
         font-size: 0.875rem;
-        padding: 0.5rem;
-        padding-left: 2rem;
+        padding: 0.5rem calc(1.5rem + var(--icon-size));
       `,
-      icon: css`
-        height: 1rem;
-      `,
-      button: css`
-        top: calc(50% - 8px);
-        left: 2%;
+      container: css`
+        --icon-size: 1rem;
       `,
     },
     [SIZES.LARGE]: {
       input: css`
         font-size: 1.25rem;
-        padding: 1rem;
-        padding-left: 2.65rem;
+        padding: 1rem calc(1.5rem + var(--icon-size));
       `,
-      icon: css`
-        height: 1.5rem;
-      `,
-      button: css`
-        top: 50%;
-        transform: translateY(-50%);
-        left: 2%;
+      container: css`
+        --icon-size: 1.5rem;
       `,
     },
   },
@@ -100,6 +113,7 @@ const StyledContainer = styled.div`
   position: relative;
   flex-direction: column;
   width: ${(props) => (props.width ? props.width : '100%')};
+  ${({ size }) => size && styles.size[size].container}
 `;
 
 const StyledInput = styled.input`
@@ -107,6 +121,7 @@ const StyledInput = styled.input`
   border: 1px solid var(--border-color);
   border-radius: 4px;
   background: var(--primary-background-color);
+  color: var(--primary-text-color);
   ${({ size }) => size && styles.size[size].input}
 
   &:focus {
@@ -116,12 +131,12 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledFeatherIcon = styled(FeatherIcon)`
+const StyledIcon = styled(Icon)`
   align-items: center;
   display: block;
   font-size: 1rem;
   stroke: var(--primary-text-color);
-  ${({ size }) => size && styles.size[size].icon}
+  height: var(--icon-size);
 `;
 
 const StyledButton = styled.button`
@@ -132,10 +147,4 @@ const StyledButton = styled.button`
   padding: 0;
   outline: none;
   ${({ size }) => size && styles.size[size].button}
-`;
-
-const clearButtonStyles = css`
-  &:hover {
-    cursor: pointer;
-  }
 `;
