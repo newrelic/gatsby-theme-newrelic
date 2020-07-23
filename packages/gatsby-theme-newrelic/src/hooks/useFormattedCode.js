@@ -1,8 +1,8 @@
-import useShallowMemo from './useShallowMemo';
+import useDeepMemo from './useDeepMemo';
 import formatCode from '../utils/formatCode';
 
 const useFormattedCode = (code, options) => {
-  return useShallowMemo(() => {
+  return useDeepMemo(() => {
     try {
       return formatCode(code, options);
     } catch (e) {
