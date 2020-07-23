@@ -1,5 +1,5 @@
 /* eslint-disable no-console,no-alert */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { css } from '@emotion/core';
@@ -7,6 +7,7 @@ import {
   Button,
   CodeBlock,
   GlobalHeader,
+  SearchInput,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const codeSample = `
@@ -30,6 +31,7 @@ const liveCodeSample = `
 
 const IndexPage = ({ data }) => {
   const { layout, siteMetadata } = data.site;
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <>
@@ -49,6 +51,24 @@ const IndexPage = ({ data }) => {
           Relic Gatsby theme. Feel free to add examples to this site to showcase
           features.
         </p>
+        <h2>Search inputs</h2>
+        <SearchInput
+          style={{ margin: '1rem 0' }}
+          placeholder="Test out a medium search"
+          onClear={() => setSearchTerm('')}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          value={searchTerm}
+          width="500px"
+        />
+        <SearchInput
+          style={{ marginBottom: '1rem' }}
+          placeholder="Test out a large search"
+          onClear={() => setSearchTerm('')}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          value={searchTerm}
+          width="500px"
+          size={SearchInput.SIZE.LARGE}
+        />
         <h2>A code block</h2>
         <CodeBlock
           copyable
@@ -66,8 +86,8 @@ const IndexPage = ({ data }) => {
         <CodeBlock
           copyable
           lineNumbers
-          preview
           live
+          preview
           fileName="src/components/Button.js"
           language="jsx"
           scope={{ Button }}

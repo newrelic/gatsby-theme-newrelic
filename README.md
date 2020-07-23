@@ -5,6 +5,16 @@
 This repo contains Gatsby themes used by New Relic Gatsby sites, including the
 [developer](https://developer.newrelic.com) and [open source websites](https://opensource.newrelic.com).
 
+- [Installation](#installation)
+- [Getting started](#getting-started)
+- [Configuration](#configuration)
+- [Options](#options)
+- [Components](#components)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Installation
 
 ```sh
@@ -24,6 +34,28 @@ yarn workspace demo develop
 
 To browse the demo site, visit [http://localhost:8001](http://localhost:8001) in
 your browser.
+
+## Configuration
+
+You can configure `gatsby-theme-newrelic` for use with any set of docs using the provided configuration options.
+
+## Options
+
+| Option name | Type   | Required | Description                                                                                                                                                                                                                                                                          |
+| ----------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| newrelic    | object | No       | Configurations for `gatsby-plugin-newrelic`. More details for the configuration can be found in [the repo](https://github.com/newrelic/gatsby-plugin-newrelic) for the plugin.                                                                                                       |
+| robot       | object | No       | `robot` options are forwarded to the `gatsby-plugin-robots-txt` plugin. The default value is `policy: [{ userAgent: '*', allow: '/' }],`. More details about robots.txt and configuring the plugin can be [found here](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/). |
+
+## Components
+
+### `Button`
+
+Easily create buttons in different styles.
+
+| Prop    | Type   | Required | Description                                                                                                                        |
+| ------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| variant | string | yes      | Configures the variant of the button. Must either be `Button.VARIANT.PLAIN`, `Button.VARIANT.PRIMARY`, or `Button.VARIANT.NORMAL` |
+| size    | string | no       | Configures the size of the button. Can be configured to `Button.SIZE.SMALL`                                                                  |
 
 ## Usage
 
