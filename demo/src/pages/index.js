@@ -7,6 +7,7 @@ import {
   Icon,
   GlobalHeader,
   NewRelicLogo,
+  Surface,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const IndexPage = ({ data }) => (
@@ -32,6 +33,64 @@ const IndexPage = ({ data }) => (
       >
         Or is it?
       </Button>
+
+      <section>
+        <h2>Primary surfaces</h2>
+        <div
+          css={css`
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            grid-gap: 2rem;
+          `}
+        >
+          <Surface
+            css={css`
+              padding: 2rem;
+            `}
+            type={Surface.TYPE.PRIMARY}
+          >
+            Non-interactive
+          </Surface>
+          <Surface
+            interactive
+            css={css`
+              padding: 2rem;
+            `}
+            type={Surface.TYPE.PRIMARY}
+          >
+            Interactive
+          </Surface>
+        </div>
+        <h2>Secondary surfaces</h2>
+        <div
+          css={css`
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            grid-gap: 2rem;
+            padding: 1rem;
+            border-radius: 4px;
+            background: var(--secondary-background-color);
+          `}
+        >
+          <Surface
+            css={css`
+              padding: 2rem;
+            `}
+            type={Surface.TYPE.SECONDARY}
+          >
+            Non-interactive
+          </Surface>
+          <Surface
+            interactive
+            css={css`
+              padding: 2rem;
+            `}
+            type={Surface.TYPE.SECONDARY}
+          >
+            Interactive
+          </Surface>
+        </div>
+      </section>
     </div>
   </>
 );
