@@ -49,7 +49,6 @@ const CodeHighlight = ({
 
               .light-mode & {
                 color: var(--color-nord-0);
-                background: var(--color-nord-6);
               }
             `}
             className={className}
