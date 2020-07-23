@@ -5,3 +5,4 @@ export { default as Icon } from './src/components/Icon';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 
 export { default as formatCode } from './src/utils/formatCode';
+export { default as useFormattedCode } from './src/hooks/useFormattedCode';
