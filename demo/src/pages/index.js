@@ -106,13 +106,18 @@ const IndexPage = ({ data }) => {
         >
           Click me
         </Button>
-        <section>
+        <section
+          css={css`
+            margin-top: 2rem;
+          `}
+        >
           <h2>Primary surfaces</h2>
           <div
             css={css`
               display: grid;
               grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
               grid-gap: 2rem;
+              margin-bottom: 2rem;
             `}
           >
             <Surface
