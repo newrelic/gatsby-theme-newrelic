@@ -3,6 +3,7 @@ export { default as CodeBlock } from './src/components/CodeBlock';
 export { default as ExternalLink } from './src/components/ExternalLink';
 export { default as GlobalHeader } from './src/components/GlobalHeader';
 export { default as Icon } from './src/components/Icon';
+export { default as MDXCodeBlock } from './src/components/MDXCodeBlock';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 
 export { default as formatCode } from './src/utils/formatCode';
