@@ -28,7 +28,7 @@ const CodeBlock = ({
   scope,
 }) => {
   const components = { ...defaultComponents, ...componentOverrides };
-  const formattedCode = useFormattedCode(children.trim(), formatOptions);
+  const formattedCode = useFormattedCode(children, formatOptions);
   const [copied, copy] = useClipboard();
   const [code, setCode] = useState(formattedCode);
 

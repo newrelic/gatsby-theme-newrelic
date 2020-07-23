@@ -16,7 +16,7 @@ const CodeHighlight = ({
   const highlightedLines = getHighlightedLines(highlightedLineString);
 
   return (
-    <Highlight Prism={Prism} code={children.trim()} language={language}>
+    <Highlight Prism={Prism} code={children} language={language}>
       {({ tokens, getLineProps, getTokenProps }) => {
         const lineNumberWidth = String(tokens.length).length;
 
