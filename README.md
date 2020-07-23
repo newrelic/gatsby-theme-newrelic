@@ -54,7 +54,7 @@ Easily create buttons in different styles.
 
 | Prop    | Type   | Required | Description                                                                                                                        |
 | ------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| variant | string | yes      | Configures the variant of the button. Must either be `Button.VARIANT.PLAIN`, `Button.VARIANT.PRIMARY`, and `Button.VARIANT.NORMAL` |
+| variant | string | yes      | Configures the variant of the button. Must either be `Button.VARIANT.PLAIN`, `Button.VARIANT.PRIMARY`, or `Button.VARIANT.NORMAL` |
 | size    | string | no       | Configures the size of the button. Can be configured to `'small'`                                                                  |
 
 ## Usage
