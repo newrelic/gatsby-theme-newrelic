@@ -1,3 +1,4 @@
+/* eslint-disable no-console,no-alert */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
@@ -55,6 +56,9 @@ const IndexPage = ({ data }) => {
           highlightedLines="5-7,11"
           fileName="src/components/Button.js"
           language="jsx"
+          css={css`
+            margin-bottom: 2rem;
+          `}
         >
           {codeSample}
         </CodeBlock>
@@ -67,16 +71,19 @@ const IndexPage = ({ data }) => {
           fileName="src/components/Button.js"
           language="jsx"
           scope={{ Button }}
+          css={css`
+            margin-bottom: 2rem;
+          `}
         >
           {liveCodeSample}
         </CodeBlock>
         <h2>A button</h2>
         <Button
-          onClick={() => console.log('IT IS NOT')}
+          onClick={() => alert('Hello!')}
           variant={Button.VARIANT.PRIMARY}
           size={Button.SIZE.LARGE}
         >
-          Or is it?
+          Click me
         </Button>
       </div>
     </>
