@@ -1,9 +1,14 @@
 {
-  "packages": ["packages/*", "demo"],
-  "version": "fixed",
+  "packages": ["packages/*"],
+  "version": "0.1.8",
   "npmClient": "yarn",
   "useWorkspaces": true,
+  "ignoreChanges": ["README.md"],
   "command": {
+    "version": {
+      "allowBranch": ["main"],
+      "message": "chore(release): publish %s"
+    },
     "publish": {
       "conventionalCommits": true,
       "yes": true
