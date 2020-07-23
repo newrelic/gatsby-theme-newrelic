@@ -52,10 +52,19 @@ You can configure `gatsby-theme-newrelic` for use with any set of docs using the
 
 Easily create buttons in different styles.
 
-| Prop    | Type   | Required | Description                                                                                                                        |
-| ------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Prop    | Type   | Required | Description                                                                                                                       |
+| ------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | variant | string | yes      | Configures the variant of the button. Must either be `Button.VARIANT.PLAIN`, `Button.VARIANT.PRIMARY`, or `Button.VARIANT.NORMAL` |
-| size    | string | no       | Configures the size of the button. Can be configured to `Button.SIZE.SMALL`                                                                  |
+| size    | string | no       | Configures the size of the button. Can be configured to `Button.SIZE.SMALL`                                                       |
+
+### `Surface`
+
+Used as the foundation for elements in 3D space that sit above other elements,
+for example a card.
+
+| Prop | Type   | Required | Description                                                                                           |
+| ---- | ------ | -------- | ----------------------------------------------------------------------------------------------------- |
+| type | string | yes      | Configures the type of the surface. Must either be `Surface.TYPE.PRIMARY` or `Surface.TYPE.SECONDARY` |
 
 ## Usage
 
