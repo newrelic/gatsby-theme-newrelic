@@ -66,11 +66,6 @@ for example a card.
 | ---- | ------ | -------- | ----------------------------------------------------------------------------------------------------- |
 | type | string | yes      | Configures the type of the surface. Must either be `Surface.TYPE.PRIMARY` or `Surface.TYPE.SECONDARY` |
 
-## Usage
-
-We're currently developing this package, and will provide usage information as
-we build out the library.
-
 ## Testing
 
 We're currently developing this package, and will provide test information as
