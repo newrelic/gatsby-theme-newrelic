@@ -16,6 +16,7 @@ const defaultComponents = {
 
 const CodeBlock = ({
   children,
+  className,
   components: componentOverrides = {},
   copyable,
   fileName,
@@ -50,122 +51,125 @@ const CodeBlock = ({
           `}
         />
       )}
-      <div
-        css={css`
-          background: var(--color-nord-0);
-          border-radius: 4px;
-
-          .light-mode & {
-            background: var(--color-nord-6);
-          }
-
-          ${preview &&
-          css`
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-          `};
-        `}
-      >
+      <div className={className}>
         <div
           css={css`
-            max-height: 26em;
-            overflow: auto;
+            background: var(--color-nord-0);
+            border-radius: 4px;
+
+            .light-mode & {
+              background: var(--color-nord-6);
+            }
+
+            ${preview &&
+            css`
+              border-top-left-radius: 0;
+              border-top-right-radius: 0;
+            `};
           `}
         >
-          {live ? (
-            <CodeEditor
-              value={code}
-              language={language}
-              lineNumbers={lineNumbers}
-              onChange={setCode}
-            />
-          ) : (
-            <CodeHighlight
-              highlightedLines={highlightedLines}
-              language={language}
-              lineNumbers={lineNumbers}
-            >
-              {code}
-            </CodeHighlight>
-          )}
-        </div>
-        {(copyable || fileName) && (
           <div
             css={css`
-              color: var(--color-nord-6);
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              background: var(--color-nord-1);
-              border-bottom-left-radius: 4px;
-              border-bottom-right-radius: 4px;
-              padding: 0 1rem;
-              font-size: 0.75rem;
-
-              .light-mode & {
-                color: var(--color-nord-0);
-                background: var(--color-nord-4);
-              }
+              max-height: 26em;
+              overflow: auto;
             `}
           >
+            {live ? (
+              <CodeEditor
+                value={code}
+                language={language}
+                lineNumbers={lineNumbers}
+                onChange={setCode}
+              />
+            ) : (
+              <CodeHighlight
+                highlightedLines={highlightedLines}
+                language={language}
+                lineNumbers={lineNumbers}
+              >
+                {code}
+              </CodeHighlight>
+            )}
+          </div>
+          {(copyable || fileName) && (
             <div
               css={css`
-                font-family: var(--code-font);
-                white-space: nowrap;
-                overflow: hidden;
-                padding-right: 0.5rem;
+                color: var(--color-nord-6);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: var(--color-nord-1);
+                border-bottom-left-radius: 4px;
+                border-bottom-right-radius: 4px;
+                padding: 0 1rem;
+                font-size: 0.75rem;
+
+                .light-mode & {
+                  color: var(--color-nord-0);
+                  background: var(--color-nord-4);
+                }
               `}
             >
-              {fileName && (
-                <MiddleEllipsis>
-                  <span title={fileName}>{fileName}</span>
-                </MiddleEllipsis>
-              )}
-            </div>
-            <Button
-              type="button"
-              variant={Button.VARIANT.PLAIN}
-              onClick={() => copy(code)}
-              size={Button.SIZE.SMALL}
-              css={css`
-                white-space: nowrap;
-              `}
-            >
-              <Icon
-                name={Icon.TYPE.COPY}
+              <div
                 css={css`
-                  margin-right: 0.5rem;
+                  font-family: var(--code-font);
+                  white-space: nowrap;
+                  overflow: hidden;
+                  padding-right: 0.5rem;
                 `}
-              />
-              {copied ? 'Copied' : 'Copy'}
-            </Button>
-          </div>
+              >
+                {fileName && (
+                  <MiddleEllipsis>
+                    <span title={fileName}>{fileName}</span>
+                  </MiddleEllipsis>
+                )}
+              </div>
+              <Button
+                type="button"
+                variant={Button.VARIANT.PLAIN}
+                onClick={() => copy(code)}
+                size={Button.SIZE.SMALL}
+                css={css`
+                  white-space: nowrap;
+                `}
+              >
+                <Icon
+                  name={Icon.TYPE.COPY}
+                  css={css`
+                    margin-right: 0.5rem;
+                  `}
+                />
+                {copied ? 'Copied' : 'Copy'}
+              </Button>
+            </div>
+          )}
+        </div>
+        {(live || preview) && (
+          <LiveError
+            css={css`
+              color: white;
+              background: var(--color-red-400);
+              padding: 0.5rem 1rem;
+              font-size: 0.75rem;
+              overflow: auto;
+              margin-top: 0.5rem;
+              border-radius: 2px;
+            `}
+          />
         )}
       </div>
-      {(live || preview) && (
-        <LiveError
-          css={css`
-            color: white;
-            background: var(--color-red-400);
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
-            overflow: auto;
-            margin-top: 0.5rem;
-            border-radius: 2px;
-          `}
-        />
-      )}
     </LiveProvider>
   );
 };
 
 CodeBlock.propTypes = {
   fileName: PropTypes.string,
+  children: PropTypes.string.isRequired,
+  className: PropTypes.string,
   components: PropTypes.shape({
     Preview: PropTypes.elementType,
   }),
   copyable: PropTypes.bool,
-  children: PropTypes.string.isRequired,
   formatOptions: PropTypes.object,
   highlightedLines: PropTypes.string,
   language: PropTypes.string,
