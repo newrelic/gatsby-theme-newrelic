@@ -15,6 +15,7 @@
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
     "gatsby": "^2.24.2",
+    "prettier": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0"
@@ -28,6 +29,8 @@
     "react-helmet": "^6.1.0"
   },
   "dependencies": {
+    "@wry/equality": "^0.2.0",
+    "babel-plugin-prismjs": "^2.0.1",
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-newrelic": "^1.0.2",
     "gatsby-plugin-react-helmet": "^3.3.10",
@@ -38,6 +41,11 @@
     "gatsby-source-filesystem": "^2.3.19",
     "gatsby-transformer-sharp": "^2.5.11",
     "polished": "^3.6.5",
+    "prism-react-renderer": "^1.1.1",
+    "prismjs": "^1.20.0",
+    "react-live": "^2.2.2",
+    "react-middle-ellipsis": "^1.1.0",
+    "react-simple-code-editor": "^0.11.0",
     "use-dark-mode": "^2.3.1",
     "use-media": "^1.4.0"
   }
