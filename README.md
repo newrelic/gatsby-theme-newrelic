@@ -62,9 +62,9 @@ Easily create buttons in different styles.
 Used as the foundation for elements in 3D space that sit above other elements,
 for example a card.
 
-| Prop | Type   | Required | Description                                                                                           |
-| ---- | ------ | -------- | ----------------------------------------------------------------------------------------------------- |
-| type | string | yes      | Configures the type of the surface. Must either be `Surface.TYPE.PRIMARY` or `Surface.TYPE.SECONDARY` |
+| Prop | Type   | Required | Description                                                                                                                                                                                                                      |
+| ---- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| base | string | yes      | Configures the surface when rendered on a variety of base elements. A base of `primary` means the surface is rendered on an element with a primary background. Must either be `Surface.BASE.PRIMARY` or `Surface.BASE.SECONDARY` |
 
 ## Testing
 
