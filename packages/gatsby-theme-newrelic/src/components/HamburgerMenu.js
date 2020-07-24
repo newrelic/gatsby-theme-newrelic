@@ -7,7 +7,7 @@ const menuLine = (isOpen) => css`
   height: 3px;
   background-color: var(--color-brand-800);
   margin: 5px 0;
-  border-radius: 4px;
+  border-radius: 5px;
   transition: 0.18s;
 
   .dark-mode & {
@@ -17,15 +17,16 @@ const menuLine = (isOpen) => css`
   ${isOpen &&
   ` 
   :nth-child(1) {
-    transform: rotate(-45deg) translate(-5.75px, 6px);
+    transform: rotate(-45deg) translate(-3px, 8px);
   }
 
   :nth-child(2) {
     opacity: 0;
+    margin: 0
   }
 
   :nth-child(3) {
-    transform: rotate(45deg) translate(-5.75px, -6px);
+    transform: rotate(45deg) translate(-3px, -8px);
   }`}
 `;
 

@@ -1,4 +1,3 @@
-
 /* eslint-disable no-console,no-alert */
 
 import React, { useState } from 'react';
@@ -10,10 +9,8 @@ import {
   CodeBlock,
   GlobalHeader,
   SearchInput,
-  NewRelicLogo,
   HamburgerMenu,
 } from '@newrelic/gatsby-theme-newrelic';
-
 
 const codeSample = `
 import React from 'react';
@@ -37,13 +34,14 @@ const liveCodeSample = `
 const IndexPage = ({ data }) => {
   const { layout, siteMetadata } = data.site;
   const [searchTerm, setSearchTerm] = useState('');
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
   return (
     <>
       <GlobalHeader
         editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
       />
-<header
+      <header
         css={css`
           position: relative;
           border-bottom: 1px solid var(--divider-color);
