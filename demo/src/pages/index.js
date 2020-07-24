@@ -27,14 +27,12 @@ const IndexPage = ({ data }) => {
         <div
           css={css`
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: var(--height-mobile-nav-bar);
+            justify-content: flex-end;
           `}
         >
           <HamburgerMenu
             isOpen={isHamburgerOpen}
-            toggle={() => setIsHamburgerOpen(!isHamburgerOpen)}
+            onToggle={() => setIsHamburgerOpen(!isHamburgerOpen)}
           />
         </div>
       </header>

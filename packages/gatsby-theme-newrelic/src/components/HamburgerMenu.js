@@ -10,12 +10,13 @@ const menuLine = (isOpen) => css`
   border-radius: 4px;
   transition: 0.18s;
 
-  .dark-mode {
+  .dark-mode & {
     background-color: var(--color-dark-800);
   }
 
   ${isOpen &&
-  ` :nth-child(1) {
+  ` 
+  :nth-child(1) {
     transform: rotate(-45deg) translate(-5.75px, 6px);
   }
 
@@ -28,7 +29,7 @@ const menuLine = (isOpen) => css`
   }`}
 `;
 
-const HamburgerMenu = ({ toggle, isOpen, className }) => (
+const HamburgerMenu = ({ onToggle, isOpen, className }) => (
   <button
     aria-expanded={isOpen}
     aria-label="Mobile Menu"
@@ -43,7 +44,7 @@ const HamburgerMenu = ({ toggle, isOpen, className }) => (
       padding: 0;
     `}
     className={className}
-    onClick={() => toggle()}
+    onClick={() => onToggle()}
   >
     <div css={menuLine(isOpen)} />
     <div css={menuLine(isOpen)} />
@@ -52,7 +53,7 @@ const HamburgerMenu = ({ toggle, isOpen, className }) => (
 );
 
 HamburgerMenu.propTypes = {
-  toggle: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool,
   className: PropTypes.string,
 };
