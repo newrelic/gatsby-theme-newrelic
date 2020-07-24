@@ -5,6 +5,7 @@ export { default as GlobalHeader } from './src/components/GlobalHeader';
 export { default as Icon } from './src/components/Icon';
 export { default as MDXCodeBlock } from './src/components/MDXCodeBlock';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
+export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as SearchInput } from './src/components/SearchInput';
 export { default as Surface } from './src/components/Surface';
 
