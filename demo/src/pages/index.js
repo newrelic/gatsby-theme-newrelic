@@ -121,19 +121,19 @@ const IndexPage = ({ data }) => {
             `}
           >
             <Surface
+              base={Surface.BASE.PRIMARY}
               css={css`
                 padding: 2rem;
               `}
-              type={Surface.TYPE.PRIMARY}
             >
               Non-interactive
             </Surface>
             <Surface
               interactive
+              base={Surface.BASE.PRIMARY}
               css={css`
                 padding: 2rem;
               `}
-              type={Surface.TYPE.PRIMARY}
             >
               Interactive
             </Surface>
@@ -150,19 +150,19 @@ const IndexPage = ({ data }) => {
             `}
           >
             <Surface
+              base={Surface.BASE.SECONDARY}
               css={css`
                 padding: 2rem;
               `}
-              type={Surface.TYPE.SECONDARY}
             >
               Non-interactive
             </Surface>
             <Surface
               interactive
+              base={Surface.BASE.SECONDARY}
               css={css`
                 padding: 2rem;
               `}
-              type={Surface.TYPE.SECONDARY}
             >
               Interactive
             </Surface>

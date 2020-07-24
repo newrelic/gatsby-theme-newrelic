@@ -2,14 +2,14 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-const TYPES = {
+const BASES = {
   PRIMARY: 'PRIMARY',
   SECONDARY: 'SECONDARY',
 };
 
-const type = ({ type, interactive }) => {
-  switch (type) {
-    case TYPES.PRIMARY:
+const base = ({ base, interactive }) => {
+  switch (base) {
+    case BASES.PRIMARY:
       return css`
         border: 1px solid var(--border-color);
         background: var(--primary-background-color);
@@ -21,7 +21,7 @@ const type = ({ type, interactive }) => {
           }
         `}
       `;
-    case TYPES.SECONDARY:
+    case BASES.SECONDARY:
       return css`
         background: var(--color-white);
 
@@ -41,7 +41,7 @@ const Surface = styled.div`
     0 3.75998px 8.35552px rgba(0, 0, 0, 0.0143771),
     0 9px 20px rgba(0, 0, 0, 0.02);
 
-  ${type}
+  ${base};
 
   ${({ interactive }) =>
     interactive &&
@@ -56,9 +56,9 @@ const Surface = styled.div`
 `;
 
 Surface.propTypes = {
-  type: PropTypes.oneOf(Object.values(TYPES)),
+  base: PropTypes.oneOf(Object.values(BASES)),
 };
 
-Surface.TYPE = TYPES;
+Surface.BASE = BASES;
 
 export default Surface;
