@@ -4,9 +4,9 @@ import { css } from '@emotion/core';
 
 const menuLine = (isOpen) => css`
   width: 100%;
-  height: 3px;
+  height: 2px;
   background-color: var(--color-brand-800);
-  margin: 5px 0;
+  margin: 4px 0;
   border-radius: 5px;
   transition: 0.18s;
 
@@ -17,7 +17,7 @@ const menuLine = (isOpen) => css`
   ${isOpen &&
   ` 
   :nth-child(1) {
-    transform: rotate(-45deg) translate(-3px, 8px);
+    transform: rotate(-45deg) translate(-2px, 6.25px);
   }
 
   :nth-child(2) {
@@ -26,7 +26,7 @@ const menuLine = (isOpen) => css`
   }
 
   :nth-child(3) {
-    transform: rotate(45deg) translate(-3px, -8px);
+    transform: rotate(45deg) translate(-2px, -6.25px);
   }`}
 `;
 
@@ -40,7 +40,7 @@ const HamburgerMenu = ({ onToggle, isOpen, className }) => (
       background: none;
       border: 0;
       cursor: pointer;
-      width: 2rem;
+      width: 1.5rem;
       outline: none;
       padding: 0;
     `}
