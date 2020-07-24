@@ -8,6 +8,7 @@ import {
   CodeBlock,
   GlobalHeader,
   SearchInput,
+  HamburgerMenu,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const codeSample = `
@@ -32,12 +33,33 @@ const liveCodeSample = `
 const IndexPage = ({ data }) => {
   const { layout, siteMetadata } = data.site;
   const [searchTerm, setSearchTerm] = useState('');
+  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
   return (
     <>
       <GlobalHeader
         editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
       />
+      <header
+        css={css`
+          position: relative;
+          border-bottom: 1px solid var(--divider-color);
+          padding: 0 2rem;
+          width: 100vw;
+        `}
+      >
+        <div
+          css={css`
+            display: flex;
+            justify-content: flex-end;
+          `}
+        >
+          <HamburgerMenu
+            isOpen={isHamburgerOpen}
+            onToggle={() => setIsHamburgerOpen(!isHamburgerOpen)}
+          />
+        </div>
+      </header>
       <div
         css={css`
           margin: 0 auto;
