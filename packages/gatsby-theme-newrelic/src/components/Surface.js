@@ -7,29 +7,28 @@ const BASES = {
   SECONDARY: 'SECONDARY',
 };
 
-const base = ({ base, interactive }) => {
-  switch (base) {
-    case BASES.PRIMARY:
-      return css`
-        border: 1px solid var(--border-color);
-        background: var(--primary-background-color);
+const styles = {
+  base: {
+    [BASES.PRIMARY]: css`
+      border: 1px solid var(--border-color);
+      background: var(--primary-background-color);
+    `,
 
-        ${interactive &&
-        css`
-          &:hover {
-            border-color: var(--border-hover-color);
-          }
-        `}
-      `;
-    case BASES.SECONDARY:
-      return css`
-        background: var(--color-white);
+    [BASES.SECONDARY]: css`
+      background: var(--color-white);
 
-        .dark-mode & {
-          background: var(--color-dark-100);
-        }
-      `;
-  }
+      .dark-mode & {
+        background: var(--color-dark-100);
+      }
+    `,
+  },
+  interactive: {
+    [BASES.PRIMARY]: css`
+      &:hover {
+        border-color: var(--border-hover-color);
+      }
+    `,
+  },
 };
 
 const Surface = styled.div`
@@ -41,17 +40,19 @@ const Surface = styled.div`
     0 3.75998px 8.35552px rgba(0, 0, 0, 0.0143771),
     0 9px 20px rgba(0, 0, 0, 0.02);
 
-  ${base};
+  ${({ base }) => styles.base[base]};
 
-  ${({ interactive }) =>
+  ${({ base, interactive }) =>
     interactive &&
     css`
       cursor: pointer;
-      transition: transform 0.15s ease-out;
+      transition: transform 0.15s ease-out, border-color 0.15s ease-out;
 
       &:hover {
         transform: translateY(-2px);
       }
+
+      ${styles.interactive[base]}
     `}
 `;
 
