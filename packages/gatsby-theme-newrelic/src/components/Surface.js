@@ -57,7 +57,7 @@ const Surface = styled.div`
 `;
 
 Surface.propTypes = {
-  base: PropTypes.oneOf(Object.values(BASES)),
+  base: PropTypes.oneOf(Object.values(BASES)).isRequired,
 };
 
 Surface.BASE = BASES;
