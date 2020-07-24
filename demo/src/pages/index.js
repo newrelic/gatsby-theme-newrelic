@@ -8,6 +8,7 @@ import {
   CodeBlock,
   GlobalHeader,
   SearchInput,
+  Surface,
   HamburgerMenu,
 } from '@newrelic/gatsby-theme-newrelic';
 
@@ -127,6 +128,68 @@ const IndexPage = ({ data }) => {
         >
           Click me
         </Button>
+        <section
+          css={css`
+            margin-top: 2rem;
+          `}
+        >
+          <h2>Primary surfaces</h2>
+          <div
+            css={css`
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+              grid-gap: 2rem;
+              margin-bottom: 2rem;
+            `}
+          >
+            <Surface
+              base={Surface.BASE.PRIMARY}
+              css={css`
+                padding: 2rem;
+              `}
+            >
+              Non-interactive
+            </Surface>
+            <Surface
+              interactive
+              base={Surface.BASE.PRIMARY}
+              css={css`
+                padding: 2rem;
+              `}
+            >
+              Interactive
+            </Surface>
+          </div>
+          <h2>Secondary surfaces</h2>
+          <div
+            css={css`
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+              grid-gap: 2rem;
+              padding: 1rem;
+              border-radius: 4px;
+              background: var(--secondary-background-color);
+            `}
+          >
+            <Surface
+              base={Surface.BASE.SECONDARY}
+              css={css`
+                padding: 2rem;
+              `}
+            >
+              Non-interactive
+            </Surface>
+            <Surface
+              interactive
+              base={Surface.BASE.SECONDARY}
+              css={css`
+                padding: 2rem;
+              `}
+            >
+              Interactive
+            </Surface>
+          </div>
+        </section>
       </div>
     </>
   );

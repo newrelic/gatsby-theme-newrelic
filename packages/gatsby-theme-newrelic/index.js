@@ -7,6 +7,8 @@ export { default as MDXCodeBlock } from './src/components/MDXCodeBlock';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as SearchInput } from './src/components/SearchInput';
+export { default as Surface } from './src/components/Surface';
+
 export { default as formatCode } from './src/utils/formatCode';
 export { default as useClipboard } from './src/hooks/useClipboard';
 export { default as useFormattedCode } from './src/hooks/useFormattedCode';

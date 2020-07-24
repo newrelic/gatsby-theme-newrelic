@@ -52,15 +52,19 @@ You can configure `gatsby-theme-newrelic` for use with any set of docs using the
 
 Easily create buttons in different styles.
 
-| Prop    | Type   | Required | Description                                                                                                                        |
-| ------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| Prop    | Type   | Required | Description                                                                                                                       |
+| ------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | variant | string | yes      | Configures the variant of the button. Must either be `Button.VARIANT.PLAIN`, `Button.VARIANT.PRIMARY`, or `Button.VARIANT.NORMAL` |
-| size    | string | no       | Configures the size of the button. Can be configured to `Button.SIZE.SMALL`                                                                  |
+| size    | string | no       | Configures the size of the button. Can be configured to `Button.SIZE.SMALL`                                                       |
 
-## Usage
+### `Surface`
 
-We're currently developing this package, and will provide usage information as
-we build out the library.
+Used as the foundation for elements in 3D space that sit above other elements,
+for example a card.
+
+| Prop | Type   | Required | Description                                                                                                                                                                                                                      |
+| ---- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| base | string | yes      | Configures the surface when rendered on a variety of base elements. A base of `primary` means the surface is rendered on an element with a primary background. Must either be `Surface.BASE.PRIMARY` or `Surface.BASE.SECONDARY` |
 
 ## Testing
 
