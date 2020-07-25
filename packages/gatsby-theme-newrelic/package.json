@@ -11,6 +11,8 @@
     "clean": "gatsby clean",
     "develop": "gatsby develop"
   },
+  "homepage": "https://github.com/newrelic/gatsby-theme-newrelic/tree/develop/packages/gatsby-theme-newrelic",
+  "repository": "https://github.com/newrelic/gatsby-theme-newrelic",
   "keywords": [
     "gatsby",
     "gatsby-theme",
