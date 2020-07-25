@@ -11,6 +11,12 @@
     "clean": "gatsby clean",
     "develop": "gatsby develop"
   },
+  "keywords": [
+    "gatsby",
+    "gatsby-theme",
+    "gatsby-plugin",
+    "react"
+  ],
   "peerDependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
