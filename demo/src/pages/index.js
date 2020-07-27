@@ -8,6 +8,7 @@ import {
   CodeBlock,
   GlobalHeader,
   SearchInput,
+  SwiftSearch,
   Surface,
   HamburgerMenu,
   Video,
@@ -106,6 +107,7 @@ const IndexPage = ({ data }) => {
             width="500px"
             size={SearchInput.SIZE.LARGE}
           />
+          <SwiftSearch />
         </section>
         <section>
           <h2>A code block</h2>
