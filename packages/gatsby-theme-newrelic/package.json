@@ -17,7 +17,8 @@
     "gatsby",
     "gatsby-theme",
     "gatsby-plugin",
-    "react"
+    "react",
+    "newrelic"
   ],
   "peerDependencies": {
     "@emotion/core": "^10.0.28",
