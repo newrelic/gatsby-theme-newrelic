@@ -10,6 +10,7 @@ import {
   SearchInput,
   Surface,
   HamburgerMenu,
+  Video,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const codeSample = `
@@ -66,6 +67,18 @@ const IndexPage = ({ data }) => {
           margin: 0 auto;
           padding: ${layout.contentPadding};
           max-width: ${layout.maxWidth};
+
+          section {
+            margin-bottom: 4rem;
+          }
+
+          h2 {
+            margin-bottom: 1rem;
+
+            &:not(:first-child) {
+              margin-top: 1rem;
+            }
+          }
         `}
       >
         <h1>Hello, demo</h1>
@@ -74,65 +87,67 @@ const IndexPage = ({ data }) => {
           Relic Gatsby theme. Feel free to add examples to this site to showcase
           features.
         </p>
-        <h2>Search inputs</h2>
-        <SearchInput
-          style={{ margin: '1rem 0' }}
-          placeholder="Test out a medium search"
-          onClear={() => setSearchTerm('')}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          value={searchTerm}
-          width="500px"
-        />
-        <SearchInput
-          style={{ marginBottom: '1rem' }}
-          placeholder="Test out a large search"
-          onClear={() => setSearchTerm('')}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          value={searchTerm}
-          width="500px"
-          size={SearchInput.SIZE.LARGE}
-        />
-        <h2>A code block</h2>
-        <CodeBlock
-          copyable
-          lineNumbers
-          highlightedLines="5-7,11"
-          fileName="src/components/Button.js"
-          language="jsx"
-          css={css`
-            margin-bottom: 2rem;
-          `}
-        >
-          {codeSample}
-        </CodeBlock>
-        <h2>A live editable code block w/ preview</h2>
-        <CodeBlock
-          copyable
-          lineNumbers
-          live
-          preview
-          fileName="src/components/Button.js"
-          language="jsx"
-          scope={{ Button }}
-          css={css`
-            margin-bottom: 2rem;
-          `}
-        >
-          {liveCodeSample}
-        </CodeBlock>
-        <h2>A button</h2>
-        <Button
-          onClick={() => alert('Hello!')}
-          variant={Button.VARIANT.PRIMARY}
-          size={Button.SIZE.LARGE}
-        >
-          Click me
-        </Button>
-        <section
-          css={css`
-            margin-top: 2rem;
-          `}
-        >
+        <section>
+          <h2>Search inputs</h2>
+          <SearchInput
+            style={{ margin: '1rem 0' }}
+            placeholder="Test out a medium search"
+            onClear={() => setSearchTerm('')}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
+            width="500px"
+          />
+          <SearchInput
+            style={{ marginBottom: '1rem' }}
+            placeholder="Test out a large search"
+            onClear={() => setSearchTerm('')}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
+            width="500px"
+            size={SearchInput.SIZE.LARGE}
+          />
+        </section>
+        <section>
+          <h2>A code block</h2>
+          <CodeBlock
+            copyable
+            lineNumbers
+            highlightedLines="5-7,11"
+            fileName="src/components/Button.js"
+            language="jsx"
+            css={css`
+              margin-bottom: 2rem;
+            `}
+          >
+            {codeSample}
+          </CodeBlock>
+          <h2>A live editable code block w/ preview</h2>
+          <CodeBlock
+            copyable
+            lineNumbers
+            live
+            preview
+            fileName="src/components/Button.js"
+            language="jsx"
+            scope={{ Button }}
+            css={css`
+              margin-bottom: 2rem;
+            `}
+          >
+            {liveCodeSample}
+          </CodeBlock>
+        </section>
+        <section>
+          <h2>A button</h2>
+          <Button
+            onClick={() => alert('Hello!')}
+            variant={Button.VARIANT.PRIMARY}
+            size={Button.SIZE.LARGE}
+          >
+            Click me
+          </Button>
+        </section>
+        <section>
           <h2>Primary surfaces</h2>
           <div
             css={css`
@@ -189,6 +204,12 @@ const IndexPage = ({ data }) => {
               Interactive
             </Surface>
           </div>
+        </section>
+        <section>
+          <h2>Wistia video</h2>
+          <Video id="inyshp3m7r" type={Video.TYPE.WISTIA} width="500px" />
+          <h2>YouTube video</h2>
+          <Video id="ZagZfNQYJEU" type={Video.TYPE.YOUTUBE} width="500px" />
         </section>
       </div>
     </>
