@@ -40,6 +40,15 @@ const Surface = styled.div`
     0 3.75998px 8.35552px rgba(0, 0, 0, 0.0143771),
     0 9px 20px rgba(0, 0, 0, 0.02);
 
+  .dark-mode & {
+    box-shadow: 0 1.66035px 2.10311px rgba(3, 15, 16, 0.0393604),
+      0 3.99006px 5.05408px rgba(3, 15, 16, 0.056545),
+      0 7.51293px 9.51638px rgba(3, 15, 16, 0.07),
+      0 13.4018px 16.9756px rgba(3, 15, 16, 0.083455),
+      0 25.0666px 31.751px rgba(3, 15, 16, 0.10064),
+      0 60px 76px rgba(3, 15, 16, 0.14);
+  }
+
   ${({ base }) => styles.base[base]};
 
   ${({ base, interactive }) =>
