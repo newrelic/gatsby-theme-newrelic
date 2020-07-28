@@ -1,9 +1,19 @@
 [![Community Project header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Community_Project.png)](https://opensource.newrelic.com/oss-category/#community-project)
 
-# gatsby-theme-newrelic
+# Gatsby New Relic Themes
 
 This repo contains Gatsby themes used by New Relic Gatsby sites, including the
 [developer](https://developer.newrelic.com) and [open source websites](https://opensource.newrelic.com).
+
+- [Installation](#installation)
+- [Getting started](#getting-started)
+- [Configuration](#configuration)
+- [Options](#options)
+- [Components](#components)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
@@ -16,19 +26,22 @@ yarn
 ## Getting started
 
 You can use the demo site to test out changes to the theme. To run the demo
-site, run the following command:
+site, use the following command:
 
 ```sh
 yarn workspace demo develop
 ```
 
-To browse the demo site, visit [http://localhost:8001](http://localhost:8001) in
-your browser.
+Visit [http://localhost:8001](http://localhost:8001) in your browser to browse
+the demo site.
 
-## Usage
+## Documentation
 
-We're currently developing this package, and will provide usage information as
-we build out the library.
+To view documentation for a New Relic theme, visit that theme's README.
+
+Available themes:
+
+- [`gatsby-theme-newrelic`](packages/gatsby-theme-newrelic)
 
 ## Testing
 
@@ -47,7 +60,7 @@ topic/threads here:
 
 ## Contributing
 
-We encourage your contributions to improve gatsby-theme-newrelic! Keep in mind
+We encourage your contributions to improve `gatsby-theme-newrelic`! Keep in mind
 when you submit your pull request, you'll need to sign the CLA via the
 click-through using CLA-Assistant. You only have to sign the CLA one time per
 project. If you have any questions, or to execute our corporate CLA, required
@@ -56,7 +69,7 @@ opensource@newrelic.com.
 
 ## License
 
-gatsby-theme-newrelic is licensed under the [Apache
+`gatsby-theme-newrelic` is licensed under the [Apache
 2.0](http://apache.org/licenses/LICENSE-2.0.txt) License.
 
 > The gatsby-theme-newrelic also uses source code from third-party libraries.

@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const uniq = (arr) => [...new Set(arr)];
+
 exports.onPreBootstrap = ({ reporter, store }) => {
   const { program } = store.getState();
   const imagePath = path.join(program.directory, 'src/images');
@@ -31,6 +33,29 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
         type: 'SiteLayout',
         resolve: () => layout,
       },
+    },
+  });
+};
+
+exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
+  const { setBabelPlugin } = actions;
+  const { prism = {} } = themeOptions;
+
+  setBabelPlugin({
+    name: 'babel-plugin-prismjs',
+    options: {
+      languages: uniq([
+        'css',
+        'hcl',
+        'javascript',
+        'json',
+        'jsx',
+        'ruby',
+        'shell',
+        'sql',
+        'graphql',
+        ...(prism.languages || []),
+      ]),
     },
   });
 };

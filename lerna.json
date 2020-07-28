@@ -5,7 +5,12 @@
   "version": "1.1.10",
   "npmClient": "yarn",
   "useWorkspaces": true,
+  "ignoreChanges": ["README.md"],
   "command": {
+    "version": {
+      "allowBranch": ["main"],
+      "message": "chore(release): publish %s"
+    },
     "publish": {
       "conventionalCommits": true,
       "yes": true
