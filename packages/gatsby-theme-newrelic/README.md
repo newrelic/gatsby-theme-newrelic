@@ -755,9 +755,10 @@ import { Surface } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop   | Type | Required | Description                                                                                                                                                                                                                                    |
-| ------ | ---- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `base` | enum | yes      | Tells the `Surface` what kind of base element the surface is rendered on. For example, a primary base means the surface is rendered on an element with a primary background. Must be one of `Surface.BASE.PRIMARY` or `Surface.BASE.SECONDARY` |
+| Prop          | Type    | Required | Default | Description                                                                                                                                                                                                                                    |
+| ------------- | ------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `base`        | enum    | yes      |         | Tells the `Surface` what kind of base element the surface is rendered on. For example, a primary base means the surface is rendered on an element with a primary background. Must be one of `Surface.BASE.PRIMARY` or `Surface.BASE.SECONDARY` |
+| `interactive` | boolean | no       | `false` | Determines whether the surface is interactive (e.g. if the entire surface is a link).                                                                                                                                                          |
 
 **Example**
 
@@ -788,8 +789,15 @@ import { Video } from '@newrelic/gatsby-theme-newrelic';
 YouTube
 
 ```js
+<Video id="abcdefg" type={Video.TYPE.YOUTUBE} width="500px" />
+```
+
+Wistia
+
+```js
 <Video id="abcdefg" type={Video.TYPE.WISTIA} width="500px" />
 ```
+
 
 ## Hooks
 

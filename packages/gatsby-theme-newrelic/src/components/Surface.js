@@ -58,6 +58,11 @@ const Surface = styled.div`
 
 Surface.propTypes = {
   base: PropTypes.oneOf(Object.values(BASES)).isRequired,
+  interactive: PropTypes.boolean,
+};
+
+Surface.defaultProps = {
+  interactive: false,
 };
 
 Surface.BASE = BASES;
