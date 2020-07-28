@@ -653,11 +653,11 @@ this component.
 ```
 ````
 
-- `lineHighlight`: Highlight lines of code in the code block using the same
+- `highlightedLines`: Highlight lines of code in the code block using the same
   format as described in the [`CodeBlock` documentation](#codeblock)
 
 ````md
-```js lineHighlight=1,5,7-9
+```js highlightedLines=1,5,7-9
 ```
 ````
 

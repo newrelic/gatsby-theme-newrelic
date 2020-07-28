@@ -8,14 +8,14 @@ const MDXCodeBlock = ({
   copyable,
   lineNumbers,
   live,
-  lineHighlight,
+  highlightedLines,
   preview,
   ...props
 }) => (
   <CodeBlock
     {...props}
     copyable={copyable !== 'false'}
-    highlightedLines={lineHighlight}
+    highlightedLines={highlightedLines}
     language={className?.replace('language-', '')}
     lineNumbers={lineNumbers === 'true'}
     live={live === 'true'}
@@ -29,7 +29,7 @@ MDXCodeBlock.propTypes = {
   children: PropTypes.string,
   className: PropTypes.string,
   copyable: PropTypes.oneOf(['true', 'false']),
-  lineHighlight: PropTypes.string,
+  highlightedLines: PropTypes.string,
   lineNumbers: PropTypes.oneOf(['true', 'false']),
   live: PropTypes.oneOf(['true', 'false']),
   preview: PropTypes.oneOf(['true', 'false']),
