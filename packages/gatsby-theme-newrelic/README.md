@@ -789,8 +789,15 @@ import { Video } from '@newrelic/gatsby-theme-newrelic';
 YouTube
 
 ```js
+<Video id="abcdefg" type={Video.TYPE.YOUTUBE} width="500px" />
+```
+
+Wistia
+
+```js
 <Video id="abcdefg" type={Video.TYPE.WISTIA} width="500px" />
 ```
+
 
 ## Hooks
 
