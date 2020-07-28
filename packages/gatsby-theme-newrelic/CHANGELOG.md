@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.2.1...v1.2.2) (2020-07-28)
+
+
+### Bug Fixes
+
+* **Surface:** add prop type for interactive prop ([a7735cf](https://github.com/newrelic/gatsby-theme-newrelic/commit/a7735cfab39d8c71c83702efb20e36d72f54629c))
+
+
+
+
+
 ## [1.2.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.2.0...v1.2.1) (2020-07-28)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
