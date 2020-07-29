@@ -6,11 +6,12 @@ export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';
 export { default as MDXCodeBlock } from './src/components/MDXCodeBlock';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
+export { default as Overlay } from './src/components/Overlay';
+export { default as Portal } from './src/components/Portal';
 export { default as SearchInput } from './src/components/SearchInput';
 export { default as Surface } from './src/components/Surface';
 export { default as SwiftSearch } from './src/components/SwiftSearch';
 export { default as Video } from './src/components/Video';
-export { default as Overlay } from './src/components/Overlay';
 
 export { default as formatCode } from './src/utils/formatCode';
 export { default as useClipboard } from './src/hooks/useClipboard';
