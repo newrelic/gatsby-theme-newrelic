@@ -6,6 +6,8 @@ import {
   getUrlSanitizer,
 } from '@elastic/react-search-ui-views/es/view-helpers';
 import { isFieldValueWrapper } from '@elastic/react-search-ui-views/es/types/FieldValueWrapper';
+import { css } from '@emotion/core';
+import { rgba } from 'polished';
 
 function getFieldType(result, field, type) {
   if (result[field]) return result[field][type];
@@ -63,6 +65,7 @@ function ResultView({
   const fields = getEscapedFields(result);
   const title = getEscapedField(result, titleField);
   const url = getUrlSanitizer(URL, window.location)(getRaw(result, urlField));
+  const newRelicSite = fields.url.split('com')[0].slice(8).concat('com');
 
   return (
     <li className={appendClassName('sui-result', className)} {...rest}>
@@ -91,6 +94,19 @@ function ResultView({
               className="sui-result__value"
               dangerouslySetInnerHTML={{ __html: fields.body }}
             />
+          </li>
+          <li>
+            <div
+              css={css`
+                background: ${rgba('#007e8a', 0.2)};
+                padding: 0.25rem 0.5rem;
+                border-radius: 0.25rem;
+                width: fit-content;
+                margin-top: 1rem;
+              `}
+            >
+              {newRelicSite}
+            </div>
           </li>
         </ul>
       </div>

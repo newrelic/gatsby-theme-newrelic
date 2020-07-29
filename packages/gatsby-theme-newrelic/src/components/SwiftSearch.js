@@ -13,6 +13,7 @@ import SearchInput from './SearchInput';
 
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
+import { rgba } from 'polished';
 import PropTypes from 'prop-types';
 
 // TODO: move styles to emotion/wrapper
@@ -42,13 +43,14 @@ const SwiftSearch = () => {
               {isLoading && <div>loading...</div>}
               {!isLoading && (
                 <>
-                  <PagingInfo />
-                  <Paging />
+                  <StyledPagingInfo />
+                  <StyledPaging />
                   <StyledResults
                     resultView={ResultView}
                     titleField="title"
                     urlField="url"
                   />
+                  <StyledPaging />
                 </>
               )}
             </div>
@@ -87,6 +89,47 @@ InputView.propTypes = {
   getInputProps: PropTypes.func,
 };
 
+const StyledPagingInfo = styled(PagingInfo)`
+  margin: 1rem 0;
+  color: var(--primary-text-color);
+`;
+
+const StyledPaging = styled(Paging)`
+  .rc-pagination-item a {
+    color: var(--link-color);
+  }
+  .rc-pagination-item:hover {
+    background: var(--tertiary-background-color);
+    a {
+      color: var(--link-color);
+    }
+  }
+  .rc-pagination-next:hover {
+    background: var(--tertiary-background-color);
+    a {
+      color: var(--link-color);
+    }
+  }
+  .rc-pagination-prev:hover {
+    background: var(--tertiary-background-color);
+    a {
+      color: var(--link-color);
+    }
+  }
+  .rc-pagination-jump-next:hover {
+    background: var(--tertiary-background-color);
+  }
+  .rc-pagination-jump-next:hover:after {
+    color: var(--link-color) !important;
+  }
+  .rc-pagination-jump-prev:hover {
+    background: var(--tertiary-background-color);
+  }
+  .rc-pagination-jump-prev:hover:after {
+    color: var(--link-color) !important;
+  }
+`;
+
 const StyledResults = styled(Results)`
   > li {
     border: var(--border-color) solid 1px;
@@ -98,7 +141,7 @@ const StyledResults = styled(Results)`
   em {
     color: var(--link-color);
     &::after {
-      background: #007e8a28;
+      background: ${rgba('#007e8a', 0.2)};
     }
   }
 `;
