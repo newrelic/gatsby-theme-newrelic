@@ -7,12 +7,13 @@ import {
   Button,
   CodeBlock,
   GlobalHeader,
+  Overlay,
+  Portal,
   SearchInput,
   SwiftSearch,
   Surface,
   HamburgerMenu,
   Video,
-  Overlay,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const codeSample = `
@@ -42,7 +43,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
-      {isOverlayOpen && <Overlay onClick={() => setIsOverlayOpen(false)} />}
+      <Overlay isOpen={isOverlayOpen} onClick={() => setIsOverlayOpen(false)} />
       <GlobalHeader
         editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
         search
