@@ -12,6 +12,7 @@ import {
   Surface,
   HamburgerMenu,
   Video,
+  Overlay,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const codeSample = `
@@ -37,11 +38,15 @@ const IndexPage = ({ data }) => {
   const { layout, siteMetadata } = data.site;
   const [searchTerm, setSearchTerm] = useState('');
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   return (
     <>
+      {isOverlayOpen && <Overlay onClick={() => setIsOverlayOpen(false)} />}
       <GlobalHeader
         editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
+        search
+        onClickSearch={() => setIsOverlayOpen(true)}
       />
       <header
         css={css`

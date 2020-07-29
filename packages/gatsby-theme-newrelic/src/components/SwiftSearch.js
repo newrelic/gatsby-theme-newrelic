@@ -31,8 +31,10 @@ const SwiftSearch = () => {
         apiConnector: connector,
       }}
     >
-      <WithSearch mapContextToProps={({ isLoading }) => ({ isLoading })}>
-        {({ isLoading }) => {
+      <WithSearch
+        mapContextToProps={({ isLoading, results }) => ({ isLoading, results })}
+      >
+        {({ isLoading, results }) => {
           return (
             <div className="App">
               <SearchBox
@@ -43,7 +45,7 @@ const SwiftSearch = () => {
               {isLoading && <div>loading...</div>}
               {!isLoading && (
                 <>
-                  <StyledPagingInfo />
+                  {results && <StyledPagingInfo />}
                   <StyledPaging />
                   <StyledResults
                     resultView={ResultView}

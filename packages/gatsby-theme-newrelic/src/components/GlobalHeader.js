@@ -24,7 +24,7 @@ const styles = {
   `,
 };
 
-const GlobalHeader = ({ editUrl, className }) => {
+const GlobalHeader = ({ editUrl, className, search, onClickSearch }) => {
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
       site {
@@ -162,6 +162,16 @@ const GlobalHeader = ({ editUrl, className }) => {
                   size="0.875rem"
                 />
               </ExternalLink>
+            </li>
+          )}
+          {search && !hideMenuLinks && (
+            <li>
+              <Icon
+                css={styles.actionIcon}
+                name={Icon.TYPE.SEARCH}
+                size="0.875rem"
+                onClick={onClickSearch}
+              />
             </li>
           )}
           <li>
