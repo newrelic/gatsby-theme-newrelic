@@ -68,27 +68,50 @@ function ResultView({
   const newRelicSite = fields.url.split('.newrelic')[0].slice(8);
 
   return (
-    <li className={appendClassName('sui-result', className)} {...rest}>
-      <div className="sui-result__header">
+    <li
+      className={appendClassName('sui-result', className)}
+      {...rest}
+      css={css`
+        border: none;
+        background: transparent;
+        margin: 0;
+      `}
+    >
+      <div
+        className="sui-result__header"
+        css={css`
+          padding-left: 0;
+        `}
+      >
         {title && !url && (
-          <span
+          <h3
             className="sui-result__title"
             dangerouslySetInnerHTML={{ __html: title }}
           />
         )}
         {title && url && (
-          <a
-            className="sui-result__title sui-result__title-link"
-            dangerouslySetInnerHTML={{ __html: title }}
-            href={url}
-            onClick={onClickLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          />
+          <h3>
+            <a
+              className="sui-result__title sui-result__title-link"
+              css={css`
+                font-size: inherit;
+              `}
+              dangerouslySetInnerHTML={{ __html: title }}
+              href={url}
+              onClick={onClickLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            />
+          </h3>
         )}
       </div>
       <div className="sui-result__body">
-        <ul className="sui-result__details">
+        <ul
+          className="sui-result__details"
+          css={css`
+            padding-left: 0;
+          `}
+        >
           <li>
             <span
               className="sui-result__value"
@@ -98,6 +121,7 @@ function ResultView({
           <li>
             <div
               css={css`
+                font-size: 0.75rem;
                 background: ${rgba('#007e8a', 0.2)};
                 padding: 0.25rem 0.5rem;
                 border-radius: 0.25rem;
