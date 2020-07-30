@@ -9,6 +9,7 @@ import {
   PagingInfo,
 } from '@elastic/react-search-ui';
 import ResultView from './ResultView';
+import PagingInfoView from './PagingInfoView';
 import SearchInput from './SearchInput';
 
 import styled from '@emotion/styled';
@@ -24,42 +25,70 @@ const connector = new SiteSearchAPIConnector({
   engineKey: 'Ad9HfGjDw4GRkcmJjUut',
 });
 
-const SwiftSearch = () => {
+const configOptions = {
+  apiConnector: connector,
+  searchQuery: {
+    result_fields: {
+      title: {
+        snippet: {
+          size: 100,
+          fallback: true,
+        },
+      },
+      body: {
+        snippet: {
+          size: 400,
+          fallback: true,
+        },
+      },
+      url: {
+        raw: {},
+      },
+    },
+  },
+  initialState: {
+    resultsPerPage: 10,
+  },
+};
+
+const SwiftSearch = ({ className }) => {
   return (
-    <SearchProvider
-      config={{
-        apiConnector: connector,
-      }}
-    >
-      <WithSearch
-        mapContextToProps={({ isLoading, results }) => ({ isLoading, results })}
-      >
-        {({ isLoading, results }) => {
-          return (
-            <div className="App">
-              <SearchBox
-                searchAsYouType
-                debounceLength={800}
-                inputView={InputView}
-              />
-              {isLoading && <div>loading...</div>}
-              {!isLoading && (
-                <>
-                  {results && <StyledPagingInfo />}
-                  <StyledPaging />
-                  <StyledResults
-                    resultView={ResultView}
-                    titleField="title"
-                    urlField="url"
-                  />
-                  <StyledPaging />
-                </>
-              )}
-            </div>
-          );
-        }}
-      </WithSearch>
-    </SearchProvider>
+    <div className={className}>
+      <SearchProvider config={configOptions}>
+        <WithSearch
+          mapContextToProps={({ isLoading, results }) => ({
+            isLoading,
+            results,
+          })}
+        >
+          {({ isLoading, results }) => {
+            return (
+              <div className="App">
+                <SearchBox
+                  searchAsYouType
+                  debounceLength={500}
+                  inputView={InputView}
+                />
+                {isLoading && <div>loading...</div>}
+                {!isLoading && (
+                  <>
+                    {results && results.length > 0 && (
+                      <StyledPagingInfo view={PagingInfoView} />
+                    )}
+                    <StyledResults
+                      resultView={ResultView}
+                      titleField="title"
+                      urlField="url"
+                    />
+                    <StyledPaging />
+                  </>
+                )}
+              </div>
+            );
+          }}
+        </WithSearch>
+      </SearchProvider>
+    </div>
   );
 };
 
@@ -76,17 +105,19 @@ function InputView({ getAutocomplete, getInputProps }) {
           }
         `}
       >
-        <SearchInput
-          onClear={() => inputProps.onChange({ target: { value: '' } })}
-          {...inputProps}
-        />
+        <SearchInput size={SearchInput.SIZE.LARGE} {...inputProps} />
         {getAutocomplete()}
       </div>
     </>
   );
 }
 
+SwiftSearch.propTypes = {
+  className: PropTypes.string,
+};
+
 InputView.propTypes = {
+  className: PropTypes.string,
   getAutocomplete: PropTypes.func,
   getInputProps: PropTypes.func,
 };
@@ -97,6 +128,7 @@ const StyledPagingInfo = styled(PagingInfo)`
 `;
 
 const StyledPaging = styled(Paging)`
+  margin-top: 1rem;
   .rc-pagination-item a {
     color: var(--link-color);
   }
