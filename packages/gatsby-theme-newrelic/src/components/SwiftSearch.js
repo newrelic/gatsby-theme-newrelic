@@ -149,7 +149,7 @@ const StyledPagingInfo = styled(PagingInfo)`
 
 const StyledPaging = styled(Paging)`
   font-size: 1rem;
-  width: 50%;
+  width: fit-content;
   margin: auto;
 
   .rc-pagination-item {
