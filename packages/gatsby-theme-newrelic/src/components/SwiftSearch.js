@@ -180,6 +180,7 @@ const StyledResults = styled(Results)`
   > li {
     border: var(--border-color) solid 1px;
     background: var(--primary-background-color);
+    margin: 0;
   }
   a {
     color: var(--link-color);
@@ -189,6 +190,9 @@ const StyledResults = styled(Results)`
     &::after {
       background: ${rgba('#007e8a', 0.2)};
     }
+  }
+  .sui-result + .sui-result {
+    margin-top: 0;
   }
 `;
 
