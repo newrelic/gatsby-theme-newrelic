@@ -63,7 +63,13 @@ const SwiftSearch = ({ className }) => {
         >
           {({ isLoading, results }) => {
             return (
-              <div className="App">
+              <div
+                css={css`
+                  display: flex;
+                  flex-direction: column;
+                `}
+                className="App"
+              >
                 <SearchBox
                   searchAsYouType
                   debounceLength={500}
@@ -129,6 +135,12 @@ const StyledPagingInfo = styled(PagingInfo)`
 
 const StyledPaging = styled(Paging)`
   margin-top: 1rem;
+  font-size: 1rem;
+  align-self: center;
+
+  .rc-pagination-item {
+    margin: 0rem 1rem;
+  }
   .rc-pagination-item a {
     color: var(--link-color);
   }
