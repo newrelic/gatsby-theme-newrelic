@@ -19,6 +19,7 @@ import PropTypes from 'prop-types';
 
 // TODO: move styles to emotion/wrapper
 import '@elastic/react-search-ui-views/lib/styles/styles.css';
+import Icon from './Icon';
 
 const connector = new SiteSearchAPIConnector({
   documentType: 'page',
@@ -78,7 +79,15 @@ const SwiftSearch = ({ className }) => {
                   debounceLength={500}
                   inputView={InputView}
                 />
-                {isLoading && <div>loading...</div>}
+                {isLoading && (
+                  <Icon
+                    css={css`
+                      margin-top: 1rem;
+                    `}
+                    size="1.5rem"
+                    name={Icon.TYPE.LOADER}
+                  />
+                )}
                 {hasSearched && (
                   <>
                     <StyledPagingInfo view={PagingInfoView} />
