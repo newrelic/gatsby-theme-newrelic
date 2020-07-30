@@ -6,6 +6,7 @@ import { css } from '@emotion/core';
 import {
   Button,
   CodeBlock,
+  Feedback,
   GlobalHeader,
   SearchInput,
   Surface,
@@ -210,6 +211,18 @@ const IndexPage = ({ data }) => {
           <Video id="inyshp3m7r" type={Video.TYPE.WISTIA} width="500px" />
           <h2>YouTube video</h2>
           <Video id="ZagZfNQYJEU" type={Video.TYPE.YOUTUBE} width="500px" />
+        </section>
+
+        <section>
+          <h2>Feedback</h2>
+          <Feedback
+            onPositiveClick={() => {
+              alert('nice');
+            }}
+            onNegativeClick={() => {
+              alert('meh');
+            }}
+          />
         </section>
       </div>
     </>
