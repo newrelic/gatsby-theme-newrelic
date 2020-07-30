@@ -25,6 +25,9 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
       opacity: 0,
     },
   });
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') onClick();
+  };
 
   return (
     <Portal>
@@ -36,21 +39,30 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
               key={key}
               css={css`
                 z-index: 100;
-                position: absolute;
+                position: fixed;
                 top: 0;
                 left: 0;
                 right: 0;
                 bottom: 0;
+                overflow-y: scroll;
                 background-color: ${rgba('#000000', 0.9)};
               `}
             >
               <div
+                role="button"
+                tabIndex="0"
+                onKeyDown={handleKeyDown}
                 css={css`
                   &:hover {
                     background-color: ${rgba('#FFFFFF', 0.2)};
+                    color: var(--color-neutrals-400);
                   }
+                  color: var(--color-neutrals-600);
                   cursor: pointer;
-                  position: relative;
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  right: 0;
                   display: flex;
                   flex-direction: row;
                   justify-content: space-between;
@@ -77,7 +89,13 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
                   <Icon name={Icon.TYPE.X} />
                 </div>
               </div>
-              {children}
+              <div
+                css={css`
+                  position: static;
+                `}
+              >
+                {children}
+              </div>
             </animated.div>
           )
       )}

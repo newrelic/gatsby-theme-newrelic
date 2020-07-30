@@ -46,7 +46,7 @@ const IndexPage = ({ data }) => {
         <SwiftSearch
           css={css`
             width: 950px;
-            margin: auto;
+            margin: 3rem auto;
           `}
         />
       </Overlay>
