@@ -68,15 +68,7 @@ function ResultView({
   const newRelicSite = fields.url.split('.newrelic')[0].slice(8);
 
   return (
-    <li
-      className={appendClassName('sui-result', className)}
-      {...rest}
-      css={css`
-        border: none;
-        background: transparent;
-        margin: 0;
-      `}
-    >
+    <li className={appendClassName('sui-result', className)} {...rest}>
       <div
         className="sui-result__header"
         css={css`

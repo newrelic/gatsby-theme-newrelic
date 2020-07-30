@@ -14,12 +14,11 @@ import SearchInput from './SearchInput';
 
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-import { rgba } from 'polished';
 import PropTypes from 'prop-types';
 
 // TODO: move styles to emotion/wrapper
-import '@elastic/react-search-ui-views/lib/styles/styles.css';
 import Icon from './Icon';
+import styles from '../styles/SwiftSearchStyles';
 
 const connector = new SiteSearchAPIConnector({
   documentType: 'page',
@@ -54,7 +53,7 @@ const configOptions = {
 
 const SwiftSearch = ({ className }) => {
   return (
-    <div className={className}>
+    <div css={styles} className={className}>
       <SearchProvider config={configOptions}>
         <WithSearch
           mapContextToProps={({ isLoading, results, searchTerm }) => ({
@@ -137,72 +136,12 @@ InputView.propTypes = {
   getInputProps: PropTypes.func,
 };
 
-const StyledResultsContainer = styled.div`
-  height: 100vh;
-  overflow-y: auto;
-`;
+const StyledResultsContainer = styled.div``;
 
-const StyledPagingInfo = styled(PagingInfo)`
-  margin: 1rem 0;
-  color: var(--primary-text-color);
-`;
+const StyledPagingInfo = styled(PagingInfo)``;
 
-const StyledPaging = styled(Paging)`
-  font-size: 1rem;
-  width: fit-content;
-  margin: auto;
+const StyledPaging = styled(Paging)``;
 
-  .rc-pagination-item {
-    margin: 0rem 1rem;
-  }
-  .rc-pagination-item a {
-    color: var(--link-color);
-  }
-  .rc-pagination-item:hover {
-    background: var(--tertiary-background-color);
-    a {
-      color: var(--link-color);
-    }
-  }
-  .rc-pagination-next:hover {
-    background: var(--tertiary-background-color);
-    a {
-      color: var(--link-color);
-    }
-  }
-  .rc-pagination-prev:hover {
-    background: var(--tertiary-background-color);
-    a {
-      color: var(--link-color);
-    }
-  }
-  .rc-pagination-jump-next:hover {
-    background: var(--tertiary-background-color);
-  }
-  .rc-pagination-jump-next:hover:after {
-    color: var(--link-color) !important;
-  }
-  .rc-pagination-jump-prev:hover {
-    background: var(--tertiary-background-color);
-  }
-  .rc-pagination-jump-prev:hover:after {
-    color: var(--link-color) !important;
-  }
-`;
-
-const StyledResults = styled(Results)`
-  a {
-    color: var(--link-color);
-  }
-  em {
-    color: var(--link-color);
-    &::after {
-      background: ${rgba('#007e8a', 0.2)};
-    }
-  }
-  .sui-result + .sui-result {
-    margin-top: 0;
-  }
-`;
+const StyledResults = styled(Results)``;
 
 export default SwiftSearch;
