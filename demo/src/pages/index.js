@@ -8,7 +8,6 @@ import {
   CodeBlock,
   GlobalHeader,
   Overlay,
-  Portal,
   SearchInput,
   SwiftSearch,
   Surface,
@@ -43,7 +42,14 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
-      <Overlay isOpen={isOverlayOpen} onClick={() => setIsOverlayOpen(false)} />
+      <Overlay isOpen={isOverlayOpen} onClick={() => setIsOverlayOpen(false)}>
+        <SwiftSearch
+          css={css`
+            width: 950px;
+            margin: auto;
+          `}
+        />
+      </Overlay>
       <GlobalHeader
         editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
         search
