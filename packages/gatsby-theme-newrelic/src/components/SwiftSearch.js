@@ -56,12 +56,15 @@ const SwiftSearch = ({ className }) => {
     <div className={className}>
       <SearchProvider config={configOptions}>
         <WithSearch
-          mapContextToProps={({ isLoading, results }) => ({
+          mapContextToProps={({ isLoading, results, searchTerm }) => ({
             isLoading,
             results,
+            searchTerm,
           })}
         >
-          {({ isLoading, results }) => {
+          {({ isLoading, results, searchTerm }) => {
+            const hasResults = !isLoading && results && results.length > 0;
+            const hasSearched = !isLoading && searchTerm.length > 0;
             return (
               <div className="App">
                 <SearchBox
@@ -70,17 +73,20 @@ const SwiftSearch = ({ className }) => {
                   inputView={InputView}
                 />
                 {isLoading && <div>loading...</div>}
-                {!isLoading && (
+                {hasSearched && (
                   <>
-                    {results && results.length > 0 && (
-                      <StyledPagingInfo view={PagingInfoView} />
+                    <StyledPagingInfo view={PagingInfoView} />
+
+                    {hasResults && (
+                      <>
+                        <StyledResults
+                          resultView={ResultView}
+                          titleField="title"
+                          urlField="url"
+                        />
+                        <StyledPaging />
+                      </>
                     )}
-                    <StyledResults
-                      resultView={ResultView}
-                      titleField="title"
-                      urlField="url"
-                    />
-                    <StyledPaging />
                   </>
                 )}
               </div>
