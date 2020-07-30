@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
 import Portal from './Portal';
+import NewRelicLogo from './NewRelicLogo';
 import { rgba } from 'polished';
 import { useTransition, animated } from 'react-spring';
 
@@ -43,20 +44,40 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
                 background-color: ${rgba('#000000', 0.9)};
               `}
             >
-              <Icon
+              <div
                 css={css`
-                  color: var(--color-brand-400);
                   &:hover {
-                    color: white;
+                    background-color: ${rgba('#FFFFFF', 0.2)};
                   }
-                  position: absolute;
-                  right: 0;
-                  margin: 1rem;
+                  cursor: pointer;
+                  position: relative;
+                  height: 2rem;
+                  display: flex;
+                  flex-direction: row;
+                  justify-content: space-between;
+                  padding: 1rem;
                 `}
-                size="1.75rem"
-                name={Icon.TYPE.X}
                 onClick={onClick}
-              />
+              >
+                <NewRelicLogo />
+                <div
+                  css={css`
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                  `}
+                >
+                  <span
+                    css={css`
+                      font-size: 0.75rem;
+                      margin-right: 0.25rem;
+                    `}
+                  >
+                    Close
+                  </span>
+                  <Icon name={Icon.TYPE.X} />
+                </div>
+              </div>
               {children}
             </animated.div>
           )

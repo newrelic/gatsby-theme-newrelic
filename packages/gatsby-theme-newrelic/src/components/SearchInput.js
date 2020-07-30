@@ -49,7 +49,7 @@ const SearchInput = ({
         type="text"
         onKeyDown={handleKeyDown}
       />
-      {value && onClear && (
+      {value && (
         <StyledButton
           onClick={handleClick}
           css={css`
