@@ -51,11 +51,10 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
                   }
                   cursor: pointer;
                   position: relative;
-                  height: 2rem;
                   display: flex;
                   flex-direction: row;
                   justify-content: space-between;
-                  padding: 1rem;
+                  padding: 0.5rem;
                 `}
                 onClick={onClick}
               >
