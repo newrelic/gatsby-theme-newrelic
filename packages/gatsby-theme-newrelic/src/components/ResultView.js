@@ -65,8 +65,7 @@ function ResultView({
   const fields = getEscapedFields(result);
   const title = getEscapedField(result, titleField);
   const url = getUrlSanitizer(URL, window.location)(getRaw(result, urlField));
-  const newRelicSite = fields.url.split('com')[0].slice(8).concat('com');
-  const body = fields.body.slice(0, 400).concat('...');
+  const newRelicSite = fields.url.split('.newrelic')[0].slice(8);
 
   return (
     <li className={appendClassName('sui-result', className)} {...rest}>
@@ -93,7 +92,7 @@ function ResultView({
           <li>
             <span
               className="sui-result__value"
-              dangerouslySetInnerHTML={{ __html: body }}
+              dangerouslySetInnerHTML={{ __html: fields.body }}
             />
           </li>
           <li>
