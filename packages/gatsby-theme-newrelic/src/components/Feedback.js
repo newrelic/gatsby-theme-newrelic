@@ -2,11 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Button from './Button';
+import Icon from './Icon';
 
 const ALIGNMENT = {
   LEFT: 'left',
   CENTER: 'center',
 };
+
+const iconStyles = css`
+  margin-right: 0.5rem;
+`;
 
 const Feedback = ({ align, onPositiveClick, onNegativeClick, message }) => (
   <div
@@ -26,9 +31,11 @@ const Feedback = ({ align, onPositiveClick, onNegativeClick, message }) => (
       `}
     >
       <Button onClick={onPositiveClick} variant={Button.VARIANT.PRIMARY}>
+        <Icon css={iconStyles} name={Icon.TYPE.THUMBSUP} />
         Yes
       </Button>
       <Button onClick={onNegativeClick} variant={Button.VARIANT.PRIMARY}>
+        <Icon css={iconStyles} name={Icon.TYPE.THUMBSDOWN} />
         No
       </Button>
     </div>
