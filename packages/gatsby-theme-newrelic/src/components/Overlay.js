@@ -40,7 +40,7 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background-color: ${rgba('#000000', 0.75)};
+                background-color: ${rgba('#000000', 0.9)};
               `}
             >
               <Icon
@@ -53,7 +53,7 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
                   right: 0;
                   margin: 1rem;
                 `}
-                size={'1.75rem'}
+                size="1.75rem"
                 name={Icon.TYPE.X}
                 onClick={onClick}
               />
@@ -63,6 +63,12 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
       )}
     </Portal>
   );
+};
+
+Overlay.propTypes = {
+  children: PropTypes.node,
+  onClick: PropTypes.func,
+  isOpen: PropTypes.bool,
 };
 
 export default Overlay;
