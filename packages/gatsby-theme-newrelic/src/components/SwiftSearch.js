@@ -67,13 +67,7 @@ const SwiftSearch = ({ className }) => {
             const hasResults = !isLoading && results && results.length > 0;
             const hasSearched = !isLoading && searchTerm.length > 0;
             return (
-              <div
-                css={css`
-                  display: flex;
-                  flex-direction: column;
-                `}
-                className="App"
-              >
+              <>
                 <SearchBox
                   searchAsYouType
                   debounceLength={500}
@@ -93,18 +87,18 @@ const SwiftSearch = ({ className }) => {
                     <StyledPagingInfo view={PagingInfoView} />
 
                     {hasResults && (
-                      <>
+                      <StyledResultsContainer>
                         <StyledResults
                           resultView={ResultView}
                           titleField="title"
                           urlField="url"
                         />
                         <StyledPaging />
-                      </>
+                      </StyledResultsContainer>
                     )}
                   </>
                 )}
-              </div>
+              </>
             );
           }}
         </WithSearch>
@@ -143,15 +137,20 @@ InputView.propTypes = {
   getInputProps: PropTypes.func,
 };
 
+const StyledResultsContainer = styled.div`
+  height: 100vh;
+  overflow-y: auto;
+`;
+
 const StyledPagingInfo = styled(PagingInfo)`
   margin: 1rem 0;
   color: var(--primary-text-color);
 `;
 
 const StyledPaging = styled(Paging)`
-  margin-top: 1rem;
   font-size: 1rem;
-  align-self: center;
+  width: 50%;
+  margin: auto;
 
   .rc-pagination-item {
     margin: 0rem 1rem;
@@ -192,11 +191,6 @@ const StyledPaging = styled(Paging)`
 `;
 
 const StyledResults = styled(Results)`
-  > li {
-    border: var(--border-color) solid 1px;
-    background: var(--primary-background-color);
-    margin: 0;
-  }
   a {
     color: var(--link-color);
   }
