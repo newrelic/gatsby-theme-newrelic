@@ -41,7 +41,7 @@ const Feedback = ({ align, onPositiveClick, onNegativeClick, message }) => {
           variant={Button.VARIANT.PRIMARY}
           disabled={submitted}
         >
-          <Icon css={iconStyles} name={Icon.TYPE.THUMBSUP} />
+          <Icon css={iconStyles} name={Icon.TYPE.THUMBSUP} size="1.1rem" />
           Yes
         </Button>
         <Button
@@ -52,7 +52,7 @@ const Feedback = ({ align, onPositiveClick, onNegativeClick, message }) => {
           variant={Button.VARIANT.PRIMARY}
           disabled={submitted}
         >
-          <Icon css={iconStyles} name={Icon.TYPE.THUMBSDOWN} />
+          <Icon css={iconStyles} name={Icon.TYPE.THUMBSDOWN} size="1.1rem" />
           No
         </Button>
       </div>
