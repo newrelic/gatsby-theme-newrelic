@@ -215,17 +215,17 @@ const IndexPage = ({ data }) => {
 
         <section>
           <h2>Feedback</h2>
-          <Feedback
-            onPositiveClick={() => {
-              console.log('nice');
-            }}
-            onNegativeClick={() => {
-              console.log('meh');
-            }}
-            onCommentSubmit={(comment) => {
-              console.log('comment', comment);
-            }}
-          />
+          <div
+            css={css`
+              width: 350px;
+            `}
+          >
+            <Feedback
+              onSubmit={({ sentiment, comment }) => {
+                console.log('comment', sentiment, comment);
+              }}
+            />
+          </div>
         </section>
       </div>
     </>
