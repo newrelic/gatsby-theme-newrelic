@@ -69,7 +69,7 @@ const Button = styled.button`
   border-style: solid;
   ${({ variant }) => styles.variant[variant]}
   ${({ size }) => styles.size[size]}
-  ${({ disabled }) => disabled === true && styles.disabled}
+  ${({ disabled }) => disabled && styles.disabled}
 `;
 
 Button.VARIANT = VARIANTS;
