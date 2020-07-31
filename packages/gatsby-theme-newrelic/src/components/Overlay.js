@@ -4,7 +4,6 @@ import { css } from '@emotion/core';
 import Icon from './Icon';
 import Portal from './Portal';
 import NewRelicLogo from './NewRelicLogo';
-import { rgba } from 'polished';
 import { useTransition, animated } from 'react-spring';
 
 const Overlay = ({ children, onClick, isOpen = false }) => {
@@ -45,7 +44,7 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
                 right: 0;
                 bottom: 0;
                 overflow-y: scroll;
-                background-color: ${rgba('#000000', 0.9)};
+                background-color: var(--primary-background-color);
               `}
             >
               <div
@@ -54,11 +53,12 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
                 onKeyDown={handleKeyDown}
                 css={css`
                   &:hover {
-                    background-color: ${rgba('#FFFFFF', 0.2)};
-                    color: var(--color-neutrals-400);
+                    background-color: var(--secondary-background-color);
+                    color: var(--tertiary-text-color);
                   }
-                  color: var(--color-neutrals-600);
+                  color: var(--secondary-text-color);
                   cursor: pointer;
+                  outline: none;
                   position: fixed;
                   top: 0;
                   left: 0;
@@ -66,7 +66,7 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
                   display: flex;
                   flex-direction: row;
                   justify-content: space-between;
-                  padding: 0.5rem;
+                  padding: 0.25rem;
                 `}
                 onClick={onClick}
               >
