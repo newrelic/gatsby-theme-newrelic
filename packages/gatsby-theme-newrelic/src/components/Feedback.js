@@ -141,9 +141,8 @@ Feedback.ALIGNMENT = ALIGNMENT;
 Feedback.SENTIMENT = SENTIMENT;
 
 Feedback.propTypes = {
-  align: PropTypes.oneOf(Object.values(Feedback.ALIGNMENT)), // TODO: update comment
-  onSubmit: PropTypes.func.isRequired, // TODO: document
-  // TODO: update changed props
+  align: PropTypes.oneOf(Object.values(Feedback.ALIGNMENT)),
+  onSubmit: PropTypes.func.isRequired,
   message: PropTypes.string,
 };
 

@@ -430,22 +430,19 @@ import { Feedback } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop              | Type     | Required | Default                 | Description                                                                                                                  |
-| ----------------- | -------- | -------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `align`           | enum     | no       | `Feedback.ALIGN.CENTER` | Configures the alignment of the feedback component. Must be one of `Feedback.ALIGNMENT.LEFT` or `Feedback.ALIGNMENT.CENTER`. |
-| `onPositiveClick` | function | yes      |                         | Handler that is called once the positive button is clicked.                                                        |
-| `onNegativeClick` | function | yes      |                         | Handler that is called once the negative button is clicked.                                                        |
-| `message`         | string   | no       | Was this page helpful?  | Message to be displayed above the buttons.                                                                                   |
+| Prop       | Type     | Required | Default                | Description                                                                                                                                                             |
+| ---------- | -------- | -------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `align`    | enum     | no       | `Feedback.ALIGN.LEFT`  | Configures the alignment of the feedback component. Must be one of `Feedback.ALIGNMENT.LEFT` or `Feedback.ALIGNMENT.CENTER`.                                            |
+| `onSubmit` | function | yes      |                        | Handler that is called once feedback is provided. The user must supply a sentiment, a comment, or both. An object containing the `sentiment` and `comment` is returned. |
+| `message`  | string   | no       | Was this page helpful? | Message to be displayed above the buttons.                                                                                                                              |
 
 **Example**
 
 ```jsx
 <Feedback
-  onPositiveClick={() => {
-    alert('positive feedback');
-  }}
-  onNegativeClick={() => {
-    alert('positive feedback');
+  message="Tell us what you think!"
+  onSubmit={({ sentiment, comment }) => {
+    alert('${sentiment} feedback recieved: ${comment}');
   }}
 />
 ```
