@@ -18,6 +18,7 @@ export default css`
     font-size: 1rem;
     width: fit-content;
     margin-top: 1rem;
+    align-self: center;
   }
   .rc-pagination > li {
     list-style: none;

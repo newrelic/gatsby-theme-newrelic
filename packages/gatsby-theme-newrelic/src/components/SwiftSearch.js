@@ -136,7 +136,10 @@ InputView.propTypes = {
   getInputProps: PropTypes.func,
 };
 
-const StyledResultsContainer = styled.div``;
+const StyledResultsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const StyledPagingInfo = styled(PagingInfo)``;
 
