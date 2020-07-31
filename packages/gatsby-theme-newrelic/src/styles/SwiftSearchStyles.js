@@ -812,10 +812,9 @@ export default css`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 24px;
   }
   .sui-result__title {
-    font-size: 1.8em;
+    font-size: inherit;
     font-weight: 400;
     text-decoration: none;
   }
@@ -863,9 +862,9 @@ export default css`
     margin: 0;
   }
   .sui-result__details {
-    padding: 12px;
     list-style: none;
     padding: 12px 24px;
+    padding-left: 0;
   }
   .sui-results-container {
     padding: 0;

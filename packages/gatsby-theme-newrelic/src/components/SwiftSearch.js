@@ -83,16 +83,16 @@ const SwiftSearch = ({ className }) => {
                 )}
                 {hasSearched && (
                   <>
-                    <StyledPagingInfo view={PagingInfoView} />
+                    <PagingInfo view={PagingInfoView} />
 
                     {hasResults && (
                       <StyledResultsContainer>
-                        <StyledResults
+                        <Results
                           resultView={ResultView}
                           titleField="title"
                           urlField="url"
                         />
-                        <StyledPaging />
+                        <Paging />
                       </StyledResultsContainer>
                     )}
                   </>
@@ -140,11 +140,5 @@ const StyledResultsContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
-const StyledPagingInfo = styled(PagingInfo)``;
-
-const StyledPaging = styled(Paging)``;
-
-const StyledResults = styled(Results)``;
 
 export default SwiftSearch;

@@ -69,12 +69,7 @@ function ResultView({
 
   return (
     <li className={appendClassName('sui-result', className)} {...rest}>
-      <div
-        className="sui-result__header"
-        css={css`
-          padding-left: 0;
-        `}
-      >
+      <div className="sui-result__header">
         {title && !url && (
           <h3
             className="sui-result__title"
@@ -85,9 +80,6 @@ function ResultView({
           <h3>
             <a
               className="sui-result__title sui-result__title-link"
-              css={css`
-                font-size: inherit;
-              `}
               dangerouslySetInnerHTML={{ __html: title }}
               href={url}
               onClick={onClickLink}
@@ -98,12 +90,7 @@ function ResultView({
         )}
       </div>
       <div className="sui-result__body">
-        <ul
-          className="sui-result__details"
-          css={css`
-            padding-left: 0;
-          `}
-        >
+        <ul className="sui-result__details">
           <li>
             <span
               className="sui-result__value"
