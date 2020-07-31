@@ -8,20 +8,21 @@ import {
 import { isFieldValueWrapper } from '@elastic/react-search-ui-views/es/types/FieldValueWrapper';
 import { css } from '@emotion/core';
 import { rgba } from 'polished';
+import ExternalLink from './ExternalLink';
 
-function getFieldType(result, field, type) {
+const getFieldType = (result, field, type) => {
   if (result[field]) return result[field][type];
-}
+};
 
-function getRaw(result, field) {
+const getRaw = (result, field) => {
   return getFieldType(result, field, 'raw');
-}
+};
 
-function getSnippet(result, field) {
+const getSnippet = (result, field) => {
   return getFieldType(result, field, 'snippet');
-}
+};
 
-function htmlEscape(str) {
+const htmlEscape = (str) => {
   if (!str) return '';
 
   return String(str)
@@ -30,17 +31,17 @@ function htmlEscape(str) {
     .replace(/'/g, '&#39;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
-}
+};
 
-function getEscapedField(result, field) {
+const getEscapedField = (result, field) => {
   // Fallback to raw values here, because non-string fields
   // will not have a snippet fallback. Raw values MUST be html escaped.
   const safeField =
     getSnippet(result, field) || htmlEscape(getRaw(result, field));
   return Array.isArray(safeField) ? safeField.join(', ') : safeField;
-}
+};
 
-function getEscapedFields(result) {
+const getEscapedFields = (result) => {
   return Object.keys(result).reduce((acc, field) => {
     // If we receive an arbitrary value from the response, we may not properly
     // handle it, so we should filter out arbitrary values here.
@@ -52,19 +53,21 @@ function getEscapedFields(result) {
     if (!isFieldValueWrapper(result[field])) return acc;
     return { ...acc, [field]: getEscapedField(result, field) };
   }, {});
-}
+};
 
-function ResultView({
+const ResultView = ({
   className,
   result,
   onClickLink,
   titleField,
   urlField,
   ...rest
-}) {
+}) => {
   const fields = getEscapedFields(result);
   const title = getEscapedField(result, titleField);
   const url = getUrlSanitizer(URL, window.location)(getRaw(result, urlField));
+  // Pulls subdomain from URL:
+  // e.g. https://developer.newrelic.com => developer
   const newRelicSite = fields.url.split('.newrelic')[0].slice(8);
 
   return (
@@ -77,16 +80,12 @@ function ResultView({
           />
         )}
         {title && url && (
-          <h3>
-            <a
-              className="sui-result__title sui-result__title-link"
-              dangerouslySetInnerHTML={{ __html: title }}
-              href={url}
-              onClick={onClickLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            />
-          </h3>
+          <ExternalLink
+            className="sui-result__title sui-result__title-link"
+            href={url}
+            onClick={onClickLink}
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
         )}
       </div>
       <div className="sui-result__body">
@@ -115,7 +114,7 @@ function ResultView({
       </div>
     </li>
   );
-}
+};
 
 ResultView.propTypes = {
   result: PropTypes.object.isRequired,
