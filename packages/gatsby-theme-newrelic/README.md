@@ -433,8 +433,8 @@ import { Feedback } from '@newrelic/gatsby-theme-newrelic';
 | Prop              | Type     | Required | Default                 | Description                                                                                                                  |
 | ----------------- | -------- | -------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | `align`           | enum     | no       | `Feedback.ALIGN.CENTER` | Configures the alignment of the feedback component. Must be one of `Feedback.ALIGNMENT.LEFT` or `Feedback.ALIGNMENT.CENTER`. |
-| `onPositiveClick` | function | yes      |                         | Callback function that is called once the positive button is clicked.                                                        |
-| `onNegativeClick` | function | yes      |                         | Callback function that is called once the negative button is clicked.                                                        |
+| `onPositiveClick` | function | yes      |                         | Handler that is called once the positive button is clicked.                                                        |
+| `onNegativeClick` | function | yes      |                         | Handler that is called once the negative button is clicked.                                                        |
 | `message`         | string   | no       | Was this page helpful?  | Message to be displayed above the buttons.                                                                                   |
 
 **Example**
