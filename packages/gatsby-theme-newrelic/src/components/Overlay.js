@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
 import Portal from './Portal';
+import usePortal from '../hooks/usePortal';
 import NewRelicLogo from './NewRelicLogo';
 import { useTransition, animated } from 'react-spring';
 
-const Overlay = ({ children, onClick, isOpen = false }) => {
-  useEffect(() => {
-    if (isOpen) document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = null;
-    };
-  }, [isOpen]);
+const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
+  usePortal(
+    isOpen,
+    () => (document.body.style.overflow = 'hidden'),
+    () => (document.body.style.overflow = null)
+  );
+
   const open = useTransition(isOpen, null, {
     from: {
       opacity: 0,
@@ -25,7 +26,7 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
     },
   });
   const handleKeyDown = (e) => {
-    if (e.key === 'Escape') onClick();
+    if (e.key === 'Escape') onCloseOverlay();
   };
 
   return (
@@ -68,7 +69,7 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
                   justify-content: space-between;
                   padding: 0.25rem;
                 `}
-                onClick={onClick}
+                onClick={onCloseOverlay}
               >
                 <NewRelicLogo />
                 <div
@@ -104,9 +105,9 @@ const Overlay = ({ children, onClick, isOpen = false }) => {
 };
 
 Overlay.propTypes = {
-  children: PropTypes.node,
-  onClick: PropTypes.func,
-  isOpen: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  onCloseOverlay: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };
 
 export default Overlay;
