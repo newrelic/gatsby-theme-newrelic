@@ -1,6 +1,7 @@
 export { default as Button } from './src/components/Button';
 export { default as CodeBlock } from './src/components/CodeBlock';
 export { default as ExternalLink } from './src/components/ExternalLink';
+export { default as Feedback } from './src/components/Feedback';
 export { default as GlobalHeader } from './src/components/GlobalHeader';
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';

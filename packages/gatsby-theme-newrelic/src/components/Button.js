@@ -48,6 +48,10 @@ const styles = {
       }
     `,
   },
+  disabled: css`
+    opacity: 0.5;
+    cursor: default;
+  `,
 };
 
 const Button = styled.button`
@@ -65,12 +69,14 @@ const Button = styled.button`
   border-style: solid;
   ${({ variant }) => styles.variant[variant]}
   ${({ size }) => styles.size[size]}
+  ${({ disabled }) => disabled && styles.disabled}
 `;
 
 Button.VARIANT = VARIANTS;
 Button.SIZE = SIZES;
 
 Button.propTypes = {
+  disabled: PropTypes.bool,
   size: PropTypes.oneOf(Object.values(Button.SIZE)),
   variant: PropTypes.oneOf(Object.values(Button.VARIANT)).isRequired,
 };
