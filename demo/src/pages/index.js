@@ -1,4 +1,4 @@
-/* eslint-disable no-console,no-alert */
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
@@ -7,9 +7,7 @@ import {
   Button,
   CodeBlock,
   GlobalHeader,
-  Overlay,
   SearchInput,
-  SwiftSearch,
   Surface,
   HamburgerMenu,
   Video,
@@ -38,22 +36,12 @@ const IndexPage = ({ data }) => {
   const { layout, siteMetadata } = data.site;
   const [searchTerm, setSearchTerm] = useState('');
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
   return (
     <>
-      <Overlay isOpen={isOverlayOpen} onClick={() => setIsOverlayOpen(false)}>
-        <SwiftSearch
-          css={css`
-            width: 950px;
-            margin: 3rem auto;
-          `}
-        />
-      </Overlay>
       <GlobalHeader
         editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
         search
-        onClickSearch={() => setIsOverlayOpen(true)}
       />
       <header
         css={css`
@@ -119,7 +107,6 @@ const IndexPage = ({ data }) => {
             width="500px"
             size={SearchInput.SIZE.LARGE}
           />
-          <SwiftSearch />
         </section>
         <section>
           <h2>A code block</h2>
