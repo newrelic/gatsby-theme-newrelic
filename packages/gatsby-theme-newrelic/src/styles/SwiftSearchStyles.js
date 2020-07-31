@@ -14,10 +14,10 @@ export default css`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    padding: 0;
+    padding: 1rem;
     font-size: 1rem;
     width: fit-content;
-    margin: auto;
+    margin-top: 1rem;
   }
   .rc-pagination > li {
     list-style: none;
@@ -465,9 +465,9 @@ export default css`
       font-weight: 400;
       font-size: 14px;
       font-weight: 700;
-      color: #3a56e4;
+      color: var(--link-color);
       background-color: #ffffff;
-      border: 1px solid #3a56e4;
+      border: 1px solid var(--link-color);
       border-radius: 4px;
     }
     .sui-layout-sidebar .sui-layout-sidebar-toggle {
@@ -565,7 +565,7 @@ export default css`
     padding-top: 2px;
   }
   .sui-multi-checkbox-facet {
-    color: #4f4f4f;
+    color: var(--link-color);
     font-size: 13px;
     margin: 8px 0;
   }
@@ -590,7 +590,7 @@ export default css`
   .sui-facet-view-more {
     display: block;
     cursor: pointer;
-    color: #3a56e4;
+    color: var(--link-color);
     font-size: 13px;
     font-family: inherit;
     line-height: inherit;
@@ -601,8 +601,8 @@ export default css`
   }
   .sui-facet-view-more:hover,
   .sui-facet-view-more:focus {
-    background-color: #f8f8f8;
-    outline: 4px solid #f8f8f8;
+    background-color: var(--tertiary-background-color);
+    outline: 4px solid var(--tertiary-background-color);
   }
   .sui-facet-search {
     margin: 6px 0px 0px 0px;
@@ -618,10 +618,10 @@ export default css`
     outline: none;
   }
   .sui-facet-search__text-input:focus {
-    border: 1px solid #3a56e4;
+    border: 1px solid var(--link-color);
   }
   .sui-boolean-facet {
-    color: #4f4f4f;
+    color: var(--link-color);
     font-size: 13px;
     margin: 8px 0;
   }
@@ -654,7 +654,7 @@ export default css`
     justify-content: space-between;
   }
   .sui-single-option-facet__link {
-    color: #4f4f4f;
+    color: var(--link-color);
     position: relative;
     text-decoration: none;
     list-style: none;
@@ -673,12 +673,12 @@ export default css`
     pointer-events: none;
   }
   .sui-single-option-facet__link:focus {
-    color: #3a56e4;
+    color: var(--link-color);
     font-weight: bold;
     outline: none;
   }
   .sui-single-option-facet__link:hover {
-    color: #3a56e4;
+    color: var(--link-color);
     font-weight: bold;
   }
   .sui-single-option-facet__link:hover:after {
@@ -708,18 +708,18 @@ export default css`
     opacity: 0.5;
   }
   .sui-paging .rc-pagination-item a {
-    color: #3a56e4;
+    color: var(--link-color);
     text-decoration: none;
   }
   .sui-paging .rc-pagination-item:hover {
-    background: #f8f8f8;
+    background: var(--tertiary-background-color);
   }
   .sui-paging .rc-pagination-item:hover a {
-    color: #3a56e4;
+    color: var(--link-color);
     text-decoration: none;
   }
   .sui-paging .rc-pagination-item-active a {
-    color: #4f4f4f;
+    color: var(--link-color);
     font-weight: 700;
   }
   .sui-paging .rc-pagination-item-active:hover {
@@ -727,7 +727,7 @@ export default css`
     cursor: not-allowed;
   }
   .sui-paging .rc-pagination-item-active:hover a {
-    color: #4f4f4f;
+    color: var(--link-color);
     cursor: not-allowed;
   }
   .sui-paging .rc-pagination-next:hover {
@@ -737,25 +737,25 @@ export default css`
     color: var(--link-color);
   }
   .sui-paging .rc-pagination-jump-next:hover {
-    background: #f8f8f8;
+    background: var(--tertiary-background-color);
   }
   .sui-paging .rc-pagination-jump-next:hover a {
-    color: #3a56e4;
+    color: var(--link-color);
   }
   .sui-paging .rc-pagination-jump-next:hover:after {
-    color: #3a56e4;
+    color: var(--link-color);
     content: '\\${BB}';
     font-size: 16px;
     line-height: 1.5;
   }
   .sui-paging .rc-pagination-jump-prev:hover {
-    background: #f8f8f8;
+    background: var(--tertiary-background-color);
   }
   .sui-paging .rc-pagination-jump-prev:hover a {
-    color: #3a56e4;
+    color: var(--link-color);
   }
   .sui-paging .rc-pagination-jump-prev:hover:after {
-    color: #3a56e4;
+    color: var(--link-color);
     content: '\\${AB}';
     font-size: 16px;
     line-height: 1.5;
@@ -767,7 +767,6 @@ export default css`
       Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
-    color: #4a4b4b;
     font-size: 12px;
     display: inline-block;
   }
@@ -780,8 +779,7 @@ export default css`
     padding: 24px 0;
     text-decoration: none;
     display: block;
-    border: 1px solid #f0f0f0;
-    background: white;
+    background: transparent;
     border-radius: 4px;
     box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1);
     overflow-wrap: break-word;
@@ -821,7 +819,7 @@ export default css`
     text-decoration: none;
   }
   .sui-result__title-link {
-    color: #3a56e4;
+    color: var(--link-color);
     text-decoration: none;
   }
   .sui-result__key {
@@ -947,10 +945,10 @@ export default css`
   }
   .sui-search-box__text-input:focus {
     box-shadow: rgba(59, 69, 79, 0.3) 0px 2px 4px;
-    border-top: 1px solid #3a56e4;
-    border-left: 1px solid #3a56e4;
-    border-right: 1px solid #3a56e4;
-    border-bottom: 1px solid #3a56e4;
+    border-top: 1px solid var(--link-color);
+    border-left: 1px solid var(--link-color);
+    border-right: 1px solid var(--link-color);
+    border-bottom: 1px solidvar(--link-color);
   }
   .autocomplete .sui-search-box__text-input {
     box-shadow: rgba(59, 69, 79, 0.3) 0px 2px 4px;
@@ -964,7 +962,7 @@ export default css`
     margin: 0;
     padding: 24px 0 12px 0;
     line-height: 1.5;
-    background: white;
+    background: transparent;
     position: absolute;
     box-shadow: rgba(59, 69, 79, 0.3) 0px 2px 4px;
     border-top: 1px solid #ccc;
@@ -1002,13 +1000,13 @@ export default css`
     background: #edf0fd;
   }
   .sui-search-box__autocomplete-container li:hover {
-    background: #3a56e4;
+    background: var(--link-color);
   }
   .sui-search-box__autocomplete-container li:hover em {
     background: transparent;
   }
   .sui-search-box__autocomplete-container li[aria-selected='true'] {
-    background: #3a56e4;
+    background: var(--link-color);
   }
   .sui-search-box__autocomplete-container li[aria-selected='true'] em {
     background: transparent;
@@ -1049,7 +1047,7 @@ export default css`
     opacity: 0.5;
   }
   .sui-select__control {
-    background-color: #f8f8f8;
+    background-color: var(--tertiary-background-color);
     border: 1px solid #a6a6a6;
     border-radius: 4px;
     display: flex;
@@ -1057,7 +1055,7 @@ export default css`
     justify-content: space-between;
   }
   .sui-select__control--is-focused {
-    border: 1px solid #3a56e4;
+    border: 1px solid var(--link-color);
   }
   .sui-select__value-container {
     padding-top: 0;
@@ -1083,7 +1081,7 @@ export default css`
     font-size: 0.8em;
   }
   .sui-select__option-label {
-    color: #4f4f4f;
+    color: var(--link-color);
   }
   .sui-select__option {
     display: flex;
@@ -1101,7 +1099,7 @@ export default css`
     position: relative;
   }
   .sui-select__option:hover {
-    background: #f8f8f8;
+    background: var(--tertiary-background-color);
   }
 
 `;
