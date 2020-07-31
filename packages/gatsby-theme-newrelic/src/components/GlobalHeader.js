@@ -50,6 +50,7 @@ const GlobalHeader = ({ editUrl, className }) => {
 
   return (
     <div
+      data-swiftype-index={false}
       className={className}
       css={css`
         background-color: var(--color-neutrals-100);
