@@ -11,14 +11,11 @@ import {
 import ResultView from './ResultView';
 import PagingInfoView from './PagingInfoView';
 import SearchInput from './SearchInput';
-
+import Icon from './Icon';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
-
-// TODO: move styles to emotion/wrapper
-import Icon from './Icon';
-import styles from '../styles/SwiftSearchStyles';
+import styles from '../styles/SwiftTypeSearchStyles';
 
 const connector = new SiteSearchAPIConnector({
   documentType: 'page',
@@ -51,7 +48,7 @@ const configOptions = {
   },
 };
 
-const SwiftSearch = ({ className }) => {
+const SwiftTypeSearch = ({ className }) => {
   return (
     <div css={styles} className={className}>
       <SearchProvider config={configOptions}>
@@ -106,7 +103,7 @@ const SwiftSearch = ({ className }) => {
   );
 };
 
-function InputView({ getAutocomplete, getInputProps }) {
+const InputView = ({ getAutocomplete, getInputProps }) => {
   const inputProps = getInputProps();
   return (
     <>
@@ -124,9 +121,9 @@ function InputView({ getAutocomplete, getInputProps }) {
       </div>
     </>
   );
-}
+};
 
-SwiftSearch.propTypes = {
+SwiftTypeSearch.propTypes = {
   className: PropTypes.string,
 };
 
@@ -141,4 +138,4 @@ const StyledResultsContainer = styled.div`
   flex-direction: column;
 `;
 
-export default SwiftSearch;
+export default SwiftTypeSearch;
