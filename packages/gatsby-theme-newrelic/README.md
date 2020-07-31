@@ -21,6 +21,7 @@ websites](https://opensource.newrelic.com).
   - [`Button`](#button)
   - [`CodeBlock`](#codeblock)
   - [`ExternalLink`](#externallink)
+  - [`Feedback`](#feedback)
   - [`GlobalHeader`](#globalheader)
   - [`HamburgerMenu`](#hamburgermenu)
   - [`Icon`](#icon)
@@ -419,6 +420,33 @@ All props are forwarded to the underlying `a` tag with the exception of the
 <ExternalLink href="https://newrelic.com">Link to New Relic</ExternalLink>
 ```
 
+### `Feedback`
+
+Renders feedback controls that can be used to collect user sentiment about a page. Feedback can only be submitted once per page load.
+
+```js
+import { Feedback } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type     | Required | Default                | Description                                                                                                                                                             |
+| ---------- | -------- | -------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `align`    | enum     | no       | `Feedback.ALIGN.LEFT`  | Configures the alignment of the feedback component. Must be one of `Feedback.ALIGNMENT.LEFT` or `Feedback.ALIGNMENT.CENTER`.                                            |
+| `onSubmit` | function | yes      |                        | Handler that is called once feedback is provided. The user must supply a sentiment, a comment, or both. An object containing the `sentiment` and `comment` is returned. |
+| `message`  | string   | no       | Was this page helpful? | Message to be displayed above the buttons.                                                                                                                              |
+
+**Example**
+
+```jsx
+<Feedback
+  message="Tell us what you think!"
+  onSubmit={({ sentiment, comment }) => {
+    alert('${sentiment} feedback recieved: ${comment}');
+  }}
+/>
+```
+
 ### `GlobalHeader`
 
 Renders the global header used on all New Relic Gatsby sites. This component
@@ -429,10 +457,9 @@ import { GlobalHeader } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 **Props**
-
-| Prop      | Type   | Required | Default | Description                                                                                                                                                       |
+| Prop | Type | Required | Default | Description |
 | --------- | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `editUrl` | string | no       |         | Used by the edit page link in the global header to link to a GitHub URL where a user can edit the page's source. If omitted, the edit page link will be excluded. |
+| `editUrl` | string | no | | Used by the edit page link in the global header to link to a GitHub URL where a user can edit the page's source. If omitted, the edit page link will be excluded. |
 
 **Gatsby configuration**
 
@@ -797,7 +824,6 @@ Wistia
 ```js
 <Video id="abcdefg" type={Video.TYPE.WISTIA} width="500px" />
 ```
-
 
 ## Hooks
 
