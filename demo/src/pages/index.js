@@ -217,10 +217,13 @@ const IndexPage = ({ data }) => {
           <h2>Feedback</h2>
           <Feedback
             onPositiveClick={() => {
-              alert('nice');
+              console.log('nice');
             }}
             onNegativeClick={() => {
-              alert('meh');
+              console.log('meh');
+            }}
+            onCommentSubmit={(comment) => {
+              console.log('comment', comment);
             }}
           />
         </section>
