@@ -10,6 +10,8 @@ import {
   GlobalHeader,
   SearchInput,
   Surface,
+  Tag,
+  TagList,
   HamburgerMenu,
   Video,
 } from '@newrelic/gatsby-theme-newrelic';
@@ -226,6 +228,13 @@ const IndexPage = ({ data }) => {
               }}
             />
           </div>
+        </section>
+
+        <section>
+          <TagList>
+            <Tag>React</Tag>
+            <Tag interactive>Agent</Tag>
+          </TagList>
         </section>
       </div>
     </>
