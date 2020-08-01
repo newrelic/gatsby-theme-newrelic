@@ -9,6 +9,7 @@ export { default as MDXCodeBlock } from './src/components/MDXCodeBlock';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 export { default as SearchInput } from './src/components/SearchInput';
 export { default as Surface } from './src/components/Surface';
+export { default as Tag } from './src/components/Tag';
 export { default as Video } from './src/components/Video';
 
 export { default as formatCode } from './src/utils/formatCode';
