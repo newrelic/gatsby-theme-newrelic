@@ -8,7 +8,7 @@ const isInteractive = ({ as, interactive }) =>
   interactive || as === 'a' || as === Link;
 
 const Tag = styled.span`
-  color: var(--color-neutrals-600);
+  color: var(--color-neutrals-700);
   background: var(--color-neutrals-100);
   padding: 0.125rem 0.5rem;
   border-radius: 0.25rem;
