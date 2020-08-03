@@ -7,10 +7,12 @@ import {
   Results,
   Paging,
   PagingInfo,
+  Facet,
 } from '@elastic/react-search-ui';
 import ResultView from './ResultView';
 import PagingInfoView from './PagingInfoView';
 import SearchInput from './SearchInput';
+import FacetView from './FacetView';
 import Icon from './Icon';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
@@ -41,6 +43,9 @@ const configOptions = {
       url: {
         raw: {},
       },
+    },
+    facets: {
+      type: { type: 'value' },
     },
   },
   initialState: {
@@ -81,6 +86,12 @@ const SwiftTypeSearch = ({ className }) => {
                 {hasSearched && (
                   <>
                     <PagingInfo view={PagingInfoView} />
+                    <Facet
+                      field="type"
+                      label="Site"
+                      view={FacetView}
+                      filterType="any"
+                    />
 
                     {hasResults && (
                       <StyledResultsContainer>
