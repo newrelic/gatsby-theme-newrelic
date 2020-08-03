@@ -29,6 +29,8 @@ websites](https://opensource.newrelic.com).
   - [`NewRelicLogo`](#newreliclogo)
   - [`SearchInput`](#searchinput)
   - [`Surface`](#surface)
+  - [`Tag`](#tag)
+  - [`TagList`](#taglist)
   - [`Video`](#video)
 - [Hooks](#hooks)
   - [`useClipboard`](#useclipboard)
@@ -791,6 +793,58 @@ import { Surface } from '@newrelic/gatsby-theme-newrelic';
 
 ```js
 <Surface base={Surface.BASE.PRIMARY}>The content inside the surface</Surface>
+```
+
+### `Tag`
+
+Used to render a keyword or tag.
+
+```js
+import { Surface } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop          | Type    | Required | Default | Description                                                                |
+| ------------- | ------- | -------- | ------- | -------------------------------------------------------------------------- |
+| `interactive` | boolean | no       | `false` | Determines whether the tag is interactive (e.g. if the tag is also a link) |
+
+**Examples**
+
+```js
+<Tag>React</Tag>
+```
+
+Interactive tag
+
+```js
+<Tag interactive onClick={() => console.log('You clicked the tag!')}>
+  React
+</Tag>
+```
+
+### `TagList`
+
+Wraps a list of tags to space them out.
+
+```js
+import { TagList } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type | Required | Default | Description                             |
+| ---------- | ---- | -------- | ------- | --------------------------------------- |
+| `children` | node | no       |         | Children should all be `Tag` components |
+
+**Example**
+
+```js
+<TagList>
+  <Tag>React</Tag>
+  <Tag>JavaScript</Tag>
+  <Tag>Gatsby</Tag>
+</TagList>
 ```
 
 ### `Video`
