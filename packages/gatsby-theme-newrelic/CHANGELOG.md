@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.3.0...v1.4.0) (2020-08-03)
+
+
+### Features
+
+* external icon added to feather icon component ([b7c4ba8](https://github.com/newrelic/gatsby-theme-newrelic/commit/b7c4ba83444245d885996057e126ad54c323928e))
+
+
+
+
+
 # [1.3.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.2.4...v1.3.0) (2020-08-03)
 
 
