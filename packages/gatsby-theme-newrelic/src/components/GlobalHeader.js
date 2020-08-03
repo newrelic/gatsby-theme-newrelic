@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql, useStaticQuery } from 'gatsby';
@@ -6,6 +6,8 @@ import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
+import SwiftTypeSearch from './SwiftTypeSearch';
+import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
 import useMedia from 'use-media';
 
@@ -24,7 +26,9 @@ const styles = {
   `,
 };
 
-const GlobalHeader = ({ editUrl, className }) => {
+const GlobalHeader = ({ editUrl, className, search }) => {
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
       site {
@@ -74,6 +78,17 @@ const GlobalHeader = ({ editUrl, className }) => {
           padding: 0 ${layout.contentPadding};
         `}
       >
+        <Overlay
+          isOpen={isOverlayOpen}
+          onCloseOverlay={() => setIsOverlayOpen(false)}
+        >
+          <SwiftTypeSearch
+            css={css`
+              width: 950px;
+              margin: 3rem auto;
+            `}
+          />
+        </Overlay>
         <nav
           css={css`
             display: flex;
@@ -165,6 +180,16 @@ const GlobalHeader = ({ editUrl, className }) => {
               </ExternalLink>
             </li>
           )}
+          {search && !hideMenuLinks && (
+            <li>
+              <Icon
+                css={styles.actionIcon}
+                name={Icon.TYPE.SEARCH}
+                size="0.875rem"
+                onClick={() => setIsOverlayOpen(true)}
+              />
+            </li>
+          )}
           <li>
             <DarkModeToggle css={styles.actionIcon} size="0.875rem" />
           </li>
@@ -177,6 +202,7 @@ const GlobalHeader = ({ editUrl, className }) => {
 GlobalHeader.propTypes = {
   className: PropTypes.string,
   editUrl: PropTypes.string,
+  search: PropTypes.bool,
 };
 
 export default GlobalHeader;
