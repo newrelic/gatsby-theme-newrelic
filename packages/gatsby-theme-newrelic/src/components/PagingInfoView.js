@@ -2,15 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { appendClassName } from '@elastic/react-search-ui-views/es/view-helpers';
-
-const sites = [
-  'developer',
-  'opensource',
-  'docs',
-  'discuss',
-  'newrelic',
-  'blog',
-];
+import { sites } from '../data/constants';
 
 function PagingInfo({
   className,
