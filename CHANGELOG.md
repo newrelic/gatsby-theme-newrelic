@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.2.4...v1.3.0) (2020-08-03)
+
+
+### Features
+
+* create a Tag component ([e8e742e](https://github.com/newrelic/gatsby-theme-newrelic/commit/e8e742ecd5f9c1aac7f51d025e19cd692a5f6a97))
+* create a TagList component ([86afd0f](https://github.com/newrelic/gatsby-theme-newrelic/commit/86afd0f6ac7d0beac814badf1724581d8f8f0ebd))
+
+
+
+
+
 ## [1.2.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.2.3...v1.2.4) (2020-07-31)
 
 
