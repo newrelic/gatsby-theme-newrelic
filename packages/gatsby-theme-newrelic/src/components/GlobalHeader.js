@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql, useStaticQuery } from 'gatsby';
@@ -10,6 +10,9 @@ import SwiftTypeSearch from './SwiftTypeSearch';
 import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
 import useMedia from 'use-media';
+import qs from 'query-string';
+import track from '../utils/track';
+import setQueryStringWithoutPageReload from '../utils/setQueryStringWithoutPageReload';
 
 const styles = {
   actionLink: css`
@@ -27,7 +30,20 @@ const styles = {
 };
 
 const GlobalHeader = ({ editUrl, className, search }) => {
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const [isOverlayOpen, setIsOverlayOpen] = useState(null);
+
+  const [isQueryChanged, setIsQueryChanged] = useState(false);
+
+  useEffect(() => {
+    let searchQuery = qs.parse(window.location.search);
+    if (isOverlayOpen === null && searchQuery.overlay) setIsOverlayOpen(true);
+    if (isOverlayOpen === null && !searchQuery.overlay) setIsOverlayOpen(false);
+
+    if (isOverlayOpen && window.location.search.length && !searchQuery.overlay)
+      setQueryStringWithoutPageReload(window.location.search + '&overlay=true');
+    if (isOverlayOpen && !window.location.search.length)
+      setQueryStringWithoutPageReload('?overlay=true');
+  }, [isOverlayOpen, isQueryChanged]);
 
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
@@ -51,6 +67,10 @@ const GlobalHeader = ({ editUrl, className, search }) => {
     layout,
     siteMetadata: { repository },
   } = site;
+
+  window.history.pushState = track(window.history.pushState, () => {
+    setIsQueryChanged(!isQueryChanged);
+  });
 
   return (
     <div
@@ -80,13 +100,17 @@ const GlobalHeader = ({ editUrl, className, search }) => {
       >
         <Overlay
           isOpen={isOverlayOpen}
-          onCloseOverlay={() => setIsOverlayOpen(false)}
+          onCloseOverlay={() => {
+            setQueryStringWithoutPageReload('');
+            setIsOverlayOpen(false);
+          }}
         >
           <SwiftTypeSearch
             css={css`
               width: 950px;
               margin: 3rem auto;
             `}
+            overlay
           />
         </Overlay>
         <nav
