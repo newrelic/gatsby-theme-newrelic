@@ -110,7 +110,6 @@ const GlobalHeader = ({ editUrl, className, search }) => {
               width: 950px;
               margin: 3rem auto;
             `}
-            overlay
           />
         </Overlay>
         <nav
