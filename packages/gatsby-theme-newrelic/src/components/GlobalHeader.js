@@ -90,8 +90,11 @@ const GlobalHeader = ({ editUrl, className, search }) => {
           >
             <SwiftypeSearch
               css={css`
+                display: flex;
+                flex-direction: column;
                 width: 950px;
                 margin: 3rem auto;
+                height: calc(100vh - 6rem);
               `}
             />
           </Overlay>

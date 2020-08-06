@@ -12,7 +12,6 @@ import ResultView from './ResultView';
 import PagingInfoView from './PagingInfoView';
 import SearchInput from './SearchInput';
 import Icon from './Icon';
-import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import styles from '../styles/SwiftypeSearchStyles';
@@ -89,14 +88,14 @@ const SwiftypeSearch = ({ className }) => {
                     <PagingInfo view={PagingInfoView} />
 
                     {hasResults && (
-                      <StyledResultsContainer>
+                      <>
                         <Results
                           resultView={ResultView}
                           titleField="title"
                           urlField="url"
                         />
                         <Paging />
-                      </StyledResultsContainer>
+                      </>
                     )}
                   </>
                 )}
@@ -138,10 +137,5 @@ InputView.propTypes = {
   getAutocomplete: PropTypes.func,
   getInputProps: PropTypes.func,
 };
-
-const StyledResultsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 export default SwiftypeSearch;
