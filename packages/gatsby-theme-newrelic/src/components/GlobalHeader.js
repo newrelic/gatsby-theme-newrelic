@@ -6,7 +6,7 @@ import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
-import SwiftTypeSearch from './SwiftTypeSearch';
+import SwiftypeSearch from './SwiftypeSearch';
 import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
 import useMedia from 'use-media';
@@ -97,7 +97,7 @@ const GlobalHeader = ({ editUrl, className, search }) => {
             isOpen={isOverlayOpen}
             onCloseOverlay={() => setIsOverlayOpen(false)}
           >
-            <SwiftTypeSearch
+            <SwiftypeSearch
               css={css`
                 width: 950px;
                 margin: 3rem auto;
