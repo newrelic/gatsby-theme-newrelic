@@ -10,7 +10,6 @@ import SwiftTypeSearch from './SwiftTypeSearch';
 import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
 import useMedia from 'use-media';
-import qs from 'query-string';
 import { useLocation, navigate } from '@reach/router';
 
 const styles = {
@@ -30,15 +29,14 @@ const styles = {
 
 const GlobalHeader = ({ editUrl, className, search }) => {
   const location = useLocation();
-  const [isOverlayOpen, setIsOverlayOpen] = useState(
-    Boolean(qs.parse(location.search).q?.length > 0)
-  );
+  const query = new URLSearchParams(location.search);
+  const [isOverlayOpen, setIsOverlayOpen] = useState(query.has('q'));
 
   useEffect(() => {
-    if (isOverlayOpen && !(qs.parse(location.search).q?.length > 0))
+    if (isOverlayOpen && !new URLSearchParams(location.search).has('q'))
       navigate(location.pathname + '?q=');
     if (!isOverlayOpen) navigate(location.pathname);
-  }, [isOverlayOpen, location]);
+  }, [isOverlayOpen]);
 
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
