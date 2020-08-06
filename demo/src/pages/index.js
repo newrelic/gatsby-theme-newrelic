@@ -1,4 +1,4 @@
-/* eslint-disable no-console,no-alert */
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
@@ -44,6 +44,7 @@ const IndexPage = ({ data }) => {
     <>
       <GlobalHeader
         editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
+        search
       />
       <header
         css={css`

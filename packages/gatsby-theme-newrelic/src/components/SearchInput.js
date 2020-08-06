@@ -23,7 +23,7 @@ const SearchInput = ({
     onClear();
   };
   const handleKeyDown = (e) => {
-    if (e.key === 'Escape') onClear();
+    if (e.key === 'Escape' && onClear) onClear();
   };
 
   return (
@@ -49,7 +49,7 @@ const SearchInput = ({
         type="text"
         onKeyDown={handleKeyDown}
       />
-      {value && (
+      {value && onClear && (
         <StyledButton
           onClick={handleClick}
           css={css`

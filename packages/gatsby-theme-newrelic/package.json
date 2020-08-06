@@ -38,6 +38,9 @@
     "react-helmet": "^6.1.0"
   },
   "dependencies": {
+    "@elastic/react-search-ui": "^1.4.1",
+    "@elastic/react-search-ui-views": "^1.4.1",
+    "@elastic/search-ui-site-search-connector": "^1.4.1",
     "@wry/equality": "^0.2.0",
     "babel-plugin-prismjs": "^2.0.1",
     "gatsby-plugin-emotion": "^4.3.10",
@@ -52,9 +55,11 @@
     "polished": "^3.6.5",
     "prism-react-renderer": "^1.1.1",
     "prismjs": "^1.20.0",
+    "query-string": "^6.13.1",
     "react-live": "^2.2.2",
     "react-middle-ellipsis": "^1.1.0",
     "react-simple-code-editor": "^0.11.0",
+    "react-spring": "^8.0.27",
     "use-dark-mode": "^2.3.1",
     "use-media": "^1.4.0"
   }
