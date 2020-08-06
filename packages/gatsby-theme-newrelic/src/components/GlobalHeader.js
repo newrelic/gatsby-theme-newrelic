@@ -31,18 +31,20 @@ const styles = {
 
 const GlobalHeader = ({ editUrl, className, search }) => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(null);
-
   const [isQueryChanged, setIsQueryChanged] = useState(false);
 
   useEffect(() => {
     let searchQuery = qs.parse(window.location.search);
-    if (isOverlayOpen === null && searchQuery.overlay) setIsOverlayOpen(true);
-    if (isOverlayOpen === null && !searchQuery.overlay) setIsOverlayOpen(false);
 
-    if (isOverlayOpen && window.location.search.length && !searchQuery.overlay)
-      setQueryStringWithoutPageReload(window.location.search + '&overlay=true');
-    if (isOverlayOpen && !window.location.search.length)
-      setQueryStringWithoutPageReload('?overlay=true');
+    if (isOverlayOpen === null) setIsOverlayOpen(Boolean(searchQuery.overlay));
+    else if (isOverlayOpen) {
+      if (window.location.search.length && !searchQuery.overlay)
+        setQueryStringWithoutPageReload(
+          window.location.search + '&overlay=true'
+        );
+      else if (!window.location.search.length)
+        setQueryStringWithoutPageReload('?overlay=true');
+    }
   }, [isOverlayOpen, isQueryChanged]);
 
   const { site } = useStaticQuery(graphql`
