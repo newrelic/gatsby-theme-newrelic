@@ -15,7 +15,7 @@ import Icon from './Icon';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
-import styles from '../styles/SwiftTypeSearchStyles';
+import styles from '../styles/SwiftypeSearchStyles';
 import { navigate, useLocation } from '@reach/router';
 import qs from 'query-string';
 
@@ -50,7 +50,7 @@ const configOptions = {
   },
 };
 
-const SwiftTypeSearch = ({ className }) => {
+const SwiftypeSearch = ({ className }) => {
   const location = useLocation();
   return (
     <div css={styles} className={className}>
@@ -132,7 +132,7 @@ const InputView = ({ getAutocomplete, getInputProps }) => {
   );
 };
 
-SwiftTypeSearch.propTypes = {
+SwiftypeSearch.propTypes = {
   className: PropTypes.string,
 };
 
@@ -147,4 +147,4 @@ const StyledResultsContainer = styled.div`
   flex-direction: column;
 `;
 
-export default SwiftTypeSearch;
+export default SwiftypeSearch;

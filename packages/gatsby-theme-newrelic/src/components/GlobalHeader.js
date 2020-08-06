@@ -6,7 +6,7 @@ import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
-import SwiftTypeSearch from './SwiftTypeSearch';
+import SwiftypeSearch from './SwiftypeSearch';
 import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
 import useMedia from 'use-media';
@@ -18,6 +18,7 @@ const styles = {
     align-items: center;
   `,
   actionIcon: css`
+    cursor: pointer;
     transition: all 0.2s ease-out;
     color: var(--secondary-text-color);
 
@@ -34,13 +35,13 @@ const GlobalHeader = ({ editUrl, className, search }) => {
 
   useEffect(() => {
     if (isOverlayOpen && !new URLSearchParams(location.search).has('q')) {
-      navigate(location.pathname + '?q=');
+      navigate(`${location.pathname}?q=`);
     }
-    
+
     if (!isOverlayOpen) {
       navigate(location.pathname);
     }
-  }, [isOverlayOpen]);
+  }, [isOverlayOpen, location.pathname, location.search]);
 
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
@@ -91,17 +92,19 @@ const GlobalHeader = ({ editUrl, className, search }) => {
           padding: 0 ${layout.contentPadding};
         `}
       >
-        <Overlay
-          isOpen={isOverlayOpen}
-          onCloseOverlay={() => setIsOverlayOpen(false)}
-        >
-          <SwiftTypeSearch
-            css={css`
-              width: 950px;
-              margin: 3rem auto;
-            `}
-          />
-        </Overlay>
+        {search && (
+          <Overlay
+            isOpen={isOverlayOpen}
+            onCloseOverlay={() => setIsOverlayOpen(false)}
+          >
+            <SwiftypeSearch
+              css={css`
+                width: 950px;
+                margin: 3rem auto;
+              `}
+            />
+          </Overlay>
+        )}
         <nav
           css={css`
             display: flex;
