@@ -18,6 +18,7 @@ const styles = {
     align-items: center;
   `,
   actionIcon: css`
+    cursor: pointer;
     transition: all 0.2s ease-out;
     color: var(--secondary-text-color);
 
