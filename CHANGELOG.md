@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.4.0...v1.5.0) (2020-08-06)
+
+
+### Bug Fixes
+
+* Adjust styling on overlay to prevent bugs ([9fb53e1](https://github.com/newrelic/gatsby-theme-newrelic/commit/9fb53e1903427767db5ad3e5294bf2fade33a508))
+
+
+### Features
+
+* Add SwiftType site search ([4e23c07](https://github.com/newrelic/gatsby-theme-newrelic/commit/4e23c07c594f349fbdf7631a58a4ec0a78322769))
+* add to demo site ([a7019f2](https://github.com/newrelic/gatsby-theme-newrelic/commit/a7019f2741619a6206b3157df3a3e330ca96ac62))
+* overlay closes when pressing escape ([1d61aa5](https://github.com/newrelic/gatsby-theme-newrelic/commit/1d61aa514eeaed664051d44c299d8fb56e013477))
+* overlay component and search in global nav ([c68a684](https://github.com/newrelic/gatsby-theme-newrelic/commit/c68a68476bcd16c99427b2b19b57b0111dd61bbc))
+* portal component and animations on overlay ([192fb7d](https://github.com/newrelic/gatsby-theme-newrelic/commit/192fb7dad444d428dcbe63df2f13ef66055995a6))
+* updates URL when in overlay ([607a5a3](https://github.com/newrelic/gatsby-theme-newrelic/commit/607a5a37c21e2c07046f5cfce55324ac330e28bf))
+
+
+
+
+
 # [1.4.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.3.0...v1.4.0) (2020-08-03)
 
 
