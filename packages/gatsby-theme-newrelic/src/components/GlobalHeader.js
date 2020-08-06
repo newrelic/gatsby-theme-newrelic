@@ -11,8 +11,7 @@ import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
 import useMedia from 'use-media';
 import qs from 'query-string';
-import track from '../utils/track';
-import setQueryStringWithoutPageReload from '../utils/setQueryStringWithoutPageReload';
+import { useLocation, navigate } from '@reach/router';
 
 const styles = {
   actionLink: css`
@@ -30,22 +29,15 @@ const styles = {
 };
 
 const GlobalHeader = ({ editUrl, className, search }) => {
-  const [isOverlayOpen, setIsOverlayOpen] = useState(null);
-  const [isQueryChanged, setIsQueryChanged] = useState(false);
+  const location = useLocation();
+  const [isOverlayOpen, setIsOverlayOpen] = useState(
+    Boolean(qs.parse(location.search).q)
+  );
 
   useEffect(() => {
-    let searchQuery = qs.parse(window.location.search);
-
-    if (isOverlayOpen === null) setIsOverlayOpen(Boolean(searchQuery.overlay));
-    else if (isOverlayOpen) {
-      if (window.location.search.length && !searchQuery.overlay)
-        setQueryStringWithoutPageReload(
-          window.location.search + '&overlay=true'
-        );
-      else if (!window.location.search.length)
-        setQueryStringWithoutPageReload('?overlay=true');
-    }
-  }, [isOverlayOpen, isQueryChanged]);
+    if (isOverlayOpen && !qs.parse(location.search).q) navigate('/?q=');
+    if (!isOverlayOpen) navigate('/');
+  }, [isOverlayOpen]);
 
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
@@ -69,10 +61,6 @@ const GlobalHeader = ({ editUrl, className, search }) => {
     layout,
     siteMetadata: { repository },
   } = site;
-
-  window.history.pushState = track(window.history.pushState, () => {
-    setIsQueryChanged(!isQueryChanged);
-  });
 
   return (
     <div
@@ -102,10 +90,7 @@ const GlobalHeader = ({ editUrl, className, search }) => {
       >
         <Overlay
           isOpen={isOverlayOpen}
-          onCloseOverlay={() => {
-            setQueryStringWithoutPageReload('');
-            setIsOverlayOpen(false);
-          }}
+          onCloseOverlay={() => setIsOverlayOpen(false)}
         >
           <SwiftTypeSearch
             css={css`

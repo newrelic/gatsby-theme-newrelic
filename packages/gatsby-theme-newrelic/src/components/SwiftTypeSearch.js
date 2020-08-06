@@ -16,6 +16,8 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import styles from '../styles/SwiftTypeSearchStyles';
+import { navigate, useLocation } from '@reach/router';
+import qs from 'query-string';
 
 const connector = new SiteSearchAPIConnector({
   documentType: 'page',
@@ -49,6 +51,7 @@ const configOptions = {
 };
 
 const SwiftTypeSearch = ({ className }) => {
+  const location = useLocation();
   return (
     <div css={styles} className={className}>
       <SearchProvider config={configOptions}>
@@ -68,6 +71,11 @@ const SwiftTypeSearch = ({ className }) => {
                   searchAsYouType
                   debounceLength={500}
                   inputView={InputView}
+                  onSubmit={(searchTerm) => {
+                    let queryString = qs.parse(location);
+                    queryString.q = searchTerm;
+                    navigate('/?' + qs.stringify(queryString));
+                  }}
                 />
                 {isLoading && (
                   <Icon
