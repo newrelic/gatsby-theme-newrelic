@@ -48,7 +48,7 @@ const configOptions = {
   },
 };
 
-const SwiftTypeSearch = ({ className, overlay = false }) => {
+const SwiftTypeSearch = ({ className }) => {
   return (
     <div css={styles} className={className}>
       <SearchProvider config={configOptions}>
