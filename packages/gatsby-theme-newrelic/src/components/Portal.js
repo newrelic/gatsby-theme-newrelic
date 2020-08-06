@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 const Portal = ({ children }) => {
-  const [root] = useState(() => document.createElement('div'));
+  const [root] = useState(() =>
+    typeof document === 'undefined' ? null : document.createElement('div')
+  );
 
   useEffect(() => {
     document.body.appendChild(root);
@@ -10,7 +12,7 @@ const Portal = ({ children }) => {
     return () => document.body.removeChild(root);
   }, [root]);
 
-  return createPortal(children, root);
+  return root ? createPortal(children, root) : null;
 };
 
 export default Portal;
