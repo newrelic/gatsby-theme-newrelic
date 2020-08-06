@@ -91,17 +91,19 @@ const GlobalHeader = ({ editUrl, className, search }) => {
           padding: 0 ${layout.contentPadding};
         `}
       >
-        <Overlay
-          isOpen={isOverlayOpen}
-          onCloseOverlay={() => setIsOverlayOpen(false)}
-        >
-          <SwiftTypeSearch
-            css={css`
-              width: 950px;
-              margin: 3rem auto;
-            `}
-          />
-        </Overlay>
+        {search && (
+          <Overlay
+            isOpen={isOverlayOpen}
+            onCloseOverlay={() => setIsOverlayOpen(false)}
+          >
+            <SwiftTypeSearch
+              css={css`
+                width: 950px;
+                margin: 3rem auto;
+              `}
+            />
+          </Overlay>
+        )}
         <nav
           css={css`
             display: flex;
