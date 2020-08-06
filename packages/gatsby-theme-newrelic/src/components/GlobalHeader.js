@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql, useStaticQuery } from 'gatsby';
@@ -10,6 +10,7 @@ import SwiftTypeSearch from './SwiftTypeSearch';
 import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
 import useMedia from 'use-media';
+import { useLocation, navigate } from '@reach/router';
 
 const styles = {
   actionLink: css`
@@ -27,7 +28,19 @@ const styles = {
 };
 
 const GlobalHeader = ({ editUrl, className, search }) => {
-  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const [isOverlayOpen, setIsOverlayOpen] = useState(query.has('q'));
+
+  useEffect(() => {
+    if (isOverlayOpen && !new URLSearchParams(location.search).has('q')) {
+      navigate(location.pathname + '?q=');
+    }
+    
+    if (!isOverlayOpen) {
+      navigate(location.pathname);
+    }
+  }, [isOverlayOpen]);
 
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
