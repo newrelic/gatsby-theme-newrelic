@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.5.0...v1.5.1) (2020-08-06)
+
+
+### Bug Fixes
+
+* dont render overlay if not search capable ([0401bf3](https://github.com/newrelic/gatsby-theme-newrelic/commit/0401bf3fe820463d75d5b456c7177bd661eafa39))
+* fix document undefined error when building the gatsby site ([24fcc75](https://github.com/newrelic/gatsby-theme-newrelic/commit/24fcc753b69a24d86b5d8c9e8bb49b16a5c37b3d))
+* lint warning in GlobalHeader component ([45c5e23](https://github.com/newrelic/gatsby-theme-newrelic/commit/45c5e23a8abe0d23dfd1097de521baad77787b3c))
+* use pointer cursor on all header icons ([bbaa53c](https://github.com/newrelic/gatsby-theme-newrelic/commit/bbaa53c2a1f4aa6081d59d2c4c3560a724962257))
+
+
+
+
+
 # [1.5.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.4.0...v1.5.0) (2020-08-06)
 
 
