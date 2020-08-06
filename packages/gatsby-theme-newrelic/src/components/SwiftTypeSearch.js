@@ -72,9 +72,10 @@ const SwiftTypeSearch = ({ className }) => {
                   debounceLength={500}
                   inputView={InputView}
                   onSubmit={(searchTerm) => {
-                    let queryString = qs.parse(location.search);
+                    const queryString = qs.parse(location.search);
+
                     queryString.q = searchTerm;
-                    navigate('/' + qs.stringify(queryString));
+                    navigate(location.pathname + qs.stringify(queryString));
                   }}
                 />
                 {isLoading && (
