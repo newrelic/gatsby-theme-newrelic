@@ -33,9 +33,13 @@ const GlobalHeader = ({ editUrl, className, search }) => {
   const [isOverlayOpen, setIsOverlayOpen] = useState(query.has('q'));
 
   useEffect(() => {
-    if (isOverlayOpen && !new URLSearchParams(location.search).has('q'))
+    if (isOverlayOpen && !new URLSearchParams(location.search).has('q')) {
       navigate(location.pathname + '?q=');
-    if (!isOverlayOpen) navigate(location.pathname);
+    }
+    
+    if (!isOverlayOpen) {
+      navigate(location.pathname);
+    }
   }, [isOverlayOpen]);
 
   const { site } = useStaticQuery(graphql`
