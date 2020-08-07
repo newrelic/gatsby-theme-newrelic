@@ -869,8 +869,8 @@ export default css`
   .sui-results-container {
     padding: 0;
     list-style: none;
-    height: 100vh;
     overflow-y: auto;
+    flex: 1;
   }
   .sui-results-per-page {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
