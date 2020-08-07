@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.5.1...v1.6.0) (2020-08-07)
+
+
+### Bug Fixes
+
+* fix double scroll for search results overlay ([8ab69c9](https://github.com/newrelic/gatsby-theme-newrelic/commit/8ab69c99f43dbafd19aaac40f55ebbab8bef0fba))
+* fix enter key by using the query params to drive open/closed state ([215c068](https://github.com/newrelic/gatsby-theme-newrelic/commit/215c068bbd787241e213fa4f68e032db2031912b))
+
+
+### Features
+
+* add a new useQueryParams hook ([a3d66dd](https://github.com/newrelic/gatsby-theme-newrelic/commit/a3d66dd167a5137f359010c6a2dd9fe455422239))
+
+
+
+
+
 ## [1.5.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.5.0...v1.5.1) (2020-08-06)
 
 
