@@ -35,6 +35,7 @@ websites](https://opensource.newrelic.com).
 - [Hooks](#hooks)
   - [`useClipboard`](#useclipboard)
   - [`useFormattedCode`](#useformattedcode)
+  - [`useQueryParams`](#usequeryparams)
   - [`useTimeout`](#usetimeout)
 - [Utils](#utils)
   - [`formatCode`](#formatcode)
@@ -960,6 +961,44 @@ With formatting options:
 
 ```js
 const formattedCode = useFormattedCode(code, { printWidth: 100 });
+```
+
+### `useQueryParams`
+
+A hook that gets the URL's query params and allows you to set them.
+
+```js
+import { useQueryParams } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+There are no arguments for this hook.
+
+**Returns**
+
+`Object`
+
+- `queryParams` - an instance of [`URLSearchParams`](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
+- `setQueryParam` - a function to update a query parameter in the URL.
+  Anologous to `queryParams.set(...)` but this will also navigate for you.
+
+**Examples**
+
+```js
+const SearchInput = () => {
+  const { queryParams, setQueryParam } = useQueryParams();
+
+  return (
+    <input
+      type="text"
+      value={queryParams.get('q')}
+      onChange={(e) => {
+        setQueryParam('q', e.target.value);
+      }}
+    />
+  );
+};
 ```
 
 ### `useTimeout`
