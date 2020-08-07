@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery, Link } from 'gatsby';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
 import NewRelicLogo from './NewRelicLogo';
@@ -10,7 +10,8 @@ import SwiftypeSearch from './SwiftypeSearch';
 import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
 import useMedia from 'use-media';
-import { useLocation, navigate } from '@reach/router';
+import { useLocation, useNavigate } from '@reach/router';
+import useQueryParams from '../hooks/useQueryParams';
 
 const styles = {
   actionLink: css`
@@ -30,18 +31,8 @@ const styles = {
 
 const GlobalHeader = ({ editUrl, className, search }) => {
   const location = useLocation();
-  const query = new URLSearchParams(location.search);
-  const [isOverlayOpen, setIsOverlayOpen] = useState(query.has('q'));
-
-  useEffect(() => {
-    if (isOverlayOpen && !new URLSearchParams(location.search).has('q')) {
-      navigate(`${location.pathname}?q=`);
-    }
-
-    if (!isOverlayOpen) {
-      navigate(location.pathname);
-    }
-  }, [isOverlayOpen, location.pathname, location.search]);
+  const navigate = useNavigate();
+  const { queryParams } = useQueryParams();
 
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
@@ -94,13 +85,16 @@ const GlobalHeader = ({ editUrl, className, search }) => {
       >
         {search && (
           <Overlay
-            isOpen={isOverlayOpen}
-            onCloseOverlay={() => setIsOverlayOpen(false)}
+            isOpen={queryParams.has('q')}
+            onCloseOverlay={() => navigate(location.pathname)}
           >
             <SwiftypeSearch
               css={css`
+                display: flex;
+                flex-direction: column;
                 width: 950px;
                 margin: 3rem auto;
+                height: calc(100vh - 6rem);
               `}
             />
           </Overlay>
@@ -198,12 +192,13 @@ const GlobalHeader = ({ editUrl, className, search }) => {
           )}
           {search && !hideMenuLinks && (
             <li>
-              <Icon
-                css={styles.actionIcon}
-                name={Icon.TYPE.SEARCH}
-                size="0.875rem"
-                onClick={() => setIsOverlayOpen(true)}
-              />
+              <Link to="?q=" css={styles.actionLink}>
+                <Icon
+                  css={styles.actionIcon}
+                  name={Icon.TYPE.SEARCH}
+                  size="0.875rem"
+                />
+              </Link>
             </li>
           )}
           <li>

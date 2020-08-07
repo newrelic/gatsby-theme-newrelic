@@ -12,12 +12,10 @@ import ResultView from './ResultView';
 import PagingInfoView from './PagingInfoView';
 import SearchInput from './SearchInput';
 import Icon from './Icon';
-import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import styles from '../styles/SwiftypeSearchStyles';
-import { navigate, useLocation } from '@reach/router';
-import qs from 'query-string';
+import useQueryParams from '../hooks/useQueryParams';
 
 const connector = new SiteSearchAPIConnector({
   documentType: 'page',
@@ -51,7 +49,8 @@ const configOptions = {
 };
 
 const SwiftypeSearch = ({ className }) => {
-  const location = useLocation();
+  const { setQueryParam } = useQueryParams();
+
   return (
     <div css={styles} className={className}>
       <SearchProvider config={configOptions}>
@@ -72,10 +71,7 @@ const SwiftypeSearch = ({ className }) => {
                   debounceLength={500}
                   inputView={InputView}
                   onSubmit={(searchTerm) => {
-                    const queryString = qs.parse(location.search);
-
-                    queryString.q = searchTerm;
-                    navigate(location.pathname + qs.stringify(queryString));
+                    setQueryParam('q', searchTerm);
                   }}
                 />
                 {isLoading && (
@@ -92,14 +88,14 @@ const SwiftypeSearch = ({ className }) => {
                     <PagingInfo view={PagingInfoView} />
 
                     {hasResults && (
-                      <StyledResultsContainer>
+                      <>
                         <Results
                           resultView={ResultView}
                           titleField="title"
                           urlField="url"
                         />
                         <Paging />
-                      </StyledResultsContainer>
+                      </>
                     )}
                   </>
                 )}
@@ -141,10 +137,5 @@ InputView.propTypes = {
   getAutocomplete: PropTypes.func,
   getInputProps: PropTypes.func,
 };
-
-const StyledResultsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 export default SwiftypeSearch;
