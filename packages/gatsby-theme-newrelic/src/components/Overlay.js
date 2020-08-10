@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
@@ -18,12 +19,6 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (overlayEl.current) {
-      overlayEl.current.focus();
-    }
-  });
-
-  useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         onCloseOverlay();
@@ -37,7 +32,6 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
     };
   }, [onCloseOverlay]);
 
-  const overlayEl = useRef(null);
   const open = useTransition(isOpen, null, {
     from: {
       opacity: 0,
@@ -72,7 +66,6 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
               <div
                 role="button"
                 tabIndex="0"
-                ref={overlayEl}
                 css={css`
                   &:hover {
                     background-color: var(--secondary-background-color);
