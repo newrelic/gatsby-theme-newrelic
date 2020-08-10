@@ -6,9 +6,23 @@ import Icon from './Icon';
 import Portal from './Portal';
 import NewRelicLogo from './NewRelicLogo';
 import { useTransition, animated } from 'react-spring';
+import { graphql, useStaticQuery } from 'gatsby';
 import useKeyPress from '../hooks/useKeyPress';
 
 const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        layout {
+          maxWidth
+          contentPadding
+        }
+      }
+    }
+  `);
+
+  const { layout } = site;
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -67,35 +81,48 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
                   top: 0;
                   left: 0;
                   right: 0;
-                  display: flex;
-                  flex-direction: row;
-                  justify-content: space-between;
-                  padding: 0.25rem;
+                  transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+                  padding: 0.25rem 0;
+                  height: 30px;
                 `}
                 onClick={onCloseOverlay}
               >
-                <NewRelicLogo />
                 <div
                   css={css`
+                    max-width: ${layout.maxWidth};
                     display: flex;
-                    flex-direction: row;
+                    justify-content: space-between;
                     align-items: center;
+                    margin: 0 auto;
+                    padding: 0 ${layout.contentPadding};
+                    height: 100%;
                   `}
                 >
-                  <span
+                  <NewRelicLogo />
+                  <div
                     css={css`
-                      font-size: 0.75rem;
-                      margin-right: 0.25rem;
+                      display: flex;
+                      align-items: center;
+                      padding: 0.25rem 0;
                     `}
                   >
-                    Close
-                  </span>
-                  <Icon name={Icon.TYPE.X} />
+                    <span
+                      css={css`
+                        margin-right: 0.25rem;
+                        font-size: 0.75rem;
+                      `}
+                    >
+                      Close
+                    </span>
+                    <Icon name={Icon.TYPE.X} size="1rem" />
+                  </div>
                 </div>
               </div>
               <div
                 css={css`
-                  position: static;
+                  max-width: ${layout.maxWidth};
+                  padding: 0 ${layout.contentPadding};
+                  margin: 0 auto;
                 `}
               >
                 {children}
