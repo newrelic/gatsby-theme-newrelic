@@ -18,7 +18,9 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
   }, [isOpen]);
 
   useEffect(() => {
-    if (overlayEl.current) overlayEl.current.focus();
+    if (overlayEl.current) {
+      overlayEl.current.focus();
+    }
   });
 
   const overlayEl = useRef(null);
