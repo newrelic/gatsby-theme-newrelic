@@ -6,6 +6,7 @@ import Icon from './Icon';
 import Portal from './Portal';
 import NewRelicLogo from './NewRelicLogo';
 import { useTransition, animated } from 'react-spring';
+import useKeyPress from '../hooks/useKeyPress';
 
 const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
   useEffect(() => {
@@ -18,19 +19,7 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
     };
   }, [isOpen]);
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        onCloseOverlay();
-      }
-    };
-
-    document.body.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.body.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [onCloseOverlay]);
+  useKeyPress('Escape', onCloseOverlay);
 
   const open = useTransition(isOpen, null, {
     from: {
