@@ -23,6 +23,20 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
     }
   });
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onCloseOverlay();
+      }
+    };
+
+    document.body.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onCloseOverlay]);
+
   const overlayEl = useRef(null);
   const open = useTransition(isOpen, null, {
     from: {
@@ -35,9 +49,6 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
       opacity: 0,
     },
   });
-  const handleKeyDown = (e) => {
-    if (e.key === 'Escape') onCloseOverlay();
-  };
 
   return (
     <Portal>
@@ -47,7 +58,6 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
             <animated.div
               style={props}
               key={key}
-              onKeyDown={handleKeyDown}
               css={css`
                 z-index: 100;
                 position: fixed;
