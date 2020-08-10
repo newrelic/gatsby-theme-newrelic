@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
