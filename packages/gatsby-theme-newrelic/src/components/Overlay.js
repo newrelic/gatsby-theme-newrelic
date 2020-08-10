@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
 import Portal from './Portal';
-import usePortal from '../hooks/usePortal';
 import NewRelicLogo from './NewRelicLogo';
 import { useTransition, animated } from 'react-spring';
 
 const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
-  usePortal(
-    isOpen,
-    () => (document.body.style.overflow = 'hidden'),
-    () => (document.body.style.overflow = null)
-  );
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.body.style.overflow = null;
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (overlayEl.current) overlayEl.current.focus();
