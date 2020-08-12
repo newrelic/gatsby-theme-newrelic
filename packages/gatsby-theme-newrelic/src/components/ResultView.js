@@ -7,8 +7,8 @@ import {
 } from '@elastic/react-search-ui-views/es/view-helpers';
 import { isFieldValueWrapper } from '@elastic/react-search-ui-views/es/types/FieldValueWrapper';
 import { css } from '@emotion/core';
-import { rgba } from 'polished';
 import ExternalLink from './ExternalLink';
+import Tag from './Tag';
 
 const getFieldType = (result, field, type) => {
   if (result[field]) return result[field][type];
@@ -90,25 +90,24 @@ const ResultView = ({
       </div>
       <div className="sui-result__body">
         <ul className="sui-result__details">
-          <li>
+          <li
+            css={css`
+              margin-bottom: 0.25rem;
+            `}
+          >
             <span
               className="sui-result__value"
               dangerouslySetInnerHTML={{ __html: fields.body }}
             />
           </li>
           <li>
-            <div
+            <Tag
               css={css`
-                font-size: 0.75rem;
-                background: ${rgba('#007e8a', 0.2)};
-                padding: 0.25rem 0.5rem;
-                border-radius: 0.25rem;
-                width: fit-content;
-                margin-top: 1rem;
+                text-transform: uppercase;
               `}
             >
               {newRelicSite}
-            </div>
+            </Tag>
           </li>
         </ul>
       </div>
