@@ -50,6 +50,11 @@ const GlobalHeader = ({ editUrl, className, search }) => {
   `);
 
   useKeyPress('/', (e) => {
+    // Don't trigger overlay when typing in an input or textarea
+    if (e.target.matches('input') || e.target.matches('textarea')) {
+      return;
+    }
+
     e.preventDefault();
 
     if (!queryParams.has('q')) {
