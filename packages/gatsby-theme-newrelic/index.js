@@ -18,5 +18,6 @@ export { default as Video } from './src/components/Video';
 export { default as formatCode } from './src/utils/formatCode';
 export { default as useClipboard } from './src/hooks/useClipboard';
 export { default as useFormattedCode } from './src/hooks/useFormattedCode';
+export { default as useKeyPress } from './src/hooks/useKeyPress';
 export { default as useQueryParams } from './src/hooks/useQueryParams';
 export { default as useTimeout } from './src/hooks/useTimeout';

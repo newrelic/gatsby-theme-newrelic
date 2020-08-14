@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { graphql, useStaticQuery, Link } from 'gatsby';
+import { graphql, useStaticQuery, navigate, Link } from 'gatsby';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
 import Button from './Button';
@@ -11,8 +11,9 @@ import SwiftypeSearch from './SwiftypeSearch';
 import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
 import useMedia from 'use-media';
-import { useLocation, useNavigate } from '@reach/router';
+import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
+import useKeyPress from '../hooks/useKeyPress';
 
 const action = css`
   color: var(--secondary-text-color);
@@ -36,7 +37,6 @@ const actionIcon = css`
 
 const GlobalHeader = ({ className, search, utmSource }) => {
   const location = useLocation();
-  const navigate = useNavigate();
   const { queryParams } = useQueryParams();
 
   const { site } = useStaticQuery(graphql`
@@ -49,6 +49,19 @@ const GlobalHeader = ({ className, search, utmSource }) => {
       }
     }
   `);
+
+  useKeyPress('/', (e) => {
+    // Don't trigger overlay when typing in an input or textarea
+    if (e.target.matches('input') || e.target.matches('textarea')) {
+      return;
+    }
+
+    e.preventDefault();
+
+    if (!queryParams.has('q')) {
+      navigate('?q=');
+    }
+  });
 
   const hideLogoText = useMedia({ maxWidth: '600px' });
   const hideMenuLinks = useMedia({ maxWidth: '650px' });
@@ -90,7 +103,7 @@ const GlobalHeader = ({ className, search, utmSource }) => {
               css={css`
                 display: flex;
                 flex-direction: column;
-                width: 950px;
+                max-width: 950px;
                 margin: 3rem auto;
                 height: calc(100vh - 6rem);
               `}
