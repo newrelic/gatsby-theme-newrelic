@@ -114,7 +114,8 @@ const lightMode = css`
     --tertiary-background-color: var(--color-neutrals-200);
 
     --accent-text-color: var(--color-neutrals-500);
-    --link-color: var(--color-brand-800);
+    --link-color: var(--color-brand-600);
+    --link-hover-color: var(--color-brand-500);
     --border-color: var(--color-neutrals-400);
     --border-hover-color: var(--color-neutrals-500);
     --divider-color: var(--color-neutrals-100);
@@ -135,7 +136,8 @@ const darkMode = css`
     --tertiary-background-color: var(--color-dark-100);
 
     --accent-text-color: var(--color-dark-600);
-    --link-color: var(--color-brand-400);
+    --link-color: var(--color-brand-300);
+    --link-hover-color: var(--color-brand-050);
     --border-color: var(--color-dark-400);
     --border-hover-color: var(--color-dark-500);
     --divider-color: var(--color-dark-200);
@@ -177,6 +179,10 @@ const reset = css`
     cursor: pointer;
     text-decoration: none;
     color: var(--link-color);
+
+    &:hover {
+      color: var(--link-hover-color);
+    }
   }
 
   p {
