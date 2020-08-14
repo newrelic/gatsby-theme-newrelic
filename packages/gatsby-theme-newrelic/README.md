@@ -35,6 +35,7 @@ websites](https://opensource.newrelic.com).
 - [Hooks](#hooks)
   - [`useClipboard`](#useclipboard)
   - [`useFormattedCode`](#useformattedcode)
+  - [`useKeyPress`](#usekeypress)
   - [`useQueryParams`](#usequeryparams)
   - [`useTimeout`](#usetimeout)
 - [Utils](#utils)
@@ -961,6 +962,44 @@ With formatting options:
 
 ```js
 const formattedCode = useFormattedCode(code, { printWidth: 100 });
+```
+
+### `useKeyPress`
+
+A hook that runs a handler function when a keydown event matches a specified
+key.
+
+```js
+import { useKeyPress } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `key` _(string)_: The key being listened for (i.e. the `event.key` value)
+- `callback` _(function)_ : Callback function called when the keydown event
+  matches the key. Takes the `event` as the argument.
+
+**Returns**
+
+`Void`
+
+**Examples**
+
+```js
+const Modal = ({ code }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useKeyPress('Escape', (e) => {
+    setIsOpen(false);
+  });
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Open modal</button>
+      {isOpen ? <div className="modal">Modal content</div> : null}
+    </>
+  );
+};
 ```
 
 ### `useQueryParams`
