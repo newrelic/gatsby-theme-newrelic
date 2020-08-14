@@ -12,7 +12,6 @@ import {
   Surface,
   Tag,
   TagList,
-  HamburgerMenu,
   Video,
 } from '@newrelic/gatsby-theme-newrelic';
 
@@ -38,7 +37,6 @@ const liveCodeSample = `
 const IndexPage = ({ data }) => {
   const { layout, siteMetadata } = data.site;
   const [searchTerm, setSearchTerm] = useState('');
-  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
 
   return (
     <>
