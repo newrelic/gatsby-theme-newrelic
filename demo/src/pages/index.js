@@ -122,14 +122,63 @@ const IndexPage = ({ data }) => {
           </CodeBlock>
         </section>
         <section>
-          <h2>A button</h2>
-          <Button
-            onClick={() => alert('Hello!')}
-            variant={Button.VARIANT.PRIMARY}
-            size={Button.SIZE.LARGE}
+          <h2>Buttons</h2>
+          <h3>Variants</h3>
+          <div
+            css={css`
+              display: flex;
+              gap: 1rem;
+              margin-bottom: 2rem;
+            `}
           >
-            Click me
-          </Button>
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.PRIMARY}
+            >
+              Primary
+            </Button>
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.NORMAL}
+            >
+              Normal
+            </Button>
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.LINK}
+            >
+              Link
+            </Button>
+          </div>
+          <h3>Sizes</h3>
+          <div
+            css={css`
+              display: flex;
+              align-items: flex-start;
+              gap: 1rem;
+            `}
+          >
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.PRIMARY}
+            >
+              Default
+            </Button>
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.PRIMARY}
+              size={Button.SIZE.SMALL}
+            >
+              Small
+            </Button>
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.PRIMARY}
+              size={Button.SIZE.EXTRA_SMALL}
+            >
+              Extra small
+            </Button>
+          </div>
         </section>
         <section>
           <h2>Primary surfaces</h2>
