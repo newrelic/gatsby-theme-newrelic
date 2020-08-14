@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
+import Button from './Button';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import SwiftypeSearch from './SwiftypeSearch';
@@ -33,7 +34,7 @@ const actionIcon = css`
   cursor: pointer;
 `;
 
-const GlobalHeader = ({ editUrl, className, search, utmSource }) => {
+const GlobalHeader = ({ className, search, utmSource }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { queryParams } = useQueryParams();
@@ -45,21 +46,14 @@ const GlobalHeader = ({ editUrl, className, search, utmSource }) => {
           contentPadding
           maxWidth
         }
-        siteMetadata {
-          repository
-          siteUrl
-        }
       }
     }
   `);
 
   const hideLogoText = useMedia({ maxWidth: '600px' });
-  const hideMenuLinks = useMedia({ maxWidth: '530px' });
+  const hideMenuLinks = useMedia({ maxWidth: '650px' });
 
-  const {
-    layout,
-    siteMetadata: { repository },
-  } = site;
+  const { layout } = site;
 
   return (
     <div
@@ -121,37 +115,39 @@ const GlobalHeader = ({ editUrl, className, search, utmSource }) => {
             <NewRelicLogo omitText={hideLogoText} />
           </ExternalLink>
 
-          <ul
-            css={css`
-              height: 100%;
-              margin: 0;
-              padding: 0;
-              display: flex;
-              list-style-type: none;
-              white-space: nowrap;
-            `}
-          >
-            <li>
-              <GlobalNavLink href="https://developer.newrelic.com/">
-                Developers
-              </GlobalNavLink>
-            </li>
-            <li>
-              <GlobalNavLink href="https://opensource.newrelic.com/">
-                Open Source
-              </GlobalNavLink>
-            </li>
-            <li>
-              <GlobalNavLink href="https://docs.newrelic.com/">
-                Documentation
-              </GlobalNavLink>
-            </li>
-            <li>
-              <GlobalNavLink href="https://discuss.newrelic.com/">
-                Community
-              </GlobalNavLink>
-            </li>
-          </ul>
+          {!hideMenuLinks && (
+            <ul
+              css={css`
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                list-style-type: none;
+                white-space: nowrap;
+              `}
+            >
+              <li>
+                <GlobalNavLink href="https://developer.newrelic.com/">
+                  Developers
+                </GlobalNavLink>
+              </li>
+              <li>
+                <GlobalNavLink href="https://opensource.newrelic.com/">
+                  Open Source
+                </GlobalNavLink>
+              </li>
+              <li>
+                <GlobalNavLink href="https://docs.newrelic.com/">
+                  Documentation
+                </GlobalNavLink>
+              </li>
+              <li>
+                <GlobalNavLink href="https://discuss.newrelic.com/">
+                  Community
+                </GlobalNavLink>
+              </li>
+            </ul>
+          )}
         </nav>
 
         <ul
@@ -169,28 +165,7 @@ const GlobalHeader = ({ editUrl, className, search, utmSource }) => {
             }
           `}
         >
-          {editUrl && !hideMenuLinks && (
-            <li>
-              <ExternalLink css={actionLink} href={editUrl}>
-                <Icon css={actionIcon} name={Icon.TYPE.EDIT} size="0.875rem" />
-              </ExternalLink>
-            </li>
-          )}
-          {repository && !hideMenuLinks && (
-            <li>
-              <ExternalLink
-                css={actionLink}
-                href={`${repository}/issues/new/choose`}
-              >
-                <Icon
-                  css={actionIcon}
-                  name={Icon.TYPE.GITHUB}
-                  size="0.875rem"
-                />
-              </ExternalLink>
-            </li>
-          )}
-          {search && !hideMenuLinks && (
+          {search && (
             <li>
               <Link to="?q=" css={actionLink}>
                 <Icon
@@ -205,10 +180,18 @@ const GlobalHeader = ({ editUrl, className, search, utmSource }) => {
             <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
           </li>
           <li>
-            <ExternalLink
+            <Button
+              as={ExternalLink}
               href="https://newrelic.com/signup"
+              size={Button.SIZE.EXTRA_SMALL}
+              variant={Button.VARIANT.PRIMARY}
               css={css`
-                ${actionLink};
+                display: block;
+                .dark-mode & {
+                  color: white;
+                  border-color: var(--color-brand-800);
+                  background-color: var(--color-brand-800);
+                }
               `}
             >
               <Icon
@@ -217,16 +200,9 @@ const GlobalHeader = ({ editUrl, className, search, utmSource }) => {
                   margin-right: 0.25rem;
                 `}
                 name={Icon.TYPE.CLOUD}
-                size="0.875rem"
               />
-              <span
-                css={css`
-                  font-size: 0.75rem;
-                `}
-              >
-                Sign up
-              </span>
-            </ExternalLink>
+              <span>Sign up</span>
+            </Button>
           </li>
         </ul>
       </div>
@@ -236,7 +212,6 @@ const GlobalHeader = ({ editUrl, className, search, utmSource }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
-  editUrl: PropTypes.string,
   search: PropTypes.bool,
 };
 

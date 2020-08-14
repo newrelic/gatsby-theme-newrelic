@@ -9,6 +9,7 @@ const VARIANTS = {
 };
 
 const SIZES = {
+  EXTRA_SMALL: 'extraSmall',
   SMALL: 'small',
 };
 
@@ -16,6 +17,11 @@ const styles = {
   size: {
     [SIZES.SMALL]: css`
       font-size: 0.75rem;
+    `,
+    [SIZES.EXTRA_SMALL]: css`
+      font-size: 0.675rem;
+      padding: 0.25rem 0.625rem;
+      border-radius: 0.125rem;
     `,
   },
   variant: {
