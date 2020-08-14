@@ -20,7 +20,7 @@ const styles = {
       font-size: 0.75rem;
     `,
     [SIZES.EXTRA_SMALL]: css`
-      font-size: 0.675rem;
+      font-size: 0.75rem;
       padding: 0.25rem 0.625rem;
       border-radius: 0.125rem;
     `,

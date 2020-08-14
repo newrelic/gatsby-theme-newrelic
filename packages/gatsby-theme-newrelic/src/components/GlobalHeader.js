@@ -32,10 +32,11 @@ const actionLink = css`
 `;
 
 const actionIcon = css`
+  display: block;
   cursor: pointer;
 `;
 
-const GlobalHeader = ({ className, search, utmSource }) => {
+const GlobalHeader = ({ className, search }) => {
   const location = useLocation();
   const { queryParams } = useQueryParams();
 
@@ -192,7 +193,11 @@ const GlobalHeader = ({ className, search, utmSource }) => {
           <li>
             <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
           </li>
-          <li>
+          <li
+            css={css`
+              display: flex;
+            `}
+          >
             <Button
               as={ExternalLink}
               href="https://newrelic.com/signup"
@@ -201,8 +206,7 @@ const GlobalHeader = ({ className, search, utmSource }) => {
             >
               <Icon
                 css={css`
-                  ${actionIcon}
-                  margin-right: 0.25rem;
+                  margin-right: 0.5rem;
                 `}
                 name={Icon.TYPE.CLOUD}
               />
