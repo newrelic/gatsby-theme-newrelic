@@ -87,7 +87,7 @@ const Button = styled.button`
   transition: all 0.09s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
   &:hover {
-    transform: translateY(-1px);
+    transform: translate3d(0, -1px, 0);
   }
 
   ${({ variant }) => styles.variant[variant]}
