@@ -15,6 +15,12 @@ import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
 
+const UTM_SOURCES = {
+  'https://developer.newrelic.com': 'developer-site',
+  'https://opensource.newrelic.com': 'opensource-site',
+  'https://docs.newrelic.com': 'docs-site',
+};
+
 const action = css`
   color: var(--secondary-text-color);
   transition: all 0.2s ease-out;
@@ -43,6 +49,9 @@ const GlobalHeader = ({ className, search }) => {
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
       site {
+        siteMetadata {
+          siteUrl
+        }
         layout {
           contentPadding
           maxWidth
@@ -50,6 +59,8 @@ const GlobalHeader = ({ className, search }) => {
       }
     }
   `);
+
+  const utmSource = UTM_SOURCES[site.siteMetadata.siteUrl];
 
   useKeyPress('/', (e) => {
     // Don't trigger overlay when typing in an input or textarea
@@ -204,7 +215,9 @@ const GlobalHeader = ({ className, search }) => {
           >
             <Button
               as={ExternalLink}
-              href="https://newrelic.com/signup"
+              href={`https://newrelic.com/signup${
+                utmSource ? `?utm_source=${utmSource}` : ''
+              }`}
               size={Button.SIZE.EXTRA_SMALL}
               variant={Button.VARIANT.PRIMARY}
             >
