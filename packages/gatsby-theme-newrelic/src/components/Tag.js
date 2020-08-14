@@ -26,12 +26,12 @@ const Tag = styled.span`
     css`
       &:hover {
         cursor: pointer;
-        color: var(--color-brand-800);
+        color: var(--color-brand-600);
         background: ${rgba('#70ccd2', 0.17)};
         transform: translateY(-1px);
 
         .dark-mode & {
-          color: var(--color-brand-400);
+          color: var(--color-brand-200);
         }
       }
     `}
