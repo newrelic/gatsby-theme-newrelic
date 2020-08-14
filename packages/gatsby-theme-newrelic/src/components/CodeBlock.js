@@ -126,7 +126,7 @@ const CodeBlock = ({
               </div>
               <Button
                 type="button"
-                variant={Button.VARIANT.PLAIN}
+                variant={Button.VARIANT.LINK}
                 onClick={() => copy(code)}
                 size={Button.SIZE.SMALL}
                 css={css`
