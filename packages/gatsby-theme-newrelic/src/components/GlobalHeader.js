@@ -13,23 +13,27 @@ import useMedia from 'use-media';
 import { useLocation, useNavigate } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 
-const styles = {
-  actionLink: css`
-    display: flex;
-    align-items: center;
-  `,
-  actionIcon: css`
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-    color: var(--secondary-text-color);
+const action = css`
+  color: var(--secondary-text-color);
+  transition: all 0.2s ease-out;
 
-    &:hover {
-      color: var(--secondary-text-hover-color);
-    }
-  `,
-};
+  &:hover {
+    color: var(--secondary-text-hover-color);
+  }
+`;
 
-const GlobalHeader = ({ editUrl, className, search }) => {
+const actionLink = css`
+  ${action};
+
+  display: flex;
+  align-items: center;
+`;
+
+const actionIcon = css`
+  cursor: pointer;
+`;
+
+const GlobalHeader = ({ editUrl, className, search, utmSource }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { queryParams } = useQueryParams();
@@ -167,23 +171,19 @@ const GlobalHeader = ({ editUrl, className, search }) => {
         >
           {editUrl && !hideMenuLinks && (
             <li>
-              <ExternalLink css={styles.actionLink} href={editUrl}>
-                <Icon
-                  css={styles.actionIcon}
-                  name={Icon.TYPE.EDIT}
-                  size="0.875rem"
-                />
+              <ExternalLink css={actionLink} href={editUrl}>
+                <Icon css={actionIcon} name={Icon.TYPE.EDIT} size="0.875rem" />
               </ExternalLink>
             </li>
           )}
           {repository && !hideMenuLinks && (
             <li>
               <ExternalLink
-                css={styles.actionLink}
+                css={actionLink}
                 href={`${repository}/issues/new/choose`}
               >
                 <Icon
-                  css={styles.actionIcon}
+                  css={actionIcon}
                   name={Icon.TYPE.GITHUB}
                   size="0.875rem"
                 />
@@ -192,9 +192,9 @@ const GlobalHeader = ({ editUrl, className, search }) => {
           )}
           {search && !hideMenuLinks && (
             <li>
-              <Link to="?q=" css={styles.actionLink}>
+              <Link to="?q=" css={actionLink}>
                 <Icon
-                  css={styles.actionIcon}
+                  css={actionIcon}
                   name={Icon.TYPE.SEARCH}
                   size="0.875rem"
                 />
@@ -202,7 +202,31 @@ const GlobalHeader = ({ editUrl, className, search }) => {
             </li>
           )}
           <li>
-            <DarkModeToggle css={styles.actionIcon} size="0.875rem" />
+            <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
+          </li>
+          <li>
+            <ExternalLink
+              href="https://newrelic.com/signup"
+              css={css`
+                ${actionLink};
+              `}
+            >
+              <Icon
+                css={css`
+                  ${actionIcon}
+                  margin-right: 0.25rem;
+                `}
+                name={Icon.TYPE.CLOUD}
+                size="0.875rem"
+              />
+              <span
+                css={css`
+                  font-size: 0.75rem;
+                `}
+              >
+                Sign up
+              </span>
+            </ExternalLink>
           </li>
         </ul>
       </div>
