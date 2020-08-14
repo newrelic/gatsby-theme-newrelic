@@ -32,6 +32,7 @@ const styles = {
       background-color: var(--color-brand-600);
 
       &:hover {
+        color: var(--color-white);
         background-color: var(--color-brand-500);
       }
     `,
