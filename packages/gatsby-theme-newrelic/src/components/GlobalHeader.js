@@ -196,6 +196,10 @@ const GlobalHeader = ({ className, search }) => {
           <li
             css={css`
               display: flex;
+
+              && {
+                margin-left: 1.5rem;
+              }
             `}
           >
             <Button
