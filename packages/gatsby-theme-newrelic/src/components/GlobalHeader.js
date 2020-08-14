@@ -199,7 +199,9 @@ const GlobalHeader = ({ className, search, utmSource }) => {
               size={Button.SIZE.EXTRA_SMALL}
               variant={Button.VARIANT.PRIMARY}
               css={css`
-                display: block;
+                display: flex;
+                align-items: center;
+
                 .dark-mode & {
                   color: white;
                   border-color: var(--color-brand-800);
