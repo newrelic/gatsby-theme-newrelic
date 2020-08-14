@@ -72,20 +72,18 @@ const IndexPage = ({ data }) => {
         <section>
           <h2>Search inputs</h2>
           <SearchInput
-            style={{ margin: '1rem 0' }}
+            style={{ margin: '1rem 0', maxWidth: '500px' }}
             placeholder="Test out a medium search"
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
-            width="500px"
           />
           <SearchInput
-            style={{ marginBottom: '1rem' }}
+            style={{ marginBottom: '1rem', maxWidth: '500px' }}
             placeholder="Test out a large search"
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
-            width="500px"
             size={SearchInput.SIZE.LARGE}
           />
         </section>
