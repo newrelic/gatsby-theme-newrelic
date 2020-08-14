@@ -198,16 +198,6 @@ const GlobalHeader = ({ className, search, utmSource }) => {
               href="https://newrelic.com/signup"
               size={Button.SIZE.EXTRA_SMALL}
               variant={Button.VARIANT.PRIMARY}
-              css={css`
-                display: flex;
-                align-items: center;
-
-                .dark-mode & {
-                  color: white;
-                  border-color: var(--color-brand-800);
-                  background-color: var(--color-brand-800);
-                }
-              `}
             >
               <Icon
                 css={css`
