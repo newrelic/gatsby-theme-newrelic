@@ -27,11 +27,16 @@ const colors = css`
   --color-dark-800: #cedede;
   --color-dark-900: #e8eaea;
 
-  --color-brand-050: #f7ffff;
-  --color-brand-100: #edffff;
-  --color-brand-400: #70ccd2;
-  --color-brand-800: #007e8a;
-  --color-brand-900: #005054;
+  --color-brand-050: #f1fbfc;
+  --color-brand-100: #d2f3f6;
+  --color-brand-200: #85e0e7;
+  --color-brand-300: #70ccd3;
+  --color-brand-400: #00b3c3;
+  --color-brand-500: #008c99;
+  --color-brand-600: #006c75;
+  --color-brand-700: #00484e;
+  --color-brand-800: #003539;
+  --color-brand-900: #002123;
 
   --color-red-050: #fcf3f3;
   --color-red-100: #fce9e9;
