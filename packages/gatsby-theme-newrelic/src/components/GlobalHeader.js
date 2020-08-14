@@ -14,6 +14,7 @@ import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
+import { rgba } from 'polished';
 
 const UTM_SOURCES = {
   'https://developer.newrelic.com': 'developer-site',
@@ -75,8 +76,7 @@ const GlobalHeader = ({ className, search }) => {
     }
   });
 
-  const hideLogoText = useMedia({ maxWidth: '600px' });
-  const hideMenuLinks = useMedia({ maxWidth: '650px' });
+  const hideLogoText = useMedia({ maxWidth: '655px' });
 
   const { layout } = site;
 
@@ -127,6 +127,32 @@ const GlobalHeader = ({ className, search }) => {
             display: flex;
             align-items: center;
             height: 100%;
+            overflow: hidden;
+            position: relative;
+
+            @media screen and (max-width: 585px) {
+              &::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                height: 100%;
+                width: 2rem;
+                pointer-events: none;
+                background: linear-gradient(
+                  to right,
+                  ${rgba('#f4f5f5', 0)},
+                  var(--color-neutrals-100)
+                );
+
+                .dark-mode & {
+                  background: linear-gradient(
+                    to right,
+                    ${rgba('#22353c', 0)},
+                    var(--color-dark-100)
+                  );
+                }
+              }
+            }
           `}
         >
           <ExternalLink
@@ -140,39 +166,45 @@ const GlobalHeader = ({ className, search }) => {
             <NewRelicLogo omitText={hideLogoText} />
           </ExternalLink>
 
-          {!hideMenuLinks && (
-            <ul
-              css={css`
-                height: 100%;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                list-style-type: none;
-                white-space: nowrap;
-              `}
-            >
-              <li>
-                <GlobalNavLink href="https://developer.newrelic.com/">
-                  Developers
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://opensource.newrelic.com/">
-                  Open Source
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://docs.newrelic.com/">
-                  Documentation
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://discuss.newrelic.com/">
-                  Community
-                </GlobalNavLink>
-              </li>
-            </ul>
-          )}
+          <ul
+            css={css`
+              height: 100%;
+              margin: 0;
+              padding: 0;
+              display: flex;
+              list-style-type: none;
+              white-space: nowrap;
+              overflow-x: auto;
+              position: relative;
+              -webkit-overflow-scrolling: touch;
+              -ms-overflow-style: -ms-autohiding-scrollbar;
+
+              > li {
+                flex: 0 0 auto;
+              }
+            `}
+          >
+            <li>
+              <GlobalNavLink href="https://developer.newrelic.com/">
+                Developers
+              </GlobalNavLink>
+            </li>
+            <li>
+              <GlobalNavLink href="https://opensource.newrelic.com/">
+                Open Source
+              </GlobalNavLink>
+            </li>
+            <li>
+              <GlobalNavLink href="https://docs.newrelic.com/">
+                Documentation
+              </GlobalNavLink>
+            </li>
+            <li>
+              <GlobalNavLink href="https://discuss.newrelic.com/">
+                Community
+              </GlobalNavLink>
+            </li>
+          </ul>
         </nav>
 
         <ul
