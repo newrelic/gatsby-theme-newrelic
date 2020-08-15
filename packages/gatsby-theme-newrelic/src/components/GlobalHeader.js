@@ -98,7 +98,7 @@ const GlobalHeader = ({ className, search }) => {
     >
       <div
         css={css`
-          height: 30px;
+          height: 36px;
           display: flex;
           justify-content: space-between;
           max-width: ${layout.maxWidth};
