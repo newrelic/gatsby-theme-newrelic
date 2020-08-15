@@ -245,7 +245,7 @@ const IndexPage = ({ data }) => {
           <h2>Feedback</h2>
           <div
             css={css`
-              width: 350px;
+              max-width: 350px;
             `}
           >
             <Feedback
