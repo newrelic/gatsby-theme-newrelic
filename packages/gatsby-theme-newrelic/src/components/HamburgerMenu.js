@@ -5,7 +5,7 @@ import { css } from '@emotion/core';
 const menuLine = (isOpen) => css`
   width: 100%;
   height: 2px;
-  background-color: var(--color-brand-800);
+  background-color: var(--color-brand-600);
   margin: 4px 0;
   border-radius: 5px;
   transition: 0.18s;
@@ -15,7 +15,7 @@ const menuLine = (isOpen) => css`
   }
 
   ${isOpen &&
-  ` 
+  `
   :nth-child(1) {
     transform: rotate(-45deg) translate(-2px, 6.25px);
   }
