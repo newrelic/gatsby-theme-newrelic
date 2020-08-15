@@ -8,6 +8,8 @@ import {
   CodeBlock,
   Feedback,
   GlobalHeader,
+  HamburgerMenu,
+  NewRelicLogo,
   SearchInput,
   Surface,
   Tag,
@@ -37,6 +39,7 @@ const liveCodeSample = `
 const IndexPage = ({ data }) => {
   const { layout, siteMetadata } = data.site;
   const [searchTerm, setSearchTerm] = useState('');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
@@ -44,6 +47,25 @@ const IndexPage = ({ data }) => {
         editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
         search
       />
+      <header
+        css={css`
+          display: none;
+          padding: 1rem ${layout.contentPadding};
+          justify-content: space-between;
+          align-items: center;
+
+          @media screen and (max-width: 400px) {
+            display: flex;
+          }
+        `}
+      >
+        <NewRelicLogo />
+        <HamburgerMenu
+          onToggle={() => setIsMenuOpen((isOpen) => !isOpen)}
+          isOpen={isMenuOpen}
+        />
+      </header>
+
       <div
         css={css`
           margin: 0 auto;
