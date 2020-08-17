@@ -35,6 +35,7 @@ websites](https://opensource.newrelic.com).
 - [Hooks](#hooks)
   - [`useClipboard`](#useclipboard)
   - [`useFormattedCode`](#useformattedcode)
+  - [`useKeyPress`](#usekeypress)
   - [`useQueryParams`](#usequeryparams)
   - [`useTimeout`](#usetimeout)
 - [Utils](#utils)
@@ -220,11 +221,11 @@ import { Button } from '@newrelic/gatsby-theme-newrelic'`
 
 **Props**
 
-| Prop    | Type          | Required | Default  | Description                                                                                                                       |
-| ------- | ------------- | -------- | -------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| variant | enum          | yes      |          | Configures the variant of the button. Must be one of `Button.VARIANT.PLAIN`, `Button.VARIANT.PRIMARY`, or `Button.VARIANT.NORMAL` |
-| size    | enum          | no       |          | Configures the size of the button. Can be configured to `Button.SIZE.SMALL`                                                       |
-| as      | React element | no       | `button` | Render the button as a different base element. Useful when you want to style links as buttons.                                    |
+| Prop    | Type          | Required | Default  | Description                                                                                                                      |
+| ------- | ------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| variant | enum          | yes      |          | Configures the variant of the button. Must be one of `Button.VARIANT.LINK`, `Button.VARIANT.PRIMARY`, or `Button.VARIANT.NORMAL` |
+| size    | enum          | no       |          | Configures the size of the button. Can be configured to `Button.SIZE.SMALL`                                                      |
+| as      | React element | no       | `button` | Render the button as a different base element. Useful when you want to style links as buttons.                                   |
 
 Additional props are forwarded to the underlying element specified by the `as`
 prop.
@@ -961,6 +962,44 @@ With formatting options:
 
 ```js
 const formattedCode = useFormattedCode(code, { printWidth: 100 });
+```
+
+### `useKeyPress`
+
+A hook that runs a handler function when a keydown event matches a specified
+key.
+
+```js
+import { useKeyPress } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `key` _(string)_: The key being listened for (i.e. the `event.key` value)
+- `callback` _(function)_ : Callback function called when the keydown event
+  matches the key. Takes the `event` as the argument.
+
+**Returns**
+
+`Void`
+
+**Examples**
+
+```js
+const Modal = ({ code }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useKeyPress('Escape', (e) => {
+    setIsOpen(false);
+  });
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Open modal</button>
+      {isOpen ? <div className="modal">Modal content</div> : null}
+    </>
+  );
+};
 ```
 
 ### `useQueryParams`

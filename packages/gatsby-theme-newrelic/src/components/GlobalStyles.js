@@ -27,11 +27,16 @@ const colors = css`
   --color-dark-800: #cedede;
   --color-dark-900: #e8eaea;
 
-  --color-brand-050: #f7ffff;
-  --color-brand-100: #edffff;
-  --color-brand-400: #70ccd2;
-  --color-brand-800: #007e8a;
-  --color-brand-900: #005054;
+  --color-brand-050: #f1fbfc;
+  --color-brand-100: #d2f3f6;
+  --color-brand-200: #85e0e7;
+  --color-brand-300: #70ccd3;
+  --color-brand-400: #00b3c3;
+  --color-brand-500: #008c99;
+  --color-brand-600: #006c75;
+  --color-brand-700: #00484e;
+  --color-brand-800: #003539;
+  --color-brand-900: #002123;
 
   --color-red-050: #fcf3f3;
   --color-red-100: #fce9e9;
@@ -109,7 +114,8 @@ const lightMode = css`
     --tertiary-background-color: var(--color-neutrals-200);
 
     --accent-text-color: var(--color-neutrals-500);
-    --link-color: var(--color-brand-800);
+    --link-color: var(--color-brand-600);
+    --link-hover-color: var(--color-brand-500);
     --border-color: var(--color-neutrals-400);
     --border-hover-color: var(--color-neutrals-500);
     --divider-color: var(--color-neutrals-100);
@@ -130,7 +136,8 @@ const darkMode = css`
     --tertiary-background-color: var(--color-dark-100);
 
     --accent-text-color: var(--color-dark-600);
-    --link-color: var(--color-brand-400);
+    --link-color: var(--color-brand-300);
+    --link-hover-color: var(--color-brand-050);
     --border-color: var(--color-dark-400);
     --border-hover-color: var(--color-dark-500);
     --divider-color: var(--color-dark-200);
@@ -172,6 +179,10 @@ const reset = css`
     cursor: pointer;
     text-decoration: none;
     color: var(--link-color);
+
+    &:hover {
+      color: var(--link-hover-color);
+    }
   }
 
   p {

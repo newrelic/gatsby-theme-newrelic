@@ -8,11 +8,12 @@ import {
   CodeBlock,
   Feedback,
   GlobalHeader,
+  HamburgerMenu,
+  NewRelicLogo,
   SearchInput,
   Surface,
   Tag,
   TagList,
-  HamburgerMenu,
   Video,
 } from '@newrelic/gatsby-theme-newrelic';
 
@@ -38,7 +39,7 @@ const liveCodeSample = `
 const IndexPage = ({ data }) => {
   const { layout, siteMetadata } = data.site;
   const [searchTerm, setSearchTerm] = useState('');
-  const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
@@ -48,24 +49,23 @@ const IndexPage = ({ data }) => {
       />
       <header
         css={css`
-          position: relative;
-          border-bottom: 1px solid var(--divider-color);
-          padding: 0 2rem;
-          width: 100vw;
+          display: none;
+          padding: 1rem ${layout.contentPadding};
+          justify-content: space-between;
+          align-items: center;
+
+          @media screen and (max-width: 400px) {
+            display: flex;
+          }
         `}
       >
-        <div
-          css={css`
-            display: flex;
-            justify-content: flex-end;
-          `}
-        >
-          <HamburgerMenu
-            isOpen={isHamburgerOpen}
-            onToggle={() => setIsHamburgerOpen(!isHamburgerOpen)}
-          />
-        </div>
+        <NewRelicLogo />
+        <HamburgerMenu
+          onToggle={() => setIsMenuOpen((isOpen) => !isOpen)}
+          isOpen={isMenuOpen}
+        />
       </header>
+
       <div
         css={css`
           margin: 0 auto;
@@ -94,20 +94,18 @@ const IndexPage = ({ data }) => {
         <section>
           <h2>Search inputs</h2>
           <SearchInput
-            style={{ margin: '1rem 0' }}
+            style={{ margin: '1rem 0', maxWidth: '500px' }}
             placeholder="Test out a medium search"
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
-            width="500px"
           />
           <SearchInput
-            style={{ marginBottom: '1rem' }}
+            style={{ marginBottom: '1rem', maxWidth: '500px' }}
             placeholder="Test out a large search"
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
-            width="500px"
             size={SearchInput.SIZE.LARGE}
           />
         </section>
@@ -142,14 +140,63 @@ const IndexPage = ({ data }) => {
           </CodeBlock>
         </section>
         <section>
-          <h2>A button</h2>
-          <Button
-            onClick={() => alert('Hello!')}
-            variant={Button.VARIANT.PRIMARY}
-            size={Button.SIZE.LARGE}
+          <h2>Buttons</h2>
+          <h3>Variants</h3>
+          <div
+            css={css`
+              display: flex;
+              gap: 1rem;
+              margin-bottom: 2rem;
+            `}
           >
-            Click me
-          </Button>
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.PRIMARY}
+            >
+              Primary
+            </Button>
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.NORMAL}
+            >
+              Normal
+            </Button>
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.LINK}
+            >
+              Link
+            </Button>
+          </div>
+          <h3>Sizes</h3>
+          <div
+            css={css`
+              display: flex;
+              align-items: flex-start;
+              gap: 1rem;
+            `}
+          >
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.PRIMARY}
+            >
+              Default
+            </Button>
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.PRIMARY}
+              size={Button.SIZE.SMALL}
+            >
+              Small
+            </Button>
+            <Button
+              onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.PRIMARY}
+              size={Button.SIZE.EXTRA_SMALL}
+            >
+              Extra small
+            </Button>
+          </div>
         </section>
         <section>
           <h2>Primary surfaces</h2>
@@ -220,7 +267,7 @@ const IndexPage = ({ data }) => {
           <h2>Feedback</h2>
           <div
             css={css`
-              width: 350px;
+              max-width: 350px;
             `}
           >
             <Feedback
