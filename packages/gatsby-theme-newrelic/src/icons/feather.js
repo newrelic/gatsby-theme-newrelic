@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default {
+  cloud: <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />,
   copy: (
     <>
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />

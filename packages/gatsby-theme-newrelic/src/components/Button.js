@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
+import { rgba } from 'polished';
 
 const VARIANTS = {
-  PLAIN: 'plain',
   PRIMARY: 'primary',
   NORMAL: 'normal',
+  LINK: 'link',
 };
 
 const SIZES = {
+  EXTRA_SMALL: 'extraSmall',
   SMALL: 'small',
 };
 
@@ -17,34 +19,50 @@ const styles = {
     [SIZES.SMALL]: css`
       font-size: 0.75rem;
     `,
+    [SIZES.EXTRA_SMALL]: css`
+      font-size: 0.625rem;
+      padding: 0.375rem 0.625rem;
+      border-radius: 0.125rem;
+    `,
   },
   variant: {
     [VARIANTS.PRIMARY]: css`
+      border: 0;
       color: var(--color-white);
-      border-color: var(--color-brand-800);
-      background-color: var(--color-brand-800);
-      .dark-mode & {
-        color: var(--primary-background-color);
-        background-color: var(--color-brand-400);
-        border-color: var(--color-brand-400);
+      background-color: var(--color-brand-600);
+
+      &:hover {
+        color: var(--color-white);
+        background-color: var(--color-brand-500);
+      }
+    `,
+    [VARIANTS.LINK]: css`
+      border: 0;
+      color: var(--link-color);
+      background: transparent;
+
+      &:hover {
+        color: var(--link-hover-color);
       }
     `,
     [VARIANTS.NORMAL]: css`
-      color: var(--color-neutrals-800);
-      border-color: var(--color-neutrals-100);
+      border: 0;
+      color: var(--color-neutrals-700);
       background-color: var(--color-neutrals-100);
-      .dark-mode & {
-        color: var(--color-white);
-        border-color: var(--color-dark-100);
-        background-color: var(--color-dark-100);
+
+      &:hover {
+        color: var(--color-brand-600);
+        background: ${rgba('#70ccd2', 0.17)};
       }
-    `,
-    [VARIANTS.PLAIN]: css`
-      color: var(--color-brand-800);
-      border-color: transparent;
-      background-color: transparent;
+
       .dark-mode & {
-        color: var(--color-brand-400);
+        color: var(--color-dark-700);
+        background-color: var(--color-dark-200);
+
+        &:hover {
+          color: var(--color-brand-200);
+          background-color: ${rgba('#70ccd2', 0.17)};
+        }
       }
     `,
   },
@@ -67,6 +85,13 @@ const Button = styled.button`
   cursor: pointer;
   border-width: 1px;
   border-style: solid;
+  transition: all 0.09s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  white-space: nowrap;
+
+  &:hover {
+    transform: translate3d(0, -1px, 0);
+  }
+
   ${({ variant }) => styles.variant[variant]}
   ${({ size }) => styles.size[size]}
   ${({ disabled }) => disabled && styles.disabled}

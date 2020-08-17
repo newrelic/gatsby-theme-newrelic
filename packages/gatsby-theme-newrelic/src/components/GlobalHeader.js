@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import { graphql, useStaticQuery, navigate, Link } from 'gatsby';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
+import Button from './Button';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import SwiftypeSearch from './SwiftypeSearch';
@@ -13,41 +14,54 @@ import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
+import { rgba } from 'polished';
 
-const styles = {
-  actionLink: css`
-    display: flex;
-    align-items: center;
-  `,
-  actionIcon: css`
-    cursor: pointer;
-    transition: all 0.2s ease-out;
-    color: var(--secondary-text-color);
-
-    &:hover {
-      color: var(--secondary-text-hover-color);
-    }
-  `,
+const UTM_SOURCES = {
+  'https://developer.newrelic.com': 'developer-site',
+  'https://opensource.newrelic.com': 'opensource-site',
+  'https://docs.newrelic.com': 'docs-site',
 };
 
-const GlobalHeader = ({ editUrl, className, search }) => {
+const action = css`
+  color: var(--secondary-text-color);
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    color: var(--secondary-text-hover-color);
+  }
+`;
+
+const actionLink = css`
+  ${action};
+
+  display: flex;
+  align-items: center;
+`;
+
+const actionIcon = css`
+  display: block;
+  cursor: pointer;
+`;
+
+const GlobalHeader = ({ className, search }) => {
   const location = useLocation();
   const { queryParams } = useQueryParams();
 
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
       site {
+        siteMetadata {
+          siteUrl
+        }
         layout {
           contentPadding
           maxWidth
         }
-        siteMetadata {
-          repository
-          siteUrl
-        }
       }
     }
   `);
+
+  const utmSource = UTM_SOURCES[site.siteMetadata.siteUrl];
 
   useKeyPress('/', (e) => {
     // Don't trigger overlay when typing in an input or textarea
@@ -62,13 +76,9 @@ const GlobalHeader = ({ editUrl, className, search }) => {
     }
   });
 
-  const hideLogoText = useMedia({ maxWidth: '600px' });
-  const hideMenuLinks = useMedia({ maxWidth: '530px' });
+  const hideLogoText = useMedia({ maxWidth: '655px' });
 
-  const {
-    layout,
-    siteMetadata: { repository },
-  } = site;
+  const { layout } = site;
 
   return (
     <div
@@ -88,7 +98,7 @@ const GlobalHeader = ({ editUrl, className, search }) => {
     >
       <div
         css={css`
-          height: 30px;
+          height: 36px;
           display: flex;
           justify-content: space-between;
           max-width: ${layout.maxWidth};
@@ -117,6 +127,32 @@ const GlobalHeader = ({ editUrl, className, search }) => {
             display: flex;
             align-items: center;
             height: 100%;
+            overflow: hidden;
+            position: relative;
+
+            @media screen and (max-width: 585px) {
+              &::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                height: 100%;
+                width: 2rem;
+                pointer-events: none;
+                background: linear-gradient(
+                  to right,
+                  ${rgba('#f4f5f5', 0)},
+                  var(--color-neutrals-100)
+                );
+
+                .dark-mode & {
+                  background: linear-gradient(
+                    to right,
+                    ${rgba('#22353c', 0)},
+                    var(--color-dark-100)
+                  );
+                }
+              }
+            }
           `}
         >
           <ExternalLink
@@ -138,6 +174,14 @@ const GlobalHeader = ({ editUrl, className, search }) => {
               display: flex;
               list-style-type: none;
               white-space: nowrap;
+              overflow-x: auto;
+              position: relative;
+              -webkit-overflow-scrolling: touch;
+              -ms-overflow-style: -ms-autohiding-scrollbar;
+
+              > li {
+                flex: 0 0 auto;
+              }
             `}
           >
             <li>
@@ -178,36 +222,11 @@ const GlobalHeader = ({ editUrl, className, search }) => {
             }
           `}
         >
-          {editUrl && !hideMenuLinks && (
+          {search && (
             <li>
-              <ExternalLink css={styles.actionLink} href={editUrl}>
+              <Link to="?q=" css={actionLink}>
                 <Icon
-                  css={styles.actionIcon}
-                  name={Icon.TYPE.EDIT}
-                  size="0.875rem"
-                />
-              </ExternalLink>
-            </li>
-          )}
-          {repository && !hideMenuLinks && (
-            <li>
-              <ExternalLink
-                css={styles.actionLink}
-                href={`${repository}/issues/new/choose`}
-              >
-                <Icon
-                  css={styles.actionIcon}
-                  name={Icon.TYPE.GITHUB}
-                  size="0.875rem"
-                />
-              </ExternalLink>
-            </li>
-          )}
-          {search && !hideMenuLinks && (
-            <li>
-              <Link to="?q=" css={styles.actionLink}>
-                <Icon
-                  css={styles.actionIcon}
+                  css={actionIcon}
                   name={Icon.TYPE.SEARCH}
                   size="0.875rem"
                 />
@@ -215,7 +234,33 @@ const GlobalHeader = ({ editUrl, className, search }) => {
             </li>
           )}
           <li>
-            <DarkModeToggle css={styles.actionIcon} size="0.875rem" />
+            <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
+          </li>
+          <li
+            css={css`
+              display: flex;
+
+              && {
+                margin-left: 1.5rem;
+              }
+            `}
+          >
+            <Button
+              as={ExternalLink}
+              href={`https://newrelic.com/signup${
+                utmSource ? `?utm_source=${utmSource}` : ''
+              }`}
+              size={Button.SIZE.EXTRA_SMALL}
+              variant={Button.VARIANT.PRIMARY}
+            >
+              <Icon
+                css={css`
+                  margin-right: 0.5rem;
+                `}
+                name={Icon.TYPE.CLOUD}
+              />
+              <span>Sign up</span>
+            </Button>
           </li>
         </ul>
       </div>
@@ -225,7 +270,6 @@ const GlobalHeader = ({ editUrl, className, search }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
-  editUrl: PropTypes.string,
   search: PropTypes.bool,
 };
 
