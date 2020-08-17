@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.6.0...v1.7.0) (2020-08-17)
+
+
+### Bug Fixes
+
+* add cloud icon ([37a936a](https://github.com/newrelic/gatsby-theme-newrelic/commit/37a936aa86e2f8e8bd74548a1f5bcd4ab031957a))
+* add global link hover styles ([2253092](https://github.com/newrelic/gatsby-theme-newrelic/commit/22530928a825b40b26e676515f1b973e1e9e31e6))
+* better responsive styles for global header ([8090f12](https://github.com/newrelic/gatsby-theme-newrelic/commit/8090f12e1b55fb19a27428b02a24584a87d71a68))
+* change the height of the global nav to 36px ([de28d3c](https://github.com/newrelic/gatsby-theme-newrelic/commit/de28d3cdfa16e9e8b3a917d873754eaf34d01b04))
+* dont trigger overlay when using / if typing in an input or textarea ([c0d3d98](https://github.com/newrelic/gatsby-theme-newrelic/commit/c0d3d98e0f96fdf561312d5150cb9abcf7a8ad0d))
+* make overlay content the same size as the underlying content ([0ff3125](https://github.com/newrelic/gatsby-theme-newrelic/commit/0ff31253ccd8c46d9870dd1c44b3094438023c97))
+* more reliable escape listener ([4d69c9b](https://github.com/newrelic/gatsby-theme-newrelic/commit/4d69c9b3a0e5fe1a138300eb5711242b90c46b3b))
+* prop type issue on Surface ([edca881](https://github.com/newrelic/gatsby-theme-newrelic/commit/edca88178d460d520a36edb48ed2ea6877b1eb03))
+
+
+### Features
+
+* **Button:** Deprecate plain button in favor of link button ([9d48498](https://github.com/newrelic/gatsby-theme-newrelic/commit/9d48498bd6a6b5d6a5eb3c642be22cef14ce35cf))
+* add ability to summon search with / key ([4f05ff6](https://github.com/newrelic/gatsby-theme-newrelic/commit/4f05ff6e478fe0beb312602cd41a5a0f4200eeb6))
+* add sign up button to header ([aac6ac0](https://github.com/newrelic/gatsby-theme-newrelic/commit/aac6ac059986c24e82a354e2cd25902f22918a3c))
+* add sign up link to the global header ([69a412e](https://github.com/newrelic/gatsby-theme-newrelic/commit/69a412e7fb01fa58103a93c5825b251297ba21ee))
+* export useKeyPress ([ef9e564](https://github.com/newrelic/gatsby-theme-newrelic/commit/ef9e5643c80cdfbb1b0c2c67642ae161c5db7847))
+* update global brand colors ([d94717f](https://github.com/newrelic/gatsby-theme-newrelic/commit/d94717f9ab17f90e5c217594a5c3cd3bfaf8b03b))
+
+
+
+
+
 # [1.6.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.5.1...v1.6.0) (2020-08-07)
 
 
