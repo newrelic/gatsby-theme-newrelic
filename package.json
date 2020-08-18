@@ -6,7 +6,8 @@
     "packages/*"
   ],
   "scripts": {
-    "release": "lerna publish --conventional-commits --create-release github --no-private"
+    "release": "lerna publish --conventional-commits --create-release github --no-private",
+    "test": "jest"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
