@@ -20,6 +20,9 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
+  globals: {
+    jest: 'readonly',
+  },
   env: {
     browser: true,
     es6: true,
