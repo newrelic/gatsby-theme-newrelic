@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.7.0...v1.7.1) (2020-08-18)
+
+
+### Bug Fixes
+
+* make spacing between sign up and dark mode uniform ([487abbe](https://github.com/newrelic/gatsby-theme-newrelic/commit/487abbe4ce293c9d053ce7c13250b56bbacabd5e))
+* remove cloud icon from sign up button ([b17528c](https://github.com/newrelic/gatsby-theme-newrelic/commit/b17528cc3182bcb1426e69c759057c45a9298ccc))
+* remove keyframes for CSS that is not included in search experience ([e207f43](https://github.com/newrelic/gatsby-theme-newrelic/commit/e207f43eb0dca9706bfe7e74b729e1f26003e536))
+
+
+
+
+
 # [1.7.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.6.0...v1.7.0) (2020-08-17)
 
 
