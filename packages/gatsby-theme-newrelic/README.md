@@ -40,6 +40,9 @@ websites](https://opensource.newrelic.com).
   - [`useTimeout`](#usetimeout)
 - [Utils](#utils)
   - [`formatCode`](#formatcode)
+- [Testing](#testing)
+  - [Changes to Jest config](#changes-to-jest-config)
+  - [Mocking `ReactDOM.createPortal` for snapshot testing](#mocking-reactdomcreateportal-for-snapshot-testing)
 
 <!-- /TOC -->
 
@@ -1122,3 +1125,102 @@ Utility function that formats a string of code using
     parser: 'babel',
   };
   ```
+
+## Testing
+
+If you are using [Jest](https://jestjs.io) to write tests for your Gatsby site,
+you may consider adding some additional configuration to ensure your tests run
+successfully.
+
+### Changes to Jest config
+
+`@newrelic/gatsby-theme-newrelic` uses
+[`@elastic/search-ui`](https://github.com/elastic/search-ui) to power its search
+experience. When running tests, you may encounter the following error:
+
+```
+Test suite failed to run
+
+Jest encountered an unexpected token
+
+This usually means that you are trying to import a file which Jest cannot parse, e.g. it's not plain JavaScript.
+
+By default, if Jest sees a Babel config, it will use that to transform your files, ignoring "node_modules".
+
+Here's what you can do:
+  • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+  • If you need a custom transformation specify a "transform" option in your config.
+  • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+You'll find more details and examples of these config options in the docs:
+https://jestjs.io/docs/en/configuration.html
+
+Details:
+
+/your-site/node_modules/@elastic/react-search-ui-views/es/view-helpers/index.js:1
+export { default as getFilterValueDisplay } from "./getFilterValueDisplay";
+^^^^^^
+
+SyntaxError: Unexpected token 'export'
+```
+
+This is due to the fact that `@elastic/search-ui` uses ES Modules under the
+hood. To fix this, you need to tell Jest to ignore transformations on this package.
+
+Add the following to your jest config:
+
+```js
+// jest.config.js
+
+module.exports = {
+  // ...
+  transformIgnorePatterns: [
+    'node_modules/(?!(@elastic/react-search-ui-views)/)',
+  ],
+};
+```
+
+If you previously followed the Gatsby [unit testing
+guide](https://www.gatsbyjs.com/docs/unit-testing/), you will likely have
+`transformIgnorePatterns` already defined. In this case, modify the
+configuration to look like the following:
+
+```js
+// jest.config.js
+
+module.exports = {
+  // ...
+  transformIgnorePatterns: [
+    'node_modules/(?!(gatsby||@elastic/react-search-ui-views)/)',
+  ],
+};
+```
+
+### Mocking `ReactDOM.createPortal` for snapshot testing
+
+If you are testing your components using [snapshot
+tests](https://jestjs.io/docs/en/snapshot-testing#snapshot-testing-with-jest)
+while using
+[`react-test-renderer`](https://reactjs.org/docs/test-renderer.html), you may
+encounter the following error while trying to render components that use a
+[portal](https://reactjs.org/docs/portals.html) (such as the `Overlay`
+component):
+
+```
+Warning: An invalid container has been provided. This may indicate that another renderer is being used in addition to the test renderer. (For example, ReactDOM.createPortal inside of a ReactTestRenderer tree.) This is not supported.
+```
+
+As of this writing, there is an outstanding
+[issue](https://github.com/facebook/react/issues/11565) that has not been
+addressed in `react-test-renderer`. To fix this, you will need to create
+a mock for `react-dom` to mock the `createPortal` API. Add the following to your
+project:
+
+```js
+// __mocks__/react-dom.js
+
+module.exports = {
+  ...jest.requireActual('react-dom'),
+  createPortal: (element) => element,
+};
+```
