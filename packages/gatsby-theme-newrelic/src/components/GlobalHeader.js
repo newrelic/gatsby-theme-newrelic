@@ -239,10 +239,6 @@ const GlobalHeader = ({ className, search }) => {
           <li
             css={css`
               display: flex;
-
-              && {
-                margin-left: 1.5rem;
-              }
             `}
           >
             <Button
@@ -253,12 +249,6 @@ const GlobalHeader = ({ className, search }) => {
               size={Button.SIZE.EXTRA_SMALL}
               variant={Button.VARIANT.PRIMARY}
             >
-              <Icon
-                css={css`
-                  margin-right: 0.5rem;
-                `}
-                name={Icon.TYPE.CLOUD}
-              />
               <span>Sign up</span>
             </Button>
           </li>
