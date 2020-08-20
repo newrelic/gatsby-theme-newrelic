@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.7.1...v1.7.2) (2020-08-20)
+
+
+### Bug Fixes
+
+* **Overlay:** bump the z-index to ensure it sits on top of everything ([b6be442](https://github.com/newrelic/gatsby-theme-newrelic/commit/b6be442f6c2f36188596f072ce5bbe6d204d1631)), closes [/github.com/newrelic/opensource-website/pull/608#issuecomment-676723812](https://github.com//github.com/newrelic/opensource-website/pull/608/issues/issuecomment-676723812)
+
+
+
+
+
 ## [1.7.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.7.0...v1.7.1) (2020-08-18)
 
 
