@@ -221,6 +221,11 @@ const reset = css`
   pre {
     margin: 0;
   }
+
+  hr {
+    border: none;
+    border-bottom: 1px solid var(--divider-color);
+  }
 `;
 
 const GlobalStyles = () => (
