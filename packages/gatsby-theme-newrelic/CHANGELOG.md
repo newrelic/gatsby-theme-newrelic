@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.7.2...v1.7.3) (2020-08-21)
+
+
+### Bug Fixes
+
+* use divider color for hr tags ([6808140](https://github.com/newrelic/gatsby-theme-newrelic/commit/68081401583b804c1cac1281483ed10bb960ae4d))
+
+
+
+
+
 ## [1.7.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.7.1...v1.7.2) (2020-08-20)
 
 
