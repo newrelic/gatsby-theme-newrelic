@@ -1,13 +1,11 @@
 import React from 'react';
-import { SplitFactory } from '@splitsoftware/splitio-react';
+import SplitIOProvider from '../src/components/SplitIOProvider';
 
 const wrapRootElement = ({ element }, pluginOptions) => {
   const { splitio } = pluginOptions;
 
   return splitio ? (
-    <SplitFactory updateOnSdkUpdate config={splitio}>
-      {element}
-    </SplitFactory>
+    <SplitIOProvider config={splitio}>{element}</SplitIOProvider>
   ) : (
     element
   );
