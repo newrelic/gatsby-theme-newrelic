@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   siteMetadata: {
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
@@ -15,6 +19,11 @@ module.exports = {
           configs: {
             staging: {},
             production: {},
+          },
+        },
+        splitio: {
+          core: {
+            authorizationKey: process.env.SPLITIO_AUTH_KEY,
           },
         },
       },
