@@ -15,6 +15,8 @@ import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
 import { rgba } from 'polished';
+import useSplitTreatment from '../hooks/useSplitTreatment';
+import { SPLITS } from '../utils/constants';
 
 const UTM_SOURCES = {
   'https://developer.newrelic.com': 'developer-site',
@@ -43,7 +45,7 @@ const actionIcon = css`
   cursor: pointer;
 `;
 
-const GlobalHeader = ({ className }) => {
+const GlobalHeader = ({ className, editUrl }) => {
   const location = useLocation();
   const { queryParams } = useQueryParams();
 
@@ -51,6 +53,7 @@ const GlobalHeader = ({ className }) => {
     query GlobalHeaderQuery {
       site {
         siteMetadata {
+          repository
           siteUrl
         }
         layout {
@@ -62,6 +65,9 @@ const GlobalHeader = ({ className }) => {
   `);
 
   const utmSource = UTM_SOURCES[site.siteMetadata.siteUrl];
+
+  const shouldShowGithubActions =
+    useSplitTreatment(SPLITS.GLOBAL_HEADER_GITHUB_BUTTONS) === 'on';
 
   useKeyPress('/', (e) => {
     // Don't trigger overlay when typing in an input or textarea
@@ -78,7 +84,10 @@ const GlobalHeader = ({ className }) => {
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
 
-  const { layout } = site;
+  const {
+    layout,
+    siteMetadata: { repository },
+  } = site;
 
   return (
     <div
@@ -225,6 +234,35 @@ const GlobalHeader = ({ className }) => {
               <Icon css={actionIcon} name={Icon.TYPE.SEARCH} size="0.875rem" />
             </Link>
           </li>
+          {shouldShowGithubActions && (
+            <>
+              {editUrl && (
+                <li>
+                  <ExternalLink css={actionLink} href={editUrl}>
+                    <Icon
+                      css={actionIcon}
+                      name={Icon.TYPE.EDIT}
+                      size="0.875rem"
+                    />
+                  </ExternalLink>
+                </li>
+              )}
+              {repository && (
+                <li>
+                  <ExternalLink
+                    css={actionLink}
+                    href={`${repository}/issues/new/choose`}
+                  >
+                    <Icon
+                      css={actionIcon}
+                      name={Icon.TYPE.GITHUB}
+                      size="0.875rem"
+                    />
+                  </ExternalLink>
+                </li>
+              )}
+            </>
+          )}
           <li>
             <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
           </li>
@@ -252,6 +290,7 @@ const GlobalHeader = ({ className }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
+  editUrl: PropTypes.string,
   search: PropTypes.bool,
 };
 
