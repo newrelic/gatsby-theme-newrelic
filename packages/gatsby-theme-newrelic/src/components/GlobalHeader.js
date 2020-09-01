@@ -43,7 +43,7 @@ const actionIcon = css`
   cursor: pointer;
 `;
 
-const GlobalHeader = ({ className, search }) => {
+const GlobalHeader = ({ className }) => {
   const location = useLocation();
   const { queryParams } = useQueryParams();
 
@@ -106,22 +106,20 @@ const GlobalHeader = ({ className, search }) => {
           padding: 0 ${layout.contentPadding};
         `}
       >
-        {search && (
-          <Overlay
-            isOpen={queryParams.has('q')}
-            onCloseOverlay={() => navigate(location.pathname)}
-          >
-            <SwiftypeSearch
-              css={css`
-                display: flex;
-                flex-direction: column;
-                max-width: 950px;
-                margin: 3rem auto;
-                height: calc(100vh - 6rem);
-              `}
-            />
-          </Overlay>
-        )}
+        <Overlay
+          isOpen={queryParams.has('q')}
+          onCloseOverlay={() => navigate(location.pathname)}
+        >
+          <SwiftypeSearch
+            css={css`
+              display: flex;
+              flex-direction: column;
+              max-width: 950px;
+              margin: 3rem auto;
+              height: calc(100vh - 6rem);
+            `}
+          />
+        </Overlay>
         <nav
           css={css`
             display: flex;
@@ -222,17 +220,11 @@ const GlobalHeader = ({ className, search }) => {
             }
           `}
         >
-          {search && (
-            <li>
-              <Link to="?q=" css={actionLink}>
-                <Icon
-                  css={actionIcon}
-                  name={Icon.TYPE.SEARCH}
-                  size="0.875rem"
-                />
-              </Link>
-            </li>
-          )}
+          <li>
+            <Link to="?q=" css={actionLink}>
+              <Icon css={actionIcon} name={Icon.TYPE.SEARCH} size="0.875rem" />
+            </Link>
+          </li>
           <li>
             <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
           </li>
