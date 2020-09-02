@@ -15,6 +15,8 @@ import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
 import { rgba } from 'polished';
+import { useTreatments, useTrack } from '@splitsoftware/splitio-react';
+import { SPLITS } from '../utils/constants';
 
 const UTM_SOURCES = {
   'https://developer.newrelic.com': 'developer-site',
@@ -43,7 +45,7 @@ const actionIcon = css`
   cursor: pointer;
 `;
 
-const GlobalHeader = ({ className, search }) => {
+const GlobalHeader = ({ className, editUrl }) => {
   const location = useLocation();
   const { queryParams } = useQueryParams();
 
@@ -51,6 +53,7 @@ const GlobalHeader = ({ className, search }) => {
     query GlobalHeaderQuery {
       site {
         siteMetadata {
+          repository
           siteUrl
         }
         layout {
@@ -62,6 +65,11 @@ const GlobalHeader = ({ className, search }) => {
   `);
 
   const utmSource = UTM_SOURCES[site.siteMetadata.siteUrl];
+  const treatments = useTreatments([SPLITS.GLOBAL_HEADER_GITHUB_BUTTONS]);
+  const track = useTrack();
+
+  const shouldShowGithubActions =
+    treatments[SPLITS.GLOBAL_HEADER_GITHUB_BUTTONS].treatment === 'on';
 
   useKeyPress('/', (e) => {
     // Don't trigger overlay when typing in an input or textarea
@@ -78,7 +86,10 @@ const GlobalHeader = ({ className, search }) => {
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
 
-  const { layout } = site;
+  const {
+    layout,
+    siteMetadata: { repository },
+  } = site;
 
   return (
     <div
@@ -106,22 +117,20 @@ const GlobalHeader = ({ className, search }) => {
           padding: 0 ${layout.contentPadding};
         `}
       >
-        {search && (
-          <Overlay
-            isOpen={queryParams.has('q')}
-            onCloseOverlay={() => navigate(location.pathname)}
-          >
-            <SwiftypeSearch
-              css={css`
-                display: flex;
-                flex-direction: column;
-                max-width: 950px;
-                margin: 3rem auto;
-                height: calc(100vh - 6rem);
-              `}
-            />
-          </Overlay>
-        )}
+        <Overlay
+          isOpen={queryParams.has('q')}
+          onCloseOverlay={() => navigate(location.pathname)}
+        >
+          <SwiftypeSearch
+            css={css`
+              display: flex;
+              flex-direction: column;
+              max-width: 950px;
+              margin: 3rem auto;
+              height: calc(100vh - 6rem);
+            `}
+          />
+        </Overlay>
         <nav
           css={css`
             display: flex;
@@ -222,20 +231,48 @@ const GlobalHeader = ({ className, search }) => {
             }
           `}
         >
-          {search && (
-            <li>
-              <Link to="?q=" css={actionLink}>
-                <Icon
-                  css={actionIcon}
-                  name={Icon.TYPE.SEARCH}
-                  size="0.875rem"
-                />
-              </Link>
-            </li>
-          )}
+          <li>
+            <Link to="?q=" css={actionLink}>
+              <Icon css={actionIcon} name={Icon.TYPE.SEARCH} size="0.875rem" />
+            </Link>
+          </li>
           <li>
             <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
           </li>
+          {shouldShowGithubActions && (
+            <>
+              {editUrl && (
+                <li>
+                  <ExternalLink
+                    css={actionLink}
+                    href={editUrl}
+                    onClick={() => track('global_header.gh_edit_link_clicked')}
+                  >
+                    <Icon
+                      css={actionIcon}
+                      name={Icon.TYPE.EDIT}
+                      size="0.875rem"
+                    />
+                  </ExternalLink>
+                </li>
+              )}
+              {repository && (
+                <li>
+                  <ExternalLink
+                    css={actionLink}
+                    href={`${repository}/issues/new/choose`}
+                    onClick={() => track('global_header.gh_issue_link_clicked')}
+                  >
+                    <Icon
+                      css={actionIcon}
+                      name={Icon.TYPE.GITHUB}
+                      size="0.875rem"
+                    />
+                  </ExternalLink>
+                </li>
+              )}
+            </>
+          )}
           <li
             css={css`
               display: flex;
@@ -260,7 +297,7 @@ const GlobalHeader = ({ className, search }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
-  search: PropTypes.bool,
+  editUrl: PropTypes.string,
 };
 
 export default GlobalHeader;
