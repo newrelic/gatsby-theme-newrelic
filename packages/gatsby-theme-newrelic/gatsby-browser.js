@@ -1,7 +1,8 @@
 import React from 'react';
-import wrapPageElement from './gatsby/wrap-page-element';
 import SplitIOProvider from './src/components/SplitIOProvider';
 import getSplitConfig from './src/utils/getSplitConfig';
+
+export { default as wrapPageElement } from './gatsby/wrap-page-element';
 
 export const wrapRootElement = ({ element }, pluginOptions) => {
   return pluginOptions.splitio ? (
@@ -12,5 +13,3 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
     element
   );
 };
-
-export { wrapPageElement };
