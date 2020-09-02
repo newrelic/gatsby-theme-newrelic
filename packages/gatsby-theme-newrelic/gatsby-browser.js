@@ -1,5 +1,4 @@
-const wrapPageElement = require('./gatsby/wrap-page-element').default;
-const wrapRootElement = require('./gatsby/wrap-root-element').default;
+import wrapPageElement from './gatsby/wrap-page-element';
+import wrapRootElement from './gatsby/wrap-root-element';
 
-exports.wrapPageElement = wrapPageElement;
-exports.wrapRootElement = wrapRootElement;
+export { wrapPageElement, wrapRootElement };
