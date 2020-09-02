@@ -40,6 +40,7 @@ websites](https://opensource.newrelic.com).
   - [`useKeyPress`](#usekeypress)
   - [`useQueryParams`](#usequeryparams)
   - [`useTimeout`](#usetimeout)
+  - [`useUserId`](#useuserid)
 - [Utils](#utils)
   - [`formatCode`](#formatcode)
 - [Testing](#testing)
@@ -1168,6 +1169,43 @@ const SpecialButton = () => {
       {active ? 'Activated' : 'Activate'}
     </button>
   );
+};
+```
+
+### `useUserId`
+
+A hook that gets a generated user ID for the user browsing the site. Useful for
+use with Google Analytics or split.io.
+
+```js
+import { useUserId } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+none
+
+**Returns**
+
+`String` - The `id` of the user browsing the site.
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const userId = useUserId();
+
+  useEffect(() => {
+    const trackingId = 'UA-1284...';
+
+    ReactGA.initialize(trackingId, {
+      gaOptions: {
+        userId,
+      },
+    });
+  }, []);
+
+  return null;
 };
 ```
 
