@@ -1,5 +1,3 @@
-import React from 'react';
-import SplitIOProvider from '../src/components/SplitIOProvider';
 import { merge, omit } from 'lodash';
 
 const DEFAULT_ENV = 'development';
@@ -17,14 +15,4 @@ const getSplitConfig = (pluginOptions) => {
   return merge(omit(splitio, ['env', 'resolveEnv']), envOptions);
 };
 
-const wrapRootElement = ({ element }, pluginOptions) => {
-  return pluginOptions.splitio ? (
-    <SplitIOProvider config={getSplitConfig(pluginOptions)}>
-      {element}
-    </SplitIOProvider>
-  ) : (
-    element
-  );
-};
-
-export default wrapRootElement;
+export default getSplitConfig;
