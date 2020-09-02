@@ -9,6 +9,6 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!(gatsby||@elastic/react-search-ui-views)/)',
   ],
-  setupFiles: ['<rootDir>/loadershim.js'],
+  setupFiles: ['<rootDir>/loadershim.js', 'jest-localstorage-mock'],
   setupFilesAfterEnv: ['<rootDir>/setup-test-env.js'],
 };
