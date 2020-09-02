@@ -1182,8 +1182,8 @@ const SpecialButton = () => {
 
 ### `useUserId`
 
-A hook that gets a generated user ID for the user browsing the site. Useful for
-use with Google Analytics or split.io.
+A hook that gets a generated user ID for the user browsing the site. Useful to
+provide a stable ID for integration with Google Analytics or split.io.
 
 ```js
 import { useUserId } from '@newrelic/gatsby-theme-newrelic';
