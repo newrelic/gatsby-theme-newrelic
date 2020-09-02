@@ -15,7 +15,7 @@ import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
 import { rgba } from 'polished';
-import { useTreatments } from '@splitsoftware/splitio-react';
+import { useTreatments, useTrack } from '@splitsoftware/splitio-react';
 import { SPLITS } from '../utils/constants';
 
 const UTM_SOURCES = {
@@ -66,6 +66,7 @@ const GlobalHeader = ({ className, editUrl }) => {
 
   const utmSource = UTM_SOURCES[site.siteMetadata.siteUrl];
   const treatments = useTreatments([SPLITS.GLOBAL_HEADER_GITHUB_BUTTONS]);
+  const track = useTrack();
 
   const shouldShowGithubActions =
     treatments[SPLITS.GLOBAL_HEADER_GITHUB_BUTTONS].treatment === 'on';
@@ -239,7 +240,11 @@ const GlobalHeader = ({ className, editUrl }) => {
             <>
               {editUrl && (
                 <li>
-                  <ExternalLink css={actionLink} href={editUrl}>
+                  <ExternalLink
+                    css={actionLink}
+                    href={editUrl}
+                    onClick={() => track('global_header.gh_edit_link_clicked')}
+                  >
                     <Icon
                       css={actionIcon}
                       name={Icon.TYPE.EDIT}
@@ -253,6 +258,7 @@ const GlobalHeader = ({ className, editUrl }) => {
                   <ExternalLink
                     css={actionLink}
                     href={`${repository}/issues/new/choose`}
+                    onClick={() => track('global_header.gh_issue_link_clicked')}
                   >
                     <Icon
                       css={actionIcon}
