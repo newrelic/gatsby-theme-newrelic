@@ -12,6 +12,7 @@
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
     "@testing-library/react": "^10.4.8",
+    "@testing-library/react-hooks": "^3.4.1",
     "babel-jest": "^26.3.0",
     "babel-preset-gatsby": "^0.5.5",
     "eslint": "^7.4.0",
