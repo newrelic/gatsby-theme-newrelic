@@ -67,6 +67,7 @@ const styles = {
       }
     `,
     [VARIANTS.OUTLINE]: css`
+      color: var(--color-neutrals-700);
       border: 1px solid var(--border-color);
       background-color: transparent;
 
