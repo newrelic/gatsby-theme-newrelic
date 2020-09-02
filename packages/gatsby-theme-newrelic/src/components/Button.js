@@ -7,6 +7,7 @@ const VARIANTS = {
   PRIMARY: 'primary',
   NORMAL: 'normal',
   LINK: 'link',
+  OUTLINE: 'outline',
 };
 
 const SIZES = {
@@ -62,6 +63,24 @@ const styles = {
         &:hover {
           color: var(--color-brand-200);
           background-color: ${rgba('#70ccd2', 0.17)};
+        }
+      }
+    `,
+    [VARIANTS.OUTLINE]: css`
+      border: 1px solid var(--border-color);
+      background-color: transparent;
+
+      &:hover {
+        color: var(--color-brand-600);
+        border-color: var(--color-brand-500);
+      }
+
+      .dark-mode & {
+        color: var(--color-dark-700);
+
+        &:hover {
+          color: var(--color-brand-200);
+          border-color: ${rgba('#70ccd2', 0.17)};
         }
       }
     `,
