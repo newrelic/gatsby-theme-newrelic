@@ -1,5 +1,6 @@
 import useUserId from '../useUserId';
 import { renderHook } from '@testing-library/react-hooks';
+import { STORAGE_KEYS } from '../../utils/constants';
 
 beforeEach(() => {
   localStorage.clear();
@@ -22,7 +23,7 @@ test('sets the generated user ID in local storage for persistence', () => {
 
   expect(localStorage.setItem).toHaveBeenCalledTimes(1);
   expect(localStorage.setItem).toHaveBeenLastCalledWith(
-    'gatsby-theme-newrelic:userId',
+    STORAGE_KEYS.USER_ID,
     expect.any(String)
   );
 });

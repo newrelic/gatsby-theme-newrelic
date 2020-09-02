@@ -1,7 +1,8 @@
 import createPersistedState from 'use-persisted-state';
 import generateUUID from '../utils/generateUUID';
+import { STORAGE_KEYS } from '../utils/constants';
 
-const useUserIdState = createPersistedState('gatsby-theme-newrelic:userId');
+const useUserIdState = createPersistedState(STORAGE_KEYS.USER_ID);
 
 const useUserId = () => {
   const [userId] = useUserIdState(generateUUID);
