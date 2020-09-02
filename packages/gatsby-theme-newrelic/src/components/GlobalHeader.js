@@ -236,6 +236,9 @@ const GlobalHeader = ({ className, editUrl }) => {
               <Icon css={actionIcon} name={Icon.TYPE.SEARCH} size="0.875rem" />
             </Link>
           </li>
+          <li>
+            <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
+          </li>
           {shouldShowGithubActions && (
             <>
               {editUrl && (
@@ -270,9 +273,6 @@ const GlobalHeader = ({ className, editUrl }) => {
               )}
             </>
           )}
-          <li>
-            <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
-          </li>
           <li
             css={css`
               display: flex;
