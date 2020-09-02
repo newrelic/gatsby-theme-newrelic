@@ -15,7 +15,7 @@ import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
 import { rgba } from 'polished';
-import useSplitTreatment from '../hooks/useSplitTreatment';
+import { useTreatments } from '@splitsoftware/splitio-react';
 import { SPLITS } from '../utils/constants';
 
 const UTM_SOURCES = {
@@ -65,9 +65,10 @@ const GlobalHeader = ({ className, editUrl }) => {
   `);
 
   const utmSource = UTM_SOURCES[site.siteMetadata.siteUrl];
+  const treatments = useTreatments([SPLITS.GLOBAL_HEADER_GITHUB_BUTTONS]);
 
   const shouldShowGithubActions =
-    useSplitTreatment(SPLITS.GLOBAL_HEADER_GITHUB_BUTTONS) === 'on';
+    treatments[SPLITS.GLOBAL_HEADER_GITHUB_BUTTONS].treatment === 'on';
 
   useKeyPress('/', (e) => {
     // Don't trigger overlay when typing in an input or textarea
