@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.7.3...v1.8.0) (2020-09-02)
+
+
+### Bug Fixes
+
+* always enable search ([f43f226](https://github.com/newrelic/gatsby-theme-newrelic/commit/f43f2266409fd1c4d81d72c62ea2814faf799d7f))
+* small tweak to button transition ([5fba04a](https://github.com/newrelic/gatsby-theme-newrelic/commit/5fba04a31ae63d5efe3594bfc4cb00281d13ee0a))
+* track clicks to the global header links ([de5a52c](https://github.com/newrelic/gatsby-theme-newrelic/commit/de5a52c5a6a2536f5529223b26d492eb59ed1be4))
+
+
+### Features
+
+* **Button:** add a new outline variant ([da8fdbd](https://github.com/newrelic/gatsby-theme-newrelic/commit/da8fdbdc18c4b2019e89f577aa8e6643bc06a839))
+* add a useSplitTreatment hook to make getting a treatment easier ([4293736](https://github.com/newrelic/gatsby-theme-newrelic/commit/4293736f0b7d9bb7aa7883e7f43d98dfa7dc22ca))
+* add a useUserId hook to generate a unique ID for the browser ([d1f4f79](https://github.com/newrelic/gatsby-theme-newrelic/commit/d1f4f792f84cbcd9331b6499601d1fdb531838d4))
+* add a utility for generating UUIDs ([cb23131](https://github.com/newrelic/gatsby-theme-newrelic/commit/cb23131f05d588ed43a2edf6aeba5b39b2844395))
+* add back github buttons using split treatment ([b06a841](https://github.com/newrelic/gatsby-theme-newrelic/commit/b06a841ffcec675b9026d0376b288f7b27317d23))
+* create a SplitIOProvider component to wrap the site ([ea76dda](https://github.com/newrelic/gatsby-theme-newrelic/commit/ea76ddae2372e5cf4df4664e86c8096625a1038a))
+* wrap the root element with splitio config if splitio config is defined ([e237db1](https://github.com/newrelic/gatsby-theme-newrelic/commit/e237db1f374e8817c706b2848eaa6b494fcf2191))
+
+
+
+
+
 ## [1.7.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.7.2...v1.7.3) (2020-08-21)
 
 
