@@ -43,7 +43,6 @@
     "@elastic/react-search-ui": "^1.4.1",
     "@elastic/react-search-ui-views": "^1.4.1",
     "@elastic/search-ui-site-search-connector": "^1.4.1",
-    "@use-it/event-listener": "^0.1.5",
     "@wry/equality": "^0.2.0",
     "babel-plugin-prismjs": "^2.0.1",
     "gatsby-plugin-emotion": "^4.3.10",
@@ -64,6 +63,7 @@
     "react-simple-code-editor": "^0.11.0",
     "react-spring": "^8.0.27",
     "use-dark-mode": "^2.3.1",
-    "use-media": "^1.4.0"
+    "use-media": "^1.4.0",
+    "use-persisted-state": "^0.3.0"
   }
 }

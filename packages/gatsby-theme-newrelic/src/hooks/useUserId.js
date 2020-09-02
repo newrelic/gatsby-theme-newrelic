@@ -1,26 +1,12 @@
-import { useState, useEffect } from 'react';
-import useEventListener from '@use-it/event-listener';
+import createPersistedState from 'use-persisted-state';
 import generateUUID from '../utils/generateUUID';
-import storage from '../utils/storage';
 
-const STORAGE_KEY = 'gatsby-theme-newrelic--userID';
+const useUserIdState = createPersistedState('gatsby-theme-newrelic:userId');
 
 const useUserId = () => {
-  const [state, setState] = useState(() =>
-    storage.get(STORAGE_KEY, generateUUID())
-  );
+  const [userId] = useUserIdState(generateUUID);
 
-  useEventListener('storage', ({ key, newValue }) => {
-    if (key === STORAGE_KEY && state !== newValue) {
-      setState(newValue);
-    }
-  });
-
-  useEffect(() => {
-    storage.set(STORAGE_KEY, state);
-  }, [state]);
-
-  return state;
+  return userId;
 };
 
 export default useUserId;
