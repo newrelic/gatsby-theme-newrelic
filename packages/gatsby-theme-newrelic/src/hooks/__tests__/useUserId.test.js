@@ -19,12 +19,12 @@ test('generates a user ID if the user ID is not in local storage', () => {
 test('sets the generated user ID in local storage for persistence', () => {
   localStorage.getItem.mockReturnValue(null);
 
-  renderHook(() => useUserId());
+  const { result } = renderHook(() => useUserId());
 
   expect(localStorage.setItem).toHaveBeenCalledTimes(1);
   expect(localStorage.setItem).toHaveBeenLastCalledWith(
     STORAGE_KEYS.USER_ID,
-    expect.any(String)
+    JSON.stringify(result.current)
   );
 });
 
