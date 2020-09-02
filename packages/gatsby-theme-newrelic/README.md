@@ -309,11 +309,11 @@ import { Button } from '@newrelic/gatsby-theme-newrelic'`
 
 **Props**
 
-| Prop    | Type          | Required | Default  | Description                                                                                                                      |
-| ------- | ------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| variant | enum          | yes      |          | Configures the variant of the button. Must be one of `Button.VARIANT.LINK`, `Button.VARIANT.PRIMARY`, or `Button.VARIANT.NORMAL` |
-| size    | enum          | no       |          | Configures the size of the button. Can be configured to `Button.SIZE.SMALL`                                                      |
-| as      | React element | no       | `button` | Render the button as a different base element. Useful when you want to style links as buttons.                                   |
+| Prop    | Type          | Required | Default  | Description                                                                                                                                        |
+| ------- | ------------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| variant | enum          | yes      |          | Configures the variant of the button. Must be one of `Button.VARIANT.LINK`, `Button.VARIANT.PRIMARY`, `Button.OUTLINE`, or `Button.VARIANT.NORMAL` |
+| size    | enum          | no       |          | Configures the size of the button. Can be configured to `Button.SIZE.SMALL`                                                                        |
+| as      | React element | no       | `button` | Render the button as a different base element. Useful when you want to style links as buttons.                                                     |
 
 Additional props are forwarded to the underlying element specified by the `as`
 prop.

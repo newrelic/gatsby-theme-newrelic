@@ -163,6 +163,12 @@ const IndexPage = ({ data }) => {
             </Button>
             <Button
               onClick={() => alert('Hello!')}
+              variant={Button.VARIANT.OUTLINE}
+            >
+              Outline
+            </Button>
+            <Button
+              onClick={() => alert('Hello!')}
               variant={Button.VARIANT.LINK}
             >
               Link
