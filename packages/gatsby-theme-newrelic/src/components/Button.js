@@ -85,7 +85,7 @@ const Button = styled.button`
   cursor: pointer;
   border-width: 1px;
   border-style: solid;
-  transition: all 0.09s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.15s ease-out;
   white-space: nowrap;
 
   &:hover {
