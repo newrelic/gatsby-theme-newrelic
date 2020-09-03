@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Button from './Button';
 import Icon from './Icon';
 
-const Banner = ({ children, color }) => {
+const TYPES = {
+  NORMAL: 'normal',
+};
+
+const styles = {
+  [TYPES.NORMAL]: css`
+    min-height: 5.625rem;
+    background-color: var(--secondary-background-color);
+  `,
+};
+
+const Banner = ({ children, type }) => {
   const [visible, updateVisible] = useState(true);
 
   if (!visible) return null;
@@ -11,9 +23,8 @@ const Banner = ({ children, color }) => {
   return (
     <div
       css={css`
-        height: 90px;
-        background-color: ${color || '--tertiary-background-color'};
         padding: 1rem;
+        ${styles[type]}
       `}
     >
       <Button
@@ -31,6 +42,17 @@ const Banner = ({ children, color }) => {
       {children}
     </div>
   );
+};
+
+Banner.TYPES = TYPES;
+
+Banner.propTypes = {
+  children: PropTypes.node.isRequired,
+  type: PropTypes.oneOf(Object.values(Banner.TYPES)).isRequired,
+};
+
+Banner.defaultProps = {
+  type: TYPES.NORMAL,
 };
 
 export default Banner;

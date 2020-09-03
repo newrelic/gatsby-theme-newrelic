@@ -44,7 +44,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
-      <Banner color=" --accent-text-color">
+      <Banner>
         <p>This is a marketing banner!</p>
       </Banner>
       <GlobalHeader
