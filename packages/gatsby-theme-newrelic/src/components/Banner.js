@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/core';
 import Button from './Button';
+import Icon from './Icon';
 
 const Banner = ({ children, color }) => {
   const [visible, updateVisible] = useState(true);
@@ -25,7 +26,7 @@ const Banner = ({ children, color }) => {
           right: 0;
         `}
       >
-        close
+        <Icon size="0.875rem" name="x"></Icon>
       </Button>
       {children}
     </div>

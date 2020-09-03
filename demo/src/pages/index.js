@@ -44,7 +44,9 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
-      <Banner />
+      <Banner color=" --accent-text-color">
+        <p>This is a marketing banner!</p>
+      </Banner>
       <GlobalHeader
         editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
         search
