@@ -13,10 +13,11 @@ const getSplitConfig = (pluginOptions) => {
 
   const {
     env = {},
-    resolveEnv = () => process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV,
+    resolveEnv = () =>
+      process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || DEFAULT_ENV,
   } = splitio;
 
-  const envOptions = env[resolveEnv()] || env[DEFAULT_ENV] || {};
+  const envOptions = env[resolveEnv()] || {};
 
   return merge(
     DEFAULT_CONFIG,
