@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.8.0...v1.8.1) (2020-09-03)
+
+
+### Bug Fixes
+
+* do not fall back to development settings when resolving env options ([1778665](https://github.com/newrelic/gatsby-theme-newrelic/commit/1778665b8bc3c528534eec3fcf27b8118f7aafbc))
+
+
+
+
+
 # [1.8.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.7.3...v1.8.0) (2020-09-02)
 
 
