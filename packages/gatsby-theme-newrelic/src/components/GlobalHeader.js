@@ -4,7 +4,6 @@ import { css } from '@emotion/core';
 import { graphql, useStaticQuery, navigate, Link } from 'gatsby';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
-import Banner from './Banner';
 import Button from './Button';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
