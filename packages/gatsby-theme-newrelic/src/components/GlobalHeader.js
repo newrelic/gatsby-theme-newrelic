@@ -16,7 +16,7 @@ import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
 import { rgba } from 'polished';
 import { useTreatments, useTrack } from '@splitsoftware/splitio-react';
-import { SPLITS } from '../utils/constants';
+import { SPLITS, SPLIT_TRACKING_EVENTS } from '../utils/constants';
 
 const UTM_SOURCES = {
   'https://developer.newrelic.com': 'developer-site',
@@ -245,7 +245,15 @@ const GlobalHeader = ({ className, editUrl }) => {
             </Link>
           </li>
           <li>
-            <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
+            <DarkModeToggle
+              css={[actionIcon, action]}
+              size="0.875rem"
+              onClick={() =>
+                track('global_header.action_clicked', null, {
+                  action: 'dark_mode',
+                })
+              }
+            />
           </li>
           {shouldShowGithubActions && (
             <>

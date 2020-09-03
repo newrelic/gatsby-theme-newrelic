@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
 import useDarkMode from 'use-dark-mode';
-import { useTrack } from '@splitsoftware/splitio-react';
 
-const DarkModeToggle = ({ className, size }) => {
+const DarkModeToggle = ({ className, size, onClick }) => {
   const darkMode = useDarkMode();
-  const track = useTrack();
 
   return (
     <Icon
       name={darkMode.value ? Icon.TYPE.SUN : Icon.TYPE.MOON}
       className={className}
       size={size}
-      onClick={() => {
+      onClick={(e) => {
         darkMode.toggle();
 
-        track('global_header.action_clicked', null, { action: 'dark_mode' });
+        if (onClick) {
+          onClick(e);
+        }
       }}
       css={css`
         cursor: pointer;
@@ -29,6 +29,7 @@ const DarkModeToggle = ({ className, size }) => {
 DarkModeToggle.propTypes = {
   className: PropTypes.string,
   size: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default DarkModeToggle;
