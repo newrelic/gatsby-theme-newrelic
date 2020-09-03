@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.8.1...v1.8.2) (2020-09-03)
+
+
+### Bug Fixes
+
+* **Button:** ensure all buttons are the same size regardless of border ([efeb5fe](https://github.com/newrelic/gatsby-theme-newrelic/commit/efeb5fec31344dd0ef0c6539ffd238b21947466c))
+* track clicks to all actions in the global header under a common event ([314c365](https://github.com/newrelic/gatsby-theme-newrelic/commit/314c365877c1ad1ae615dd5be870041b40c9214a))
+
+
+
+
+
 ## [1.8.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.8.0...v1.8.1) (2020-09-03)
 
 
