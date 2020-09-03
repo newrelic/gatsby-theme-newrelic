@@ -147,6 +147,7 @@ const IndexPage = ({ data }) => {
               display: flex;
               gap: 1rem;
               margin-bottom: 2rem;
+              align-items: start;
             `}
           >
             <Button
