@@ -28,7 +28,6 @@ const styles = {
   },
   variant: {
     [VARIANTS.PRIMARY]: css`
-      border: 0;
       color: var(--color-white);
       background-color: var(--color-brand-600);
 
@@ -38,7 +37,6 @@ const styles = {
       }
     `,
     [VARIANTS.LINK]: css`
-      border: 0;
       color: var(--link-color);
       background: transparent;
 
@@ -47,7 +45,6 @@ const styles = {
       }
     `,
     [VARIANTS.NORMAL]: css`
-      border: 0;
       color: var(--color-neutrals-700);
       background-color: var(--color-neutrals-100);
 
@@ -103,8 +100,7 @@ const Button = styled.button`
   font-family: var(--primary-font-family);
   line-height: 1;
   cursor: pointer;
-  border-width: 1px;
-  border-style: solid;
+  border: 1px solid transparent;
   transition: all 0.15s ease-out;
   white-space: nowrap;
 
