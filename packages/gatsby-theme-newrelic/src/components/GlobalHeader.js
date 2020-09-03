@@ -232,7 +232,15 @@ const GlobalHeader = ({ className, editUrl }) => {
           `}
         >
           <li>
-            <Link to="?q=" css={actionLink}>
+            <Link
+              to="?q="
+              css={actionLink}
+              onClick={() =>
+                track('global_header.action_clicked', null, {
+                  action: 'search',
+                })
+              }
+            >
               <Icon css={actionIcon} name={Icon.TYPE.SEARCH} size="0.875rem" />
             </Link>
           </li>
@@ -246,7 +254,11 @@ const GlobalHeader = ({ className, editUrl }) => {
                   <ExternalLink
                     css={actionLink}
                     href={editUrl}
-                    onClick={() => track('global_header.gh_edit_link_clicked')}
+                    onClick={() =>
+                      track('global_header.action_clicked', null, {
+                        action: 'edit_page',
+                      })
+                    }
                   >
                     <Icon
                       css={actionIcon}
@@ -261,7 +273,11 @@ const GlobalHeader = ({ className, editUrl }) => {
                   <ExternalLink
                     css={actionLink}
                     href={`${repository}/issues/new/choose`}
-                    onClick={() => track('global_header.gh_issue_link_clicked')}
+                    onClick={() =>
+                      track('global_header.action_clicked', null, {
+                        action: 'issues',
+                      })
+                    }
                   >
                     <Icon
                       css={actionIcon}
