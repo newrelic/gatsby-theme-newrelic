@@ -236,7 +236,7 @@ const GlobalHeader = ({ className, editUrl }) => {
               to="?q="
               css={actionLink}
               onClick={() =>
-                track('global_header.action_clicked', null, {
+                track(SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION, null, {
                   action: 'search',
                 })
               }
@@ -249,7 +249,7 @@ const GlobalHeader = ({ className, editUrl }) => {
               css={[actionIcon, action]}
               size="0.875rem"
               onClick={() =>
-                track('global_header.action_clicked', null, {
+                track(SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION, null, {
                   action: 'dark_mode',
                 })
               }
@@ -263,9 +263,13 @@ const GlobalHeader = ({ className, editUrl }) => {
                     css={actionLink}
                     href={editUrl}
                     onClick={() =>
-                      track('global_header.action_clicked', null, {
-                        action: 'edit_page',
-                      })
+                      track(
+                        SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
+                        null,
+                        {
+                          action: 'edit_page',
+                        }
+                      )
                     }
                   >
                     <Icon
@@ -282,9 +286,13 @@ const GlobalHeader = ({ className, editUrl }) => {
                     css={actionLink}
                     href={`${repository}/issues/new/choose`}
                     onClick={() =>
-                      track('global_header.action_clicked', null, {
-                        action: 'issues',
-                      })
+                      track(
+                        SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
+                        null,
+                        {
+                          action: 'issues',
+                        }
+                      )
                     }
                   >
                     <Icon
