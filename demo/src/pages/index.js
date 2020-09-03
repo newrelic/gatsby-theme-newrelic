@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import {
+  Banner,
   Button,
   CodeBlock,
   Feedback,
@@ -43,6 +44,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <>
+      <Banner />
       <GlobalHeader
         editUrl={`${siteMetadata.repository}/tree/develop/demo/src/pages/index.js`}
         search
