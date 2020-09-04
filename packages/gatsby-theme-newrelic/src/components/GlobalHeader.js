@@ -16,7 +16,7 @@ import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
 import { rgba } from 'polished';
 import { useTreatments, useTrack } from '@splitsoftware/splitio-react';
-import { SPLITS } from '../utils/constants';
+import { SPLITS, SPLIT_TRACKING_EVENTS } from '../utils/constants';
 
 const UTM_SOURCES = {
   'https://developer.newrelic.com': 'developer-site',
@@ -232,12 +232,28 @@ const GlobalHeader = ({ className, editUrl }) => {
           `}
         >
           <li>
-            <Link to="?q=" css={actionLink}>
+            <Link
+              to="?q="
+              css={actionLink}
+              onClick={() =>
+                track(SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION, null, {
+                  action: 'search',
+                })
+              }
+            >
               <Icon css={actionIcon} name={Icon.TYPE.SEARCH} size="0.875rem" />
             </Link>
           </li>
           <li>
-            <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
+            <DarkModeToggle
+              css={[actionIcon, action]}
+              size="0.875rem"
+              onClick={() =>
+                track(SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION, null, {
+                  action: 'dark_mode',
+                })
+              }
+            />
           </li>
           {shouldShowGithubActions && (
             <>
@@ -246,7 +262,15 @@ const GlobalHeader = ({ className, editUrl }) => {
                   <ExternalLink
                     css={actionLink}
                     href={editUrl}
-                    onClick={() => track('global_header.gh_edit_link_clicked')}
+                    onClick={() =>
+                      track(
+                        SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
+                        null,
+                        {
+                          action: 'edit_page',
+                        }
+                      )
+                    }
                   >
                     <Icon
                       css={actionIcon}
@@ -261,7 +285,15 @@ const GlobalHeader = ({ className, editUrl }) => {
                   <ExternalLink
                     css={actionLink}
                     href={`${repository}/issues/new/choose`}
-                    onClick={() => track('global_header.gh_issue_link_clicked')}
+                    onClick={() =>
+                      track(
+                        SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
+                        null,
+                        {
+                          action: 'issues',
+                        }
+                      )
+                    }
                   >
                     <Icon
                       css={actionIcon}

@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import Icon from './Icon';
 import useDarkMode from 'use-dark-mode';
 
-const DarkModeToggle = ({ className, size }) => {
+const DarkModeToggle = ({ className, size, onClick }) => {
   const darkMode = useDarkMode();
 
   return (
@@ -12,7 +12,13 @@ const DarkModeToggle = ({ className, size }) => {
       name={darkMode.value ? Icon.TYPE.SUN : Icon.TYPE.MOON}
       className={className}
       size={size}
-      onClick={darkMode.toggle}
+      onClick={(e) => {
+        darkMode.toggle();
+
+        if (onClick) {
+          onClick(e);
+        }
+      }}
       css={css`
         cursor: pointer;
       `}
@@ -23,6 +29,7 @@ const DarkModeToggle = ({ className, size }) => {
 DarkModeToggle.propTypes = {
   className: PropTypes.string,
   size: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default DarkModeToggle;
