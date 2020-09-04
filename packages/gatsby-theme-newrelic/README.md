@@ -20,6 +20,7 @@ websites](https://opensource.newrelic.com).
     - [`splitio`](#splitio)
       - [Environment-specific configuration](#environment-specific-configuration)
 - [Components](#components)
+  - [`Banner`](#banner)
   - [`Button`](#button)
   - [`CodeBlock`](#codeblock)
   - [`ExternalLink`](#externallink)
@@ -298,6 +299,29 @@ module.exports = {
 ```
 
 ## Components
+
+### `Banner`
+
+Used to add a marketing banner to a page.
+
+```js
+import { Banner } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type   | Required | Default               | Description                                                                                        |
+| ---------- | ------ | -------- | --------------------- | -------------------------------------------------------------------------------------------------- |
+| `children` | node   | yes      |                       | Content to be displayed in the banner.                                                             |
+| `type`     | string | yes      | `Banner.TYPES.NORMAL` | Specifies which built-in style the banner should have. Must be one of the exported `Banner.TYPES`. |
+
+**Example**
+
+```jsx
+<Banner>
+  <h1>Hello, World!</h1>
+</Banner>
+```
 
 ### `Button`
 
