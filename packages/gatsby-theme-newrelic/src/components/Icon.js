@@ -13,7 +13,7 @@ const TYPES = transformKeys(
   constantize
 );
 
-const Icon = ({ name, size, ...props }) => {
+const Icon = ({ name, size, defs, ...props }) => {
   const featherIcon = featherIcons[name];
 
   if (featherIcon) {
@@ -25,6 +25,7 @@ const Icon = ({ name, size, ...props }) => {
         `}
         {...props}
       >
+        {defs && <defs>{defs}</defs>}
         {featherIcon}
       </FeatherSVG>
     );
@@ -34,6 +35,7 @@ const Icon = ({ name, size, ...props }) => {
 };
 
 Icon.propTypes = {
+  defs: PropTypes.node,
   name: PropTypes.oneOf(Object.values(TYPES)).isRequired,
   size: PropTypes.string,
 };
