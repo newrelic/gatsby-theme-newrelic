@@ -59,13 +59,13 @@ depends on its packages. To install this package, add the
 npm:
 
 ```sh
-npm install @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled
+npm install @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react
 ```
 
 yarn:
 
 ```sh
-yarn add @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled
+yarn add @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react
 ```
 
 ## Configuration

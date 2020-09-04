@@ -25,6 +25,7 @@ module.exports = ({ newrelic, robots = {} }) => {
         resolve: 'gatsby-plugin-newrelic',
         options: newrelic,
       },
+      'gatsby-plugin-mdx',
     ].filter(Boolean),
   };
 };
