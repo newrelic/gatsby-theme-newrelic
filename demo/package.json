@@ -9,6 +9,8 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@mdx-js/mdx": "^1.6.16",
+    "@mdx-js/react": "^1.6.16",
     "@newrelic/gatsby-theme-newrelic": "^0.1.8",
     "gatsby": "^2.24.2",
     "react": "^16.13.1",
