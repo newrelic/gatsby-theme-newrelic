@@ -6,4 +6,5 @@ export const SPLITS = {
 
 export const STORAGE_KEYS = {
   USER_ID: prefixStorageKey('userId'),
+  BANNER_ID: prefixStorageKey('bannerId'),
 };

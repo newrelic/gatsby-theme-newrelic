@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Button from './Button';
 import Icon from './Icon';
+import createPersistedState from 'use-persisted-state';
+import { STORAGE_KEYS } from '../utils/constants';
+
+const useBannerIdState = createPersistedState(STORAGE_KEYS.BANNER_ID);
 
 const TYPES = {
   NORMAL: 'normal',
@@ -16,7 +20,15 @@ const styles = {
 };
 
 const Banner = ({ children, type }) => {
-  const [visible, updateVisible] = useState(true);
+  const [visible, setVisible] = useState(true);
+  const [bannerId, setBannerId] = useBannerIdState();
+  const childrenHash = btoa(children);
+
+  useEffect(() => {
+    if (bannerId === childrenHash) {
+      setVisible(false);
+    }
+  }, [bannerId, childrenHash]);
 
   if (!visible) return null;
 
@@ -30,7 +42,7 @@ const Banner = ({ children, type }) => {
       <Button
         variant={Button.VARIANT.LINK}
         size={Button.SIZE.EXTRA_SMALL}
-        onClick={() => updateVisible(false)}
+        onClick={() => setBannerId(childrenHash)}
         css={css`
           position: absolute;
           top: 0;
