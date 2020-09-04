@@ -10,5 +10,5 @@ export const SPLIT_TRACKING_EVENTS = {
 
 export const STORAGE_KEYS = {
   USER_ID: prefixStorageKey('userId'),
-  BANNER_ID: prefixStorageKey('bannerId'),
+  LAST_ANNOUNCEMENT_DISMISSED: prefixStorageKey('lastAnnouncementDismissed'),
 };

@@ -6,10 +6,16 @@ const uniq = (arr) => [...new Set(arr)];
 exports.onPreBootstrap = ({ reporter, store }) => {
   const { program } = store.getState();
   const imagePath = path.join(program.directory, 'src/images');
+  const announcementsPath = path.join(program.directory, 'src/announcements');
 
   if (!fs.existsSync(imagePath)) {
     reporter.info('creating the images directory');
     fs.mkdirSync(imagePath, { recursive: true });
+  }
+
+  if (!fs.existsSync(announcementsPath)) {
+    reporter.info('creating the announcements directory');
+    fs.mkdirSync(announcementsPath, { recursive: true });
   }
 };
 

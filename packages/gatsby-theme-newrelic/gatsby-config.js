@@ -25,6 +25,13 @@ module.exports = ({ newrelic, robots = {} }) => {
         resolve: 'gatsby-plugin-newrelic',
         options: newrelic,
       },
+      {
+        resolve: 'gatsby-source-filesystem',
+        options: {
+          name: 'announcements',
+          path: 'src/announcements',
+        },
+      },
       'gatsby-plugin-mdx',
     ].filter(Boolean),
   };
