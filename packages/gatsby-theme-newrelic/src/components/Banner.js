@@ -3,26 +3,28 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Button from './Button';
 import Icon from './Icon';
+import { graphql, useStaticQuery } from 'gatsby';
 import createPersistedState from 'use-persisted-state';
 import { STORAGE_KEYS } from '../utils/constants';
 
 const useBannerIdState = createPersistedState(STORAGE_KEYS.BANNER_ID);
 
-const TYPES = {
-  NORMAL: 'normal',
-};
-
-const styles = {
-  [TYPES.NORMAL]: css`
-    min-height: 5.625rem;
-    background-color: var(--secondary-background-color);
-  `,
-};
-
-const Banner = ({ children, type }) => {
+const Banner = ({ children }) => {
   const childrenHash = btoa(children);
   const [bannerId, setBannerId] = useBannerIdState();
   const [visible, setVisible] = useState(bannerId !== childrenHash);
+
+  const {
+    site: { layout },
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        layout {
+          contentPadding
+        }
+      }
+    }
+  `);
 
   useEffect(() => {
     if (bannerId === childrenHash) {
@@ -35,8 +37,9 @@ const Banner = ({ children, type }) => {
   return (
     <div
       css={css`
-        padding: 1rem;
-        ${styles[type]}
+        padding: 1rem ${layout.contentPadding};
+        min-height: 5.625rem;
+        background-color: var(--secondary-background-color);
       `}
     >
       <Button
@@ -45,26 +48,19 @@ const Banner = ({ children, type }) => {
         onClick={() => setBannerId(childrenHash)}
         css={css`
           position: absolute;
-          top: 0;
-          right: 0;
+          top: 1rem;
+          right: ${layout.contentPadding};
         `}
       >
-        <Icon size="0.875rem" name="x"></Icon>
+        <Icon size="0.875rem" name="x" />
       </Button>
       {children}
     </div>
   );
 };
 
-Banner.TYPES = TYPES;
-
 Banner.propTypes = {
   children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf(Object.values(Banner.TYPES)).isRequired,
-};
-
-Banner.defaultProps = {
-  type: Banner.TYPES.NORMAL,
 };
 
 export default Banner;
