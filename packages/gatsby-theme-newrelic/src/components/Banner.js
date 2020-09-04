@@ -52,7 +52,7 @@ Banner.propTypes = {
 };
 
 Banner.defaultProps = {
-  type: TYPES.NORMAL,
+  type: Banner.TYPES.NORMAL,
 };
 
 export default Banner;
