@@ -1714,12 +1714,10 @@ exports[`Matches snapshot 1`] = `
   font-family: var(--primary-font-family);
   line-height: 1;
   cursor: pointer;
-  border-width: 1px;
-  border-style: solid;
+  border: 1px solid transparent;
   -webkit-transition: all 0.15s ease-out;
   transition: all 0.15s ease-out;
   white-space: nowrap;
-  border: 0;
   color: var(--color-white);
   background-color: var(--color-brand-600);
   font-size: 0.625rem;
@@ -1956,6 +1954,7 @@ exports[`Matches snapshot 1`] = `
         <a
           className="emotion-58"
           href="?q="
+          onClick={[Function]}
         >
           <svg
             className="emotion-57"
