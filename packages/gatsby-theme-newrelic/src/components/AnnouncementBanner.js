@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { STORAGE_KEYS } from '../utils/constants';
-import { parseISO, isBefore, isAfter } from 'date-fns';
+import { parseISO, endOfDay, isBefore, isAfter } from 'date-fns';
 
 const useLastAnnouncementDismissed = createPersistedState(
   STORAGE_KEYS.LAST_ANNOUNCEMENT_DISMISSED
@@ -16,7 +16,7 @@ const findCurrentAnnouncement = (announcements) => {
 
   return announcements.find(
     ({ frontmatter: { start, end } }) =>
-      isAfter(now, parseISO(start)) && isBefore(now, parseISO(end))
+      isAfter(now, parseISO(start)) && isBefore(now, endOfDay(parseISO(end)))
   );
 };
 
@@ -40,8 +40,8 @@ const AnnouncementBanner = () => {
           id
           body
           frontmatter {
-            start
-            end
+            start(formatString: "YYYY-MM-DD")
+            end(formatString: "YYYY-MM-DD")
           }
         }
       }
@@ -66,16 +66,13 @@ const AnnouncementBanner = () => {
     }
   }, [visible, announcementId, setLastAnnouncementDismissed]);
 
-  return (
-    <Banner
-      visible={Boolean(announcement) && visible}
-      onClose={() => setVisible(false)}
-    >
+  return announcement ? (
+    <Banner visible={visible} onClose={() => setVisible(false)}>
       <MDXProvider>
         <MDXRenderer>{announcement.body}</MDXRenderer>
       </MDXProvider>
     </Banner>
-  );
+  ) : null;
 };
 
 export default AnnouncementBanner;
