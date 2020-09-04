@@ -20,9 +20,9 @@ const styles = {
 };
 
 const Banner = ({ children, type }) => {
-  const [visible, setVisible] = useState(true);
-  const [bannerId, setBannerId] = useBannerIdState();
   const childrenHash = btoa(children);
+  const [bannerId, setBannerId] = useBannerIdState();
+  const [visible, setVisible] = useState(bannerId !== childrenHash);
 
   useEffect(() => {
     if (bannerId === childrenHash) {
