@@ -1,19 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Button from './Button';
 import Icon from './Icon';
 import { graphql, useStaticQuery } from 'gatsby';
-import createPersistedState from 'use-persisted-state';
-import { STORAGE_KEYS } from '../utils/constants';
 
-const useBannerIdState = createPersistedState(STORAGE_KEYS.BANNER_ID);
-
-const Banner = ({ children }) => {
-  const childrenHash = btoa(children);
-  const [bannerId, setBannerId] = useBannerIdState();
-  const [visible, setVisible] = useState(bannerId !== childrenHash);
-
+const Banner = ({ children, visible, onClose }) => {
   const {
     site: { layout },
   } = useStaticQuery(graphql`
@@ -26,15 +18,7 @@ const Banner = ({ children }) => {
     }
   `);
 
-  useEffect(() => {
-    if (bannerId === childrenHash) {
-      setVisible(false);
-    }
-  }, [bannerId, childrenHash]);
-
-  if (!visible) return null;
-
-  return (
+  return visible ? (
     <div
       css={css`
         padding: 1rem ${layout.contentPadding};
@@ -45,7 +29,7 @@ const Banner = ({ children }) => {
       <Button
         variant={Button.VARIANT.LINK}
         size={Button.SIZE.EXTRA_SMALL}
-        onClick={() => setBannerId(childrenHash)}
+        onClick={onClose}
         css={css`
           position: absolute;
           top: 1rem;
@@ -56,11 +40,13 @@ const Banner = ({ children }) => {
       </Button>
       {children}
     </div>
-  );
+  ) : null;
 };
 
 Banner.propTypes = {
   children: PropTypes.node.isRequired,
+  onClose: PropTypes.func.isRequired,
+  visible: PropTypes.bool.isRequired,
 };
 
 export default Banner;
