@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Banner from './Banner';
 import createPersistedState from 'use-persisted-state';
 import { graphql, useStaticQuery } from 'gatsby';
@@ -60,14 +60,14 @@ const AnnouncementBanner = () => {
     lastAnnouncementDismissed !== announcementId
   );
 
-  useEffect(() => {
-    if (!visible) {
-      setLastAnnouncementDismissed(announcementId);
-    }
-  }, [visible, announcementId, setLastAnnouncementDismissed]);
-
   return announcement ? (
-    <Banner visible={visible} onClose={() => setVisible(false)}>
+    <Banner
+      visible={visible}
+      onClose={() => {
+        setVisible(false);
+        setLastAnnouncementDismissed(announcementId);
+      }}
+    >
       <MDXProvider>
         <MDXRenderer>{announcement.body}</MDXRenderer>
       </MDXProvider>
