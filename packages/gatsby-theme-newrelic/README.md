@@ -310,15 +310,16 @@ import { Banner } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop       | Type   | Required | Default               | Description                                                                                        |
-| ---------- | ------ | -------- | --------------------- | -------------------------------------------------------------------------------------------------- |
-| `children` | node   | yes      |                       | Content to be displayed in the banner.                                                             |
-| `type`     | string | yes      | `Banner.TYPES.NORMAL` | Specifies which built-in style the banner should have. Must be one of the exported `Banner.TYPES`. |
+| Prop       | Type     | Required | Default | Description                                                |
+| ---------- | -------- | -------- | ------- | ---------------------------------------------------------- |
+| `children` | node     | yes      |         | Content to be displayed in the banner.                     |
+| `onClose`  | function | yes      |         | Handler called when the user clicks on the "close" button. |
+| `visible`  | boolean  | yes      |         | Determines if the banner is visible to the user or not     |
 
 **Example**
 
 ```jsx
-<Banner>
+<Banner visible={visible} onClose={() => setVisible(false)}>
   <h1>Hello, World!</h1>
 </Banner>
 ```
