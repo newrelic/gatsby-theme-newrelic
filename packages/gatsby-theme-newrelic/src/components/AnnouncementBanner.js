@@ -16,8 +16,9 @@ const findCurrentAnnouncement = (announcements) => {
   const now = new Date();
 
   return announcements.find(
-    ({ frontmatter: { start, end } }) =>
-      isAfter(now, parseISO(start)) && isBefore(now, endOfDay(parseISO(end)))
+    ({ frontmatter: { startDate, endDate } }) =>
+      isAfter(now, parseISO(startDate)) &&
+      isBefore(now, endOfDay(parseISO(endDate)))
   );
 };
 
@@ -25,8 +26,8 @@ const createContentHash = (announcement) =>
   btoa(
     [
       announcement.id,
-      announcement.frontmatter.start,
-      announcement.frontmatter.end,
+      announcement.frontmatter.startDate,
+      announcement.frontmatter.endDate,
     ].join(':')
   );
 
@@ -38,15 +39,15 @@ const AnnouncementBanner = () => {
   const { allMdx } = useStaticQuery(graphql`
     query {
       allMdx(
-        sort: { fields: [frontmatter___start] }
+        sort: { fields: [frontmatter___startDate] }
         filter: { fileAbsolutePath: { regex: "/src/announcements/" } }
       ) {
         nodes {
           id
           body
           frontmatter {
-            start(formatString: "YYYY-MM-DD")
-            end(formatString: "YYYY-MM-DD")
+            startDate(formatString: "YYYY-MM-DD")
+            endDate(formatString: "YYYY-MM-DD")
           }
         }
       }

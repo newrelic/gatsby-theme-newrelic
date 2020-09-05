@@ -27,6 +27,11 @@ exports.createSchemaCustomization = ({ actions }) => {
       contentPadding: String
       maxWidth: String
     }
+
+    type MdxFrontmatter @infer {
+      startDate: Date @dateformat(formatString: "YYYY-MM-DD")
+      endDate: Date @dateformat(formatString: "YYYY-MM-DD")
+    }
   `);
 };
 
