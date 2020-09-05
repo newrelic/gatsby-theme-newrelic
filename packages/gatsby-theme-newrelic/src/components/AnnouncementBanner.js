@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Banner from './Banner';
+import Icon from './Icon';
 import createPersistedState from 'use-persisted-state';
 import { graphql, useStaticQuery } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
@@ -28,6 +29,10 @@ const createContentHash = (announcement) =>
       announcement.frontmatter.end,
     ].join(':')
   );
+
+const components = {
+  Icon,
+};
 
 const AnnouncementBanner = () => {
   const { allMdx } = useStaticQuery(graphql`
@@ -68,7 +73,7 @@ const AnnouncementBanner = () => {
         setLastAnnouncementDismissed(announcementId);
       }}
     >
-      <MDXProvider>
+      <MDXProvider components={components}>
         <MDXRenderer>{announcement.body}</MDXRenderer>
       </MDXProvider>
     </Banner>

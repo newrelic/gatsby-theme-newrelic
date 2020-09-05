@@ -37,6 +37,11 @@ const Banner = ({ children, visible, onClose }) => {
         h6 {
           color: var(--color-white);
         }
+
+        a {
+          color: var(--color-white);
+          text-decoration: underline;
+        }
       `}
     >
       <div
