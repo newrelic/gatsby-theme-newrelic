@@ -5,7 +5,7 @@ import Button from './Button';
 import Icon from './Icon';
 import { graphql, useStaticQuery } from 'gatsby';
 
-const Banner = ({ children, visible, onClose }) => {
+const Banner = ({ children, visible, onClose, ...props }) => {
   const {
     site: { layout },
   } = useStaticQuery(graphql`
@@ -21,6 +21,7 @@ const Banner = ({ children, visible, onClose }) => {
 
   return visible ? (
     <div
+      {...props}
       css={css`
         color: var(--color-white);
         background-color: var(--color-brand-600);
