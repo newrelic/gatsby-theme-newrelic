@@ -67,6 +67,7 @@ const AnnouncementBanner = () => {
 
   return announcement ? (
     <Banner
+      data-swiftype-index={false}
       visible={visible}
       onClose={() => {
         setVisible(false);
