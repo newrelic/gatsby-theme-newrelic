@@ -1,4 +1,3 @@
-export { default as AnnouncementBanner } from './src/components/AnnouncementBanner';
 export { default as Banner } from './src/components/Banner';
 export { default as Button } from './src/components/Button';
 export { default as CodeBlock } from './src/components/CodeBlock';
