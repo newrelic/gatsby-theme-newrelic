@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import SVG from './SVG';
 
 const FeatherSVG = ({ children, ...props }) => (
-  <svg
+  <SVG
     {...props}
-    xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     css={css`
       fill: none;
@@ -16,11 +16,12 @@ const FeatherSVG = ({ children, ...props }) => (
     `}
   >
     {children}
-  </svg>
+  </SVG>
 );
 
 FeatherSVG.propTypes = {
-  children: PropTypes.node.isRequired,
+  ...SVG.propTypes,
+  children: PropTypes.node,
 };
 
 export default FeatherSVG;
