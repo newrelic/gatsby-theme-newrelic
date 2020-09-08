@@ -1,4 +1,4 @@
-module.exports = ({ newrelic, robots = {} }) => {
+module.exports = ({ mdx = {}, newrelic, robots = {} }) => {
   return {
     plugins: [
       'gatsby-plugin-emotion',
@@ -24,6 +24,17 @@ module.exports = ({ newrelic, robots = {} }) => {
       newrelic && {
         resolve: 'gatsby-plugin-newrelic',
         options: newrelic,
+      },
+      {
+        resolve: 'gatsby-source-filesystem',
+        options: {
+          name: 'announcements',
+          path: 'src/announcements',
+        },
+      },
+      {
+        resolve: 'gatsby-plugin-mdx',
+        options: mdx,
       },
     ].filter(Boolean),
   };

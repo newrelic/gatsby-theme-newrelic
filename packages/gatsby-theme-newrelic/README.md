@@ -20,6 +20,7 @@ websites](https://opensource.newrelic.com).
     - [`splitio`](#splitio)
       - [Environment-specific configuration](#environment-specific-configuration)
 - [Components](#components)
+  - [`Banner`](#banner)
   - [`Button`](#button)
   - [`CodeBlock`](#codeblock)
   - [`ExternalLink`](#externallink)
@@ -41,6 +42,7 @@ websites](https://opensource.newrelic.com).
   - [`useQueryParams`](#usequeryparams)
   - [`useTimeout`](#usetimeout)
   - [`useUserId`](#useuserid)
+- [Announcements](#announcements)
 - [Utils](#utils)
   - [`formatCode`](#formatcode)
 - [Testing](#testing)
@@ -58,13 +60,13 @@ depends on its packages. To install this package, add the
 npm:
 
 ```sh
-npm install @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled
+npm install @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react
 ```
 
 yarn:
 
 ```sh
-yarn add @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled
+yarn add @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react
 ```
 
 ## Configuration
@@ -298,6 +300,30 @@ module.exports = {
 ```
 
 ## Components
+
+### `Banner`
+
+Used to add a marketing banner to a page.
+
+```js
+import { Banner } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type     | Required | Default | Description                                                |
+| ---------- | -------- | -------- | ------- | ---------------------------------------------------------- |
+| `children` | node     | yes      |         | Content to be displayed in the banner.                     |
+| `onClose`  | function | yes      |         | Handler called when the user clicks on the "close" button. |
+| `visible`  | boolean  | yes      |         | Determines if the banner is visible to the user or not     |
+
+**Example**
+
+```jsx
+<Banner visible={visible} onClose={() => setVisible(false)}>
+  <h1>Hello, World!</h1>
+</Banner>
+```
 
 ### `Button`
 
@@ -1215,6 +1241,32 @@ const MyComponent = () => {
 
   return null;
 };
+```
+
+## Announcements
+
+Sites that utilize this theme can specify accouncements that appear at the top of the site (using the [Banner](#banner) component under the hood). Announcements can be added by creating `.mdx` files in the `src/announcements` directory. The first announcement that matches the current date will be shown.
+
+**NOTE:** If the `src/announcements` directory does not exist, the theme will create it automatically.
+
+**Frontmatter**
+
+| key         | Required | Format       | Description                                                        |
+| ----------- | -------- | ------------ | ------------------------------------------------------------------ |
+| `startDate` | Yes      | `YYYY-MM-DD` | The date that the announcement banner should start showing.        |
+| `endDate`   | Yes      | `YYYY-MM-DD` | The date the announcement banner should stop showing (end of day). |
+
+**Example**
+
+```mdx
+---
+startDate: 2020-09-01
+endDate: 2020-10-20
+---
+
+# Example header!
+
+This is some _example_ text.
 ```
 
 ## Utils
