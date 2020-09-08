@@ -42,6 +42,7 @@ websites](https://opensource.newrelic.com).
   - [`useQueryParams`](#usequeryparams)
   - [`useTimeout`](#usetimeout)
   - [`useUserId`](#useuserid)
+- [Announcements](#announcements)
 - [Utils](#utils)
   - [`formatCode`](#formatcode)
 - [Testing](#testing)
@@ -1240,6 +1241,32 @@ const MyComponent = () => {
 
   return null;
 };
+```
+
+## Announcements
+
+Sites that utilize this theme can specify accouncements that appear at the top of the site (using the [Banner](#banner) component under the hood). Announcements can be added by creating `.mdx` files in the `src/announcements` directory. The first announcement that matches the current date will be shown.
+
+**NOTE:** If the `src/announcements` directory does not exist, the theme will create it automatically.
+
+**Frontmatter**
+
+| key         | Required | Format       | Description                                                        |
+| ----------- | -------- | ------------ | ------------------------------------------------------------------ |
+| `startDate` | Yes      | `YYYY-MM-DD` | The date that the announcement banner should start showing.        |
+| `endDate`   | Yes      | `YYYY-MM-DD` | The date the announcement banner should stop showing (end of day). |
+
+**Example**
+
+```mdx
+---
+startDate: 2020-09-01
+endDate: 2020-10-20
+---
+
+# Example header!
+
+This is some _example_ text.
 ```
 
 ## Utils
