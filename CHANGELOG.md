@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.9.0...v1.9.1) (2020-09-08)
+
+
+### Bug Fixes
+
+* **Icon:** add ability to specify defs for an icon ([99e40cb](https://github.com/newrelic/gatsby-theme-newrelic/commit/99e40cbcdf40418d924f86b94e8a8fb597f8e6b7))
+
+
+
+
+
 # [1.9.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.8.2...v1.9.0) (2020-09-08)
 
 
