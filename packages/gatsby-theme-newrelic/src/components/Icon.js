@@ -34,6 +34,7 @@ const Icon = ({ name, size, ...props }) => {
 };
 
 Icon.propTypes = {
+  ...FeatherSVG.propTypes,
   name: PropTypes.oneOf(Object.values(TYPES)).isRequired,
   size: PropTypes.string,
 };
