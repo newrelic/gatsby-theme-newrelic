@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql, useStaticQuery, navigate, Link } from 'gatsby';
+import AnnouncementBanner from './AnnouncementBanner';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
 import Button from './Button';
@@ -92,238 +93,253 @@ const GlobalHeader = ({ className, editUrl }) => {
   } = site;
 
   return (
-    <div
-      data-swiftype-index={false}
-      className={className}
-      css={css`
-        background-color: var(--color-neutrals-100);
-        overflow: hidden;
-        position: sticky;
-        top: 0;
-        z-index: 80;
-
-        .dark-mode & {
-          background-color: var(--color-dark-100);
-        }
-      `}
-    >
+    <>
+      <AnnouncementBanner />
       <div
+        data-swiftype-index={false}
+        className={className}
         css={css`
-          height: 36px;
-          display: flex;
-          justify-content: space-between;
-          max-width: ${layout.maxWidth};
-          margin: 0 auto;
-          padding: 0 ${layout.contentPadding};
+          background-color: var(--color-neutrals-100);
+          overflow: hidden;
+          position: sticky;
+          top: 0;
+          z-index: 80;
+
+          .dark-mode & {
+            background-color: var(--color-dark-100);
+          }
         `}
       >
-        <Overlay
-          isOpen={queryParams.has('q')}
-          onCloseOverlay={() => navigate(location.pathname)}
-        >
-          <SwiftypeSearch
-            css={css`
-              display: flex;
-              flex-direction: column;
-              max-width: 950px;
-              margin: 3rem auto;
-              height: calc(100vh - 6rem);
-            `}
-          />
-        </Overlay>
-        <nav
+        <div
           css={css`
+            height: 36px;
             display: flex;
-            align-items: center;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-
-            @media screen and (max-width: 585px) {
-              &::after {
-                content: '';
-                position: absolute;
-                right: 0;
-                height: 100%;
-                width: 2rem;
-                pointer-events: none;
-                background: linear-gradient(
-                  to right,
-                  ${rgba('#f4f5f5', 0)},
-                  var(--color-neutrals-100)
-                );
-
-                .dark-mode & {
-                  background: linear-gradient(
-                    to right,
-                    ${rgba('#22353c', 0)},
-                    var(--color-dark-100)
-                  );
-                }
-              }
-            }
+            justify-content: space-between;
+            max-width: ${layout.maxWidth};
+            margin: 0 auto;
+            padding: 0 ${layout.contentPadding};
           `}
         >
-          <ExternalLink
-            href="https://newrelic.com/"
+          <Overlay
+            isOpen={queryParams.has('q')}
+            onCloseOverlay={() => navigate(location.pathname)}
+          >
+            <SwiftypeSearch
+              css={css`
+                display: flex;
+                flex-direction: column;
+                max-width: 950px;
+                margin: 3rem auto;
+                height: calc(100vh - 6rem);
+              `}
+            />
+          </Overlay>
+          <nav
             css={css`
               display: flex;
               align-items: center;
-              margin-right: 1rem;
+              height: 100%;
+              overflow: hidden;
+              position: relative;
+
+              @media screen and (max-width: 585px) {
+                &::after {
+                  content: '';
+                  position: absolute;
+                  right: 0;
+                  height: 100%;
+                  width: 2rem;
+                  pointer-events: none;
+                  background: linear-gradient(
+                    to right,
+                    ${rgba('#f4f5f5', 0)},
+                    var(--color-neutrals-100)
+                  );
+
+                  .dark-mode & {
+                    background: linear-gradient(
+                      to right,
+                      ${rgba('#22353c', 0)},
+                      var(--color-dark-100)
+                    );
+                  }
+                }
+              }
             `}
           >
-            <NewRelicLogo omitText={hideLogoText} />
-          </ExternalLink>
+            <ExternalLink
+              href="https://newrelic.com/"
+              css={css`
+                display: flex;
+                align-items: center;
+                margin-right: 1rem;
+              `}
+            >
+              <NewRelicLogo omitText={hideLogoText} />
+            </ExternalLink>
+
+            <ul
+              css={css`
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                list-style-type: none;
+                white-space: nowrap;
+                overflow-x: auto;
+                position: relative;
+                -webkit-overflow-scrolling: touch;
+                -ms-overflow-style: -ms-autohiding-scrollbar;
+
+                > li {
+                  flex: 0 0 auto;
+                }
+              `}
+            >
+              <li>
+                <GlobalNavLink href="https://developer.newrelic.com/">
+                  Developers
+                </GlobalNavLink>
+              </li>
+              <li>
+                <GlobalNavLink href="https://opensource.newrelic.com/">
+                  Open Source
+                </GlobalNavLink>
+              </li>
+              <li>
+                <GlobalNavLink href="https://docs.newrelic.com/">
+                  Documentation
+                </GlobalNavLink>
+              </li>
+              <li>
+                <GlobalNavLink href="https://discuss.newrelic.com/">
+                  Community
+                </GlobalNavLink>
+              </li>
+            </ul>
+          </nav>
 
           <ul
             css={css`
-              height: 100%;
               margin: 0;
               padding: 0;
               display: flex;
               list-style-type: none;
-              white-space: nowrap;
-              overflow-x: auto;
-              position: relative;
-              -webkit-overflow-scrolling: touch;
-              -ms-overflow-style: -ms-autohiding-scrollbar;
+              align-items: center;
 
               > li {
-                flex: 0 0 auto;
+                transition: all 0.2s ease-out;
+                margin-left: 1rem;
+                color: var(--secondary-text-color);
               }
             `}
           >
             <li>
-              <GlobalNavLink href="https://developer.newrelic.com/">
-                Developers
-              </GlobalNavLink>
+              <Link
+                to="?q="
+                css={actionLink}
+                onClick={() =>
+                  track(
+                    SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
+                    null,
+                    {
+                      action: 'search',
+                    }
+                  )
+                }
+              >
+                <Icon
+                  css={actionIcon}
+                  name={Icon.TYPE.SEARCH}
+                  size="0.875rem"
+                />
+              </Link>
             </li>
             <li>
-              <GlobalNavLink href="https://opensource.newrelic.com/">
-                Open Source
-              </GlobalNavLink>
+              <DarkModeToggle
+                css={[actionIcon, action]}
+                size="0.875rem"
+                onClick={() =>
+                  track(
+                    SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
+                    null,
+                    {
+                      action: 'dark_mode',
+                    }
+                  )
+                }
+              />
             </li>
-            <li>
-              <GlobalNavLink href="https://docs.newrelic.com/">
-                Documentation
-              </GlobalNavLink>
-            </li>
-            <li>
-              <GlobalNavLink href="https://discuss.newrelic.com/">
-                Community
-              </GlobalNavLink>
+            {shouldShowGithubActions && (
+              <>
+                {editUrl && (
+                  <li>
+                    <ExternalLink
+                      css={actionLink}
+                      href={editUrl}
+                      onClick={() =>
+                        track(
+                          SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
+                          null,
+                          {
+                            action: 'edit_page',
+                          }
+                        )
+                      }
+                    >
+                      <Icon
+                        css={actionIcon}
+                        name={Icon.TYPE.EDIT}
+                        size="0.875rem"
+                      />
+                    </ExternalLink>
+                  </li>
+                )}
+                {repository && (
+                  <li>
+                    <ExternalLink
+                      css={actionLink}
+                      href={`${repository}/issues/new/choose`}
+                      onClick={() =>
+                        track(
+                          SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
+                          null,
+                          {
+                            action: 'issues',
+                          }
+                        )
+                      }
+                    >
+                      <Icon
+                        css={actionIcon}
+                        name={Icon.TYPE.GITHUB}
+                        size="0.875rem"
+                      />
+                    </ExternalLink>
+                  </li>
+                )}
+              </>
+            )}
+            <li
+              css={css`
+                display: flex;
+              `}
+            >
+              <Button
+                as={ExternalLink}
+                href={`https://newrelic.com/signup${
+                  utmSource ? `?utm_source=${utmSource}` : ''
+                }`}
+                size={Button.SIZE.EXTRA_SMALL}
+                variant={Button.VARIANT.PRIMARY}
+              >
+                <span>Sign up</span>
+              </Button>
             </li>
           </ul>
-        </nav>
-
-        <ul
-          css={css`
-            margin: 0;
-            padding: 0;
-            display: flex;
-            list-style-type: none;
-            align-items: center;
-
-            > li {
-              transition: all 0.2s ease-out;
-              margin-left: 1rem;
-              color: var(--secondary-text-color);
-            }
-          `}
-        >
-          <li>
-            <Link
-              to="?q="
-              css={actionLink}
-              onClick={() =>
-                track(SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION, null, {
-                  action: 'search',
-                })
-              }
-            >
-              <Icon css={actionIcon} name={Icon.TYPE.SEARCH} size="0.875rem" />
-            </Link>
-          </li>
-          <li>
-            <DarkModeToggle
-              css={[actionIcon, action]}
-              size="0.875rem"
-              onClick={() =>
-                track(SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION, null, {
-                  action: 'dark_mode',
-                })
-              }
-            />
-          </li>
-          {shouldShowGithubActions && (
-            <>
-              {editUrl && (
-                <li>
-                  <ExternalLink
-                    css={actionLink}
-                    href={editUrl}
-                    onClick={() =>
-                      track(
-                        SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
-                        null,
-                        {
-                          action: 'edit_page',
-                        }
-                      )
-                    }
-                  >
-                    <Icon
-                      css={actionIcon}
-                      name={Icon.TYPE.EDIT}
-                      size="0.875rem"
-                    />
-                  </ExternalLink>
-                </li>
-              )}
-              {repository && (
-                <li>
-                  <ExternalLink
-                    css={actionLink}
-                    href={`${repository}/issues/new/choose`}
-                    onClick={() =>
-                      track(
-                        SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
-                        null,
-                        {
-                          action: 'issues',
-                        }
-                      )
-                    }
-                  >
-                    <Icon
-                      css={actionIcon}
-                      name={Icon.TYPE.GITHUB}
-                      size="0.875rem"
-                    />
-                  </ExternalLink>
-                </li>
-              )}
-            </>
-          )}
-          <li
-            css={css`
-              display: flex;
-            `}
-          >
-            <Button
-              as={ExternalLink}
-              href={`https://newrelic.com/signup${
-                utmSource ? `?utm_source=${utmSource}` : ''
-              }`}
-              size={Button.SIZE.EXTRA_SMALL}
-              variant={Button.VARIANT.PRIMARY}
-            >
-              <span>Sign up</span>
-            </Button>
-          </li>
-        </ul>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

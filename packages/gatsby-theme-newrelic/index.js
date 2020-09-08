@@ -1,3 +1,4 @@
+export { default as Banner } from './src/components/Banner';
 export { default as Button } from './src/components/Button';
 export { default as CodeBlock } from './src/components/CodeBlock';
 export { default as ExternalLink } from './src/components/ExternalLink';
