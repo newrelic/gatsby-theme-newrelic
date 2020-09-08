@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.8.2...v1.9.0) (2020-09-08)
+
+
+### Bug Fixes
+
+* more correct with initial state ([df304c4](https://github.com/newrelic/gatsby-theme-newrelic/commit/df304c4a58666238910305f5adb101fb92a75482))
+
+
+### Features
+
+* add ability to specify mdx configuration for gatsby-plugin-mdx ([c450f5d](https://github.com/newrelic/gatsby-theme-newrelic/commit/c450f5d67b27115ea6094e772d2499789063fd0b))
+* **AnnouncementBanner:** add Icon and link styles ([9184766](https://github.com/newrelic/gatsby-theme-newrelic/commit/91847663f78debe9f9a419336ae2132d93b04d9e))
+* add the announcement banner to the global header ([a7505c8](https://github.com/newrelic/gatsby-theme-newrelic/commit/a7505c8a3229e29a0834171a94b7b8c7dd1c6f4c))
+* create an AnnouncementBanner component that composes the Banner ([a9819ce](https://github.com/newrelic/gatsby-theme-newrelic/commit/a9819ceb2292c45bbe37d93076279cf97542c285))
+* dismisses banner persists ([8ad855f](https://github.com/newrelic/gatsby-theme-newrelic/commit/8ad855f8f9ce455947f369e405b225a88f05e728))
+* get announcement via mdx file in place ([4da7bf8](https://github.com/newrelic/gatsby-theme-newrelic/commit/4da7bf8645d681b9e00cd4990e0f6e5bb8e52263))
+* marketing banner component ([e9e2457](https://github.com/newrelic/gatsby-theme-newrelic/commit/e9e2457ea12b5831346962f2bc1b7ddc4f700f13))
+* update AnnouncementBanner to handle sourcing announcements ([e69fb4c](https://github.com/newrelic/gatsby-theme-newrelic/commit/e69fb4c00ee5edc113e3915e679d7f811e448345))
+
+
+
+
+
 ## [1.8.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.8.1...v1.8.2) (2020-09-03)
 
 
