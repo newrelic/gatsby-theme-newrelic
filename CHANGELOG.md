@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.9.1...v1.9.2) (2020-09-09)
+
+
+### Bug Fixes
+
+* fallback for btoa so that sites can build ([7bbfec0](https://github.com/newrelic/gatsby-theme-newrelic/commit/7bbfec0fe7e0d03549a3c172d1b857c6f89f102b))
+
+
+
+
+
 ## [1.9.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.9.0...v1.9.1) (2020-09-08)
 
 
