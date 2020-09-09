@@ -22,14 +22,19 @@ const findCurrentAnnouncement = (announcements) => {
   );
 };
 
-const createContentHash = (announcement) =>
-  btoa(
+const createContentHash = (announcement) => {
+  // Since bota is not available at build time, this will provide a
+  // fallback so that this function simply joins the items.
+  const btoa = global.btoa || ((arr) => arr);
+
+  return btoa(
     [
       announcement.id,
       announcement.frontmatter.startDate,
       announcement.frontmatter.endDate,
     ].join(':')
   );
+};
 
 const components = {
   Icon,
