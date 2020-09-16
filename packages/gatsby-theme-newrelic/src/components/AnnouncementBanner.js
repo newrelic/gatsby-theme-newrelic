@@ -71,7 +71,7 @@ const AnnouncementBanner = () => {
     lastAnnouncementDismissed !== announcementId
   );
 
-  return announcement ? (
+  return announcement && visible ? (
     <Banner
       data-swiftype-index={false}
       visible={visible}
