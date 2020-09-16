@@ -23,3 +23,4 @@ export { default as useKeyPress } from './src/hooks/useKeyPress';
 export { default as useQueryParams } from './src/hooks/useQueryParams';
 export { default as useTimeout } from './src/hooks/useTimeout';
 export { default as useUserId } from './src/hooks/useUserId';
+export { default as useHasMounted } from './src/hooks/useHasMounted';

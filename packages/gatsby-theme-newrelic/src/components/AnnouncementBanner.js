@@ -7,6 +7,7 @@ import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { STORAGE_KEYS } from '../utils/constants';
 import { parseISO, endOfDay, isBefore, isAfter } from 'date-fns';
+import useHasMounted from '../hooks/useHasMounted';
 
 const useLastAnnouncementDismissed = createPersistedState(
   STORAGE_KEYS.LAST_ANNOUNCEMENT_DISMISSED
@@ -70,6 +71,12 @@ const AnnouncementBanner = () => {
   const [visible, setVisible] = useState(
     lastAnnouncementDismissed !== announcementId
   );
+
+  const hasMounted = useHasMounted();
+
+  if (!hasMounted) {
+    return null;
+  }
 
   return announcement && visible ? (
     <Banner
