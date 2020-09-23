@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.9.4...v1.9.5) (2020-09-23)
+
+
+### Bug Fixes
+
+* identify banners by slug and date, rather than ID ([282a120](https://github.com/newrelic/gatsby-theme-newrelic/commit/282a12059be0016dbd8d7f142304d1cdd6b0c7b6))
+
+
+
+
+
 ## [1.9.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.9.3...v1.9.4) (2020-09-16)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
