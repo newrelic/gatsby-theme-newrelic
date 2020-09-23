@@ -30,7 +30,7 @@ const createContentHash = (announcement) => {
 
   return btoa(
     [
-      announcement.id,
+      announcement.slug,
       announcement.frontmatter.startDate,
       announcement.frontmatter.endDate,
     ].join(':')
@@ -49,7 +49,7 @@ const AnnouncementBanner = () => {
         filter: { fileAbsolutePath: { regex: "/src/announcements/" } }
       ) {
         nodes {
-          id
+          slug
           body
           frontmatter {
             startDate(formatString: "YYYY-MM-DD")
