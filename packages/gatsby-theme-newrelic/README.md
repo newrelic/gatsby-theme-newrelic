@@ -22,6 +22,7 @@ websites](https://opensource.newrelic.com).
 - [Components](#components)
   - [`Banner`](#banner)
   - [`Button`](#button)
+  - [`Callout`](#callout)
   - [`CodeBlock`](#codeblock)
   - [`ExternalLink`](#externallink)
   - [`Feedback`](#feedback)
@@ -362,6 +363,31 @@ import { Link } from 'gatsby';
 <Button as={Link} to="/page-2" variant={Button.VARIANT.PRIMARY}>
   Page 2
 </Button>;
+```
+
+### `Callout`
+
+Callouts direct your attention to information of special importance or to information that doesn't fit smoothly into the main text.
+
+- Caution: Screams at you that this could cause a crash or cost you data loss beyond the task at hand.
+- Important: Urges awareness that this could impair the task at hand or cost you time if you ignore the text.
+- Tip: Whispers to you that this is nice to know, like a shortcut, best practice, or reminder.
+
+```js
+import { Callout } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop    | Type | Required | Default | Description                                                                                                                         |
+| ------- | ---- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| variant | enum | yes      |         | Configures the variant of the callout. Must be one of `Callout.VARIANT.CAUTION`, `Callout.VARIANT.IMPORTANT`, `Callout.VARIANT.TIP` |
+| title   | enum | no       |         | Set the title text. Defaults to variant name.                                                                                       |
+
+**Examples**
+
+```js
+<Callout variant={Callout.VARIANT.CAUTION}>Be careful!</Button>
 ```
 
 ### `CodeBlock`
