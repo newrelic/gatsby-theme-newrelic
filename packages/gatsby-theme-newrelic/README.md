@@ -387,7 +387,7 @@ import { Callout } from '@newrelic/gatsby-theme-newrelic'`
 **Examples**
 
 ```js
-<Callout variant={Callout.VARIANT.CAUTION}>Be careful!</Button>
+<Callout variant={Callout.VARIANT.CAUTION}>Be careful!</Callout>
 ```
 
 ### `CodeBlock`
