@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.10.0...v1.10.1) (2020-09-25)
+
+
+### Bug Fixes
+
+* bump gatsby-plugin-newrelic ([ade95db](https://github.com/newrelic/gatsby-theme-newrelic/commit/ade95db49a008d23d15b4ca47985f0c15210d6a3))
+
+
+
+
+
 # [1.10.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.9.5...v1.10.0) (2020-09-25)
 
 
