@@ -6,6 +6,7 @@ import { css } from '@emotion/core';
 import {
   Button,
   CodeBlock,
+  Callout,
   Feedback,
   GlobalHeader,
   HamburgerMenu,
@@ -108,6 +109,15 @@ const IndexPage = ({ data }) => {
             value={searchTerm}
             size={SearchInput.SIZE.LARGE}
           />
+        </section>
+        <section>
+          <Callout variant={Callout.VARIANT.CAUTION}>
+            Danger! Exercise extreme caution.
+          </Callout>
+          <Callout variant={Callout.VARIANT.IMPORTANT}>
+            Important! I said, this is important.
+          </Callout>
+          <Callout variant={Callout.VARIANT.TIP}>Here's a tip.</Callout>
         </section>
         <section>
           <h2>A code block</h2>
