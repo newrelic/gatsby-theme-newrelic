@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.9.5...v1.10.0) (2020-09-25)
+
+
+### Features
+
+* Add a callout component ([7edef05](https://github.com/newrelic/gatsby-theme-newrelic/commit/7edef0553c5a3052395ddcae124bb4ca246a81b5))
+
+
+
+
+
 ## [1.9.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.9.4...v1.9.5) (2020-09-23)
 
 
