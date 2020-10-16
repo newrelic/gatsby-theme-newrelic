@@ -5,16 +5,6 @@
 This repo contains Gatsby themes used by New Relic Gatsby sites, including the
 [developer](https://developer.newrelic.com) and [open source websites](https://opensource.newrelic.com).
 
-- [Installation](#installation)
-- [Getting started](#getting-started)
-- [Configuration](#configuration)
-- [Options](#options)
-- [Components](#components)
-- [Usage](#usage)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Installation
 
 ```sh
