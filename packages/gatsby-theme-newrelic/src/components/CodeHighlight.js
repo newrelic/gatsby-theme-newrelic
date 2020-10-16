@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import Highlight from 'prism-react-renderer';
 import Prism from 'prismjs';
 import { partition, range } from '../utils/array';
+import { rgba } from 'polished';
 
 const CodeHighlight = ({
   className,
@@ -64,19 +65,7 @@ const CodeHighlight = ({
             >
               {tokens.map((line, idx) => (
                 // eslint-disable-next-line react/jsx-key
-                <div
-                  css={
-                    highlightedLines.has(idx + 1) &&
-                    css`
-                      background: var(--color-nord-2);
-
-                      .light-mode & {
-                        background: var(--color-nord-5);
-                      }
-                    `
-                  }
-                  {...getLineProps({ line, key: idx })}
-                >
+                <div {...getLineProps({ line, key: idx })}>
                   {lineNumbers && (
                     <div
                       css={css`
@@ -88,7 +77,18 @@ const CodeHighlight = ({
                       {idx + 1}
                     </div>
                   )}
-                  <div>
+                  <div
+                    css={
+                      highlightedLines.has(idx + 1) &&
+                      css`
+                        background: ${rgba('#3b4252', 0.6)};
+
+                        .light-mode & {
+                          background: ${rgba('#d8dee9', 0.5)};
+                        }
+                      `
+                    }
+                  >
                     {line.map((token, key) => (
                       // eslint-disable-next-line react/jsx-key
                       <span {...getTokenProps({ token, key })} />
