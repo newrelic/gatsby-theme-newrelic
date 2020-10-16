@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.10.1...v1.10.2) (2020-10-16)
+
+
+### Bug Fixes
+
+* **CodeBlock:** lighten line highlight color and dont cover line numbers ([7a1e12f](https://github.com/newrelic/gatsby-theme-newrelic/commit/7a1e12f2e53a9c05369ff4a0f87a3a8abd9debbe))
+
+
+
+
+
 ## [1.10.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.10.0...v1.10.1) (2020-09-25)
 
 
