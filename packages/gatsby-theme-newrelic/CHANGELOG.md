@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.10.2...v1.10.3) (2020-10-23)
+
+
+### Bug Fixes
+
+* make callout colors more subtle ([1893b77](https://github.com/newrelic/gatsby-theme-newrelic/commit/1893b77bcc1422153c13f7799425566c7920847e))
+* upgrade @wry/equality from 0.2.0 to 0.3.0 ([7ba00f3](https://github.com/newrelic/gatsby-theme-newrelic/commit/7ba00f33ad4b48011104d61ad05950e18b78df22))
+
+
+
+
+
 ## [1.10.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.10.1...v1.10.2) (2020-10-16)
 
 
