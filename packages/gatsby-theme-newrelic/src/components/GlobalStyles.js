@@ -120,6 +120,10 @@ const lightMode = css`
     --border-hover-color: var(--color-neutrals-500);
     --divider-color: var(--color-neutrals-100);
     --heading-text-color: var(--color-neutrals-900);
+
+    --callout-caution-background-color: #fce9e935;
+    --callout-important-background-color: #fff9cc30;
+    --callout-tip-background-color: #d1f7d925;
   }
 `;
 
@@ -142,6 +146,10 @@ const darkMode = css`
     --border-hover-color: var(--color-dark-500);
     --divider-color: var(--color-dark-200);
     --heading-text-color: var(--color-dark-900);
+
+    --callout-caution-background-color: #1b000020;
+    --callout-important-background-color: #14110020;
+    --callout-tip-background-color: #02120020;
   }
 `;
 
