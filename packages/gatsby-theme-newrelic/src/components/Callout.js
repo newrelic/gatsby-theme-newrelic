@@ -18,27 +18,15 @@ const styles = {
   variant: {
     [VARIANTS.CAUTION]: css`
       border-left: 4px solid var(--color-red-400);
-      background: var(--color-red-100);
-
-      .dark-mode & {
-        background: var(--color-red-900);
-      }
+      background: var(--callout-caution-background-color);
     `,
     [VARIANTS.IMPORTANT]: css`
       border-left: 4px solid var(--color-yellow-400);
-      background: var(--color-yellow-100);
-
-      .dark-mode & {
-        background: var(--color-yellow-900);
-      }
+      background: var(--callout-important-background-color);
     `,
     [VARIANTS.TIP]: css`
       border-left: 4px solid var(--color-green-400);
-      background: var(--color-green-100);
-
-      .dark-mode & {
-        background: var(--color-green-900);
-      }
+      background: var(--callout-tip-background-color);
     `,
   },
 };
