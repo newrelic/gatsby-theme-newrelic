@@ -41,16 +41,18 @@ const Callout = ({ title, variant, children }) => {
         ${styles.variant[variant]}
       `}
     >
-      <h4
-        css={css`
-          font-size: 0.75rem !important;
-          text-transform: uppercase;
-          color: var(--heading-text-color);
-          margin-top: 0 !important;
-        `}
-      >
-        {title || DEFAULT_TITLES[variant]}
-      </h4>
+      {title !== null && (
+        <h4
+          css={css`
+            font-size: 0.75rem !important;
+            text-transform: uppercase;
+            color: var(--heading-text-color);
+            margin-top: 0 !important;
+          `}
+        >
+          {title || DEFAULT_TITLES[variant]}
+        </h4>
+      )}
       {children}
     </div>
   );
