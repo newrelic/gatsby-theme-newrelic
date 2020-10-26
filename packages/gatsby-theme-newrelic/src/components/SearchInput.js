@@ -12,6 +12,7 @@ const SIZES = {
 
 const SearchInput = ({
   onClear,
+  onSubmit,
   value,
   width,
   size = 'medium',
@@ -24,7 +25,14 @@ const SearchInput = ({
     onClear();
   };
   const handleKeyDown = (e) => {
-    if (e.key === 'Escape' && onClear) onClear();
+    switch (e.key) {
+      case 'Escape':
+        return onClear?.();
+      case 'Enter':
+        return onSubmit?.(value);
+      default:
+      // do nothing
+    }
   };
 
   return (
@@ -65,7 +73,12 @@ const SearchInput = ({
           type="button"
           size={size}
         >
-          <StyledIcon name={Icon.TYPE.X} />
+          <StyledIcon
+            name={Icon.TYPE.X}
+            css={css`
+              display: block;
+            `}
+          />
         </StyledButton>
       )}
     </StyledContainer>
@@ -75,6 +88,7 @@ const SearchInput = ({
 SearchInput.propTypes = {
   className: PropTypes.string,
   onClear: PropTypes.func,
+  onSubmit: PropTypes.func,
   value: PropTypes.string,
   width: PropTypes.string,
   size: PropTypes.oneOf(Object.values(SIZES)),
