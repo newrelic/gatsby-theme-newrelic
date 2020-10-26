@@ -11,6 +11,7 @@ import Icon from './Icon';
 import SwiftypeSearch from './SwiftypeSearch';
 import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
+import SearchInput from './SearchInput';
 import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
@@ -80,6 +81,7 @@ const GlobalHeader = ({ className }) => {
   });
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
+  const useSearchIcon = useMedia({ maxWidth: '585px' });
 
   return (
     <>
@@ -131,7 +133,7 @@ const GlobalHeader = ({ className }) => {
               overflow: hidden;
               position: relative;
 
-              @media screen and (max-width: 585px) {
+              @media screen and (max-width: 800px) {
                 &::after {
                   content: '';
                   position: absolute;
@@ -211,26 +213,46 @@ const GlobalHeader = ({ className }) => {
           <ul
             css={css`
               margin: 0;
+              margin-left: 1rem;
               padding: 0;
               display: flex;
               list-style-type: none;
               align-items: center;
+              flex: 1;
 
               > li {
                 transition: all 0.2s ease-out;
-                margin-left: 1rem;
                 color: var(--secondary-text-color);
+
+                &:not(:first-of-type) {
+                  margin-left: 1rem;
+                }
               }
             `}
           >
-            <li>
-              <Link to="?q=" css={actionLink}>
-                <Icon
-                  css={actionIcon}
-                  name={Icon.TYPE.SEARCH}
-                  size="0.875rem"
+            <li
+              css={css`
+                flex: 1;
+              `}
+            >
+              {useSearchIcon ? (
+                <Link to="?q=" css={actionLink}>
+                  <Icon
+                    css={actionIcon}
+                    name={Icon.TYPE.SEARCH}
+                    size="0.875rem"
+                  />
+                </Link>
+              ) : (
+                <SearchInput
+                  placeholder="Search"
+                  size={SearchInput.SIZE.SMALL}
+                  css={css`
+                    min-width: 150px;
+                    max-width: 350px;
+                  `}
                 />
-              </Link>
+              )}
             </li>
             <li>
               <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
