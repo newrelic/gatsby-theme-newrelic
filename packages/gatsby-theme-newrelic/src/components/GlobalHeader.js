@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql, useStaticQuery, navigate, Link } from 'gatsby';
@@ -47,7 +47,8 @@ const actionIcon = css`
 
 const GlobalHeader = ({ className }) => {
   const location = useLocation();
-  const { queryParams } = useQueryParams();
+  const { queryParams, setQueryParam } = useQueryParams();
+  const [searchQuery, setSearchQuery] = useState('');
 
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
@@ -113,7 +114,10 @@ const GlobalHeader = ({ className }) => {
         >
           <Overlay
             isOpen={queryParams.has('q')}
-            onCloseOverlay={() => navigate(location.pathname)}
+            onCloseOverlay={() => {
+              navigate(location.pathname);
+              setSearchQuery('');
+            }}
           >
             <SwiftypeSearch
               css={css`
@@ -247,6 +251,12 @@ const GlobalHeader = ({ className }) => {
                 <SearchInput
                   placeholder="Search"
                   size={SearchInput.SIZE.SMALL}
+                  onClear={() => setSearchQuery('')}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onSubmit={(value) => {
+                    setQueryParam('q', value);
+                  }}
+                  value={searchQuery}
                   css={css`
                     min-width: 150px;
                     max-width: 350px;
