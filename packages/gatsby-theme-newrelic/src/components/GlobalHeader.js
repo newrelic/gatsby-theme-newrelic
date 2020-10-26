@@ -246,6 +246,7 @@ const GlobalHeader = ({ className }) => {
                 css={css`
                   font-size: 0.675rem;
                   font-weight: 600;
+                  white-space: nowrap;
                 `}
               >
                 Log in
