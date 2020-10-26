@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
@@ -10,80 +10,86 @@ const SIZES = {
   LARGE: 'large',
 };
 
-const SearchInput = ({
-  onClear,
-  onSubmit,
-  value,
-  width,
-  size = 'medium',
-  className,
-  style,
-  ...props
-}) => {
-  const handleClick = (e) => {
-    e.preventDefault();
-    onClear();
-  };
-  const handleKeyDown = (e) => {
-    switch (e.key) {
-      case 'Escape':
-        return onClear?.();
-      case 'Enter':
-        return onSubmit?.(value);
-      default:
-      // do nothing
-    }
-  };
+const SearchInput = forwardRef(
+  (
+    {
+      onClear,
+      onSubmit,
+      value,
+      width,
+      size = 'medium',
+      className,
+      style,
+      ...props
+    },
+    ref
+  ) => {
+    const handleClick = (e) => {
+      e.preventDefault();
+      onClear();
+    };
+    const handleKeyDown = (e) => {
+      switch (e.key) {
+        case 'Escape':
+          return onClear?.();
+        case 'Enter':
+          return onSubmit?.(value);
+        default:
+        // do nothing
+      }
+    };
 
-  return (
-    <StyledContainer
-      width={width}
-      className={className}
-      style={style}
-      size={size}
-    >
-      <StyledIcon
-        css={css`
-          position: absolute;
-          left: 1rem;
-          top: 50%;
-          transform: translateY(-50%);
-        `}
-        name={Icon.TYPE.SEARCH}
-      />
-      <StyledInput
-        value={value}
+    return (
+      <StyledContainer
+        width={width}
+        className={className}
+        style={style}
         size={size}
-        {...props}
-        type="text"
-        onKeyDown={handleKeyDown}
-      />
-      {value && onClear && (
-        <StyledButton
-          onClick={handleClick}
+      >
+        <StyledIcon
           css={css`
-            right: 1rem;
+            position: absolute;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            &:hover {
-              cursor: pointer;
-            }
           `}
-          onKeyDown={handleKeyDown}
-          type="button"
+          name={Icon.TYPE.SEARCH}
+        />
+        <StyledInput
+          ref={ref}
+          value={value}
           size={size}
-        >
-          <StyledIcon
-            name={Icon.TYPE.X}
+          {...props}
+          type="text"
+          onKeyDown={handleKeyDown}
+        />
+        {value && onClear && (
+          <StyledButton
+            onClick={handleClick}
             css={css`
-              display: block;
+              right: 1rem;
+              top: 50%;
+              transform: translateY(-50%);
+              &:hover {
+                cursor: pointer;
+              }
             `}
-          />
-        </StyledButton>
-      )}
-    </StyledContainer>
-  );
-};
+            onKeyDown={handleKeyDown}
+            type="button"
+            size={size}
+          >
+            <StyledIcon
+              name={Icon.TYPE.X}
+              css={css`
+                display: block;
+              `}
+            />
+          </StyledButton>
+        )}
+      </StyledContainer>
+    );
+  }
+);
 
 SearchInput.propTypes = {
   className: PropTypes.string,
