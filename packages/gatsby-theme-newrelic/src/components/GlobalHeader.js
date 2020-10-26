@@ -16,8 +16,6 @@ import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
 import { rgba } from 'polished';
-import { useTreatments, useTrack } from '@splitsoftware/splitio-react';
-import { SPLITS, SPLIT_TRACKING_EVENTS } from '../utils/constants';
 
 const UTM_SOURCES = {
   'https://developer.newrelic.com': 'developer-site',
@@ -46,7 +44,7 @@ const actionIcon = css`
   cursor: pointer;
 `;
 
-const GlobalHeader = ({ className, editUrl }) => {
+const GlobalHeader = ({ className }) => {
   const location = useLocation();
   const { queryParams } = useQueryParams();
 
@@ -54,7 +52,6 @@ const GlobalHeader = ({ className, editUrl }) => {
     query GlobalHeaderQuery {
       site {
         siteMetadata {
-          repository
           siteUrl
         }
         layout {
@@ -65,12 +62,9 @@ const GlobalHeader = ({ className, editUrl }) => {
     }
   `);
 
-  const utmSource = UTM_SOURCES[site.siteMetadata.siteUrl];
-  const treatments = useTreatments([SPLITS.GLOBAL_HEADER_GITHUB_BUTTONS]);
-  const track = useTrack();
+  const { siteMetadata, layout } = site;
 
-  const shouldShowGithubActions =
-    treatments[SPLITS.GLOBAL_HEADER_GITHUB_BUTTONS].treatment === 'on';
+  const utmSource = UTM_SOURCES[siteMetadata.siteUrl];
 
   useKeyPress('/', (e) => {
     // Don't trigger overlay when typing in an input or textarea
@@ -86,11 +80,6 @@ const GlobalHeader = ({ className, editUrl }) => {
   });
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
-
-  const {
-    layout,
-    siteMetadata: { repository },
-  } = site;
 
   return (
     <>
@@ -197,6 +186,11 @@ const GlobalHeader = ({ className, editUrl }) => {
               `}
             >
               <li>
+                <GlobalNavLink href="https://docs.newrelic.com/">
+                  Documentation
+                </GlobalNavLink>
+              </li>
+              <li>
                 <GlobalNavLink href="https://developer.newrelic.com/">
                   Developers
                 </GlobalNavLink>
@@ -204,11 +198,6 @@ const GlobalHeader = ({ className, editUrl }) => {
               <li>
                 <GlobalNavLink href="https://opensource.newrelic.com/">
                   Open Source
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://docs.newrelic.com/">
-                  Documentation
                 </GlobalNavLink>
               </li>
               <li>
@@ -235,19 +224,7 @@ const GlobalHeader = ({ className, editUrl }) => {
             `}
           >
             <li>
-              <Link
-                to="?q="
-                css={actionLink}
-                onClick={() =>
-                  track(
-                    SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
-                    null,
-                    {
-                      action: 'search',
-                    }
-                  )
-                }
-              >
+              <Link to="?q=" css={actionLink}>
                 <Icon
                   css={actionIcon}
                   name={Icon.TYPE.SEARCH}
@@ -256,70 +233,24 @@ const GlobalHeader = ({ className, editUrl }) => {
               </Link>
             </li>
             <li>
-              <DarkModeToggle
-                css={[actionIcon, action]}
-                size="0.875rem"
-                onClick={() =>
-                  track(
-                    SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
-                    null,
-                    {
-                      action: 'dark_mode',
-                    }
-                  )
-                }
-              />
+              <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
             </li>
-            {shouldShowGithubActions && (
-              <>
-                {editUrl && (
-                  <li>
-                    <ExternalLink
-                      css={actionLink}
-                      href={editUrl}
-                      onClick={() =>
-                        track(
-                          SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
-                          null,
-                          {
-                            action: 'edit_page',
-                          }
-                        )
-                      }
-                    >
-                      <Icon
-                        css={actionIcon}
-                        name={Icon.TYPE.EDIT}
-                        size="0.875rem"
-                      />
-                    </ExternalLink>
-                  </li>
-                )}
-                {repository && (
-                  <li>
-                    <ExternalLink
-                      css={actionLink}
-                      href={`${repository}/issues/new/choose`}
-                      onClick={() =>
-                        track(
-                          SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_CLICK_ACTION,
-                          null,
-                          {
-                            action: 'issues',
-                          }
-                        )
-                      }
-                    >
-                      <Icon
-                        css={actionIcon}
-                        name={Icon.TYPE.GITHUB}
-                        size="0.875rem"
-                      />
-                    </ExternalLink>
-                  </li>
-                )}
-              </>
-            )}
+            <li
+              css={css`
+                display: flex;
+                align-items: center;
+              `}
+            >
+              <ExternalLink
+                href="https://one.newrelic.com"
+                css={css`
+                  font-size: 0.675rem;
+                  font-weight: 600;
+                `}
+              >
+                Log in
+              </ExternalLink>
+            </li>
             <li
               css={css`
                 display: flex;
