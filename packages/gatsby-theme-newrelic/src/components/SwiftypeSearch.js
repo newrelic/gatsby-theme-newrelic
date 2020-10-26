@@ -7,6 +7,8 @@ import {
   Results,
   Paging,
   PagingInfo,
+  Facet,
+  SingleSelectFacet,
 } from '@elastic/react-search-ui';
 import ResultView from './ResultView';
 import PagingInfoView from './PagingInfoView';
@@ -42,6 +44,10 @@ const configOptions = {
         raw: {},
       },
     },
+    disjunctiveFacets: ['type'],
+    facets: {
+      type: { type: 'value' },
+    },
   },
   initialState: {
     resultsPerPage: 10,
@@ -73,6 +79,13 @@ const SwiftypeSearch = ({ className }) => {
                   onSubmit={(searchTerm) => {
                     setQueryParam('q', searchTerm);
                   }}
+                />
+                <Facet
+                  field="type"
+                  label="Site"
+                  view={SingleSelectFacet}
+                  filterType="any"
+                  isFilterable={true}
                 />
                 {isLoading && (
                   <Icon
