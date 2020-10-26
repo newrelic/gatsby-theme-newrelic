@@ -197,6 +197,11 @@ const GlobalHeader = ({ className, editUrl }) => {
               `}
             >
               <li>
+                <GlobalNavLink href="https://docs.newrelic.com/">
+                  Documentation
+                </GlobalNavLink>
+              </li>
+              <li>
                 <GlobalNavLink href="https://developer.newrelic.com/">
                   Developers
                 </GlobalNavLink>
@@ -204,11 +209,6 @@ const GlobalHeader = ({ className, editUrl }) => {
               <li>
                 <GlobalNavLink href="https://opensource.newrelic.com/">
                   Open Source
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://docs.newrelic.com/">
-                  Documentation
                 </GlobalNavLink>
               </li>
               <li>
