@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import Icon from './Icon';
 
 const SIZES = {
+  SMALL: 'small',
   MEDIUM: 'medium',
   LARGE: 'large',
 };
@@ -76,7 +77,7 @@ SearchInput.propTypes = {
   onClear: PropTypes.func,
   value: PropTypes.string,
   width: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.oneOf(Object.values(SIZES)),
   style: PropTypes.object,
 };
 
@@ -86,6 +87,15 @@ export default SearchInput;
 
 const styles = {
   size: {
+    [SIZES.SMALL]: {
+      input: css`
+        font-size: 0.75rem;
+        padding: 0.25rem calc(1.5rem + var(--icon-size));
+      `,
+      container: css`
+        --icon-size: 0.75rem;
+      `,
+    },
     [SIZES.MEDIUM]: {
       input: css`
         font-size: 0.875rem;
@@ -119,6 +129,8 @@ const StyledInput = styled.input`
   border-radius: 4px;
   background: var(--primary-background-color);
   color: var(--primary-text-color);
+  transition: 0.15s ease-out;
+  line-height: 1;
   ${({ size }) => size && styles.size[size].input}
 
   &:focus {
