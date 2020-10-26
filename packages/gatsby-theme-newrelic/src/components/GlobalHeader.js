@@ -277,7 +277,6 @@ const GlobalHeader = ({ className }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
-  editUrl: PropTypes.string,
 };
 
 export default GlobalHeader;
