@@ -238,6 +238,21 @@ const GlobalHeader = ({ className }) => {
             <li
               css={css`
                 display: flex;
+                align-items: center;
+              `}
+            >
+              <ExternalLink
+                href="https://one.newrelic.com"
+                css={css`
+                  font-size: 0.675rem;
+                `}
+              >
+                Log in
+              </ExternalLink>
+            </li>
+            <li
+              css={css`
+                display: flex;
               `}
             >
               <Button
