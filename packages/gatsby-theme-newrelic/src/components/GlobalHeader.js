@@ -245,6 +245,7 @@ const GlobalHeader = ({ className }) => {
                 href="https://one.newrelic.com"
                 css={css`
                   font-size: 0.675rem;
+                  font-weight: 600;
                 `}
               >
                 Log in
