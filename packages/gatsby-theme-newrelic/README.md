@@ -382,12 +382,20 @@ import { Callout } from '@newrelic/gatsby-theme-newrelic'`
 | Prop    | Type | Required | Default | Description                                                                                                                         |
 | ------- | ---- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | variant | enum | yes      |         | Configures the variant of the callout. Must be one of `Callout.VARIANT.CAUTION`, `Callout.VARIANT.IMPORTANT`, `Callout.VARIANT.TIP` |
-| title   | enum | no       |         | Set the title text. Defaults to variant name.                                                                                       |
+| title   | enum | no       |         | Set the title text. Defaults to variant name. You may hide the title by passing `null` as the value.                                |
 
 **Examples**
 
 ```js
 <Callout variant={Callout.VARIANT.CAUTION}>Be careful!</Callout>
+```
+
+Hide the title
+
+```js
+<Callout variant={Callout.VARIANT.CAUTION} title={null}>
+  Be careful!
+</Callout>
 ```
 
 ### `CodeBlock`

@@ -118,6 +118,12 @@ const IndexPage = ({ data }) => {
             Important! I said, this is important.
           </Callout>
           <Callout variant={Callout.VARIANT.TIP}>Here's a tip.</Callout>
+          <Callout variant={Callout.VARIANT.TIP} title="Hello">
+            Here's a tip with a custom title
+          </Callout>
+          <Callout variant={Callout.VARIANT.TIP} title={null}>
+            Here's a tip with no title
+          </Callout>
         </section>
         <section>
           <h2>A code block</h2>
