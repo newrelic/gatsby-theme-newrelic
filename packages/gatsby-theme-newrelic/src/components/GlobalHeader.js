@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql, useStaticQuery, navigate, Link } from 'gatsby';
@@ -47,6 +47,7 @@ const actionIcon = css`
 
 const GlobalHeader = ({ className }) => {
   const location = useLocation();
+  const searchRef = useRef();
   const { queryParams, setQueryParam } = useQueryParams();
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -76,9 +77,7 @@ const GlobalHeader = ({ className }) => {
 
     e.preventDefault();
 
-    if (!queryParams.has('q')) {
-      navigate('?q=');
-    }
+    searchRef.current.focus();
   });
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
@@ -249,6 +248,7 @@ const GlobalHeader = ({ className }) => {
                 </Link>
               ) : (
                 <SearchInput
+                  ref={searchRef}
                   placeholder="Search"
                   size={SearchInput.SIZE.SMALL}
                   onClear={() => setSearchQuery('')}
