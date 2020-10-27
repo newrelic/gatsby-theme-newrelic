@@ -12,6 +12,7 @@ const Footer = ({ fileRelativePath }) => {
       site {
         siteMetadata {
           repository
+          branch
         }
         layout {
           contentPadding
@@ -21,6 +22,7 @@ const Footer = ({ fileRelativePath }) => {
   `);
 
   const { siteMetadata, layout } = site;
+  const { branch, repository } = siteMetadata;
 
   return (
     <footer
@@ -106,14 +108,14 @@ const Footer = ({ fileRelativePath }) => {
 
         {fileRelativePath && (
           <ExternalLink
-            href={`${siteMetadata.repository}/blob/main/${fileRelativePath}`}
+            href={`${repository}/blob/${branch}/${fileRelativePath}`}
           >
             <Icon name="edit" size="1rem" />
             Edit this page
           </ExternalLink>
         )}
 
-        <ExternalLink href={`${siteMetadata.repository}/issues/new/choose`}>
+        <ExternalLink href={`${repository}/issues/new/choose`}>
           <Icon name="github" size="1rem" />
           Create an issue
         </ExternalLink>

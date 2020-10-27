@@ -82,6 +82,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://developer.newrelic.com',
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
+    branch: 'main',
   },
   plugins: [
     {
@@ -133,6 +134,7 @@ are optional, they are highly recommended.
 - `siteUrl`: Production URL for the site (e.g. `https://developer.newrelic.com`)
 - `repository`: The URL for the public GitHub repository hosting the source code
   for the site.
+- `branch`: The mainline branch (e.g. `main`) for use when constructing "Edit this page" links.
 
 ### Options
 

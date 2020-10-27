@@ -310,7 +310,7 @@ const IndexPage = ({ data }) => {
         </section>
       </div>
 
-      <GlobalFooter />
+      <GlobalFooter fileRelativePath="src/content/foobar.md" />
     </>
   );
 };
