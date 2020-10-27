@@ -8,6 +8,7 @@ export { default as Footer } from './src/components/Footer';
 export { default as GlobalHeader } from './src/components/GlobalHeader';
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';
+export { default as Logo } from './src/components/Logo';
 export { default as MDXCodeBlock } from './src/components/MDXCodeBlock';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 export { default as Overlay } from './src/components/Overlay';

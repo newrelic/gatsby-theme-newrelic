@@ -1,6 +1,7 @@
 import React from 'react';
 import ProptTypes from 'prop-types';
 import Icon from './Icon';
+import Logo from './Logo';
 import ExternalLink from './ExternalLink';
 import { Link } from 'gatsby';
 import { css } from '@emotion/core';
@@ -45,7 +46,9 @@ const Footer = ({
           }
         `}
       >
-        <Link to="/">Logo</Link>
+        <Link to="/">
+          <Logo />
+        </Link>
         <div
           css={css`
             margin-left: 0.5rem;
