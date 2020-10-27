@@ -1,17 +1,27 @@
 import React from 'react';
-import ProptTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import Icon from './Icon';
 import Logo from './Logo';
 import ExternalLink from './ExternalLink';
-import { Link } from 'gatsby';
+import { graphql, useStaticQuery, Link } from 'gatsby';
 import { css } from '@emotion/core';
 
-const Footer = ({
-  contentPadding,
-  fileRelativePath,
-  showEdit,
-  githubBaseUrl,
-}) => {
+const Footer = ({ fileRelativePath, noEdit }) => {
+  const { site } = useStaticQuery(graphql`
+    query FooterQuery {
+      site {
+        siteMetadata {
+          repository
+        }
+        layout {
+          contentPadding
+        }
+      }
+    }
+  `);
+
+  const { siteMetadata, layout } = site;
+
   return (
     <footer
       data-swiftype-index={false}
@@ -23,8 +33,8 @@ const Footer = ({
         font-size: 0.75rem;
         grid-area: footer;
         justify-content: space-between;
-        margin-right: ${contentPadding};
-        padding: ${contentPadding} 0;
+        margin-right: ${layout.contentPadding};
+        padding: ${layout.contentPadding} 0;
         z-index: 1;
 
         @media (max-width: 1080px) {
@@ -94,34 +104,31 @@ const Footer = ({
           Terms of service
         </Link>
 
-        {githubBaseUrl && fileRelativePath && showEdit && (
-          <ExternalLink href={`${githubBaseUrl}/blob/main/${fileRelativePath}`}>
+        {fileRelativePath && !noEdit && (
+          <ExternalLink
+            href={`${siteMetadata.repository}/blob/main/${fileRelativePath}`}
+          >
             <Icon name="edit" size="1rem" />
             Edit this page
           </ExternalLink>
         )}
 
-        {githubBaseUrl && (
-          <ExternalLink href={`${githubBaseUrl}/issues/new/choose`}>
-            <Icon name="github" size="1rem" />
-            Create an issue
-          </ExternalLink>
-        )}
+        <ExternalLink href={`${siteMetadata.repository}/issues/new/choose`}>
+          <Icon name="github" size="1rem" />
+          Create an issue
+        </ExternalLink>
       </div>
     </footer>
   );
 };
 
 Footer.propTypes = {
-  contentPadding: ProptTypes.string,
-  showEdit: ProptTypes.bool,
-  fileRelativePath: ProptTypes.string,
-  githubBaseUrl: ProptTypes.string,
+  noEdit: PropTypes.bool,
+  fileRelativePath: PropTypes.string,
 };
 
-Footer.defaultProps = {
-  contentPadding: '2rem',
-  showEdit: true,
+Footer.propTypes = {
+  noEdit: false,
 };
 
 export default Footer;
