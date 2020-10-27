@@ -44,10 +44,16 @@ const configOptions = {
         raw: {},
       },
     },
-    disjunctiveFacets: ['type'],
     facets: {
       type: { type: 'value' },
     },
+    filters: [
+      {
+        field: 'type',
+        values: ['docs', 'developer', 'opensource'],
+        type: 'any',
+      },
+    ],
   },
   initialState: {
     resultsPerPage: 10,
@@ -85,7 +91,6 @@ const SwiftypeSearch = ({ className }) => {
                   label="Site"
                   view={SingleSelectFacet}
                   filterType="any"
-                  isFilterable={true}
                 />
                 {isLoading && (
                   <Icon
