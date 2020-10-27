@@ -6,6 +6,7 @@ module.exports = {
   siteMetadata: {
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
     siteUrl: 'https://developer.newrelic.com',
+    utmSource: 'demo-site',
   },
   plugins: [
     {

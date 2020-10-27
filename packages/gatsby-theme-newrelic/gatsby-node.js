@@ -32,17 +32,33 @@ exports.createSchemaCustomization = ({ actions }) => {
       startDate: Date @dateformat(formatString: "YYYY-MM-DD")
       endDate: Date @dateformat(formatString: "YYYY-MM-DD")
     }
+
+    type SiteSiteMetadata {
+      utmSource: String
+    }
   `);
 };
 
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
   const { layout = {} } = themeOptions;
 
+  const defaultUtmSource = {
+    'https://developer.newrelic.com': 'developer-site',
+    'https://opensource.newrelic.com': 'opensource-site',
+    'https://docs.newrelic.com': 'docs-site',
+  };
+
   createResolvers({
     Site: {
       layout: {
         type: 'SiteLayout',
         resolve: () => layout,
+      },
+    },
+    SiteSiteMetadata: {
+      utmSource: {
+        resolve: ({ siteUrl, utmSource }) =>
+          utmSource || defaultUtmSource[siteUrl],
       },
     },
   });
