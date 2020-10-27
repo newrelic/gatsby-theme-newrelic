@@ -32,6 +32,7 @@ websites](https://opensource.newrelic.com).
   - [`MDXCodeBlock`](#mdxcodeblock)
   - [`NewRelicLogo`](#newreliclogo)
   - [`SearchInput`](#searchinput)
+  - [`Spinner`](#spinner)
   - [`Surface`](#surface)
   - [`Tag`](#tag)
   - [`TagList`](#taglist)
@@ -920,6 +921,28 @@ const Search = () => (
       onChange={(e) => setValue(e.target.value)}
     />
   );
+);
+```
+
+### `Spinner`
+
+A spinner that can be used to indicate a loading state.
+
+```js
+import { Spinner } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop     | Type    | Required | Default | Description                                                                                                             |
+| -------- | ------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `inline` | boolean | no       | `false` | Determines whether the spinner should be rendered inline. By default this will center the spinner inside its container. |
+
+**Example**
+
+```js
+const View = () => (
+  return <Spinner />;
 );
 ```
 
