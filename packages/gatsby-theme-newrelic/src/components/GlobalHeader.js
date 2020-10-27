@@ -119,6 +119,7 @@ const GlobalHeader = ({ className }) => {
             }}
           >
             <SwiftypeSearch
+              key={queryParams.get('q')}
               css={css`
                 display: flex;
                 flex-direction: column;
