@@ -188,7 +188,7 @@ const GlobalHeader = ({ className }) => {
             >
               <li>
                 <GlobalNavLink href="https://docs.newrelic.com/">
-                  Documentation
+                  Docs
                 </GlobalNavLink>
               </li>
               <li>
