@@ -26,7 +26,7 @@ websites](https://opensource.newrelic.com).
   - [`CodeBlock`](#codeblock)
   - [`ExternalLink`](#externallink)
   - [`Feedback`](#feedback)
-  - [`Footer`](#footer)
+  - [`GlobalFooter`](#globalfooter)
   - [`GlobalHeader`](#globalheader)
   - [`HamburgerMenu`](#hamburgermenu)
   - [`Icon`](#icon)
@@ -600,14 +600,14 @@ import { Feedback } from '@newrelic/gatsby-theme-newrelic';
 />
 ```
 
-### `Footer`
+### `GlobalFooter`
 
 Renders the global footer used on all New Relic Gatsby sites. This component utilizes the [`layout` configuration](#layout) from the theme to size itself and the `siteMetadata` for the repository URL.
 
 _NOTE_: The logo displayed in the footer is a generic to New Relic logo, but can be changed with [shadowing](https://www.gatsbyjs.com/docs/themes/shadowing).
 
 ```js
-import { Footer } from '@newrelic/gatsby-theme-newrelic';
+import { GlobalFooter } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 **Props**
@@ -619,7 +619,7 @@ import { Footer } from '@newrelic/gatsby-theme-newrelic';
 **Example**
 
 ```jsx
-<Footer fileRelativePath={"/src/content/foobar.md"} />
+<GlobalFooter fileRelativePath={"/src/content/foobar.md"} />
 ```
 
 ### `GlobalHeader`
