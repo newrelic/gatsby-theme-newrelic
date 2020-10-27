@@ -18,12 +18,6 @@ import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
 import { rgba } from 'polished';
 
-const UTM_SOURCES = {
-  'https://developer.newrelic.com': 'developer-site',
-  'https://opensource.newrelic.com': 'opensource-site',
-  'https://docs.newrelic.com': 'docs-site',
-};
-
 const action = css`
   color: var(--secondary-text-color);
   transition: all 0.2s ease-out;
@@ -55,7 +49,7 @@ const GlobalHeader = ({ className }) => {
     query GlobalHeaderQuery {
       site {
         siteMetadata {
-          siteUrl
+          utmSource
         }
         layout {
           contentPadding
@@ -65,9 +59,10 @@ const GlobalHeader = ({ className }) => {
     }
   `);
 
-  const { siteMetadata, layout } = site;
-
-  const utmSource = UTM_SOURCES[siteMetadata.siteUrl];
+  const {
+    siteMetadata: { utmSource },
+    layout,
+  } = site;
 
   useKeyPress('/', (e) => {
     // Don't trigger overlay when typing in an input or textarea
