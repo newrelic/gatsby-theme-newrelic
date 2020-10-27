@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql, useStaticQuery, navigate, Link } from 'gatsby';
@@ -11,17 +11,12 @@ import Icon from './Icon';
 import SwiftypeSearch from './SwiftypeSearch';
 import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
+import SearchInput from './SearchInput';
 import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
 import { rgba } from 'polished';
-
-const UTM_SOURCES = {
-  'https://developer.newrelic.com': 'developer-site',
-  'https://opensource.newrelic.com': 'opensource-site',
-  'https://docs.newrelic.com': 'docs-site',
-};
 
 const action = css`
   color: var(--secondary-text-color);
@@ -46,13 +41,15 @@ const actionIcon = css`
 
 const GlobalHeader = ({ className }) => {
   const location = useLocation();
-  const { queryParams } = useQueryParams();
+  const searchRef = useRef();
+  const { queryParams, setQueryParam } = useQueryParams();
+  const [searchQuery, setSearchQuery] = useState('');
 
   const { site } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
       site {
         siteMetadata {
-          siteUrl
+          utmSource
         }
         layout {
           contentPadding
@@ -62,9 +59,10 @@ const GlobalHeader = ({ className }) => {
     }
   `);
 
-  const { siteMetadata, layout } = site;
-
-  const utmSource = UTM_SOURCES[siteMetadata.siteUrl];
+  const {
+    siteMetadata: { utmSource },
+    layout,
+  } = site;
 
   useKeyPress('/', (e) => {
     // Don't trigger overlay when typing in an input or textarea
@@ -74,12 +72,11 @@ const GlobalHeader = ({ className }) => {
 
     e.preventDefault();
 
-    if (!queryParams.has('q')) {
-      navigate('?q=');
-    }
+    searchRef.current.focus();
   });
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
+  const useSearchIcon = useMedia({ maxWidth: '585px' });
 
   return (
     <>
@@ -111,9 +108,13 @@ const GlobalHeader = ({ className }) => {
         >
           <Overlay
             isOpen={queryParams.has('q')}
-            onCloseOverlay={() => navigate(location.pathname)}
+            onCloseOverlay={() => {
+              navigate(location.pathname);
+              setSearchQuery('');
+            }}
           >
             <SwiftypeSearch
+              key={queryParams.get('q')}
               css={css`
                 display: flex;
                 flex-direction: column;
@@ -131,7 +132,7 @@ const GlobalHeader = ({ className }) => {
               overflow: hidden;
               position: relative;
 
-              @media screen and (max-width: 585px) {
+              @media screen and (max-width: 800px) {
                 &::after {
                   content: '';
                   position: absolute;
@@ -187,7 +188,7 @@ const GlobalHeader = ({ className }) => {
             >
               <li>
                 <GlobalNavLink href="https://docs.newrelic.com/">
-                  Documentation
+                  Docs
                 </GlobalNavLink>
               </li>
               <li>
@@ -211,26 +212,53 @@ const GlobalHeader = ({ className }) => {
           <ul
             css={css`
               margin: 0;
+              margin-left: 1rem;
               padding: 0;
               display: flex;
               list-style-type: none;
               align-items: center;
+              flex: 1;
 
               > li {
                 transition: all 0.2s ease-out;
-                margin-left: 1rem;
                 color: var(--secondary-text-color);
+
+                &:not(:first-of-type) {
+                  margin-left: 1rem;
+                }
               }
             `}
           >
-            <li>
-              <Link to="?q=" css={actionLink}>
-                <Icon
-                  css={actionIcon}
-                  name={Icon.TYPE.SEARCH}
-                  size="0.875rem"
+            <li
+              css={css`
+                flex: 1;
+              `}
+            >
+              {useSearchIcon ? (
+                <Link to="?q=" css={actionLink}>
+                  <Icon
+                    css={actionIcon}
+                    name={Icon.TYPE.SEARCH}
+                    size="0.875rem"
+                  />
+                </Link>
+              ) : (
+                <SearchInput
+                  ref={searchRef}
+                  placeholder="Search"
+                  size={SearchInput.SIZE.SMALL}
+                  onClear={() => setSearchQuery('')}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onSubmit={(value) => {
+                    setQueryParam('q', value);
+                  }}
+                  value={searchQuery}
+                  css={css`
+                    min-width: 150px;
+                    max-width: 350px;
+                  `}
                 />
-              </Link>
+              )}
             </li>
             <li>
               <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
@@ -246,6 +274,7 @@ const GlobalHeader = ({ className }) => {
                 css={css`
                   font-size: 0.675rem;
                   font-weight: 600;
+                  white-space: nowrap;
                 `}
               >
                 Log in
@@ -276,7 +305,6 @@ const GlobalHeader = ({ className }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
-  editUrl: PropTypes.string,
 };
 
 export default GlobalHeader;

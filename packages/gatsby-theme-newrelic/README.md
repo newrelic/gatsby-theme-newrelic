@@ -33,6 +33,7 @@ websites](https://opensource.newrelic.com).
   - [`MDXCodeBlock`](#mdxcodeblock)
   - [`NewRelicLogo`](#newreliclogo)
   - [`SearchInput`](#searchinput)
+  - [`Spinner`](#spinner)
   - [`Surface`](#surface)
   - [`Tag`](#tag)
   - [`TagList`](#taglist)
@@ -83,6 +84,7 @@ module.exports = {
     siteUrl: 'https://developer.newrelic.com',
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
     branch: 'main',
+    utmSource: 'developer-site',
   },
   plugins: [
     {
@@ -134,7 +136,9 @@ are optional, they are highly recommended.
 - `siteUrl`: Production URL for the site (e.g. `https://developer.newrelic.com`)
 - `repository`: The URL for the public GitHub repository hosting the source code
   for the site.
-- `branch`: The mainline branch (e.g. `main`) for use when constructing "Edit this page" links.
+- `branch`: The mainline branch for use when constructing "Edit this page" links (defaults to `main`).
+- `utmSource`: Name of the site that will be used as the UTM source when linking
+  to various mediums within New Relic.
 
 ### Options
 
@@ -945,6 +949,28 @@ const Search = () => (
       onChange={(e) => setValue(e.target.value)}
     />
   );
+);
+```
+
+### `Spinner`
+
+A spinner that can be used to indicate a loading state.
+
+```js
+import { Spinner } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop     | Type    | Required | Default | Description                                                                                                             |
+| -------- | ------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `inline` | boolean | no       | `false` | Determines whether the spinner should be rendered inline. By default this will center the spinner inside its container. |
+
+**Example**
+
+```js
+const View = () => (
+  return <Spinner />;
 );
 ```
 

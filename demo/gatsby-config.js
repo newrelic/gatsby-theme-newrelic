@@ -5,8 +5,8 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
-    branch: 'main',
     siteUrl: 'https://developer.newrelic.com',
+    utmSource: 'demo-site',
   },
   plugins: [
     {
