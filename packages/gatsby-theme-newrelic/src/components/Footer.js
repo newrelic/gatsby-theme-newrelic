@@ -112,8 +112,8 @@ const Footer = ({
 Footer.propTypes = {
   contentPadding: ProptTypes.string,
   showEdit: ProptTypes.bool,
-  fileRelativePath: ProptTypes.string.isRequired,
-  githubBaseUrl: ProptTypes.string.isRequired,
+  fileRelativePath: ProptTypes.string,
+  githubBaseUrl: ProptTypes.string,
 };
 
 Footer.defaultProps = {

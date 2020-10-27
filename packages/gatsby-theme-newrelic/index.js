@@ -4,6 +4,7 @@ export { default as Callout } from './src/components/Callout';
 export { default as CodeBlock } from './src/components/CodeBlock';
 export { default as ExternalLink } from './src/components/ExternalLink';
 export { default as Feedback } from './src/components/Feedback';
+export { default as Footer } from './src/components/Footer';
 export { default as GlobalHeader } from './src/components/GlobalHeader';
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';

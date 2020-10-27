@@ -8,6 +8,7 @@ import {
   CodeBlock,
   Callout,
   Feedback,
+  Footer,
   GlobalHeader,
   HamburgerMenu,
   NewRelicLogo,
@@ -308,6 +309,8 @@ const IndexPage = ({ data }) => {
           </TagList>
         </section>
       </div>
+
+      <Footer />
     </>
   );
 };
