@@ -88,7 +88,7 @@ const SwiftypeSearch = ({ className }) => {
                 />
                 <Facet
                   field="type"
-                  label="Site"
+                  label=""
                   view={SingleSelectFacet}
                   filterType="any"
                 />
