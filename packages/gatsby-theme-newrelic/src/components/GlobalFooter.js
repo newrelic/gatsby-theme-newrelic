@@ -7,7 +7,7 @@ import ExternalLink from './ExternalLink';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import { css } from '@emotion/core';
 
-const Footer = ({ fileRelativePath, className }) => {
+const GlobalFooter = ({ fileRelativePath, className }) => {
   const { site, sitePage } = useStaticQuery(graphql`
     query FooterQuery {
       site {
@@ -155,9 +155,9 @@ const Footer = ({ fileRelativePath, className }) => {
   );
 };
 
-Footer.propTypes = {
+GlobalFooter.propTypes = {
   fileRelativePath: PropTypes.string,
   className: PropTypes.string,
 };
 
-export default Footer;
+export default GlobalFooter;
