@@ -26,6 +26,7 @@ websites](https://opensource.newrelic.com).
   - [`CodeBlock`](#codeblock)
   - [`ExternalLink`](#externallink)
   - [`Feedback`](#feedback)
+  - [`GlobalFooter`](#globalfooter)
   - [`GlobalHeader`](#globalheader)
   - [`HamburgerMenu`](#hamburgermenu)
   - [`Icon`](#icon)
@@ -82,6 +83,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://developer.newrelic.com',
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
+    branch: 'main',
     utmSource: 'developer-site',
   },
   plugins: [
@@ -134,6 +136,7 @@ are optional, they are highly recommended.
 - `siteUrl`: Production URL for the site (e.g. `https://developer.newrelic.com`)
 - `repository`: The URL for the public GitHub repository hosting the source code
   for the site.
+- `branch`: The mainline branch for use when constructing "Edit this page" links (defaults to `main`).
 - `utmSource`: Name of the site that will be used as the UTM source when linking
   to various mediums within New Relic.
 
@@ -601,6 +604,29 @@ import { Feedback } from '@newrelic/gatsby-theme-newrelic';
     alert('${sentiment} feedback recieved: ${comment}');
   }}
 />
+```
+
+### `GlobalFooter`
+
+Renders the global footer used on all New Relic Gatsby sites. This component utilizes the [`layout` configuration](#layout) from the theme to size itself and the `siteMetadata` for the repository URL.
+
+_NOTE_: The logo displayed in the footer is a generic to New Relic logo, but can be changed with [shadowing](https://www.gatsbyjs.com/docs/themes/shadowing).
+
+```js
+import { GlobalFooter } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop               | Type   | Required | Default | Description                                                                                                   |
+| ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| `className`        | string | no       |         | Additional `className` for the component.                                                                     |
+| `fileRelativePath` | string | no       |         | The relative path to the markdown file for the current page. If not supplied, the edit link will not be shown |
+
+**Example**
+
+```jsx
+<GlobalFooter fileRelativePath={'/src/content/foobar.md'} />
 ```
 
 ### `GlobalHeader`

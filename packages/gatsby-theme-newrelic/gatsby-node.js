@@ -3,6 +3,8 @@ const path = require('path');
 
 const uniq = (arr) => [...new Set(arr)];
 
+const DEFAULT_BRANCH = 'main';
+
 exports.onPreBootstrap = ({ reporter, store }) => {
   const { program } = store.getState();
   const imagePath = path.join(program.directory, 'src/images');
@@ -35,6 +37,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type SiteSiteMetadata {
       utmSource: String
+      branch: String!
     }
   `);
 };
@@ -59,6 +62,9 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       utmSource: {
         resolve: ({ siteUrl, utmSource }) =>
           utmSource || defaultUtmSource[siteUrl],
+      },
+      branch: {
+        resolve: ({ branch }) => branch || DEFAULT_BRANCH,
       },
     },
   });
