@@ -35,7 +35,6 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
       css={css`
         color: var(--secondary-text-color);
         background-color: var(--color-neutrals-050);
-        grid-area: footer;
         z-index: 1;
 
         .dark-mode & {
