@@ -53,11 +53,25 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
           align-items: center;
           justify-content: space-between;
           display: flex;
-          padding: ${layout.contentPadding};
+          padding: 1rem ${layout.contentPadding};
+
+          @media screen and (max-width: 550px) {
+            flex-direction: column;
+            justify-content: center;
+          }
         `}
       >
         <Link to="/">
-          <Logo />
+          <Logo
+            width="150px"
+            css={css`
+              display: block;
+
+              @media screen and (max-width: 550px) {
+                margin-bottom: 1rem;
+              }
+            `}
+          />
         </Link>
         <div>
           {fileRelativePath && (
@@ -72,7 +86,6 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
             >
               <Icon
                 name="edit"
-                size="1rem"
                 css={css`
                   margin-right: 0.5rem;
                 `}
@@ -89,7 +102,6 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
           >
             <Icon
               name="github"
-              size="1rem"
               css={css`
                 margin-right: 0.5rem;
               `}
@@ -105,16 +117,29 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
           font-size: 0.75rem;
           align-items: center;
           justify-content: space-between;
-          display: flex;
+          display: grid;
+          grid-template-columns: auto auto;
+          grid-template-areas: 'copyright legal';
           padding: 0.5rem ${layout.contentPadding};
 
           .dark-mode & {
             background-color: rgba(0, 0, 0, 0.2);
           }
+
+          @media screen and (max-width: 760px) {
+            justify-content: center;
+            text-align: center;
+            grid-template-columns: auto;
+            grid-gap: 0.5rem;
+            grid-template-areas:
+              'legal'
+              'copyright';
+          }
         `}
       >
         <div
           css={css`
+            grid-area: copyright;
             text-transform: uppercase;
             font-size: 0.5rem;
             letter-spacing: 0.1rem;
@@ -124,8 +149,14 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
         </div>
         <div
           css={css`
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            grid-area: legal;
+
             a {
               margin-left: 0.75rem;
+              white-space: nowrap;
             }
           `}
         >
