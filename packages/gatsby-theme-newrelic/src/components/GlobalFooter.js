@@ -17,6 +17,7 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
         }
         layout {
           contentPadding
+          maxWidth
         }
       }
       sitePage(path: { eq: "/terms" }) {
@@ -35,7 +36,6 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
       css={css`
         color: var(--secondary-text-color);
         background-color: var(--color-neutrals-050);
-        grid-area: footer;
         z-index: 1;
 
         .dark-mode & {
@@ -53,11 +53,27 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
           align-items: center;
           justify-content: space-between;
           display: flex;
-          padding: ${layout.contentPadding};
+          padding: 1rem ${layout.contentPadding};
+          max-width: ${layout.maxWidth};
+          margin: 0 auto;
+
+          @media screen and (max-width: 550px) {
+            flex-direction: column;
+            justify-content: center;
+          }
         `}
       >
         <Link to="/">
-          <Logo />
+          <Logo
+            width="150px"
+            css={css`
+              display: block;
+
+              @media screen and (max-width: 550px) {
+                margin-bottom: 1rem;
+              }
+            `}
+          />
         </Link>
         <div>
           {fileRelativePath && (
@@ -72,7 +88,6 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
             >
               <Icon
                 name="edit"
-                size="1rem"
                 css={css`
                   margin-right: 0.5rem;
                 `}
@@ -89,7 +104,6 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
           >
             <Icon
               name="github"
-              size="1rem"
               css={css`
                 margin-right: 0.5rem;
               `}
@@ -102,11 +116,6 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
       <div
         css={css`
           background-color: rgba(0, 0, 0, 0.05);
-          font-size: 0.75rem;
-          align-items: center;
-          justify-content: space-between;
-          display: flex;
-          padding: 0.5rem ${layout.contentPadding};
 
           .dark-mode & {
             background-color: rgba(0, 0, 0, 0.2);
@@ -115,40 +124,71 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
       >
         <div
           css={css`
-            text-transform: uppercase;
-            font-size: 0.5rem;
-            letter-spacing: 0.1rem;
-          `}
-        >
-          Copyright &copy; 2020 New Relic Inc.
-        </div>
-        <div
-          css={css`
-            a {
-              margin-left: 0.75rem;
+            font-size: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-areas: 'copyright legal';
+            padding: 0.5rem ${layout.contentPadding};
+            max-width: ${layout.maxWidth};
+            margin: 0 auto;
+
+            @media screen and (max-width: 760px) {
+              justify-content: center;
+              text-align: center;
+              grid-template-columns: auto;
+              grid-gap: 0.5rem;
+              grid-template-areas:
+                'legal'
+                'copyright';
             }
           `}
         >
-          {sitePage ? (
-            <Link to="/terms">Terms of Service</Link>
-          ) : (
-            <ExternalLink href="https://newrelic.com/termsandconditions/terms">
-              Terms of Service
-            </ExternalLink>
-          )}
+          <div
+            css={css`
+              grid-area: copyright;
+              text-transform: uppercase;
+              font-size: 0.5rem;
+              letter-spacing: 0.1rem;
+            `}
+          >
+            Copyright &copy; 2020 New Relic Inc.
+          </div>
+          <div
+            css={css`
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              grid-area: legal;
 
-          <ExternalLink href="https://newrelic.com/termsandconditions/dmca">
-            DCMA Policy
-          </ExternalLink>
-          <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
-            Privacy Notice
-          </ExternalLink>
-          <ExternalLink href="https://newrelic.com/termsandconditions/cookie-policy">
-            Cookie Policy
-          </ExternalLink>
-          <ExternalLink href="https://newrelic.com/termsandconditions/uk-slavery-act">
-            UK Slavery Act
-          </ExternalLink>
+              a {
+                margin-left: 0.75rem;
+                white-space: nowrap;
+              }
+            `}
+          >
+            {sitePage ? (
+              <Link to="/terms">Terms of Service</Link>
+            ) : (
+              <ExternalLink href="https://newrelic.com/termsandconditions/terms">
+                Terms of Service
+              </ExternalLink>
+            )}
+
+            <ExternalLink href="https://newrelic.com/termsandconditions/dmca">
+              DCMA Policy
+            </ExternalLink>
+            <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
+              Privacy Notice
+            </ExternalLink>
+            <ExternalLink href="https://newrelic.com/termsandconditions/cookie-policy">
+              Cookie Policy
+            </ExternalLink>
+            <ExternalLink href="https://newrelic.com/termsandconditions/uk-slavery-act">
+              UK Slavery Act
+            </ExternalLink>
+          </div>
         </div>
       </div>
     </footer>

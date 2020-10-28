@@ -1,18 +1,14 @@
 import React from 'react';
-import { css } from '@emotion/core';
+import PropTypes from 'prop-types';
+import NewRelicLogo from './NewRelicLogo';
 
-const Logo = () => (
-  <div
-    css={css`
-      font-size: 1.6rem;
-
-      &:hover {
-        color: var(--secondary-text-hover-color);
-      }
-    `}
-  >
-    New Relic
-  </div>
+const Logo = ({ className, width }) => (
+  <NewRelicLogo className={className} size={width} />
 );
+
+Logo.propTypes = {
+  className: PropTypes.string,
+  width: PropTypes.string,
+};
 
 export default Logo;
