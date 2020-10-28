@@ -8,8 +8,8 @@ import {
   Paging,
   PagingInfo,
   Facet,
-  SingleSelectFacet,
 } from '@elastic/react-search-ui';
+import { MultiCheckboxFacet } from '@elastic/react-search-ui-views';
 import ResultView from './ResultView';
 import PagingInfoView from './PagingInfoView';
 import SearchInput from './SearchInput';
@@ -89,7 +89,7 @@ const SwiftypeSearch = ({ className }) => {
                 <Facet
                   field="type"
                   label=""
-                  view={SingleSelectFacet}
+                  view={MultiCheckboxFacet}
                   filterType="any"
                 />
                 {isLoading && (
