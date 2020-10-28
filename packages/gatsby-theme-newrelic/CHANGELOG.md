@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.11.0...v1.11.1) (2020-10-28)
+
+
+### Bug Fixes
+
+* **GlobalFooter:** ensure width honors the layout max width ([57ddd54](https://github.com/newrelic/gatsby-theme-newrelic/commit/57ddd54672ef3ab0facf11b701fa224fda1ad7b5))
+* **GlobalFooter:** set logo width and add responsive styles ([84e8030](https://github.com/newrelic/gatsby-theme-newrelic/commit/84e8030bf772f9d733f3c46e2d47bb951da492fc))
+* fix missing key warning on head element ([fdd4aed](https://github.com/newrelic/gatsby-theme-newrelic/commit/fdd4aedfb9347f8708f1df6cc362e0dd6cf46097))
+* use the New Relic logo as the default Logo implementation ([deeb226](https://github.com/newrelic/gatsby-theme-newrelic/commit/deeb2265ef73e7a4400c45796b574d1d5f80f031))
+
+
+
+
+
 # [1.11.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.10.3...v1.11.0) (2020-10-28)
 
 
