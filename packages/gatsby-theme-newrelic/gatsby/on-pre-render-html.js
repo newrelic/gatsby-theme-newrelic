@@ -19,6 +19,7 @@ const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
       href="https://fonts.googleapis.com/css2?family=Ovo&display=swap"
     />,
     <script
+      key="bizible"
       type="text/javascript"
       src="//cdn.bizible.com/scripts/bizible.js"
       async=""
