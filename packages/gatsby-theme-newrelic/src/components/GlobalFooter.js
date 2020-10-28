@@ -8,7 +8,7 @@ import { graphql, useStaticQuery, Link } from 'gatsby';
 import { css } from '@emotion/core';
 
 const Footer = ({ fileRelativePath }) => {
-  const { site } = useStaticQuery(graphql`
+  const { site, sitePage } = useStaticQuery(graphql`
     query FooterQuery {
       site {
         siteMetadata {
@@ -18,6 +18,9 @@ const Footer = ({ fileRelativePath }) => {
         layout {
           contentPadding
         }
+      }
+      sitePage(path: { eq: "/terms" }) {
+        id
       }
     }
   `);
@@ -118,8 +121,33 @@ const Footer = ({ fileRelativePath }) => {
         >
           Copyright &copy; 2020 New Relic Inc.
         </div>
-        <div>
-          <Link to="/terms">Terms of service</Link>
+        <div
+          css={css`
+            a {
+              margin-left: 0.75rem;
+            }
+          `}
+        >
+          {sitePage ? (
+            <Link to="/terms">Terms of Service</Link>
+          ) : (
+            <ExternalLink href="https://newrelic.com/termsandconditions/terms">
+              Terms of Service
+            </ExternalLink>
+          )}
+
+          <ExternalLink href="https://newrelic.com/termsandconditions/dmca">
+            DCMA Policy
+          </ExternalLink>
+          <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
+            Privacy Notice
+          </ExternalLink>
+          <ExternalLink href="https://newrelic.com/termsandconditions/cookie-policy">
+            Cookie Policy
+          </ExternalLink>
+          <ExternalLink href="https://newrelic.com/termsandconditions/uk-slavery-act">
+            UK Slavery Act
+          </ExternalLink>
         </div>
       </div>
     </footer>
