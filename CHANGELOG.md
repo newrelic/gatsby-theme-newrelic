@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.10.3...v1.11.0) (2020-10-28)
+
+
+### Bug Fixes
+
+* **Callout:** allow the user to disable the title completely ([0eba6db](https://github.com/newrelic/gatsby-theme-newrelic/commit/0eba6db21168c2404868a97a4aee34141d74a45c))
+* **Callout:** ensure there is no title padding inside callout. Adjust spacing ([2e0bbf3](https://github.com/newrelic/gatsby-theme-newrelic/commit/2e0bbf35f127b8531b11b5d07d2babc8a5d6f784))
+
+
+### Features
+
+* add a Spinner component ([835a0cb](https://github.com/newrelic/gatsby-theme-newrelic/commit/835a0cb14acd59fbd6d03a2df728a27cafcfb8e4))
+* added a footer component ([4b0c0a1](https://github.com/newrelic/gatsby-theme-newrelic/commit/4b0c0a13aafdcd788213f8fc7173691179627c33))
+* added a logo that can be extended ([0222147](https://github.com/newrelic/gatsby-theme-newrelic/commit/0222147c95e8fd9da2282b8d2f454b19c146d8ba))
+* put the utm source in graphql and allow it to be overridden in siteMetadata ([f2c4baa](https://github.com/newrelic/gatsby-theme-newrelic/commit/f2c4baac467f675d0984153f10e110a2ae96b605))
+* **GlobalHeader:** Remove split treatment and tracking. Remove old GitHub links. ([6826de7](https://github.com/newrelic/gatsby-theme-newrelic/commit/6826de71190512b84c9a19a790ff909ab9e8417e))
+* **GlobalHeader:** replace the search icon with a search input on larger screens ([6fb11a9](https://github.com/newrelic/gatsby-theme-newrelic/commit/6fb11a9057fa68d10159e12a6b48adc9c6711b24))
+* **SearchInput:** add a small size ([a31692b](https://github.com/newrelic/gatsby-theme-newrelic/commit/a31692bde9f95e5a88a86e6246fe3038ad628c12))
+* **SearchInput:** allow refs to be attached ([75e1d88](https://github.com/newrelic/gatsby-theme-newrelic/commit/75e1d8898e8875ce49eaff4caf184e06ccad5057))
+* **SearchInput:** make it easier to detect when user has submitted search ([8c53c02](https://github.com/newrelic/gatsby-theme-newrelic/commit/8c53c02bfc2d22f652b27bffcbbeecf132142e22))
+* add login link to the global header ([d324fcc](https://github.com/newrelic/gatsby-theme-newrelic/commit/d324fcc5590d130340eb5095d9d6d4704c2e7109))
+
+
+
+
+
 ## [1.10.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.10.2...v1.10.3) (2020-10-23)
 
 
