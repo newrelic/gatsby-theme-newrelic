@@ -618,14 +618,15 @@ import { GlobalFooter } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop               | Type    | Required | Default | Description                                                                                                   |
-| ------------------ | ------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------- |
-| `fileRelativePath` | string  | no       |         | The relative path to the markdown file for the current page. If not supplied, the edit link will not be shown |
+| Prop               | Type   | Required | Default | Description                                                                                                   |
+| ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| `className`        | string | no       |         | Additional `className` for the component.                                                                     |
+| `fileRelativePath` | string | no       |         | The relative path to the markdown file for the current page. If not supplied, the edit link will not be shown |
 
 **Example**
 
 ```jsx
-<GlobalFooter fileRelativePath={"/src/content/foobar.md"} />
+<GlobalFooter fileRelativePath={'/src/content/foobar.md'} />
 ```
 
 ### `GlobalHeader`
