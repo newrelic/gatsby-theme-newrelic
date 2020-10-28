@@ -17,6 +17,7 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
         }
         layout {
           contentPadding
+          maxWidth
         }
       }
       sitePage(path: { eq: "/terms" }) {
@@ -53,6 +54,8 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
           justify-content: space-between;
           display: flex;
           padding: 1rem ${layout.contentPadding};
+          max-width: ${layout.maxWidth};
+          margin: 0 auto;
 
           @media screen and (max-width: 550px) {
             flex-direction: column;
@@ -113,72 +116,79 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
       <div
         css={css`
           background-color: rgba(0, 0, 0, 0.05);
-          font-size: 0.75rem;
-          align-items: center;
-          justify-content: space-between;
-          display: grid;
-          grid-template-columns: auto auto;
-          grid-template-areas: 'copyright legal';
-          padding: 0.5rem ${layout.contentPadding};
 
           .dark-mode & {
             background-color: rgba(0, 0, 0, 0.2);
-          }
-
-          @media screen and (max-width: 760px) {
-            justify-content: center;
-            text-align: center;
-            grid-template-columns: auto;
-            grid-gap: 0.5rem;
-            grid-template-areas:
-              'legal'
-              'copyright';
           }
         `}
       >
         <div
           css={css`
-            grid-area: copyright;
-            text-transform: uppercase;
-            font-size: 0.5rem;
-            letter-spacing: 0.1rem;
-          `}
-        >
-          Copyright &copy; 2020 New Relic Inc.
-        </div>
-        <div
-          css={css`
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            grid-area: legal;
+            font-size: 0.75rem;
+            align-items: center;
+            justify-content: space-between;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-areas: 'copyright legal';
+            padding: 0.5rem ${layout.contentPadding};
+            max-width: ${layout.maxWidth};
+            margin: 0 auto;
 
-            a {
-              margin-left: 0.75rem;
-              white-space: nowrap;
+            @media screen and (max-width: 760px) {
+              justify-content: center;
+              text-align: center;
+              grid-template-columns: auto;
+              grid-gap: 0.5rem;
+              grid-template-areas:
+                'legal'
+                'copyright';
             }
           `}
         >
-          {sitePage ? (
-            <Link to="/terms">Terms of Service</Link>
-          ) : (
-            <ExternalLink href="https://newrelic.com/termsandconditions/terms">
-              Terms of Service
-            </ExternalLink>
-          )}
+          <div
+            css={css`
+              grid-area: copyright;
+              text-transform: uppercase;
+              font-size: 0.5rem;
+              letter-spacing: 0.1rem;
+            `}
+          >
+            Copyright &copy; 2020 New Relic Inc.
+          </div>
+          <div
+            css={css`
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              grid-area: legal;
 
-          <ExternalLink href="https://newrelic.com/termsandconditions/dmca">
-            DCMA Policy
-          </ExternalLink>
-          <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
-            Privacy Notice
-          </ExternalLink>
-          <ExternalLink href="https://newrelic.com/termsandconditions/cookie-policy">
-            Cookie Policy
-          </ExternalLink>
-          <ExternalLink href="https://newrelic.com/termsandconditions/uk-slavery-act">
-            UK Slavery Act
-          </ExternalLink>
+              a {
+                margin-left: 0.75rem;
+                white-space: nowrap;
+              }
+            `}
+          >
+            {sitePage ? (
+              <Link to="/terms">Terms of Service</Link>
+            ) : (
+              <ExternalLink href="https://newrelic.com/termsandconditions/terms">
+                Terms of Service
+              </ExternalLink>
+            )}
+
+            <ExternalLink href="https://newrelic.com/termsandconditions/dmca">
+              DCMA Policy
+            </ExternalLink>
+            <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
+              Privacy Notice
+            </ExternalLink>
+            <ExternalLink href="https://newrelic.com/termsandconditions/cookie-policy">
+              Cookie Policy
+            </ExternalLink>
+            <ExternalLink href="https://newrelic.com/termsandconditions/uk-slavery-act">
+              UK Slavery Act
+            </ExternalLink>
+          </div>
         </div>
       </div>
     </footer>
