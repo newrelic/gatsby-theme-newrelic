@@ -23,8 +23,6 @@
   "peerDependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
-    "@mdx-js/mdx": "^1.6.16",
-    "@mdx-js/react": "^1.6.16",
     "@splitsoftware/splitio-react": "^1.2.0",
     "gatsby": "^2.24.2",
     "prettier": "^2.0.0",
@@ -35,8 +33,6 @@
   "devDependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
-    "@mdx-js/mdx": "^1.6.16",
-    "@mdx-js/react": "^1.6.16",
     "@splitsoftware/splitio-react": "^1.2.0",
     "gatsby": "^2.24.2",
     "react": "^16.13.1",
@@ -51,7 +47,6 @@
     "babel-plugin-prismjs": "^2.0.1",
     "date-fns": "^2.16.1",
     "gatsby-plugin-emotion": "^4.3.10",
-    "gatsby-plugin-mdx": "^1.2.37",
     "gatsby-plugin-newrelic": "^1.0.3",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-robots-txt": "^1.5.1",

@@ -63,7 +63,7 @@ depends on its packages. To install this package, add the
 npm:
 
 ```sh
-npm install @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react
+npm install @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @splitsoftware/splitio-react
 ```
 
 yarn:
