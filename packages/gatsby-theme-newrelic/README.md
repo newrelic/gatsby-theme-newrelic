@@ -63,13 +63,13 @@ depends on its packages. To install this package, add the
 npm:
 
 ```sh
-npm install @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react
+npm install @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react gatsby-plugin-mdx
 ```
 
 yarn:
 
 ```sh
-yarn add @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react
+yarn add @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react gatsby-plugin-mdx
 ```
 
 ## Configuration
@@ -1331,9 +1331,15 @@ const MyComponent = () => {
 
 ## Announcements
 
-Sites that utilize this theme can specify accouncements that appear at the top of the site (using the [Banner](#banner) component under the hood). Announcements can be added by creating `.mdx` files in the `src/announcements` directory. The first announcement that matches the current date will be shown.
+Sites that utilize this theme can specify accouncements that appear at the top
+of the site (using the [Banner](#banner) component under the hood).
+Announcements can be added by creating `.mdx` files in the `src/announcements`
+directory. The first announcement that matches the current date will be shown.
+Because announcements use `mdx` under the hood, you **must** ensure that
+`gatsby-plugin-mdx` is installed and configured.
 
-**NOTE:** If the `src/announcements` directory does not exist, the theme will create it automatically.
+**NOTE:** If the `src/announcements` directory does not exist, the theme will
+create it automatically.
 
 **Frontmatter**
 
