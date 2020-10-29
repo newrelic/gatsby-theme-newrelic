@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.11.1...v1.12.0) (2020-10-29)
+
+
+### Bug Fixes
+
+* make gatsby-plugin-mdx a peer dependency ([6eaa1b2](https://github.com/newrelic/gatsby-theme-newrelic/commit/6eaa1b273008c09028397d60d82ca765f75b1efd))
+* remove mdx config from theme ([112f4cf](https://github.com/newrelic/gatsby-theme-newrelic/commit/112f4cf5103a74b19ef2ea1c06924117a6138a00))
+
+
+### Features
+
+* automatically add fileRelativePath to mdx nodes and pages ([6e91cd6](https://github.com/newrelic/gatsby-theme-newrelic/commit/6e91cd680fb6b33af1ccff0546e183a3741350ea))
+
+
+
+
+
 ## [1.11.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.11.0...v1.11.1) (2020-10-28)
 
 
