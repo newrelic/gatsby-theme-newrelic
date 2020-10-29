@@ -7,9 +7,7 @@ import {
   Results,
   Paging,
   PagingInfo,
-  Facet,
 } from '@elastic/react-search-ui';
-import { MultiCheckboxFacet } from '@elastic/react-search-ui-views';
 import ResultView from './ResultView';
 import PagingInfoView from './PagingInfoView';
 import SearchInput from './SearchInput';
@@ -43,9 +41,6 @@ const configOptions = {
       url: {
         raw: {},
       },
-    },
-    facets: {
-      type: { type: 'value' },
     },
     filters: [
       {
@@ -85,12 +80,6 @@ const SwiftypeSearch = ({ className }) => {
                   onSubmit={(searchTerm) => {
                     setQueryParam('q', searchTerm);
                   }}
-                />
-                <Facet
-                  field="type"
-                  label=""
-                  view={MultiCheckboxFacet}
-                  filterType="any"
                 />
                 {isLoading && (
                   <Icon

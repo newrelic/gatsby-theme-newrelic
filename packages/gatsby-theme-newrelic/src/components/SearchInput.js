@@ -32,8 +32,6 @@ const SearchInput = ({
     if (e.key === 'Escape' && onClear) onClear();
   };
 
-  // console.log(Icon.TYPE['FILTER']);
-
   return (
     <StyledContainer
       width={width}
