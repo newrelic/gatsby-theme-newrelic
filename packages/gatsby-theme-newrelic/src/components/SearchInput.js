@@ -9,6 +9,11 @@ const SIZES = {
   LARGE: 'large',
 };
 
+const ICONS = {
+  FILTER: 'filter',
+  SEARCH: 'search',
+};
+
 const SearchInput = ({
   onClear,
   value,
@@ -16,6 +21,7 @@ const SearchInput = ({
   size = 'medium',
   className,
   style,
+  iconName = 'search',
   ...props
 }) => {
   const handleClick = (e) => {
@@ -25,6 +31,8 @@ const SearchInput = ({
   const handleKeyDown = (e) => {
     if (e.key === 'Escape' && onClear) onClear();
   };
+
+  // console.log(Icon.TYPE['FILTER']);
 
   return (
     <StyledContainer
@@ -40,7 +48,7 @@ const SearchInput = ({
           top: 50%;
           transform: translateY(-50%);
         `}
-        name={Icon.TYPE.SEARCH}
+        name={iconName}
       />
       <StyledInput
         value={value}
@@ -78,9 +86,11 @@ SearchInput.propTypes = {
   width: PropTypes.string,
   size: PropTypes.string,
   style: PropTypes.object,
+  iconName: PropTypes.string,
 };
 
 SearchInput.SIZE = SIZES;
+SearchInput.ICONS = ICONS;
 
 export default SearchInput;
 
