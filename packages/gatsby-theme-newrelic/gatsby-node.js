@@ -92,3 +92,28 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
     },
   });
 };
+
+exports.onCreateNode = ({ node, actions }) => {
+  if (node.internal.type === 'Mdx') {
+    const { createNodeField } = actions;
+
+    createNodeField({
+      node,
+      name: 'fileRelativePath',
+      value: getFileRelativePath(node.fileAbsolutePath),
+    });
+  }
+};
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions;
+
+  if (!page.context.fileRelativePath) {
+    page.context.fileRelativePath = getFileRelativePath(page.componentPath);
+
+    createPage(page);
+  }
+};
+
+const getFileRelativePath = (absolutePath) =>
+  absolutePath.replace(`${process.cwd()}/`, '');
