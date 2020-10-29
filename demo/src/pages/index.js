@@ -100,7 +100,7 @@ const IndexPage = ({ data }) => {
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
-            iconName={SearchInput.ICONS.FILTER}
+            iconName={SearchInput.ICONS.SEARCH}
           />
           <SearchInput
             style={{ marginBottom: '1rem', maxWidth: '500px' }}
@@ -109,7 +109,7 @@ const IndexPage = ({ data }) => {
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
             size={SearchInput.SIZE.LARGE}
-            iconName={SearchInput.ICONS.FILTER}
+            iconName={SearchInput.ICONS.SEARCH}
           />
         </section>
         <section>
