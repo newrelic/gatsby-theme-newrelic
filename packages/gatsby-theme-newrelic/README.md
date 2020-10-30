@@ -34,6 +34,9 @@ websites](https://opensource.newrelic.com).
   - [`Icon`](#icon)
   - [`MDXCodeBlock`](#mdxcodeblock)
   - [`NewRelicLogo`](#newreliclogo)
+  - [`PageTools`](#pagetools)
+  - [`PageTools.Section`](#pagetoolssection)
+  - [`PageTools.Title`](#pagetoolstitle)
   - [`SearchInput`](#searchinput)
   - [`Spinner`](#spinner)
   - [`Surface`](#surface)
@@ -946,6 +949,85 @@ import { NewRelicLogo } from '@newrelic/gatsby-theme-newrelic';
 ```js
 <NewRelicLogo />
 ```
+
+### `PageTools`
+
+Used as a "right rail" container to display content related to the current page.
+To build modules contained inside this component, see the
+[`PageTools.Section`](#pagetoolssection) and [`PageTools.Title`](#pagetoolstitle)
+documentation.
+
+```js
+import { PageTools } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                          |
+| ----------- | ------ | -------- | ------- | ---------------------------------------------------- |
+| `className` | string | no       |         | Additional `className` for the component.            |
+| `children`  | node   | no       |         | Content to be displayed in the `PageTools` component |
+
+**Example**
+
+```jsx
+<PageTools>
+  <PageTools.Section>
+    <PageTools.Title>How to use</PageTools.Title>
+    <p>
+      Use the `PageTools` component to render content related to the current
+      page.
+    </p>
+  </PageTools.Section>
+</PageTools>
+```
+
+### `PageTools.Section`
+
+A component used as a building block for creating content displayed inside of
+the [`PageTools`](#pagetools) component. This is a container for the content
+inside a section of the `PageTools`.
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                  |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------ |
+| `className` | string | no       |         | Additional `className` for the component.                    |
+| `children`  | node   | no       |         | Content to be displayed in the `PageTools.Section` component |
+
+**Example**
+
+```jsx
+<PageTools>
+  <PageTools.Section>
+    Use the `PageTools.Section` component as a container around content to be
+    displayed in a section of the `PageTools`.
+  </PageTools.Section>
+  <PageTools.Section>
+    This will be displayed as its own section inside `PageTools`
+  </PageTools.Section>
+</PageTools>
+```
+
+### `PageTools.Title`
+
+A component used as a building block for creating content displayed inside of
+the [`PageTools`](#pagetools) component. This is used to display a title for the
+section of content inside of `PageTools`. Render this inside of a
+[`PageTools.Section`](#pagetoolssection) component.
+
+```jsx
+<PageTools.Section>
+  <PageTools.Title>Related resources</PageTools.Title>
+</PageTools.Section>
+```
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                              |
+| ----------- | ------ | -------- | ------- | -------------------------------------------------------- |
+| `className` | string | no       |         | Additional `className` for the component.                |
+| `children`  | node   | no       |         | Title to be displayed in the `PageTools.Title` component |
 
 ### `SearchInput`
 
