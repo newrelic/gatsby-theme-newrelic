@@ -13,6 +13,7 @@ export { default as Logo } from './src/components/Logo';
 export { default as MDXCodeBlock } from './src/components/MDXCodeBlock';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 export { default as Overlay } from './src/components/Overlay';
+export { default as PageTools } from './src/components/PageTools';
 export { default as Portal } from './src/components/Portal';
 export { default as SearchInput } from './src/components/SearchInput';
 export { default as Surface } from './src/components/Surface';
