@@ -1,4 +1,4 @@
-module.exports = ({ newrelic, robots = {}, gdprTracking }) => {
+module.exports = ({ newrelic, robots = {}, gaTrackingId }) => {
   return {
     plugins: [
       'gatsby-plugin-emotion',
@@ -37,7 +37,7 @@ module.exports = ({ newrelic, robots = {}, gdprTracking }) => {
         options: {
           debug: false,
           googleAnalytics: {
-            trackingId: 'UA-3047412-33',
+            trackingId: gaTrackingId,
             autoStart: false,
             anonymize: true,
             controlCookieName: 'newrelic-gdpr-consent',
