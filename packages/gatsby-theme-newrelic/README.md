@@ -1382,7 +1382,7 @@ import { usePrevious } from '@newrelic/gatsby-theme-newrelic';
 
 **Returns**
 
-`any` - The previous value to be computed.
+`any` - The previous value.
 
 **Examples**
 
