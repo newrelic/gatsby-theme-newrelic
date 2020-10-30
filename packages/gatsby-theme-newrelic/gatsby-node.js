@@ -38,6 +38,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     type SiteSiteMetadata {
       utmSource: String
       branch: String!
+      contributingUrl: String
     }
   `);
 };
@@ -65,6 +66,17 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       },
       branch: {
         resolve: ({ branch }) => branch || DEFAULT_BRANCH,
+      },
+      contributingUrl: {
+        resolve: ({ branch, repository }) => {
+          if (!repository) {
+            return;
+          }
+
+          return `${repository}/blob/${
+            branch || DEFAULT_BRANCH
+          }/CONTRIBUTING.md`;
+        },
       },
     },
   });
