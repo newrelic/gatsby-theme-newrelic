@@ -1368,6 +1368,41 @@ const MyComponent = () => {
 };
 ```
 
+### `usePrevious`
+
+A hook that gets the previous state of a stateful value. Useful inorder to do comparing if the state has changed.
+
+```js
+import { usePrevious } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `value` _(any)_: Value to track its' previous state.
+
+**Returns**
+
+`any` - The previous value to be computed.
+
+**Examples**
+
+```js
+
+const myComponent = () => {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
+
+  return (
+    <div>
+      <span>{`current count is ${count}, previous count is ${prevCount}`}
+      <button onClick ={()=>setCount(count+1)}>
+    </div>
+  )
+
+}
+
+```
+
 ## Announcements
 
 Sites that utilize this theme can specify accouncements that appear at the top
