@@ -1391,7 +1391,7 @@ const myComponent = () => {
   return (
     <div>
       <span>{`current count is ${count}, previous count is ${prevCount}`}
-      <button onClick ={()=>setCount(count+1)}>
+      <button onClick ={()=>setCount(count + 1)}>
     </div>
   )
 
