@@ -1370,7 +1370,7 @@ const MyComponent = () => {
 
 ### `usePrevious`
 
-A hook that gets the previous state of a stateful value. Useful inorder to do comparing if the state has changed.
+A hook that gets the previous state of a stateful value. Useful to compare if the state has changed between render cycles.
 
 ```js
 import { usePrevious } from '@newrelic/gatsby-theme-newrelic';
