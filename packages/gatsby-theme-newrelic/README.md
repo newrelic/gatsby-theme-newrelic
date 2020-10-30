@@ -1396,7 +1396,6 @@ const myComponent = () => {
   )
 
 }
-
 ```
 
 ## Announcements
