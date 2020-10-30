@@ -7,6 +7,7 @@ import {
   Button,
   CodeBlock,
   Callout,
+  CookieConsentDialog,
   Feedback,
   GlobalFooter,
   GlobalHeader,
@@ -311,8 +312,8 @@ const IndexPage = ({ data }) => {
           </TagList>
         </section>
       </div>
-
       <GlobalFooter fileRelativePath="src/content/foobar.md" />
+      <CookieConsentDialog />
     </>
   );
 };

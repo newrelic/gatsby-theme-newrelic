@@ -24,6 +24,7 @@ websites](https://opensource.newrelic.com).
   - [`Button`](#button)
   - [`Callout`](#callout)
   - [`CodeBlock`](#codeblock)
+  - [`CookieConsentDialog`](#cookieconsentdialog)
   - [`ExternalLink`](#externallink)
   - [`Feedback`](#feedback)
   - [`GlobalFooter`](#globalfooter)
@@ -229,6 +230,10 @@ module.exports = {
   ],
 };
 ```
+
+#### `gdprTracking`
+
+Configuration for using [`gatsby-plugin-gdpr-tracking`](https://www.gatsbyjs.com/plugins/gatsby-plugin-gdpr-tracking/) plugin with the Gatsby site. For more details on the available configuration options, visit [the documentation.](https://www.gatsbyjs.com/plugins/gatsby-plugin-gdpr-tracking/).
 
 #### `splitio`
 
@@ -555,6 +560,26 @@ const Documentation = () => (
   >
     {codeSample}
   </CodeBlock>
+);
+```
+
+### `CookieConsentDialog`
+
+A dialog box that pops up asking for cookie consent. This component renders at the bottom of the screen and provides options for accepting or denying cookies.
+
+```js
+import { CookieConsentDialog } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Example**
+
+```js
+const myLayout = () => (
+  <>
+    <GlobalHeader />
+    <GlobalFooter />
+    <CookieConsentDialog />
+  </>
 );
 ```
 
@@ -1328,6 +1353,38 @@ const MyComponent = () => {
 
   return null;
 };
+```
+
+### `usePrevious`
+
+A hook that gets the previous state of a stateful value. Useful to compare if the state has changed between render cycles.
+
+```js
+import { usePrevious } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `value` _(any)_: Value to track its previous state.
+
+**Returns**
+
+`any` - The previous value.
+
+**Examples**
+
+```js
+const myComponent = () => {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
+
+  return (
+    <div>
+      <span>{`current count is ${count}, previous count is ${prevCount}`}
+      <button onClick ={()=>setCount(count + 1)}>
+    </div>
+  )
+}
 ```
 
 ## Announcements
