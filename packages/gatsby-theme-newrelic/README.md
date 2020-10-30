@@ -1364,7 +1364,7 @@ import { usePrevious } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-- `value` _(any)_: Value to track its' previous state.
+- `value` _(any)_: Value to track its previous state.
 
 **Returns**
 
