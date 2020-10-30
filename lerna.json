@@ -1,12 +1,18 @@
 {
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*"
+  ],
   "version": "1.8.2",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "ignoreChanges": ["README.md"],
+  "ignoreChanges": [
+    "README.md"
+  ],
   "command": {
     "version": {
-      "allowBranch": ["main"],
+      "allowBranch": [
+        "main"
+      ],
       "message": "chore(release): publish %s"
     },
     "publish": {
