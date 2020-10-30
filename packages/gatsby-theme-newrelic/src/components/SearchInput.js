@@ -25,7 +25,7 @@ const SearchInput = forwardRef(
       size = 'medium',
       className,
       style,
-      iconName,
+      iconName = 'search',
       ...props
     },
     ref
@@ -59,7 +59,7 @@ const SearchInput = forwardRef(
             top: 50%;
             transform: translateY(-50%);
           `}
-          name={Icon.TYPE.SEARCH}
+          name={iconName}
         />
         <StyledInput
           ref={ref}
@@ -105,7 +105,7 @@ SearchInput.propTypes = {
   width: PropTypes.string,
   size: PropTypes.oneOf(Object.values(SIZES)),
   style: PropTypes.object,
-  iconName: PropTypes.string,
+  iconName: PropTypes.oneOf(Object.values(ICONS)),
 };
 
 SearchInput.SIZE = SIZES;
