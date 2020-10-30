@@ -934,6 +934,7 @@ import { SearchInput } from '@newrelic/gatsby-theme-newrelic';
 | `style`     | object   | no       |         | Inline styles for the search input                                                                                                       |
 | `value`     | string   | no       |         | Value of the search input.                                                                                                               |
 | `width`     | string   | no       |         | Width of the input. Accepts any CSS sizing value (e.g. `100px`)                                                                          |
+| `iconName`  | enum     | no       |         | Specify icon to use. Must be one of `SearchInput.ICONS.SEARCH` or `SearchInput.ICONS.FILTER` Defaults to search magnifying glass.        |
 
 Additional props are forwarded to the underlying `input` element.
 
