@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.12.0...v1.13.0) (2020-10-30)
+
+
+### Features
+
+* **search:** change placeholder text of global search ([fca54aa](https://github.com/newrelic/gatsby-theme-newrelic/commit/fca54aade95e1f93f10310a2527669b1c0374aa6))
+* **search:** change placeholder value for new search bar ([a39a2ee](https://github.com/newrelic/gatsby-theme-newrelic/commit/a39a2ee7c0beea2938633f2d247f25aa5fe30cc1))
+* add optional prop to specify icon ([e2be8a7](https://github.com/newrelic/gatsby-theme-newrelic/commit/e2be8a797ce6a4e251970e1173fa2d3d55ec2e85))
+* **search:** add facet components for filtering by site source ([0628f75](https://github.com/newrelic/gatsby-theme-newrelic/commit/0628f7553abf85aa56a47b3a1e08aa877c97a343))
+* **search:** filter results to 3 specific sites and allow user to change filter ([b152665](https://github.com/newrelic/gatsby-theme-newrelic/commit/b152665dbe39304c25dc4caad2f40203717bdbd2))
+
+
+
+
+
 # [1.12.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.11.1...v1.12.0) (2020-10-29)
 
 
