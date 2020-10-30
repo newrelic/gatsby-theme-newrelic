@@ -39,12 +39,10 @@ const liveCodeSample = `
 <Button variant={Button.VARIANT.PRIMARY} onClick={() => alert('Hello!')}>Hello!</Button>
 `;
 
-
 const IndexPage = ({ data }) => {
   const { layout, siteMetadata } = data.site;
   const [searchTerm, setSearchTerm] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
 
   return (
     <>

@@ -146,9 +146,4 @@ const CookieConsentDialog = () => {
   );
 };
 
-CookieConsentDialog.propTypes = {
-  handleCookieConsent: PropTypes.func.isRequired,
-  cookieName: PropTypes.string.isRequired,
-};
-
 export default CookieConsentDialog;

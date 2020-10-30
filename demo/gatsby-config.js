@@ -31,9 +31,6 @@ module.exports = {
           core: {
             authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',
           },
-        },
-        gdprTracking: {
-          googleAnalytics: {}
         }
       },
     },
