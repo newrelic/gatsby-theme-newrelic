@@ -31,7 +31,7 @@ module.exports = {
           core: {
             authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',
           },
-        }
+        },
       },
     },
     'gatsby-plugin-mdx',

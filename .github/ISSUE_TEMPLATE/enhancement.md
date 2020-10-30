@@ -4,24 +4,23 @@ about: Suggest an idea for a future version of this project
 title: ''
 labels: enhancement, needs-triage
 assignees: ''
-
 ---
 
-[NOTE]: # ( ^^ Provide a general summary of the request in the title above. ^^ )
+[note]: # ' ^^ Provide a general summary of the request in the title above. ^^ '
 
 ## Summary
 
-[NOTE]: # ( Provide a brief overview of what the new feature is all about. )
+[note]: # ' Provide a brief overview of what the new feature is all about. '
 
 ## Desired Behaviour
 
-[NOTE]: # ( Tell us how the new feature should work. Be specific. )
-[TIP]:  # ( Do NOT give us access or passwords to your New Relic account or API keys! )
+[note]: # ' Tell us how the new feature should work. Be specific. '
+[tip]: # ' Do NOT give us access or passwords to your New Relic account or API keys! '
 
 ## Possible Solution
 
-[NOTE]: # ( Not required. Suggest how to implement the addition or change. )
+[note]: # ' Not required. Suggest how to implement the addition or change. '
 
 ## Additional context
 
-[TIP]:  # ( Why does this feature matter to you? What unique circumstances do you have? )
+[tip]: # ' Why does this feature matter to you? What unique circumstances do you have? '
