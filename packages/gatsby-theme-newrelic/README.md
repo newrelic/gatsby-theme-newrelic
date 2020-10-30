@@ -1373,7 +1373,6 @@ import { usePrevious } from '@newrelic/gatsby-theme-newrelic';
 **Examples**
 
 ```js
-
 const myComponent = () => {
   const [count, setCount] = useState(0);
   const prevCount = usePrevious(count);
@@ -1384,7 +1383,6 @@ const myComponent = () => {
       <button onClick ={()=>setCount(count + 1)}>
     </div>
   )
-
 }
 ```
 
