@@ -92,7 +92,7 @@ export default css`
   .rc-pagination-jump-next:hover {
     background: var(--tertiary-background-color);
   }
-
+  
   .rc-pagination-jump-prev:hover {
     background: var(--tertiary-background-color);
   }
@@ -502,7 +502,7 @@ export default css`
     margin: 8px 0;
   }
   .sui-multi-checkbox-facet__option-label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
@@ -517,7 +517,7 @@ export default css`
   .sui-multi-checkbox-facet__option-count {
     color: #888888;
     font-size: 0.85em;
-    margin-left: 24px;
+    margin: 0 20px 0 5px;
   }
   .sui-facet-view-more {
     display: block;
@@ -1032,4 +1032,5 @@ export default css`
   .sui-select__option:hover {
     background: var(--tertiary-background-color);
   }
+
 `;
