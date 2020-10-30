@@ -2,6 +2,7 @@ export { default as Banner } from './src/components/Banner';
 export { default as Button } from './src/components/Button';
 export { default as Callout } from './src/components/Callout';
 export { default as CodeBlock } from './src/components/CodeBlock';
+export { default as ContributingGuidelines } from './src/components/ContributingGuidelines';
 export { default as CookieConsentDialog } from './src/components/CookieConsentDialog';
 export { default as ExternalLink } from './src/components/ExternalLink';
 export { default as Feedback } from './src/components/Feedback';
