@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import Icon from './Icon';
 
 const SIZES = {
+  SMALL: 'small',
   MEDIUM: 'medium',
   LARGE: 'large',
 };
@@ -14,75 +15,95 @@ const ICONS = {
   SEARCH: 'search',
 };
 
-const SearchInput = ({
-  onClear,
-  value,
-  width,
-  size = 'medium',
-  className,
-  style,
-  iconName = 'search',
-  ...props
-}) => {
-  const handleClick = (e) => {
-    e.preventDefault();
-    onClear();
-  };
-  const handleKeyDown = (e) => {
-    if (e.key === 'Escape' && onClear) onClear();
-  };
+const SearchInput = forwardRef(
+  (
+    {
+      onClear,
+      onSubmit,
+      value,
+      width,
+      size = 'medium',
+      className,
+      style,
+      iconName,
+      ...props
+    },
+    ref
+  ) => {
+    const handleClick = (e) => {
+      e.preventDefault();
+      onClear();
+    };
+    const handleKeyDown = (e) => {
+      switch (e.key) {
+        case 'Escape':
+          return onClear?.();
+        case 'Enter':
+          return onSubmit?.(value);
+        default:
+        // do nothing
+      }
+    };
 
-  return (
-    <StyledContainer
-      width={width}
-      className={className}
-      style={style}
-      size={size}
-    >
-      <StyledIcon
-        css={css`
-          position: absolute;
-          left: 1rem;
-          top: 50%;
-          transform: translateY(-50%);
-        `}
-        name={iconName}
-      />
-      <StyledInput
-        value={value}
+    return (
+      <StyledContainer
+        width={width}
+        className={className}
+        style={style}
         size={size}
-        {...props}
-        type="text"
-        onKeyDown={handleKeyDown}
-      />
-      {value && onClear && (
-        <StyledButton
-          onClick={handleClick}
+      >
+        <StyledIcon
           css={css`
-            right: 1rem;
+            position: absolute;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            &:hover {
-              cursor: pointer;
-            }
           `}
-          onKeyDown={handleKeyDown}
-          type="button"
+          name={Icon.TYPE.SEARCH}
+        />
+        <StyledInput
+          ref={ref}
+          value={value}
           size={size}
-        >
-          <StyledIcon name={Icon.TYPE.X} />
-        </StyledButton>
-      )}
-    </StyledContainer>
-  );
-};
+          {...props}
+          type="text"
+          onKeyDown={handleKeyDown}
+        />
+        {value && onClear && (
+          <StyledButton
+            onClick={handleClick}
+            css={css`
+              right: 1rem;
+              top: 50%;
+              transform: translateY(-50%);
+              &:hover {
+                cursor: pointer;
+              }
+            `}
+            onKeyDown={handleKeyDown}
+            type="button"
+            size={size}
+          >
+            <StyledIcon
+              name={Icon.TYPE.X}
+              css={css`
+                display: block;
+              `}
+            />
+          </StyledButton>
+        )}
+      </StyledContainer>
+    );
+  }
+);
 
 SearchInput.propTypes = {
   className: PropTypes.string,
   onClear: PropTypes.func,
+  onSubmit: PropTypes.func,
   value: PropTypes.string,
   width: PropTypes.string,
-  size: PropTypes.string,
+  size: PropTypes.oneOf(Object.values(SIZES)),
   style: PropTypes.object,
   iconName: PropTypes.string,
 };
@@ -94,6 +115,15 @@ export default SearchInput;
 
 const styles = {
   size: {
+    [SIZES.SMALL]: {
+      input: css`
+        font-size: 0.75rem;
+        padding: 0.25rem calc(1.5rem + var(--icon-size));
+      `,
+      container: css`
+        --icon-size: 0.75rem;
+      `,
+    },
     [SIZES.MEDIUM]: {
       input: css`
         font-size: 0.875rem;
@@ -127,6 +157,8 @@ const StyledInput = styled.input`
   border-radius: 4px;
   background: var(--primary-background-color);
   color: var(--primary-text-color);
+  transition: 0.15s ease-out;
+  line-height: 1;
   ${({ size }) => size && styles.size[size].input}
 
   &:focus {

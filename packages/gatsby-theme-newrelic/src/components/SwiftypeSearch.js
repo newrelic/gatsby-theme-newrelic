@@ -11,10 +11,10 @@ import {
 import ResultView from './ResultView';
 import PagingInfoView from './PagingInfoView';
 import SearchInput from './SearchInput';
-import Icon from './Icon';
 import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import styles from '../styles/SwiftypeSearchStyles';
+import Spinner from './Spinner';
 import useQueryParams from '../hooks/useQueryParams';
 
 const connector = new SiteSearchAPIConnector({
@@ -85,12 +85,10 @@ const SwiftypeSearch = ({ className }) => {
                   }}
                 />
                 {isLoading && (
-                  <Icon
+                  <Spinner
                     css={css`
                       margin-top: 1rem;
                     `}
-                    size="1.5rem"
-                    name={Icon.TYPE.LOADER}
                   />
                 )}
                 {hasSearched && (

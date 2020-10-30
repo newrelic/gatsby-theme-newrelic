@@ -8,6 +8,7 @@ import {
   CodeBlock,
   Callout,
   Feedback,
+  GlobalFooter,
   GlobalHeader,
   HamburgerMenu,
   NewRelicLogo,
@@ -310,6 +311,8 @@ const IndexPage = ({ data }) => {
           </TagList>
         </section>
       </div>
+
+      <GlobalFooter fileRelativePath="src/content/foobar.md" />
     </>
   );
 };

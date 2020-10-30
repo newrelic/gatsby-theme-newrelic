@@ -3,6 +3,8 @@ const path = require('path');
 
 const uniq = (arr) => [...new Set(arr)];
 
+const DEFAULT_BRANCH = 'main';
+
 exports.onPreBootstrap = ({ reporter, store }) => {
   const { program } = store.getState();
   const imagePath = path.join(program.directory, 'src/images');
@@ -32,17 +34,37 @@ exports.createSchemaCustomization = ({ actions }) => {
       startDate: Date @dateformat(formatString: "YYYY-MM-DD")
       endDate: Date @dateformat(formatString: "YYYY-MM-DD")
     }
+
+    type SiteSiteMetadata {
+      utmSource: String
+      branch: String!
+    }
   `);
 };
 
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
   const { layout = {} } = themeOptions;
 
+  const defaultUtmSource = {
+    'https://developer.newrelic.com': 'developer-site',
+    'https://opensource.newrelic.com': 'opensource-site',
+    'https://docs.newrelic.com': 'docs-site',
+  };
+
   createResolvers({
     Site: {
       layout: {
         type: 'SiteLayout',
         resolve: () => layout,
+      },
+    },
+    SiteSiteMetadata: {
+      utmSource: {
+        resolve: ({ siteUrl, utmSource }) =>
+          utmSource || defaultUtmSource[siteUrl],
+      },
+      branch: {
+        resolve: ({ branch }) => branch || DEFAULT_BRANCH,
       },
     },
   });
@@ -70,3 +92,28 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
     },
   });
 };
+
+exports.onCreateNode = ({ node, actions }) => {
+  if (node.internal.type === 'Mdx') {
+    const { createNodeField } = actions;
+
+    createNodeField({
+      node,
+      name: 'fileRelativePath',
+      value: getFileRelativePath(node.fileAbsolutePath),
+    });
+  }
+};
+
+exports.onCreatePage = ({ page, actions }) => {
+  const { createPage } = actions;
+
+  if (!page.context.fileRelativePath) {
+    page.context.fileRelativePath = getFileRelativePath(page.componentPath);
+
+    createPage(page);
+  }
+};
+
+const getFileRelativePath = (absolutePath) =>
+  absolutePath.replace(`${process.cwd()}/`, '');

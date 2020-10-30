@@ -12,7 +12,8 @@
     "@mdx-js/mdx": "^1.6.16",
     "@mdx-js/react": "^1.6.16",
     "@newrelic/gatsby-theme-newrelic": "^1.1.10",
-    "gatsby": "^2.24.2",
+    "gatsby": "^2.24.80",
+    "gatsby-plugin-mdx": "^1.2.52",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }

@@ -26,12 +26,14 @@ websites](https://opensource.newrelic.com).
   - [`CodeBlock`](#codeblock)
   - [`ExternalLink`](#externallink)
   - [`Feedback`](#feedback)
+  - [`GlobalFooter`](#globalfooter)
   - [`GlobalHeader`](#globalheader)
   - [`HamburgerMenu`](#hamburgermenu)
   - [`Icon`](#icon)
   - [`MDXCodeBlock`](#mdxcodeblock)
   - [`NewRelicLogo`](#newreliclogo)
   - [`SearchInput`](#searchinput)
+  - [`Spinner`](#spinner)
   - [`Surface`](#surface)
   - [`Tag`](#tag)
   - [`TagList`](#taglist)
@@ -61,13 +63,13 @@ depends on its packages. To install this package, add the
 npm:
 
 ```sh
-npm install @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react
+npm install @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react gatsby-plugin-mdx
 ```
 
 yarn:
 
 ```sh
-yarn add @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react
+yarn add @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react gatsby-plugin-mdx
 ```
 
 ## Configuration
@@ -81,6 +83,8 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://developer.newrelic.com',
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
+    branch: 'main',
+    utmSource: 'developer-site',
   },
   plugins: [
     {
@@ -132,6 +136,9 @@ are optional, they are highly recommended.
 - `siteUrl`: Production URL for the site (e.g. `https://developer.newrelic.com`)
 - `repository`: The URL for the public GitHub repository hosting the source code
   for the site.
+- `branch`: The mainline branch for use when constructing "Edit this page" links (defaults to `main`).
+- `utmSource`: Name of the site that will be used as the UTM source when linking
+  to various mediums within New Relic.
 
 ### Options
 
@@ -599,6 +606,29 @@ import { Feedback } from '@newrelic/gatsby-theme-newrelic';
 />
 ```
 
+### `GlobalFooter`
+
+Renders the global footer used on all New Relic Gatsby sites. This component utilizes the [`layout` configuration](#layout) from the theme to size itself and the `siteMetadata` for the repository URL.
+
+_NOTE_: The logo displayed in the footer is a generic to New Relic logo, but can be changed with [shadowing](https://www.gatsbyjs.com/docs/themes/shadowing).
+
+```js
+import { GlobalFooter } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop               | Type   | Required | Default | Description                                                                                                   |
+| ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| `className`        | string | no       |         | Additional `className` for the component.                                                                     |
+| `fileRelativePath` | string | no       |         | The relative path to the markdown file for the current page. If not supplied, the edit link will not be shown |
+
+**Example**
+
+```jsx
+<GlobalFooter fileRelativePath={'/src/content/foobar.md'} />
+```
+
 ### `GlobalHeader`
 
 Renders the global header used on all New Relic Gatsby sites. This component
@@ -921,6 +951,28 @@ const Search = () => (
       onChange={(e) => setValue(e.target.value)}
     />
   );
+);
+```
+
+### `Spinner`
+
+A spinner that can be used to indicate a loading state.
+
+```js
+import { Spinner } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop     | Type    | Required | Default | Description                                                                                                             |
+| -------- | ------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `inline` | boolean | no       | `false` | Determines whether the spinner should be rendered inline. By default this will center the spinner inside its container. |
+
+**Example**
+
+```js
+const View = () => (
+  return <Spinner />;
 );
 ```
 
@@ -1280,9 +1332,15 @@ const MyComponent = () => {
 
 ## Announcements
 
-Sites that utilize this theme can specify accouncements that appear at the top of the site (using the [Banner](#banner) component under the hood). Announcements can be added by creating `.mdx` files in the `src/announcements` directory. The first announcement that matches the current date will be shown.
+Sites that utilize this theme can specify accouncements that appear at the top
+of the site (using the [Banner](#banner) component under the hood).
+Announcements can be added by creating `.mdx` files in the `src/announcements`
+directory. The first announcement that matches the current date will be shown.
+Because announcements use `mdx` under the hood, you **must** ensure that
+`gatsby-plugin-mdx` is installed and configured.
 
-**NOTE:** If the `src/announcements` directory does not exist, the theme will create it automatically.
+**NOTE:** If the `src/announcements` directory does not exist, the theme will
+create it automatically.
 
 **Frontmatter**
 
