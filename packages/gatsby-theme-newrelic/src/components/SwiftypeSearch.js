@@ -78,7 +78,7 @@ const SwiftypeSearch = ({ className }) => {
                   debounceLength={500}
                   inputView={InputView}
                   inputProps={{
-                    placeholder: 'Search Docs, Developer, Opensource',
+                    placeholder: 'Search Docs, Developer, Open Source',
                   }}
                   onSubmit={(searchTerm) => {
                     setQueryParam('q', searchTerm);
