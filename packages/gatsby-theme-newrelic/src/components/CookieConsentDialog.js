@@ -142,7 +142,7 @@ const CookieConsentDialog = ({
 };
 
 CookieConsentDialog.propTypes = {
-  setCookieConsent: PropTypes.func.isRequired,
+  handleCookieConsent: PropTypes.func.isRequired,
   cookieName: PropTypes.string.isRequired,
 };
 

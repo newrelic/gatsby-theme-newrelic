@@ -24,6 +24,7 @@ websites](https://opensource.newrelic.com).
   - [`Button`](#button)
   - [`Callout`](#callout)
   - [`CodeBlock`](#codeblock)
+  - [`CookieConsentDialog`](#cookieconsentdialog)
   - [`ExternalLink`](#externallink)
   - [`Feedback`](#feedback)
   - [`GlobalFooter`](#globalfooter)
@@ -121,6 +122,16 @@ module.exports = {
           core: {
             authorizationKey: 'my-auth-key',
           },
+        },
+        gdprTracking: {
+          debug: true,
+          googleAnalytics: {
+            trackingId: 'UA-XXXXXXX-XX',
+            autoStart: false,
+            anonymize: true,
+            controlCookieName: 'newrelic-gdpr-consent',
+          },
+          environments: ['production', 'development'],
         },
       },
     },
@@ -229,6 +240,10 @@ module.exports = {
   ],
 };
 ```
+
+#### `gdprTracking`
+
+Configuration for using [`gatsby-plugin-gdpr-tracking`](https://www.gatsbyjs.com/plugins/gatsby-plugin-gdpr-tracking/) plugin with the Gatsby site. For more details on the available configuration options, visit [the documentation.](https://www.gatsbyjs.com/plugins/gatsby-plugin-gdpr-tracking/).
 
 #### `splitio`
 
@@ -556,6 +571,30 @@ const Documentation = () => (
     {codeSample}
   </CodeBlock>
 );
+```
+
+### `CookieConsentDialog`
+
+A dialog box that pops up asking for cookie consent. This component renders at the bottom of the screen and provides options for accepting or denying cookies.
+
+```js
+import { CookieConsentDialog } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop                  | Type     | Required | Default | Description                                                                                                                   |
+| --------------------- | -------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `handleCookieConsent` | function | yes      |         | Handler function for the cookie consent dialog. Argument is boolean value for if cookie consent was given.                    |
+| `cookieName`          | string   | yes      |         | Name for cookie that is handled. Used to check if the cookie has been set, and if it has it will not show the dialog anymore. |
+
+**Examples**
+
+```js
+<CookieConsentDialog
+  cookieName="newrelic-gdpr-consent"
+  handleCookieConsent={(resp) => Cookies.set('newrelic-gpdr-consent', resp)}
+/>
 ```
 
 ### `ExternalLink`
