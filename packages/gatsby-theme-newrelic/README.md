@@ -1384,7 +1384,6 @@ const myComponent = () => {
       <button onClick ={()=>setCount(count + 1)}>
     </div>
   )
-
 }
 ```
 
