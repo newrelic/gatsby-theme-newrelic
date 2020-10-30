@@ -32,6 +32,7 @@ module.exports = {
             authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',
           },
         },
+        gaTrackingId: 'UA-3047412-33'
       },
     },
     'gatsby-plugin-mdx',

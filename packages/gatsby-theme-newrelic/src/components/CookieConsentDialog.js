@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Cookies from 'js-cookie';
 import { css } from '@emotion/core';
 import ExternalLink from './ExternalLink';
 import Button from './Button';
 
-const cookieName = 'newrelic-gdpr-consent';
+const COOKIE_NAME = 'newrelic-gdpr-consent';
 
 const CookieConsentDialog = () => {
-  const [isCookieSet, setIsCookieSet] = useState(Cookies.get(cookieName));
+  const [isCookieSet, setIsCookieSet] = useState(Cookies.get(COOKIE_NAME));
 
   const writeCookie = (answer) => {
     const currentEnvironment =
@@ -18,7 +17,7 @@ const CookieConsentDialog = () => {
       options.domain = 'newrelic.com';
     }
 
-    Cookies.set(cookieName, String(!!answer), options);
+    Cookies.set(COOKIE_NAME, String(answer), options);
     setIsCookieSet(true);
     answer && window.trackGoogleAnalytics();
   };

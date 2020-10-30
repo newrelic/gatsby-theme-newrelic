@@ -17,6 +17,7 @@ websites](https://opensource.newrelic.com).
     - [`robots`](#robots)
     - [`layout`](#layout)
     - [`prism`](#prism)
+    - [`gaTrackingId`](#gatrackingid)
     - [`splitio`](#splitio)
       - [Environment-specific configuration](#environment-specific-configuration)
 - [Components](#components)
@@ -123,6 +124,7 @@ module.exports = {
             authorizationKey: 'my-auth-key',
           },
         },
+        gaTrackingId: 'UA-XXXXXX-XX',
       },
     },
   ],
@@ -231,9 +233,9 @@ module.exports = {
 };
 ```
 
-#### `gdprTracking`
+#### `gaTrackingId`
 
-Configuration for using [`gatsby-plugin-gdpr-tracking`](https://www.gatsbyjs.com/plugins/gatsby-plugin-gdpr-tracking/) plugin with the Gatsby site. For more details on the available configuration options, visit [the documentation.](https://www.gatsbyjs.com/plugins/gatsby-plugin-gdpr-tracking/).
+Tracking ID for use with Google Analytics. For more details on Google Analytics Tracking IDs, visit [the documentation.](https://support.google.com/analytics/answer/1008080?visit_id=637396929080724679-4016043558&rd=1).
 
 #### `splitio`
 
@@ -574,7 +576,7 @@ import { CookieConsentDialog } from '@newrelic/gatsby-theme-newrelic';
 **Example**
 
 ```js
-const myLayout = () => (
+const MyLayout = () => (
   <>
     <GlobalHeader />
     <GlobalFooter />
@@ -1374,7 +1376,7 @@ import { usePrevious } from '@newrelic/gatsby-theme-newrelic';
 **Examples**
 
 ```js
-const myComponent = () => {
+const MyComponent = () => {
   const [count, setCount] = useState(0);
   const prevCount = usePrevious(count);
 
