@@ -36,6 +36,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type SiteSiteMetadata {
+      repository: String
       utmSource: String
       branch: String!
       contributingUrl: String
