@@ -98,7 +98,7 @@ const GlobalHeader = ({ className }) => {
       >
         <div
           css={css`
-            height: 36px;
+            height: var(--global-header-height);
             display: flex;
             justify-content: space-between;
             max-width: ${layout.maxWidth};
