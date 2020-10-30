@@ -1,4 +1,4 @@
-module.exports = ({ newrelic, robots = {} }) => {
+module.exports = ({ newrelic, robots = {}, gdprTracking }) => {
   return {
     plugins: [
       'gatsby-plugin-emotion',
@@ -31,6 +31,10 @@ module.exports = ({ newrelic, robots = {} }) => {
           name: 'announcements',
           path: 'src/announcements',
         },
+      },
+      gdprTracking && {
+        resolve: 'gatsby-plugin-gdpr-tracking',
+        options: gdprTracking,
       },
     ].filter(Boolean),
   };

@@ -1,12 +1,14 @@
 /* eslint-disable no-alert */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Cookies from 'js-cookie';
 import { graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import {
   Button,
   CodeBlock,
   Callout,
+  CookieConsentDialog,
   Feedback,
   GlobalFooter,
   GlobalHeader,
@@ -17,6 +19,7 @@ import {
   Tag,
   TagList,
   Video,
+  usePrevious
 } from '@newrelic/gatsby-theme-newrelic';
 
 const codeSample = `
@@ -38,10 +41,28 @@ const liveCodeSample = `
 <Button variant={Button.VARIANT.PRIMARY} onClick={() => alert('Hello!')}>Hello!</Button>
 `;
 
+const gdprConsentCookieName = 'yummyCookie'
+
+const options = { expires: 1 /* day */ };
+
 const IndexPage = ({ data }) => {
   const { layout, siteMetadata } = data.site;
   const [searchTerm, setSearchTerm] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cookieConsent, setCookieConsent] = useState(Cookies.get(gdprConsentCookieName) === 'true'); 
+
+  const previousCookieConsent = usePrevious(cookieConsent);
+
+  const handleCookieConsent = (answer) => {
+    Cookies.set(gdprConsentCookieName, String(!!answer), options);
+    answer && setCookieConsent(true);
+  } 
+
+  useEffect(()=> {
+      if (cookieConsent && previousCookieConsent === false) {
+        alert(`${gdprConsentCookieName} has been approved`)
+      } 
+  }, [cookieConsent, previousCookieConsent])
 
   return (
     <>
@@ -309,8 +330,8 @@ const IndexPage = ({ data }) => {
           </TagList>
         </section>
       </div>
-
       <GlobalFooter fileRelativePath="src/content/foobar.md" />
+      <CookieConsentDialog cookieName={gdprConsentCookieName} handleCookieConsent={handleCookieConsent} />
     </>
   );
 };

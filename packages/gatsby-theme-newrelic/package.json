@@ -61,6 +61,7 @@
     "gatsby-plugin-use-dark-mode": "^1.1.2",
     "gatsby-source-filesystem": "^2.3.19",
     "gatsby-transformer-sharp": "^2.5.11",
+    "js-cookie": "^2.2.1",
     "lodash": "^4.17.20",
     "polished": "^3.6.5",
     "prism-react-renderer": "^1.1.1",

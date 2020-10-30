@@ -32,6 +32,9 @@ module.exports = {
             authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',
           },
         },
+        gdprTracking: {
+          googleAnalytics: {}
+        }
       },
     },
     'gatsby-plugin-mdx',
