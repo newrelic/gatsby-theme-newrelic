@@ -5,18 +5,23 @@ import { css } from '@emotion/core';
 import ExternalLink from './ExternalLink';
 import Button from './Button';
 
-const CookieConsentDialog = ({
-  cookieName,
-  handleCookieConsent
-}) => {
-  const [isCookieSet, setIsCookieSet] = useState(
-    Cookies.get(cookieName)
-  );
+const cookieName = 'newrelic-gdpr-consent';
+
+const CookieConsentDialog = () => {
+  const [isCookieSet, setIsCookieSet] = useState(Cookies.get(cookieName));
 
   const writeCookie = (answer) => {
-    handleCookieConsent(answer)
+    const currentEnvironment =
+      process.env.ENV || process.env.NODE_ENV || 'development';
+    const options = { expires: 365 /* days */ };
+    if (currentEnvironment !== 'development') {
+      options.domain = 'newrelic.com';
+    }
+
+    Cookies.set(cookieName, String(!!answer), options);
     setIsCookieSet(true);
-  }
+    answer && window.trackGoogleAnalytics();
+  };
 
   if (isCookieSet) {
     return null;

@@ -32,9 +32,18 @@ module.exports = ({ newrelic, robots = {}, gdprTracking }) => {
           path: 'src/announcements',
         },
       },
-      gdprTracking && {
+      {
         resolve: 'gatsby-plugin-gdpr-tracking',
-        options: gdprTracking,
+        options: {
+          debug: false,
+          googleAnalytics: {
+            trackingId: 'UA-3047412-33',
+            autoStart: false,
+            anonymize: true,
+            controlCookieName: 'newrelic-gdpr-consent',
+          },
+          environments: ['production', 'development'],
+        },
       },
     ].filter(Boolean),
   };

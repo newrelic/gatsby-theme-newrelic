@@ -581,20 +581,16 @@ A dialog box that pops up asking for cookie consent. This component renders at t
 import { CookieConsentDialog } from '@newrelic/gatsby-theme-newrelic';
 ```
 
-**Props**
-
-| Prop                  | Type     | Required | Default | Description                                                                                                                   |
-| --------------------- | -------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `handleCookieConsent` | function | yes      |         | Handler function for the cookie consent dialog. Argument is boolean value for if cookie consent was given.                    |
-| `cookieName`          | string   | yes      |         | Name for cookie that is handled. Used to check if the cookie has been set, and if it has it will not show the dialog anymore. |
-
-**Examples**
+**Example**
 
 ```js
-<CookieConsentDialog
-  cookieName="newrelic-gdpr-consent"
-  handleCookieConsent={(resp) => Cookies.set('newrelic-gpdr-consent', resp)}
-/>
+const myLayout = () => (
+  <>
+    <GlobalHeader />
+    <GlobalFooter />
+    <CookieConsentDialog />
+  </>
+);
 ```
 
 ### `ExternalLink`
