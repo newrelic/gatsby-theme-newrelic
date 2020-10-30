@@ -3,14 +3,7 @@ import React from 'react';
 
 import { appendClassName } from '@elastic/react-search-ui-views/es/view-helpers';
 
-const sites = [
-  'developer',
-  'opensource',
-  'docs',
-  'discuss',
-  'newrelic',
-  'blog',
-];
+const sites = ['developer', 'opensource', 'docs'];
 
 function PagingInfo({
   className,

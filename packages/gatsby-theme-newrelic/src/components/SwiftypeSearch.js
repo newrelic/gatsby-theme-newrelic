@@ -42,6 +42,13 @@ const configOptions = {
         raw: {},
       },
     },
+    filters: [
+      {
+        field: 'type',
+        values: ['docs', 'developer', 'opensource'],
+        type: 'any',
+      },
+    ],
   },
   initialState: {
     resultsPerPage: 10,
@@ -70,6 +77,9 @@ const SwiftypeSearch = ({ className }) => {
                   searchAsYouType
                   debounceLength={500}
                   inputView={InputView}
+                  inputProps={{
+                    placeholder: 'Search Docs, Developer, Open Source',
+                  }}
                   onSubmit={(searchTerm) => {
                     setQueryParam('q', searchTerm);
                   }}

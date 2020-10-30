@@ -245,7 +245,7 @@ const GlobalHeader = ({ className }) => {
               ) : (
                 <SearchInput
                   ref={searchRef}
-                  placeholder="Search"
+                  placeholder="Search Docs, Developer, Opensource"
                   size={SearchInput.SIZE.SMALL}
                   onClear={() => setSearchQuery('')}
                   onChange={(e) => setSearchQuery(e.target.value)}
