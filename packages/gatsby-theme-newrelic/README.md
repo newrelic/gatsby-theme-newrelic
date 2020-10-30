@@ -17,7 +17,7 @@ websites](https://opensource.newrelic.com).
     - [`robots`](#robots)
     - [`layout`](#layout)
     - [`prism`](#prism)
-    - [`gdprTrackingId`](#gdprtrackingid)
+    - [`gaTrackingId`](#gatrackingid)
     - [`splitio`](#splitio)
       - [Environment-specific configuration](#environment-specific-configuration)
 - [Components](#components)
@@ -233,7 +233,7 @@ module.exports = {
 };
 ```
 
-#### `gdprTrackingId`
+#### `gaTrackingId`
 
 Tracking Id for Google Analytics with [`gatsby-plugin-gdpr-tracking`](https://www.gatsbyjs.com/plugins/gatsby-plugin-gdpr-tracking/) plugin with the Gatsby site. For more details on Google Analytics Tracking Ids, visit [the documentation.](https://support.google.com/analytics/answer/1008080?visit_id=637396929080724679-4016043558&rd=1).
 
