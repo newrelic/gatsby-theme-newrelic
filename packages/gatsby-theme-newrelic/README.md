@@ -17,6 +17,7 @@ websites](https://opensource.newrelic.com).
     - [`robots`](#robots)
     - [`layout`](#layout)
     - [`prism`](#prism)
+    - [`gdprTracking`](#gdprtracking)
     - [`splitio`](#splitio)
       - [Environment-specific configuration](#environment-specific-configuration)
 - [Components](#components)
@@ -46,6 +47,7 @@ websites](https://opensource.newrelic.com).
   - [`useQueryParams`](#usequeryparams)
   - [`useTimeout`](#usetimeout)
   - [`useUserId`](#useuserid)
+  - [`usePrevious`](#useprevious)
 - [Announcements](#announcements)
 - [Utils](#utils)
   - [`formatCode`](#formatcode)
@@ -140,6 +142,10 @@ are optional, they are highly recommended.
 - `branch`: The mainline branch for use when constructing "Edit this page" links (defaults to `main`).
 - `utmSource`: Name of the site that will be used as the UTM source when linking
   to various mediums within New Relic.
+- `contributingUrl`: The URL where a user can find contributing guidelines for
+  the site. If this is not specified, it defaults to the `CONTRIBUTING.md` file
+  in the repo and branch specified in the `siteMetadata`. If the `repository` is
+  not specified, this will return `null`.
 
 ### Options
 
