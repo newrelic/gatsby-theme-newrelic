@@ -1,8 +1,7 @@
-import React, { Children, cloneElement } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, useStaticQuery } from 'gatsby';
-import { css, ClassNames } from '@emotion/core';
-import { borderRadius } from 'polished';
+import { css } from '@emotion/core';
 import Section from './Section';
 import Title from './Title';
 
@@ -35,20 +34,7 @@ const PageTools = ({ className, children }) => {
         );
       `}
     >
-      {Children.map(children, (child, idx) => (
-        <ClassNames>
-          {({ cx, css }) =>
-            cloneElement(child, {
-              className: cx(
-                child.props?.className,
-                idx === 0 && css(borderRadius('top', '0.25rem')),
-                idx === Children.count(children) - 1 &&
-                  css(borderRadius('bottom', '0.25rem'))
-              ),
-            })
-          }
-        </ClassNames>
-      ))}
+      {children}
     </aside>
   );
 };
