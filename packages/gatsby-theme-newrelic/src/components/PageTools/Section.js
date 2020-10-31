@@ -14,7 +14,7 @@ const Section = ({ children, className }) => (
       }
 
       &:last-child {
-        ${borderRadius('top', '0.25rem')};
+        ${borderRadius('bottom', '0.25rem')};
       }
     `}
   >
