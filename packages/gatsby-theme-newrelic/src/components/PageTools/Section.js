@@ -16,6 +16,10 @@ const Section = ({ children, className }) => (
       &:last-child {
         ${borderRadius('bottom', '0.25rem')};
       }
+
+      > :last-child {
+        margin-bottom: 0;
+      }
     `}
   >
     {children}
