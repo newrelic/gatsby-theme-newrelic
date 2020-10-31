@@ -25,6 +25,7 @@ websites](https://opensource.newrelic.com).
   - [`Button`](#button)
   - [`Callout`](#callout)
   - [`CodeBlock`](#codeblock)
+  - [`ContributingGuidelines`](#contributingguidelines)
   - [`CookieConsentDialog`](#cookieconsentdialog)
   - [`ExternalLink`](#externallink)
   - [`Feedback`](#feedback)
@@ -570,6 +571,39 @@ const Documentation = () => (
     {codeSample}
   </CodeBlock>
 );
+```
+
+### `ContributingGuidelines`
+
+Used to display contributing information for the current page. This is meant to
+be used as a section inside of the [`PageTools`](#pagetools) component.
+
+To ensure this component leverages its full potential, please ensure the
+following [`siteMetadata`](#sitemetadata) fields are configured:
+
+- `branch`
+- `contributingUrl`
+- `repository`
+
+**NOTE:** If the `contributingUrl` is not configured, it will use the default value as
+specified in the [`siteMetadata`](#sitemetadata) section.
+
+```js
+import { ContributingGuidelines } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop               | Type   | Required | Default | Description                                                                                 |
+| ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------- |
+| `fileRelativePath` | string | no       |         | The relative file path of the current page. This will be used by the "Edit this page" link. |
+
+**Examples**
+
+```js
+<PageTools>
+  <ContributingGuidelines fileRelativePath="src/pages/index.js" />
+</PageTools>
 ```
 
 ### `CookieConsentDialog`
