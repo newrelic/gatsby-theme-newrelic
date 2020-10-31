@@ -580,14 +580,14 @@ Used to display contributing information for the current page. This is meant to
 be used as a section inside of the [`PageTools`](#pagetools) component.
 
 To ensure this component leverages its full potential, please ensure the
-following [`siteMetadata`](#sitemetadata) fields are configured:
+following [`siteMetadata`](#site-metadata) fields are configured:
 
 - `branch`
 - `contributingUrl`
 - `repository`
 
-**NOTE:** If the `contributingUrl` is not configured, it will use the default value as
-specified in the [`siteMetadata`](#sitemetadata) section.
+**NOTE:** If the `contributingUrl` is not configured, it will use the default
+value as specified in the [`siteMetadata`](#site-metadata) section.
 
 ```js
 import { ContributingGuidelines } from '@newrelic/gatsby-theme-newrelic'`
