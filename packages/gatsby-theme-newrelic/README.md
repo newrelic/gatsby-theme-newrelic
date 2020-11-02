@@ -150,7 +150,8 @@ are optional, they are highly recommended.
 - `contributingUrl`: The URL where a user can find contributing guidelines for
   the site. If this is not specified, it defaults to the `CONTRIBUTING.md` file
   in the repo and branch specified in the `siteMetadata`. If the `repository` is
-  not specified, this will return `null`.
+  not specified, this will return `null`. Set this value to `null` to disable
+  the default behavior.
 
 ### Options
 
