@@ -242,6 +242,8 @@ const GlobalStyles = () => (
       ${normalize()}
 
       :root {
+        --global-header-height: 36px;
+
         ${colors};
         ${fonts};
       }

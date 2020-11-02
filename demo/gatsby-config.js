@@ -7,6 +7,7 @@ module.exports = {
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
     siteUrl: 'https://developer.newrelic.com',
     utmSource: 'demo-site',
+    branch: 'develop',
   },
   plugins: [
     {
@@ -14,7 +15,7 @@ module.exports = {
       options: {
         layout: {
           contentPadding: '2rem',
-          maxWidth: '1080px',
+          maxWidth: '1480px',
         },
         newrelic: {
           configs: {
@@ -32,7 +33,7 @@ module.exports = {
             authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',
           },
         },
-        gaTrackingId: 'UA-3047412-33'
+        gaTrackingId: 'UA-3047412-33',
       },
     },
     'gatsby-plugin-mdx',
