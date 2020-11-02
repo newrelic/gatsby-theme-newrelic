@@ -98,7 +98,7 @@ const GlobalHeader = ({ className }) => {
       >
         <div
           css={css`
-            height: 36px;
+            height: var(--global-header-height);
             display: flex;
             justify-content: space-between;
             max-width: ${layout.maxWidth};
@@ -245,7 +245,7 @@ const GlobalHeader = ({ className }) => {
               ) : (
                 <SearchInput
                   ref={searchRef}
-                  placeholder="Search Docs, Developer, Opensource"
+                  placeholder="Search Docs, Developer, Open Source"
                   size={SearchInput.SIZE.SMALL}
                   onClear={() => setSearchQuery('')}
                   onChange={(e) => setSearchQuery(e.target.value)}

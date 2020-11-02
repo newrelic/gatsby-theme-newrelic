@@ -17,6 +17,7 @@ websites](https://opensource.newrelic.com).
     - [`robots`](#robots)
     - [`layout`](#layout)
     - [`prism`](#prism)
+    - [`gaTrackingId`](#gatrackingid)
     - [`splitio`](#splitio)
       - [Environment-specific configuration](#environment-specific-configuration)
 - [Components](#components)
@@ -24,6 +25,8 @@ websites](https://opensource.newrelic.com).
   - [`Button`](#button)
   - [`Callout`](#callout)
   - [`CodeBlock`](#codeblock)
+  - [`ContributingGuidelines`](#contributingguidelines)
+  - [`CookieConsentDialog`](#cookieconsentdialog)
   - [`ExternalLink`](#externallink)
   - [`Feedback`](#feedback)
   - [`GlobalFooter`](#globalfooter)
@@ -32,6 +35,9 @@ websites](https://opensource.newrelic.com).
   - [`Icon`](#icon)
   - [`MDXCodeBlock`](#mdxcodeblock)
   - [`NewRelicLogo`](#newreliclogo)
+  - [`PageTools`](#pagetools)
+  - [`PageTools.Section`](#pagetoolssection)
+  - [`PageTools.Title`](#pagetoolstitle)
   - [`SearchInput`](#searchinput)
   - [`Spinner`](#spinner)
   - [`Surface`](#surface)
@@ -45,6 +51,7 @@ websites](https://opensource.newrelic.com).
   - [`useQueryParams`](#usequeryparams)
   - [`useTimeout`](#usetimeout)
   - [`useUserId`](#useuserid)
+  - [`usePrevious`](#useprevious)
 - [Announcements](#announcements)
 - [Utils](#utils)
   - [`formatCode`](#formatcode)
@@ -122,6 +129,7 @@ module.exports = {
             authorizationKey: 'my-auth-key',
           },
         },
+        gaTrackingId: 'UA-XXXXXX-XX',
       },
     },
   ],
@@ -139,6 +147,11 @@ are optional, they are highly recommended.
 - `branch`: The mainline branch for use when constructing "Edit this page" links (defaults to `main`).
 - `utmSource`: Name of the site that will be used as the UTM source when linking
   to various mediums within New Relic.
+- `contributingUrl`: The URL where a user can find contributing guidelines for
+  the site. If this is not specified, it defaults to the `CONTRIBUTING.md` file
+  in the repo and branch specified in the `siteMetadata`. If the `repository` is
+  not specified, this will return `null`. Set this value to `null` to disable
+  the default behavior.
 
 ### Options
 
@@ -229,6 +242,10 @@ module.exports = {
   ],
 };
 ```
+
+#### `gaTrackingId`
+
+Tracking ID for use with Google Analytics. For more details on Google Analytics Tracking IDs, visit [the documentation.](https://support.google.com/analytics/answer/1008080?visit_id=637396929080724679-4016043558&rd=1).
 
 #### `splitio`
 
@@ -555,6 +572,59 @@ const Documentation = () => (
   >
     {codeSample}
   </CodeBlock>
+);
+```
+
+### `ContributingGuidelines`
+
+Used to display contributing information for the current page. This is meant to
+be used as a section inside of the [`PageTools`](#pagetools) component.
+
+To ensure this component leverages its full potential, please ensure the
+following [`siteMetadata`](#site-metadata) fields are configured:
+
+- `branch`
+- `contributingUrl`
+- `repository`
+
+**NOTE:** If the `contributingUrl` is not configured, it will use the default
+value as specified in the [`siteMetadata`](#site-metadata) section.
+
+```js
+import { ContributingGuidelines } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop               | Type   | Required | Default | Description                                                                                 |
+| ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------- |
+| `fileRelativePath` | string | no       |         | The relative file path of the current page. This will be used by the "Edit this page" link. |
+
+**Examples**
+
+```js
+<PageTools>
+  <ContributingGuidelines fileRelativePath="src/pages/index.js" />
+</PageTools>
+```
+
+### `CookieConsentDialog`
+
+A dialog box that pops up asking for cookie consent. This component renders at the bottom of the screen and provides options for accepting or denying cookies.
+
+```js
+import { CookieConsentDialog } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Example**
+
+```js
+const MyLayout = () => (
+  <>
+    <GlobalHeader />
+    <GlobalFooter />
+    <CookieConsentDialog />
+  </>
 );
 ```
 
@@ -915,6 +985,85 @@ import { NewRelicLogo } from '@newrelic/gatsby-theme-newrelic';
 ```js
 <NewRelicLogo />
 ```
+
+### `PageTools`
+
+Used as a "right rail" container to display content related to the current page.
+To build modules contained inside this component, see the
+[`PageTools.Section`](#pagetoolssection) and [`PageTools.Title`](#pagetoolstitle)
+documentation.
+
+```js
+import { PageTools } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                          |
+| ----------- | ------ | -------- | ------- | ---------------------------------------------------- |
+| `className` | string | no       |         | Additional `className` for the component.            |
+| `children`  | node   | no       |         | Content to be displayed in the `PageTools` component |
+
+**Example**
+
+```jsx
+<PageTools>
+  <PageTools.Section>
+    <PageTools.Title>How to use</PageTools.Title>
+    <p>
+      Use the `PageTools` component to render content related to the current
+      page.
+    </p>
+  </PageTools.Section>
+</PageTools>
+```
+
+### `PageTools.Section`
+
+A component used as a building block for creating content displayed inside of
+the [`PageTools`](#pagetools) component. This is a container for the content
+inside a section of the `PageTools`.
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                  |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------ |
+| `className` | string | no       |         | Additional `className` for the component.                    |
+| `children`  | node   | no       |         | Content to be displayed in the `PageTools.Section` component |
+
+**Example**
+
+```jsx
+<PageTools>
+  <PageTools.Section>
+    Use the `PageTools.Section` component as a container around content to be
+    displayed in a section of the `PageTools`.
+  </PageTools.Section>
+  <PageTools.Section>
+    This will be displayed as its own section inside `PageTools`
+  </PageTools.Section>
+</PageTools>
+```
+
+### `PageTools.Title`
+
+A component used as a building block for creating content displayed inside of
+the [`PageTools`](#pagetools) component. This is used to display a title for the
+section of content inside of `PageTools`. Render this inside of a
+[`PageTools.Section`](#pagetoolssection) component.
+
+```jsx
+<PageTools.Section>
+  <PageTools.Title>Related resources</PageTools.Title>
+</PageTools.Section>
+```
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                              |
+| ----------- | ------ | -------- | ------- | -------------------------------------------------------- |
+| `className` | string | no       |         | Additional `className` for the component.                |
+| `children`  | node   | no       |         | Title to be displayed in the `PageTools.Title` component |
 
 ### `SearchInput`
 
@@ -1328,6 +1477,38 @@ const MyComponent = () => {
 
   return null;
 };
+```
+
+### `usePrevious`
+
+A hook that gets the previous state of a stateful value. Useful to compare if the state has changed between render cycles.
+
+```js
+import { usePrevious } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `value` _(any)_: Value to track its previous state.
+
+**Returns**
+
+`any` - The previous value.
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
+
+  return (
+    <div>
+      <span>{`current count is ${count}, previous count is ${prevCount}`}
+      <button onClick ={()=>setCount(count + 1)}>
+    </div>
+  )
+}
 ```
 
 ## Announcements

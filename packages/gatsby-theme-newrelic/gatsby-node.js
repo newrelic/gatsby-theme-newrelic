@@ -36,8 +36,10 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type SiteSiteMetadata {
+      repository: String
       utmSource: String
       branch: String!
+      contributingUrl: String
     }
   `);
 };
@@ -65,6 +67,17 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       },
       branch: {
         resolve: ({ branch }) => branch || DEFAULT_BRANCH,
+      },
+      contributingUrl: {
+        resolve: ({ contributingUrl, branch, repository }) => {
+          if (contributingUrl !== undefined) {
+            return contributingUrl;
+          }
+
+          return repository
+            ? `${repository}/blob/${branch || DEFAULT_BRANCH}/CONTRIBUTING.md`
+            : null;
+        },
       },
     },
   });
