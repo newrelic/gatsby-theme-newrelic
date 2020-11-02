@@ -69,14 +69,14 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
         resolve: ({ branch }) => branch || DEFAULT_BRANCH,
       },
       contributingUrl: {
-        resolve: ({ branch, repository }) => {
-          if (!repository) {
-            return;
+        resolve: ({ contributingUrl, branch, repository }) => {
+          if (contributingUrl) {
+            return contributingUrl;
           }
 
-          return `${repository}/blob/${
-            branch || DEFAULT_BRANCH
-          }/CONTRIBUTING.md`;
+          return repository
+            ? `${repository}/blob/${branch || DEFAULT_BRANCH}/CONTRIBUTING.md`
+            : null;
         },
       },
     },
