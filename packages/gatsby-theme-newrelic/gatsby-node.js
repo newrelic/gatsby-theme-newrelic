@@ -70,7 +70,7 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       },
       contributingUrl: {
         resolve: ({ contributingUrl, branch, repository }) => {
-          if (contributingUrl) {
+          if (contributingUrl !== undefined) {
             return contributingUrl;
           }
 
