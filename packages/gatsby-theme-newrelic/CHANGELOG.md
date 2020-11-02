@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.13.0...v1.14.0) (2020-11-02)
+
+
+### Bug Fixes
+
+* add contributingUrl to siteMetadata ([0a8555a](https://github.com/newrelic/gatsby-theme-newrelic/commit/0a8555abb96811b114e014f27b569c8fb09fb06f))
+* add global header height as a global css variable ([6627544](https://github.com/newrelic/gatsby-theme-newrelic/commit/662754458cf327ae32c904578522721a02b00d74))
+* changes for cookie component ([48ee639](https://github.com/newrelic/gatsby-theme-newrelic/commit/48ee639ad0b526c99a4aa3aed5093cc64d135d1a))
+* ensure the repository field is always available in the site metadata type ([0ce7fa7](https://github.com/newrelic/gatsby-theme-newrelic/commit/0ce7fa715d93d93cda686dc71860dca3a320eda5))
+* grammar haha ([d27de1b](https://github.com/newrelic/gatsby-theme-newrelic/commit/d27de1bd768d5a0964a96a7a6bb451c407c9ea0a))
+* proper casing on search input placeholder ([66eca33](https://github.com/newrelic/gatsby-theme-newrelic/commit/66eca33a2c47efdeae72b854e5a262d3a1adb1e8))
+
+
+### Features
+
+* add a ContributingGuidelines component to use with the PageTools component ([5ec5689](https://github.com/newrelic/gatsby-theme-newrelic/commit/5ec5689c546d83dacc4d2275aeabe0fed1e900d5))
+* added documentation for Cookie Consent Dialog ([20a8273](https://github.com/newrelic/gatsby-theme-newrelic/commit/20a827330721b70c7a576d135898bd937aa02c24))
+* adds cookie consent dialog box and gdpr plugin to theme ([09057ca](https://github.com/newrelic/gatsby-theme-newrelic/commit/09057ca1667360d407b8a0ba2d299f6c8d8c23c2))
+* create a PageTools component that can be used to display page-specific UI ([d8f8f38](https://github.com/newrelic/gatsby-theme-newrelic/commit/d8f8f38a3b9c5c467b88a651aadc881ffe7b1847))
+* documentation for usePrevious hook ([38c5c1e](https://github.com/newrelic/gatsby-theme-newrelic/commit/38c5c1e6c385e9efdacce32c79b6b668e40d6e14))
+
+
+
+
+
 # [1.13.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.12.0...v1.13.0) (2020-10-30)
 
 
