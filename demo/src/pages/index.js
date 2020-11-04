@@ -10,7 +10,8 @@ import {
   ContributingGuidelines,
   CookieConsentDialog,
   Feedback,
-  GlobalFooter,
+  Layout,
+  Logo,
   GlobalHeader,
   HamburgerMenu,
   PageTools,
@@ -71,17 +72,11 @@ const IndexPage = ({ data }) => {
         />
       </header>
 
-      <div
-        css={css`
-          margin: 0 auto;
-          padding: ${layout.contentPadding};
-          max-width: ${layout.maxWidth};
-          display: grid;
-          grid-template-columns: minmax(0, 1fr) 320px;
-          grid-gap: ${layout.contentPadding};
-        `}
-      >
-        <div
+      <Layout type={Layout.TYPE.TWO_COLUMN_PAGE_TOOLS}>
+        <Layout.Sidebar>
+          <Logo width="150px" />
+        </Layout.Sidebar>
+        <Layout.Content
           css={css`
             section {
               margin-bottom: 4rem;
@@ -319,8 +314,12 @@ const IndexPage = ({ data }) => {
               <Tag interactive>Agent</Tag>
             </TagList>
           </section>
-        </div>
-        <PageTools>
+        </Layout.Content>
+        <Layout.PageTools
+          css={css`
+            grid-area: page-tools;
+          `}
+        >
           <ContributingGuidelines fileRelativePath="demo/src/pages/index.js" />
           <PageTools.Section>
             <PageTools.Title>How to use</PageTools.Title>
@@ -329,9 +328,9 @@ const IndexPage = ({ data }) => {
               to give page-specific context to a user
             </p>
           </PageTools.Section>
-        </PageTools>
-      </div>
-      <GlobalFooter fileRelativePath="src/content/foobar.md" />
+        </Layout.PageTools>
+        <Layout.Footer fileRelativePath="src/content/foobar.md" />
+      </Layout>
       <CookieConsentDialog />
     </>
   );
