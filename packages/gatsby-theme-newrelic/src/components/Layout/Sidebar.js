@@ -1,20 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { graphql, useStaticQuery } from 'gatsby';
+import useLayout from '../../hooks/useLayout';
 
 const Sidebar = ({ children, className }) => {
-  const {
-    site: { layout },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        layout {
-          contentPadding
-        }
-      }
-    }
-  `);
+  const { contentPadding } = useLayout();
 
   return (
     <aside
@@ -35,7 +25,7 @@ const Sidebar = ({ children, className }) => {
           bottom: 0;
           left: 0;
           right: 0;
-          padding: ${layout.contentPadding};
+          padding: ${contentPadding};
           padding-left: 0;
           overflow: auto;
         `}

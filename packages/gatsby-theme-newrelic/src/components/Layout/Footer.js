@@ -2,27 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import GlobalFooter from '../GlobalFooter';
 import { css } from '@emotion/core';
-import { useStaticQuery, graphql } from 'gatsby';
+import useLayout from '../../hooks/useLayout';
 
 const Footer = ({ fileRelativePath }) => {
-  const {
-    site: { layout },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        layout {
-          contentPadding
-        }
-      }
-    }
-  `);
+  const { contentPadding } = useLayout();
 
   return (
     <GlobalFooter
       fileRelativePath={fileRelativePath}
       css={css`
         grid-area: footer;
-        margin: 0 -${layout.contentPadding};
+        margin: 0 -${contentPadding};
       `}
     />
   );

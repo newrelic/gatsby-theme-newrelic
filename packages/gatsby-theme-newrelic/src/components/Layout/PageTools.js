@@ -1,27 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { useStaticQuery, graphql } from 'gatsby';
 import PageTools from '../PageTools';
+import useLayout from '../../hooks/useLayout';
 
 const LayoutPageTools = ({ children }) => {
-  const {
-    site: { layout },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        layout {
-          contentPadding
-        }
-      }
-    }
-  `);
+  const { contentPadding } = useLayout();
 
   return (
     <PageTools
       css={css`
         grid-area: page-tools;
-        margin-top: ${layout.contentPadding};
+        margin-top: ${contentPadding};
       `}
     >
       {children}

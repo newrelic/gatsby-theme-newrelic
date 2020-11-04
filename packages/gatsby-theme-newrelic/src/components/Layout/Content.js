@@ -1,20 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { useStaticQuery, graphql } from 'gatsby';
+import useLayout from '../../hooks/useLayout';
 
 const Content = ({ className, children }) => {
-  const {
-    site: { layout },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        layout {
-          contentPadding
-        }
-      }
-    }
-  `);
+  const { contentPadding } = useLayout();
 
   return (
     <main
@@ -23,7 +13,7 @@ const Content = ({ className, children }) => {
       className={className}
       css={css`
         grid-area: content;
-        padding: ${layout.contentPadding} 0;
+        padding: ${contentPadding} 0;
       `}
     >
       {children}

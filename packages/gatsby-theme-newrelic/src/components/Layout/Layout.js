@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import { useStaticQuery, graphql } from 'gatsby';
 import Content from './Content';
 import Footer from './Footer';
 import PageTools from './PageTools';
 import Sidebar from './Sidebar';
+import useLayout from '../../hooks/useLayout';
 
 const TYPES = {
   TWO_COLUMN: 'twoColumn',
@@ -30,18 +30,7 @@ const GRID = {
 };
 
 const Layout = ({ className, children, type }) => {
-  const {
-    site: { layout },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        layout {
-          contentPadding
-          maxWidth
-        }
-      }
-    }
-  `);
+  const { contentPadding, maxWidth } = useLayout();
 
   return (
     <div
@@ -53,10 +42,10 @@ const Layout = ({ className, children, type }) => {
         ${GRID[type]};
 
         display: grid;
-        grid-gap: ${layout.contentPadding};
+        grid-gap: ${contentPadding};
         margin: 0 auto;
-        max-width: ${layout.maxWidth};
-        padding: 0 ${layout.contentPadding};
+        max-width: ${maxWidth};
+        padding: 0 ${contentPadding};
       `}
     >
       {children}
