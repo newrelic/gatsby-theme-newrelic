@@ -12,6 +12,9 @@ const history = createHistory(source);
 
 beforeEach(() => {
   useStaticQuery.mockImplementation(() => ({
+    allMdx: {
+      nodes: [],
+    },
     site: {
       siteMetadata: {
         siteUrl: 'https://example.com',
@@ -26,7 +29,7 @@ beforeEach(() => {
 test('Matches snapshot', () => {
   const tree = TestRenderer.create(
     <LocationProvider history={history}>
-      <GlobalHeader search />
+      <GlobalHeader />
     </LocationProvider>
   ).toJSON();
 

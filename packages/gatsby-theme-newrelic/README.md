@@ -28,16 +28,28 @@ websites](https://opensource.newrelic.com).
   - [`ContributingGuidelines`](#contributingguidelines)
   - [`CookieConsentDialog`](#cookieconsentdialog)
   - [`ExternalLink`](#externallink)
+  - [`FeatherSVG`](#feathersvg)
   - [`Feedback`](#feedback)
   - [`GlobalFooter`](#globalfooter)
   - [`GlobalHeader`](#globalheader)
   - [`HamburgerMenu`](#hamburgermenu)
   - [`Icon`](#icon)
+    - [Available icons](#available-icons)
+    - [Shadowing icons](#shadowing-icons)
+  - [`Layout`](#layout-1)
+    - [`Layout.Content`](#layoutcontent)
+    - [`Layout.Footer`](#layoutfooter)
+    - [`Layout.Main`](#layoutmain)
+    - [`Layout.PageTools`](#layoutpagetools)
+    - [`Layout.Sidebar`](#layoutsidebar)
+  - [`Link`](#link)
   - [`MDXCodeBlock`](#mdxcodeblock)
+  - [`NavItem`](#navitem)
+    - [`Page`](#page)
   - [`NewRelicLogo`](#newreliclogo)
   - [`PageTools`](#pagetools)
-  - [`PageTools.Section`](#pagetoolssection)
-  - [`PageTools.Title`](#pagetoolstitle)
+    - [`PageTools.Section`](#pagetoolssection)
+    - [`PageTools.Title`](#pagetoolstitle)
   - [`SearchInput`](#searchinput)
   - [`Spinner`](#spinner)
   - [`Surface`](#surface)
@@ -48,6 +60,7 @@ websites](https://opensource.newrelic.com).
   - [`useClipboard`](#useclipboard)
   - [`useFormattedCode`](#useformattedcode)
   - [`useKeyPress`](#usekeypress)
+  - [`useLayout`](#uselayout)
   - [`useQueryParams`](#usequeryparams)
   - [`useTimeout`](#usetimeout)
   - [`useUserId`](#useuserid)
@@ -649,6 +662,36 @@ All props are forwarded to the underlying `a` tag with the exception of the
 <ExternalLink href="https://newrelic.com">Link to New Relic</ExternalLink>
 ```
 
+### `FeatherSVG`
+
+SVG wrapper for [feather icons](https://feathericons.com/). This is useful when
+[shadowing feather icons](#shadowing-icons) to ensure all feather icons have
+consistent props/styles applied to them.
+
+**NOTE:** When using this component, you should to spread all props to it.
+
+```js
+import { FeatherSVG } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type | Required | Default | Description                                |
+| ---------- | ---- | -------- | ------- | ------------------------------------------ |
+| `children` | node | yes      |         | The "guts" of the feather `svg` definition |
+
+Additional props are forwarded to the `svg` tag.
+
+**Example**
+
+```jsx
+const ChevronDownIcon = (props) => (
+  <FeatherSVG {...props}>
+    <polyline points="6 9 12 15 18 9" />
+  </FeatherSVG>
+);
+```
+
 ### `Feedback`
 
 Renders feedback controls that can be used to collect user sentiment about a page. Feedback can only be submitted once per page load.
@@ -816,55 +859,299 @@ import { Icon } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop   | Type   | Required | Default | Description                                                                                                              |
-| ------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `name` | enum   | yes      |         | The name of the icon that will be rendered. See the full list of available icons in the "Available icons" section below. |
-| `size` | string | no       | `1em`   | The size of the icon. The value can be any CSS sizing value.                                                             |
+| Prop   | Type   | Required | Default | Description                                                                                                                                  |
+| ------ | ------ | -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name` | enum   | yes      |         | The name of the icon that will be rendered. See the full list of available icons in the ["Available icons"](#available-icons) section below. |
+| `size` | string | no       | `1em`   | The size of the icon. The value can be any CSS sizing value.                                                                                 |
 
 Additional props are forwarded to the underlying `svg` element.
 
-**Available icons**
+#### Available icons
 
-- `Icon.TYPE.COPY`
-- `Icon.TYPE.EDIT`
-- `Icon.TYPE.GITHUB`
-- `Icon.TYPE.MOON`
-- `Icon.TYPE.SEARCH`
-- `Icon.TYPE.SUN`
-- `Icon.TYPE.X`
+**Feather**
 
-**Shadowing**
+- `fe-chevron-down`
+- `fe-cloud`
+- `fe-copy`
+- `fe-edit`
+- `fe-external-link`
+- `fe-filter`
+- `fe-github`
+- `fe-loader`
+- `fe-moon`
+- `fe-pen`
+- `fe-search`
+- `fe-sun`
+- `fe-thumbsdown`
+- `fe-thumbsup`
+- `fe-x`
 
-Because this theme only provides a subset of the Feather icon set, you may need
+**New Relic**
+
+- `nr-tdp`
+- `nr-fso`
+- `nr-ai`
+
+#### Shadowing icons
+
+Because this theme only provides a subset of the feather icon set, you may need
 to add additional icons for use in your website. You can use [component
 shadowing](https://www.gatsbyjs.org/docs/themes/shadowing/) to do so. When
 shadowing the icon set, **YOU MUST** include the default set of icons in order
 for the built-in components to work properly.
 
-When shadowing an icon set, the `Icon` component will automatically create a
-constant value for each icon by constantizing the value of its key. This allows
-you to continue to use the constant pattern for the `name` prop. For example, if
-you add a `chevron-right` icon to the icon set, you can use it via
-`Icon.TYPE.CHEVRON_RIGHT`.
+When shadowing an icon set, defined the icons using the unprefixed name. The
+gatsby theme will automatically prefix the icons for you depending on the icon
+set. For example, to add the
+[`chevron-right`](https://feathericons.com/?query=chevron-right) icon, define
+its name as `chevron-right`, not `fe-chevron-right`. This icon will be available
+to the `Icon` component as `fe-chevron-right`.
+
+The following icons sets can be shadowed:
+
+- Feather
+  - File path: `src/@newrelic/gatsby-theme-newrelic/icons/feather.js`
+  - Prefix: `fe`
+- New Relic
+  - File path: `src/@newrelic/gatsby-theme-newrelic/icons/newrelic.js`
+  - Prefix: `nr`
 
 ```js
 // src/@newrelic/gatsby-theme-newrelic/icons/feather.js
 import React from 'react';
 import defaultIcons from '@newrelic/gatsby-theme-newrelic/src/icons/feather';
+import { FeatherSVG } from '@newrelic/gatsby-theme-newrelic';
 
 export default {
   ...defaultIcons,
-  // Only include the "guts" of the SVG and omit the surrounding `svg` tag.
-  // The `Icon` component will automatically wrap this with an `svg` tag
-  // configured with the proper `viewBox` and feather icon styles.
-  'chevron-right': <polyline points="9 18 15 12 9 6" />,
+  'chevron-right': (props) => (
+    <FeatherSVG {...props}>
+      <polyline points="9 18 15 12 9 6" />
+    </FeatherSVG>
+  ),
 };
+
+// To use this icon, use the prefixed name:
+<Icon name="fe-chevron-right" />;
 ```
 
 **Example**
 
 ```js
-<Icon name={Icon.TYPE.COPY} size="1rem" />
+<Icon name="fe-copy" size="1rem" />
+```
+
+### `Layout`
+
+Layout components used to wrap the page content. Used as a container for the
+layout subcomponents.
+
+For more information on the layout subcomponents, see the following for more
+details:
+
+- [`Layout.Content`](#layoutcontent)
+- [`Layout.Footer`](#layoutfooter)
+- [`Layout.Main`](#layoutmain)
+- [`Layout.PageTools`](#layoutpagetools)
+- [`Layout.Sidebar`](#layoutsidebar)
+
+```js
+import { Layout } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                        |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------------ |
+| `className` | string | no       |         | Additional `className` for the component.                          |
+| `children`  | node   | no       |         | Content used for the layout. These should be layout subcomponents. |
+
+**Examples**
+
+```js
+<Layout>
+  <Layout.Sidebar>
+    <Logo />
+    <MyNavigation />
+  </Layout.Sidebar>
+  <Layout.Main
+    css={css`
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      grid-template-areas: 'content page-tools';
+      grid-gap: ${contentPadding};
+    `}
+  >
+    <Layout.Content>
+      <h1>Hello, world</h1>
+    </Layout.Content>
+    <Layout.PageTools>
+      <ContributingGuidelines fileRelativePath={fileRelativePath} />
+    </Layout.PageTools>
+  </Layout.Main>
+  <Layout.Footer fileRelativePath={fileRelativePath} />
+</Layout>
+```
+
+#### `Layout.Content`
+
+Used for displaying the body of the page. It has a `grid-area` set to `content`
+to allow for grid customization.
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                        |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------------ |
+| `className` | string | no       |         | Additional `className` for the component.                          |
+| `children`  | node   | no       |         | Content used for the layout. These should be layout subcomponents. |
+
+**Examples**
+
+```js
+<Layout.Content>
+  <h1>Hello, world</h1>
+</Layout.Content>
+```
+
+#### `Layout.Footer`
+
+Wraps the [`GlobalFooter`](#globalfooter) component for use inside the layout.
+
+**Props**
+
+All props are forwarded to the [`GlobalFooter`](#globalfooter) component.
+
+**Examples**
+
+```js
+<Layout.Footer fileRelativePath={fileRelativePath} />
+```
+
+#### `Layout.Main`
+
+Wraps the main content area in the layout.
+
+**NOTE:** For single-column pages, the [`Layout.Content`](#layoutcontent)
+component should be used as the single child of this component to ensure the
+props Swifttype attributes are added for the body of the content. For layouts
+that use [`Layout.PageTools`](#layoutpagetools), you will need to specify the
+grid used for the layout.
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                                                                              |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `className` | string | no       |         | Additional `className` for the component.                                                                                |
+| `children`  | node   | no       |         | Content displayed inside the main content area. For single-colum layouts, the `Layout.Content` should be the only child. |
+
+**Examples**
+
+```js
+<Layout.Main>
+  <Layout.Content>
+    <h1>Hello, world</h1>
+    <p>Here is where the main content of the page goes!</p>
+  </Layout.Content>
+</Layout.Main>
+```
+
+Layout with page tools
+
+```js
+<Layout.Main
+  css={css`
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'content page-tools';
+  `}
+>
+  <Layout.Content>
+    <h1>Hello, world</h1>
+    <p>Here is where the main content of the page goes!</p>
+  </Layout.Content>
+  <Layout.PageTools>
+    <ContributingGuidelines fileRelativePath={fileRelativePath} />
+  </Layout.PageTools>
+</Layout.Main>
+```
+
+#### `Layout.PageTools`
+
+Wraps the [`PageTools`](#pagetools) component for use inside the layout.
+
+**Props**
+
+All props are forwarded to the [`PageTools`](#pagetools) component.
+
+**Examples**
+
+```js
+<Layout.PageTools>
+  <ContributingGuidelines fileRelativePath={fileRelativePath} />
+</Layout.PageTools>
+```
+
+#### `Layout.Sidebar`
+
+Sidebar displayed inside the layout. This should contain the primary navigation
+used for the site.
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                                                                              |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `className` | string | no       |         | Additional `className` for the component.                                                                                |
+| `children`  | node   | no       |         | Content displayed inside the main content area. For single-colum layouts, the `Layout.Content` should be the only child. |
+
+**Examples**
+
+```js
+<Layout.Sidebar>
+  <Logo />
+  <MyNavigation />
+</Layout.Sidebar>
+```
+
+### `Link`
+
+Provides a "smart" link to link to other URLs. This provides a unified component
+between a [Gatsby `Link`](https://www.gatsbyjs.com/docs/gatsby-link/) and an
+external link. This component will pick between a regular anchor tag and a
+Gatsby link depending on whether the URL is a relative or external url.
+
+This component will automatically convert absolute URLs that link to pages
+within the same site to relative links. This ensures a smooth user experience
+for all linked pages on the site.
+
+This component can be used as a replacement for the built-in `Link` component in
+Gatsby since it wraps it.
+
+```js
+import { Link } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop | Type   | Required | Default | Description                                                                                                                                          |
+| ---- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `to` | string | yes      |         | The URL to link to. If this is a relative path, it will use the Gatsby `Link` component. If it is an external URL, it will use a regular anchor tag. |
+
+All additional props are forwarded to either the
+[`Link`](https://www.gatsbyjs.com/docs/gatsby-link/) component or the anchor tag
+depending on whether it is a relative or absolute URL.
+
+**Examples**
+
+```js
+// Can be used as a relative link to other pages in the site
+<Link to="/page-2">
+
+// Can also be used to link to external URLs
+<Link to="https://gatsbyjs.com">
+
+// If the link is absolute, but the origin matches the `siteMetadata.siteUrl`,
+// it will smartly convert this to a relative path.
+<Link to="https://developer.newrelic.com/page-2">
 ```
 
 ### `MDXCodeBlock`
@@ -964,6 +1251,55 @@ this component.
 ```
 ````
 
+### `NavItem`
+
+A component used for displaying nav items in the [sidebar](#layoutsidebar).
+
+```js
+import { NavItem } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop   | Type   | Required | Default | Description                                                                                     |
+| ------ | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------- |
+| `page` | `page` | yes      |         | The page data used to for the nav link. See the [page](#page) type documentation for more info. |
+
+#### `Page`
+
+The `NavItem` expects a page type that represents a hierarchy of nav links.
+
+The following properties can be used:
+
+- `title` _(string)_ **Required**: The title that will show up for the nav item.
+- `url` _(string)_: Can be either a relative path or an external URL. If the
+  `url` is omitted, the nav item will act as a toggle for its children.
+- `icon` _(string)_: Name of the icon to be displayed for the nav item. This
+  must match a name from the [available icons](#available-icons) list. If the
+  icons are shadowed, this may be the name of a shadowed icon as well.
+- `pages` _([page])_: A list of child pages that will be rendered as children of
+  the current page.
+
+**Examples**
+
+```js
+const nav = [
+  {
+    url: '/docs/intro-to-tdp',
+    title: 'Introduction to Telemetry Data Platform',
+    icon: 'nr-tdp',
+    pages: [
+      { url: '/docs/tdp/collect-data', title: 'Collect data in TDP' },
+      { url: '/docs/tdp/understand-data', title: 'Understand data' },
+    ],
+  },
+];
+
+const Navigation = () => {
+  return nav.map((page) => <NavItem key={page.url} page={page} />);
+};
+```
+
 ### `NewRelicLogo`
 
 Used to render the New Relic logo.
@@ -1018,7 +1354,7 @@ import { PageTools } from '@newrelic/gatsby-theme-newrelic';
 </PageTools>
 ```
 
-### `PageTools.Section`
+#### `PageTools.Section`
 
 A component used as a building block for creating content displayed inside of
 the [`PageTools`](#pagetools) component. This is a container for the content
@@ -1045,7 +1381,7 @@ inside a section of the `PageTools`.
 </PageTools>
 ```
 
-### `PageTools.Title`
+#### `PageTools.Title`
 
 A component used as a building block for creating content displayed inside of
 the [`PageTools`](#pagetools) component. This is used to display a title for the
@@ -1348,6 +1684,44 @@ const Modal = ({ code }) => {
       <button onClick={() => setIsOpen(true)}>Open modal</button>
       {isOpen ? <div className="modal">Modal content</div> : null}
     </>
+  );
+};
+```
+
+### `useLayout`
+
+A hook that gets information about the layout. Pulls data from the [layout
+gatsby config](#layout). Useful to provide consistency for layout styles (such
+as `maxWidth` and `contentPadding`.)
+
+```js
+import { useLayout } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+n/a
+
+**Returns**
+
+`Object`
+
+Contains the values defined in the Gatsby [`layout`](#layout) config.
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const { contentPadding } = useLayout();
+
+  return (
+    <Sidebar
+      css={css`
+        padding: ${contentPadding};
+      `}
+    >
+      <Logo />
+    </Sidebar>
   );
 };
 ```

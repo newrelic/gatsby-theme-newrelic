@@ -1,14 +1,36 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CLOUD icon matches its snapshot 1`] = `
+exports[`fe-chevron-down icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <polyline
+    points="6 9 12 15 18 9"
+  />
+</svg>
+`;
+
+exports[`fe-cloud icon matches its snapshot 1`] = `
+.emotion-0 {
   width: 1em;
   height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 <svg
@@ -22,15 +44,15 @@ exports[`CLOUD icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`COPY icon matches its snapshot 1`] = `
+exports[`fe-copy icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1em;
-  height: 1em;
 }
 
 <svg
@@ -52,15 +74,15 @@ exports[`COPY icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`EDIT icon matches its snapshot 1`] = `
+exports[`fe-edit icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1em;
-  height: 1em;
 }
 
 <svg
@@ -77,15 +99,15 @@ exports[`EDIT icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`EXTERNAL_LINK icon matches its snapshot 1`] = `
+exports[`fe-external-link icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1em;
-  height: 1em;
 }
 
 <svg
@@ -108,15 +130,37 @@ exports[`EXTERNAL_LINK icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`GITHUB icon matches its snapshot 1`] = `
+exports[`fe-filter icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <polygon
+    points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"
+  />
+</svg>
+`;
+
+exports[`fe-github icon matches its snapshot 1`] = `
+.emotion-0 {
   width: 1em;
   height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 <svg
@@ -130,15 +174,15 @@ exports[`GITHUB icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`LOADER icon matches its snapshot 1`] = `
+exports[`fe-loader icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1em;
-  height: 1em;
 }
 
 <svg
@@ -197,15 +241,15 @@ exports[`LOADER icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`MOON icon matches its snapshot 1`] = `
+exports[`fe-moon icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1em;
-  height: 1em;
 }
 
 <svg
@@ -219,15 +263,48 @@ exports[`MOON icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`SEARCH icon matches its snapshot 1`] = `
+exports[`fe-pen icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M12 19l7-7 3 3-7 7-3-3z"
+  />
+  <path
+    d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"
+  />
+  <path
+    d="M2 2l7.586 7.586"
+  />
+  <circle
+    cx="11"
+    cy="11"
+    r="2"
+  />
+</svg>
+`;
+
+exports[`fe-search icon matches its snapshot 1`] = `
+.emotion-0 {
   width: 1em;
   height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 <svg
@@ -249,15 +326,15 @@ exports[`SEARCH icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`SUN icon matches its snapshot 1`] = `
+exports[`fe-sun icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1em;
-  height: 1em;
 }
 
 <svg
@@ -321,15 +398,15 @@ exports[`SUN icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`THUMBSDOWN icon matches its snapshot 1`] = `
+exports[`fe-thumbsdown icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1em;
-  height: 1em;
 }
 
 <svg
@@ -343,15 +420,15 @@ exports[`THUMBSDOWN icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`THUMBSUP icon matches its snapshot 1`] = `
+exports[`fe-thumbsup icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1em;
-  height: 1em;
 }
 
 <svg
@@ -365,15 +442,15 @@ exports[`THUMBSUP icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`X icon matches its snapshot 1`] = `
+exports[`fe-x icon matches its snapshot 1`] = `
 .emotion-0 {
+  width: 1em;
+  height: 1em;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1em;
-  height: 1em;
 }
 
 <svg
@@ -393,5 +470,297 @@ exports[`X icon matches its snapshot 1`] = `
     y1="6"
     y2="18"
   />
+</svg>
+`;
+
+exports[`nr-ai icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 47 54"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+    fillRule="evenodd"
+  >
+    <path
+      d="M11.132 10.134h4.607v6.478M8.8 41.232l3.49 2.64h3.457"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.317"
+    />
+    <g
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.317"
+    >
+      <path
+        d="M23.83 3.396v45.61l-3.11 2.332-10.366-4.146-1.555-5.96-3.887-2.592-2.85-11.143 2.85-12.957 6.22-4.406.777-4.924 8.034-3.11z"
+      />
+      <path
+        d="M23.796 3.396v45.61l3.11 2.332 10.366-4.146 1.555-5.96 3.887-2.592 2.85-11.143-2.85-12.957-6.22-4.406-.777-4.924-8.033-3.11z"
+      />
+    </g>
+    <path
+      d="M23.92 35.993h4.303l2.38 4.76M32.317 27.618h-16.23l-3.145 5.041M23.878 19.277h4.55l2.131-4.222"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.317"
+    />
+    <path
+      d="M29.41 12.607a2.471 2.471 0 114.942 0 2.471 2.471 0 01-4.942 0"
+      fill="#0AB0BF"
+    />
+    <path
+      d="M29.41 12.607a2.471 2.471 0 114.942 0 2.471 2.471 0 01-4.942 0z"
+      stroke="#0AB0BF"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.317"
+    />
+    <path
+      d="M29.205 43.142a2.471 2.471 0 114.943 0 2.471 2.471 0 01-4.943 0"
+      fill="#0AB0BF"
+    />
+    <path
+      d="M29.205 43.142a2.471 2.471 0 114.943 0 2.471 2.471 0 01-4.943 0z"
+      stroke="#0AB0BF"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.317"
+    />
+    <path
+      d="M32.313 27.587a2.471 2.471 0 114.942 0 2.471 2.471 0 01-4.942 0"
+      fill="#0AB0BF"
+    />
+    <path
+      d="M32.313 27.587a2.471 2.471 0 114.942 0 2.471 2.471 0 01-4.942 0z"
+      stroke="#0AB0BF"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.317"
+    />
+    <path
+      d="M9.45 35.01a2.471 2.471 0 114.942 0 2.471 2.471 0 01-4.942 0"
+      fill="#0AB0BF"
+    />
+    <path
+      d="M9.45 35.01a2.471 2.471 0 114.942 0 2.471 2.471 0 01-4.942 0z"
+      stroke="#0AB0BF"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.317"
+    />
+  </g>
+</svg>
+`;
+
+exports[`nr-fso icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 67 54"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+    fillRule="evenodd"
+  >
+    <path
+      d="M16.609 35.907h48.175V2.077H16.61z"
+      fill="var(--primary-background-color)"
+    />
+    <path
+      d="M16.609 35.907h48.175V2.077H16.61z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.785"
+    />
+    <path
+      d="M20.976 8.328a.987.987 0 111.974 0 .987.987 0 01-1.974 0"
+      fill="#0BAFBE"
+    />
+    <path
+      d="M20.976 8.328a.987.987 0 111.974 0 .987.987 0 01-1.974 0z"
+      stroke="#0BAFBE"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.785"
+    />
+    <path
+      d="M25.676 8.351h14.829"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.785"
+    />
+    <path
+      d="M21.098 12.954a.987.987 0 111.974 0 .987.987 0 01-1.974 0"
+      fill="#0BAFBE"
+    />
+    <path
+      d="M21.098 12.954a.987.987 0 111.974 0 .987.987 0 01-1.974 0z"
+      stroke="#0BAFBE"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.785"
+    />
+    <path
+      d="M25.746 12.978H40.37"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.785"
+    />
+    <path
+      d="M2.073 51.401H50.25v-33.83H2.073z"
+      fill="var(--primary-background-color)"
+    />
+    <path
+      d="M2.073 51.401H50.25v-33.83H2.073zM33.044 36.331l7.611-8.68M22.617 32.637l5.838 4.24M10.931 40.66l6.95-7.595"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.785"
+    />
+    <path
+      d="M17.495 30.742a2.91 2.91 0 115.822 0 2.91 2.91 0 01-5.822 0"
+      fill="#0BAFBE"
+    />
+    <path
+      d="M17.495 30.742a2.91 2.91 0 115.822 0 2.91 2.91 0 01-5.822 0z"
+      stroke="#0BAFBE"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.785"
+    />
+    <path
+      d="M28.455 38.7a2.909 2.909 0 014.538-2.413 2.91 2.91 0 11-4.538 2.413"
+      fill="#0BAFBE"
+    />
+    <path
+      d="M28.455 38.7a2.909 2.909 0 014.538-2.413 2.91 2.91 0 11-4.538 2.413z"
+      stroke="#0BAFBE"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.785"
+    />
+    <path
+      d="M6.056 42.806a2.91 2.91 0 115.821 0 2.91 2.91 0 01-5.821 0"
+      fill="#0BAFBE"
+    />
+    <path
+      d="M6.056 42.806a2.91 2.91 0 115.821 0 2.91 2.91 0 01-5.821 0z"
+      stroke="#0BAFBE"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.785"
+    />
+    <path
+      d="M39.75 25.541a2.91 2.91 0 115.822 0 2.91 2.91 0 01-5.821 0"
+      fill="#0BAFBE"
+    />
+    <path
+      d="M39.75 25.541a2.91 2.91 0 115.822 0 2.91 2.91 0 01-5.821 0z"
+      stroke="#0BAFBE"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.785"
+    />
+  </g>
+</svg>
+`;
+
+exports[`nr-tdp icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 54 53"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g
+    fill="none"
+    fillRule="evenodd"
+  >
+    <path
+      d="M46.898 12.204h-5.102"
+      stroke="#2C2C2C"
+      strokeLinecap="square"
+      strokeLinejoin="round"
+      strokeWidth="2.337"
+    />
+    <path
+      d="M51.954 11.716a2.351 2.351 0 10-4.703 0 2.351 2.351 0 004.703 0"
+      fill="#0AB0BF"
+    />
+    <path
+      d="M51.954 11.716a2.351 2.351 0 10-4.703 0 2.351 2.351 0 004.703 0z"
+      stroke="#0AB0BF"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.337"
+    />
+    <path
+      d="M47.251 41.667h-5.58"
+      stroke="#2C2C2C"
+      strokeLinecap="square"
+      strokeLinejoin="round"
+      strokeWidth="2.337"
+    />
+    <path
+      d="M51.954 41.66a2.351 2.351 0 10-4.703 0 2.351 2.351 0 004.703 0"
+      fill="#0AB0BF"
+    />
+    <path
+      d="M51.954 41.66a2.351 2.351 0 10-4.703 0 2.351 2.351 0 004.703 0z"
+      stroke="#0AB0BF"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.337"
+    />
+    <path
+      d="M6.703 27.355h5.579"
+      stroke="#2C2C2C"
+      strokeLinecap="square"
+      strokeLinejoin="round"
+      strokeWidth="2.337"
+    />
+    <path
+      d="M2 27.361a2.351 2.351 0 104.703 0 2.351 2.351 0 00-4.703 0"
+      fill="#0AB0BF"
+    />
+    <path
+      d="M2 27.361a2.351 2.351 0 104.703 0 2.351 2.351 0 00-4.703 0z"
+      stroke="#0AB0BF"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.337"
+    />
+    <path
+      d="M12.68 5.636v10.247c.022.101.057.197.057.305 0 1.965 5.624 4.821 14.437 4.821 8.813 0 14.438-2.856 14.438-4.821 0-.115.036-.22.06-.326V5.633M27.174 36.385c8.813 0 14.438-2.856 14.438-4.821 0-.115.036-.22.06-.326V21.009c-3.147 2.285-8.84 3.467-14.498 3.467-5.656 0-11.345-1.182-14.493-3.464v10.247c.021.1.056.197.056.305 0 1.965 5.624 4.821 14.437 4.821z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.337"
+    />
+    <path
+      d="M27.174 39.818c-5.656 0-11.345-1.182-14.493-3.462v8.314c0 .031-.003.06-.003.093 0 4.57 7.469 7.034 14.493 7.034 7.028 0 14.497-2.464 14.497-7.034h.003v-8.41c-3.146 2.282-8.84 3.465-14.497 3.465zM41.671 5.633c0 1.997-6.49 3.616-14.495 3.616-8.006 0-14.495-1.619-14.495-3.616 0-1.996 6.49-3.615 14.495-3.615 8.006 0 14.495 1.619 14.495 3.615z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2.337"
+    />
+  </g>
 </svg>
 `;

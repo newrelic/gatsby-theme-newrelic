@@ -36,6 +36,12 @@ module.exports = {
         gaTrackingId: 'UA-3047412-33',
       },
     },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve('./src/layouts'),
+      },
+    },
     'gatsby-plugin-mdx',
   ],
 };

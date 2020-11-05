@@ -6,6 +6,7 @@ import { rgba } from 'polished';
 const VARIANTS = {
   PRIMARY: 'primary',
   NORMAL: 'normal',
+  PLAIN: 'plain',
   LINK: 'link',
   OUTLINE: 'outline',
 };
@@ -56,6 +57,24 @@ const styles = {
       .dark-mode & {
         color: var(--color-dark-700);
         background-color: var(--color-dark-200);
+
+        &:hover {
+          color: var(--color-brand-200);
+          background-color: ${rgba('#70ccd2', 0.17)};
+        }
+      }
+    `,
+    [VARIANTS.PLAIN]: css`
+      color: var(--color-neutrals-700);
+      background: transparent;
+
+      &:hover {
+        color: var(--color-brand-600);
+        background: ${rgba('#70ccd2', 0.17)};
+      }
+
+      .dark-mode & {
+        color: var(--color-dark-700);
 
         &:hover {
           color: var(--color-brand-200);

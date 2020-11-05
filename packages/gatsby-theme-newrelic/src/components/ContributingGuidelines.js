@@ -52,7 +52,7 @@ const ContributingGuidelines = ({ fileRelativePath }) => {
           size={Button.SIZE.SMALL}
         >
           <Icon
-            name={Icon.TYPE.GITHUB}
+            name="fe-github"
             css={css`
               margin-right: 0.5rem;
             `}
@@ -68,7 +68,7 @@ const ContributingGuidelines = ({ fileRelativePath }) => {
             size={Button.SIZE.SMALL}
           >
             <Icon
-              name={Icon.TYPE.EDIT}
+              name="fe-edit"
               css={css`
                 margin-right: 0.5rem;
               `}

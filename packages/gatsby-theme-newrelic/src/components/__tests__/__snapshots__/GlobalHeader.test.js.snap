@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Matches snapshot 1`] = `
-.emotion-65 {
+.emotion-72 {
   background-color: var(--color-neutrals-100);
   overflow: hidden;
   position: -webkit-sticky;
@@ -10,12 +10,12 @@ exports[`Matches snapshot 1`] = `
   z-index: 80;
 }
 
-.dark-mode .emotion-65 {
+.dark-mode .emotion-72 {
   background-color: var(--color-dark-100);
 }
 
-.emotion-64 {
-  height: 36px;
+.emotion-71 {
+  height: var(--global-header-height);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -120,13 +120,13 @@ exports[`Matches snapshot 1`] = `
 }
 
 .emotion-22 {
+  width: 1rem;
+  height: 1rem;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  width: 1rem;
-  height: 1rem;
 }
 
 .emotion-27 {
@@ -788,10 +788,10 @@ exports[`Matches snapshot 1`] = `
 }
 
 .emotion-26 .sui-multi-checkbox-facet__option-label {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -817,7 +817,7 @@ exports[`Matches snapshot 1`] = `
 .emotion-26 .sui-multi-checkbox-facet__option-count {
   color: #888888;
   font-size: 0.85em;
-  margin-left: 24px;
+  margin: 0 20px 0 5px;
 }
 
 .emotion-26 .sui-facet-view-more {
@@ -1539,7 +1539,7 @@ exports[`Matches snapshot 1`] = `
   position: relative;
 }
 
-@media screen and (max-width:585px) {
+@media screen and (max-width:800px) {
   .emotion-56::after {
     content: '';
     position: absolute;
@@ -1616,8 +1616,9 @@ exports[`Matches snapshot 1`] = `
   color: var(--color-dark-700);
 }
 
-.emotion-63 {
+.emotion-70 {
   margin: 0;
+  margin-left: 1rem;
   padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1628,19 +1629,94 @@ exports[`Matches snapshot 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
-.emotion-63 > li {
+.emotion-70 > li {
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
-  margin-left: 1rem;
   color: var(--secondary-text-color);
+}
+
+.emotion-70 > li:not(:first-of-type) {
+  margin-left: 1rem;
+}
+
+.emotion-63 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.emotion-61 {
+  position: relative;
+  width: 100%;
+  --icon-size: 0.75rem;
+  min-width: 150px;
+  max-width: 350px;
 }
 
 .emotion-58 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: var(--primary-text-color);
+  height: var(--icon-size);
+  width: var(--icon-size);
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.emotion-59 {
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--primary-background-color);
+  color: var(--primary-text-color);
+  -webkit-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+  line-height: 1;
+  font-size: 0.75rem;
+  padding: 0.25rem calc(1.5rem + var(--icon-size));
+}
+
+.emotion-59:focus {
+  outline: none;
+  border: 1px solid rgba(0,126,138,0.6);
+  box-shadow: 0 0 0 4px rgba(0,126,138,0.1);
+}
+
+.emotion-64 {
+  width: 0.875rem;
+  height: 0.875rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  cursor: pointer;
+  display: block;
+  cursor: pointer;
   color: var(--secondary-text-color);
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
+}
+
+.emotion-64:hover {
+  color: var(--secondary-text-hover-color);
+}
+
+.emotion-66 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1651,50 +1727,20 @@ exports[`Matches snapshot 1`] = `
   align-items: center;
 }
 
-.emotion-58:hover {
-  color: var(--secondary-text-hover-color);
+.emotion-65 {
+  font-size: 0.675rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
-.emotion-57 {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  width: 0.875rem;
-  height: 0.875rem;
-  display: block;
-  cursor: pointer;
-}
-
-.emotion-59 {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  width: 0.875rem;
-  height: 0.875rem;
-  cursor: pointer;
-  display: block;
-  cursor: pointer;
-  color: var(--secondary-text-color);
-  -webkit-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-}
-
-.emotion-59:hover {
-  color: var(--secondary-text-hover-color);
-}
-
-.emotion-62 {
+.emotion-69 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
 }
 
-.emotion-60 {
+.emotion-67 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1725,23 +1771,23 @@ exports[`Matches snapshot 1`] = `
   border-radius: 0.125rem;
 }
 
-.emotion-60:hover {
+.emotion-67:hover {
   -webkit-transform: translate3d(0,-1px,0);
   -ms-transform: translate3d(0,-1px,0);
   transform: translate3d(0,-1px,0);
 }
 
-.emotion-60:hover {
+.emotion-67:hover {
   color: var(--color-white);
   background-color: var(--color-brand-500);
 }
 
 <div
-  className="emotion-65"
+  className="emotion-72"
   data-swiftype-index={false}
 >
   <div
-    className="emotion-64"
+    className="emotion-71"
   >
     <div
       className="emotion-28"
@@ -1908,6 +1954,16 @@ exports[`Matches snapshot 1`] = `
         <li>
           <a
             className="emotion-51"
+            href="https://docs.newrelic.com/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Docs
+          </a>
+        </li>
+        <li>
+          <a
+            className="emotion-51"
             href="https://developer.newrelic.com/"
             rel="noopener noreferrer"
             target="_blank"
@@ -1928,16 +1984,6 @@ exports[`Matches snapshot 1`] = `
         <li>
           <a
             className="emotion-51"
-            href="https://docs.newrelic.com/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Documentation
-          </a>
-        </li>
-        <li>
-          <a
-            className="emotion-51"
             href="https://discuss.newrelic.com/"
             rel="noopener noreferrer"
             target="_blank"
@@ -1948,16 +1994,17 @@ exports[`Matches snapshot 1`] = `
       </ul>
     </nav>
     <ul
-      className="emotion-63"
+      className="emotion-70"
     >
-      <li>
-        <a
-          className="emotion-58"
-          href="?q="
-          onClick={[Function]}
+      <li
+        className="emotion-63"
+      >
+        <div
+          className="emotion-61 emotion-62"
+          size="small"
         >
           <svg
-            className="emotion-57"
+            className="emotion-57 emotion-58"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -1973,11 +2020,21 @@ exports[`Matches snapshot 1`] = `
               y2="16.65"
             />
           </svg>
-        </a>
+          <input
+            className="emotion-59 emotion-60"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            placeholder="Search Docs, Developer, Open Source"
+            size="small"
+            type="text"
+            value=""
+          />
+          
+        </div>
       </li>
       <li>
         <svg
-          className="emotion-59"
+          className="emotion-64"
           onClick={[Function]}
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -1988,10 +2045,22 @@ exports[`Matches snapshot 1`] = `
         </svg>
       </li>
       <li
-        className="emotion-62"
+        className="emotion-66"
       >
         <a
-          className="emotion-60 emotion-61"
+          className="emotion-65"
+          href="https://one.newrelic.com"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Log in
+        </a>
+      </li>
+      <li
+        className="emotion-69"
+      >
+        <a
+          className="emotion-67 emotion-68"
           href="https://newrelic.com/signup"
           rel="noopener noreferrer"
           size="extraSmall"
