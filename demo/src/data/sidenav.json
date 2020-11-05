@@ -1,6 +1,7 @@
 [
   {
     "title": "Collect data",
+    "icon": "nr-tdp",
     "url": "/collect-data",
     "pages": [
       {
