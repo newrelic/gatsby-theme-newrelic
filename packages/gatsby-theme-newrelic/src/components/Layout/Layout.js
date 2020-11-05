@@ -26,6 +26,14 @@ const Layout = ({ className, children }) => {
         min-height: calc(100vh - var(--global-header-height));
         margin: 0 auto;
         max-width: ${maxWidth};
+
+        @media screen and (max-width: 760px) {
+          grid-template-columns: minmax(0, 1fr);
+          grid-template-areas:
+            'main'
+            'footer';
+          grid-template-rows: unset;
+        }
       `}
     >
       {children}

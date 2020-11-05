@@ -4,11 +4,12 @@ import { css } from '@emotion/core';
 import PageTools from '../PageTools';
 import useLayout from '../../hooks/useLayout';
 
-const LayoutPageTools = ({ children }) => {
+const LayoutPageTools = ({ className, children }) => {
   const { contentPadding } = useLayout();
 
   return (
     <PageTools
+      className={className}
       css={css`
         position: sticky;
         top: calc(var(--global-header-height) + ${contentPadding});
@@ -26,6 +27,7 @@ const LayoutPageTools = ({ children }) => {
 };
 
 LayoutPageTools.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node,
 };
 

@@ -16,6 +16,10 @@ const Sidebar = ({ children, className }) => {
         height: calc(100vh - var(--global-header-height));
         position: sticky;
         top: var(--global-header-height);
+
+        @media screen and (max-width: 760px) {
+          display: none;
+        }
       `}
     >
       <div
