@@ -42,6 +42,7 @@ const NavItem = ({ page, __parent: parent }) => {
         onClick={() => {
           setIsExpanded(isCurrentPage || !page.url ? toggle : true);
         }}
+        onToggle={() => setIsExpanded(toggle)}
         css={css`
           padding-left: ${parent?.icon
             ? 'calc(var(--icon-size) + var(--icon-spacing))'

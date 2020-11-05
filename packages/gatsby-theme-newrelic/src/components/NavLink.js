@@ -15,6 +15,7 @@ const NavLink = ({
   isExpanded,
   expandable,
   onClick,
+  onToggle,
 }) => {
   const isExternalLink = to && !to.startsWith('/');
   const Element = to ? Link : 'div';
@@ -77,7 +78,7 @@ const NavLink = ({
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            onClick && onClick();
+            onToggle && onToggle();
           }}
           css={css`
             font-size: 1rem;
@@ -110,6 +111,7 @@ NavLink.propTypes = {
   expandable: PropTypes.bool.isRequired,
   onClick: PropTypes.func,
   to: PropTypes.string,
+  onToggle: PropTypes.func,
 };
 
 export default NavLink;
