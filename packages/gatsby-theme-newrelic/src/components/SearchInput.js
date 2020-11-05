@@ -11,8 +11,8 @@ const SIZES = {
 };
 
 const ICONS = {
-  FILTER: 'filter',
-  SEARCH: 'search',
+  FILTER: 'fe-filter',
+  SEARCH: 'fe-search',
 };
 
 const SearchInput = forwardRef(
@@ -25,7 +25,7 @@ const SearchInput = forwardRef(
       size = 'medium',
       className,
       style,
-      iconName = 'search',
+      iconName = 'fe-search',
       ...props
     },
     ref
@@ -85,7 +85,7 @@ const SearchInput = forwardRef(
             size={size}
           >
             <StyledIcon
-              name={Icon.TYPE.X}
+              name="fe-x"
               css={css`
                 display: block;
               `}

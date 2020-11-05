@@ -52,7 +52,7 @@ const Feedback = ({ align, onSubmit, message }) => {
             ${sentiment === Feedback.SENTIMENT.NEGATIVE && `opacity: 0.5;`}
           `}
         >
-          <Icon css={iconStyles} name={Icon.TYPE.THUMBSUP} size="1.1rem" />
+          <Icon css={iconStyles} name="fe-thumbsup" size="1.1rem" />
           Yes
         </Button>
         <Button
@@ -64,7 +64,7 @@ const Feedback = ({ align, onSubmit, message }) => {
             ${sentiment === Feedback.SENTIMENT.POSITIVE && `opacity: 0.5;`}
           `}
         >
-          <Icon css={iconStyles} name={Icon.TYPE.THUMBSDOWN} size="1.1rem" />
+          <Icon css={iconStyles} name="fe-thumbsdown" size="1.1rem" />
           No
         </Button>
       </div>

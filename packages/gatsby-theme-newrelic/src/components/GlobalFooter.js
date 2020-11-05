@@ -87,7 +87,7 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
               `}
             >
               <Icon
-                name="edit"
+                name="fe-edit"
                 css={css`
                   margin-right: 0.5rem;
                 `}
@@ -103,7 +103,7 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
             size={Button.SIZE.SMALL}
           >
             <Icon
-              name="github"
+              name="fe-github"
               css={css`
                 margin-right: 0.5rem;
               `}

@@ -69,7 +69,7 @@ const NavLink = ({
       </span>
 
       {isExternalLink ? (
-        <Icon name="external-link" size="1rem" />
+        <Icon name="fe-external-link" size="1rem" />
       ) : expandable ? (
         <Button
           size={Button.SIZE.EXTRA_SMALL}
@@ -89,7 +89,7 @@ const NavLink = ({
           `}
         >
           <Icon
-            name="chevron-down"
+            name="fe-chevron-down"
             css={css`
               transform: rotate(${isExpanded ? 0 : -90}deg);
               transition: 0.2s ease-out;
