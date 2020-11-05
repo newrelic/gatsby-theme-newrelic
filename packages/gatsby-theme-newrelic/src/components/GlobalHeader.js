@@ -236,11 +236,7 @@ const GlobalHeader = ({ className }) => {
             >
               {useSearchIcon ? (
                 <Link to="?q=" css={actionLink}>
-                  <Icon
-                    css={actionIcon}
-                    name={Icon.TYPE.SEARCH}
-                    size="0.875rem"
-                  />
+                  <Icon css={actionIcon} name="fe-search" size="0.875rem" />
                 </Link>
               ) : (
                 <SearchInput

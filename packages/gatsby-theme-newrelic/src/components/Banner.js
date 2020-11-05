@@ -67,7 +67,7 @@ const Banner = ({ children, visible, onClose, ...props }) => {
         >
           Close
           <Icon
-            name={Icon.TYPE.X}
+            name="fe-x"
             size="0.75rem"
             css={css`
               transform: translateY(1px);

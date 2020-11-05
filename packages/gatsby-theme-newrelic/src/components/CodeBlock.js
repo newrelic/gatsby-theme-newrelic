@@ -134,7 +134,7 @@ const CodeBlock = ({
                 `}
               >
                 <Icon
-                  name={Icon.TYPE.COPY}
+                  name="fe-copy"
                   css={css`
                     margin-right: 0.5rem;
                   `}

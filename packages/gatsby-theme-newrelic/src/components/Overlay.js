@@ -100,7 +100,7 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
               >
                 Close
               </span>
-              <Icon name={Icon.TYPE.X} size="1rem" />
+              <Icon name="fe-x" size="1rem" />
             </div>
           </div>
         </div>
