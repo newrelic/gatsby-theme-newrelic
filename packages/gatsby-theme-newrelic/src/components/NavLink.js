@@ -31,7 +31,7 @@ const NavLink = ({
         cursor: pointer;
         color: var(--primary-text-color);
         transition: 0.2s ease-out;
-        padding: var(--nav-link-padding);
+        padding: 0.5rem var(--nav-link-padding);
         margin: 0 calc(var(--nav-link-padding) * -1);
         font-size: 0.875rem;
 

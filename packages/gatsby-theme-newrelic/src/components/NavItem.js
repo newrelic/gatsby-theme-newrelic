@@ -27,7 +27,7 @@ const NavItem = ({ page, __parent: parent }) => {
       css={css`
         --icon-size: 1.5rem;
         --icon-spacing: 0.5rem;
-        --nav-link-padding: 0.5rem;
+        --nav-link-padding: 1rem;
 
         padding-left: ${parent == null ? '0' : 'var(--nav-link-padding)'};
       `}
