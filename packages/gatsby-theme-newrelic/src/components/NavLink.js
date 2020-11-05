@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Link from './Link';
 import Icon from './Icon';
+import Button from './Button';
 
 const NavLink = ({
   active,
@@ -67,14 +68,27 @@ const NavLink = ({
       {isExternalLink ? (
         <Icon name="external-link" size="1rem" />
       ) : expandable ? (
-        <Icon
-          name="chevron-down"
-          size="1rem"
+        <Button
+          size={Button.SIZE.EXTRA_SMALL}
+          variant={Button.VARIANT.PLAIN}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onClick && onClick();
+          }}
           css={css`
-            transform: rotate(${isExpanded ? 0 : -90}deg);
-            transition: 0.2s ease-out;
+            font-size: 1rem;
+            padding: 0.25rem;
           `}
-        />
+        >
+          <Icon
+            name="chevron-down"
+            css={css`
+              transform: rotate(${isExpanded ? 0 : -90}deg);
+              transition: 0.2s ease-out;
+            `}
+          />
+        </Button>
       ) : null}
     </Element>
   );
