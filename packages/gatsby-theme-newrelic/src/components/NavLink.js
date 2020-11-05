@@ -10,7 +10,7 @@ const NavLink = ({
   active,
   children,
   to,
-  icon: LinkIcon,
+  icon,
   isExpanded,
   expandable,
   onClick,
@@ -48,8 +48,9 @@ const NavLink = ({
         `}
       `}
     >
-      {LinkIcon && (
-        <LinkIcon
+      {icon && (
+        <Icon
+          name={icon}
           size="1.75rem"
           css={css`
             margin-right: 0.5rem;
@@ -96,7 +97,7 @@ const NavLink = ({
 
 NavLink.propTypes = {
   active: PropTypes.bool,
-  icon: PropTypes.elementType,
+  icon: PropTypes.string,
   children: PropTypes.node.isRequired,
   isExpanded: PropTypes.bool.isRequired,
   expandable: PropTypes.bool.isRequired,

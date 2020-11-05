@@ -5,7 +5,7 @@ import NavLink from './NavLink';
 import { useLocation } from '@reach/router';
 import usePrevious from '../hooks/usePrevious';
 
-const NavItem = ({ page, icon, __depth: depth = 0 }) => {
+const NavItem = ({ page, __depth: depth = 0 }) => {
   const { pathname } = useLocation();
   const containsCurrentPage = useMemo(() => containsPage(page, pathname), [
     page,
@@ -31,7 +31,7 @@ const NavItem = ({ page, icon, __depth: depth = 0 }) => {
       <NavLink
         active={isCurrentPage}
         to={page.url}
-        icon={icon}
+        icon={page.icon}
         isExpanded={isExpanded}
         expandable={page.pages?.length > 0}
         onClick={() => setIsExpanded((expanded) => !expanded)}
@@ -49,9 +49,9 @@ const NavItem = ({ page, icon, __depth: depth = 0 }) => {
 
 NavItem.propTypes = {
   __depth: PropTypes.number,
-  icon: PropTypes.elementType,
   page: PropTypes.shape({
     title: PropTypes.string.isRequired,
+    icon: PropTypes.string,
     url: PropTypes.string,
     pages: PropTypes.arrayOf(PropTypes.object),
   }),
