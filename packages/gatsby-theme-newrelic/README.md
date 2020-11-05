@@ -48,6 +48,7 @@ websites](https://opensource.newrelic.com).
   - [`useClipboard`](#useclipboard)
   - [`useFormattedCode`](#useformattedcode)
   - [`useKeyPress`](#usekeypress)
+  - [`useLayout`](#uselayout)
   - [`useQueryParams`](#usequeryparams)
   - [`useTimeout`](#usetimeout)
   - [`useUserId`](#useuserid)
@@ -1348,6 +1349,44 @@ const Modal = ({ code }) => {
       <button onClick={() => setIsOpen(true)}>Open modal</button>
       {isOpen ? <div className="modal">Modal content</div> : null}
     </>
+  );
+};
+```
+
+### `useLayout`
+
+A hook that gets information about the layout. Pulls data from the [layout
+gatsby config](#layout). Useful to provide consistency for layout styles (such
+as `maxWidth` and `contentPadding`.)
+
+```js
+import { useLayout } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+n/a
+
+**Returns**
+
+`Object`
+
+Contains the values defined in the Gatsby [`layout`](#layout) config.
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const { contentPadding } = useLayout();
+
+  return (
+    <Sidebar
+      css={css`
+        padding: ${contentPadding};
+      `}
+    >
+      <Logo />
+    </Sidebar>
   );
 };
 ```
