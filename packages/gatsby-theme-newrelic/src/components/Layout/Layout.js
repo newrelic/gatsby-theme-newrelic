@@ -22,6 +22,8 @@ const Layout = ({ className, children }) => {
         grid-template-areas:
           'sidebar main'
           'sidebar footer';
+        grid-template-rows: 1fr auto;
+        min-height: calc(100vh - var(--global-header-height));
         margin: 0 auto;
         max-width: ${maxWidth};
       `}
