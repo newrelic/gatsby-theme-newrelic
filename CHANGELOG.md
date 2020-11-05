@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.14.0...v1.15.0) (2020-11-05)
+
+
+### Bug Fixes
+
+* prefix all icons depending on the library it comes from ([bc109a8](https://github.com/newrelic/gatsby-theme-newrelic/commit/bc109a8deaf03c0d0f2f95581875c2b1d03d8e67))
+* **PageTools:** remove layout-specific styles ([b998aa0](https://github.com/newrelic/gatsby-theme-newrelic/commit/b998aa0c82ec0396706ae8890c7b9fceff5cf908))
+* add chevron-down icon ([9fcecc1](https://github.com/newrelic/gatsby-theme-newrelic/commit/9fcecc19d816159fc639f3820b832d4d88e44912))
+
+
+### Features
+
+* Add a Layout component + subcomponents to easily create layouts ([da12b3d](https://github.com/newrelic/gatsby-theme-newrelic/commit/da12b3d4ba274f87eabee6fdad734b2fbe82121a))
+* add a Link component that acts as a smart link for ([8a17930](https://github.com/newrelic/gatsby-theme-newrelic/commit/8a17930454f82c9c915f28b441cf976211014704))
+* add a NavItem component ([5c6cb80](https://github.com/newrelic/gatsby-theme-newrelic/commit/5c6cb80047c7f2df51cb7ac868737e8d1519c5c7))
+* add newrelic icon set with tdp, fso, and ai icons ([bab4b8a](https://github.com/newrelic/gatsby-theme-newrelic/commit/bab4b8ad4d48fd3a2e398d175b52b93f83d9dda8))
+* export FeatherSVG to use for shadowing ([f3b6ba0](https://github.com/newrelic/gatsby-theme-newrelic/commit/f3b6ba058a15c02c92c800abecdf23532197fb5e))
+* **Button:** add a plain variant ([8aa5e75](https://github.com/newrelic/gatsby-theme-newrelic/commit/8aa5e75c76403be0eda3abfee68c38a256232a5d))
+* wrap root element with layout context with layout options from config. Add useLayout hook ([eee0b2d](https://github.com/newrelic/gatsby-theme-newrelic/commit/eee0b2da3958a402358b59789b4baa2acb5caba3))
+
+
+
+
+
 # [1.14.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.13.0...v1.14.0) (2020-11-02)
 
 
