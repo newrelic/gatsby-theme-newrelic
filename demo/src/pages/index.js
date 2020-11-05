@@ -47,6 +47,11 @@ const IndexPage = () => {
         grid-template-columns: minmax(0, 1fr) 320px;
         grid-template-areas: 'content page-tools';
         grid-gap: ${contentPadding};
+
+        @media screen and (max-width: 1280px) {
+          grid-template-columns: minmax(0, 1fr);
+          grid-template-areas: content;
+        }
       `}
     >
       <Layout.Content
@@ -290,7 +295,9 @@ const IndexPage = () => {
       </Layout.Content>
       <Layout.PageTools
         css={css`
-          grid-area: page-tools;
+          @media screen and (max-width: 1280px) {
+            display: none;
+          }
         `}
       >
         <ContributingGuidelines fileRelativePath="demo/src/pages/index.js" />
