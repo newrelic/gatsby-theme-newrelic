@@ -28,6 +28,7 @@ websites](https://opensource.newrelic.com).
   - [`ContributingGuidelines`](#contributingguidelines)
   - [`CookieConsentDialog`](#cookieconsentdialog)
   - [`ExternalLink`](#externallink)
+  - [`FeatherSVG`](#feathersvg)
   - [`Feedback`](#feedback)
   - [`GlobalFooter`](#globalfooter)
   - [`GlobalHeader`](#globalheader)
@@ -654,6 +655,36 @@ All props are forwarded to the underlying `a` tag with the exception of the
 
 ```js
 <ExternalLink href="https://newrelic.com">Link to New Relic</ExternalLink>
+```
+
+### `FeatherSVG`
+
+SVG wrapper for [feather icons](https://feathericons.com/). This is useful when
+[shadowing feather icons](#shadowingicons) to ensure all feather icons have
+consistent props/styles applied to them.
+
+**NOTE:** When using this component, you should to spread all props to it.
+
+```js
+import { FeatherSVG } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type | Required | Default | Description                                |
+| ---------- | ---- | -------- | ------- | ------------------------------------------ |
+| `children` | node | yes      |         | The "guts" of the feather `svg` definition |
+
+Additional props are forwarded to the `svg` tag.
+
+**Example**
+
+```jsx
+const ChevronDownIcon = (props) => (
+  <FeatherSVG {...props}>
+    <polyline points="6 9 12 15 18 9" />
+  </FeatherSVG>
+);
 ```
 
 ### `Feedback`
