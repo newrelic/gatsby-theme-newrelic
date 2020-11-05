@@ -15,6 +15,7 @@ const NavItem = ({ page, __parent: parent }) => {
   const shouldExpand = isCurrentPage || containsCurrentPage;
   const hasChangedPage = pathname !== usePrevious(pathname);
   const [isExpanded, setIsExpanded] = useState(shouldExpand);
+  const toggle = (expanded) => !expanded;
 
   useEffect(() => {
     if (hasChangedPage) {
@@ -38,7 +39,9 @@ const NavItem = ({ page, __parent: parent }) => {
         icon={page.icon}
         isExpanded={isExpanded}
         expandable={page.pages?.length > 0}
-        onClick={() => setIsExpanded((expanded) => !expanded)}
+        onClick={() => {
+          setIsExpanded(isCurrentPage || !page.url ? toggle : true);
+        }}
         css={css`
           padding-left: ${parent?.icon
             ? 'calc(var(--icon-size) + var(--icon-spacing))'
