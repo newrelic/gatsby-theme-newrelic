@@ -7,7 +7,7 @@ const BuildApps = () => {
       <Layout.Content>
         <h1>Build apps</h1>
         <p>This is a dummy page to demonstrate navigating to another page</p>
-        <Button as={Link} href="/" variant={Button.VARIANT.NORMAL}>
+        <Button as={Link} to="/" variant={Button.VARIANT.NORMAL}>
           Go back home
         </Button>
       </Layout.Content>
