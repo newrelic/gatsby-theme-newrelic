@@ -33,11 +33,17 @@ websites](https://opensource.newrelic.com).
   - [`GlobalHeader`](#globalheader)
   - [`HamburgerMenu`](#hamburgermenu)
   - [`Icon`](#icon)
+  - [`Layout`](#layout-1)
+    - [`Layout.Content`](#layoutcontent)
+    - [`Layout.Footer`](#layoutfooter)
+    - [`Layout.Main`](#layoutmain)
+    - [`Layout.PageTools`](#layoutpagetools)
+    - [`Layout.Sidebar`](#layoutsidebar)
   - [`MDXCodeBlock`](#mdxcodeblock)
   - [`NewRelicLogo`](#newreliclogo)
   - [`PageTools`](#pagetools)
-  - [`PageTools.Section`](#pagetoolssection)
-  - [`PageTools.Title`](#pagetoolstitle)
+    - [`PageTools.Section`](#pagetoolssection)
+    - [`PageTools.Title`](#pagetoolstitle)
   - [`SearchInput`](#searchinput)
   - [`Spinner`](#spinner)
   - [`Surface`](#surface)
@@ -868,6 +874,177 @@ export default {
 <Icon name={Icon.TYPE.COPY} size="1rem" />
 ```
 
+### `Layout`
+
+Layout components used to wrap the page content. Used as a container for the
+layout subcomponents.
+
+For more information on the layout subcomponents, see the following for more
+details:
+
+- [`Layout.Content`](#layoutcontent)
+- [`Layout.Footer`](#layoutfooter)
+- [`Layout.Main`](#layoutmain)
+- [`Layout.PageTools`](#layoutpagetools)
+- [`Layout.Sidebar`](#layoutsidebar)
+
+```js
+import { Layout } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                        |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------------ |
+| `className` | string | no       |         | Additional `className` for the component.                          |
+| `children`  | node   | no       |         | Content used for the layout. These should be layout subcomponents. |
+
+**Examples**
+
+```js
+<Layout>
+  <Layout.Sidebar>
+    <Logo />
+    <MyNavigation />
+  </Layout.Sidebar>
+  <Layout.Main
+    css={css`
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      grid-template-areas: 'content page-tools';
+      grid-gap: ${contentPadding};
+    `}
+  >
+    <Layout.Content>
+      <h1>Hello, world</h1>
+    </Layout.Content>
+    <Layout.PageTools>
+      <ContributingGuidelines fileRelativePath={fileRelativePath} />
+    </Layout.PageTools>
+  </Layout.Main>
+  <Layout.Footer fileRelativePath={fileRelativePath} />
+</Layout>
+```
+
+#### `Layout.Content`
+
+Used for displaying the body of the page. It has a `grid-area` set to `content`
+to allow for grid customization.
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                        |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------------ |
+| `className` | string | no       |         | Additional `className` for the component.                          |
+| `children`  | node   | no       |         | Content used for the layout. These should be layout subcomponents. |
+
+**Examples**
+
+```js
+<Layout.Content>
+  <h1>Hello, world</h1>
+</Layout.Content>
+```
+
+#### `Layout.Footer`
+
+Wraps the [`GlobalFooter`](#globalfooter) component for use inside the layout.
+
+**Props**
+
+All props are forwarded to the [`GlobalFooter`](#globalfooter) component.
+
+**Examples**
+
+```js
+<Layout.Footer fileRelativePath={fileRelativePath} />
+```
+
+#### `Layout.Main`
+
+Wraps the main content area in the layout.
+
+**NOTE:** For single-column pages, the [`Layout.Content`](#layoutcontent)
+component should be used as the single child of this component to ensure the
+props Swifttype attributes are added for the body of the content. For layouts
+that use [`Layout.PageTools`](#layoutpagetools), you will need to specify the
+grid used for the layout.
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                                                                              |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `className` | string | no       |         | Additional `className` for the component.                                                                                |
+| `children`  | node   | no       |         | Content displayed inside the main content area. For single-colum layouts, the `Layout.Content` should be the only child. |
+
+**Examples**
+
+```js
+<Layout.Main>
+  <Layout.Content>
+    <h1>Hello, world</h1>
+    <p>Here is where the main content of the page goes!</p>
+  </Layout.Content>
+</Layout.Main>
+```
+
+Layout with page tools
+
+```js
+<Layout.Main
+  css={css`
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'content page-tools';
+  `}
+>
+  <Layout.Content>
+    <h1>Hello, world</h1>
+    <p>Here is where the main content of the page goes!</p>
+  </Layout.Content>
+  <Layout.PageTools>
+    <ContributingGuidelines fileRelativePath={fileRelativePath} />
+  </Layout.PageTools>
+</Layout.Main>
+```
+
+#### `Layout.PageTools`
+
+Wraps the [`PageTools`](#pagetools) component for use inside the layout.
+
+**Props**
+
+All props are forwarded to the [`PageTools`](#pagetools) component.
+
+**Examples**
+
+```js
+<Layout.PageTools>
+  <ContributingGuidelines fileRelativePath={fileRelativePath} />
+</Layout.PageTools>
+```
+
+#### `Layout.Sidebar`
+
+Sidebar displayed inside the layout. This should contain the primary navigation
+used for the site.
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                                                                              |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `className` | string | no       |         | Additional `className` for the component.                                                                                |
+| `children`  | node   | no       |         | Content displayed inside the main content area. For single-colum layouts, the `Layout.Content` should be the only child. |
+
+**Examples**
+
+```js
+<Layout.Sidebar>
+  <Logo />
+  <MyNavigation />
+</Layout.Sidebar>
+```
+
 ### `MDXCodeBlock`
 
 Used to render a fenced code block using the [`CodeBlock`](#codeblock) component
@@ -1019,7 +1196,7 @@ import { PageTools } from '@newrelic/gatsby-theme-newrelic';
 </PageTools>
 ```
 
-### `PageTools.Section`
+#### `PageTools.Section`
 
 A component used as a building block for creating content displayed inside of
 the [`PageTools`](#pagetools) component. This is a container for the content
@@ -1046,7 +1223,7 @@ inside a section of the `PageTools`.
 </PageTools>
 ```
 
-### `PageTools.Title`
+#### `PageTools.Title`
 
 A component used as a building block for creating content displayed inside of
 the [`PageTools`](#pagetools) component. This is used to display a title for the
