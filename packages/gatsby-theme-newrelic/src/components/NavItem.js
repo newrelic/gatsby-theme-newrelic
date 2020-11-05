@@ -54,7 +54,11 @@ const NavItem = ({ page, __parent: parent }) => {
 
       {isExpanded &&
         page.pages?.map((child) => (
-          <NavItem key={child.url} page={child} __parent={page} />
+          <NavItem
+            key={child.url || child.title}
+            page={child}
+            __parent={page}
+          />
         ))}
     </div>
   );
