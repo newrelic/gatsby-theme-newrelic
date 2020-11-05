@@ -42,6 +42,7 @@ websites](https://opensource.newrelic.com).
     - [`Layout.Main`](#layoutmain)
     - [`Layout.PageTools`](#layoutpagetools)
     - [`Layout.Sidebar`](#layoutsidebar)
+  - [`Link`](#link)
   - [`MDXCodeBlock`](#mdxcodeblock)
   - [`NewRelicLogo`](#newreliclogo)
   - [`PageTools`](#pagetools)
@@ -1107,6 +1108,48 @@ used for the site.
   <Logo />
   <MyNavigation />
 </Layout.Sidebar>
+```
+
+### `Link`
+
+Provides a "smart" link to link to other URLs. This provides a unified component
+between a [Gatsby `Link`](https://www.gatsbyjs.com/docs/gatsby-link/) and an
+external link. This component will pick between a regular anchor tag and a
+Gatsby link depending on whether the URL is a relative or external url.
+
+This component will automatically convert absolute URLs that link to pages
+within the same site to relative links. This ensures a smooth user experience
+for all linked pages on the site.
+
+This component can be used as a replacement for the built-in `Link` component in
+Gatsby since it wraps it.
+
+```js
+import { Link } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop | Type   | Required | Default | Description                                                                                                                                          |
+| ---- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `to` | string | yes      |         | The URL to link to. If this is a relative path, it will use the Gatsby `Link` component. If it is an external URL, it will use a regular anchor tag. |
+
+All additional props are forwarded to either the
+[`Link`](https://www.gatsbyjs.com/docs/gatsby-link/) component or the anchor tag
+depending on whether it is a relative or absolute URL.
+
+**Examples**
+
+```js
+// Can be used as a relative link to other pages in the site
+<Link to="/page-2">
+
+// Can also be used to link to external URLs
+<Link to="https://gatsbyjs.com">
+
+// If the link is absolute, but the origin matches the `siteMetadata.siteUrl`,
+// it will smartly convert this to a relative path.
+<Link to="https://developer.newrelic.com/page-2">
 ```
 
 ### `MDXCodeBlock`
