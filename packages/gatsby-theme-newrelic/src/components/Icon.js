@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
 import FeatherSVG from './FeatherSVG';
 import constantize from '../utils/constantize';
 import transformKeys from '../utils/transformKeys';
@@ -15,22 +14,12 @@ const TYPES = transformKeys(
   constantize
 );
 
-const Icon = ({ name, size, ...props }) => {
+const Icon = ({ name, ...props }) => {
   const featherIcon = featherIcons[name];
   const NRIcon = newrelicIcons[name];
 
   if (featherIcon) {
-    return (
-      <FeatherSVG
-        css={css`
-          width: ${size};
-          height: ${size};
-        `}
-        {...props}
-      >
-        {featherIcon}
-      </FeatherSVG>
-    );
+    return <FeatherSVG {...props}>{featherIcon}</FeatherSVG>;
   }
 
   if (NRIcon) {
@@ -43,11 +32,6 @@ const Icon = ({ name, size, ...props }) => {
 Icon.propTypes = {
   ...FeatherSVG.propTypes,
   name: PropTypes.oneOf(Object.values(TYPES)).isRequired,
-  size: PropTypes.string,
-};
-
-Icon.defaultProps = {
-  size: '1em',
 };
 
 Icon.TYPE = TYPES;
