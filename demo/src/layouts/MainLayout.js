@@ -11,6 +11,7 @@ import {
   NewRelicLogo,
   useLayout,
 } from '@newrelic/gatsby-theme-newrelic';
+import { Link } from 'gatsby';
 import nav from '../data/sidenav.json';
 
 const MainLayout = ({ children, pageContext }) => {
@@ -40,7 +41,9 @@ const MainLayout = ({ children, pageContext }) => {
       </header>
       <Layout>
         <Layout.Sidebar>
-          <Logo width="150px" />
+          <Link to="/">
+            <Logo width="150px" />
+          </Link>
           <nav
             role="navigation"
             css={css`
