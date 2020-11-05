@@ -2,12 +2,13 @@ import React from 'react';
 import Icon from '../Icon';
 import TestRenderer from 'react-test-renderer';
 import { render } from '@testing-library/react';
+import icons from '../../icons';
 
-const defaultIcon = Icon.TYPE[Object.keys(Icon.TYPE)[0]];
+const defaultIcon = Object.keys(icons)[0];
 
-Object.keys(Icon.TYPE).forEach((name) => {
+Object.keys(icons).forEach((name) => {
   test(`${name} icon matches its snapshot`, () => {
-    const tree = TestRenderer.create(<Icon name={Icon.TYPE[name]} />).toJSON();
+    const tree = TestRenderer.create(<Icon name={name} />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
