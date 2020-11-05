@@ -4,26 +4,20 @@ import FeatherSVG from './FeatherSVG';
 import constantize from '../utils/constantize';
 import transformKeys from '../utils/transformKeys';
 import featherIcons from '../icons/feather';
-import newrelicIcons from '../icons/newrelic';
+import icons from '../icons';
 
-const TYPES = transformKeys(
-  {
-    ...featherIcons,
-    ...newrelicIcons,
-  },
-  constantize
-);
+const TYPES = transformKeys(featherIcons, constantize);
 
 const Icon = ({ name, ...props }) => {
   const featherIcon = featherIcons[name];
-  const NRIcon = newrelicIcons[name];
+  const IconElement = icons[name];
 
   if (featherIcon) {
     return <FeatherSVG {...props}>{featherIcon}</FeatherSVG>;
   }
 
-  if (NRIcon) {
-    return <NRIcon {...props} />;
+  if (IconElement) {
+    return <IconElement {...props} />;
   }
 
   throw new Error(`Icon: ${name} did not match a known icon`);
@@ -31,7 +25,8 @@ const Icon = ({ name, ...props }) => {
 
 Icon.propTypes = {
   ...FeatherSVG.propTypes,
-  name: PropTypes.oneOf(Object.values(TYPES)).isRequired,
+  name: PropTypes.oneOf([...Object.keys(icons), ...Object.values(TYPES)])
+    .isRequired,
 };
 
 Icon.TYPE = TYPES;
