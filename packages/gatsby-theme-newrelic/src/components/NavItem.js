@@ -30,7 +30,7 @@ const NavItem = ({ page, icon, __depth: depth = 0 }) => {
     >
       <NavLink
         active={isCurrentPage}
-        href={page.url}
+        to={page.url}
         icon={icon}
         isExpanded={isExpanded}
         expandable={page.pages?.length > 0}

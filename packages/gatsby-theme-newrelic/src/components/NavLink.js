@@ -9,18 +9,18 @@ import Button from './Button';
 const NavLink = ({
   active,
   children,
-  href,
+  to,
   icon: LinkIcon,
   isExpanded,
   expandable,
   onClick,
 }) => {
-  const isExternalLink = href && !href?.startsWith('/');
-  const Element = href ? Link : 'div';
+  const isExternalLink = to && !to?.startsWith('/');
+  const Element = to ? Link : 'div';
 
   return (
     <Element
-      href={href}
+      to={to}
       onClick={onClick}
       css={css`
         display: flex;
@@ -101,7 +101,7 @@ NavLink.propTypes = {
   isExpanded: PropTypes.bool.isRequired,
   expandable: PropTypes.bool.isRequired,
   onClick: PropTypes.func,
-  href: PropTypes.string,
+  to: PropTypes.string,
 };
 
 export default NavLink;

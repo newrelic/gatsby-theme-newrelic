@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 
-const Link = ({ href, ...props }) => {
+const Link = ({ to, ...props }) => {
   const {
     site: {
       siteMetadata: { siteUrl },
@@ -17,20 +17,20 @@ const Link = ({ href, ...props }) => {
     }
   `);
 
-  if (href.startsWith(siteUrl)) {
-    href = href.replace(siteUrl, '');
+  if (to.startsWith(siteUrl)) {
+    to = to.replace(siteUrl, '');
   }
 
-  if (href.startsWith('/')) {
-    return <GatsbyLink to={href} {...props} />;
+  if (to.startsWith('/')) {
+    return <GatsbyLink to={to} {...props} />;
   }
 
   // eslint-disable-next-line jsx-a11y/anchor-has-content
-  return <a href={href} target="_blank" rel="noopener noreferrer" {...props} />;
+  return <a href={to} target="_blank" rel="noopener noreferrer" {...props} />;
 };
 
 Link.propTypes = {
-  href: PropTypes.string,
+  to: PropTypes.string,
 };
 
 export default Link;
