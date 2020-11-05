@@ -27,8 +27,9 @@ const NavItem = ({ page, __parent: parent }) => {
       css={css`
         --icon-size: 1.5rem;
         --icon-spacing: 0.5rem;
+        --nav-link-padding: 0.5rem;
 
-        padding-left: ${parent == null ? '0' : '1rem'};
+        padding-left: ${parent == null ? '0' : 'var(--nav-link-padding)'};
       `}
     >
       <NavLink
@@ -41,7 +42,7 @@ const NavItem = ({ page, __parent: parent }) => {
         css={css`
           padding-left: ${parent?.icon
             ? 'calc(var(--icon-size) + var(--icon-spacing))'
-            : '1rem'};
+            : 'var(--nav-link-padding)'};
         `}
       >
         {page.title}
