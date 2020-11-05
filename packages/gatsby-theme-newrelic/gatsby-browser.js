@@ -1,7 +1,7 @@
 import React from 'react';
 import SplitIOProvider from './src/components/SplitIOProvider';
 import getSplitConfig from './src/utils/getSplitConfig';
-import LayoutContext from './src/components/Layout/Context';
+import LayoutContext from './src/components/LayoutContext';
 
 export { default as wrapPageElement } from './gatsby/wrap-page-element';
 

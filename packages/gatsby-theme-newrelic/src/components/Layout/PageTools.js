@@ -10,8 +10,14 @@ const LayoutPageTools = ({ children }) => {
   return (
     <PageTools
       css={css`
+        position: sticky;
+        top: calc(var(--global-header-height) + ${contentPadding});
+        align-self: start;
         grid-area: page-tools;
-        margin-top: ${contentPadding};
+        max-height: calc(
+          100vh - (var(--global-header-height) + ${contentPadding} * 2)
+        );
+        overflow-y: auto;
       `}
     >
       {children}

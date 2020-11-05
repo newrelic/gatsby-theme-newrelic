@@ -26,7 +26,6 @@ const Sidebar = ({ children, className }) => {
           left: 0;
           right: 0;
           padding: ${contentPadding};
-          padding-left: 0;
           overflow: auto;
         `}
       >
