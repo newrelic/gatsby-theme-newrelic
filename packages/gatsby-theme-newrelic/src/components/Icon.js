@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import FeatherSVG from './FeatherSVG';
 import constantize from '../utils/constantize';
@@ -10,18 +10,22 @@ import warning from 'warning';
 const TYPES = transformKeys(featherIcons, constantize);
 
 const Icon = ({ name, ...props }) => {
-  const featherIcon = featherIcons[name];
+  const FeatherIcon = featherIcons[name];
   const IconElement = icons[name];
 
   if (process.env.NODE_ENV === 'development') {
     warning(
-      !featherIcon,
+      !FeatherIcon,
       `You are using a feather icon using its deprecated name: '${name}'. Please use the prefixed feather icon name instead: 'fe-${name}'`
     );
   }
 
-  if (featherIcon) {
-    return <FeatherSVG {...props}>{featherIcon}</FeatherSVG>;
+  if (FeatherIcon) {
+    return isValidElement(FeatherIcon) ? (
+      <FeatherSVG {...props}>{FeatherIcon}</FeatherSVG>
+    ) : (
+      <FeatherIcon {...props} />
+    );
   }
 
   if (IconElement) {

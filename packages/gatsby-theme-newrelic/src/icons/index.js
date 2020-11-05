@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 import FeatherSVG from '../components/FeatherSVG';
 
 import feather from './feather';
@@ -20,7 +20,10 @@ const wrapFeatherIcon = (icon) => (props) => (
 
 const wrapFeatherIcons = (icons) =>
   Object.fromEntries(
-    Object.entries(icons).map(([name, icon]) => [name, wrapFeatherIcon(icon)])
+    Object.entries(icons).map(([name, icon]) => [
+      name,
+      isValidElement(icon) ? wrapFeatherIcon(icon) : icon,
+    ])
   );
 
 export default {
