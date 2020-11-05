@@ -34,6 +34,8 @@ websites](https://opensource.newrelic.com).
   - [`GlobalHeader`](#globalheader)
   - [`HamburgerMenu`](#hamburgermenu)
   - [`Icon`](#icon)
+    - [Available icons](#available-icons)
+    - [Shadowing icons](#shadowing-icons)
   - [`Layout`](#layout-1)
     - [`Layout.Content`](#layoutcontent)
     - [`Layout.Footer`](#layoutfooter)
@@ -660,7 +662,7 @@ All props are forwarded to the underlying `a` tag with the exception of the
 ### `FeatherSVG`
 
 SVG wrapper for [feather icons](https://feathericons.com/). This is useful when
-[shadowing feather icons](#shadowingicons) to ensure all feather icons have
+[shadowing feather icons](#shadowing-icons) to ensure all feather icons have
 consistent props/styles applied to them.
 
 **NOTE:** When using this component, you should to spread all props to it.
@@ -854,55 +856,86 @@ import { Icon } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop   | Type   | Required | Default | Description                                                                                                              |
-| ------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `name` | enum   | yes      |         | The name of the icon that will be rendered. See the full list of available icons in the "Available icons" section below. |
-| `size` | string | no       | `1em`   | The size of the icon. The value can be any CSS sizing value.                                                             |
+| Prop   | Type   | Required | Default | Description                                                                                                                                  |
+| ------ | ------ | -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `name` | enum   | yes      |         | The name of the icon that will be rendered. See the full list of available icons in the ["Available icons"](#available-icons) section below. |
+| `size` | string | no       | `1em`   | The size of the icon. The value can be any CSS sizing value.                                                                                 |
 
 Additional props are forwarded to the underlying `svg` element.
 
-**Available icons**
+#### Available icons
 
-- `Icon.TYPE.COPY`
-- `Icon.TYPE.EDIT`
-- `Icon.TYPE.GITHUB`
-- `Icon.TYPE.MOON`
-- `Icon.TYPE.SEARCH`
-- `Icon.TYPE.SUN`
-- `Icon.TYPE.X`
+**Feather**
 
-**Shadowing**
+- `fe-chevron-down`
+- `fe-cloud`
+- `fe-copy`
+- `fe-edit`
+- `fe-external-link`
+- `fe-filter`
+- `fe-github`
+- `fe-loader`
+- `fe-moon`
+- `fe-pen`
+- `fe-search`
+- `fe-sun`
+- `fe-thumbsdown`
+- `fe-thumbsup`
+- `fe-x`
 
-Because this theme only provides a subset of the Feather icon set, you may need
+**New Relic**
+
+- `nr-tdp`
+- `nr-fso`
+- `nr-ai`
+
+#### Shadowing icons
+
+Because this theme only provides a subset of the feather icon set, you may need
 to add additional icons for use in your website. You can use [component
 shadowing](https://www.gatsbyjs.org/docs/themes/shadowing/) to do so. When
 shadowing the icon set, **YOU MUST** include the default set of icons in order
 for the built-in components to work properly.
 
-When shadowing an icon set, the `Icon` component will automatically create a
-constant value for each icon by constantizing the value of its key. This allows
-you to continue to use the constant pattern for the `name` prop. For example, if
-you add a `chevron-right` icon to the icon set, you can use it via
-`Icon.TYPE.CHEVRON_RIGHT`.
+When shadowing an icon set, defined the icons using the unprefixed name. The
+gatsby theme will automatically prefix the icons for you depending on the icon
+set. For example, to add the
+[`chevron-right`](https://feathericons.com/?query=chevron-right) icon, define
+its name as `chevron-right`, not `fe-chevron-right`. This icon will be available
+to the `Icon` component as `fe-chevron-right`.
+
+The following icons sets can be shadowed:
+
+- Feather
+  - File path: `src/@newrelic/gatsby-theme-newrelic/icons/feather.js`
+  - Prefix: `fe`
+- New Relic
+  - File path: `src/@newrelic/gatsby-theme-newrelic/icons/newrelic.js`
+  - Prefix: `nr`
 
 ```js
 // src/@newrelic/gatsby-theme-newrelic/icons/feather.js
 import React from 'react';
 import defaultIcons from '@newrelic/gatsby-theme-newrelic/src/icons/feather';
+import { FeatherSVG } from '@newrelic/gatsby-theme-newrelic';
 
 export default {
   ...defaultIcons,
-  // Only include the "guts" of the SVG and omit the surrounding `svg` tag.
-  // The `Icon` component will automatically wrap this with an `svg` tag
-  // configured with the proper `viewBox` and feather icon styles.
-  'chevron-right': <polyline points="9 18 15 12 9 6" />,
+  'chevron-right': (props) => (
+    <FeatherSVG {...props}>
+      <polyline points="9 18 15 12 9 6" />
+    </FeatherSVG>
+  ),
 };
+
+// To use this icon, use the prefixed name:
+<Icon name="fe-chevron-right" />;
 ```
 
 **Example**
 
 ```js
-<Icon name={Icon.TYPE.COPY} size="1rem" />
+<Icon name="fe-copy" size="1rem" />
 ```
 
 ### `Layout`
