@@ -44,6 +44,8 @@ websites](https://opensource.newrelic.com).
     - [`Layout.Sidebar`](#layoutsidebar)
   - [`Link`](#link)
   - [`MDXCodeBlock`](#mdxcodeblock)
+  - [`NavItem`](#navitem)
+    - [`Page`](#page)
   - [`NewRelicLogo`](#newreliclogo)
   - [`PageTools`](#pagetools)
     - [`PageTools.Section`](#pagetoolssection)
@@ -1248,6 +1250,55 @@ this component.
 ```js preview=true
 ```
 ````
+
+### `NavItem`
+
+A component used for displaying nav items in the [sidebar](#layoutsidebar).
+
+```js
+import { NavItem } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop   | Type   | Required | Default | Description                                                                                     |
+| ------ | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------- |
+| `page` | `page` | yes      |         | The page data used to for the nav link. See the [page](#page) type documentation for more info. |
+
+#### `Page`
+
+The `NavItem` expects a page type that represents a hierarchy of nav links.
+
+The following properties can be used:
+
+- `title` _(string)_ **Required**: The title that will show up for the nav item.
+- `url` _(string)_: Can be either a relative path or an external URL. If the
+  `url` is omitted, the nav item will act as a toggle for its children.
+- `icon` _(string)_: Name of the icon to be displayed for the nav item. This
+  must match a name from the [available icons](#available-icons) list. If the
+  icons are shadowed, this may be the name of a shadowed icon as well.
+- `pages` _([page])_: A list of child pages that will be rendered as children of
+  the current page.
+
+**Examples**
+
+```js
+const nav = [
+  {
+    url: '/docs/intro-to-tdp',
+    title: 'Introduction to Telemetry Data Platform',
+    icon: 'nr-tdp',
+    pages: [
+      { url: '/docs/tdp/collect-data', title: 'Collect data in TDP' },
+      { url: '/docs/tdp/understand-data', title: 'Understand data' },
+    ],
+  },
+];
+
+const Navigation = () => {
+  return nav.map((page) => <NavItem key={page.url} page={page} />);
+};
+```
 
 ### `NewRelicLogo`
 
