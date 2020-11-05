@@ -9,19 +9,21 @@ import Button from './Button';
 const NavLink = ({
   active,
   children,
+  className,
   to,
   icon,
   isExpanded,
   expandable,
   onClick,
 }) => {
-  const isExternalLink = to && !to?.startsWith('/');
+  const isExternalLink = to && !to.startsWith('/');
   const Element = to ? Link : 'div';
 
   return (
     <Element
       to={to}
       onClick={onClick}
+      className={className}
       css={css`
         display: flex;
         align-items: center;
@@ -30,7 +32,7 @@ const NavLink = ({
         color: var(--primary-text-color);
         transition: 0.2s ease-out;
         padding: 0.5rem 0.5rem 0.5rem 1rem;
-        margin: 0 -1rem;
+        margin: 0 -0.5rem 0 -1rem;
         font-size: 0.875rem;
 
         &:hover {
@@ -51,9 +53,9 @@ const NavLink = ({
       {icon && (
         <Icon
           name={icon}
-          size="1.75rem"
+          size="var(--icon-size)"
           css={css`
-            margin-right: 0.5rem;
+            margin-right: var(--icon-spacing);
           `}
         />
       )}
@@ -97,6 +99,7 @@ const NavLink = ({
 
 NavLink.propTypes = {
   active: PropTypes.bool,
+  className: PropTypes.string,
   icon: PropTypes.string,
   children: PropTypes.node.isRequired,
   isExpanded: PropTypes.bool.isRequired,

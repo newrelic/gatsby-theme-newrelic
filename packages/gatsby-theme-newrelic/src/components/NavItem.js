@@ -5,7 +5,7 @@ import NavLink from './NavLink';
 import { useLocation } from '@reach/router';
 import usePrevious from '../hooks/usePrevious';
 
-const NavItem = ({ page, __depth: depth = 0 }) => {
+const NavItem = ({ page, __parent: parent }) => {
   const { pathname } = useLocation();
   const containsCurrentPage = useMemo(() => containsPage(page, pathname), [
     page,
@@ -25,7 +25,10 @@ const NavItem = ({ page, __depth: depth = 0 }) => {
   return (
     <div
       css={css`
-        padding-left: ${depth === 0 ? '0' : '1rem'};
+        --icon-size: 1.75rem;
+        --icon-spacing: 0.5rem;
+
+        padding-left: ${parent == null ? '0' : '1rem'};
       `}
     >
       <NavLink
@@ -35,26 +38,33 @@ const NavItem = ({ page, __depth: depth = 0 }) => {
         isExpanded={isExpanded}
         expandable={page.pages?.length > 0}
         onClick={() => setIsExpanded((expanded) => !expanded)}
+        css={css`
+          padding-left: ${parent?.icon
+            ? 'calc(var(--icon-size) + var(--icon-spacing))'
+            : '1rem'};
+        `}
       >
         {page.title}
       </NavLink>
 
       {isExpanded &&
-        page.pages?.map((page) => (
-          <NavItem key={page.title} page={page} __depth={depth + 1} />
+        page.pages?.map((child) => (
+          <NavItem key={child.url} page={child} __parent={page} />
         ))}
     </div>
   );
 };
 
+const page = PropTypes.shape({
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+  url: PropTypes.string,
+  pages: PropTypes.arrayOf(PropTypes.object),
+});
+
 NavItem.propTypes = {
-  __depth: PropTypes.number,
-  page: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    icon: PropTypes.string,
-    url: PropTypes.string,
-    pages: PropTypes.arrayOf(PropTypes.object),
-  }),
+  __parent: page,
+  page: page.isRequired,
 };
 
 const containsPage = (page, url) => {
