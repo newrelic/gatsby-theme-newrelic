@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.15.0...v1.15.1) (2020-11-06)
+
+
+### Bug Fixes
+
+* filter out menu pages for docs results ([c5ca83b](https://github.com/newrelic/gatsby-theme-newrelic/commit/c5ca83ba887a2ad22f6067af0287193be4b43b3a))
+
+
+
+
+
 # [1.15.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.14.0...v1.15.0) (2020-11-05)
 
 
