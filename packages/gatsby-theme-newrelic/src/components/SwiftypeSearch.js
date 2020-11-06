@@ -48,6 +48,11 @@ const configOptions = {
         values: ['docs', 'developer', 'opensource'],
         type: 'any',
       },
+      {
+        field: 'document_type',
+        values: ['!views_page_menu'],
+        type: 'any',
+      },
     ],
   },
   initialState: {
