@@ -154,7 +154,6 @@ const InputView = ({ getAutocomplete, getInputProps }) => {
 
 SwiftypeSearch.propTypes = {
   className: PropTypes.string,
-  isOpen: PropTypes.bool,
 };
 
 InputView.propTypes = {
