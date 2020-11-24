@@ -23,6 +23,7 @@ export { default as Portal } from './src/components/Portal';
 export { default as SearchInput } from './src/components/SearchInput';
 export { default as Surface } from './src/components/Surface';
 export { default as Spinner } from './src/components/Spinner';
+export { default as Table } from './src/components/Table';
 export { default as Tag } from './src/components/Tag';
 export { default as TagList } from './src/components/TagList';
 export { default as Video } from './src/components/Video';

@@ -53,6 +53,7 @@ websites](https://opensource.newrelic.com).
   - [`SearchInput`](#searchinput)
   - [`Spinner`](#spinner)
   - [`Surface`](#surface)
+  - [`Table`](#table)
   - [`Tag`](#tag)
   - [`TagList`](#taglist)
   - [`Video`](#video)
@@ -1483,12 +1484,42 @@ import { Surface } from '@newrelic/gatsby-theme-newrelic';
 <Surface base={Surface.BASE.PRIMARY}>The content inside the surface</Surface>
 ```
 
+### `Table`
+
+Used to render a table with predefined styles.
+
+```js
+import { Table } from '@newrelic/gatsby-theme-newrelic';
+```
+
+| Prop       | Type | Required | Default | Description                                                                                                 |
+| ---------- | ---- | -------- | ------- | ----------------------------------------------------------------------------------------------------------- |
+| `children` | node | no       |         | Children should be a combination of `tbody`, `td`, `th`, `tr` tags with appropriate content nested beneath. |
+
+**Examples**
+
+```js
+<Table>
+  <tbody>
+    <tr>
+      <td>String</td>
+    </tr>
+
+    <tr>
+      <th>Default</th>
+
+      <td>`""`</td>
+    </tr>
+  </tbody>
+</Table>
+```
+
 ### `Tag`
 
 Used to render a keyword or tag.
 
 ```js
-import { Surface } from '@newrelic/gatsby-theme-newrelic';
+import { Tag } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 **Props**
