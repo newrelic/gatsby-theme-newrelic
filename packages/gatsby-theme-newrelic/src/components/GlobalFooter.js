@@ -168,6 +168,9 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
               }
             `}
           >
+            <ExternalLink href="https://newrelic.com/about/careers">
+              Careers
+            </ExternalLink>
             {sitePage ? (
               <Link to="/terms">Terms of Service</Link>
             ) : (
