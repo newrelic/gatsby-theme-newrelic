@@ -18,7 +18,7 @@ const iconStyles = css`
   margin-right: 0.5rem;
 `;
 
-const Feedback = ({ align, onSubmit, message }) => {
+const Feedback = ({ align, onSubmit, message, showComment }) => {
   const [sentiment, updateSentiment] = useState(null);
   const [comment, updateComment] = useState('');
   const [submitted, updateSubmitted] = useState(false);
@@ -69,38 +69,40 @@ const Feedback = ({ align, onSubmit, message }) => {
         </Button>
       </div>
 
-      <textarea
-        css={css`
-          display: block;
-          margin: ${align === Feedback.ALIGNMENT.CENTER
-            ? '0.5rem auto'
-            : '0.5rem 0'};
-          height: 2.25rem;
-          padding: 0.5rem;
-          background-color: var(--primary-background-color);
-          color: var(--primary-text-color);
-          border: 1px solid var(--tertiary-background-color);
-          border-radius: 3px;
-          transition: all 0.2s;
-          width: 100%;
+      {showComment && (
+        <textarea
+          css={css`
+            display: block;
+            margin: ${align === Feedback.ALIGNMENT.CENTER
+              ? '0.5rem auto'
+              : '0.5rem 0'};
+            height: 2.25rem;
+            padding: 0.5rem;
+            background-color: var(--primary-background-color);
+            color: var(--primary-text-color);
+            border: 1px solid var(--tertiary-background-color);
+            border-radius: 3px;
+            transition: all 0.2s;
+            width: 100%;
 
-          &:active,
-          &:focus,
-          &:not(:placeholder-shown) {
-            outline: none;
-            height: 4.25rem;
-          }
+            &:active,
+            &:focus,
+            &:not(:placeholder-shown) {
+              outline: none;
+              height: 4.25rem;
+            }
 
-          &:focus {
-            border-color: var(--primary-text-color);
-          }
-        `}
-        placeholder="Additional feedback (optional)"
-        onChange={(e) => {
-          updateComment(e.target.value);
-        }}
-        value={comment}
-      />
+            &:focus {
+              border-color: var(--primary-text-color);
+            }
+          `}
+          placeholder="Additional feedback (optional)"
+          onChange={(e) => {
+            updateComment(e.target.value);
+          }}
+          value={comment}
+        />
+      )}
 
       {error && (
         <p
@@ -113,26 +115,28 @@ const Feedback = ({ align, onSubmit, message }) => {
         </p>
       )}
 
-      <div
-        css={css`
-          text-align: right;
-        `}
-      >
-        <Button
-          variant={Button.VARIANT.PRIMARY}
-          onClick={() => {
-            if (sentiment || comment) {
-              updateError(false);
-              onSubmit({ sentiment, comment });
-              updateSubmitted(true);
-            } else {
-              updateError('Please provide a vote or comment');
-            }
-          }}
+      {showComment && (
+        <div
+          css={css`
+            text-align: right;
+          `}
         >
-          Submit feedback
-        </Button>
-      </div>
+          <Button
+            variant={Button.VARIANT.PRIMARY}
+            onClick={() => {
+              if (sentiment || comment) {
+                updateError(false);
+                onSubmit({ sentiment, comment });
+                updateSubmitted(true);
+              } else {
+                updateError('Please provide a vote or comment');
+              }
+            }}
+          >
+            Submit feedback
+          </Button>
+        </div>
+      )}
     </div>
   );
 };
@@ -144,11 +148,13 @@ Feedback.propTypes = {
   align: PropTypes.oneOf(Object.values(Feedback.ALIGNMENT)),
   onSubmit: PropTypes.func.isRequired,
   message: PropTypes.string,
+  showComment: PropTypes.bool,
 };
 
 Feedback.defaultProps = {
   align: Feedback.ALIGNMENT.LEFT,
   message: 'Was this page helpful?',
+  showComment: true,
 };
 
 export default Feedback;

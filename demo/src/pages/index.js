@@ -282,6 +282,7 @@ const IndexPage = () => {
               onSubmit={({ sentiment, comment }) => {
                 console.log('comment', sentiment, comment);
               }}
+              showComment={false}
             />
           </div>
         </section>
