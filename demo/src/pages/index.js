@@ -283,6 +283,8 @@ const IndexPage = () => {
                 console.log('comment', sentiment, comment);
               }}
               showComment={false}
+              onPositiveClick={() => console.log('this is great!')}
+              onNegativeClick={() => console.log('this is terrible!')}
             />
           </div>
         </section>

@@ -703,12 +703,14 @@ import { Feedback } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop          | Type     | Required | Default                | Description                                                                                                                                                             |
-| ------------- | -------- | -------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `align`       | enum     | no       | `Feedback.ALIGN.LEFT`  | Configures the alignment of the feedback component. Must be one of `Feedback.ALIGNMENT.LEFT` or `Feedback.ALIGNMENT.CENTER`.                                            |
-| `onSubmit`    | function | yes      |                        | Handler that is called once feedback is provided. The user must supply a sentiment, a comment, or both. An object containing the `sentiment` and `comment` is returned. |
-| `message`     | string   | no       | Was this page helpful? | Message to be displayed above the buttons.                                                                                                                              |
-| `showComment` | boolean  | no       | true                   | Whether or not to show the free-form comment section.                                                                                                                   |
+| Prop              | Type     | Required | Default                | Description                                                                                                                                                             |
+| ----------------- | -------- | -------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `align`           | enum     | no       | `Feedback.ALIGN.LEFT`  | Configures the alignment of the feedback component. Must be one of `Feedback.ALIGNMENT.LEFT` or `Feedback.ALIGNMENT.CENTER`.                                            |
+| `onSubmit`        | function | yes      |                        | Handler that is called once feedback is provided. The user must supply a sentiment, a comment, or both. An object containing the `sentiment` and `comment` is returned. |
+| `onPositiveClick` | function | no       |                        | Handler that is called when the positive feedback button is clicked (for analytics or when using without commenting).                                                   |
+| `onNegativeClick` | function | no       |                        | Handler that is called when the negative feedback button is clicked (for analytics or when using without commenting).                                                   |
+| `message`         | string   | no       | Was this page helpful? | Message to be displayed above the buttons.                                                                                                                              |
+| `showComment`     | boolean  | no       | true                   | Whether or not to show the free-form comment section.                                                                                                                   |
 
 **Example**
 

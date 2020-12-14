@@ -18,7 +18,14 @@ const iconStyles = css`
   margin-right: 0.5rem;
 `;
 
-const Feedback = ({ align, onSubmit, message, showComment }) => {
+const Feedback = ({
+  align,
+  onSubmit,
+  onPositiveClick,
+  onNegativeClick,
+  message,
+  showComment,
+}) => {
   const [sentiment, updateSentiment] = useState(null);
   const [comment, updateComment] = useState('');
   const [submitted, updateSubmitted] = useState(false);
@@ -46,6 +53,9 @@ const Feedback = ({ align, onSubmit, message, showComment }) => {
         <Button
           onClick={() => {
             updateSentiment(Feedback.SENTIMENT.POSITIVE);
+            if (onPositiveClick) {
+              onPositiveClick();
+            }
           }}
           variant={Button.VARIANT.PRIMARY}
           css={css`
@@ -58,6 +68,9 @@ const Feedback = ({ align, onSubmit, message, showComment }) => {
         <Button
           onClick={() => {
             updateSentiment(Feedback.SENTIMENT.NEGATIVE);
+            if (onNegativeClick) {
+              onNegativeClick();
+            }
           }}
           variant={Button.VARIANT.PRIMARY}
           css={css`
@@ -147,6 +160,8 @@ Feedback.SENTIMENT = SENTIMENT;
 Feedback.propTypes = {
   align: PropTypes.oneOf(Object.values(Feedback.ALIGNMENT)),
   onSubmit: PropTypes.func.isRequired,
+  onPositiveClick: PropTypes.func,
+  onNegativeClick: PropTypes.func,
   message: PropTypes.string,
   showComment: PropTypes.bool,
 };
