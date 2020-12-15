@@ -7,6 +7,19 @@ import Button from './Button';
 import Icon from './Icon';
 import PageTools from './PageTools';
 
+const getParams = (title, labels, sentiment, body) => {
+  const params = new URLSearchParams();
+
+  params.set('labels', [...labels, sentiment].join(','));
+  params.set('title', title ? `Feedback: ${title}` : 'Website Feedback');
+
+  if (body !== '') {
+    params.set('body', body);
+  }
+
+  return params.toString();
+};
+
 const SimpleFeedback = ({ title, slug, labels }) => {
   const { site } = useStaticQuery(graphql`
     query FeedbackQuery {
@@ -22,30 +35,21 @@ const SimpleFeedback = ({ title, slug, labels }) => {
   const { repository, siteUrl } = site.siteMetadata;
   const issueUrl = `${repository}/issues/new`;
 
-  const issueTitle = title
-    ? `Feedback:+${title.replace(' ', '+')}`
-    : 'Website Feedback';
+  const body = title && slug ? `Page: [${title}](${siteUrl}${slug})` : '';
 
-  const body =
-    title && slug ? `&body=Page:%20[${title}](${siteUrl}${slug})` : '';
+  const positiveFeedback = `${issueUrl}?${getParams(
+    title,
+    labels,
+    'feedback-positive',
+    body
+  )}`;
 
-  const positiveFeedback = [
-    issueUrl,
-    '?labels=',
-    [...labels, 'feedback-positive'].join(','),
-    '&title=',
-    issueTitle,
-    body,
-  ].join('');
-
-  const negativeFeedback = [
-    issueUrl,
-    '?labels=',
-    [...labels, 'feedback-negative'].join(','),
-    '&title=',
-    issueTitle,
-    body,
-  ].join('');
+  const negativeFeedback = `${issueUrl}?${getParams(
+    title,
+    labels,
+    'feedback-negative',
+    body
+  )}`;
 
   return (
     <PageTools.Section>

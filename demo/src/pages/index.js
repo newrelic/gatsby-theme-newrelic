@@ -294,7 +294,7 @@ const IndexPage = () => {
               max-width: 350px;
             `}
           >
-            <SimpleFeedback title="Demo Site" />
+            <SimpleFeedback title="Demo Site" slug="/demo/test-site" />
           </div>
         </section>
 
