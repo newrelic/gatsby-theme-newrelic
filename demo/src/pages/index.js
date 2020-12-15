@@ -10,6 +10,7 @@ import {
   Layout,
   PageTools,
   SearchInput,
+  SimpleFeedback,
   Surface,
   Tag,
   TagList,
@@ -283,6 +284,17 @@ const IndexPage = () => {
                 console.log('comment', sentiment, comment);
               }}
             />
+          </div>
+        </section>
+
+        <section>
+          <h2>Simple Feedback</h2>
+          <div
+            css={css`
+              max-width: 350px;
+            `}
+          >
+            <SimpleFeedback title="Demo Site" slug="/demo/test-site" />
           </div>
         </section>
 
