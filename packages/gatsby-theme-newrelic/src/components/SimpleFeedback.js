@@ -7,14 +7,14 @@ import Button from './Button';
 import Icon from './Icon';
 import PageTools from './PageTools';
 
-const getParams = (title, labels, sentiment, body) => {
+const getParams = (title, labels, sentiment, slug, site) => {
   const params = new URLSearchParams();
 
   params.set('labels', [...labels, sentiment].join(','));
   params.set('title', title ? `Feedback: ${title}` : 'Website Feedback');
 
-  if (body !== '') {
-    params.set('body', body);
+  if (title && slug) {
+    params.set('body', `Page: [${title}](${site}${slug})`);
   }
 
   return params.toString();
@@ -35,21 +35,15 @@ const SimpleFeedback = ({ title, slug, labels }) => {
   const { repository, siteUrl } = site.siteMetadata;
   const issueUrl = `${repository}/issues/new`;
 
-  const body = title && slug ? `Page: [${title}](${siteUrl}${slug})` : '';
+  const positiveFeedback = [
+    issueUrl,
+    getParams(title, labels, 'feedback-positive', slug, siteUrl),
+  ].join('?');
 
-  const positiveFeedback = `${issueUrl}?${getParams(
-    title,
-    labels,
-    'feedback-positive',
-    body
-  )}`;
-
-  const negativeFeedback = `${issueUrl}?${getParams(
-    title,
-    labels,
-    'feedback-negative',
-    body
-  )}`;
+  const negativeFeedback = [
+    issueUrl,
+    getParams(title, labels, 'feedback-negative', slug, siteUrl),
+  ].join('?');
 
   return (
     <PageTools.Section>
