@@ -51,6 +51,7 @@ websites](https://opensource.newrelic.com).
     - [`PageTools.Section`](#pagetoolssection)
     - [`PageTools.Title`](#pagetoolstitle)
   - [`SearchInput`](#searchinput)
+  - [`SimpleFeedback](#simplefeedback)
   - [`Spinner`](#spinner)
   - [`Surface`](#surface)
   - [`Table`](#table)
@@ -1438,6 +1439,26 @@ const Search = () => (
     />
   );
 );
+```
+
+### `SimpleFeedback`
+
+A simplified version of the [`Feedback`](#feedback) component.
+
+```js
+import { SimpleFeedback } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+| Prop | Type | Required | Default | Description |
+| ------- | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------------------- |
+| `title` | string | no | | The current page title, which will be added to the issue title, if supplied. |
+| `slug` | string | no | | The slug for the current page, which will be used to add a link to the page in the issue body, if supplied. |
+
+**Example**
+
+```jsx
+<SimpleFeedback title="My Cool Page" slug="/my-cool-page" />
 ```
 
 ### `Spinner`
