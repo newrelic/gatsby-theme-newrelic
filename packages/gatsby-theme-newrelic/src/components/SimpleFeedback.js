@@ -64,6 +64,7 @@ const SimpleFeedback = ({ title, slug }) => {
           href={positiveFeedback}
           variant={Button.VARIANT.NORMAL}
           target="_blank"
+          role="button"
         >
           <Icon
             size="0.75rem"
@@ -79,6 +80,7 @@ const SimpleFeedback = ({ title, slug }) => {
           href={negativeFeedback}
           variant={Button.VARIANT.NORMAL}
           target="_blank"
+          role="button"
         >
           <Icon
             size="0.75rem"
