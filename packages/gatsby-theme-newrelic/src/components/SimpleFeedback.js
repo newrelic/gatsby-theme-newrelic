@@ -63,13 +63,16 @@ const SimpleFeedback = ({ title, slug, labels }) => {
           margin-top: 0.5rem;
           justify-content: center;
           align-items: flex-start;
+          gap: 0.5rem;
 
           a {
             flex-grow: 1;
           }
 
-          > *:first-child {
-            margin-right: 0.5rem;
+          @supports not (gap: 0.5rem) {
+            a:first-of-type {
+              margin-right: 0.5rem;
+            }
           }
         `}
       >
