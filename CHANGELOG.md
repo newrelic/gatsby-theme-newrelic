@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.16.3...v1.17.0) (2020-12-15)
+
+
+### Features
+
+* added SimpleFeedback component ([2ea622b](https://github.com/newrelic/gatsby-theme-newrelic/commit/2ea622b53bdc56c398fbee70f80e5836fb82c0c7))
+* **search:** focus search input when search overlay opens ([3f1b69a](https://github.com/newrelic/gatsby-theme-newrelic/commit/3f1b69ac0518930648c62f52ad83a5d932e34e67))
+
+
+
+
+
 ## [1.16.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.16.2...v1.16.3) (2020-12-05)
 
 
