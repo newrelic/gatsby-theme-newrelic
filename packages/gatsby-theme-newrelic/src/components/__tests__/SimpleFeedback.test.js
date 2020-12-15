@@ -6,9 +6,7 @@ import SimpleFeedback from '../SimpleFeedback';
 // https://github.com/facebook/jest/issues/2567
 const SITE = 'https://github.com/foo/bar';
 const REPO = 'https://foobar.net';
-
 const ISSUE_URL = `${REPO}/issues/new?`;
-const LABELS = `labels=content,feedback`;
 
 jest.mock('gatsby', () => ({
   __esModule: true,
@@ -35,13 +33,29 @@ describe('SimpleFeedback Component', () => {
     expect(getByText('No')).toBeInTheDocument();
   });
 
+  it('should render with default custom labels', () => {
+    const labels = ['food-feedback', 'tuesday'];
+    const { getAllByRole } = render(<SimpleFeedback labels={labels} />);
+    const [yes] = getAllByRole('button');
+
+    const url = [
+      ISSUE_URL,
+      'labels=',
+      labels.join(','),
+      ',feedback-positive&title=Website Feedback',
+    ].join('');
+
+    expect(yes.getAttribute('href')).toBe(url);
+  });
+
   it('should render links with default issue titles', () => {
     const { getAllByRole } = render(<SimpleFeedback />);
     const [yes, no] = getAllByRole('button');
 
     const title = 'Website Feedback';
-    const positiveUrl = `${ISSUE_URL}${LABELS},feedback-positive&title=${title}`;
-    const negativeUrl = `${ISSUE_URL}${LABELS},feedback-negative&title=${title}`;
+    const labels = `labels=feedback`;
+    const positiveUrl = `${ISSUE_URL}${labels},feedback-positive&title=${title}`;
+    const negativeUrl = `${ISSUE_URL}${labels},feedback-negative&title=${title}`;
 
     expect(yes.getAttribute('href')).toBe(positiveUrl);
     expect(no.getAttribute('href')).toBe(negativeUrl);
@@ -52,7 +66,8 @@ describe('SimpleFeedback Component', () => {
     const { getAllByRole } = render(<SimpleFeedback title={title} />);
     const [yes] = getAllByRole('button');
 
-    const url = `${ISSUE_URL}${LABELS},feedback-positive&title=Feedback:+${title}`;
+    const labels = `labels=feedback`;
+    const url = `${ISSUE_URL}${labels},feedback-positive&title=Feedback:+${title}`;
 
     expect(yes.getAttribute('href')).toBe(url);
   });
@@ -67,8 +82,7 @@ describe('SimpleFeedback Component', () => {
 
     const url = [
       ISSUE_URL,
-      LABELS,
-      ',feedback-positive&title=Feedback:+',
+      'labels=feedback,feedback-positive&title=Feedback:+',
       title,
       `&body=Page:%20[${title}](${SITE}${slug})`,
     ].join('');

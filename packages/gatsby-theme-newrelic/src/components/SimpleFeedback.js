@@ -7,7 +7,7 @@ import Button from './Button';
 import Icon from './Icon';
 import PageTools from './PageTools';
 
-const SimpleFeedback = ({ title, slug }) => {
+const SimpleFeedback = ({ title, slug, labels }) => {
   const { site } = useStaticQuery(graphql`
     query FeedbackQuery {
       site {
@@ -21,7 +21,6 @@ const SimpleFeedback = ({ title, slug }) => {
 
   const { repository, siteUrl } = site.siteMetadata;
   const issueUrl = `${repository}/issues/new`;
-  const labels = ['content', 'feedback'].join(',');
 
   const issueTitle = title
     ? `Feedback:+${title.replace(' ', '+')}`
@@ -30,8 +29,12 @@ const SimpleFeedback = ({ title, slug }) => {
   const body =
     title && slug ? `&body=Page:%20[${title}](${siteUrl}${slug})` : '';
 
-  const positiveFeedback = `${issueUrl}?labels=${labels},feedback-positive&title=${issueTitle}${body}`;
-  const negativeFeedback = `${issueUrl}?labels=${labels},feedback-negative&title=${issueTitle}${body}`;
+  const positiveFeedback = `${issueUrl}?labels=${labels.join(
+    ','
+  )},feedback-positive&title=${issueTitle}${body}`;
+  const negativeFeedback = `${issueUrl}?labels=${labels.join(
+    ','
+  )},feedback-negative&title=${issueTitle}${body}`;
 
   return (
     <PageTools.Section>
@@ -99,6 +102,11 @@ const SimpleFeedback = ({ title, slug }) => {
 SimpleFeedback.propTypes = {
   title: PropTypes.string,
   slug: PropTypes.string,
+  labels: PropTypes.arrayOf(PropTypes.string),
+};
+
+SimpleFeedback.defaultProps = {
+  labels: ['feedback'],
 };
 
 export default SimpleFeedback;
