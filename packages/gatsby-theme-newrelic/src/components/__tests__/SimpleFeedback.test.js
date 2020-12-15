@@ -33,7 +33,7 @@ describe('SimpleFeedback Component', () => {
     expect(getByText('No')).toBeInTheDocument();
   });
 
-  it('should render with default custom labels', () => {
+  it('should render links with custom issue labels', () => {
     const labels = ['food-feedback', 'tuesday'];
     const { getAllByRole } = render(<SimpleFeedback labels={labels} />);
     const [yes] = getAllByRole('button');
@@ -48,7 +48,7 @@ describe('SimpleFeedback Component', () => {
     expect(yes.getAttribute('href')).toBe(url);
   });
 
-  it('should render links with default issue titles', () => {
+  it('should render links with default issue title', () => {
     const { getAllByRole } = render(<SimpleFeedback />);
     const [yes, no] = getAllByRole('button');
 
@@ -72,7 +72,7 @@ describe('SimpleFeedback Component', () => {
     expect(yes.getAttribute('href')).toBe(url);
   });
 
-  it('should render alinks with page URL in the issue body', () => {
+  it('should render links with page URL in the issue body', () => {
     const title = 'tacos';
     const slug = '/food';
     const { getAllByRole } = render(
