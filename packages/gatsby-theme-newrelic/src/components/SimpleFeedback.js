@@ -29,12 +29,23 @@ const SimpleFeedback = ({ title, slug, labels }) => {
   const body =
     title && slug ? `&body=Page:%20[${title}](${siteUrl}${slug})` : '';
 
-  const positiveFeedback = `${issueUrl}?labels=${labels.join(
-    ','
-  )},feedback-positive&title=${issueTitle}${body}`;
-  const negativeFeedback = `${issueUrl}?labels=${labels.join(
-    ','
-  )},feedback-negative&title=${issueTitle}${body}`;
+  const positiveFeedback = [
+    issueUrl,
+    '?labels=',
+    [...labels, 'feedback-positive'].join(','),
+    '&title=',
+    issueTitle,
+    body,
+  ].join('');
+
+  const negativeFeedback = [
+    issueUrl,
+    '?labels=',
+    [...labels, 'feedback-negative'].join(','),
+    '&title=',
+    issueTitle,
+    body,
+  ].join('');
 
   return (
     <PageTools.Section>
