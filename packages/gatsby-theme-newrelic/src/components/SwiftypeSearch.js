@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import SiteSearchAPIConnector from '@elastic/search-ui-site-search-connector';
 import {
   SearchProvider,
@@ -123,13 +123,6 @@ const SwiftypeSearch = ({ className }) => {
 
 const InputView = ({ getAutocomplete, getInputProps }) => {
   const inputProps = getInputProps();
-  const inputRef = useRef();
-  useEffect(() => {
-    // Use a timeout to wait until overlay transitions finish (~500ms) and ready to focus.
-    setTimeout(() => {
-      inputRef.current.focus();
-    }, 100);
-  }, []);
   return (
     <>
       <div
@@ -141,11 +134,7 @@ const InputView = ({ getAutocomplete, getInputProps }) => {
           }
         `}
       >
-        <SearchInput
-          ref={inputRef}
-          size={SearchInput.SIZE.LARGE}
-          {...inputProps}
-        />
+        <SearchInput size={SearchInput.SIZE.LARGE} {...inputProps} />
         {getAutocomplete()}
       </div>
     </>
