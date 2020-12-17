@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.17.1...v1.17.2) (2020-12-17)
+
+
+### Bug Fixes
+
+* add a fileRelativePath field to MarkdownRemark nodes ([4805646](https://github.com/newrelic/gatsby-theme-newrelic/commit/4805646fd2262f8bbbc66b7294582f4c4a3dd3aa))
+
+
+
+
+
 ## [1.17.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.17.0...v1.17.1) (2020-12-15)
 
 **Note:** Version bump only for package gatsby-theme-newrelic
