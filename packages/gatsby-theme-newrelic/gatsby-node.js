@@ -107,7 +107,7 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
 };
 
 exports.onCreateNode = ({ node, actions }) => {
-  if (node.internal.type === 'Mdx') {
+  if (['Mdx', 'MarkdownRemark'].includes(node.internal.type)) {
     const { createNodeField } = actions;
 
     createNodeField({
