@@ -57,6 +57,7 @@ websites](https://opensource.newrelic.com).
   - [`Table`](#table)
   - [`Tag`](#tag)
   - [`TagList`](#taglist)
+  - [`Terminal`](#terminal)
   - [`Video`](#video)
 - [Hooks](#hooks)
   - [`useClipboard`](#useclipboard)
@@ -240,6 +241,8 @@ Default supported languages:
 - `ruby`
 - `shell`
 - `sql`
+- `sass`
+- `scss`
 
 **Example:** Add `swift` as a supported language
 
@@ -447,20 +450,40 @@ import { CodeBlock } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop               | Type    | Required | Default | Description                                                                                                                                                                                                                                                                |
-| ------------------ | ------- | -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`         | string  | yes      |         | The code to be rendered in the code block                                                                                                                                                                                                                                  |
-| `className`        | string  | no       |         | Adds a `className` to the outer container of the code block. Useful if you need to position the code block within its parent element.                                                                                                                                      |
-| `components`       | object  | no       |         | Swap out the elements used when rendering various elements of the code block. See the "Configurable components" guide below to learn more about this prop.                                                                                                                 |
-| `copyable`         | boolean | no       | `true`  | Determines whether to render a copy button for the content inside the code block.                                                                                                                                                                                          |
-| `fileName`         | string  | no       |         | The file name associated with the code rendered by the code block. Useful if the code block is used as part of tutorial.                                                                                                                                                   |
-| `formatOptions`    | object  | no       |         | Configuration options given to the [`formatCode`](#formatcode) utility function to auto-format the code block.                                                                                                                                                             |
-| `highlightedLines` | string  | no       |         | Specifies which lines in the code block should be highlighted. See the examples below on for information on how to format this string.                                                                                                                                     |
-| `language`         | string  | no       |         | Configures the language used for syntax highlighting. Must match one of the languages or its aliases from [`prismjs`](https://prismjs.com/#supported-languages). To learn more about configuring supported languages, visit the [`prism` configuration section](#prism).   |
-| `lineNumbers`      | boolean | no       | `false` | Determines whether to show line numbers inside the code block.                                                                                                                                                                                                             |
-| `live`             | boolean | no       | `false` | Determines whether the code block is live-editable or not. Useful when used in conjunction with the `preview` option, though not required.                                                                                                                                 |
-| `preview`          | boolean | no       | `false` | Determines whether a live preview is displayed using the value in the code block. Useful in conjunction with the `live` option to allow the user to edit the code snippet.                                                                                                 |
-| `scope`            | object  | no       |         | Configures the variables available as globals for the live preview. By default, only `React` is injected. To find out more about how the `scope` prop works, visit the [`react-live` documentation](https://github.com/FormidableLabs/react-live#how-does-the-scope-work). |
+| Prop               | Type    | Required | Default  | Description                                                                                                                                                                                                                                                                |
+| ------------------ | ------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `autoFormat`       | boolean | no       | `true`\* | Determines whether to auto format the code using prettier. `true` will force code formatting to occur. `false` will force disable code formatting. If left empty, code formatting will only run on a subset of supported languages (see below)                             |
+| `children`         | string  | yes      |          | The code to be rendered in the code block                                                                                                                                                                                                                                  |
+| `className`        | string  | no       |          | Adds a `className` to the outer container of the code block. Useful if you need to position the code block within its parent element.                                                                                                                                      |
+| `components`       | object  | no       |          | Swap out the elements used when rendering various elements of the code block. See the "Configurable components" guide below to learn more about this prop.                                                                                                                 |
+| `copyable`         | boolean | no       | `true`   | Determines whether to render a copy button for the content inside the code block.                                                                                                                                                                                          |
+| `fileName`         | string  | no       |          | The file name associated with the code rendered by the code block. Useful if the code block is used as part of tutorial.                                                                                                                                                   |
+| `formatOptions`    | object  | no       |          | Configuration options given to the [`formatCode`](#formatcode) utility function to auto-format the code block.                                                                                                                                                             |
+| `highlightedLines` | string  | no       |          | Specifies which lines in the code block should be highlighted. See the examples below on for information on how to format this string.                                                                                                                                     |
+| `language`         | string  | no       |          | Configures the language used for syntax highlighting. Must match one of the languages or its aliases from [`prismjs`](https://prismjs.com/#supported-languages). To learn more about configuring supported languages, visit the [`prism` configuration section](#prism).   |
+| `lineNumbers`      | boolean | no       | `false`  | Determines whether to show line numbers inside the code block.                                                                                                                                                                                                             |
+| `live`             | boolean | no       | `false`  | Determines whether the code block is live-editable or not. Useful when used in conjunction with the `preview` option, though not required.                                                                                                                                 |
+| `preview`          | boolean | no       | `false`  | Determines whether a live preview is displayed using the value in the code block. Useful in conjunction with the `live` option to allow the user to edit the code snippet.                                                                                                 |
+| `scope`            | object  | no       |          | Configures the variables available as globals for the live preview. By default, only `React` is injected. To find out more about how the `scope` prop works, visit the [`react-live` documentation](https://github.com/FormidableLabs/react-live#how-does-the-scope-work). |
+
+**Auto code formatting**
+
+Out of the box, the `CodeBlock` component will use prettier to format code for a
+subset of languages. These include:
+
+- `jsx`/`javascript`
+- `html`
+- `graphql`
+- `json`
+- `css`/`sass`/`scss`
+
+To force formatting for another language, set the `autoFormat` prop value to
+`true`. To force disable code formatting, set the `autoFormat` prop value to
+`false`.
+
+**NOTE:** If you choose to force enable code formatting for a language not
+listed above, you may need to use the `formatOptions` prop to set the proper
+[`plugins`](https://prettier.io/docs/en/browser.html#plugins).
 
 **Configurable components**
 
@@ -1159,8 +1182,9 @@ depending on whether it is a relative or absolute URL.
 ### `MDXCodeBlock`
 
 Used to render a fenced code block using the [`CodeBlock`](#codeblock) component
-inside of an MDX document. This component works best in conjunction with the
-`MDXProvider` component exported from the `@mdx-js/react` package.
+or a [`Terminal`](#terminal) component inside of an MDX document. This component
+works best in conjunction with the `MDXProvider` component exported from the
+`@mdx-js/react` package.
 
 ```js
 import { MDXCodeBlock } from '@newrelic/gatsby-theme-newrelic';
@@ -1168,10 +1192,17 @@ import { MDXCodeBlock } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-All props are forwarded to the `CodeBlock` component. This component also
-maintains the same defaults. See the "Using with fenced code blocks" section
-below to learn how options in fenced code blocks are forwarded to the
-`CodeBlock` component.
+All props are forwarded to the either the `CodeBlock` component, or the
+`Terminal` component (whichever is rendered based on the language. See below for
+more information). This component also maintains the same defaults. See the
+"Using with fenced code blocks" section below to learn how options in fenced
+code blocks are forwarded to the `CodeBlock` or `Terminal` component.
+
+**Terminals**
+
+This component will automatically render a [`Terminal`](#terminal) component
+whenver the language is specified as a shell language (`sh`, `shell`, or
+`bash`.) This is to provide a richer experience when rendering shell commands.
 
 **Usage with MDXProvider**
 
@@ -1206,10 +1237,22 @@ component. The following options are available for fenced code blocks when using
 this component.
 
 - `language`: Use a language identifier to enable syntax highlighting for the
-  fenced code block.
+  fenced code block. If this is a shell language (`sh`, `shell`, or `bash`), a
+  `Terminal` component is rendered instead.
 
 ````md
 ```js
+```
+````
+
+- `animate` (`Terminal` only): Determines whether to animate the shell
+  command and terminal output to make it appear as if the command is being
+  typed. _NOTE_: This is ignored if the `language` is not set to a shell
+  language.
+
+````md
+```sh animate
+
 ```
 ````
 
@@ -1586,6 +1629,114 @@ import { TagList } from '@newrelic/gatsby-theme-newrelic';
   <Tag>JavaScript</Tag>
   <Tag>Gatsby</Tag>
 </TagList>
+```
+
+### `Terminal`
+
+A nice alternative to the `CodeBlock` when rendering shell commands and terminal
+output.
+
+```js
+import { Terminal } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type    | Required | Default | Description                                                                                                                                                                                                        |
+| ---------- | ------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `animate`  | boolean | no       | `false` | Determines whether to animate the shell command to make it appear as if it is being typed. This will also animate any terminal output specified. Triggers when the user has scrolled 50% of the way down the page. |
+| `children` | string  | yes      |         | The code to be rendered in the code block. See below for examples on how to render terminal output.                                                                                                                |
+| `copyable` | boolean | no       | `true`  | Determines whether to render a copy button for the content inside the code block. NOTE: only shell commands will be copied. Terminal output will not be copied to the clipboard.                                   |
+
+**Terminal output**
+
+To render terminal output, prefix the line of code with the `[output]` marker
+(include a space after the closing bracket). This tells the `Terminal` to 1)
+avoid displaying the prompt for the current line and 2) avoid animating it with
+the typing animation. When animation is enabled, the terminal output will be
+rendered at various intervals of time to make it appear as if the command is
+doing some work.
+
+Terminal output can also be colored. By default it will render as plain text
+unless otherwise specified. To color a section of text, prefix the area of text
+with a color using curly brackets. For example, if you wanted to render some
+text as `blue`, prefix it with `{blue}`. The color of the text will extend unil
+the next color marker. You can "reset" the color back to plain text using the
+`{plain}` marker.
+
+For example, lets say you have this bit of terminal output that you'd like to
+display as colored:
+
+```
+✔  Component created successfully!
+```
+
+For this example, lets say only the checkmark should be green, while the rest of
+the text remain plain. To accomplish this, first specify this line as output
+(`[output]`), and add the color markers:
+
+```
+[output] {green}✔  {plain}Component created successfully!
+```
+
+Here is a more complex example:
+
+```
+[output]    {purple}nerdpack {blue}pageviews-app {plain}is available at {green}"./pageviews-app"
+```
+
+Here the output will render the text "nerdpack" as `purple`, then the app
+identifier as `blue` ("pageviews-app"), reset the text back to plain, and
+finally the string as `green`. Also notice how the text is indented after the
+`[output]` marker. This will render in the terminal as indented text.
+
+Here is a full list of the colors available:
+
+- `plain`
+- `green`
+- `red`
+- `muted`
+- `purple`
+- `blue`
+- `yellow`
+
+For your convenience, color aliases have been provided to give you some more
+semantically meaningful names, and provide better color consistency between
+meaningful blocks of text. The following color aliases are available:
+
+- `error` (`red`)
+- `identifier` (`blue`)
+- `string` (`green`)
+- `success` (`green`)
+- `timestamp` (`muted`)
+- `variable` (`variable`)
+- `warning` (`yellow`)
+
+```
+[output] {timestamp}2020-01-01 12:00:00 {success}✔ {purple}nerdpack {identifier}pageviews-app {plain} is available at {string}"./pageviews-app"
+```
+
+**Example**
+
+```js
+const shellCommand = `
+cd my-nerdlet
+nr1 nerdpack:serve
+`;
+
+const Example = () => <Terminal animate>{shellCommand}</Terminal>;
+```
+
+With terminal output
+
+```js
+const shellCommand = `
+nr1 create --type nerdpack --name pageviews-app
+[output] {success}✔  {plain}Component created successfully!
+[output]    {purple}nerdpack {blue}pageviews-app {plain}is available at {green}"./pageviews-app"
+`;
+
+const Example = () => <Terminal>{shellCommand}</Terminal>;
 ```
 
 ### `Video`
@@ -1984,6 +2135,16 @@ Utility function that formats a string of code using
 - `options` _(object) - optional_: Formatting options forwarded to `prettier`
   when formatting the string of code. For a list of all available options, visit
   the [prettier documentation](https://prettier.io/docs/en/options.html).
+
+  - `options.language` _(string)_: Tells the function the language of the code
+    that will be formatted through prettier. This is used to detect a suitable
+    `parser` for the code. This is recommended if you are not setting the
+    `parser` option yourself. If no suitable parser is found for the current
+    language, or if the `language` option is not specified, this will fall back
+    to the `babel` parser. For more info on available
+    [plugins](https://prettier.io/docs/en/browser.html#plugins) and
+    [parsers](https://prettier.io/docs/en/options.html#parser), see the
+    [Prettier](https://prettier.io/) documentation.
 
   **Default:**
 
