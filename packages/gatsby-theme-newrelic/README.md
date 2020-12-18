@@ -2007,6 +2007,16 @@ Utility function that formats a string of code using
   when formatting the string of code. For a list of all available options, visit
   the [prettier documentation](https://prettier.io/docs/en/options.html).
 
+  - `options.language` _(string)_: Tells the function the language of the code
+    that will be formatted through prettier. This is used to detect a suitable
+    `parser` for the code. This is recommended if you are not setting the
+    `parser` option yourself. If no suitable parser is found for the current
+    language, or if the `language` option is not specified, this will fall back
+    to the `babel` parser. For more info on available
+    [plugins](https://prettier.io/docs/en/browser.html#plugins) and
+    [parsers](https://prettier.io/docs/en/options.html#parser), see the
+    [Prettier](https://prettier.io/) documentation.
+
   **Default:**
 
   ```js
