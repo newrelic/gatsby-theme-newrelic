@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.17.2...v1.18.0) (2020-12-18)
+
+
+### Bug Fixes
+
+* **CodeBlock:** set the language as jsx for all javascript code blocks ([6452e36](https://github.com/newrelic/gatsby-theme-newrelic/commit/6452e3641cd0e37f2c4109bb1d5d0155744708ef))
+
+
+### Features
+
+* add scss syntax highlighting support ([9122320](https://github.com/newrelic/gatsby-theme-newrelic/commit/912232031473529007f2360269907834eebc6b92))
+* **formatCode:** auto detect parser based on the language ([1653fca](https://github.com/newrelic/gatsby-theme-newrelic/commit/1653fcaa6bd1c45444edbc838882159574cdc760))
+* add sass syntax highlighting support ([3cea9d8](https://github.com/newrelic/gatsby-theme-newrelic/commit/3cea9d8138e65e9ae91af743e7c4dd4556b230c1))
+* **CodeBlock:** add the ability to disable auto formatting ([429cc2a](https://github.com/newrelic/gatsby-theme-newrelic/commit/429cc2ac2c38d7cebf959b9106b730657095e4ed))
+* **CodeBlock:** enable auto formatting for particular languages if not supplied ([8b844bb](https://github.com/newrelic/gatsby-theme-newrelic/commit/8b844bb8f90ce3afd3387b30031d0371cab3a4f0))
+* **formatCode:** support code formatting for more languages ([dac0370](https://github.com/newrelic/gatsby-theme-newrelic/commit/dac0370abdbe809e5644d4a4a0c55568f983dc65))
+* **MDXCodeBlock:** automatically render a Terminal component if the language is a shell language ([ac24e4f](https://github.com/newrelic/gatsby-theme-newrelic/commit/ac24e4ffb8ffc2bceeb6e6df83b6c65805d9ed1e))
+* Add a Terminal component that can be used to display shell output ([d21b3df](https://github.com/newrelic/gatsby-theme-newrelic/commit/d21b3df2516faaede4d6be325029233d31419eae))
+
+
+
+
+
 ## [1.17.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.17.1...v1.17.2) (2020-12-17)
 
 
