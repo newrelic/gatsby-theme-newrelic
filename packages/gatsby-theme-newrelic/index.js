@@ -27,6 +27,7 @@ export { default as Spinner } from './src/components/Spinner';
 export { default as Table } from './src/components/Table';
 export { default as Tag } from './src/components/Tag';
 export { default as TagList } from './src/components/TagList';
+export { default as Terminal } from './src/components/Terminal';
 export { default as Video } from './src/components/Video';
 
 export { default as formatCode } from './src/utils/formatCode';
