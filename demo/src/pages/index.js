@@ -14,6 +14,7 @@ import {
   Surface,
   Tag,
   TagList,
+  Terminal,
   Video,
   useLayout,
 } from '@newrelic/gatsby-theme-newrelic';
@@ -140,6 +141,19 @@ const IndexPage = () => {
           >
             {liveCodeSample}
           </CodeBlock>
+        </section>
+        <section>
+          <h2>Terminal</h2>
+          <Terminal>cd packages/gatsby-theme-newrelic</Terminal>
+
+          <h2>Animated terminal</h2>
+          <Terminal animate>
+            {`
+nr1 create --type nerdpack --name pageviews-app
+[output] {success}✔  {plain}Component created successfully!
+[output]    {purple}nerdpack {blue}pageviews-app {plain}is available at {green}"./pageviews-app"
+            `}
+          </Terminal>
         </section>
         <section>
           <h2>Buttons</h2>
