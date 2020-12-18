@@ -57,6 +57,7 @@ websites](https://opensource.newrelic.com).
   - [`Table`](#table)
   - [`Tag`](#tag)
   - [`TagList`](#taglist)
+  - [`Terminal`](#terminal)
   - [`Video`](#video)
 - [Hooks](#hooks)
   - [`useClipboard`](#useclipboard)
@@ -1608,6 +1609,114 @@ import { TagList } from '@newrelic/gatsby-theme-newrelic';
   <Tag>JavaScript</Tag>
   <Tag>Gatsby</Tag>
 </TagList>
+```
+
+### `Terminal`
+
+A nice alternative to the `CodeBlock` when rendering shell commands and terminal
+output.
+
+```js
+import { Terminal } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type    | Required | Default | Description                                                                                                                                                                                                        |
+| ---------- | ------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `animate`  | boolean | no       | `false` | Determines whether to animate the shell command to make it appear as if it is being typed. This will also animate any terminal output specified. Triggers when the user has scrolled 50% of the way down the page. |
+| `children` | string  | yes      |         | The code to be rendered in the code block. See below for examples on how to render terminal output.                                                                                                                |
+| `copyable` | boolean | no       | `true`  | Determines whether to render a copy button for the content inside the code block. NOTE: only shell commands will be copied. Terminal output will not be copied to the clipboard.                                   |
+
+**Terminal output**
+
+To render terminal output, prefix the line of code with the `[output]` marker
+(include a space after the closing bracket). This tells the `Terminal` to 1)
+avoid displaying the prompt for the current line and 2) avoid animating it with
+the typing animation. When animation is enabled, the terminal output will be
+rendered at various intervals of time to make it appear as if the command is
+doing some work.
+
+Terminal output can also be colored. By default it will render as plain text
+unless otherwise specified. To color a section of text, prefix the area of text
+with a color using curly brackets. For example, if you wanted to render some
+text as `blue`, prefix it with `{blue}`. The color of the text will extend unil
+the next color marker. You can "reset" the color back to plain text using the
+`{plain}` marker.
+
+For example, lets say you have this bit of terminal output that you'd like to
+display as colored:
+
+```
+✔  Component created successfully!
+```
+
+For this example, lets say only the checkmark should be green, while the rest of
+the text remain plain. To accomplish this, first specify this line as output
+(`[output]`), and add the color markers:
+
+```
+[output] {green}✔  {plain}Component created successfully!
+```
+
+Here is a more complex example:
+
+```
+[output]    {purple}nerdpack {blue}pageviews-app {plain}is available at {green}"./pageviews-app"
+```
+
+Here the output will render the text "nerdpack" as `purple`, then the app
+identifier as `blue` ("pageviews-app"), reset the text back to plain, and
+finally the string as `green`. Also notice how the text is indented after the
+`[output]` marker. This will render in the terminal as indented text.
+
+Here is a full list of the colors available:
+
+- `plain`
+- `green`
+- `red`
+- `muted`
+- `purple`
+- `blue`
+- `yellow`
+
+For your convenience, color aliases have been provided to give you some more
+semantically meaningful names, and provide better color consistency between
+meaningful blocks of text. The following color aliases are available:
+
+- `error` (`red`)
+- `identifier` (`blue`)
+- `string` (`green`)
+- `success` (`green`)
+- `timestamp` (`muted`)
+- `variable` (`variable`)
+- `warning` (`yellow`)
+
+```
+[output] {timestamp}2020-01-01 12:00:00 {success}✔ {purple}nerdpack {identifier}pageviews-app {plain} is available at {string}"./pageviews-app"
+```
+
+**Example**
+
+```js
+const shellCommand = `
+cd my-nerdlet
+nr1 nerdpack:serve
+`;
+
+const Example = () => <Terminal animate>{shellCommand}</Terminal>;
+```
+
+With terminal output
+
+```js
+const shellCommand = `
+nr1 create --type nerdpack --name pageviews-app
+[output] {success}✔  {plain}Component created successfully!
+[output]    {purple}nerdpack {blue}pageviews-app {plain}is available at {green}"./pageviews-app"
+`;
+
+const Example = () => <Terminal>{shellCommand}</Terminal>;
 ```
 
 ### `Video`
