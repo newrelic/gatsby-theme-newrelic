@@ -100,6 +100,7 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
         'shell',
         'sql',
         'graphql',
+        'sass',
         ...(prism.languages || []),
       ]),
     },
