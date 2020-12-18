@@ -1182,8 +1182,9 @@ depending on whether it is a relative or absolute URL.
 ### `MDXCodeBlock`
 
 Used to render a fenced code block using the [`CodeBlock`](#codeblock) component
-inside of an MDX document. This component works best in conjunction with the
-`MDXProvider` component exported from the `@mdx-js/react` package.
+or a [`Terminal`](#terminal) component inside of an MDX document. This component
+works best in conjunction with the `MDXProvider` component exported from the
+`@mdx-js/react` package.
 
 ```js
 import { MDXCodeBlock } from '@newrelic/gatsby-theme-newrelic';
@@ -1191,10 +1192,17 @@ import { MDXCodeBlock } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-All props are forwarded to the `CodeBlock` component. This component also
-maintains the same defaults. See the "Using with fenced code blocks" section
-below to learn how options in fenced code blocks are forwarded to the
-`CodeBlock` component.
+All props are forwarded to the either the `CodeBlock` component, or the
+`Terminal` component (whichever is rendered based on the language. See below for
+more information). This component also maintains the same defaults. See the
+"Using with fenced code blocks" section below to learn how options in fenced
+code blocks are forwarded to the `CodeBlock` or `Terminal` component.
+
+**Terminals**
+
+This component will automatically render a [`Terminal`](#terminal) component
+whenver the language is specified as a shell language (`sh`, `shell`, or
+`bash`.) This is to provide a richer experience when rendering shell commands.
 
 **Usage with MDXProvider**
 
@@ -1229,10 +1237,22 @@ component. The following options are available for fenced code blocks when using
 this component.
 
 - `language`: Use a language identifier to enable syntax highlighting for the
-  fenced code block.
+  fenced code block. If this is a shell language (`sh`, `shell`, or `bash`), a
+  `Terminal` component is rendered instead.
 
 ````md
 ```js
+```
+````
+
+- `animate` (`Terminal` only): Determines whether to animate the shell
+  command and terminal output to make it appear as if the command is being
+  typed. _NOTE_: This is ignored if the `language` is not set to a shell
+  language.
+
+````md
+```sh animate
+
 ```
 ````
 
