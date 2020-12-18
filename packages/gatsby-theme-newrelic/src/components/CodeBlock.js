@@ -10,11 +10,22 @@ import MiddleEllipsis from 'react-middle-ellipsis';
 import useClipboard from '../hooks/useClipboard';
 import useFormattedCode from '../hooks/useFormattedCode';
 
+const AUTO_FORMATTED_LANGUAGES = [
+  'jsx',
+  'html',
+  'graphql',
+  'json',
+  'css',
+  'sass',
+  'scss',
+];
+
 const defaultComponents = {
   Preview: LivePreview,
 };
 
 const CodeBlock = ({
+  autoFormat,
   children,
   className,
   components: componentOverrides = {},
@@ -28,8 +39,19 @@ const CodeBlock = ({
   preview,
   scope,
 }) => {
+  if (isJSLang()) {
+    language = 'jsx';
+  }
+
   const components = { ...defaultComponents, ...componentOverrides };
-  const formattedCode = useFormattedCode(children, formatOptions);
+  const formattedCode = useFormattedCode(children, {
+    ...formatOptions,
+    language,
+    disable:
+      autoFormat == null
+        ? !AUTO_FORMATTED_LANGUAGES.includes(language)
+        : !autoFormat,
+  });
   const [copied, copy] = useClipboard();
   const [code, setCode] = useState(formattedCode);
 
@@ -163,6 +185,7 @@ const CodeBlock = ({
 };
 
 CodeBlock.propTypes = {
+  autoFormat: PropTypes.bool,
   fileName: PropTypes.string,
   children: PropTypes.string.isRequired,
   className: PropTypes.string,
@@ -185,5 +208,7 @@ CodeBlock.defaultProps = {
   live: false,
   preview: false,
 };
+
+const isJSLang = (language) => ['js', 'javascript'].includes(language);
 
 export default CodeBlock;
