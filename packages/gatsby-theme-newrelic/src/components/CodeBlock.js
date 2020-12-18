@@ -15,6 +15,7 @@ const defaultComponents = {
 };
 
 const CodeBlock = ({
+  autoFormat,
   children,
   className,
   components: componentOverrides = {},
@@ -29,7 +30,10 @@ const CodeBlock = ({
   scope,
 }) => {
   const components = { ...defaultComponents, ...componentOverrides };
-  const formattedCode = useFormattedCode(children, formatOptions);
+  const formattedCode = useFormattedCode(children, {
+    ...formatOptions,
+    disable: !autoFormat,
+  });
   const [copied, copy] = useClipboard();
   const [code, setCode] = useState(formattedCode);
 
@@ -163,6 +167,7 @@ const CodeBlock = ({
 };
 
 CodeBlock.propTypes = {
+  autoFormat: PropTypes.bool,
   fileName: PropTypes.string,
   children: PropTypes.string.isRequired,
   className: PropTypes.string,
@@ -180,6 +185,7 @@ CodeBlock.propTypes = {
 };
 
 CodeBlock.defaultProps = {
+  autoFormat: true,
   copyable: true,
   lineNumbers: false,
   live: false,
