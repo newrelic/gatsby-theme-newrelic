@@ -1,5 +1,8 @@
 import prettier from 'prettier/standalone';
 import parserBabel from 'prettier/parser-babel';
+import parserGraphQL from 'prettier/parser-graphql';
+import parserPostCSS from 'prettier/parser-postcss';
+import parserHTML from 'prettier/parser-html';
 
 const formatCode = (code, formatOptions = {}) =>
   prettier.format(code, {
@@ -8,7 +11,7 @@ const formatCode = (code, formatOptions = {}) =>
     tabWidth: 2,
     semi: true,
     singleQuote: true,
-    plugins: [parserBabel],
+    plugins: [parserBabel, parserGraphQL, parserPostCSS, parserHTML],
     parser: 'babel',
     ...formatOptions,
   });
