@@ -46,6 +46,7 @@ const CodeBlock = ({
   const components = { ...defaultComponents, ...componentOverrides };
   const formattedCode = useFormattedCode(children, {
     ...formatOptions,
+    language,
     disable:
       autoFormat == null
         ? !AUTO_FORMATTED_LANGUAGES.includes(language)
