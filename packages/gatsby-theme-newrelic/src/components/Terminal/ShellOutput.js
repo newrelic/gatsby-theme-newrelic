@@ -55,10 +55,13 @@ const OUTPUT_COLORS = {
   yellow: 'var(--color-nord-13)',
 };
 
+OUTPUT_COLORS.error = OUTPUT_COLORS.red;
+OUTPUT_COLORS.identifier = OUTPUT_COLORS.blue;
+OUTPUT_COLORS.string = OUTPUT_COLORS.green;
+OUTPUT_COLORS.success = OUTPUT_COLORS.green;
 OUTPUT_COLORS.timestamp = OUTPUT_COLORS.muted;
 OUTPUT_COLORS.variable = OUTPUT_COLORS.purple;
-OUTPUT_COLORS.success = OUTPUT_COLORS.green;
-OUTPUT_COLORS.error = OUTPUT_COLORS.red;
+OUTPUT_COLORS.warning = OUTPUT_COLORS.yellow;
 
 ShellOutput.propTypes = {
   line: PropTypes.string.isRequired,
