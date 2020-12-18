@@ -240,6 +240,8 @@ Default supported languages:
 - `ruby`
 - `shell`
 - `sql`
+- `sass`
+- `scss`
 
 **Example:** Add `swift` as a supported language
 
