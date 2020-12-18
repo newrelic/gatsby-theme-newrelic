@@ -29,6 +29,10 @@ const CodeBlock = ({
   preview,
   scope,
 }) => {
+  if (isJSLang()) {
+    language = 'jsx';
+  }
+
   const components = { ...defaultComponents, ...componentOverrides };
   const formattedCode = useFormattedCode(children, {
     ...formatOptions,
@@ -191,5 +195,7 @@ CodeBlock.defaultProps = {
   live: false,
   preview: false,
 };
+
+const isJSLang = (language) => ['js', 'javascript'].includes(language);
 
 export default CodeBlock;
