@@ -449,20 +449,40 @@ import { CodeBlock } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop               | Type    | Required | Default | Description                                                                                                                                                                                                                                                                |
-| ------------------ | ------- | -------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `children`         | string  | yes      |         | The code to be rendered in the code block                                                                                                                                                                                                                                  |
-| `className`        | string  | no       |         | Adds a `className` to the outer container of the code block. Useful if you need to position the code block within its parent element.                                                                                                                                      |
-| `components`       | object  | no       |         | Swap out the elements used when rendering various elements of the code block. See the "Configurable components" guide below to learn more about this prop.                                                                                                                 |
-| `copyable`         | boolean | no       | `true`  | Determines whether to render a copy button for the content inside the code block.                                                                                                                                                                                          |
-| `fileName`         | string  | no       |         | The file name associated with the code rendered by the code block. Useful if the code block is used as part of tutorial.                                                                                                                                                   |
-| `formatOptions`    | object  | no       |         | Configuration options given to the [`formatCode`](#formatcode) utility function to auto-format the code block.                                                                                                                                                             |
-| `highlightedLines` | string  | no       |         | Specifies which lines in the code block should be highlighted. See the examples below on for information on how to format this string.                                                                                                                                     |
-| `language`         | string  | no       |         | Configures the language used for syntax highlighting. Must match one of the languages or its aliases from [`prismjs`](https://prismjs.com/#supported-languages). To learn more about configuring supported languages, visit the [`prism` configuration section](#prism).   |
-| `lineNumbers`      | boolean | no       | `false` | Determines whether to show line numbers inside the code block.                                                                                                                                                                                                             |
-| `live`             | boolean | no       | `false` | Determines whether the code block is live-editable or not. Useful when used in conjunction with the `preview` option, though not required.                                                                                                                                 |
-| `preview`          | boolean | no       | `false` | Determines whether a live preview is displayed using the value in the code block. Useful in conjunction with the `live` option to allow the user to edit the code snippet.                                                                                                 |
-| `scope`            | object  | no       |         | Configures the variables available as globals for the live preview. By default, only `React` is injected. To find out more about how the `scope` prop works, visit the [`react-live` documentation](https://github.com/FormidableLabs/react-live#how-does-the-scope-work). |
+| Prop               | Type    | Required | Default  | Description                                                                                                                                                                                                                                                                |
+| ------------------ | ------- | -------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `autoFormat`       | boolean | no       | `true`\* | Determines whether to auto format the code using prettier. `true` will force code formatting to occur. `false` will force disable code formatting. If left empty, code formatting will only run on a subset of supported languages (see below)                             |
+| `children`         | string  | yes      |          | The code to be rendered in the code block                                                                                                                                                                                                                                  |
+| `className`        | string  | no       |          | Adds a `className` to the outer container of the code block. Useful if you need to position the code block within its parent element.                                                                                                                                      |
+| `components`       | object  | no       |          | Swap out the elements used when rendering various elements of the code block. See the "Configurable components" guide below to learn more about this prop.                                                                                                                 |
+| `copyable`         | boolean | no       | `true`   | Determines whether to render a copy button for the content inside the code block.                                                                                                                                                                                          |
+| `fileName`         | string  | no       |          | The file name associated with the code rendered by the code block. Useful if the code block is used as part of tutorial.                                                                                                                                                   |
+| `formatOptions`    | object  | no       |          | Configuration options given to the [`formatCode`](#formatcode) utility function to auto-format the code block.                                                                                                                                                             |
+| `highlightedLines` | string  | no       |          | Specifies which lines in the code block should be highlighted. See the examples below on for information on how to format this string.                                                                                                                                     |
+| `language`         | string  | no       |          | Configures the language used for syntax highlighting. Must match one of the languages or its aliases from [`prismjs`](https://prismjs.com/#supported-languages). To learn more about configuring supported languages, visit the [`prism` configuration section](#prism).   |
+| `lineNumbers`      | boolean | no       | `false`  | Determines whether to show line numbers inside the code block.                                                                                                                                                                                                             |
+| `live`             | boolean | no       | `false`  | Determines whether the code block is live-editable or not. Useful when used in conjunction with the `preview` option, though not required.                                                                                                                                 |
+| `preview`          | boolean | no       | `false`  | Determines whether a live preview is displayed using the value in the code block. Useful in conjunction with the `live` option to allow the user to edit the code snippet.                                                                                                 |
+| `scope`            | object  | no       |          | Configures the variables available as globals for the live preview. By default, only `React` is injected. To find out more about how the `scope` prop works, visit the [`react-live` documentation](https://github.com/FormidableLabs/react-live#how-does-the-scope-work). |
+
+**Auto code formatting**
+
+Out of the box, the `CodeBlock` component will use prettier to format code for a
+subset of languages. These include:
+
+- `jsx`/`javascript`
+- `html`
+- `graphql`
+- `json`
+- `css`/`sass`/`scss`
+
+To force formatting for another language, set the `autoFormat` prop value to
+`true`. To force disable code formatting, set the `autoFormat` prop value to
+`false`.
+
+**NOTE:** If you choose to force enable code formatting for a language not
+listed above, you may need to use the `formatOptions` prop to set the proper
+[`plugins`](https://prettier.io/docs/en/browser.html#plugins).
 
 **Configurable components**
 
