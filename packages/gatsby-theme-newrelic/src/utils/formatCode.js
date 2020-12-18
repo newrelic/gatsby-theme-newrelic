@@ -4,7 +4,16 @@ import parserGraphQL from 'prettier/parser-graphql';
 import parserPostCSS from 'prettier/parser-postcss';
 import parserHTML from 'prettier/parser-html';
 
-const formatCode = (code, formatOptions = {}) =>
+const PARSERS = {
+  graphql: 'graphql',
+  css: 'css',
+  scss: 'scss',
+  sass: 'scss',
+  json: 'json',
+  html: 'html',
+};
+
+const formatCode = (code, { language, ...formatOptions } = {}) =>
   prettier.format(code, {
     trailingComma: 'es5',
     printWidth: 80,
@@ -12,7 +21,7 @@ const formatCode = (code, formatOptions = {}) =>
     semi: true,
     singleQuote: true,
     plugins: [parserBabel, parserGraphQL, parserPostCSS, parserHTML],
-    parser: 'babel',
+    parser: PARSERS[language] || 'babel',
     ...formatOptions,
   });
 
