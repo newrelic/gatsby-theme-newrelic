@@ -6,19 +6,7 @@ import { css } from '@emotion/core';
 import Button from './Button';
 import Icon from './Icon';
 import PageTools from './PageTools';
-
-const getParams = (title, labels, sentiment, slug, site) => {
-  const params = new URLSearchParams();
-
-  params.set('labels', [...labels, sentiment].join(','));
-  params.set('title', title ? `Feedback: ${title}` : 'Website Feedback');
-
-  if (title && slug) {
-    params.set('body', `Page: [${title}](${site}${slug})`);
-  }
-
-  return params.toString();
-};
+import createIssueURL from '../utils/createIssueURL';
 
 const SimpleFeedback = ({ title, slug, labels }) => {
   const { site } = useStaticQuery(graphql`
@@ -33,17 +21,20 @@ const SimpleFeedback = ({ title, slug, labels }) => {
   `);
 
   const { repository, siteUrl } = site.siteMetadata;
-  const issueUrl = `${repository}/issues/new`;
 
-  const positiveFeedback = [
-    issueUrl,
-    getParams(title, labels, 'feedback-positive', slug, siteUrl),
-  ].join('?');
+  const positiveFeedback = createIssueURL(
+    repository,
+    title && `Feedback: ${title}`,
+    [...labels, 'feedback-positive'],
+    { title, slug, siteUrl }
+  );
 
-  const negativeFeedback = [
-    issueUrl,
-    getParams(title, labels, 'feedback-negative', slug, siteUrl),
-  ].join('?');
+  const negativeFeedback = createIssueURL(
+    repository,
+    title && `Feedback: ${title}`,
+    [...labels, 'feedback-negative'],
+    { title, slug, siteUrl }
+  );
 
   return (
     <PageTools.Section>
