@@ -637,7 +637,7 @@ import { ContributingGuidelines } from '@newrelic/gatsby-theme-newrelic'`
 | Prop               | Type   | Required | Default | Description                                                                                 |
 | ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------- |
 | `fileRelativePath` | string | no       |         | The relative file path of the current page. This will be used by the "Edit this page" link. |
-| `title`            | string | no       |         | The title of the current page for use in a new GitHub issue.                                |
+| `pageTitle`        | string | no       |         | The title of the current page for use in a new GitHub issue.                                |
 
 **Examples**
 
@@ -761,7 +761,7 @@ import { GlobalFooter } from '@newrelic/gatsby-theme-newrelic';
 | ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------- |
 | `className`        | string | no       |         | Additional `className` for the component.                                                                     |
 | `fileRelativePath` | string | no       |         | The relative path to the markdown file for the current page. If not supplied, the edit link will not be shown |
-| `title`            | string | no       |         | The title of the current page for use in a new GitHub issue.                                                  |
+| `pageTitle`        | string | no       |         | The title of the current page for use in a new GitHub issue.                                                  |
 
 **Example**
 
@@ -1497,7 +1497,7 @@ import { SimpleFeedback } from '@newrelic/gatsby-theme-newrelic';
 **Props**
 | Prop | Type | Required | Default | Description |
 | ------- | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------------------- |
-| `title` | string | no | | The current page title, which will be added to the issue title, if supplied. |
+| `pageTitle` | string | no | | The current page title, which will be added to the issue title, if supplied. |
 | `labels` | array | no | `['feedback']` | An array of label string to be applied to the new issue, in addition to either`feedback-positive`or`feedback-negative`. |
 
 **Example**

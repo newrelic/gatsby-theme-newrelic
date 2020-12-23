@@ -75,7 +75,7 @@ describe('SimpleFeedback Component', () => {
 
   it('should render links with the page title in the issue title', () => {
     const title = 'tacos';
-    const { getAllByRole } = render(<SimpleFeedback title={title} />);
+    const { getAllByRole } = render(<SimpleFeedback pageTitle={title} />);
     const [yes] = getAllByRole('button');
 
     const params = new URLSearchParams();
@@ -90,7 +90,7 @@ describe('SimpleFeedback Component', () => {
     const title = 'tacos';
     const slug = SLUG;
     const { getAllByRole } = render(
-      <SimpleFeedback title={title} slug={slug} />
+      <SimpleFeedback pageTitle={title} slug={slug} />
     );
     const [yes] = getAllByRole('button');
 

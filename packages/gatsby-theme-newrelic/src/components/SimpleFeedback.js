@@ -9,7 +9,7 @@ import Icon from './Icon';
 import PageTools from './PageTools';
 import createIssueURL from '../utils/createIssueURL';
 
-const SimpleFeedback = ({ title, labels }) => {
+const SimpleFeedback = ({ pageTitle, labels }) => {
   const { site } = useStaticQuery(graphql`
     query FeedbackQuery {
       site {
@@ -24,18 +24,20 @@ const SimpleFeedback = ({ title, labels }) => {
   const { repository, siteUrl } = site.siteMetadata;
   const { pathname } = useLocation();
 
+  const page = { title: pageTitle, slug: pathname, siteUrl };
+  const title = pageTitle && `Feedback: ${pageTitle}`;
+
   const positiveFeedback = createIssueURL({
     repository,
-    title: title && `Feedback: ${title}`,
+    page,
+    title,
     labels: [...labels, 'feedback-positive'],
-    page: { title, slug: pathname, siteUrl },
   });
 
   const negativeFeedback = createIssueURL({
     repository,
-    title: title && `Feedback: ${title}`,
+    page,
     labels: [...labels, 'feedback-negative'],
-    page: { title, slug: pathname, siteUrl },
   });
 
   return (
@@ -105,7 +107,7 @@ const SimpleFeedback = ({ title, labels }) => {
 };
 
 SimpleFeedback.propTypes = {
-  title: PropTypes.string,
+  pageTitle: PropTypes.string,
   labels: PropTypes.arrayOf(PropTypes.string),
 };
 

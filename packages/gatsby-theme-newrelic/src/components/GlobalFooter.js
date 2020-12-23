@@ -9,7 +9,7 @@ import { graphql, useStaticQuery, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import createIssueURL from '../utils/createIssueURL';
 
-const GlobalFooter = ({ fileRelativePath, className, title }) => {
+const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
   const { site, sitePage } = useStaticQuery(graphql`
     query FooterQuery {
       site {
@@ -33,12 +33,11 @@ const GlobalFooter = ({ fileRelativePath, className, title }) => {
   const { branch, repository, siteUrl } = siteMetadata;
   const { pathname } = useLocation();
 
-  const issueUrl = createIssueURL({
-    repository,
-    title: title && `Issue: ${title}`,
-    labels: ['bug'],
-    page: { title, slug: pathname, siteUrl },
-  });
+  const page = { title: pageTitle, slug: pathname, siteUrl };
+  const title = pageTitle && `Issue: ${pageTitle}`;
+  const labels = ['bug'];
+
+  const issueUrl = createIssueURL({ repository, title, page, labels });
 
   return (
     <footer
@@ -212,7 +211,7 @@ const GlobalFooter = ({ fileRelativePath, className, title }) => {
 GlobalFooter.propTypes = {
   fileRelativePath: PropTypes.string,
   className: PropTypes.string,
-  title: PropTypes.string,
+  pageTitle: PropTypes.string,
 };
 
 export default GlobalFooter;

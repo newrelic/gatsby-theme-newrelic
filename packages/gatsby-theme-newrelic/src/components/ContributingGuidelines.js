@@ -9,7 +9,7 @@ import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
 import createIssueURL from '../utils/createIssueURL';
 
-const ContributingGuidelines = ({ fileRelativePath, title }) => {
+const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
   const {
     site: {
       siteMetadata: { repository, branch, contributingUrl, siteUrl },
@@ -29,12 +29,11 @@ const ContributingGuidelines = ({ fileRelativePath, title }) => {
 
   const { pathname } = useLocation();
 
-  const issueUrl = createIssueURL({
-    repository,
-    title: title && `Issue: ${title}`,
-    location: ['bug'],
-    page: { title, slug: pathname, siteUrl },
-  });
+  const page = { title: pageTitle, slug: pathname, siteUrl };
+  const title = pageTitle && `Issue: ${pageTitle}`;
+  const labels = ['bug'];
+
+  const issueUrl = createIssueURL({ repository, title, page, labels });
 
   return (
     <PageTools.Section
@@ -107,7 +106,7 @@ const ContributingGuidelines = ({ fileRelativePath, title }) => {
 
 ContributingGuidelines.propTypes = {
   fileRelativePath: PropTypes.string,
-  title: PropTypes.string,
+  pageTitle: PropTypes.string,
 };
 
 export default ContributingGuidelines;

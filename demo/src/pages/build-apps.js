@@ -19,7 +19,7 @@ const BuildApps = () => {
       <Layout.PageTools>
         <ContributingGuidelines
           fileRelativePath="/build-apps"
-          title="Build Apps"
+          pageTitle="Build Apps"
         />
       </Layout.PageTools>
     </Layout.Main>
