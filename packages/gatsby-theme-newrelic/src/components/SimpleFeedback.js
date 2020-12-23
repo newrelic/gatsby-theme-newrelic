@@ -37,6 +37,7 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
   const negativeFeedback = createIssueURL({
     repository,
     page,
+    title,
     labels: [...labels, 'feedback-negative'],
   });
 
