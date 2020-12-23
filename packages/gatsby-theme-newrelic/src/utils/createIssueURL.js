@@ -61,10 +61,8 @@ const createIssueURL = ({
 
   if (description) {
     params.set('body', description);
-  } else if (page.title && page.slug && page.siteUrl) {
-    params.set('body', createDescription(page));
   } else {
-    params.set('body', createDescription());
+    params.set('body', createDescription(page));
   }
 
   return [baseURL, params.toString()].join('?');
