@@ -4,7 +4,7 @@ const DEFAULT_TITLE = 'Website Feedback';
  * Constructs a new issue url with information pre-filled for the user.
  *
  * @param {string} repository The URL for the repository.
- * @param {string?} title An (optional) title for the issue.
+ * @param {string} [title] An (optional) title for the issue.
  * @param {string[]} labels An array of label titles.
  * @param {Object} page Optional information about the page (title and slug).
  * @param {string} page.title The title for the page.
