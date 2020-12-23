@@ -6,16 +6,18 @@ import ExternalLink from './ExternalLink';
 import Icon from './Icon';
 import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
+import createIssueURL from '../utils/createIssueURL';
 
-const ContributingGuidelines = ({ fileRelativePath }) => {
+const ContributingGuidelines = ({ fileRelativePath, title, slug }) => {
   const {
     site: {
-      siteMetadata: { repository, branch, contributingUrl },
+      siteMetadata: { repository, branch, contributingUrl, siteUrl },
     },
   } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
+          siteUrl
           repository
           branch
           contributingUrl
@@ -23,6 +25,13 @@ const ContributingGuidelines = ({ fileRelativePath }) => {
       }
     }
   `);
+
+  const issueUrl = createIssueURL(
+    repository,
+    title && `Issue: ${title}`,
+    ['bug'],
+    { title, slug, siteUrl }
+  );
 
   return (
     <PageTools.Section
@@ -47,7 +56,7 @@ const ContributingGuidelines = ({ fileRelativePath }) => {
       >
         <Button
           as={ExternalLink}
-          href={`${repository}/issues/new/choose`}
+          href={issueUrl}
           variant={Button.VARIANT.OUTLINE}
           size={Button.SIZE.SMALL}
         >
@@ -95,6 +104,8 @@ const ContributingGuidelines = ({ fileRelativePath }) => {
 
 ContributingGuidelines.propTypes = {
   fileRelativePath: PropTypes.string,
+  title: PropTypes.string,
+  slug: PropTypes.string,
 };
 
 export default ContributingGuidelines;
