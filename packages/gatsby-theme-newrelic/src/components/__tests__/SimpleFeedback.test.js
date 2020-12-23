@@ -7,6 +7,7 @@ import { createDescription } from '../../utils/createIssueURL';
 // https://github.com/facebook/jest/issues/2567
 const SITE = 'https://github.com/foo/bar';
 const REPO = 'https://foobar.net';
+const SLUG = '/foo-bar';
 const ISSUE_URL = `${REPO}/issues/new`;
 
 jest.mock('gatsby', () => ({
@@ -20,6 +21,11 @@ jest.mock('gatsby', () => ({
       },
     },
   }),
+}));
+
+jest.mock('@reach/router', () => ({
+  __esModule: true,
+  useLocation: () => ({ pathname: '/foo-bar' }),
 }));
 
 const resultWithoutBody = (node) => node.getAttribute('href').split('&body')[0];
@@ -82,7 +88,7 @@ describe('SimpleFeedback Component', () => {
 
   it('should render links with page URL in the issue body', () => {
     const title = 'tacos';
-    const slug = '/food';
+    const slug = SLUG;
     const { getAllByRole } = render(
       <SimpleFeedback title={title} slug={slug} />
     );

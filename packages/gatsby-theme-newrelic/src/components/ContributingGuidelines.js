@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useLocation } from '@reach/router';
 import { css } from '@emotion/core';
 import Button from './Button';
 import ExternalLink from './ExternalLink';
@@ -8,7 +9,7 @@ import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
 import createIssueURL from '../utils/createIssueURL';
 
-const ContributingGuidelines = ({ fileRelativePath, title, slug }) => {
+const ContributingGuidelines = ({ fileRelativePath, title }) => {
   const {
     site: {
       siteMetadata: { repository, branch, contributingUrl, siteUrl },
@@ -26,11 +27,13 @@ const ContributingGuidelines = ({ fileRelativePath, title, slug }) => {
     }
   `);
 
+  const { pathname } = useLocation();
+
   const issueUrl = createIssueURL({
     repository,
     title: title && `Issue: ${title}`,
     location: ['bug'],
-    page: { title, slug, siteUrl },
+    page: { title, slug: pathname, siteUrl },
   });
 
   return (
@@ -105,7 +108,6 @@ const ContributingGuidelines = ({ fileRelativePath, title, slug }) => {
 ContributingGuidelines.propTypes = {
   fileRelativePath: PropTypes.string,
   title: PropTypes.string,
-  slug: PropTypes.string,
 };
 
 export default ContributingGuidelines;

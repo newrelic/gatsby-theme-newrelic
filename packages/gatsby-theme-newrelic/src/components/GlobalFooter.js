@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useLocation } from '@reach/router';
 import Button from './Button';
 import Icon from './Icon';
 import Logo from './Logo';
@@ -8,7 +9,7 @@ import { graphql, useStaticQuery, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import createIssueURL from '../utils/createIssueURL';
 
-const GlobalFooter = ({ fileRelativePath, className, title, slug }) => {
+const GlobalFooter = ({ fileRelativePath, className, title }) => {
   const { site, sitePage } = useStaticQuery(graphql`
     query FooterQuery {
       site {
@@ -30,12 +31,13 @@ const GlobalFooter = ({ fileRelativePath, className, title, slug }) => {
 
   const { siteMetadata, layout } = site;
   const { branch, repository, siteUrl } = siteMetadata;
+  const { pathname } = useLocation();
 
   const issueUrl = createIssueURL({
     repository,
     title: title && `Issue: ${title}`,
     labels: ['bug'],
-    page: { title, slug, siteUrl },
+    page: { title, slug: pathname, siteUrl },
   });
 
   return (
@@ -211,7 +213,6 @@ GlobalFooter.propTypes = {
   fileRelativePath: PropTypes.string,
   className: PropTypes.string,
   title: PropTypes.string,
-  slug: PropTypes.string,
 };
 
 export default GlobalFooter;

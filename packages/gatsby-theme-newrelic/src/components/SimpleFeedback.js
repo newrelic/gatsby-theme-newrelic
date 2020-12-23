@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useLocation } from '@reach/router';
 import { graphql, useStaticQuery } from 'gatsby';
 import { css } from '@emotion/core';
 
@@ -8,7 +9,7 @@ import Icon from './Icon';
 import PageTools from './PageTools';
 import createIssueURL from '../utils/createIssueURL';
 
-const SimpleFeedback = ({ title, slug, labels }) => {
+const SimpleFeedback = ({ title, labels }) => {
   const { site } = useStaticQuery(graphql`
     query FeedbackQuery {
       site {
@@ -21,19 +22,20 @@ const SimpleFeedback = ({ title, slug, labels }) => {
   `);
 
   const { repository, siteUrl } = site.siteMetadata;
+  const { pathname } = useLocation();
 
   const positiveFeedback = createIssueURL({
     repository,
     title: title && `Feedback: ${title}`,
     labels: [...labels, 'feedback-positive'],
-    page: { title, slug, siteUrl },
+    page: { title, slug: pathname, siteUrl },
   });
 
   const negativeFeedback = createIssueURL({
     repository,
     title: title && `Feedback: ${title}`,
     labels: [...labels, 'feedback-negative'],
-    page: { title, slug, siteUrl },
+    page: { title, slug: pathname, siteUrl },
   });
 
   return (
@@ -104,7 +106,6 @@ const SimpleFeedback = ({ title, slug, labels }) => {
 
 SimpleFeedback.propTypes = {
   title: PropTypes.string,
-  slug: PropTypes.string,
   labels: PropTypes.arrayOf(PropTypes.string),
 };
 
