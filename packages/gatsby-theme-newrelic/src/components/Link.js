@@ -21,7 +21,7 @@ const Link = ({ to, ...props }) => {
     to = to.replace(siteUrl, '');
   }
 
-  if (to.startsWith('/')) {
+  if (to.startsWith('/') || to.startsWith('#')) {
     return <GatsbyLink to={to} {...props} />;
   }
 
