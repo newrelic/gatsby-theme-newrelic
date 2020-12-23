@@ -1,21 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useLocation } from '@reach/router';
 import { css } from '@emotion/core';
 import Button from './Button';
 import ExternalLink from './ExternalLink';
 import Icon from './Icon';
 import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
+import createIssueURL from '../utils/createIssueURL';
 
-const ContributingGuidelines = ({ fileRelativePath }) => {
+const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
   const {
     site: {
-      siteMetadata: { repository, branch, contributingUrl },
+      siteMetadata: { repository, branch, contributingUrl, siteUrl },
     },
   } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
+          siteUrl
           repository
           branch
           contributingUrl
@@ -23,6 +26,14 @@ const ContributingGuidelines = ({ fileRelativePath }) => {
       }
     }
   `);
+
+  const { pathname } = useLocation();
+
+  const page = { title: pageTitle, slug: pathname, siteUrl };
+  const title = pageTitle && `Issue: ${pageTitle}`;
+  const labels = ['bug'];
+
+  const issueUrl = createIssueURL({ repository, title, page, labels });
 
   return (
     <PageTools.Section
@@ -47,7 +58,7 @@ const ContributingGuidelines = ({ fileRelativePath }) => {
       >
         <Button
           as={ExternalLink}
-          href={`${repository}/issues/new/choose`}
+          href={issueUrl}
           variant={Button.VARIANT.OUTLINE}
           size={Button.SIZE.SMALL}
         >
@@ -95,6 +106,7 @@ const ContributingGuidelines = ({ fileRelativePath }) => {
 
 ContributingGuidelines.propTypes = {
   fileRelativePath: PropTypes.string,
+  pageTitle: PropTypes.string,
 };
 
 export default ContributingGuidelines;

@@ -1,26 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useLocation } from '@reach/router';
 import { graphql, useStaticQuery } from 'gatsby';
 import { css } from '@emotion/core';
 
 import Button from './Button';
 import Icon from './Icon';
 import PageTools from './PageTools';
+import createIssueURL from '../utils/createIssueURL';
 
-const getParams = (title, labels, sentiment, slug, site) => {
-  const params = new URLSearchParams();
-
-  params.set('labels', [...labels, sentiment].join(','));
-  params.set('title', title ? `Feedback: ${title}` : 'Website Feedback');
-
-  if (title && slug) {
-    params.set('body', `Page: [${title}](${site}${slug})`);
-  }
-
-  return params.toString();
-};
-
-const SimpleFeedback = ({ title, slug, labels }) => {
+const SimpleFeedback = ({ pageTitle, labels }) => {
   const { site } = useStaticQuery(graphql`
     query FeedbackQuery {
       site {
@@ -33,17 +22,24 @@ const SimpleFeedback = ({ title, slug, labels }) => {
   `);
 
   const { repository, siteUrl } = site.siteMetadata;
-  const issueUrl = `${repository}/issues/new`;
+  const { pathname } = useLocation();
 
-  const positiveFeedback = [
-    issueUrl,
-    getParams(title, labels, 'feedback-positive', slug, siteUrl),
-  ].join('?');
+  const page = { title: pageTitle, slug: pathname, siteUrl };
+  const title = pageTitle && `Feedback: ${pageTitle}`;
 
-  const negativeFeedback = [
-    issueUrl,
-    getParams(title, labels, 'feedback-negative', slug, siteUrl),
-  ].join('?');
+  const positiveFeedback = createIssueURL({
+    repository,
+    page,
+    title,
+    labels: [...labels, 'feedback-positive'],
+  });
+
+  const negativeFeedback = createIssueURL({
+    repository,
+    page,
+    title,
+    labels: [...labels, 'feedback-negative'],
+  });
 
   return (
     <PageTools.Section>
@@ -112,8 +108,7 @@ const SimpleFeedback = ({ title, slug, labels }) => {
 };
 
 SimpleFeedback.propTypes = {
-  title: PropTypes.string,
-  slug: PropTypes.string,
+  pageTitle: PropTypes.string,
   labels: PropTypes.arrayOf(PropTypes.string),
 };
 

@@ -1,5 +1,10 @@
 import React from 'react';
-import { Button, Link, Layout } from '@newrelic/gatsby-theme-newrelic';
+import {
+  Button,
+  Link,
+  Layout,
+  ContributingGuidelines,
+} from '@newrelic/gatsby-theme-newrelic';
 
 const BuildApps = () => {
   return (
@@ -11,6 +16,12 @@ const BuildApps = () => {
           Go back home
         </Button>
       </Layout.Content>
+      <Layout.PageTools>
+        <ContributingGuidelines
+          fileRelativePath="/build-apps"
+          pageTitle="Build Apps"
+        />
+      </Layout.PageTools>
     </Layout.Main>
   );
 };
