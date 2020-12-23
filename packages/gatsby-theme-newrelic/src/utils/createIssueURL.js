@@ -58,12 +58,7 @@ const createIssueURL = ({
   const params = new URLSearchParams();
   params.set('labels', labels.join(','));
   params.set('title', title || DEFAULT_TITLE);
-
-  if (description) {
-    params.set('body', description);
-  } else {
-    params.set('body', createDescription(page));
-  }
+  params.set('body', description || createDescription(page));
 
   return [baseURL, params.toString()].join('?');
 };
