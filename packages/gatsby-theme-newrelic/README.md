@@ -637,6 +637,8 @@ import { ContributingGuidelines } from '@newrelic/gatsby-theme-newrelic'`
 | Prop               | Type   | Required | Default | Description                                                                                 |
 | ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------- |
 | `fileRelativePath` | string | no       |         | The relative file path of the current page. This will be used by the "Edit this page" link. |
+| `title`            | string | no       |         | The title of the current page for use in a new GitHub issue.                                |
+| `slug`             | string | no       |         | The slug of the current page used to create a link to the page in a new GitHub issue.       |
 
 **Examples**
 
