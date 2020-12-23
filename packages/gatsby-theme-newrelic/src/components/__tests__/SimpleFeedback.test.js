@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import SimpleFeedback from '../SimpleFeedback';
+import { createDescription } from '../../utils/createIssueURL';
 
 // Defining these here AND in the mock due to a limitation with jest
 // https://github.com/facebook/jest/issues/2567
@@ -20,6 +21,8 @@ jest.mock('gatsby', () => ({
     },
   }),
 }));
+
+const resultWithoutBody = (node) => node.getAttribute('href').split('&body')[0];
 
 describe('SimpleFeedback Component', () => {
   beforeEach(() => {
@@ -43,7 +46,7 @@ describe('SimpleFeedback Component', () => {
     params.set('title', 'Website Feedback');
     const url = `${ISSUE_URL}?${params.toString()}`;
 
-    expect(yes.getAttribute('href')).toBe(url);
+    expect(resultWithoutBody(yes)).toBe(url);
   });
 
   it('should render links with default issue title', () => {
@@ -60,8 +63,8 @@ describe('SimpleFeedback Component', () => {
     noParams.set('title', 'Website Feedback');
     const negativeUrl = `${ISSUE_URL}?${noParams.toString()}`;
 
-    expect(yes.getAttribute('href')).toBe(positiveUrl);
-    expect(no.getAttribute('href')).toBe(negativeUrl);
+    expect(resultWithoutBody(yes)).toBe(positiveUrl);
+    expect(resultWithoutBody(no)).toBe(negativeUrl);
   });
 
   it('should render links with the page title in the issue title', () => {
@@ -74,7 +77,7 @@ describe('SimpleFeedback Component', () => {
     params.set('title', `Feedback: ${title}`);
     const url = `${ISSUE_URL}?${params.toString()}`;
 
-    expect(yes.getAttribute('href')).toBe(url);
+    expect(resultWithoutBody(yes)).toBe(url);
   });
 
   it('should render links with page URL in the issue body', () => {
@@ -88,7 +91,10 @@ describe('SimpleFeedback Component', () => {
     const params = new URLSearchParams();
     params.set('labels', ['feedback', 'feedback-positive'].join(','));
     params.set('title', `Feedback: ${title}`);
-    params.set('body', `Page: [${title}](${SITE}${slug})`);
+
+    const body = createDescription({ title, slug, siteUrl: SITE });
+    params.set('body', body);
+
     const url = `${ISSUE_URL}?${params.toString()}`;
 
     expect(yes.getAttribute('href')).toBe(url);

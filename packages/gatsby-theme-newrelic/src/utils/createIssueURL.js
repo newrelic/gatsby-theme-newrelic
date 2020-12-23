@@ -1,6 +1,10 @@
 const DEFAULT_TITLE = 'Website Feedback';
 
-const createDescription = ({ title, slug, siteUrl } = {}) => `## Description
+export const createDescription = ({
+  title,
+  slug,
+  siteUrl,
+} = {}) => `## Description
 ${title && siteUrl && slug ? `Page: [${title}](${siteUrl}${slug})\n` : ''}
 [NOTE]: # (Describe the problem you're encountering.)
 [TIP]: # (Do NOT give us access or passwords to your New Relic account or API keys!)
