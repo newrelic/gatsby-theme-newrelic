@@ -31,12 +31,12 @@ const GlobalFooter = ({ fileRelativePath, className, title, slug }) => {
   const { siteMetadata, layout } = site;
   const { branch, repository, siteUrl } = siteMetadata;
 
-  const issueUrl = createIssueURL(
+  const issueUrl = createIssueURL({
     repository,
-    title && `Issue: ${title}`,
-    ['bug'],
-    { title, slug, siteUrl }
-  );
+    title: title && `Issue: ${title}`,
+    labels: ['bug'],
+    page: { title, slug, siteUrl },
+  });
 
   return (
     <footer

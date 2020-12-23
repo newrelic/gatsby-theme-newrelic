@@ -26,12 +26,12 @@ const ContributingGuidelines = ({ fileRelativePath, title, slug }) => {
     }
   `);
 
-  const issueUrl = createIssueURL(
+  const issueUrl = createIssueURL({
     repository,
-    title && `Issue: ${title}`,
-    ['bug'],
-    { title, slug, siteUrl }
-  );
+    title: title && `Issue: ${title}`,
+    location: ['bug'],
+    page: { title, slug, siteUrl },
+  });
 
   return (
     <PageTools.Section

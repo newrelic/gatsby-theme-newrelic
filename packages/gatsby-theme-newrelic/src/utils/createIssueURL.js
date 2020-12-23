@@ -35,23 +35,24 @@ ${title && siteUrl && slug ? `Page: [${title}](${siteUrl}${slug})\n` : ''}
 /**
  * Constructs a new issue url with information pre-filled for the user.
  *
- * @param {string} repository The URL for the repository.
- * @param {string} [title] An (optional) title for the issue.
- * @param {string[]} labels An array of label titles.
- * @param {Object} page Optional information about the page (title and slug).
- * @param {string} page.title The title for the page.
- * @param {string} page.slug The slug for the page.
- * @param {string} page.siteUrl The base URL for the site.
- * @param {string} [description] An (optional) description for the issue.
+ * @param {Object} options
+ * @param {string} options.repository The URL for the repository.
+ * @param {string?} options.title An (optional) title for the issue.
+ * @param {string[]} options.labels An array of label titles.
+ * @param {Object} options.page Optional information about the page (title and slug).
+ * @param {string} options.page.title The title for the page.
+ * @param {string} options.page.slug The slug for the page.
+ * @param {string} options.page.siteUrl The base URL for the site.
+ * @param {string?} options.description An (optional) description for the issue.
  * @returns {string} The URL for a new issue.
  */
-const createIssueURL = (
+const createIssueURL = ({
   repository,
   title,
   labels = [],
   page = {},
-  description
-) => {
+  description,
+}) => {
   const baseURL = `${repository}/issues/new`;
 
   const params = new URLSearchParams();

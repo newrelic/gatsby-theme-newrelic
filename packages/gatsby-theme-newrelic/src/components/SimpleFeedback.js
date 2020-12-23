@@ -22,19 +22,19 @@ const SimpleFeedback = ({ title, slug, labels }) => {
 
   const { repository, siteUrl } = site.siteMetadata;
 
-  const positiveFeedback = createIssueURL(
+  const positiveFeedback = createIssueURL({
     repository,
-    title && `Feedback: ${title}`,
-    [...labels, 'feedback-positive'],
-    { title, slug, siteUrl }
-  );
+    title: title && `Feedback: ${title}`,
+    labels: [...labels, 'feedback-positive'],
+    page: { title, slug, siteUrl },
+  });
 
-  const negativeFeedback = createIssueURL(
+  const negativeFeedback = createIssueURL({
     repository,
-    title && `Feedback: ${title}`,
-    [...labels, 'feedback-negative'],
-    { title, slug, siteUrl }
-  );
+    title: title && `Feedback: ${title}`,
+    labels: [...labels, 'feedback-negative'],
+    page: { title, slug, siteUrl },
+  });
 
   return (
     <PageTools.Section>
