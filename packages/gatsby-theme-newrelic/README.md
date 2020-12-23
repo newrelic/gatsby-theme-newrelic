@@ -762,6 +762,8 @@ import { GlobalFooter } from '@newrelic/gatsby-theme-newrelic';
 | ------------------ | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------- |
 | `className`        | string | no       |         | Additional `className` for the component.                                                                     |
 | `fileRelativePath` | string | no       |         | The relative path to the markdown file for the current page. If not supplied, the edit link will not be shown |
+| `title`            | string | no       |         | The title of the current page for use in a new GitHub issue.                                                  |
+| `slug`             | string | no       |         | The slug of the current page used to create a link to the page in a new GitHub issue.                         |
 
 **Example**
 
