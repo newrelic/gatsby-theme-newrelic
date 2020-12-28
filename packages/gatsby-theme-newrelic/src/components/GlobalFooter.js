@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useLocation } from '@reach/router';
 import Button from './Button';
 import Icon from './Icon';
 import Logo from './Logo';
 import ExternalLink from './ExternalLink';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import { css } from '@emotion/core';
+import createIssueURL from '../utils/createIssueURL';
 
-const GlobalFooter = ({ fileRelativePath, className }) => {
+const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
   const { site, sitePage } = useStaticQuery(graphql`
     query FooterQuery {
       site {
         siteMetadata {
+          siteUrl
           repository
           branch
         }
@@ -27,7 +30,14 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
   `);
 
   const { siteMetadata, layout } = site;
-  const { branch, repository } = siteMetadata;
+  const { branch, repository, siteUrl } = siteMetadata;
+  const { pathname } = useLocation();
+
+  const page = { title: pageTitle, slug: pathname, siteUrl };
+  const title = pageTitle && `Issue: ${pageTitle}`;
+  const labels = ['bug'];
+
+  const issueUrl = createIssueURL({ repository, title, page, labels });
 
   return (
     <footer
@@ -98,7 +108,7 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
 
           <Button
             as={ExternalLink}
-            href={`${repository}/issues/new/choose`}
+            href={issueUrl}
             variant={Button.VARIANT.OUTLINE}
             size={Button.SIZE.SMALL}
           >
@@ -201,6 +211,7 @@ const GlobalFooter = ({ fileRelativePath, className }) => {
 GlobalFooter.propTypes = {
   fileRelativePath: PropTypes.string,
   className: PropTypes.string,
+  pageTitle: PropTypes.string,
 };
 
 export default GlobalFooter;

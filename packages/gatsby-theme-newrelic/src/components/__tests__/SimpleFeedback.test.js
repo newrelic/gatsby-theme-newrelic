@@ -1,11 +1,13 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import SimpleFeedback from '../SimpleFeedback';
+import { createDescription } from '../../utils/createIssueURL';
 
 // Defining these here AND in the mock due to a limitation with jest
 // https://github.com/facebook/jest/issues/2567
 const SITE = 'https://github.com/foo/bar';
 const REPO = 'https://foobar.net';
+const SLUG = '/foo-bar';
 const ISSUE_URL = `${REPO}/issues/new`;
 
 jest.mock('gatsby', () => ({
@@ -20,6 +22,13 @@ jest.mock('gatsby', () => ({
     },
   }),
 }));
+
+jest.mock('@reach/router', () => ({
+  __esModule: true,
+  useLocation: () => ({ pathname: '/foo-bar' }),
+}));
+
+const resultWithoutBody = (node) => node.getAttribute('href').split('&body')[0];
 
 describe('SimpleFeedback Component', () => {
   beforeEach(() => {
@@ -43,7 +52,7 @@ describe('SimpleFeedback Component', () => {
     params.set('title', 'Website Feedback');
     const url = `${ISSUE_URL}?${params.toString()}`;
 
-    expect(yes.getAttribute('href')).toBe(url);
+    expect(resultWithoutBody(yes)).toBe(url);
   });
 
   it('should render links with default issue title', () => {
@@ -60,13 +69,13 @@ describe('SimpleFeedback Component', () => {
     noParams.set('title', 'Website Feedback');
     const negativeUrl = `${ISSUE_URL}?${noParams.toString()}`;
 
-    expect(yes.getAttribute('href')).toBe(positiveUrl);
-    expect(no.getAttribute('href')).toBe(negativeUrl);
+    expect(resultWithoutBody(yes)).toBe(positiveUrl);
+    expect(resultWithoutBody(no)).toBe(negativeUrl);
   });
 
   it('should render links with the page title in the issue title', () => {
     const title = 'tacos';
-    const { getAllByRole } = render(<SimpleFeedback title={title} />);
+    const { getAllByRole } = render(<SimpleFeedback pageTitle={title} />);
     const [yes] = getAllByRole('button');
 
     const params = new URLSearchParams();
@@ -74,21 +83,24 @@ describe('SimpleFeedback Component', () => {
     params.set('title', `Feedback: ${title}`);
     const url = `${ISSUE_URL}?${params.toString()}`;
 
-    expect(yes.getAttribute('href')).toBe(url);
+    expect(resultWithoutBody(yes)).toBe(url);
   });
 
   it('should render links with page URL in the issue body', () => {
     const title = 'tacos';
-    const slug = '/food';
+    const slug = SLUG;
     const { getAllByRole } = render(
-      <SimpleFeedback title={title} slug={slug} />
+      <SimpleFeedback pageTitle={title} slug={slug} />
     );
     const [yes] = getAllByRole('button');
 
     const params = new URLSearchParams();
     params.set('labels', ['feedback', 'feedback-positive'].join(','));
     params.set('title', `Feedback: ${title}`);
-    params.set('body', `Page: [${title}](${SITE}${slug})`);
+
+    const body = createDescription({ title, slug, siteUrl: SITE });
+    params.set('body', body);
+
     const url = `${ISSUE_URL}?${params.toString()}`;
 
     expect(yes.getAttribute('href')).toBe(url);
