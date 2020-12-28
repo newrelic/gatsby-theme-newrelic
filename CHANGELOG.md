@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.18.0...v1.18.1) (2020-12-28)
+
+
+### Bug Fixes
+
+* ensure anchor links are treated the same as relative links ([815d31e](https://github.com/newrelic/gatsby-theme-newrelic/commit/815d31e136801e80c476e6a231c3b47b9c9d02dd))
+
+
+
+
+
 # [1.18.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.17.2...v1.18.0) (2020-12-18)
 
 
