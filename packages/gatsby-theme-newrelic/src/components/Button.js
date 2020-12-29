@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { rgba } from 'polished';
+import icon from './Icon.js';
 
 const VARIANTS = {
   PRIMARY: 'primary',
@@ -14,6 +15,10 @@ const VARIANTS = {
 const SIZES = {
   EXTRA_SMALL: 'extraSmall',
   SMALL: 'small',
+};
+
+const ICONS = {
+  // need something here....
 };
 
 const styles = {
@@ -134,11 +139,13 @@ const Button = styled.button`
 
 Button.VARIANT = VARIANTS;
 Button.SIZE = SIZES;
+Button.ICON = ICONS;
 
 Button.propTypes = {
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(Object.values(Button.SIZE)),
   variant: PropTypes.oneOf(Object.values(Button.VARIANT)).isRequired,
+  icon: PropTypes.oneOf(Object.values(Button.ICON)),
 };
 
 export default Button;
