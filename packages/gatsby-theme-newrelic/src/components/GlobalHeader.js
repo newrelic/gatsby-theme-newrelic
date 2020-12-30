@@ -78,7 +78,6 @@ const GlobalHeader = ({ className }) => {
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
   const useSearchIcon = useMedia({ maxWidth: '585px' });
-  // const domain = window.location.hostname;
   const inDocsSite = [
     'https://docs.newrelic.com',
     'https://docs-preview.newrelic.com',
