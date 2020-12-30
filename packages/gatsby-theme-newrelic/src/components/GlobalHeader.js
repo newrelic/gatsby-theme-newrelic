@@ -77,6 +77,7 @@ const GlobalHeader = ({ className }) => {
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
   const useSearchIcon = useMedia({ maxWidth: '585px' });
+  const domain = window.location.hostname;
 
   return (
     <>
@@ -289,7 +290,12 @@ const GlobalHeader = ({ className }) => {
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
               >
-                <span>Sign up</span>
+                <span>
+                  {domain === 'www.docs-preview.newrelic.com' ||
+                  domain === 'www.docs.newrelic.com'
+                    ? 'Sign Up'
+                    : 'Start Now'}
+                </span>
               </Button>
             </li>
           </ul>
