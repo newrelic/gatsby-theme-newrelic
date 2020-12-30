@@ -50,6 +50,7 @@ const GlobalHeader = ({ className }) => {
       site {
         siteMetadata {
           utmSource
+          siteUrl
         }
         layout {
           contentPadding
@@ -60,7 +61,7 @@ const GlobalHeader = ({ className }) => {
   `);
 
   const {
-    siteMetadata: { utmSource },
+    siteMetadata: { utmSource, siteUrl },
     layout,
   } = site;
 
@@ -77,6 +78,10 @@ const GlobalHeader = ({ className }) => {
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
   const useSearchIcon = useMedia({ maxWidth: '585px' });
+  const inDocsSite = [
+    'https://docs.newrelic.com',
+    'https://docs-preview.newrelic.com',
+  ].includes(siteUrl);
 
   return (
     <>
@@ -289,7 +294,7 @@ const GlobalHeader = ({ className }) => {
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
               >
-                <span>Sign up</span>
+                <span>{inDocsSite ? 'Sign Up' : 'Start Now'}</span>
               </Button>
             </li>
           </ul>
