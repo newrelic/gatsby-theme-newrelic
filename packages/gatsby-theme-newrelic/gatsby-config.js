@@ -1,4 +1,4 @@
-module.exports = ({ newrelic, robots = {}, gaTrackingId }) => {
+module.exports = ({ newrelic, swiftype, robots = {}, gaTrackingId }) => {
   return {
     plugins: [
       'gatsby-plugin-emotion',
@@ -24,6 +24,10 @@ module.exports = ({ newrelic, robots = {}, gaTrackingId }) => {
       newrelic && {
         resolve: 'gatsby-plugin-newrelic',
         options: newrelic,
+      },
+      swiftype && {
+        resolve: 'gatsby-source-swiftype',
+        options: swiftype,
       },
       {
         resolve: 'gatsby-source-filesystem',
