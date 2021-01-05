@@ -44,7 +44,6 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type SiteLocale @dontInfer {
       name: String!
-      path: String!
       locale: String!
       isDefault: Boolean!
     }
@@ -69,7 +68,7 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       locales: {
         type: '[SiteLocale!]!',
         resolve: () => [
-          { name: 'English', path: '', locale: 'en', isDefault: true },
+          { name: 'English', locale: 'en', isDefault: true },
           ...(i18n.additionalLocales || []).map((locale) => ({
             ...locale,
             isDefault: false,
