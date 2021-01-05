@@ -17,7 +17,7 @@ const MDXCodeBlock = ({
 }) => {
   const language = className?.replace('language-', '');
 
-  return isShellLanguage ? (
+  return isShellLanguage(language) ? (
     <Terminal animate={animate} copyable={copyable}>
       {children}
     </Terminal>
