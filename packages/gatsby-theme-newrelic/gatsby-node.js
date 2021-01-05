@@ -69,7 +69,7 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       locales: {
         type: '[SiteLocale!]!',
         resolve: () => [
-          { name: 'English', path: 'en', locale: 'en', isDefault: true },
+          { name: 'English', path: '', locale: 'en', isDefault: true },
           ...(i18n.additionalLocales || []).map((locale) => ({
             ...locale,
             isDefault: false,
