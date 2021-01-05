@@ -41,11 +41,18 @@ exports.createSchemaCustomization = ({ actions }) => {
       branch: String!
       contributingUrl: String
     }
+
+    type SiteLocale @dontInfer {
+      name: String!
+      path: String!
+      locale: String!
+      isDefault: Boolean!
+    }
   `);
 };
 
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
-  const { layout = {} } = themeOptions;
+  const { layout = {}, i18n = {} } = themeOptions;
 
   const defaultUtmSource = {
     'https://developer.newrelic.com': 'developer-site',
@@ -58,6 +65,16 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       layout: {
         type: 'SiteLayout',
         resolve: () => layout,
+      },
+      locales: {
+        type: '[SiteLocale!]!',
+        resolve: () => [
+          { name: 'English', path: 'en', locale: 'en', isDefault: true },
+          ...(i18n.additionalLocales || []).map((locale) => ({
+            ...locale,
+            isDefault: false,
+          })),
+        ],
       },
     },
     SiteSiteMetadata: {
