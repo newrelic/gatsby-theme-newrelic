@@ -24,11 +24,18 @@ const Menu = ({ children }) => {
       css={css`
         --arrow-size: 5px;
         --arrow-offset: 0.5rem;
+        --background-color: white;
+        --text-color: var(--color-neutrals-900);
+
+        .dark-mode & {
+          --text-color: var(--color-dark-900);
+          --background-color: var(--color-dark-050);
+        }
 
         position: absolute;
         top: calc(100% + var(--arrow-size));
         display: ${open ? 'block' : 'none'};
-        background: white;
+        background: var(--background-color);
         border-radius: 0.25rem;
         z-index: 1000;
         padding: 0.5rem;
@@ -41,7 +48,7 @@ const Menu = ({ children }) => {
           top: calc(-1 * var(--arrow-size));
           border-left: var(--arrow-size) solid transparent;
           border-right: var(--arrow-size) solid transparent;
-          border-bottom: var(--arrow-size) solid white;
+          border-bottom: var(--arrow-size) solid var(--background-color);
           width: 0;
           height: 0;
           z-index: 1000;

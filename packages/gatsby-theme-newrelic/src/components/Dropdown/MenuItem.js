@@ -9,16 +9,23 @@ const MenuItem = ({ children, href, onClick }) => {
   return (
     <Component
       onClick={onClick}
+      to={href}
       css={css`
+        display: block;
         padding: 0.25rem 0.5rem;
         font-size: 0.75rem;
         transition: all 0.2s ease-out;
-        color: black;
+        color: var(--text-color);
 
         &:hover {
+          color: var(--text-color);
           cursor: pointer;
-          background: var(--color-neutrals-300);
+          background: var(--color-neutrals-200);
           border-radius: 0.25rem;
+
+          .dark-mode & {
+            background: var(--color-dark-200);
+          }
         }
       `}
     >
