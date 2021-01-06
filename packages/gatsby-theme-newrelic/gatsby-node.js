@@ -4,6 +4,7 @@ const path = require('path');
 const uniq = (arr) => [...new Set(arr)];
 
 const DEFAULT_BRANCH = 'main';
+const DEFAULT_LOCALES = [{ name: 'English', locale: 'en', isDefault: true }];
 
 exports.onPreBootstrap = ({ reporter, store }) => {
   const { program } = store.getState();
@@ -68,7 +69,7 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       locales: {
         type: '[SiteLocale!]!',
         resolve: () => [
-          { name: 'English', locale: 'en', isDefault: true },
+          ...DEFAULT_LOCALES,
           ...(i18n.additionalLocales || []).map((locale) => ({
             ...locale,
             isDefault: false,
@@ -136,13 +137,23 @@ exports.onCreateNode = ({ node, actions }) => {
   }
 };
 
-exports.onCreatePage = ({ page, actions }) => {
+exports.onCreatePage = ({ page, actions }, pluginOptions) => {
+  const { i18n = {} } = pluginOptions;
   const { createPage } = actions;
 
   if (!page.context.fileRelativePath) {
     page.context.fileRelativePath = getFileRelativePath(page.componentPath);
 
     createPage(page);
+  }
+
+  if (i18n.additionalLocales && !page.path.match(/404/)) {
+    i18n.additionalLocales.forEach(({ locale }) => {
+      createPage({
+        ...page,
+        path: path.join('/', locale, page.path),
+      });
+    });
   }
 };
 
