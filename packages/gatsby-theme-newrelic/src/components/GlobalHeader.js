@@ -6,6 +6,7 @@ import AnnouncementBanner from './AnnouncementBanner';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
 import Button from './Button';
+import Dropdown from './Dropdown';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import SwiftypeSearch from './SwiftypeSearch';
@@ -16,6 +17,7 @@ import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
+import path from 'path';
 import { rgba } from 'polished';
 
 const action = css`
@@ -50,17 +52,24 @@ const GlobalHeader = ({ className }) => {
       site {
         siteMetadata {
           utmSource
+          siteUrl
         }
         layout {
           contentPadding
           maxWidth
+        }
+        locales {
+          name
+          locale
+          isDefault
         }
       }
     }
   `);
 
   const {
-    siteMetadata: { utmSource },
+    locales,
+    siteMetadata: { utmSource, siteUrl },
     layout,
   } = site;
 
@@ -76,7 +85,20 @@ const GlobalHeader = ({ className }) => {
   });
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
-  const useSearchIcon = useMedia({ maxWidth: '585px' });
+  const useCondensedHeader = useMedia({ maxWidth: '585px' });
+  const inDocsSite = [
+    'https://docs.newrelic.com',
+    'https://docs-preview.newrelic.com',
+  ].includes(siteUrl);
+
+  const matchLocalePath = new RegExp(
+    `^\\/(${locales.map(({ locale }) => locale).join('|')})`
+  );
+
+  const selectedLocale =
+    locales.find((locale) =>
+      new RegExp(`^\\/${locale.locale}(?=/)`).test(location.pathname)
+    ) || locales.find((locale) => locale.isDefault);
 
   return (
     <>
@@ -86,7 +108,6 @@ const GlobalHeader = ({ className }) => {
         className={className}
         css={css`
           background-color: var(--color-neutrals-100);
-          overflow: hidden;
           position: sticky;
           top: 0;
           z-index: 80;
@@ -224,7 +245,7 @@ const GlobalHeader = ({ className }) => {
                 color: var(--secondary-text-color);
 
                 &:not(:first-of-type) {
-                  margin-left: 1rem;
+                  margin-left: 0.5rem;
                 }
               }
             `}
@@ -234,7 +255,7 @@ const GlobalHeader = ({ className }) => {
                 flex: 1;
               `}
             >
-              {useSearchIcon ? (
+              {useCondensedHeader ? (
                 <Link to="?q=" css={actionLink}>
                   <Icon css={actionIcon} name="fe-search" size="0.875rem" />
                 </Link>
@@ -256,6 +277,34 @@ const GlobalHeader = ({ className }) => {
                 />
               )}
             </li>
+            {locales.length > 1 && (
+              <li>
+                <Dropdown align="right">
+                  <Dropdown.Toggle
+                    size={Button.SIZE.EXTRA_SMALL}
+                    variant={Button.VARIANT.LINK}
+                  >
+                    {useCondensedHeader
+                      ? selectedLocale.locale.toUpperCase()
+                      : selectedLocale.name}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    {locales.map(({ locale, name, isDefault }) => (
+                      <Dropdown.MenuItem
+                        key={locale}
+                        href={path.join(
+                          '/',
+                          isDefault ? '' : locale,
+                          location.pathname.replace(matchLocalePath, '')
+                        )}
+                      >
+                        {name}
+                      </Dropdown.MenuItem>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </li>
+            )}
             <li>
               <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
             </li>
@@ -265,16 +314,18 @@ const GlobalHeader = ({ className }) => {
                 align-items: center;
               `}
             >
-              <ExternalLink
+              <Button
+                as={ExternalLink}
+                size={Button.SIZE.EXTRA_SMALL}
+                variant={Button.VARIANT.LINK}
                 href="https://one.newrelic.com"
                 css={css`
-                  font-size: 0.675rem;
                   font-weight: 600;
                   white-space: nowrap;
                 `}
               >
                 Log in
-              </ExternalLink>
+              </Button>
             </li>
             <li
               css={css`
@@ -289,7 +340,7 @@ const GlobalHeader = ({ className }) => {
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
               >
-                <span>Sign up</span>
+                <span>{inDocsSite ? 'Sign Up' : 'Start Now'}</span>
               </Button>
             </li>
           </ul>

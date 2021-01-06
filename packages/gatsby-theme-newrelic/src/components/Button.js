@@ -123,10 +123,6 @@ const Button = styled.button`
   transition: all 0.15s ease-out;
   white-space: nowrap;
 
-  &:hover {
-    transform: translate3d(0, -1px, 0);
-  }
-
   ${({ variant }) => styles.variant[variant]}
   ${({ size }) => styles.size[size]}
   ${({ disabled }) => disabled && styles.disabled}
