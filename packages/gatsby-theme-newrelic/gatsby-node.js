@@ -147,8 +147,6 @@ exports.onCreatePage = ({ page, actions }, pluginOptions) => {
     createPage(page);
   }
 
-  console.log(page.context.fileRelativePath);
-
   if (
     i18n.additionalLocales &&
     !page.path.match(/404/) &&
