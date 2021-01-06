@@ -1,6 +1,7 @@
 const DEFAULT_NAMESPACE = 'translation';
 const FALLBACK_LANG = 'en';
 const themeNamespace = 'gatsby-theme-newrelic';
+const themeSupportedLocales = ['en'];
 
 const uniq = (arr) => [...new Set(arr)];
 
@@ -28,4 +29,8 @@ const withDefaults = (themeOptions) => {
   };
 };
 
-module.exports = { themeNamespace, withDefaults };
+module.exports = {
+  themeNamespace,
+  withDefaults,
+  themeSupportedLocales,
+};
