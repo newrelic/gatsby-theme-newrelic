@@ -14,6 +14,7 @@ module.exports = {
       resolve: '@newrelic/gatsby-theme-newrelic',
       options: {
         i18n: {
+          translationsPath: `${__dirname}/src/i18n/translations`,
           additionalLocales: [{ name: 'Japanese', locale: 'jp' }],
         },
         layout: {
