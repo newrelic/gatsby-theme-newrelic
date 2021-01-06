@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.18.1...v1.19.0) (2021-01-06)
+
+
+### Bug Fixes
+
+* ensure mdx code block tests if language is a shell language ([8faf181](https://github.com/newrelic/gatsby-theme-newrelic/commit/8faf1816d64764b3f2e5cf29011342753e50fe03))
+* remove translation on button hover styles ([b62a52a](https://github.com/newrelic/gatsby-theme-newrelic/commit/b62a52ae9eb97d0a89ce0f8f01215d85657117d4))
+
+
+### Features
+
+* add locale configuration to GraphQL ([2ed004b](https://github.com/newrelic/gatsby-theme-newrelic/commit/2ed004b408068af01db99c8ff5e906625914b7bc))
+* added signup button logic ([6c4ed43](https://github.com/newrelic/gatsby-theme-newrelic/commit/6c4ed43b37ab1e3b350f06de2dbe817b91881f65))
+* adding the ability to specify swiftype options ([024a55b](https://github.com/newrelic/gatsby-theme-newrelic/commit/024a55b51b07fc51146b1b85135a5058c62cb765))
+* create a Dropdown component ([9fcb802](https://github.com/newrelic/gatsby-theme-newrelic/commit/9fcb8029a3aafd966fc09fb9ede2955e41916f32))
+* create localized routes for pages in src/pages ([da7b7d4](https://github.com/newrelic/gatsby-theme-newrelic/commit/da7b7d4a23c4a27824af605b0b2425972200a841))
+* resolved feedback ([c21a9ab](https://github.com/newrelic/gatsby-theme-newrelic/commit/c21a9abe032ec0aef7c8654233696e60cacd21de))
+* update GlobalHeader to show available locales ([13ac4c9](https://github.com/newrelic/gatsby-theme-newrelic/commit/13ac4c9a9d5d1ec142e6bd249e4eaac2115b9266))
+
+
+
+
+
 ## [1.18.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.18.0...v1.18.1) (2020-12-28)
 
 
