@@ -1,4 +1,4 @@
-/* global GATSBY_THEME_I18N_REACT_I18NEXT */
+/* global GATSBY_THEME_NEWRELIC_I18N_PATH */
 import React from 'react';
 import GlobalStyles from '../src/components/GlobalStyles';
 import i18n from 'i18next';
@@ -23,7 +23,7 @@ const wrapPageElement = ({ element, props }, themeOptions) => {
       const themeMessages = themeSupportedLocales.includes(locale)
         ? require(`../src/i18n/translations/${locale}.json`)
         : {};
-      const messages = require(`${GATSBY_THEME_I18N_REACT_I18NEXT}/${locale}/${name}.json`);
+      const messages = require(`${GATSBY_THEME_NEWRELIC_I18N_PATH}/${locale}/${name}.json`);
 
       return {
         ...resources,

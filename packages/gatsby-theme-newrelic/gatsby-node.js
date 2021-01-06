@@ -197,7 +197,7 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
     actions.setWebpackConfig({
       plugins: [
         plugins.define({
-          GATSBY_THEME_I18N_REACT_I18NEXT: JSON.stringify(
+          GATSBY_THEME_NEWRELIC_I18N_PATH: JSON.stringify(
             i18n.translationsPath
           ),
         }),
