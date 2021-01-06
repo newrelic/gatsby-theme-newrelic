@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.19.1...v1.20.0) (2021-01-06)
+
+
+### Features
+
+* builds pages based on file relative path ([517df7c](https://github.com/newrelic/gatsby-theme-newrelic/commit/517df7c581047032e80cedc48fdd991d427686b9))
+
+
+
+
+
 ## [1.19.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.19.0...v1.19.1) (2021-01-06)
 
 
