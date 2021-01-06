@@ -24,7 +24,7 @@ const Toggle = ({ children, variant, size }) => {
 
 Toggle.propTypes = {
   children: PropTypes.node,
-  variant: Button.propTypes.variant,
+  variant: Button.propTypes.variant.isRequired,
   size: Button.propTypes.size,
 };
 
