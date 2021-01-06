@@ -28,6 +28,10 @@ websites](https://opensource.newrelic.com).
   - [`CodeBlock`](#codeblock)
   - [`ContributingGuidelines`](#contributingguidelines)
   - [`CookieConsentDialog`](#cookieconsentdialog)
+  - [`Dropdown`](#dropdown)
+    - [`Dropdown.Toggle`](#dropdowntoggle)
+    - [`Dropdown.Menu`](#dropdownmenu)
+    - [`Dropdown.MenuItem`](#dropdownmenuitem)
   - [`ExternalLink`](#externallink)
   - [`FeatherSVG`](#feathersvg)
   - [`Feedback`](#feedback)
@@ -689,6 +693,70 @@ const MyLayout = () => (
   </>
 );
 ```
+
+### `Dropdown`
+
+Used in combination with [`Dropdown.Toggle`](#dropdowntoggle), [`Dropdown.Menu`](#dropdownmenu), and [`Dropdown.MenuItem`](#dropdownmenuitem) to create dropdown menus.
+
+```js
+import { Dropdown } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type | Required | Default | Description                                                                    |
+| ---------- | ---- | -------- | ------- | ------------------------------------------------------------------------------ |
+| `align`    | enum | no       | "left"  | The position of the menu arrow. \*Must be either `left`, `right`, or `center`. |
+| `children` | node | yes      |         | Components used for the dropdown.                                              |
+
+```jsx
+import { DropDown, Button } from '@newrelic/gatsby-theme-newrelic';
+
+const Example = (
+  <Dropdown align="right">
+    <Dropdown.Toggle variant={Button.VARIANT.NORMAL}>Menu</Dropdown.Toggle>
+    <Dropdown.Menu>
+      <Dropdown.MenuItem>Item 1</Dropdown.MenuItem>
+      <Dropdown.MenuItem>Item 2</Dropdown.MenuItem>
+      <Dropdown.MenuItem>Item 3</Dropdown.MenuItem>
+    </Dropdown.Menu>
+  </Dropdown>
+);
+```
+
+#### `Dropdown.Toggle`
+
+Used within a [`Dropdown`](#dropdown) component to render a button that can toggle whether or not the dropdown menu is visible.
+
+**Props**
+
+| Prop       | Type | Required | Default | Description                                                          |
+| ---------- | ---- | -------- | ------- | -------------------------------------------------------------------- |
+| `size`     | enum | no       |         | The `size` prop for the underlying [`Button`](#button) component.    |
+| `variant`  | enum | yes      |         | The `variant` prop for the underlying [`Button`](#button) component. |
+| `children` | node | no       |         | Text or component used to render the toggle, in addition to an icon. |
+
+#### `Dropdown.Menu`
+
+Used within a [`Dropdown`](#dropdown) component to render the _menu_ that is shown when the dropdown is open.
+
+**Props**
+
+| Props      | Type | Required | Default | Description                                      |
+| ---------- | ---- | -------- | ------- | ------------------------------------------------ |
+| `children` | node | yes      |         | Sub-components used to create the dropdown menu. |
+
+#### `Dropdown.MenuItem`
+
+Used within a [`Dropdown.Menu`](#dropdownmenu) component (within a [`Dropdown`](#dropdown) component) to render an individual dropdown menu item.
+
+**Props**
+
+| Props      | Type     | Required | Default | Description                                                                     |
+| ---------- | -------- | -------- | ------- | ------------------------------------------------------------------------------- |
+| `href`     | string   | no       |         | A path that, if supplied, will be used as a [`Link`](#link).                    |
+| `onClick`  | function | no       |         | An optional click event handler that is triggerd when the component is clicked. |
+| `children` | node     | yes      |         | Text or component used to render the toggle, in addition to an icon.            |
 
 ### `ExternalLink`
 
