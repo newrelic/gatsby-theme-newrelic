@@ -1,24 +1,51 @@
 const fs = require('fs');
 const path = require('path');
+const { withDefaults, themeNamespace } = require('./src/utils/defaultOptions');
 
 const uniq = (arr) => [...new Set(arr)];
 
 const DEFAULT_BRANCH = 'main';
-const DEFAULT_LOCALES = [{ name: 'English', locale: 'en', isDefault: true }];
+const DEFAULT_LOCALE = { name: 'English', locale: 'en', isDefault: true };
 
-exports.onPreBootstrap = ({ reporter, store }) => {
+exports.onPreInit = (_, themeOptions) => {
+  const { i18n } = themeOptions;
+
+  if (i18n && !i18n.translationsPath) {
+    throw new Error(
+      "Please define a the 'i18n.translationsPath' option of @newrelic/gatsby-theme-newrelic"
+    );
+  }
+};
+
+exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
+  const { i18n } = withDefaults(themeOptions);
   const { program } = store.getState();
   const imagePath = path.join(program.directory, 'src/images');
   const announcementsPath = path.join(program.directory, 'src/announcements');
 
-  if (!fs.existsSync(imagePath)) {
-    reporter.info('creating the images directory');
-    fs.mkdirSync(imagePath, { recursive: true });
-  }
+  createDirectory(imagePath, {
+    reporter,
+    message: 'creating the images directory',
+  });
 
-  if (!fs.existsSync(announcementsPath)) {
-    reporter.info('creating the announcements directory');
-    fs.mkdirSync(announcementsPath, { recursive: true });
+  createDirectory(announcementsPath, {
+    reporter,
+    message: 'creating the announcements directory',
+  });
+
+  if (i18n) {
+    [DEFAULT_LOCALE]
+      .concat(i18n.additionalLocales || [])
+      .forEach(({ locale }) => {
+        i18n.i18nextOptions.ns
+          .filter((ns) => ns !== themeNamespace)
+          .forEach((ns) => {
+            createFile(path.join(i18n.translationsPath, locale, `${ns}.json`), {
+              reporter,
+              message: `creating the ${locale}/${ns}.json file`,
+            });
+          });
+      });
   }
 };
 
@@ -69,7 +96,7 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       locales: {
         type: '[SiteLocale!]!',
         resolve: () => [
-          ...DEFAULT_LOCALES,
+          DEFAULT_LOCALE,
           ...(i18n.additionalLocales || []).map((locale) => ({
             ...locale,
             isDefault: false,
@@ -159,6 +186,31 @@ exports.onCreatePage = ({ page, actions }, pluginOptions) => {
       });
     });
   }
+};
+
+const createDirectory = (directory, { reporter, message } = {}) => {
+  if (fs.existsSync(directory)) {
+    return;
+  }
+
+  if (message) {
+    reporter.info(message);
+  }
+
+  fs.mkdirSync(directory, { recursive: true });
+};
+
+const createFile = (filepath, { reporter, message } = {}) => {
+  if (fs.existsSync(filepath)) {
+    return;
+  }
+
+  if (message) {
+    reporter.info(message);
+  }
+
+  createDirectory(path.dirname(filepath));
+  fs.writeFileSync(filepath, '{}', 'utf-8');
 };
 
 const getFileRelativePath = (absolutePath) =>
