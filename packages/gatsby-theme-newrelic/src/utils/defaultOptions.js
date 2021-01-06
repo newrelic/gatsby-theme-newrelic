@@ -1,5 +1,6 @@
 const DEFAULT_NAMESPACE = 'translation';
-const FALLBACK_LANG = 'en';
+
+const defaultLocale = { name: 'English', locale: 'en' };
 const themeNamespace = 'gatsby-theme-newrelic';
 const themeSupportedLocales = ['en'];
 
@@ -17,7 +18,7 @@ const withDefaults = (themeOptions) => {
         defaultNS: DEFAULT_NAMESPACE,
         initImmediate: false,
         ...i18nextOptions,
-        fallbackLng: FALLBACK_LANG,
+        fallbackLng: defaultLocale.locale,
         ns: i18nextOptions.ns
           ? uniq([themeNamespace, ...i18nextOptions.ns])
           : [themeNamespace, DEFAULT_NAMESPACE],
@@ -30,6 +31,7 @@ const withDefaults = (themeOptions) => {
 };
 
 module.exports = {
+  defaultLocale,
   themeNamespace,
   withDefaults,
   themeSupportedLocales,

@@ -1,11 +1,14 @@
 const fs = require('fs');
 const path = require('path');
-const { withDefaults, themeNamespace } = require('./src/utils/defaultOptions');
+const {
+  defaultLocale,
+  withDefaults,
+  themeNamespace,
+} = require('./src/utils/defaultOptions');
 
 const uniq = (arr) => [...new Set(arr)];
 
 const DEFAULT_BRANCH = 'main';
-const DEFAULT_LOCALE = { name: 'English', locale: 'en', isDefault: true };
 
 exports.onPreInit = (_, themeOptions) => {
   const { i18n } = themeOptions;
@@ -34,7 +37,7 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   });
 
   if (i18n) {
-    [DEFAULT_LOCALE]
+    [defaultLocale]
       .concat(i18n.additionalLocales || [])
       .forEach(({ locale }) => {
         i18n.i18nextOptions.ns
@@ -95,13 +98,12 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       },
       locales: {
         type: '[SiteLocale!]!',
-        resolve: () => [
-          DEFAULT_LOCALE,
-          ...(i18n.additionalLocales || []).map((locale) => ({
-            ...locale,
-            isDefault: false,
-          })),
-        ],
+        resolve: () => [defaultLocale, ...(i18n.additionalLocales || [])],
+      },
+    },
+    SiteLocale: {
+      isDefault: {
+        resolve: (source) => source.locale === defaultLocale.locale,
       },
     },
     SiteSiteMetadata: {
