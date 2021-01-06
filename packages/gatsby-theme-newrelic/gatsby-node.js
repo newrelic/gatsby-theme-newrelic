@@ -185,6 +185,10 @@ exports.onCreatePage = ({ page, actions }, pluginOptions) => {
       createPage({
         ...page,
         path: path.join('/', locale, page.path),
+        context: {
+          ...page.context,
+          locale,
+        },
       });
     });
   }
