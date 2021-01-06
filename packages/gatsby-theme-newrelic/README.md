@@ -143,7 +143,7 @@ module.exports = {
           },
         },
         i18n: {
-          additionalLocales: [{ name: 'Japanese', locale: 'jp' }],
+          additionalLocales: [{ name: '日本語', locale: 'jp' }],
         }
         robots: {
           policy: [{ userAgent: '*', allow: '/' }],
@@ -210,7 +210,7 @@ These values are used to generate locale-specific pages and to populate a dropdo
 {
   i18n: {
     additionalLocales: [
-      { name: 'Japanese', locale: 'jp' },
+      { name: '日本語', locale: 'jp' },
       { name: 'Korean', locale: 'ko' },
     ];
   }
@@ -696,7 +696,7 @@ const MyLayout = () => (
 
 ### `Dropdown`
 
-Used in combination with [`Dropdown.Toggle`](#dropdowntoggle), [`Dropdown.Menu`](#dropdownmenu), and [`Dropdown.MenuItem`](#dropdownmenuitem) to create dropdown menus.
+Used in combination with [`Dropdown.Toggle`](#dropdowntoggle), [`Dropdown.Menu`](#dropdownmenu), and [`Dropdown.MenuItem`](#dropdownmenuitem) to create a dropdown.
 
 ```js
 import { Dropdown } from '@newrelic/gatsby-theme-newrelic';
@@ -706,7 +706,7 @@ import { Dropdown } from '@newrelic/gatsby-theme-newrelic';
 
 | Prop       | Type | Required | Default | Description                                                                    |
 | ---------- | ---- | -------- | ------- | ------------------------------------------------------------------------------ |
-| `align`    | enum | no       | "left"  | The position of the menu arrow. \*Must be either `left`, `right`, or `center`. |
+| `align`    | enum | no       | "left"  | The position of the menu arrow. Must be either `left`, `right`, or `center`. |
 | `children` | node | yes      |         | Components used for the dropdown.                                              |
 
 ```jsx
@@ -734,7 +734,7 @@ Used within a [`Dropdown`](#dropdown) component to render a button that can togg
 | ---------- | ---- | -------- | ------- | -------------------------------------------------------------------- |
 | `size`     | enum | no       |         | The `size` prop for the underlying [`Button`](#button) component.    |
 | `variant`  | enum | yes      |         | The `variant` prop for the underlying [`Button`](#button) component. |
-| `children` | node | no       |         | Text or component used to render the toggle, in addition to an icon. |
+| `children` | node | no       |         | Content used to render the toggle |
 
 #### `Dropdown.Menu`
 
@@ -744,7 +744,7 @@ Used within a [`Dropdown`](#dropdown) component to render the _menu_ that is sho
 
 | Props      | Type | Required | Default | Description                                      |
 | ---------- | ---- | -------- | ------- | ------------------------------------------------ |
-| `children` | node | yes      |         | Sub-components used to create the dropdown menu. |
+| `children` | node | yes      |         | Content rendered inside the dropdown menu. Should consist of `Dropdown.MenuItem` components. |
 
 #### `Dropdown.MenuItem`
 
@@ -756,7 +756,7 @@ Used within a [`Dropdown.Menu`](#dropdownmenu) component (within a [`Dropdown`](
 | ---------- | -------- | -------- | ------- | ------------------------------------------------------------------------------- |
 | `href`     | string   | no       |         | A path that, if supplied, will be used as a [`Link`](#link).                    |
 | `onClick`  | function | no       |         | An optional click event handler that is triggerd when the component is clicked. |
-| `children` | node     | yes      |         | Text or component used to render the toggle, in addition to an icon.            |
+| `children` | node     | yes      |         | Content for the `MenuItem`.            |
 
 ### `ExternalLink`
 
