@@ -188,6 +188,22 @@ exports.onCreatePage = ({ page, actions }, pluginOptions) => {
   }
 };
 
+exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
+  const { i18n } = themeOptions;
+
+  if (i18n) {
+    actions.setWebpackConfig({
+      plugins: [
+        plugins.define({
+          GATSBY_THEME_I18N_REACT_I18NEXT: JSON.stringify(
+            i18n.translationsPath
+          ),
+        }),
+      ],
+    });
+  }
+};
+
 const createDirectory = (directory, { reporter, message } = {}) => {
   if (fs.existsSync(directory)) {
     return;
