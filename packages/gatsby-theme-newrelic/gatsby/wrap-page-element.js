@@ -1,5 +1,4 @@
 /* global GATSBY_THEME_I18N_REACT_I18NEXT */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import GlobalStyles from '../src/components/GlobalStyles';
 import i18n from 'i18next';
