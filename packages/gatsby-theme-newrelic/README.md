@@ -15,6 +15,7 @@ websites](https://opensource.newrelic.com).
   - [Options](#options)
     - [`newrelic`](#newrelic)
     - [`robots`](#robots)
+    - [`i18n`](#i18n)
     - [`layout`](#layout)
     - [`prism`](#prism)
     - [`gaTrackingId`](#gatrackingid)
@@ -137,6 +138,9 @@ module.exports = {
             },
           },
         },
+        i18n: {
+          additionalLocales: [{ name: 'Japanese', locale: 'jp' }],
+        }
         robots: {
           policy: [{ userAgent: '*', allow: '/' }],
         },
@@ -189,6 +193,25 @@ the available configuration options, visit [the
 documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 
 **Default**: `{ policy: [{ userAgent: '*', allow: '/' }] }`
+
+#### `i18n`
+
+Optional configuration for internationalization (i18n). `additionalLocales` can be supplied to add support for languages other than English (the default language). Each locale needs a `name` (used for display in the UI) and a `locale` (used by Gatsby and display in the UI on smaller screens).
+
+These values are used to generate locale-specific pages and to populate a dropdown in the `<GlobalHeader />` component.
+
+**Example**
+
+```js
+{
+  i18n: {
+    additionalLocales: [
+      { name: 'Japanese', locale: 'jp' },
+      { name: 'Korean', locale: 'ko' },
+    ];
+  }
+}
+```
 
 #### `layout`
 
