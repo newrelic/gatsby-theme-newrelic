@@ -137,23 +137,13 @@ exports.onCreateNode = ({ node, actions }) => {
   }
 };
 
-exports.onCreatePage = ({ page, actions }, pluginOptions) => {
-  const { i18n = {} } = pluginOptions;
+exports.onCreatePage = ({ page, actions }) => {
   const { createPage } = actions;
 
   if (!page.context.fileRelativePath) {
     page.context.fileRelativePath = getFileRelativePath(page.componentPath);
 
     createPage(page);
-  }
-
-  if (i18n.additionalLocales && !page.path.match(/404/)) {
-    i18n.additionalLocales.forEach(({ locale }) => {
-      createPage({
-        ...page,
-        path: path.join('/', locale, page.path),
-      });
-    });
   }
 };
 
