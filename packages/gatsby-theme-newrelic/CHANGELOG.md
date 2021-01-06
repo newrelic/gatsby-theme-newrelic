@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.19.0...v1.19.1) (2021-01-06)
+
+
+### Bug Fixes
+
+* do not automatically create pages for additional locales ([de88460](https://github.com/newrelic/gatsby-theme-newrelic/commit/de88460a7e4efee4f36a27087df947dd97faaf12))
+
+
+
+
+
 # [1.19.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.18.1...v1.19.0) (2021-01-06)
 
 
