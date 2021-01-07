@@ -18,7 +18,7 @@ const wrapPageElement = ({ element, props }, themeOptions) => {
   const locale = props.pageContext.locale || defaultLocale.locale;
 
   i18n.init({
-    ...i18n.i18nextOptions,
+    ...i18nextOptions,
     lng: locale,
     resources: getResources(i18nextOptions, locale),
   });
@@ -32,23 +32,40 @@ const wrapPageElement = ({ element, props }, themeOptions) => {
 };
 
 const getResources = (config, locale) => {
-  return config.ns
-    .filter((name) => name !== themeNamespace)
-    .reduce((resources, name) => {
-      const themeMessages = themeSupportedLocales.includes(locale)
-        ? require(`../src/i18n/translations/${locale}.json`)
-        : {};
-      const messages = require(`${GATSBY_THEME_NEWRELIC_I18N_PATH}/${locale}/${name}.json`);
+  const namespaces = config.ns.filter((name) => name !== themeNamespace);
 
-      return {
-        ...resources,
-        en: {
-          ...resources.en,
-          [themeNamespace]: themeMessages,
-          [name]: messages,
-        },
-      };
-    }, {});
+  const defaultResources = namespaces.reduce(
+    (resources, name) => ({
+      ...resources,
+      [defaultLocale.locale]: {
+        ...resources[defaultLocale.locale],
+        [themeNamespace]: getThemeNamespace(defaultLocale.locale),
+        [name]: require(`${GATSBY_THEME_NEWRELIC_I18N_PATH}/${locale}/${name}.json`),
+      },
+    }),
+    {}
+  );
+
+  if (locale === defaultLocale.locale) {
+    return defaultResources;
+  }
+
+  return namespaces.reduce(
+    (resources, name) => ({
+      ...resources,
+      [locale]: {
+        ...resources[locale],
+        [themeNamespace]: getThemeNamespace(locale),
+        [name]: require(`${GATSBY_THEME_NEWRELIC_I18N_PATH}/${locale}/${name}.json`),
+      },
+    }),
+    defaultResources
+  );
 };
+
+const getThemeNamespace = (locale) =>
+  themeSupportedLocales.includes(locale)
+    ? require(`../src/i18n/translations/${locale}.json`)
+    : {};
 
 export default wrapPageElement;
