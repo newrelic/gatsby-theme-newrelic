@@ -17,7 +17,22 @@ const wrapPageElement = ({ element, props }, themeOptions) => {
 
   const locale = props.pageContext.locale || defaultLocale.locale;
 
-  const resources = i18nextOptions.ns
+  i18n.init({
+    ...i18n.i18nextOptions,
+    lng: locale,
+    resources: getResources(i18nextOptions, locale),
+  });
+
+  return (
+    <I18nextProvider i18n={i18n}>
+      <GlobalStyles />
+      {element}
+    </I18nextProvider>
+  );
+};
+
+const getResources = (config, locale) => {
+  return config.ns
     .filter((name) => name !== themeNamespace)
     .reduce((resources, name) => {
       const themeMessages = themeSupportedLocales.includes(locale)
@@ -34,19 +49,6 @@ const wrapPageElement = ({ element, props }, themeOptions) => {
         },
       };
     }, {});
-
-  i18n.init({
-    ...i18n.i18nextOptions,
-    lng: locale,
-    resources,
-  });
-
-  return (
-    <I18nextProvider i18n={i18n}>
-      <GlobalStyles />
-      {element}
-    </I18nextProvider>
-  );
 };
 
 export default wrapPageElement;
