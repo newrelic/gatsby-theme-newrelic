@@ -25,6 +25,9 @@ const withDefaults = (themeOptions) => {
         interpolation: {
           escapeValue: false,
         },
+        react: {
+          useSuspense: false,
+        },
       },
     },
   };
