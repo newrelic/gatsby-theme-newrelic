@@ -44,10 +44,14 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
         i18n.i18nextOptions.ns
           .filter((ns) => ns !== themeNamespace)
           .forEach((ns) => {
-            createFile(path.join(i18n.translationsPath, locale, `${ns}.json`), {
-              reporter,
-              message: `creating the ${locale}/${ns}.json file`,
-            });
+            createFile(
+              path.join(i18n.translationsPath, locale, `${ns}.json`),
+              '{}',
+              {
+                reporter,
+                message: `creating the ${locale}/${ns}.json file`,
+              }
+            );
           });
       });
   }
@@ -232,7 +236,7 @@ const createDirectory = (directory, { reporter, message } = {}) => {
   fs.mkdirSync(directory, { recursive: true });
 };
 
-const createFile = (filepath, { reporter, message } = {}) => {
+const createFile = (filepath, data, { reporter, message } = {}) => {
   if (fs.existsSync(filepath)) {
     return;
   }
@@ -242,7 +246,7 @@ const createFile = (filepath, { reporter, message } = {}) => {
   }
 
   createDirectory(path.dirname(filepath));
-  fs.writeFileSync(filepath, '{}', 'utf-8');
+  fs.writeFileSync(filepath, data, 'utf-8');
 };
 
 const getFileRelativePath = (absolutePath) =>
