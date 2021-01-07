@@ -11,16 +11,13 @@ import {
 import { I18nextProvider } from 'react-i18next';
 
 const wrapPageElement = ({ element, props }, themeOptions) => {
-  const {
-    i18n: { i18nextOptions },
-  } = withDefaults(themeOptions);
-
+  const { i18n: i18nConfig } = withDefaults(themeOptions);
   const locale = props.pageContext.locale || defaultLocale.locale;
 
   i18n.init({
-    ...i18nextOptions,
+    ...i18nConfig.i18nextOptions,
     lng: locale,
-    resources: getResources(i18nextOptions, locale),
+    resources: getResources(i18nConfig, locale),
   });
 
   return (
@@ -31,41 +28,38 @@ const wrapPageElement = ({ element, props }, themeOptions) => {
   );
 };
 
-const getResources = (config, locale) => {
-  const namespaces = config.ns.filter((name) => name !== themeNamespace);
+const getResources = (i18nConfig, locale) => {
+  const namespaces = i18nConfig.i18nextOptions.ns.filter(
+    (name) => name !== themeNamespace
+  );
 
-  const defaultResources = namespaces.reduce(
-    (resources, name) => ({
-      ...resources,
-      [defaultLocale.locale]: {
-        ...resources[defaultLocale.locale],
-        [themeNamespace]: getThemeNamespace(defaultLocale.locale),
-        [name]: require(`${GATSBY_THEME_NEWRELIC_I18N_PATH}/${locale}/${name}.json`),
-      },
-    }),
-    {}
+  const defaultResources = getResourcesForLocale(
+    defaultLocale.locale,
+    namespaces
   );
 
   if (locale === defaultLocale.locale) {
     return defaultResources;
   }
 
-  return namespaces.reduce(
-    (resources, name) => ({
+  return { ...defaultResources, ...getResourcesForLocale(locale, namespaces) };
+};
+
+const getResourcesForLocale = (locale, namespaces) =>
+  namespaces.reduce(
+    (resources, namespace) => ({
       ...resources,
       [locale]: {
         ...resources[locale],
-        [themeNamespace]: getThemeNamespace(locale),
-        [name]: require(`${GATSBY_THEME_NEWRELIC_I18N_PATH}/${locale}/${name}.json`),
+        [themeNamespace]: themeSupportedLocales.includes(locale)
+          ? require(`../src/i18n/translations/${locale}.json`)
+          : {},
+        [namespace]: GATSBY_THEME_NEWRELIC_I18N_PATH
+          ? require(`${GATSBY_THEME_NEWRELIC_I18N_PATH}/${locale}/${namespace}.json`)
+          : {},
       },
     }),
-    defaultResources
+    {}
   );
-};
-
-const getThemeNamespace = (locale) =>
-  themeSupportedLocales.includes(locale)
-    ? require(`../src/i18n/translations/${locale}.json`)
-    : {};
 
 export default wrapPageElement;

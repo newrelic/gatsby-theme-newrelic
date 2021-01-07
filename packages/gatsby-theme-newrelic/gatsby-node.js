@@ -21,7 +21,6 @@ exports.onPreInit = (_, themeOptions) => {
 };
 
 exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
-  const { i18n } = withDefaults(themeOptions);
   const { program } = store.getState();
   const imagePath = path.join(program.directory, 'src/images');
   const announcementsPath = path.join(program.directory, 'src/announcements');
@@ -36,7 +35,9 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
     message: 'creating the announcements directory',
   });
 
-  if (i18n) {
+  if (themeOptions.i18n) {
+    const { i18n } = withDefaults(themeOptions);
+
     [defaultLocale]
       .concat(i18n.additionalLocales || [])
       .forEach(({ locale }) => {
@@ -208,17 +209,15 @@ exports.onCreatePage = ({ page, actions }, pluginOptions) => {
 exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
   const { i18n } = themeOptions;
 
-  if (i18n) {
-    actions.setWebpackConfig({
-      plugins: [
-        plugins.define({
-          GATSBY_THEME_NEWRELIC_I18N_PATH: JSON.stringify(
-            i18n.translationsPath
-          ),
-        }),
-      ],
-    });
-  }
+  actions.setWebpackConfig({
+    plugins: [
+      plugins.define({
+        GATSBY_THEME_NEWRELIC_I18N_PATH: JSON.stringify(
+          (i18n && i18n.translationsPath) || ''
+        ),
+      }),
+    ],
+  });
 };
 
 const createDirectory = (directory, { reporter, message } = {}) => {
