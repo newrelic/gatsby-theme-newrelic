@@ -9,6 +9,7 @@ import CodeHighlight from './CodeHighlight';
 import MiddleEllipsis from 'react-middle-ellipsis';
 import useClipboard from '../hooks/useClipboard';
 import useFormattedCode from '../hooks/useFormattedCode';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const AUTO_FORMATTED_LANGUAGES = [
   'jsx',
@@ -43,6 +44,7 @@ const CodeBlock = ({
     language = 'jsx';
   }
 
+  const { t } = useThemeTranslation();
   const components = { ...defaultComponents, ...componentOverrides };
   const formattedCode = useFormattedCode(children, {
     ...formatOptions,
@@ -161,7 +163,7 @@ const CodeBlock = ({
                     margin-right: 0.5rem;
                   `}
                 />
-                {copied ? 'Copied' : 'Copy'}
+                {copied ? t('button.copied') : t('button.copy')}
               </Button>
             </div>
           )}
