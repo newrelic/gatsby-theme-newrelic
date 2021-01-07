@@ -169,6 +169,7 @@ exports.onCreateNode = ({ node, actions }) => {
 exports.onCreatePage = ({ page, actions }, pluginOptions) => {
   const { createPage } = actions;
   const { i18n = {} } = pluginOptions;
+  const { additionalLocales = [] } = i18n;
 
   if (!page.context.fileRelativePath) {
     page.context.fileRelativePath = getFileRelativePath(page.componentPath);
@@ -176,12 +177,22 @@ exports.onCreatePage = ({ page, actions }, pluginOptions) => {
     createPage(page);
   }
 
+  if (!page.context.locale) {
+    const { locale } =
+      additionalLocales.find(({ locale }) =>
+        new RegExp(`^\\/?${locale}/`).test(page.path)
+      ) || defaultLocale;
+
+    page.context.locale = locale;
+
+    createPage(page);
+  }
+
   if (
-    i18n.additionalLocales &&
     !page.path.match(/404/) &&
     page.context.fileRelativePath.includes('src/pages/')
   ) {
-    i18n.additionalLocales.forEach(({ locale }) => {
+    additionalLocales.forEach(({ locale }) => {
       createPage({
         ...page,
         path: path.join('/', locale, page.path),
