@@ -10,7 +10,7 @@ import machine from './machine';
 import gaussianRound from './gaussianRound';
 import MenuBar from './MenuBar';
 import { useIntersection } from 'react-use';
-import { useClipboard } from '@newrelic/gatsby-theme-newrelic';
+import useClipboard from '../../hooks/useClipboard';
 
 const Shell = ({ animate, copyable, highlight, code }) => {
   const { tokens, getTokenProps } = highlight;
