@@ -2,56 +2,61 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { Button, Icon } from '@newrelic/gatsby-theme-newrelic';
+import useThemeTranslation from '../../hooks/useThemeTranslation';
 
-const MenuBar = ({ copyable, copied, onCopy }) => (
-  <div
-    css={css`
-      background: var(--chrome-color);
-      display: grid;
-      grid-template-columns: repeat(3, auto) 1fr 90px;
-      grid-gap: 0.5rem;
-      align-items: center;
-      padding: 0 1rem;
-      border-top-left-radius: var(--border-radius);
-      border-top-right-radius: var(--border-radius);
-      height: 38px;
-    `}
-  >
-    <FrameButton color="#ed6b60" />
-    <FrameButton color="#f5be4f" />
-    <FrameButton color="#62c554" />
+const MenuBar = ({ copyable, copied, onCopy }) => {
+  const { t } = useThemeTranslation();
+
+  return (
     <div
       css={css`
-        color: #ccc;
-        text-align: center;
-        font-family: var(--code-font);
-        font-size: 0.75rem;
+        background: var(--chrome-color);
+        display: grid;
+        grid-template-columns: repeat(3, auto) 1fr 90px;
+        grid-gap: 0.5rem;
+        align-items: center;
+        padding: 0 1rem;
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        height: 38px;
       `}
     >
-      bash
-    </div>
-    {copyable && (
-      <Button
-        variant={Button.VARIANT.LINK}
-        size={Button.SIZE.SMALL}
-        onClick={onCopy}
-        className="dark-mode"
+      <FrameButton color="#ed6b60" />
+      <FrameButton color="#f5be4f" />
+      <FrameButton color="#62c554" />
+      <div
         css={css`
-          justify-self: end;
-          white-space: nowrap;
+          color: #ccc;
+          text-align: center;
+          font-family: var(--code-font);
+          font-size: 0.75rem;
         `}
       >
-        <Icon
-          name={Icon.TYPE.COPY}
+        bash
+      </div>
+      {copyable && (
+        <Button
+          variant={Button.VARIANT.LINK}
+          size={Button.SIZE.SMALL}
+          onClick={onCopy}
+          className="dark-mode"
           css={css`
-            margin-right: 0.5rem;
+            justify-self: end;
+            white-space: nowrap;
           `}
-        />
-        {copied ? 'Copied' : 'Copy'}
-      </Button>
-    )}
-  </div>
-);
+        >
+          <Icon
+            name={Icon.TYPE.COPY}
+            css={css`
+              margin-right: 0.5rem;
+            `}
+          />
+          {copied ? t('button.copied') : t('button.copy')}
+        </Button>
+      )}
+    </div>
+  );
+};
 
 MenuBar.propTypes = {
   copied: PropTypes.bool,
