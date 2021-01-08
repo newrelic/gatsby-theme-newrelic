@@ -350,7 +350,9 @@ const GlobalHeader = ({ className }) => {
                 variant={Button.VARIANT.PRIMARY}
               >
                 <span>
-                  {inDocsSite ? t('button.signUp') : t('button.startNow')}
+                  {inDocsSite
+                    ? t('button.signUp', 'Sign up')
+                    : t('button.startNow', 'Start now')}
                 </span>
               </Button>
             </li>
