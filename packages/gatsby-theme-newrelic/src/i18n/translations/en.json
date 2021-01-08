@@ -1,13 +1,53 @@
 {
   "button": {
     "close": "Close",
-    "copy": "Copy",
     "copied": "Copied",
+    "copy": "Copy",
     "login": "Log in",
     "signUp": "Sign up",
     "startNow": "Start now"
   },
+  "callout": {
+    "tip": "Tip",
+    "caution": "Caution",
+    "important": "Important"
+  },
+  "github": {
+    "createIssue": "Create an issue",
+    "editPage": "Edit this page"
+  },
+  "contributing": {
+    "guide": "Read our <1>guide</1> on how to contribute"
+  },
+  "cookieConsent": {
+    "title": "This site uses cookies",
+    "statement": "We use cookies and other similar technologies (\"Cookies\") on our websites and services to enhance your experience and to provide you with relevant content. By using our websites and services you are agreeing to the use of cookies. You can read more <2>here</2>. If you consent to our cookies, please click <4>Yes</4>.",
+    "agree": "Yes",
+    "disagree": "No"
+  },
+  "feedback": {
+    "thanks": "Thank you for your feedback",
+    "question": "Was this page helpful?",
+    "positive": "Yes",
+    "negative": "No",
+    "commentPlaceholder": "Additional feedback (optional)",
+    "validationError": "Please provide a vote or comment",
+    "submitButton": "Submit feedback",
+    "title": "Feedback"
+  },
+  "footer": {
+    "copyright": "Copyright &copy; 2020 New Relic Inc.",
+    "careers": "Careers",
+    "terms": "Terms of Service",
+    "dcmaPolicy": "DCMA Policy",
+    "privacyNotice": "Privacy Notice",
+    "cookiePolicy": "Cookie Policy",
+    "ukSlaveryAct": "UK Slavery Act"
+  },
   "searchInput": {
     "placeholder": "Search Docs, Developer, Open Source"
+  },
+  "search": {
+    "pagingInfo": "Showing <2>{start} - {end}</2> out of <5>{totalResults}</5> for <7>{searchTerm}</7> across {sites.length} sites"
   }
 }
