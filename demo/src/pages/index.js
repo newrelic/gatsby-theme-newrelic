@@ -17,6 +17,7 @@ import {
   Terminal,
   Video,
   useLayout,
+  useTranslation,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const codeSample = `
@@ -39,6 +40,7 @@ const liveCodeSample = `
 `;
 
 const IndexPage = () => {
+  const { t } = useTranslation();
   const { contentPadding } = useLayout();
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -71,11 +73,12 @@ const IndexPage = () => {
           }
         `}
       >
-        <h1>Hello, demo</h1>
+        <h1>{t('home.welcome', 'Hello, demo')}</h1>
         <p>
-          This is a demo site that can be used to preview features of the New
-          Relic Gatsby theme. Feel free to add examples to this site to showcase
-          features.
+          {t(
+            'home.intro',
+            'This is a demo site that can be used to preview features of the New Relic Gatsby theme. Feel free to add examples to this site to showcase features.'
+          )}
         </p>
         <section>
           <h2>Search inputs</h2>
