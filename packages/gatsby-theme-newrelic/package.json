@@ -55,6 +55,7 @@
     "date-fns": "^2.16.1",
     "gatsby-plugin-emotion": "^4.3.10",
     "gatsby-plugin-gdpr-tracking": "^1.2.2",
+    "gatsby-plugin-layout": "^1.8.0",
     "gatsby-plugin-newrelic": "^1.0.5",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-robots-txt": "^1.5.1",

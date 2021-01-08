@@ -1204,7 +1204,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.12.0":
+"@babel/runtime@^7.12.0", "@babel/runtime@^7.12.5":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
   integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
@@ -9076,6 +9076,13 @@ gatsby-plugin-layout@^1.3.13:
   integrity sha512-bNQYp/GKECa0EF1GAFuRriAs6LslshHt86q0S5IWtFpnGDRkY8+90KbZM3/EoEPuBPYd8QDgxsqJHB/Jyhdr5A==
   dependencies:
     "@babel/runtime" "^7.11.2"
+
+gatsby-plugin-layout@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-1.8.0.tgz#5f2e313f5b95c5e60e96d4cacd666fcd62c1275d"
+  integrity sha512-iiC5Q0fGAif00Ty6s8hunWxG6mnScmUpCqToLzjijPflq/0m/zlZW6870jJ/aVMs3mtyIYEoYk2aq1jVQdNl8Q==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
 
 gatsby-plugin-mdx@^1.2.52:
   version "1.2.52"
