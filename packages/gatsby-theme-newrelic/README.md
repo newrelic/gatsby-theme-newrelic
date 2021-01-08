@@ -73,6 +73,7 @@ websites](https://opensource.newrelic.com).
   - [`useTimeout`](#usetimeout)
   - [`useUserId`](#useuserid)
   - [`usePrevious`](#useprevious)
+- [I18n](#i18n-1)
 - [Announcements](#announcements)
 - [Utils](#utils)
   - [`formatCode`](#formatcode)
@@ -143,6 +144,7 @@ module.exports = {
           },
         },
         i18n: {
+          translationsPath: `${__dirname}/src/i18n/translations`,
           additionalLocales: [{ name: '日本語', locale: 'jp' }],
         }
         robots: {
@@ -200,7 +202,11 @@ documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 
 #### `i18n`
 
-Optional configuration for internationalization (i18n). `additionalLocales` can be supplied to add support for languages other than English (the default language). Each locale needs a `name` (used for display in the UI) and a `locale` (used by Gatsby and display in the UI on smaller screens).
+Optional configuration for internationalization (i18n).
+
+- `additionalLocales`: Can be supplied to add support for languages other than English (the default language). Each locale needs a `name` (used for display in the UI) and a `locale` (used by Gatsby and display in the UI on smaller screens).
+- `translationsPath`: The directory path where the translations will be stored.
+- `i18nextOptions`: Additional options to pass into [`i18next`](https://www.i18next.com/) that will override the defaults.
 
 These values are used to generate locale-specific pages and to populate a dropdown in the `<GlobalHeader />` component.
 
@@ -704,10 +710,10 @@ import { Dropdown } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop       | Type | Required | Default | Description                                                                    |
-| ---------- | ---- | -------- | ------- | ------------------------------------------------------------------------------ |
+| Prop       | Type | Required | Default | Description                                                                  |
+| ---------- | ---- | -------- | ------- | ---------------------------------------------------------------------------- |
 | `align`    | enum | no       | "left"  | The position of the menu arrow. Must be either `left`, `right`, or `center`. |
-| `children` | node | yes      |         | Components used for the dropdown.                                              |
+| `children` | node | yes      |         | Components used for the dropdown.                                            |
 
 ```jsx
 import { DropDown, Button } from '@newrelic/gatsby-theme-newrelic';
@@ -734,7 +740,7 @@ Used within a [`Dropdown`](#dropdown) component to render a button that can togg
 | ---------- | ---- | -------- | ------- | -------------------------------------------------------------------- |
 | `size`     | enum | no       |         | The `size` prop for the underlying [`Button`](#button) component.    |
 | `variant`  | enum | yes      |         | The `variant` prop for the underlying [`Button`](#button) component. |
-| `children` | node | no       |         | Content used to render the toggle |
+| `children` | node | no       |         | Content used to render the toggle                                    |
 
 #### `Dropdown.Menu`
 
@@ -742,8 +748,8 @@ Used within a [`Dropdown`](#dropdown) component to render the _menu_ that is sho
 
 **Props**
 
-| Props      | Type | Required | Default | Description                                      |
-| ---------- | ---- | -------- | ------- | ------------------------------------------------ |
+| Props      | Type | Required | Default | Description                                                                                  |
+| ---------- | ---- | -------- | ------- | -------------------------------------------------------------------------------------------- |
 | `children` | node | yes      |         | Content rendered inside the dropdown menu. Should consist of `Dropdown.MenuItem` components. |
 
 #### `Dropdown.MenuItem`
@@ -756,7 +762,7 @@ Used within a [`Dropdown.Menu`](#dropdownmenu) component (within a [`Dropdown`](
 | ---------- | -------- | -------- | ------- | ------------------------------------------------------------------------------- |
 | `href`     | string   | no       |         | A path that, if supplied, will be used as a [`Link`](#link).                    |
 | `onClick`  | function | no       |         | An optional click event handler that is triggerd when the component is clicked. |
-| `children` | node     | yes      |         | Content for the `MenuItem`.            |
+| `children` | node     | yes      |         | Content for the `MenuItem`.                                                     |
 
 ### `ExternalLink`
 
@@ -2179,6 +2185,18 @@ const MyComponent = () => {
     </div>
   )
 }
+```
+
+## I18n
+
+This theme uses [`react-i18next`](https://react.i18next.com/) to handle
+translations. All modules are re-exported from this theme so that you can use
+them in your site.
+
+Example:
+
+```js
+import { useTranslation, Trans } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 ## Announcements
