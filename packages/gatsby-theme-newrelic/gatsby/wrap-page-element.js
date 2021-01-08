@@ -9,6 +9,7 @@ import {
   themeSupportedLocales,
 } from '../src/utils/defaultOptions';
 import { I18nextProvider } from 'react-i18next';
+import LocaleProvider from '../src/components/LocaleProvider';
 
 const wrapPageElement = ({ element, props }, themeOptions) => {
   const { i18n: i18nConfig } = withDefaults(themeOptions);
@@ -22,8 +23,10 @@ const wrapPageElement = ({ element, props }, themeOptions) => {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <GlobalStyles />
-      {element}
+      <LocaleProvider i18n={i18n}>
+        <GlobalStyles />
+        {element}
+      </LocaleProvider>
     </I18nextProvider>
   );
 };
