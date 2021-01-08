@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.20.0...v1.21.0) (2021-01-08)
+
+
+### Bug Fixes
+
+* source locales as nodes instead of via resolvers ([ce523e6](https://github.com/newrelic/gatsby-theme-newrelic/commit/ce523e6460cd242c0b7787959be131e77ac4d8bc))
+* **CodeBlock:** use translated strings for the copy button ([860f305](https://github.com/newrelic/gatsby-theme-newrelic/commit/860f3056ebc7116abcedddceeb762fd455a56025))
+* **Terminal:** use translated strings for the copy button ([af335ec](https://github.com/newrelic/gatsby-theme-newrelic/commit/af335ecdce54ae5855b2e4c08b9b0e6609687c48))
+
+
+### Features
+
+* automatically create translation files for each supported language and namespace ([e82fbfb](https://github.com/newrelic/gatsby-theme-newrelic/commit/e82fbfb49643a5458aedc3acb60d4d0397be09fd))
+* re-export all modules from react-i18next ([448a4bc](https://github.com/newrelic/gatsby-theme-newrelic/commit/448a4bc20603df425a338fdb4aa3fb21d210198f))
+* set locale in page context if its not already set ([3baa726](https://github.com/newrelic/gatsby-theme-newrelic/commit/3baa7264044ba13ab4899e4242e3d7b190b517b1))
+* wrap page element with initialized i18n instance and provider ([d4c2aba](https://github.com/newrelic/gatsby-theme-newrelic/commit/d4c2abab29a56134ef68c539fe4d742ed204793e))
+
+
+
+
+
 # [1.20.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.19.1...v1.20.0) (2021-01-06)
 
 
