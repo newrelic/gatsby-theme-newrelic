@@ -93,26 +93,23 @@ exports.sourceNodes = (
   const { i18n = {} } = themeOptions;
   const { createNode } = actions;
 
-  (i18n.additionalLocales || [])
-    .concat(defaultLocale)
-    .sort((a, b) => a.locale.localeCompare(b.locale))
-    .forEach((locale) => {
-      const data = {
-        ...locale,
-        isDefault: locale.locale === defaultLocale.locale,
-      };
+  (i18n.additionalLocales || []).concat(defaultLocale).forEach((locale) => {
+    const data = {
+      ...locale,
+      isDefault: locale.locale === defaultLocale.locale,
+    };
 
-      createNode({
-        ...data,
-        id: createNodeId(`Locale-${locale.locale}`),
-        parent: null,
-        children: [],
-        internal: {
-          type: 'Locale',
-          contentDigest: createContentDigest(data),
-        },
-      });
+    createNode({
+      ...data,
+      id: createNodeId(`Locale-${locale.locale}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: 'Locale',
+        contentDigest: createContentDigest(data),
+      },
     });
+  });
 };
 
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
