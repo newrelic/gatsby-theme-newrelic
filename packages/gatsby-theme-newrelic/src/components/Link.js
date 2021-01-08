@@ -21,8 +21,13 @@ const Link = ({ to, ...props }) => {
     to = to.replace(siteUrl, '');
   }
 
-  if (to.startsWith('/') || to.startsWith('#')) {
+  if (to.startsWith('/')) {
     return <GatsbyLink to={to} {...props} />;
+  }
+
+  if (to.startsWith('#')) {
+    // eslint-disable-next-line jsx-a11y/anchor-has-content
+    return <a href={to} {...props} />;
   }
 
   // eslint-disable-next-line jsx-a11y/anchor-has-content
