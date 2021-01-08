@@ -15,6 +15,11 @@ const DEFAULT_TITLES = {
   [VARIANTS.TIP]: 'Tip',
 };
 
+// needed for i18next-parser to resolve the dynamic values
+// t('callout.tip')
+// t('callout.caution')
+// t('callout.important')
+
 const styles = {
   variant: {
     [VARIANTS.CAUTION]: css`
