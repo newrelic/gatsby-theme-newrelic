@@ -45,13 +45,13 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
 
   return (
     <PageTools.Section>
-      <PageTools.Title>{t('feedback.title', 'Feedback')}</PageTools.Title>
+      <PageTools.Title>{t('feedback.title')}</PageTools.Title>
       <div
         css={css`
           font-size: 0.875rem;
         `}
       >
-        {t('feedback.question', 'Was this page helpful?')}
+        {t('feedback.question')}
       </div>
       <div
         css={css`
@@ -86,7 +86,7 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
               margin-right: 0.5rem;
             `}
           />
-          {t('feedback.positive', 'Yes')}
+          {t('feedback.positive')}
         </Button>
         <Button
           as="a"
@@ -102,7 +102,7 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
               margin-right: 0.5rem;
             `}
           />
-          {t('feedback.negative', 'No')}
+          {t('feedback.negative')}
         </Button>
       </div>
     </PageTools.Section>

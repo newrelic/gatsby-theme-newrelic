@@ -9,12 +9,6 @@ const VARIANTS = {
   TIP: 'tip',
 };
 
-const DEFAULT_TITLES = {
-  [VARIANTS.CAUTION]: 'Caution',
-  [VARIANTS.IMPORTANT]: 'Important',
-  [VARIANTS.TIP]: 'Tip',
-};
-
 // needed for i18next-parser to resolve the dynamic values
 // t('callout.tip')
 // t('callout.caution')
@@ -58,7 +52,7 @@ const Callout = ({ title, variant, children }) => {
             margin-top: 0 !important;
           `}
         >
-          {title || t(`callout.${variant}`, DEFAULT_TITLES[variant])}
+          {title || t(`callout.${variant}`)}
         </h4>
       )}
       {children}

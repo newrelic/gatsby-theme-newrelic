@@ -268,10 +268,7 @@ const GlobalHeader = ({ className }) => {
               ) : (
                 <SearchInput
                   ref={searchRef}
-                  placeholder={t(
-                    'searchInput.placeholder',
-                    'Search Docs, Developer, Open Source'
-                  )}
+                  placeholder={t('searchInput.placeholder')}
                   size={SearchInput.SIZE.SMALL}
                   onClear={() => setSearchQuery('')}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -333,7 +330,7 @@ const GlobalHeader = ({ className }) => {
                   white-space: nowrap;
                 `}
               >
-                {t('button.login', 'Log in')}
+                {t('button.login')}
               </Button>
             </li>
             <li
@@ -350,9 +347,7 @@ const GlobalHeader = ({ className }) => {
                 variant={Button.VARIANT.PRIMARY}
               >
                 <span>
-                  {inDocsSite
-                    ? t('button.signUp', 'Sign up')
-                    : t('button.startNow', 'Start now')}
+                  {inDocsSite ? t('button.signUp') : t('button.startNow')}
                 </span>
               </Button>
             </li>

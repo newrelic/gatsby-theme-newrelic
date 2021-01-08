@@ -81,7 +81,7 @@ const CookieConsentDialog = () => {
               }
             `}
           >
-            {t('cookieConsent.title', 'This site uses cookies')}{' '}
+            {t('cookieConsent.title')}{' '}
             <span role="img" aria-label="Cookie emoji">
               🍪
             </span>
@@ -130,7 +130,7 @@ const CookieConsentDialog = () => {
             variant={Button.VARIANT.PRIMARY}
             onClick={() => writeCookie(true)}
           >
-            {t('cookieConsent.agree', 'Yes')}
+            {t('cookieConsent.agree')}
           </Button>
           <Button
             css={css`
@@ -143,7 +143,7 @@ const CookieConsentDialog = () => {
             variant={Button.VARIANT.NORMAL}
             onClick={() => writeCookie(false)}
           >
-            {t('cookieConsent.disagree', 'No')}
+            {t('cookieConsent.disagree')}
           </Button>
         </div>
       </div>

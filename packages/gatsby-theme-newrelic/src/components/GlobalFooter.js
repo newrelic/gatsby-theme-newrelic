@@ -105,7 +105,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
                   margin-right: 0.5rem;
                 `}
               />
-              {t('github.editPage', 'Edit this page')}
+              {t('github.editPage')}
             </Button>
           )}
 
@@ -121,7 +121,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
                 margin-right: 0.5rem;
               `}
             />
-            {t('github.createIssue', 'Create an issue')}
+            {t('github.createIssue')}
           </Button>
         </div>
       </div>

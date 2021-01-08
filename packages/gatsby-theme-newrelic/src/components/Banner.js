@@ -67,7 +67,7 @@ const Banner = ({ children, visible, onClose, ...props }) => {
             right: ${layout.contentPadding};
           `}
         >
-          {t('button.close', 'Close')}
+          {t('button.close')}
           <Icon
             name="fe-x"
             size="0.75rem"

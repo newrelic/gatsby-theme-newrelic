@@ -27,7 +27,7 @@ const Feedback = ({ align, onSubmit, message }) => {
   const [error, updateError] = useState(false);
 
   if (submitted) {
-    return <p>{t('feedback.thanks', 'Thank you for your feedback')}</p>;
+    return <p>{t('feedback.thanks')}</p>;
   }
 
   return (
@@ -36,7 +36,7 @@ const Feedback = ({ align, onSubmit, message }) => {
         text-align: ${align};
       `}
     >
-      <p>{message || t('feedback.question', 'Was this page helpful?')}</p>
+      <p>{message || t('feedback.question')}</p>
       <div
         css={css`
           display: flex;
@@ -57,7 +57,7 @@ const Feedback = ({ align, onSubmit, message }) => {
           `}
         >
           <Icon css={iconStyles} name="fe-thumbsup" size="1.1rem" />
-          {t('feedback.positive', 'Yes')}
+          {t('feedback.positive')}
         </Button>
         <Button
           onClick={() => {
@@ -69,7 +69,7 @@ const Feedback = ({ align, onSubmit, message }) => {
           `}
         >
           <Icon css={iconStyles} name="fe-thumbsdown" size="1.1rem" />
-          {t('feedback.negative', 'No')}
+          {t('feedback.negative')}
         </Button>
       </div>
 
@@ -133,16 +133,11 @@ const Feedback = ({ align, onSubmit, message }) => {
               onSubmit({ sentiment, comment });
               updateSubmitted(true);
             } else {
-              updateError(
-                t(
-                  'feedback.validationError',
-                  'Please provide a vote or comment'
-                )
-              );
+              updateError(t('feedback.validationError'));
             }
           }}
         >
-          {t('feedback.submitButton', 'Submit feedback')}
+          {t('feedback.submitButton')}
         </Button>
       </div>
     </div>
@@ -160,7 +155,6 @@ Feedback.propTypes = {
 
 Feedback.defaultProps = {
   align: Feedback.ALIGNMENT.LEFT,
-  message: 'Was this page helpful?',
 };
 
 export default Feedback;

@@ -89,7 +89,7 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
                   font-size: 0.75rem;
                 `}
               >
-                {t('button.close', 'Close')}
+                {t('button.close')}
               </span>
               <Icon name="fe-x" size="1rem" />
             </div>
