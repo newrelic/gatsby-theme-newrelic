@@ -1,6 +1,13 @@
 {
   "button": {
+    "close": "Close",
     "copy": "Copy",
-    "copied": "Copied"
+    "copied": "Copied",
+    "login": "Log in",
+    "signUp": "Sign up",
+    "startNow": "Start now"
+  },
+  "searchInput": {
+    "placeholder": "Search Docs, Developer, Open Source"
   }
 }
