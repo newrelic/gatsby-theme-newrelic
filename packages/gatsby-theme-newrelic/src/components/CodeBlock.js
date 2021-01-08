@@ -163,7 +163,9 @@ const CodeBlock = ({
                     margin-right: 0.5rem;
                   `}
                 />
-                {copied ? t('button.copied') : t('button.copy')}
+                {copied
+                  ? t('button.copied', 'Copied')
+                  : t('button.copy', 'Copy')}
               </Button>
             </div>
           )}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Button from './Button';
 import Icon from './Icon';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const ALIGNMENT = {
   LEFT: 'left',
@@ -19,12 +20,15 @@ const iconStyles = css`
 `;
 
 const Feedback = ({ align, onSubmit, message }) => {
+  const { t } = useThemeTranslation();
   const [sentiment, updateSentiment] = useState(null);
   const [comment, updateComment] = useState('');
   const [submitted, updateSubmitted] = useState(false);
   const [error, updateError] = useState(false);
 
-  if (submitted) return <p>Thank you for your feedback</p>;
+  if (submitted) {
+    return <p>{t('feedback.thanks', 'Thank you for your feedback')}</p>;
+  }
 
   return (
     <div
@@ -32,7 +36,7 @@ const Feedback = ({ align, onSubmit, message }) => {
         text-align: ${align};
       `}
     >
-      <p>{message}</p>
+      <p>{message || t('feedback.question', 'Was this page helpful?')}</p>
       <div
         css={css`
           display: flex;
@@ -53,7 +57,7 @@ const Feedback = ({ align, onSubmit, message }) => {
           `}
         >
           <Icon css={iconStyles} name="fe-thumbsup" size="1.1rem" />
-          Yes
+          {t('feedback.positive', 'Yes')}
         </Button>
         <Button
           onClick={() => {
@@ -65,7 +69,7 @@ const Feedback = ({ align, onSubmit, message }) => {
           `}
         >
           <Icon css={iconStyles} name="fe-thumbsdown" size="1.1rem" />
-          No
+          {t('feedback.negative', 'No')}
         </Button>
       </div>
 
@@ -95,7 +99,10 @@ const Feedback = ({ align, onSubmit, message }) => {
             border-color: var(--primary-text-color);
           }
         `}
-        placeholder="Additional feedback (optional)"
+        placeholder={t(
+          'feedback.commentPlaceholder',
+          'Additional feedback (optional)'
+        )}
         onChange={(e) => {
           updateComment(e.target.value);
         }}
@@ -126,11 +133,16 @@ const Feedback = ({ align, onSubmit, message }) => {
               onSubmit({ sentiment, comment });
               updateSubmitted(true);
             } else {
-              updateError('Please provide a vote or comment');
+              updateError(
+                t(
+                  'feedback.validationError',
+                  'Please provide a vote or comment'
+                )
+              );
             }
           }}
         >
-          Submit feedback
+          {t('feedback.submitButton', 'Submit feedback')}
         </Button>
       </div>
     </div>

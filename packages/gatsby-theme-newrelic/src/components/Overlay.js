@@ -6,9 +6,11 @@ import Icon from './Icon';
 import Portal from './Portal';
 import NewRelicLogo from './NewRelicLogo';
 import useKeyPress from '../hooks/useKeyPress';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 import useLayout from '../hooks/useLayout';
 
 const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
+  const { t } = useThemeTranslation();
   const layout = useLayout();
 
   useEffect(() => {
@@ -87,7 +89,7 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
                   font-size: 0.75rem;
                 `}
               >
-                Close
+                {t('button.close', 'Close')}
               </span>
               <Icon name="fe-x" size="1rem" />
             </div>

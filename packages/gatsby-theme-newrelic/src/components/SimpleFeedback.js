@@ -8,8 +8,10 @@ import Button from './Button';
 import Icon from './Icon';
 import PageTools from './PageTools';
 import createIssueURL from '../utils/createIssueURL';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const SimpleFeedback = ({ pageTitle, labels }) => {
+  const { t } = useThemeTranslation();
   const { site } = useStaticQuery(graphql`
     query FeedbackQuery {
       site {
@@ -43,13 +45,13 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
 
   return (
     <PageTools.Section>
-      <PageTools.Title>Feedback</PageTools.Title>
+      <PageTools.Title>{t('feedback.title', 'Feedback')}</PageTools.Title>
       <div
         css={css`
           font-size: 0.875rem;
         `}
       >
-        Was this page helpful?
+        {t('feedback.question', 'Was this page helpful?')}
       </div>
       <div
         css={css`
@@ -84,7 +86,7 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
               margin-right: 0.5rem;
             `}
           />
-          Yes
+          {t('feedback.positive', 'Yes')}
         </Button>
         <Button
           as="a"
@@ -100,7 +102,7 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
               margin-right: 0.5rem;
             `}
           />
-          No
+          {t('feedback.negative', 'No')}
         </Button>
       </div>
     </PageTools.Section>

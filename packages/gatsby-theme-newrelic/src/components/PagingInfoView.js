@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import ThemeTrans from './ThemeTrans';
 
 import { appendClassName } from '@elastic/react-search-ui-views/es/view-helpers';
 
@@ -14,19 +15,19 @@ function PagingInfo({
   ...rest
 }) {
   return (
-    <div className={appendClassName('sui-paging-info', className)} {...rest}>
+    <ThemeTrans
+      i18nKey="search.pagingInfo"
+      parent="div"
+      className={appendClassName('sui-paging-info', className)}
+      {...rest}
+    >
       Showing{' '}
       <strong>
         {start} - {end}
       </strong>{' '}
-      out of <strong>{totalResults}</strong>
-      {searchTerm && (
-        <>
-          {' '}
-          for <em>{searchTerm}</em> across {sites.length} sites
-        </>
-      )}
-    </div>
+      out of <strong>{totalResults}</strong> for <em>{searchTerm}</em> across{' '}
+      {sites.length} sites
+    </ThemeTrans>
   );
 }
 

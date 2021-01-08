@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const VARIANTS = {
   CAUTION: 'caution',
@@ -32,6 +33,8 @@ const styles = {
 };
 
 const Callout = ({ title, variant, children }) => {
+  const { t } = useThemeTranslation();
+
   return (
     <div
       css={css`
@@ -50,7 +53,7 @@ const Callout = ({ title, variant, children }) => {
             margin-top: 0 !important;
           `}
         >
-          {title || DEFAULT_TITLES[variant]}
+          {title || t(`callout.${variant}`, DEFAULT_TITLES[variant])}
         </h4>
       )}
       {children}

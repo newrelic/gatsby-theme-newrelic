@@ -17,6 +17,7 @@ import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 import path from 'path';
 import { rgba } from 'polished';
 
@@ -46,6 +47,7 @@ const GlobalHeader = ({ className }) => {
   const searchRef = useRef();
   const { queryParams, setQueryParam } = useQueryParams();
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useThemeTranslation();
 
   const {
     allLocale: { nodes: locales },
@@ -266,7 +268,10 @@ const GlobalHeader = ({ className }) => {
               ) : (
                 <SearchInput
                   ref={searchRef}
-                  placeholder="Search Docs, Developer, Open Source"
+                  placeholder={t(
+                    'searchInput.placeholder',
+                    'Search Docs, Developer, Open Source'
+                  )}
                   size={SearchInput.SIZE.SMALL}
                   onClear={() => setSearchQuery('')}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -328,7 +333,7 @@ const GlobalHeader = ({ className }) => {
                   white-space: nowrap;
                 `}
               >
-                Log in
+                {t('button.login', 'Log in')}
               </Button>
             </li>
             <li
@@ -344,7 +349,9 @@ const GlobalHeader = ({ className }) => {
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
               >
-                <span>{inDocsSite ? 'Sign Up' : 'Start Now'}</span>
+                <span>
+                  {inDocsSite ? t('button.signUp') : t('button.startNow')}
+                </span>
               </Button>
             </li>
           </ul>
