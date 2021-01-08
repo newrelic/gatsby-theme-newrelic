@@ -15,7 +15,7 @@ exports.onPreInit = (_, themeOptions) => {
 
   if (i18n && !i18n.translationsPath) {
     throw new Error(
-      "Please define a the 'i18n.translationsPath' option of @newrelic/gatsby-theme-newrelic"
+      "[@newrelic/gatsby-theme-newrelic] Please define an 'i18n.translationsPath' option"
     );
   }
 };
@@ -247,7 +247,7 @@ const createDirectory = (directory, { reporter, message } = {}) => {
   }
 
   if (message) {
-    reporter.info(message);
+    reporter.info(`[@newrelic/gatsby-theme-newrelic] ${message}`);
   }
 
   fs.mkdirSync(directory, { recursive: true });
@@ -259,7 +259,7 @@ const createFile = (filepath, data, { reporter, message } = {}) => {
   }
 
   if (message) {
-    reporter.info(message);
+    reporter.info(`[@newrelic/gatsby-theme-newrelic] ${message}`);
   }
 
   createDirectory(path.dirname(filepath));
