@@ -12,6 +12,7 @@ const LocaleProvider = ({ children, i18n }) => {
         nodes {
           name
           locale
+          localizedPath
           isDefault
         }
       }
