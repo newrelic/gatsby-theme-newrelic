@@ -11,6 +11,11 @@ import createIssueURL from '../utils/createIssueURL';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 
+// We need to use this as a JS value otherwise the HTML entity gets saved in the
+// string and escaped by React, therefore rendering the literal &copy; text in
+// the footer
+const copyrightSymbol = String.fromCharCode(169);
+
 const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
   const { t } = useThemeTranslation();
   const { site, sitePage } = useStaticQuery(graphql`
@@ -168,7 +173,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
               letter-spacing: 0.1rem;
             `}
           >
-            Copyright &copy; 2020 New Relic Inc.
+            Copyright {{ copyrightSymbol }} 2020 New Relic Inc.
           </Trans>
           <div
             css={css`
