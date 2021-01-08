@@ -18,6 +18,7 @@ module.exports = {
           additionalLocales: [{ name: 'Japanese', locale: 'jp' }],
         },
         layout: {
+          component: require.resolve('./src/layouts'),
           contentPadding: '2rem',
           maxWidth: '1480px',
         },
@@ -38,12 +39,6 @@ module.exports = {
           },
         },
         gaTrackingId: 'UA-3047412-33',
-      },
-    },
-    {
-      resolve: `gatsby-plugin-layout`,
-      options: {
-        component: require.resolve('./src/layouts'),
       },
     },
     'gatsby-plugin-mdx',

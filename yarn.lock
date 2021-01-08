@@ -9070,13 +9070,6 @@ gatsby-plugin-gdpr-tracking@^1.2.2:
     "@babel/runtime" "^7.11.2"
     js-cookie "^2.2.1"
 
-gatsby-plugin-layout@^1.3.13:
-  version "1.3.13"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-1.3.13.tgz#3b43d279578391ee3ce64dff2d32e2dcb0a0ae37"
-  integrity sha512-bNQYp/GKECa0EF1GAFuRriAs6LslshHt86q0S5IWtFpnGDRkY8+90KbZM3/EoEPuBPYd8QDgxsqJHB/Jyhdr5A==
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-
 gatsby-plugin-layout@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-1.8.0.tgz#5f2e313f5b95c5e60e96d4cacd666fcd62c1275d"
