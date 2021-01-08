@@ -4,8 +4,6 @@ import Trans from './Trans';
 
 import { appendClassName } from '@elastic/react-search-ui-views/es/view-helpers';
 
-const sites = ['developer', 'opensource', 'docs'];
-
 function PagingInfo({
   className,
   end,
@@ -19,10 +17,10 @@ function PagingInfo({
       <Trans i18nKey="search.pagingInfo">
         Showing{' '}
         <strong>
-          {start} - {end}
+          {{ start }} - {{ end }}
         </strong>{' '}
-        out of <strong>{totalResults}</strong> for <em>{searchTerm}</em> across{' '}
-        {sites.length} sites
+        out of <strong>{{ totalResults }}</strong> for <em>{{ searchTerm }}</em>{' '}
+        across 3 sites
       </Trans>
     </div>
   );
