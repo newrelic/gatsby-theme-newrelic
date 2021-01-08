@@ -1,24 +1,59 @@
 const fs = require('fs');
 const path = require('path');
+const {
+  defaultLocale,
+  withDefaults,
+  themeNamespace,
+} = require('./src/utils/defaultOptions');
 
 const uniq = (arr) => [...new Set(arr)];
 
 const DEFAULT_BRANCH = 'main';
-const DEFAULT_LOCALES = [{ name: 'English', locale: 'en', isDefault: true }];
 
-exports.onPreBootstrap = ({ reporter, store }) => {
+exports.onPreInit = (_, themeOptions) => {
+  const { i18n } = themeOptions;
+
+  if (i18n && !i18n.translationsPath) {
+    throw new Error(
+      "Please define a the 'i18n.translationsPath' option of @newrelic/gatsby-theme-newrelic"
+    );
+  }
+};
+
+exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   const { program } = store.getState();
   const imagePath = path.join(program.directory, 'src/images');
   const announcementsPath = path.join(program.directory, 'src/announcements');
 
-  if (!fs.existsSync(imagePath)) {
-    reporter.info('creating the images directory');
-    fs.mkdirSync(imagePath, { recursive: true });
-  }
+  createDirectory(imagePath, {
+    reporter,
+    message: 'creating the images directory',
+  });
 
-  if (!fs.existsSync(announcementsPath)) {
-    reporter.info('creating the announcements directory');
-    fs.mkdirSync(announcementsPath, { recursive: true });
+  createDirectory(announcementsPath, {
+    reporter,
+    message: 'creating the announcements directory',
+  });
+
+  if (themeOptions.i18n) {
+    const { i18n } = withDefaults(themeOptions);
+
+    [defaultLocale]
+      .concat(i18n.additionalLocales || [])
+      .forEach(({ locale }) => {
+        i18n.i18nextOptions.ns
+          .filter((ns) => ns !== themeNamespace)
+          .forEach((ns) => {
+            createFile(
+              path.join(i18n.translationsPath, locale, `${ns}.json`),
+              '{}',
+              {
+                reporter,
+                message: `creating the ${locale}/${ns}.json file`,
+              }
+            );
+          });
+      });
   }
 };
 
@@ -43,7 +78,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       contributingUrl: String
     }
 
-    type SiteLocale @dontInfer {
+    type Locale implements Node {
       name: String!
       locale: String!
       isDefault: Boolean!
@@ -51,8 +86,34 @@ exports.createSchemaCustomization = ({ actions }) => {
   `);
 };
 
+exports.sourceNodes = (
+  { actions, createNodeId, createContentDigest },
+  themeOptions
+) => {
+  const { i18n = {} } = themeOptions;
+  const { createNode } = actions;
+
+  (i18n.additionalLocales || []).concat(defaultLocale).forEach((locale) => {
+    const data = {
+      ...locale,
+      isDefault: locale.locale === defaultLocale.locale,
+    };
+
+    createNode({
+      ...data,
+      id: createNodeId(`Locale-${locale.locale}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: 'Locale',
+        contentDigest: createContentDigest(data),
+      },
+    });
+  });
+};
+
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
-  const { layout = {}, i18n = {} } = themeOptions;
+  const { layout = {} } = themeOptions;
 
   const defaultUtmSource = {
     'https://developer.newrelic.com': 'developer-site',
@@ -65,16 +126,6 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       layout: {
         type: 'SiteLayout',
         resolve: () => layout,
-      },
-      locales: {
-        type: '[SiteLocale!]!',
-        resolve: () => [
-          ...DEFAULT_LOCALES,
-          ...(i18n.additionalLocales || []).map((locale) => ({
-            ...locale,
-            isDefault: false,
-          })),
-        ],
       },
     },
     SiteSiteMetadata: {
@@ -140,6 +191,7 @@ exports.onCreateNode = ({ node, actions }) => {
 exports.onCreatePage = ({ page, actions }, pluginOptions) => {
   const { createPage } = actions;
   const { i18n = {} } = pluginOptions;
+  const { additionalLocales = [] } = i18n;
 
   if (!page.context.fileRelativePath) {
     page.context.fileRelativePath = getFileRelativePath(page.componentPath);
@@ -147,18 +199,71 @@ exports.onCreatePage = ({ page, actions }, pluginOptions) => {
     createPage(page);
   }
 
+  if (!page.context.locale) {
+    const { locale } =
+      additionalLocales.find(({ locale }) =>
+        new RegExp(`^\\/?${locale}/`).test(page.path)
+      ) || defaultLocale;
+
+    page.context.locale = locale;
+
+    createPage(page);
+  }
+
   if (
-    i18n.additionalLocales &&
     !page.path.match(/404/) &&
     page.context.fileRelativePath.includes('src/pages/')
   ) {
-    i18n.additionalLocales.forEach(({ locale }) => {
+    additionalLocales.forEach(({ locale }) => {
       createPage({
         ...page,
         path: path.join('/', locale, page.path),
+        context: {
+          ...page.context,
+          locale,
+        },
       });
     });
   }
+};
+
+exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
+  const { i18n } = themeOptions;
+
+  actions.setWebpackConfig({
+    plugins: [
+      plugins.define({
+        GATSBY_THEME_NEWRELIC_I18N_PATH: JSON.stringify(
+          (i18n && i18n.translationsPath) || ''
+        ),
+      }),
+    ],
+  });
+};
+
+const createDirectory = (directory, { reporter, message } = {}) => {
+  if (fs.existsSync(directory)) {
+    return;
+  }
+
+  if (message) {
+    reporter.info(message);
+  }
+
+  fs.mkdirSync(directory, { recursive: true });
+};
+
+const createFile = (filepath, data, { reporter, message } = {}) => {
+  if (fs.existsSync(filepath)) {
+    return;
+  }
+
+  if (message) {
+    reporter.info(message);
+  }
+
+  createDirectory(path.dirname(filepath));
+  fs.writeFileSync(filepath, data, 'utf-8');
 };
 
 const getFileRelativePath = (absolutePath) =>

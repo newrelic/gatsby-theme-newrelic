@@ -47,7 +47,10 @@ const GlobalHeader = ({ className }) => {
   const { queryParams, setQueryParam } = useQueryParams();
   const [searchQuery, setSearchQuery] = useState('');
 
-  const { site } = useStaticQuery(graphql`
+  const {
+    allLocale: { nodes: locales },
+    site,
+  } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
       site {
         siteMetadata {
@@ -58,9 +61,11 @@ const GlobalHeader = ({ className }) => {
           contentPadding
           maxWidth
         }
-        locales {
-          name
+      }
+      allLocale(sort: { fields: [isDefault, locale], order: [DESC, ASC] }) {
+        nodes {
           locale
+          name
           isDefault
         }
       }
@@ -68,7 +73,6 @@ const GlobalHeader = ({ className }) => {
   `);
 
   const {
-    locales,
     siteMetadata: { utmSource, siteUrl },
     layout,
   } = site;

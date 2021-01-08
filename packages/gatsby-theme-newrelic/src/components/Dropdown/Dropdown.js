@@ -45,7 +45,7 @@ const Dropdown = ({ align, children }) => {
 
 Dropdown.propTypes = {
   align: PropTypes.oneOf(Object.keys(ALIGNMENTS)),
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 Dropdown.defaultProps = {

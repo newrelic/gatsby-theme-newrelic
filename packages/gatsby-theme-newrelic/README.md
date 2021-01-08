@@ -15,6 +15,7 @@ websites](https://opensource.newrelic.com).
   - [Options](#options)
     - [`newrelic`](#newrelic)
     - [`robots`](#robots)
+    - [`i18n`](#i18n)
     - [`layout`](#layout)
     - [`prism`](#prism)
     - [`gaTrackingId`](#gatrackingid)
@@ -27,6 +28,10 @@ websites](https://opensource.newrelic.com).
   - [`CodeBlock`](#codeblock)
   - [`ContributingGuidelines`](#contributingguidelines)
   - [`CookieConsentDialog`](#cookieconsentdialog)
+  - [`Dropdown`](#dropdown)
+    - [`Dropdown.Toggle`](#dropdowntoggle)
+    - [`Dropdown.Menu`](#dropdownmenu)
+    - [`Dropdown.MenuItem`](#dropdownmenuitem)
   - [`ExternalLink`](#externallink)
   - [`FeatherSVG`](#feathersvg)
   - [`Feedback`](#feedback)
@@ -68,6 +73,7 @@ websites](https://opensource.newrelic.com).
   - [`useTimeout`](#usetimeout)
   - [`useUserId`](#useuserid)
   - [`usePrevious`](#useprevious)
+- [I18n](#i18n-1)
 - [Announcements](#announcements)
 - [Utils](#utils)
   - [`formatCode`](#formatcode)
@@ -137,6 +143,10 @@ module.exports = {
             },
           },
         },
+        i18n: {
+          translationsPath: `${__dirname}/src/i18n/translations`,
+          additionalLocales: [{ name: '日本語', locale: 'jp' }],
+        }
         robots: {
           policy: [{ userAgent: '*', allow: '/' }],
         },
@@ -189,6 +199,29 @@ the available configuration options, visit [the
 documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 
 **Default**: `{ policy: [{ userAgent: '*', allow: '/' }] }`
+
+#### `i18n`
+
+Optional configuration for internationalization (i18n).
+
+- `additionalLocales`: Can be supplied to add support for languages other than English (the default language). Each locale needs a `name` (used for display in the UI) and a `locale` (used by Gatsby and display in the UI on smaller screens).
+- `translationsPath`: The directory path where the translations will be stored.
+- `i18nextOptions`: Additional options to pass into [`i18next`](https://www.i18next.com/) that will override the defaults.
+
+These values are used to generate locale-specific pages and to populate a dropdown in the `<GlobalHeader />` component.
+
+**Example**
+
+```js
+{
+  i18n: {
+    additionalLocales: [
+      { name: '日本語', locale: 'jp' },
+      { name: 'Korean', locale: 'ko' },
+    ];
+  }
+}
+```
 
 #### `layout`
 
@@ -666,6 +699,70 @@ const MyLayout = () => (
   </>
 );
 ```
+
+### `Dropdown`
+
+Used in combination with [`Dropdown.Toggle`](#dropdowntoggle), [`Dropdown.Menu`](#dropdownmenu), and [`Dropdown.MenuItem`](#dropdownmenuitem) to create a dropdown.
+
+```js
+import { Dropdown } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type | Required | Default | Description                                                                  |
+| ---------- | ---- | -------- | ------- | ---------------------------------------------------------------------------- |
+| `align`    | enum | no       | "left"  | The position of the menu arrow. Must be either `left`, `right`, or `center`. |
+| `children` | node | yes      |         | Components used for the dropdown.                                            |
+
+```jsx
+import { DropDown, Button } from '@newrelic/gatsby-theme-newrelic';
+
+const Example = (
+  <Dropdown align="right">
+    <Dropdown.Toggle variant={Button.VARIANT.NORMAL}>Menu</Dropdown.Toggle>
+    <Dropdown.Menu>
+      <Dropdown.MenuItem>Item 1</Dropdown.MenuItem>
+      <Dropdown.MenuItem>Item 2</Dropdown.MenuItem>
+      <Dropdown.MenuItem>Item 3</Dropdown.MenuItem>
+    </Dropdown.Menu>
+  </Dropdown>
+);
+```
+
+#### `Dropdown.Toggle`
+
+Used within a [`Dropdown`](#dropdown) component to render a button that can toggle whether or not the dropdown menu is visible.
+
+**Props**
+
+| Prop       | Type | Required | Default | Description                                                          |
+| ---------- | ---- | -------- | ------- | -------------------------------------------------------------------- |
+| `size`     | enum | no       |         | The `size` prop for the underlying [`Button`](#button) component.    |
+| `variant`  | enum | yes      |         | The `variant` prop for the underlying [`Button`](#button) component. |
+| `children` | node | no       |         | Content used to render the toggle                                    |
+
+#### `Dropdown.Menu`
+
+Used within a [`Dropdown`](#dropdown) component to render the _menu_ that is shown when the dropdown is open.
+
+**Props**
+
+| Props      | Type | Required | Default | Description                                                                                  |
+| ---------- | ---- | -------- | ------- | -------------------------------------------------------------------------------------------- |
+| `children` | node | yes      |         | Content rendered inside the dropdown menu. Should consist of `Dropdown.MenuItem` components. |
+
+#### `Dropdown.MenuItem`
+
+Used within a [`Dropdown.Menu`](#dropdownmenu) component (within a [`Dropdown`](#dropdown) component) to render an individual dropdown menu item.
+
+**Props**
+
+| Props      | Type     | Required | Default | Description                                                                     |
+| ---------- | -------- | -------- | ------- | ------------------------------------------------------------------------------- |
+| `href`     | string   | no       |         | A path that, if supplied, will be used as a [`Link`](#link).                    |
+| `onClick`  | function | no       |         | An optional click event handler that is triggerd when the component is clicked. |
+| `children` | node     | yes      |         | Content for the `MenuItem`.                                                     |
 
 ### `ExternalLink`
 
@@ -2088,6 +2185,18 @@ const MyComponent = () => {
     </div>
   )
 }
+```
+
+## I18n
+
+This theme uses [`react-i18next`](https://react.i18next.com/) to handle
+translations. All modules are re-exported from this theme so that you can use
+them in your site.
+
+Example:
+
+```js
+import { useTranslation, Trans } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 ## Announcements
