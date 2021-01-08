@@ -8,7 +8,8 @@
   "scripts": {
     "release": "lerna publish --conventional-commits --create-release github --no-private",
     "test": "jest",
-    "test:watch": "yarn test --watch"
+    "test:watch": "yarn test --watch",
+    "extract-i18n": "yarn workspace @newrelic/gatsby-theme-newrelic extract-i18n"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",

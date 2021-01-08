@@ -9,7 +9,8 @@
   "scripts": {
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "develop": "gatsby develop"
+    "develop": "gatsby develop",
+    "extract-i18n": "i18next"
   },
   "homepage": "https://github.com/newrelic/gatsby-theme-newrelic/tree/develop/packages/gatsby-theme-newrelic",
   "repository": "https://github.com/newrelic/gatsby-theme-newrelic",
@@ -41,6 +42,7 @@
     "@splitsoftware/splitio-react": "^1.2.0",
     "gatsby": "^2.24.80",
     "gatsby-plugin-mdx": "^1.2.52",
+    "i18next-parser": "^3.6.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0"
