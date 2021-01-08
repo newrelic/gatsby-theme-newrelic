@@ -78,7 +78,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       contributingUrl: String
     }
 
-    type SiteLocale @dontInfer {
+    type Locale implements Node {
       name: String!
       locale: String!
       isDefault: Boolean!
@@ -86,8 +86,34 @@ exports.createSchemaCustomization = ({ actions }) => {
   `);
 };
 
+exports.sourceNodes = (
+  { actions, createNodeId, createContentDigest },
+  themeOptions
+) => {
+  const { i18n = {} } = themeOptions;
+  const { createNode } = actions;
+
+  (i18n.additionalLocales || []).concat(defaultLocale).forEach((locale) => {
+    const data = {
+      ...locale,
+      isDefault: locale.locale === defaultLocale.locale,
+    };
+
+    createNode({
+      ...data,
+      id: createNodeId(`Locale-${locale.locale}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: 'Locale',
+        contentDigest: createContentDigest(data),
+      },
+    });
+  });
+};
+
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
-  const { layout = {}, i18n = {} } = themeOptions;
+  const { layout = {} } = themeOptions;
 
   const defaultUtmSource = {
     'https://developer.newrelic.com': 'developer-site',
@@ -100,15 +126,6 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       layout: {
         type: 'SiteLayout',
         resolve: () => layout,
-      },
-      locales: {
-        type: '[SiteLocale!]!',
-        resolve: () => [defaultLocale, ...(i18n.additionalLocales || [])],
-      },
-    },
-    SiteLocale: {
-      isDefault: {
-        resolve: (source) => source.locale === defaultLocale.locale,
       },
     },
     SiteSiteMetadata: {
