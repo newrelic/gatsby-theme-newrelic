@@ -94,9 +94,12 @@ exports.sourceNodes = (
   const { createNode } = actions;
 
   (i18n.additionalLocales || []).concat(defaultLocale).forEach((locale) => {
+    const isDefault = locale.locale === defaultLocale.locale;
+
     const data = {
       ...locale,
-      isDefault: locale.locale === defaultLocale.locale,
+      isDefault,
+      localizedPath: isDefault ? '' : locale.locale,
     };
 
     createNode({
