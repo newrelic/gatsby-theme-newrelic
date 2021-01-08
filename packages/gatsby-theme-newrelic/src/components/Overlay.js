@@ -5,22 +5,11 @@ import { css } from '@emotion/core';
 import Icon from './Icon';
 import Portal from './Portal';
 import NewRelicLogo from './NewRelicLogo';
-import { graphql, useStaticQuery } from 'gatsby';
 import useKeyPress from '../hooks/useKeyPress';
+import useLayout from '../hooks/useLayout';
 
 const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
-  const { site } = useStaticQuery(graphql`
-    query {
-      site {
-        layout {
-          maxWidth
-          contentPadding
-        }
-      }
-    }
-  `);
-
-  const { layout } = site;
+  const layout = useLayout();
 
   useEffect(() => {
     if (isOpen) {
