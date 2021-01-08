@@ -9,7 +9,7 @@ import { graphql, useStaticQuery, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import createIssueURL from '../utils/createIssueURL';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import ThemeTrans from './ThemeTrans';
+import Trans from './Trans';
 
 const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
   const { t } = useThemeTranslation();
@@ -158,7 +158,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
             }
           `}
         >
-          <ThemeTrans
+          <Trans
             i18nKey="footer.copyright"
             parent="div"
             css={css`
@@ -169,7 +169,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
             `}
           >
             Copyright &copy; 2020 New Relic Inc.
-          </ThemeTrans>
+          </Trans>
           <div
             css={css`
               display: flex;

@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { css } from '@emotion/core';
 import ExternalLink from './ExternalLink';
 import Button from './Button';
-import ThemeTrans from './ThemeTrans';
+import Trans from './Trans';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const COOKIE_NAME = 'newrelic-gdpr-consent';
@@ -86,7 +86,7 @@ const CookieConsentDialog = () => {
               🍪
             </span>
           </h4>
-          <ThemeTrans
+          <Trans
             i18nKey="cookieConsent.statement"
             parent="p"
             css={css`
@@ -110,7 +110,7 @@ const CookieConsentDialog = () => {
               here
             </ExternalLink>
             . If you consent to our cookies, please click <strong>Yes</strong>.
-          </ThemeTrans>
+          </Trans>
         </div>
         <div
           css={css`

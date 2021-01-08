@@ -9,7 +9,7 @@ import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
 import createIssueURL from '../utils/createIssueURL';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import ThemeTrans from './ThemeTrans';
+import Trans from './Trans';
 
 const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
   const { t } = useThemeTranslation();
@@ -92,7 +92,7 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
         )}
       </div>
       {contributingUrl && (
-        <ThemeTrans
+        <Trans
           i18nKey="contributing.guide"
           parent="p"
           css={css`
@@ -103,7 +103,7 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
         >
           Read our <ExternalLink href={contributingUrl}>guide</ExternalLink> on
           how to contribute
-        </ThemeTrans>
+        </Trans>
       )}
     </PageTools.Section>
   );
