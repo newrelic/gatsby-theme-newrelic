@@ -1,4 +1,5 @@
 import React from 'react';
+import { css } from '@emotion/core';
 import {
   Button,
   Link,
@@ -8,7 +9,14 @@ import {
 
 const BuildApps = () => {
   return (
-    <Layout.Main>
+    <Layout.Main
+      css={css`
+        display: grid;
+        grid-template-areas: 'content page-tools';
+        grid-template-columns: minmax(0, 1fr) 320px;
+        grid-column-gap: 2rem;
+      `}
+    >
       <Layout.Content>
         <h1>Build apps</h1>
         <p>This is a dummy page to demonstrate navigating to another page</p>

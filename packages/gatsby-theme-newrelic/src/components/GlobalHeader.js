@@ -17,6 +17,8 @@ import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
+import useLocale from '../hooks/useLocale';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 import path from 'path';
 import { rgba } from 'polished';
 
@@ -46,6 +48,7 @@ const GlobalHeader = ({ className }) => {
   const searchRef = useRef();
   const { queryParams, setQueryParam } = useQueryParams();
   const [searchQuery, setSearchQuery] = useState('');
+  const { t } = useThemeTranslation();
 
   const {
     allLocale: { nodes: locales },
@@ -99,10 +102,7 @@ const GlobalHeader = ({ className }) => {
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
   );
 
-  const selectedLocale =
-    locales.find((locale) =>
-      new RegExp(`^\\/${locale.locale}(?=/)`).test(location.pathname)
-    ) || locales.find((locale) => locale.isDefault);
+  const locale = useLocale();
 
   return (
     <>
@@ -266,7 +266,7 @@ const GlobalHeader = ({ className }) => {
               ) : (
                 <SearchInput
                   ref={searchRef}
-                  placeholder="Search Docs, Developer, Open Source"
+                  placeholder={t('searchInput.placeholder')}
                   size={SearchInput.SIZE.SMALL}
                   onClear={() => setSearchQuery('')}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -289,12 +289,13 @@ const GlobalHeader = ({ className }) => {
                     variant={Button.VARIANT.LINK}
                   >
                     {useCondensedHeader
-                      ? selectedLocale.locale.toUpperCase()
-                      : selectedLocale.name}
+                      ? locale.locale.toUpperCase()
+                      : locale.name}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     {locales.map(({ locale, name, isDefault }) => (
                       <Dropdown.MenuItem
+                        as={Link}
                         key={locale}
                         href={path.join(
                           '/',
@@ -328,7 +329,7 @@ const GlobalHeader = ({ className }) => {
                   white-space: nowrap;
                 `}
               >
-                Log in
+                {t('button.login')}
               </Button>
             </li>
             <li
@@ -344,7 +345,9 @@ const GlobalHeader = ({ className }) => {
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
               >
-                <span>{inDocsSite ? 'Sign Up' : 'Start Now'}</span>
+                <span>
+                  {inDocsSite ? t('button.signUp') : t('button.startNow')}
+                </span>
               </Button>
             </li>
           </ul>

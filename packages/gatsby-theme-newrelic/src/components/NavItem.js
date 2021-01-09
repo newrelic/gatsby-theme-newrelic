@@ -4,14 +4,20 @@ import { css } from '@emotion/core';
 import NavLink from './NavLink';
 import { useLocation } from '@reach/router';
 import usePrevious from '../hooks/usePrevious';
+import useLocale from '../hooks/useLocale';
+import { localizePath } from '../utils/localization';
+import { stripTrailingSlash } from '../utils/location';
 
 const NavItem = ({ page, __parent: parent }) => {
-  const { pathname } = useLocation();
+  const locale = useLocale();
+  const location = useLocation();
+  const pathname = stripTrailingSlash(location.pathname);
   const containsCurrentPage = useMemo(() => containsPage(page, pathname), [
     page,
     pathname,
   ]);
-  const isCurrentPage = page.url === pathname;
+  const isCurrentPage =
+    Boolean(page.url) && localizePath({ path: page.url, locale }) === pathname;
   const shouldExpand = isCurrentPage || containsCurrentPage;
   const hasChangedPage = pathname !== usePrevious(pathname);
   const [isExpanded, setIsExpanded] = useState(shouldExpand);

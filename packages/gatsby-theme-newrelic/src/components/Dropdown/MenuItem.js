@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import Link from '../Link';
 import { css } from '@emotion/core';
 
-const MenuItem = ({ children, href, onClick }) => {
-  const Component = href ? Link : 'div';
+const MenuItem = ({ as, children, href, onClick }) => {
+  const Component = as || (href ? Link : 'div');
 
   return (
     <Component
@@ -35,6 +35,7 @@ const MenuItem = ({ children, href, onClick }) => {
 };
 
 MenuItem.propTypes = {
+  as: PropTypes.elementType,
   children: PropTypes.node.isRequired,
   href: PropTypes.string,
   onClick: PropTypes.func,

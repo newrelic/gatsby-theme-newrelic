@@ -8,8 +8,11 @@ import Icon from './Icon';
 import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
 import createIssueURL from '../utils/createIssueURL';
+import useThemeTranslation from '../hooks/useThemeTranslation';
+import Trans from './Trans';
 
 const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
+  const { t } = useThemeTranslation();
   const {
     site: {
       siteMetadata: { repository, branch, contributingUrl, siteUrl },
@@ -68,7 +71,7 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
               margin-right: 0.5rem;
             `}
           />
-          Create an issue
+          {t('github.createIssue')}
         </Button>
 
         {fileRelativePath && (
@@ -84,12 +87,14 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
                 margin-right: 0.5rem;
               `}
             />
-            Edit this page
+            {t('github.editPage')}
           </Button>
         )}
       </div>
       {contributingUrl && (
-        <p
+        <Trans
+          i18nKey="contributing.guide"
+          parent="p"
           css={css`
             margin-bottom: 0 !important;
             font-size: 0.75rem;
@@ -98,7 +103,7 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
         >
           Read our <ExternalLink href={contributingUrl}>guide</ExternalLink> on
           how to contribute
-        </p>
+        </Trans>
       )}
     </PageTools.Section>
   );
