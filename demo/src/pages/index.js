@@ -73,13 +73,8 @@ const IndexPage = () => {
           }
         `}
       >
-        <h1>{t('home.welcome', 'Hello, demo')}</h1>
-        <p>
-          {t(
-            'home.intro',
-            'This is a demo site that can be used to preview features of the New Relic Gatsby theme. Feel free to add examples to this site to showcase features.'
-          )}
-        </p>
+        <h1>{t('home.welcome')}</h1>
+        <p>{t('home.intro')}</p>
         <section>
           <h2>Search inputs</h2>
           <SearchInput
