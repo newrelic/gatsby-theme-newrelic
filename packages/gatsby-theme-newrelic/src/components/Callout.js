@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const VARIANTS = {
   CAUTION: 'caution',
   IMPORTANT: 'important',
   TIP: 'tip',
-};
-
-const DEFAULT_TITLES = {
-  [VARIANTS.CAUTION]: 'Caution',
-  [VARIANTS.IMPORTANT]: 'Important',
-  [VARIANTS.TIP]: 'Tip',
 };
 
 const styles = {
@@ -32,6 +27,8 @@ const styles = {
 };
 
 const Callout = ({ title, variant, children }) => {
+  const { t } = useThemeTranslation();
+
   return (
     <div
       css={css`
@@ -50,7 +47,12 @@ const Callout = ({ title, variant, children }) => {
             margin-top: 0 !important;
           `}
         >
-          {title || DEFAULT_TITLES[variant]}
+          {title ||
+            // needed for i18next-parser to resolve the dynamic values
+            // t('callout.tip')
+            // t('callout.caution')
+            // t('callout.important')
+            t(`callout.${variant}`)}
         </h4>
       )}
       {children}

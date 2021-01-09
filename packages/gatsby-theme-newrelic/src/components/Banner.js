@@ -4,8 +4,10 @@ import { css } from '@emotion/core';
 import Button from './Button';
 import Icon from './Icon';
 import { graphql, useStaticQuery } from 'gatsby';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const Banner = ({ children, visible, onClose, ...props }) => {
+  const { t } = useThemeTranslation();
   const {
     site: { layout },
   } = useStaticQuery(graphql`
@@ -65,7 +67,7 @@ const Banner = ({ children, visible, onClose, ...props }) => {
             right: ${layout.contentPadding};
           `}
         >
-          Close
+          {t('button.close')}
           <Icon
             name="fe-x"
             size="0.75rem"

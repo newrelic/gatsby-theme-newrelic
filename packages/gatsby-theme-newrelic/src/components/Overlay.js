@@ -5,22 +5,13 @@ import { css } from '@emotion/core';
 import Icon from './Icon';
 import Portal from './Portal';
 import NewRelicLogo from './NewRelicLogo';
-import { graphql, useStaticQuery } from 'gatsby';
 import useKeyPress from '../hooks/useKeyPress';
+import useThemeTranslation from '../hooks/useThemeTranslation';
+import useLayout from '../hooks/useLayout';
 
 const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
-  const { site } = useStaticQuery(graphql`
-    query {
-      site {
-        layout {
-          maxWidth
-          contentPadding
-        }
-      }
-    }
-  `);
-
-  const { layout } = site;
+  const { t } = useThemeTranslation();
+  const layout = useLayout();
 
   useEffect(() => {
     if (isOpen) {
@@ -98,7 +89,7 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
                   font-size: 0.75rem;
                 `}
               >
-                Close
+                {t('button.close')}
               </span>
               <Icon name="fe-x" size="1rem" />
             </div>
