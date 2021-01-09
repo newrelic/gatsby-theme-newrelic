@@ -4,7 +4,7 @@ import Link from '../Link';
 import { css } from '@emotion/core';
 
 const MenuItem = ({ as, children, href, onClick }) => {
-  const Component = as || href ? Link : 'div';
+  const Component = as || (href ? Link : 'div');
 
   return (
     <Component
