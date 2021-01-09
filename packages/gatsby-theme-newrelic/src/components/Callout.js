@@ -9,11 +9,6 @@ const VARIANTS = {
   TIP: 'tip',
 };
 
-// needed for i18next-parser to resolve the dynamic values
-// t('callout.tip')
-// t('callout.caution')
-// t('callout.important')
-
 const styles = {
   variant: {
     [VARIANTS.CAUTION]: css`
@@ -52,7 +47,12 @@ const Callout = ({ title, variant, children }) => {
             margin-top: 0 !important;
           `}
         >
-          {title || t(`callout.${variant}`)}
+          {title ||
+            // needed for i18next-parser to resolve the dynamic values
+            // t('callout.tip')
+            // t('callout.caution')
+            // t('callout.important')
+            t(`callout.${variant}`)}
         </h4>
       )}
       {children}
