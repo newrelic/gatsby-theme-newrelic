@@ -4,8 +4,11 @@ import SkewedContainer from '../components/SkewedContainer';
 import GlobalHeader from '../components/GlobalHeader';
 import GlobalFooter from '../components/GlobalFooter';
 import Link from '../components/Link';
+import Trans from '../components/Trans';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const NotFoundPage = () => {
+  const { t } = useThemeTranslation();
   return (
     <>
       <GlobalHeader />
@@ -42,12 +45,12 @@ const NotFoundPage = () => {
                 line-height: 1;
               `}
             >
-              404
+              {t('404.statusCode')}
             </h1>
-            <p>
+            <Trans i18nKey="404.errorMessage" parent="p">
               The URL you entered may be broken, or the page has been removed.{' '}
               <Link to="/">Go back to the home page</Link>.
-            </p>
+            </Trans>
           </SkewedContainer>
         </div>
         <GlobalFooter />

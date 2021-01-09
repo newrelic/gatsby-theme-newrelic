@@ -1,4 +1,8 @@
 {
+  "404": {
+    "statusCode": "404",
+    "errorMessage": "The URL you entered may be broken, or the page has been removed. <2>Go back to the home page</2>"
+  },
   "button": {
     "close": "Close",
     "copied": "Copied",
