@@ -17,6 +17,7 @@ import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useKeyPress from '../hooks/useKeyPress';
+import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import path from 'path';
 import { rgba } from 'polished';
@@ -101,10 +102,7 @@ const GlobalHeader = ({ className }) => {
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
   );
 
-  const selectedLocale =
-    locales.find((locale) =>
-      new RegExp(`^\\/${locale.locale}(?=/)`).test(location.pathname)
-    ) || locales.find((locale) => locale.isDefault);
+  const locale = useLocale();
 
   return (
     <>
@@ -291,8 +289,8 @@ const GlobalHeader = ({ className }) => {
                     variant={Button.VARIANT.LINK}
                   >
                     {useCondensedHeader
-                      ? selectedLocale.locale.toUpperCase()
-                      : selectedLocale.name}
+                      ? locale.locale.toUpperCase()
+                      : locale.name}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     {locales.map(({ locale, name, isDefault }) => (
