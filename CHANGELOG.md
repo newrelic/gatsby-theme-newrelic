@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.21.0...v1.22.0) (2021-01-09)
+
+
+### Bug Fixes
+
+* **MenuItem:** add support for as prop ([cdca5ad](https://github.com/newrelic/gatsby-theme-newrelic/commit/cdca5adcde4b3356c1d86baa6360d0123da4f95d))
+* **NavItem:** match on trailing slash and localized links ([08e7f28](https://github.com/newrelic/gatsby-theme-newrelic/commit/08e7f28247fb56d6c32c37531cb0189625f19670))
+* add localizedPath to Locale nodes ([089e59a](https://github.com/newrelic/gatsby-theme-newrelic/commit/089e59ac76279a528e503e9b7ae21de862b095ad))
+* apply translations for all components ([408657e](https://github.com/newrelic/gatsby-theme-newrelic/commit/408657e0986427d7fa0373b3e6d83968156149a3))
+* let the browser navigate to relative links on the page ([09781d2](https://github.com/newrelic/gatsby-theme-newrelic/commit/09781d20b225a6fdb4829105a3f1c7e68001009f))
+* Link will automatically localize paths ([b35e344](https://github.com/newrelic/gatsby-theme-newrelic/commit/b35e3442e5834cfc151d732b49f14c645e506200))
+
+
+### Features
+
+* add a default 404 page ([bffc8a9](https://github.com/newrelic/gatsby-theme-newrelic/commit/bffc8a9a7208be3fc0a63ddc2617e0cafccb16a9))
+* add a useLocale hook ([7d4ceb6](https://github.com/newrelic/gatsby-theme-newrelic/commit/7d4ceb68e96d6a33a411780680c0bb5a994ba858))
+* allow layout component to be configured to automatically configure gatsby-plugin-layout ([39141e2](https://github.com/newrelic/gatsby-theme-newrelic/commit/39141e2c7b5423a9698671a7d9f57a3dfb740b7c))
+
+
+
+
+
 # [1.21.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.20.0...v1.21.0) (2021-01-08)
 
 
