@@ -19,7 +19,7 @@ const NotFoundPage = () => {
           grid-template-areas:
             'content'
             'footer';
-          min-height: 100vh;
+          min-height: calc(100vh - var(--global-header-height));
         `}
       >
         <div
