@@ -297,6 +297,7 @@ const GlobalHeader = ({ className }) => {
                   <Dropdown.Menu>
                     {locales.map(({ locale, name, isDefault }) => (
                       <Dropdown.MenuItem
+                        as={Link}
                         key={locale}
                         href={path.join(
                           '/',
