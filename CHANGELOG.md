@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.22.1...v1.22.2) (2021-01-11)
+
+
+### Bug Fixes
+
+* update options variables for consistency ([6ddebba](https://github.com/newrelic/gatsby-theme-newrelic/commit/6ddebba070be1d912817191f932729db36cb2ab7))
+
+
+
+
+
 ## [1.22.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.22.0...v1.22.1) (2021-01-11)
 
 
