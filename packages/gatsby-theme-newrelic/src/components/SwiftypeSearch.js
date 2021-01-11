@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import styles from '../styles/SwiftypeSearchStyles';
 import Spinner from './Spinner';
 import useQueryParams from '../hooks/useQueryParams';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const connector = new SiteSearchAPIConnector({
   documentType: 'page',
@@ -62,6 +63,7 @@ const configOptions = {
 
 const SwiftypeSearch = ({ className }) => {
   const { setQueryParam } = useQueryParams();
+  const { t } = useThemeTranslation();
 
   return (
     <div css={styles} className={className}>
@@ -83,7 +85,7 @@ const SwiftypeSearch = ({ className }) => {
                   debounceLength={500}
                   inputView={InputView}
                   inputProps={{
-                    placeholder: 'Search Docs, Developer, Open Source',
+                    placeholder: t('searchInput.placeholder'),
                   }}
                   onSubmit={(searchTerm) => {
                     setQueryParam('q', searchTerm);

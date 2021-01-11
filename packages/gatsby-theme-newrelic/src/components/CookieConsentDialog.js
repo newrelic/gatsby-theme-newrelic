@@ -3,10 +3,13 @@ import Cookies from 'js-cookie';
 import { css } from '@emotion/core';
 import ExternalLink from './ExternalLink';
 import Button from './Button';
+import Trans from './Trans';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const COOKIE_NAME = 'newrelic-gdpr-consent';
 
 const CookieConsentDialog = () => {
+  const { t } = useThemeTranslation();
   const [isCookieSet, setIsCookieSet] = useState(Cookies.get(COOKIE_NAME));
 
   const writeCookie = (answer) => {
@@ -28,9 +31,10 @@ const CookieConsentDialog = () => {
   return (
     <div
       css={css`
-        width: 100%;
         position: fixed;
         bottom: 0;
+        left: 0;
+        right: 0;
         z-index: 10000;
         background-color: rgba(28, 42, 47, 0.92);
         box-shadow: 0px -0.249053px 4.26158px rgba(12, 48, 57, 0.0421718),
@@ -77,12 +81,14 @@ const CookieConsentDialog = () => {
               }
             `}
           >
-            This site uses cookies{' '}
+            {t('cookieConsent.title')}{' '}
             <span role="img" aria-label="Cookie emoji">
               🍪
             </span>
           </h4>
-          <p
+          <Trans
+            i18nKey="cookieConsent.statement"
+            parent="p"
             css={css`
               margin: 0 0 0px;
               font-size: 13px;
@@ -104,7 +110,7 @@ const CookieConsentDialog = () => {
               here
             </ExternalLink>
             . If you consent to our cookies, please click <strong>Yes</strong>.
-          </p>
+          </Trans>
         </div>
         <div
           css={css`
@@ -124,7 +130,7 @@ const CookieConsentDialog = () => {
             variant={Button.VARIANT.PRIMARY}
             onClick={() => writeCookie(true)}
           >
-            Yes
+            {t('cookieConsent.agree')}
           </Button>
           <Button
             css={css`
@@ -137,7 +143,7 @@ const CookieConsentDialog = () => {
             variant={Button.VARIANT.NORMAL}
             onClick={() => writeCookie(false)}
           >
-            No
+            {t('cookieConsent.disagree')}
           </Button>
         </div>
       </div>

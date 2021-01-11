@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
+import useLocale from '../hooks/useLocale';
+import { localizePath } from '../utils/localization';
 
 const Link = ({ to, ...props }) => {
+  const locale = useLocale();
+
   const {
     site: {
       siteMetadata: { siteUrl },
@@ -21,8 +25,13 @@ const Link = ({ to, ...props }) => {
     to = to.replace(siteUrl, '');
   }
 
-  if (to.startsWith('/') || to.startsWith('#')) {
-    return <GatsbyLink to={to} {...props} />;
+  if (to.startsWith('/')) {
+    return <GatsbyLink to={localizePath({ path: to, locale })} {...props} />;
+  }
+
+  if (to.startsWith('#')) {
+    // eslint-disable-next-line jsx-a11y/anchor-has-content
+    return <a href={to} {...props} />;
   }
 
   // eslint-disable-next-line jsx-a11y/anchor-has-content

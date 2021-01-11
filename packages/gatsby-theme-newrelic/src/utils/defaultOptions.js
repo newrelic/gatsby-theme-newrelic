@@ -13,7 +13,9 @@ const withDefaults = (themeOptions) => {
   return {
     ...themeOptions,
     i18n: {
+      extract: true,
       ...themeOptions.i18n,
+      locales: [defaultLocale].concat(i18n.additionalLocales),
       i18nextOptions: {
         defaultNS: DEFAULT_NAMESPACE,
         initImmediate: false,

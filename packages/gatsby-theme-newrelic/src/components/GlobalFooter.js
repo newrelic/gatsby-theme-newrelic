@@ -8,8 +8,16 @@ import ExternalLink from './ExternalLink';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import createIssueURL from '../utils/createIssueURL';
+import useThemeTranslation from '../hooks/useThemeTranslation';
+import Trans from './Trans';
+
+// We need to use this as a JS value otherwise the HTML entity gets saved in the
+// string and escaped by React, therefore rendering the literal &copy; text in
+// the footer
+const copyrightSymbol = String.fromCharCode(169);
 
 const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
+  const { t } = useThemeTranslation();
   const { site, sitePage } = useStaticQuery(graphql`
     query FooterQuery {
       site {
@@ -102,7 +110,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
                   margin-right: 0.5rem;
                 `}
               />
-              Edit this page
+              {t('github.editPage')}
             </Button>
           )}
 
@@ -118,7 +126,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
                 margin-right: 0.5rem;
               `}
             />
-            Create an issue
+            {t('github.createIssue')}
           </Button>
         </div>
       </div>
@@ -155,7 +163,9 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
             }
           `}
         >
-          <div
+          <Trans
+            i18nKey="footer.copyright"
+            parent="div"
             css={css`
               grid-area: copyright;
               text-transform: uppercase;
@@ -163,8 +173,8 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
               letter-spacing: 0.1rem;
             `}
           >
-            Copyright &copy; 2020 New Relic Inc.
-          </div>
+            Copyright {{ copyrightSymbol }} 2020 New Relic Inc.
+          </Trans>
           <div
             css={css`
               display: flex;
@@ -179,27 +189,27 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
             `}
           >
             <ExternalLink href="https://newrelic.com/about/careers">
-              Careers
+              {t('footer.careers', 'Careers')}
             </ExternalLink>
             {sitePage ? (
-              <Link to="/terms">Terms of Service</Link>
+              <Link to="/terms">{t('footer.terms', 'Terms of Service')}</Link>
             ) : (
               <ExternalLink href="https://newrelic.com/termsandconditions/terms">
-                Terms of Service
+                {t('footer.terms', 'Terms of Service')}
               </ExternalLink>
             )}
 
             <ExternalLink href="https://newrelic.com/termsandconditions/dmca">
-              DCMA Policy
+              {t('footer.dcmaPolicy', 'DCMA Policy')}
             </ExternalLink>
             <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
-              Privacy Notice
+              {t('footer.privacyNotice', 'Privacy Notice')}
             </ExternalLink>
             <ExternalLink href="https://newrelic.com/termsandconditions/cookie-policy">
-              Cookie Policy
+              {t('footer.cookiePolicy', 'Cookie Policy')}
             </ExternalLink>
             <ExternalLink href="https://newrelic.com/termsandconditions/uk-slavery-act">
-              UK Slavery Act
+              {t('footer.ukSlaveryAct', 'UK Slavery Act')}
             </ExternalLink>
           </div>
         </div>

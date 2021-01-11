@@ -35,6 +35,7 @@ export { default as useClipboard } from './src/hooks/useClipboard';
 export { default as useFormattedCode } from './src/hooks/useFormattedCode';
 export { default as useKeyPress } from './src/hooks/useKeyPress';
 export { default as useLayout } from './src/hooks/useLayout';
+export { default as useLocale } from './src/hooks/useLocale';
 export { default as useQueryParams } from './src/hooks/useQueryParams';
 export { default as useTimeout } from './src/hooks/useTimeout';
 export { default as useUserId } from './src/hooks/useUserId';
