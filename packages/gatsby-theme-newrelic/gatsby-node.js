@@ -231,7 +231,7 @@ exports.onCreateNode = async ({ node, actions }, themeOptions) => {
     });
   }
 
-  if (themeOptions.swiftype) {
+  if (themeOptions.swiftype && getNodesByType) {
     const { filterNode = () => false, getPath } = themeOptions.swiftype;
 
     if (node.internal.type !== 'Mdx' || !filterNode({ node })) {
