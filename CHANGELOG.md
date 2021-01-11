@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.22.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.22.2...v1.22.3) (2021-01-11)
+
+
+### Bug Fixes
+
+* adding missing helper function ([417eaf0](https://github.com/newrelic/gatsby-theme-newrelic/commit/417eaf089021ecd39d8bea3aa2ebe5e55d7b4435))
+
+
+
+
+
 ## [1.22.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.22.1...v1.22.2) (2021-01-11)
 
 
