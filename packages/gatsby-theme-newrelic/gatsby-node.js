@@ -61,7 +61,7 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   }
 
   if (themeOptions.swiftype) {
-    const { file } = pluginOptions.swiftype;
+    const { file } = themeOptions.swiftype;
 
     if (!fs.existsSync(file)) {
       fs.writeFileSync(file, '{}');
@@ -242,7 +242,7 @@ exports.onCreateNode = async ({ node, actions }, themeOptions) => {
     const pathname = getPath({ node });
     const resources = await getRelatedResources(
       { node, siteUrl },
-      pluginOptions
+      themeOptions
     );
 
     writeableRelatedResourceData[pathname] = resources;
@@ -261,9 +261,9 @@ exports.onCreateNode = async ({ node, actions }, themeOptions) => {
   }
 };
 
-exports.onCreatePage = ({ page, actions }, pluginOptions) => {
+exports.onCreatePage = ({ page, actions }, themeOptions) => {
   const { createPage } = actions;
-  const { i18n = {} } = pluginOptions;
+  const { i18n = {} } = themeOptions;
   const { additionalLocales = [] } = i18n;
 
   if (!page.context.fileRelativePath) {
@@ -314,8 +314,8 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
   });
 };
 
-exports.onPostBootstrap = (_, pluginOptions) => {
-  const { refetch, file } = pluginOptions;
+exports.onPostBootstrap = (_, themeOptions) => {
+  const { refetch, file } = themeOptions;
 
   if (refetch) {
     fs.writeFileSync(
