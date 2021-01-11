@@ -38,10 +38,6 @@ module.exports = ({
         resolve: 'gatsby-plugin-newrelic',
         options: newrelic,
       },
-      swiftype && {
-        resolve: 'gatsby-source-swiftype',
-        options: swiftype,
-      },
       {
         resolve: 'gatsby-source-filesystem',
         options: {

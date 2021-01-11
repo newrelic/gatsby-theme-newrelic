@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-const { appendTrailingSlash, stripTrailingSlash } = require('./utils/url');
+const { appendTrailingSlash, stripTrailingSlash } = require('./url');
 
 const normalizeUrl = (url) => {
   const prefix = url.startsWith('!') ? '!' : '';

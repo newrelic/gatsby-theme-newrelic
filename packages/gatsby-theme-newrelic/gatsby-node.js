@@ -5,6 +5,10 @@ const {
   withDefaults,
   themeNamespace,
 } = require('./src/utils/defaultOptions');
+const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
+const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
+
+const writeableRelatedResourceData = {};
 
 const uniq = (arr) => [...new Set(arr)];
 
@@ -55,6 +59,14 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
           });
       });
   }
+
+  if (themeOptions.swiftype) {
+    const { file } = pluginOptions.swiftype;
+
+    if (!fs.existsSync(file)) {
+      fs.writeFileSync(file, '{}');
+    }
+  }
 };
 
 exports.createSchemaCustomization = ({ actions }) => {
@@ -82,6 +94,12 @@ exports.createSchemaCustomization = ({ actions }) => {
       name: String!
       locale: String!
       isDefault: Boolean!
+    }
+
+    type RelatedResource implements Node {
+      id: ID!
+      title: String!
+      url: String!
     }
   `);
 };
@@ -151,6 +169,24 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
         },
       },
     },
+    Mdx: {
+      relatedResources: {
+        args: {
+          limit: {
+            type: 'Int',
+            defaultValue: 5,
+          },
+        },
+        type: ['RelatedResource!'],
+        resolve: (source, args, context) => {
+          const { limit } = args;
+
+          return context.nodeModel
+            .getNodesByIds({ ids: source.children })
+            .slice(0, Math.max(limit, 0));
+        },
+      },
+    },
   });
 };
 
@@ -179,14 +215,48 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
   });
 };
 
-exports.onCreateNode = ({ node, actions }) => {
-  if (['Mdx', 'MarkdownRemark'].includes(node.internal.type)) {
-    const { createNodeField } = actions;
+exports.onCreateNode = async ({ node, actions }, themeOptions) => {
+  const { createNode, createNodeField, createParentChildLink } = actions;
 
+  if (['Mdx', 'MarkdownRemark'].includes(node.internal.type)) {
     createNodeField({
       node,
       name: 'fileRelativePath',
       value: getFileRelativePath(node.fileAbsolutePath),
+    });
+  }
+
+  if (themeOptions.swiftype) {
+    const { filterNode = () => false, getPath } = themeOptions.swiftype;
+
+    if (node.internal.type !== 'Mdx' || !filterNode({ node })) {
+      return;
+    }
+
+    const [
+      {
+        siteMetadata: { siteUrl },
+      },
+    ] = getNodesByType('Site');
+
+    const pathname = getPath({ node });
+    const resources = await getRelatedResources(
+      { node, siteUrl },
+      pluginOptions
+    );
+
+    writeableRelatedResourceData[pathname] = resources;
+
+    resources.forEach((resource) => {
+      const child = createRelatedResourceNode({
+        parent: node.id,
+        resource,
+        createContentDigest,
+        createNode,
+        createNodeId,
+      });
+
+      createParentChildLink({ parent: node, child: child });
     });
   }
 };
@@ -242,6 +312,17 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
       }),
     ],
   });
+};
+
+exports.onPostBootstrap = (_, pluginOptions) => {
+  const { refetch, file } = pluginOptions;
+
+  if (refetch) {
+    fs.writeFileSync(
+      file,
+      JSON.stringify(writeableRelatedResourceData, null, 2)
+    );
+  }
 };
 
 const createDirectory = (directory, { reporter, message } = {}) => {
