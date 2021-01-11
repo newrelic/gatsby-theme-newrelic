@@ -216,7 +216,12 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
 };
 
 exports.onCreateNode = async ({ node, actions }, themeOptions) => {
-  const { createNode, createNodeField, createParentChildLink } = actions;
+  const {
+    createNode,
+    createNodeField,
+    createParentChildLink,
+    getNodesByType,
+  } = actions;
 
   if (['Mdx', 'MarkdownRemark'].includes(node.internal.type)) {
     createNodeField({
