@@ -29,6 +29,7 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   const { program } = store.getState();
   const imagePath = path.join(program.directory, 'src/images');
   const announcementsPath = path.join(program.directory, 'src/announcements');
+  const { swiftype = {} } = themeOptions;
 
   createDirectory(imagePath, {
     reporter,
@@ -61,12 +62,8 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
       });
   }
 
-  if (themeOptions.swiftype) {
-    const { file } = themeOptions.swiftype;
-
-    if (!fs.existsSync(file)) {
-      fs.writeFileSync(file, '{}');
-    }
+  if (swiftype.file && !fs.existsSync(swiftype.file)) {
+    fs.writeFileSync(swiftype.file, '{}');
   }
 };
 
@@ -326,7 +323,9 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
 };
 
 exports.onPostBootstrap = (_, themeOptions) => {
-  if (themeOptions.swiftype && themeOptions.swiftype.refetch) {
+  const { swiftype = {} } = themeOptions;
+
+  if (swiftype.refetch && themeOptions.swiftype.file) {
     fs.writeFileSync(
       themeOptions.swiftype.file,
       JSON.stringify(writeableRelatedResourceData, null, 2)
