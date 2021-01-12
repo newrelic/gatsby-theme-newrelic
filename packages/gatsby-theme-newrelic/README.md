@@ -1606,7 +1606,7 @@ import { SEO } from '@newrelic/gatsby-theme-newrelic';
 const MainLayout = () => (
   return (
     <>
-      <SEO location={location}/>
+      <SEO location={location} />
       <GlobalHeader/>
       <Layout/>
     </>
