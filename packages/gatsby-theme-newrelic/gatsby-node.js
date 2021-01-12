@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
 const {
   defaultLocale,
   withDefaults,
@@ -28,6 +29,7 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   const { program } = store.getState();
   const imagePath = path.join(program.directory, 'src/images');
   const announcementsPath = path.join(program.directory, 'src/announcements');
+  const { swiftype = {} } = themeOptions;
 
   createDirectory(imagePath, {
     reporter,
@@ -60,12 +62,8 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
       });
   }
 
-  if (themeOptions.swiftype) {
-    const { file } = themeOptions.swiftype;
-
-    if (!fs.existsSync(file)) {
-      fs.writeFileSync(file, '{}');
-    }
+  if (swiftype.file && !fs.existsSync(swiftype.file)) {
+    fs.writeFileSync(swiftype.file, '{}');
   }
 };
 
@@ -215,7 +213,10 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
   });
 };
 
-exports.onCreateNode = async ({ node, actions }, themeOptions) => {
+exports.onCreateNode = async (
+  { node, actions, getNode, getNodesByType, createContentDigest, createNodeId },
+  themeOptions
+) => {
   const {
     createNode,
     createNodeField,
@@ -244,10 +245,12 @@ exports.onCreateNode = async ({ node, actions }, themeOptions) => {
       },
     ] = getNodesByType('Site');
 
-    const pathname = getPath({ node });
+    const defaultPath = createFilePath({ node, getNode, trailingSlash: false });
+    const pathname = getPath ? getPath({ node }) : defaultPath;
+
     const resources = await getRelatedResources(
-      { node, siteUrl },
-      themeOptions
+      { pathname, node, siteUrl },
+      themeOptions.swiftype
     );
 
     writeableRelatedResourceData[pathname] = resources;
@@ -320,11 +323,11 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
 };
 
 exports.onPostBootstrap = (_, themeOptions) => {
-  const { refetch, file } = themeOptions;
+  const { swiftype = {} } = themeOptions;
 
-  if (refetch) {
+  if (swiftype.refetch && themeOptions.swiftype.file) {
     fs.writeFileSync(
-      file,
+      themeOptions.swiftype.file,
       JSON.stringify(writeableRelatedResourceData, null, 2)
     );
   }

@@ -1,17 +1,14 @@
 const fs = require('fs');
 const search = require('./search');
 
-module.exports = async ({ node, siteUrl }, pluginOptions) => {
+module.exports = async ({ pathname, node, siteUrl }, swiftypeOptions) => {
   const {
     refetch,
     engineKey,
     limit,
     file,
     getParams = () => ({}),
-    getPath,
-  } = pluginOptions;
-
-  const pathname = getPath({ node });
+  } = swiftypeOptions;
 
   if (refetch) {
     return search(siteUrl + pathname, getParams({ node }), {
