@@ -15,6 +15,7 @@ const SEO = ({ title, location, children }) => {
         siteMetadata {
           defaultTitle: title
           titleTemplate
+          siteUrl
         }
       }
       allLocale {
@@ -31,7 +32,7 @@ const SEO = ({ title, location, children }) => {
 
   const defaultLocale = locales.find(({ isDefault }) => isDefault);
 
-  const { defaultTitle, titleTemplate } = siteMetadata;
+  const { defaultTitle, titleTemplate, siteUrl } = siteMetadata;
 
   const template = title ? titleTemplate : '%s';
 
@@ -51,7 +52,7 @@ const SEO = ({ title, location, children }) => {
           <link
             key={i}
             rel="alternate"
-            href={path.join(location.origin, localizedPath, subPath)}
+            href={path.join(siteUrl, localizedPath, subPath)}
             hreflang={locale}
           />
         );
@@ -65,7 +66,6 @@ SEO.propTypes = {
   title: PropTypes.string,
   location: PropTypes.shape({
     pathname: PropTypes.string,
-    origin: PropTypes.string,
   }).isRequired,
   children: PropTypes.node,
 };
