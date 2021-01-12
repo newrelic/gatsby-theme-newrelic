@@ -41,7 +41,6 @@ const SEO = ({ title, location }) => {
     <Helmet>
       <title>{title || defaultTitle}</title>
       {locales.map(({ locale, localizedPath }, i) => {
-        console.log(localizedPath);
         return (
           <link
             key={i}
