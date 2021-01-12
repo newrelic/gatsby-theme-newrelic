@@ -56,6 +56,7 @@ websites](https://opensource.newrelic.com).
     - [`PageTools.Section`](#pagetoolssection)
     - [`PageTools.Title`](#pagetoolstitle)
   - [`SearchInput`](#searchinput)
+  - [`SEO`](#seo)
   - [`SimpleFeedback`](#simplefeedback)
   - [`Spinner`](#spinner)
   - [`Surface`](#surface)
@@ -1580,6 +1581,36 @@ const Search = () => (
       onChange={(e) => setValue(e.target.value)}
     />
   );
+);
+```
+
+### `SEO`
+
+A component that injects meta-tags, links, and other relevant tags for search engine optimization.
+
+```js
+import { SEO } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type   | Required | Default | Description                                                   |
+| ---------- | ------ | -------- | ------- | ------------------------------------------------------------- |
+| `location` | string | yes      |         | object which must have properties of `pathname` and `origin`. |
+| `title`    | string | no       |         | title to be displayed in head.                                |
+| `children` | node   | no       |         | any additional tags to be added to the `<head>` of the page   |
+
+**Example**
+
+```js
+const MainLayout = () => (
+  return (
+    <>
+      <SEO location={location}/>
+      <GlobalHeader/>
+      <Layout/>
+    </>
+  )
 );
 ```
 

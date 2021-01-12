@@ -60,7 +60,10 @@ const SEO = ({ title, location, children }) => {
 
 SEO.propTypes = {
   title: PropTypes.string,
-  location: PropTypes.string,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+    origin: PropTypes.string,
+  }).isRequired,
   children: PropTypes.node,
 };
 
