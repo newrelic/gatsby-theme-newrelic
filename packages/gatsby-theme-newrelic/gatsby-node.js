@@ -217,12 +217,7 @@ exports.onCreateNode = async (
   { node, actions, getNode, getNodesByType, createContentDigest, createNodeId },
   themeOptions
 ) => {
-  const {
-    createNode,
-    createNodeField,
-    createParentChildLink,
-    getNodesByType,
-  } = actions;
+  const { createNode, createNodeField, createParentChildLink } = actions;
 
   if (['Mdx', 'MarkdownRemark'].includes(node.internal.type)) {
     createNodeField({

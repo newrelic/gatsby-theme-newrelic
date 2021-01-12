@@ -14,6 +14,7 @@ const SEO = ({ title, location, children }) => {
       site {
         siteMetadata {
           defaultTitle: title
+          titleTemplate
         }
       }
       allLocale {
@@ -30,7 +31,9 @@ const SEO = ({ title, location, children }) => {
 
   const defaultLocale = locales.find(({ isDefault }) => isDefault);
 
-  const { defaultTitle } = siteMetadata;
+  const { defaultTitle, titleTemplate } = siteMetadata;
+
+  const template = title ? titleTemplate : '%s';
 
   const subPath =
     currentLocale.locale === defaultLocale.locale
@@ -41,7 +44,7 @@ const SEO = ({ title, location, children }) => {
         );
 
   return (
-    <Helmet>
+    <Helmet titleTemplate={template}>
       <title>{title || defaultTitle}</title>
       {locales.map(({ locale, localizedPath }, i) => {
         return (
