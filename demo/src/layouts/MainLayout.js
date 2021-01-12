@@ -10,16 +10,19 @@ import {
   NavItem,
   NewRelicLogo,
   useLayout,
+  SEO,
 } from '@newrelic/gatsby-theme-newrelic';
 import { Link } from 'gatsby';
 import nav from '../data/sidenav.json';
 
-const MainLayout = ({ children, pageContext }) => {
+const MainLayout = (props) => {
   const { contentPadding } = useLayout();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { children, pageContext, location } = props;
 
   return (
     <>
+      <SEO location={location} />
       <GlobalHeader />
       <header
         css={css`
