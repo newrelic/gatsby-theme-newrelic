@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.22.3...v1.23.0) (2021-01-12)
+
+
+### Bug Fixes
+
+* make hreflang tag off siteUrl metadata ([334e658](https://github.com/newrelic/gatsby-theme-newrelic/commit/334e658fc9e0c3699683610cae3bce5e418379a2))
+* only create nodes if we have access to the correct functions ([0b4d596](https://github.com/newrelic/gatsby-theme-newrelic/commit/0b4d596e1bce256ed456994eb0e17290adc10818))
+* remove double declared createNodeByType and add titleTemplate to SEO component ([567c4e5](https://github.com/newrelic/gatsby-theme-newrelic/commit/567c4e55a023784380ba58f69303c34e17dc415c))
+
+
+### Features
+
+* SEO component added to theme and adds hreflang tags ([b210d7d](https://github.com/newrelic/gatsby-theme-newrelic/commit/b210d7d1530eece5eb38187ae05cc41a715749f8))
+
+
+
+
+
 ## [1.22.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.22.2...v1.22.3) (2021-01-11)
 
 
