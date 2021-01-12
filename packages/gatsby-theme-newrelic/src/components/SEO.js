@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 const path = require('path');
 
-const SEO = ({ title, location }) => {
+const SEO = ({ title, location, children }) => {
   const {
     site: { siteMetadata },
     allLocale: { nodes: locales },
@@ -20,6 +20,7 @@ const SEO = ({ title, location }) => {
         nodes {
           locale
           localizedPath
+          isDefault
         }
       }
     }
@@ -27,10 +28,12 @@ const SEO = ({ title, location }) => {
 
   const currentLocale = useLocale();
 
+  const defaultLocale = locales.find(({ isDefault }) => isDefault);
+
   const { defaultTitle } = siteMetadata;
 
   const subPath =
-    currentLocale === 'en'
+    currentLocale.locale === defaultLocale.locale
       ? location.pathname
       : location.pathname.replace(
           new RegExp(`\\/${currentLocale.locale}`),
@@ -50,6 +53,7 @@ const SEO = ({ title, location }) => {
           />
         );
       })}
+      {children}
     </Helmet>
   );
 };
@@ -57,6 +61,7 @@ const SEO = ({ title, location }) => {
 SEO.propTypes = {
   title: PropTypes.string,
   location: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default SEO;
