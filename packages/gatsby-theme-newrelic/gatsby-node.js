@@ -214,7 +214,7 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
 };
 
 exports.onCreateNode = async (
-  { node, actions, getNode, getNodesByType, createContentDigest, createNodeId },
+  { node, actions, getNode, createContentDigest, createNodeId },
   themeOptions
 ) => {
   const {
