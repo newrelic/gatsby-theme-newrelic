@@ -1596,7 +1596,7 @@ import { SEO } from '@newrelic/gatsby-theme-newrelic';
 
 | Prop       | Type   | Required | Default | Description                                                   |
 | ---------- | ------ | -------- | ------- | ------------------------------------------------------------- |
-| `location` | string | yes      |         | object which must have properties of `pathname` and `origin`. |
+| `location` | string | yes      |         | The location object of the page where this is rendered. This object must have properties of `pathname` and `origin`. |
 | `title`    | string | no       |         | title to be displayed in head.                                |
 | `children` | node   | no       |         | any additional tags to be added to the `<head>` of the page   |
 
