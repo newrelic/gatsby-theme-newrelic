@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
 const {
   defaultLocale,
   withDefaults,
@@ -215,7 +216,10 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
   });
 };
 
-exports.onCreateNode = async ({ node, actions }, themeOptions) => {
+exports.onCreateNode = async (
+  { node, actions, getNode, getNodesByType, createContentDigest, createNodeId },
+  themeOptions
+) => {
   const {
     createNode,
     createNodeField,
@@ -231,7 +235,7 @@ exports.onCreateNode = async ({ node, actions }, themeOptions) => {
     });
   }
 
-  if (themeOptions.swiftype && getNodesByType) {
+  if (themeOptions.swiftype) {
     const { filterNode = () => false, getPath } = themeOptions.swiftype;
 
     if (node.internal.type !== 'Mdx' || !filterNode({ node })) {
@@ -244,10 +248,12 @@ exports.onCreateNode = async ({ node, actions }, themeOptions) => {
       },
     ] = getNodesByType('Site');
 
-    const pathname = getPath({ node });
+    const defaultPath = createFilePath({ node, getNode, trailingSlash: false });
+    const pathname = getPath ? getPath({ node }) : defaultPath;
+
     const resources = await getRelatedResources(
-      { node, siteUrl },
-      themeOptions
+      { pathname, node, siteUrl },
+      themeOptions.swiftype
     );
 
     writeableRelatedResourceData[pathname] = resources;
@@ -320,11 +326,9 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
 };
 
 exports.onPostBootstrap = (_, themeOptions) => {
-  const { refetch, file } = themeOptions;
-
-  if (refetch) {
+  if (themeOptions.swiftype && themeOptions.swiftype.refetch) {
     fs.writeFileSync(
-      file,
+      themeOptions.swiftype.file,
       JSON.stringify(writeableRelatedResourceData, null, 2)
     );
   }
