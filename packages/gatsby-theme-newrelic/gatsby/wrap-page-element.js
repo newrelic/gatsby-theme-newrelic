@@ -9,29 +9,12 @@ import {
   themeSupportedLocales,
 } from '../src/utils/defaultOptions';
 import { I18nextProvider } from 'react-i18next';
-import { useStaticQuery, graphql } from 'gatsby';
 import LocaleProvider from '../src/components/LocaleProvider';
 
 const wrapPageElement = ({ element, props }, themeOptions) => {
   const { i18n: i18nConfig } = withDefaults(themeOptions);
   const locale = getLocale(props, themeOptions);
 
-  console.log(props);
-  const {
-    allLocale: { nodes: locales },
-  } = useStaticQuery(graphql`
-    query {
-      allLocale {
-        nodes {
-          name
-          locale
-          localizedPath
-          isDefault
-        }
-      }
-    }
-  `);
-  console.log(locales);
   i18n.init({
     ...i18nConfig.i18nextOptions,
     lng: locale,
