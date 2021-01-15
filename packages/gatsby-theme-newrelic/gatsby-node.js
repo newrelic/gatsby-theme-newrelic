@@ -86,6 +86,8 @@ exports.createSchemaCustomization = ({ actions }) => {
       utmSource: String
       branch: String!
       contributingUrl: String
+      title: String
+      titleTemplate: String
     }
 
     type Locale implements Node {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
 import useLocale from '../hooks/useLocale';
-const path = require('path');
+import path from 'path';
 
 const SEO = ({ title, location, children }) => {
   const {
@@ -53,7 +53,7 @@ const SEO = ({ title, location, children }) => {
             key={i}
             rel="alternate"
             href={path.join(siteUrl, localizedPath, subPath)}
-            hreflang={locale}
+            hrefLang={locale}
           />
         );
       })}
