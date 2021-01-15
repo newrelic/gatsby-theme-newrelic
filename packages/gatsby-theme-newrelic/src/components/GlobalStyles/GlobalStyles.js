@@ -65,6 +65,9 @@ const GlobalStyles = ({ layout }) => (
         font-weight: 600;
         font-family: var(--primary-font-family);
         color: var(--heading-text-color);
+        scroll-margin-top: calc(
+          var(--global-header-height) + var(--site-content-padding)
+        );
       }
 
       ul {
