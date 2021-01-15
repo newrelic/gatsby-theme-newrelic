@@ -39,7 +39,6 @@ const NotFoundPage = () => {
           >
             <h1
               css={css`
-                font-family: var(--secondary-font-family);
                 font-size: 9rem;
                 font-weight: normal;
                 line-height: 1;

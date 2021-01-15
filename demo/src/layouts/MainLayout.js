@@ -9,14 +9,12 @@ import {
   Logo,
   NavItem,
   NewRelicLogo,
-  useLayout,
   SEO,
 } from '@newrelic/gatsby-theme-newrelic';
 import { Link } from 'gatsby';
 import nav from '../data/sidenav.json';
 
 const MainLayout = (props) => {
-  const { contentPadding } = useLayout();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { children, pageContext, location } = props;
 
@@ -27,7 +25,7 @@ const MainLayout = (props) => {
       <header
         css={css`
           display: none;
-          padding: 1rem ${contentPadding};
+          padding: 1rem var(--site-content-padding);
           justify-content: space-between;
           align-items: center;
 
@@ -69,6 +67,7 @@ const MainLayout = (props) => {
 MainLayout.propTypes = {
   children: PropTypes.node,
   pageContext: PropTypes.object,
+  location: PropTypes.object,
 };
 
 export default MainLayout;

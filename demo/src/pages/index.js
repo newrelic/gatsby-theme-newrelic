@@ -16,7 +16,6 @@ import {
   TagList,
   Terminal,
   Video,
-  useLayout,
   useTranslation,
 } from '@newrelic/gatsby-theme-newrelic';
 
@@ -41,7 +40,6 @@ const liveCodeSample = `
 
 const IndexPage = () => {
   const { t } = useTranslation();
-  const { contentPadding } = useLayout();
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
@@ -50,7 +48,7 @@ const IndexPage = () => {
         display: grid;
         grid-template-columns: minmax(0, 1fr) 320px;
         grid-template-areas: 'content page-tools';
-        grid-gap: ${contentPadding};
+        grid-gap: var(--site-content-padding);
 
         @media screen and (max-width: 1280px) {
           grid-template-columns: minmax(0, 1fr);
