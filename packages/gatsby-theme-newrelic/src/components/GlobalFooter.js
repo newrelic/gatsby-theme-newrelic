@@ -26,10 +26,6 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
           repository
           branch
         }
-        layout {
-          contentPadding
-          maxWidth
-        }
       }
       sitePage(path: { eq: "/terms" }) {
         id
@@ -37,7 +33,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
     }
   `);
 
-  const { siteMetadata, layout } = site;
+  const { siteMetadata } = site;
   const { branch, repository, siteUrl } = siteMetadata;
   const { pathname } = useLocation();
 
@@ -71,8 +67,8 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
           align-items: center;
           justify-content: space-between;
           display: flex;
-          padding: 1rem ${layout.contentPadding};
-          max-width: ${layout.maxWidth};
+          padding: 1rem var(--site-content-padding);
+          max-width: var(--site-max-width);
           margin: 0 auto;
 
           @media screen and (max-width: 550px) {
@@ -148,8 +144,8 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
             display: grid;
             grid-template-columns: auto auto;
             grid-template-areas: 'copyright legal';
-            padding: 0.5rem ${layout.contentPadding};
-            max-width: ${layout.maxWidth};
+            padding: 0.5rem var(--site-content-padding);
+            max-width: var(--site-max-width);
             margin: 0 auto;
 
             @media screen and (max-width: 760px) {
