@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.23.0...v1.23.1) (2021-01-15)
+
+
+### Bug Fixes
+
+* ensure title and titleTemplate fields are defined on SiteSiteMetadata type ([cebffa0](https://github.com/newrelic/gatsby-theme-newrelic/commit/cebffa00fe14f872cc1a1b4a23339d6afcfb6599))
+* use proper casing on hrefLang prop ([ffdacb2](https://github.com/newrelic/gatsby-theme-newrelic/commit/ffdacb29804ffbe88bb6ffc0ac91bee4912208e2))
+
+
+
+
+
 # [1.23.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.22.3...v1.23.0) (2021-01-12)
 
 
