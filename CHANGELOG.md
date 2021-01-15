@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.23.1...v1.23.2) (2021-01-15)
+
+
+### Bug Fixes
+
+* **GlobalStyles:** add layout max width and content padding as CSS variables ([3c7a469](https://github.com/newrelic/gatsby-theme-newrelic/commit/3c7a469fa86f0dd0c303a7054aa4dc68265e936f))
+* **GlobalStyles:** add scroll-margin-top for all headings ([f753bcb](https://github.com/newrelic/gatsby-theme-newrelic/commit/f753bcb9fd424390e81b8e4203cc50c4e5db9332))
+
+
+
+
+
 ## [1.23.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.23.0...v1.23.1) (2021-01-15)
 
 
