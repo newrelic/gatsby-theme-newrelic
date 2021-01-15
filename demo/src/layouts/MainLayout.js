@@ -69,6 +69,7 @@ const MainLayout = (props) => {
 MainLayout.propTypes = {
   children: PropTypes.node,
   pageContext: PropTypes.object,
+  location: PropTypes.object,
 };
 
 export default MainLayout;
