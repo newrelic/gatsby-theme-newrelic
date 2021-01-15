@@ -7,11 +7,9 @@ import Portal from './Portal';
 import NewRelicLogo from './NewRelicLogo';
 import useKeyPress from '../hooks/useKeyPress';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import useLayout from '../hooks/useLayout';
 
 const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
   const { t } = useThemeTranslation();
-  const layout = useLayout();
 
   useEffect(() => {
     if (isOpen) {
@@ -66,12 +64,12 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
         >
           <div
             css={css`
-              max-width: ${layout.maxWidth};
+              max-width: var(--site-max-width);
               display: flex;
               justify-content: space-between;
               align-items: center;
               margin: 0 auto;
-              padding: 0 ${layout.contentPadding};
+              padding: 0 var(--site-content-padding);
               height: 100%;
             `}
           >
@@ -97,8 +95,8 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
         </div>
         <div
           css={css`
-            max-width: ${layout.maxWidth};
-            padding: 0 ${layout.contentPadding};
+            max-width: var(--site-max-width);
+            padding: 0 var(--site-content-padding);
             margin: 0 auto;
           `}
         >
