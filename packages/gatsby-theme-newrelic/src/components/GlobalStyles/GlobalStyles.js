@@ -48,6 +48,10 @@ const GlobalStyles = ({ layout }) => (
       p {
         margin-top: 0;
         margin-bottom: 1rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
 
       h1,
