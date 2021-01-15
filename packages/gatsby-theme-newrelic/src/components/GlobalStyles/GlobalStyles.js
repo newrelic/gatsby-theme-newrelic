@@ -4,6 +4,7 @@ import { Global, css } from '@emotion/core';
 import colors from './colors';
 import fonts from './fonts';
 import themes from './themes';
+import variables from './variables';
 
 const GlobalStyles = () => (
   <Global
@@ -11,8 +12,7 @@ const GlobalStyles = () => (
       ${normalize()}
 
       :root {
-        --global-header-height: 36px;
-
+        ${variables};
         ${colors};
         ${fonts};
       }
