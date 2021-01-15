@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import useLayout from '../../hooks/useLayout';
 
 const Sidebar = ({ children, className }) => {
-  const { contentPadding } = useLayout();
-
   return (
     <aside
       data-swiftype-index={false}
@@ -29,7 +26,7 @@ const Sidebar = ({ children, className }) => {
           bottom: 0;
           left: 0;
           right: 0;
-          padding: ${contentPadding};
+          padding: var(--site-content-padding);
           overflow: auto;
         `}
       >
