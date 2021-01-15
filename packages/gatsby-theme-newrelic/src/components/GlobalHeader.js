@@ -60,10 +60,6 @@ const GlobalHeader = ({ className }) => {
           utmSource
           siteUrl
         }
-        layout {
-          contentPadding
-          maxWidth
-        }
       }
       allLocale(sort: { fields: [isDefault, locale], order: [DESC, ASC] }) {
         nodes {
@@ -77,7 +73,6 @@ const GlobalHeader = ({ className }) => {
 
   const {
     siteMetadata: { utmSource, siteUrl },
-    layout,
   } = site;
 
   useKeyPress('/', (e) => {
@@ -126,9 +121,9 @@ const GlobalHeader = ({ className }) => {
             height: var(--global-header-height);
             display: flex;
             justify-content: space-between;
-            max-width: ${layout.maxWidth};
+            max-width: var(--site-max-width);
             margin: 0 auto;
-            padding: 0 ${layout.contentPadding};
+            padding: 0 var(--site-content-padding);
           `}
         >
           <Overlay

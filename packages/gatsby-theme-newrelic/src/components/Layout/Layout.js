@@ -6,11 +6,8 @@ import Footer from './Footer';
 import Main from './Main';
 import PageTools from './PageTools';
 import Sidebar from './Sidebar';
-import useLayout from '../../hooks/useLayout';
 
 const Layout = ({ className, children }) => {
-  const { maxWidth } = useLayout();
-
   return (
     <div
       className={className}
@@ -25,7 +22,7 @@ const Layout = ({ className, children }) => {
         grid-template-rows: 1fr auto;
         min-height: calc(100vh - var(--global-header-height));
         margin: 0 auto;
-        max-width: ${maxWidth};
+        max-width: var(--site-max-width);
 
         @media screen and (max-width: 760px) {
           grid-template-columns: minmax(0, 1fr);

@@ -3,23 +3,10 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Button from './Button';
 import Icon from './Icon';
-import { graphql, useStaticQuery } from 'gatsby';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const Banner = ({ children, visible, onClose, ...props }) => {
   const { t } = useThemeTranslation();
-  const {
-    site: { layout },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        layout {
-          contentPadding
-          maxWidth
-        }
-      }
-    }
-  `);
 
   return visible ? (
     <div
@@ -49,9 +36,9 @@ const Banner = ({ children, visible, onClose, ...props }) => {
     >
       <div
         css={css`
-          padding: 1rem ${layout.contentPadding};
+          padding: 1rem var(--site-content-padding);
           padding-right: 7rem;
-          max-width: ${layout.maxWidth};
+          max-width: var(--site-max-width);
           margin: 0 auto;
           position: relative;
         `}
@@ -64,7 +51,7 @@ const Banner = ({ children, visible, onClose, ...props }) => {
           css={css`
             position: absolute;
             top: 0.5rem;
-            right: ${layout.contentPadding};
+            right: var(--site-content-padding);
           `}
         >
           {t('button.close')}
