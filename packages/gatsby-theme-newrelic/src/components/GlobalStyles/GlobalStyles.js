@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { normalize } from 'polished';
 import { Global, css } from '@emotion/core';
 import colors from './colors';
@@ -6,7 +7,7 @@ import fonts from './fonts';
 import themes from './themes';
 import variables from './variables';
 
-const GlobalStyles = () => (
+const GlobalStyles = ({ layout }) => (
   <Global
     styles={css`
       ${normalize()}
@@ -15,6 +16,9 @@ const GlobalStyles = () => (
         ${variables};
         ${colors};
         ${fonts};
+
+        --site-max-width: ${layout.maxWidth};
+        --site-content-padding: ${layout.contentPadding};
       }
 
       ${themes}
@@ -91,5 +95,12 @@ const GlobalStyles = () => (
     `}
   />
 );
+
+GlobalStyles.propTypes = {
+  layout: PropTypes.shape({
+    contentPadding: PropTypes.string,
+    maxWidth: PropTypes.string,
+  }),
+};
 
 export default GlobalStyles;

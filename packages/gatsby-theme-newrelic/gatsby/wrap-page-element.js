@@ -12,7 +12,7 @@ import { I18nextProvider } from 'react-i18next';
 import LocaleProvider from '../src/components/LocaleProvider';
 
 const wrapPageElement = ({ element, props }, themeOptions) => {
-  const { i18n: i18nConfig } = withDefaults(themeOptions);
+  const { i18n: i18nConfig, layout } = withDefaults(themeOptions);
   const locale = getLocale(props, themeOptions);
 
   i18n.init({
@@ -24,7 +24,7 @@ const wrapPageElement = ({ element, props }, themeOptions) => {
   return (
     <I18nextProvider i18n={i18n}>
       <LocaleProvider i18n={i18n}>
-        <GlobalStyles />
+        <GlobalStyles layout={layout} />
         {element}
       </LocaleProvider>
     </I18nextProvider>
