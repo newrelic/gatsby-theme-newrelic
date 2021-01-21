@@ -1017,6 +1017,11 @@ Additional props are forwarded to the underlying `svg` element.
 - `nr-fso`
 - `nr-ai`
 
+**Logos**
+
+- `logo-apple`
+- `logo-android`
+
 #### Shadowing icons
 
 Because this theme only provides a subset of the feather icon set, you may need
@@ -1594,11 +1599,11 @@ import { SEO } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop       | Type   | Required | Default | Description                                                   |
-| ---------- | ------ | -------- | ------- | ------------------------------------------------------------- |
+| Prop       | Type   | Required | Default | Description                                                                                                          |
+| ---------- | ------ | -------- | ------- | -------------------------------------------------------------------------------------------------------------------- |
 | `location` | string | yes      |         | The location object of the page where this is rendered. This object must have properties of `pathname` and `origin`. |
-| `title`    | string | no       |         | title to be displayed in head.                                |
-| `children` | node   | no       |         | any additional tags to be added to the `<head>` of the page   |
+| `title`    | string | no       |         | title to be displayed in head.                                                                                       |
+| `children` | node   | no       |         | any additional tags to be added to the `<head>` of the page                                                          |
 
 **Example**
 
