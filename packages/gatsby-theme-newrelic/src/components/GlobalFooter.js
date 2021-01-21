@@ -169,7 +169,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
               letter-spacing: 0.1rem;
             `}
           >
-            Copyright {{ copyrightSymbol }} 2020 New Relic Inc.
+            Copyright {{ copyrightSymbol }} 2021 New Relic Inc.
           </Trans>
           <div
             css={css`
