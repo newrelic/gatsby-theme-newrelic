@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.23.2...v1.23.3) (2021-01-21)
+
+
+### Bug Fixes
+
+* add android icon ([26e3482](https://github.com/newrelic/gatsby-theme-newrelic/commit/26e34820f57c3ae22e86be62e9df82d22398268a))
+* add apple logo ([8ab0352](https://github.com/newrelic/gatsby-theme-newrelic/commit/8ab0352e301f03495e319aa124bb8e64782b7107))
+
+
+
+
+
 ## [1.23.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.23.1...v1.23.2) (2021-01-15)
 
 
