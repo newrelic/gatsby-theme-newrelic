@@ -2008,7 +2008,18 @@ import { useKeyPress } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-- `key` _(string)_: The key being listened for (i.e. the `event.key` value)
+- `key` _(string | Array<string>)_: The key or keys being listened for
+  (i.e. the `event.key` value). This hook also recognizes modifier keys. To add
+  a listener for a modifier key, use the format `<modifier key>+<key>` (i.e.
+  `CMD+S`). The key is case insensitive and ignores whitespace (i.e. `cmd + s`
+  also works.) Pass an array of keys to listen for multiple key combinatations
+  in a single listener. The following modifier keys are supported:
+  - `CMD` - The OS meta key; `Command ⌘` on macOS and the Windows key on Windows.
+    Also maps to `Control` for easier Windows support.
+  - `CTRL` - The `Control` key. NOTE: This does not map to the `Command` key on
+    macOS. Use this modifier if you explictly want the `Control` key on macOS.
+  - `Shift`
+  - `Alt`
 - `callback` _(function)_ : Callback function called when the keydown event
   matches the key. Takes the `event` as the argument.
 
@@ -2033,6 +2044,22 @@ const Modal = ({ code }) => {
     </>
   );
 };
+```
+
+**Modifier keys**
+
+```js
+useKeyPress('CMD+S', () => {
+  console.log('Save it!');
+});
+```
+
+**Listen for multiple keys**
+
+```js
+useKeyPress(['s', 'h'], (e) => {
+  console.log(e.key); // 's' or 'h'
+});
 ```
 
 ### `useLayout`
