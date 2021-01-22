@@ -2024,6 +2024,11 @@ import { useKeyPress } from '@newrelic/gatsby-theme-newrelic';
   - `Alt`
 - `callback` _(function)_ : Callback function called when the keydown event
   matches the key. Takes the `event` as the argument.
+- `options` _(object)_: Options for the hook
+  - `ignoreTextInput` _(boolean)_: Determines whether the handler should trigger
+    when the key matches while typing in an `input` or `textarea`. By default,
+    the handler will not be triggered when the user is typing in a text input
+    (`true`). Set to `false` to trigger the handler in text inputs.
 
 **Returns**
 
