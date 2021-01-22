@@ -37,6 +37,7 @@ const SearchInput = forwardRef(
         css={css`
           position: relative;
           width: ${(props) => props.width || '100%'};
+          box-shadow: var(--shadow-1);
           ${size && styles.size[size].container}
         `}
       >
@@ -48,6 +49,7 @@ const SearchInput = forwardRef(
             transform: translateY(-50%);
           `}
           name={iconName}
+          size={styles.size[size].icon}
         />
         <input
           ref={ref}
@@ -95,13 +97,13 @@ const SearchInput = forwardRef(
                 cursor: pointer;
               }
 
-              position: absolute;
-              background-color: transparent;
+              color: var(--primary-text-color);
               border: none;
+              background: transparent;
+              position: absolute;
               margin: 0;
               padding: 0;
               outline: none;
-              ${size && styles.size[size].button}
             `}
             type="button"
           >
@@ -110,6 +112,7 @@ const SearchInput = forwardRef(
               css={css`
                 display: block;
               `}
+              size={styles.size[size].icon}
             />
           </button>
         )}
@@ -144,6 +147,7 @@ const styles = {
       container: css`
         --icon-size: 0.75rem;
       `,
+      icon: '0.75rem',
     },
     [SIZES.MEDIUM]: {
       input: css`
@@ -153,15 +157,18 @@ const styles = {
       container: css`
         --icon-size: 1rem;
       `,
+      icon: '0.875rem',
     },
     [SIZES.LARGE]: {
       input: css`
         font-size: 1.25rem;
-        padding: 1rem calc(1.5rem + var(--icon-size));
+        font-weight: 500;
+        padding: 0.75rem calc(1.5rem + var(--icon-size));
       `,
       container: css`
         --icon-size: 1.5rem;
       `,
+      icon: '1.25rem',
     },
   },
 };
