@@ -5,6 +5,8 @@ import {
   Button,
   CodeBlock,
   Callout,
+  Collapser,
+  CollapserGroup,
   ContributingGuidelines,
   Feedback,
   Layout,
@@ -92,6 +94,21 @@ const IndexPage = () => {
             size={SearchInput.SIZE.LARGE}
             iconName={SearchInput.ICONS.SEARCH}
           />
+        </section>
+        <section>
+          <h2>Collapsers</h2>
+          <CollapserGroup>
+            <Collapser title="Check out this cool collapser">
+              This is a pretty neat little utility. I can show all kinds of
+              stuff in here.
+            </Collapser>
+            <Collapser title={<code>api_doc</code>}>
+              You can even use JSX in the title
+            </Collapser>
+            <Collapser title="This one is open by default" defaultOpen>
+              And you can see everything inside of it!
+            </Collapser>
+          </CollapserGroup>
         </section>
         <section>
           <Callout variant={Callout.VARIANT.CAUTION}>
