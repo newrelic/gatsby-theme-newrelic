@@ -147,6 +147,7 @@ const SearchInput = forwardRef(
               border: 1px solid var(--border-color);
               line-height: 1;
               text-align: middle;
+              background: var(--color-neutrals-100);
 
               ${styles.size[size].hotkey}
 
