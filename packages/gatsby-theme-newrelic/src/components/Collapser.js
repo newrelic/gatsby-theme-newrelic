@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import Icon from './Icon';
 import { animated, useSpring } from 'react-spring';
 import { usePrevious, useIsomorphicLayoutEffect } from 'react-use';
+import useKeyPress from '../hooks/useKeyPress';
 
 const ResizeObserver = global.ResizeObserver || class ResizeObserver {};
 
@@ -13,6 +14,9 @@ const Collapser = ({ title, id, defaultOpen, className, children }) => {
   const [height, setHeight] = useState(0);
   const { height: viewHeight } = useSpring({ height: isOpen ? height : 0 });
   const previousIsOpen = usePrevious(isOpen);
+
+  useKeyPress('s', () => setIsOpen(true));
+  useKeyPress('h', () => setIsOpen(false));
 
   const observer = useMemo(
     () =>
