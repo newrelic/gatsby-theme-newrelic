@@ -13,6 +13,7 @@ websites](https://opensource.newrelic.com).
 - [Configuration](#configuration)
   - [Site metadata](#site-metadata)
   - [Options](#options)
+    - [`sitemap`](#sitemap)
     - [`newrelic`](#newrelic)
     - [`robots`](#robots)
     - [`i18n`](#i18n)
@@ -26,6 +27,8 @@ websites](https://opensource.newrelic.com).
   - [`Button`](#button)
   - [`Callout`](#callout)
   - [`CodeBlock`](#codeblock)
+  - [`Collapser`](#collapser)
+  - [`CollapserGroup`](#collapsergroup)
   - [`ContributingGuidelines`](#contributingguidelines)
   - [`CookieConsentDialog`](#cookieconsentdialog)
   - [`Dropdown`](#dropdown)
@@ -120,6 +123,7 @@ module.exports = {
     {
       resolve: '@newrelic/gatsby-theme-newrelic',
       options: {
+        sitemap: true,
         layout: {
           contentPadding: '2rem',
           maxWidth: '1600px',
@@ -181,6 +185,13 @@ are optional, they are highly recommended.
   the default behavior.
 
 ### Options
+
+#### `sitemap`
+
+Toggles the automatic creation of a sitemap. Set this value to
+`false` to disable sitemaps.
+
+**Default:** `true`
 
 #### `newrelic`
 
@@ -645,6 +656,80 @@ const Documentation = () => (
     {codeSample}
   </CodeBlock>
 );
+```
+
+### `Collapser`
+
+This element is used to reveal or hide content associated with it. Use in
+conjunction with a [`CollapserGroup`](#collapsergroup) when using multiple
+`Collapser`s in tandom.
+
+```js
+import { Collapser } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop          | Type                    | Required | Default | Description                                                                                                                  |
+| ------------- | ----------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `children`    | node                    | yes      |         | The content that will be hidden or revealed when the user interacts with the `Collapser`.                                    |
+| `defaultOpen` | boolean                 | yes      | false   | Determines if the `Collapser` should default to its open state.                                                              |
+| `id`          | string                  | no       |         | An HTML `id` attribute that will be attached to the `Collapser` `title`. Useful if you want to deep link to the `Collapser`. |
+| `title`       | string \| React element | yes      |         | The text that will be rendered on the interactive button used to toggle the open state on the `Collapser`.                   |
+
+**Examples**
+
+```js
+import { Collapser } from '@newrelic/gatsby-theme-newrelic';
+
+<Collapser title="The Ruby Agent API">
+  This is some information about the Ruby Agent. You'll have to interact with
+  the Collapser to see me.
+</Collapser>;
+```
+
+**Multiple collapsers**
+
+```js
+import { Collapser, CollapserGroup } from '@newrelic/gatsby-theme-newrelic';
+
+<CollapserGroup>
+  <Collapser title="Collapser 1">
+    The first collapser! I will be hidden by default.
+  </Collapser>
+  <Collapser title="Collapser 2" defaultOpen>
+    The second collapser! The user will see this content by default.
+  </Collapser>
+</CollapserGroup>;
+```
+
+### `CollapserGroup`
+
+Used in conjunction with multiple `Collapser`s to group them together.
+
+```js
+import { Collapser, CollapserGroup } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop       | Type          | Required | Default | Description                                                                            |
+| ---------- | ------------- | -------- | ------- | -------------------------------------------------------------------------------------- |
+| `children` | React element | yes      |         | The set of `Collapser` elements that will be rendered as part of the `CollapserGroup`. |
+
+**Examples**
+
+```js
+import { Collapser, CollapserGroup } from '@newrelic/gatsby-theme-newrelic';
+
+<CollapserGroup>
+  <Collapser title="Collapser 1">
+    The first collapser! I will be hidden by default.
+  </Collapser>
+  <Collapser title="Collapser 2" defaultOpen>
+    The second collapser! The user will see this content by default.
+  </Collapser>
+</CollapserGroup>;
 ```
 
 ### `ContributingGuidelines`
@@ -1561,15 +1646,16 @@ import { SearchInput } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop        | Type     | Required | Default | Description                                                                                                                              |
-| ----------- | -------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `className` | string   | no       |         | Additional `className` for the component.                                                                                                |
-| `onClear`   | function | yes      |         | Handler called when the user interacts with the clear button. This handler should be responsible for resetting the `value` of the input. |
-| `size`      | enum     | no       |         | Size of the input. Must be one of `SearchInput.SIZE.MEDIUM` or `SearchInput.SIZE.LARGE`                                                  |
-| `style`     | object   | no       |         | Inline styles for the search input                                                                                                       |
-| `value`     | string   | no       |         | Value of the search input.                                                                                                               |
-| `width`     | string   | no       |         | Width of the input. Accepts any CSS sizing value (e.g. `100px`)                                                                          |
-| `iconName`  | enum     | no       |         | Specify icon to use. Must be one of `SearchInput.ICONS.SEARCH` or `SearchInput.ICONS.FILTER` Defaults to search magnifying glass.        |
+| Prop              | Type     | Required | Default | Description                                                                                                                               |
+| ----------------- | -------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `className`       | string   | no       |         | Additional `className` for the component.                                                                                                 |
+| `onClear`         | function | yes      |         | Handler called when the user interacts with the clear button. This handler should be responsible for resetting the `value` of the input.  |
+| `size`            | enum     | no       |         | Size of the input. Must be one of `SearchInput.SIZE.MEDIUM` or `SearchInput.SIZE.LARGE`                                                   |
+| `style`           | object   | no       |         | Inline styles for the search input                                                                                                        |
+| `value`           | string   | no       |         | Value of the search input.                                                                                                                |
+| `width`           | string   | no       |         | Width of the input. Accepts any CSS sizing value (e.g. `100px`)                                                                           |
+| `iconName`        | enum     | no       |         | Specify icon to use. Must be one of `SearchInput.ICONS.SEARCH` or `SearchInput.ICONS.FILTER` Defaults to search magnifying glass.         |
+| `focusWithHotKey` | string   | no       |         | Adds a listener to focus the input with a hotkey. For example, to focus the search input using the `/` key, specify `focusWithHotKey="/"` |
 
 Additional props are forwarded to the underlying `input` element.
 
@@ -1584,6 +1670,7 @@ const Search = () => (
       value={value}
       onClear={() => setValue('')}
       onChange={(e) => setValue(e.target.value)}
+      focusWithHotKey="/"
     />
   );
 );
@@ -1999,9 +2086,25 @@ import { useKeyPress } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-- `key` _(string)_: The key being listened for (i.e. the `event.key` value)
+- `key` _(string | Array<string>)_: The key or keys being listened for
+  (i.e. the `event.key` value). This hook also recognizes modifier keys. To add
+  a listener for a modifier key, use the format `<modifier key>+<key>` (i.e.
+  `CMD+S`). The key is case insensitive and ignores whitespace (i.e. `cmd + s`
+  also works.) Pass an array of keys to listen for multiple key combinatations
+  in a single listener. The following modifier keys are supported:
+  - `CMD` - The OS meta key; `Command ⌘` on macOS and the Windows key on Windows.
+    Also maps to `Control` for easier Windows support.
+  - `CTRL` - The `Control` key. NOTE: This does not map to the `Command` key on
+    macOS. Use this modifier if you explictly want the `Control` key on macOS.
+  - `Shift`
+  - `Alt`
 - `callback` _(function)_ : Callback function called when the keydown event
   matches the key. Takes the `event` as the argument.
+- `options` _(object)_: Options for the hook
+  - `ignoreTextInput` _(boolean)_: Determines whether the handler should trigger
+    when the key matches while typing in an `input` or `textarea`. By default,
+    the handler will not be triggered when the user is typing in a text input
+    (`true`). Set to `false` to trigger the handler in text inputs.
 
 **Returns**
 
@@ -2024,6 +2127,22 @@ const Modal = ({ code }) => {
     </>
   );
 };
+```
+
+**Modifier keys**
+
+```js
+useKeyPress('CMD+S', () => {
+  console.log('Save it!');
+});
+```
+
+**Listen for multiple keys**
+
+```js
+useKeyPress(['s', 'h'], (e) => {
+  console.log(e.key); // 's' or 'h'
+});
 ```
 
 ### `useLayout`
