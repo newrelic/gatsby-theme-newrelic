@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.23.3...v1.24.0) (2021-01-22)
+
+
+### Bug Fixes
+
+* **GlobalFooter:** Hide the GitHub buttons if a repository is not configured ([1372f4e](https://github.com/newrelic/gatsby-theme-newrelic/commit/1372f4e1b9ee4204c5e14ab58211afb5771b4bd3))
+* **GlobalStyles:** add styles for anchor icon next to autolinked headers ([5a20f44](https://github.com/newrelic/gatsby-theme-newrelic/commit/5a20f447e82eac4f84f5a77cfc08f25ef315a248))
+* **GlobalStyles:** fix placeholder styles for light/dark modes ([267459d](https://github.com/newrelic/gatsby-theme-newrelic/commit/267459da18c56974a39a619de0b274c802a7e3aa))
+* **SearchInput:** allow a focus hotkey to be specified to focus the input ([8075efd](https://github.com/newrelic/gatsby-theme-newrelic/commit/8075efda5217918d7bd66cd05e8ab4a6e64aac43))
+* **SearchInput:** ensure clear button has dark theme styles ([e5478c5](https://github.com/newrelic/gatsby-theme-newrelic/commit/e5478c55c0043bb6df2a9337475ff424bb256c15))
+* **useKeyPress:** add matching on modifier keys ([8fccbe2](https://github.com/newrelic/gatsby-theme-newrelic/commit/8fccbe2402520161d2ed328492dd95947aead554))
+* **useKeyPress:** By default, do not trigger handler when typing in an input ([8d0a712](https://github.com/newrelic/gatsby-theme-newrelic/commit/8d0a7125959f9115d6afa0ef10239019a4e30e4e))
+* add the ability to disable sitemaps ([aa9a05c](https://github.com/newrelic/gatsby-theme-newrelic/commit/aa9a05c7f2a8fd384b49a6cfecb27bf25b6a4f71))
+
+
+### Features
+
+* **GlobalStyles:** Define box shadows ([d86cf31](https://github.com/newrelic/gatsby-theme-newrelic/commit/d86cf31def1bf4d9b793fc20bb65fec2f3480e39))
+* **useKeyPress:** Allow multiple key combinations to be specified ([bce720d](https://github.com/newrelic/gatsby-theme-newrelic/commit/bce720decd603d44c854a301b90e0f5ded343b6d))
+* add a Collapser component ([1f5de9d](https://github.com/newrelic/gatsby-theme-newrelic/commit/1f5de9de927f2f8b84db012c54a76d28464f307c))
+* create a CollapserGroup component ([e2704c6](https://github.com/newrelic/gatsby-theme-newrelic/commit/e2704c6d8e633a0586aaad44d8695cc36187f576))
+
+
+
+
+
 ## [1.23.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.23.2...v1.23.3) (2021-01-21)
 
 
