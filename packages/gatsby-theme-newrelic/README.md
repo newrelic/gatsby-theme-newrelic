@@ -13,6 +13,7 @@ websites](https://opensource.newrelic.com).
 - [Configuration](#configuration)
   - [Site metadata](#site-metadata)
   - [Options](#options)
+    - [`sitemap`](#sitemap)
     - [`newrelic`](#newrelic)
     - [`robots`](#robots)
     - [`i18n`](#i18n)
@@ -120,6 +121,7 @@ module.exports = {
     {
       resolve: '@newrelic/gatsby-theme-newrelic',
       options: {
+        sitemap: true,
         layout: {
           contentPadding: '2rem',
           maxWidth: '1600px',
@@ -181,6 +183,13 @@ are optional, they are highly recommended.
   the default behavior.
 
 ### Options
+
+#### `sitemap`
+
+Toggles the automatic creation of a sitemap. Set this value to
+`false` to disable sitemaps.
+
+**Default:** `true`
 
 #### `newrelic`
 
