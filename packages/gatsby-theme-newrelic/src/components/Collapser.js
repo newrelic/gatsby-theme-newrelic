@@ -15,7 +15,7 @@ const Collapser = ({ title, id, defaultOpen, className, children }) => {
   const { height: viewHeight } = useSpring({ height: isOpen ? height : 0 });
   const previousIsOpen = usePrevious(isOpen);
 
-  useKeyPress('s', () => setIsOpen(true));
+  useKeyPress(['s', 'cmd+f'], () => setIsOpen(true));
   useKeyPress('h', () => setIsOpen(false));
 
   const observer = useMemo(
@@ -102,6 +102,7 @@ const Collapser = ({ title, id, defaultOpen, className, children }) => {
       >
         <div
           ref={ref}
+          aria-hidden={!isOpen}
           css={css`
             border-top: 1px solid var(--border-color);
             padding: 1rem;
