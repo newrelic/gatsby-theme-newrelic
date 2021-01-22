@@ -1,15 +1,15 @@
 module.exports = ({
   layout,
   newrelic,
-  swiftype,
   robots = {},
+  sitemap = true,
   gaTrackingId,
 }) => {
   return {
     plugins: [
       'gatsby-plugin-emotion',
       'gatsby-plugin-react-helmet',
-      'gatsby-plugin-sitemap',
+      sitemap && 'gatsby-plugin-sitemap',
       'gatsby-plugin-use-dark-mode',
       'gatsby-transformer-sharp',
       'gatsby-plugin-sharp',
