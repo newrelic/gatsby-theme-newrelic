@@ -70,6 +70,17 @@ const GlobalStyles = ({ layout }) => (
         scroll-margin-top: calc(
           var(--global-header-height) + var(--site-content-padding)
         );
+
+        // additional styles provided by gatsby-remark-autolink-headers
+        .anchor svg {
+          opacity: 0;
+          transition: opacity 0.2s ease-out;
+        }
+
+        &:hover .anchor svg,
+        .anchor:focus svg {
+          opacity: 1;
+        }
       }
 
       ul {
