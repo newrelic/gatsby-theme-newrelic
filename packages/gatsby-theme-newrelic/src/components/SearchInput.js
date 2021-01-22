@@ -1,7 +1,10 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
+import composeHandlers from '../utils/composeHandlers';
+import useSyncedRef from '../hooks/useSyncedRef';
+import useKeyPress from '../hooks/useKeyPress';
 
 const SIZES = {
   SMALL: 'small',
@@ -17,6 +20,7 @@ const ICONS = {
 const SearchInput = forwardRef(
   (
     {
+      focusWithHotKey,
       onClear,
       onSubmit,
       value,
@@ -25,10 +29,21 @@ const SearchInput = forwardRef(
       className,
       style,
       iconName = 'fe-search',
+      onBlur,
+      onFocus,
       ...props
     },
     ref
   ) => {
+    const inputRef = useSyncedRef(ref);
+    const [showHotKey, setShowHotkey] = useState(Boolean(focusWithHotKey));
+
+    useKeyPress(focusWithHotKey, (e) => {
+      e.preventDefault();
+
+      inputRef.current.focus();
+    });
+
     return (
       <div
         width={width}
@@ -52,14 +67,20 @@ const SearchInput = forwardRef(
           size={styles.size[size].icon}
         />
         <input
-          ref={ref}
+          ref={inputRef}
           value={value}
           {...props}
           type="text"
+          onFocus={composeHandlers(onFocus, () => setShowHotkey(false))}
+          onBlur={composeHandlers(onBlur, () =>
+            setShowHotkey(Boolean(focusWithHotKey))
+          )}
           onKeyDown={(e) => {
             switch (e.key) {
               case 'Escape':
-                return onClear?.();
+                onClear && onClear();
+                e.target.blur();
+                break;
               case 'Enter':
                 return onSubmit?.(value);
               default:
@@ -116,6 +137,27 @@ const SearchInput = forwardRef(
             />
           </button>
         )}
+        {showHotKey && (
+          <span
+            css={css`
+              position: absolute;
+              right: 1rem;
+              top: 50%;
+              transform: translateY(-50%);
+              border: 1px solid var(--border-color);
+              line-height: 1;
+              text-align: middle;
+
+              ${styles.size[size].hotkey}
+
+              .dark-mode & {
+                background: var(--color-dark-200);
+              }
+            `}
+          >
+            {focusWithHotKey}
+          </span>
+        )}
       </div>
     );
   }
@@ -123,6 +165,7 @@ const SearchInput = forwardRef(
 
 SearchInput.propTypes = {
   className: PropTypes.string,
+  focusWithHotKey: PropTypes.string,
   onClear: PropTypes.func,
   onSubmit: PropTypes.func,
   value: PropTypes.string,
@@ -130,6 +173,8 @@ SearchInput.propTypes = {
   size: PropTypes.oneOf(Object.values(SIZES)),
   style: PropTypes.object,
   iconName: PropTypes.oneOf(Object.values(ICONS)),
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 SearchInput.SIZE = SIZES;
@@ -147,6 +192,11 @@ const styles = {
       container: css`
         --icon-size: 0.75rem;
       `,
+      hotkey: css`
+        border-radius: 0.125rem;
+        font-size: 0.675rem;
+        padding: 0.0625rem 0.3125rem;
+      `,
       icon: '0.75rem',
     },
     [SIZES.MEDIUM]: {
@@ -156,6 +206,11 @@ const styles = {
       `,
       container: css`
         --icon-size: 1rem;
+      `,
+      hotkey: css`
+        border-radius: 0.125rem;
+        font-size: 0.875rem;
+        padding: 0.125rem 0.375rem;
       `,
       icon: '0.875rem',
     },
@@ -167,6 +222,11 @@ const styles = {
       `,
       container: css`
         --icon-size: 1.5rem;
+      `,
+      hotkey: css`
+        border-radius: 0.125rem;
+        font-size: 1.25rem;
+        padding: 0.125rem 0.4375rem;
       `,
       icon: '1.25rem',
     },
