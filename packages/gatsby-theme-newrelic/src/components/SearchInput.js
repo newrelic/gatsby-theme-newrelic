@@ -29,21 +29,6 @@ const SearchInput = forwardRef(
     },
     ref
   ) => {
-    const handleClick = (e) => {
-      e.preventDefault();
-      onClear();
-    };
-    const handleKeyDown = (e) => {
-      switch (e.key) {
-        case 'Escape':
-          return onClear?.();
-        case 'Enter':
-          return onSubmit?.(value);
-        default:
-        // do nothing
-      }
-    };
-
     return (
       <div
         width={width}
@@ -69,7 +54,16 @@ const SearchInput = forwardRef(
           value={value}
           {...props}
           type="text"
-          onKeyDown={handleKeyDown}
+          onKeyDown={(e) => {
+            switch (e.key) {
+              case 'Escape':
+                return onClear?.();
+              case 'Enter':
+                return onSubmit?.(value);
+              default:
+              // do nothing
+            }
+          }}
           css={css`
             width: 100%;
             border: 1px solid var(--border-color);
@@ -89,7 +83,10 @@ const SearchInput = forwardRef(
         />
         {value && onClear && (
           <button
-            onClick={handleClick}
+            onClick={(e) => {
+              e.preventDefault();
+              onClear();
+            }}
             css={css`
               right: 1rem;
               top: 50%;
@@ -106,7 +103,6 @@ const SearchInput = forwardRef(
               outline: none;
               ${size && styles.size[size].button}
             `}
-            onKeyDown={handleKeyDown}
             type="button"
           >
             <Icon
