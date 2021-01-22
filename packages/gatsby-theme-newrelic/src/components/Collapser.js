@@ -47,26 +47,57 @@ const Collapser = ({ title, id, defaultOpen, className, children }) => {
         flex-direction: column;
         border-radius: 3px;
         border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-1);
+
+        .dark-mode & {
+          box-shadow: var(--shadow-2);
+        }
       `}
     >
       <button
         onClick={() => setIsOpen((isOpen) => !isOpen)}
         type="button"
         css={css`
+          --color-transition-duration: 0.3s;
+          --color-transition-easing: ease-out;
+
           cursor: pointer;
           padding: 0.75rem;
-          background-color: inherit;
           display: flex;
           align-items: center;
-          transition: background-color 0.6s ease;
+          transition: background var(--color-transition-duration)
+            var(--color-transition-easing);
           border: none;
+          background: transparent;
+
+          code {
+            transition: background var(--color-transition-duration)
+              var(--color-transition-easing);
+          }
 
           &:hover,
           &:focus {
-            background-color: var(--color-neutrals-100);
+            background: var(--color-neutrals-100);
             outline: none;
+
             .dark-mode & {
-              background-color: var(--color-dark-100);
+              background: var(--color-dark-100);
+            }
+
+            code {
+              background: var(--color-neutrals-300);
+
+              .dark-mode & {
+                background: var(--color-dark-400);
+              }
+            }
+
+            svg {
+              color: var(--color-neutrals-600);
+
+              .dark-mode & {
+                color: var(--color-dark-600);
+              }
             }
           }
         `}
@@ -83,12 +114,20 @@ const Collapser = ({ title, id, defaultOpen, className, children }) => {
         </h5>
         <Icon
           name="fe-chevron-down"
-          size="1.25rem"
+          size="1rem"
           css={css`
             margin-left: auto;
-            transition: transform 0.6s ease;
-            color: var(--accent-text-color);
+            transition: transform 0.6s ease,
+              color var(--color-transition-duration)
+                var(--color-transition-easing);
+
+            color: var(--color-neutrals-500);
+
             ${isOpen && `transform: rotate(180deg);`}
+
+            .dark-mode & {
+              color: var(--color-dark-500);
+            }
           `}
         />
       </button>
