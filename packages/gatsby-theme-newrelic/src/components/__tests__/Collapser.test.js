@@ -39,12 +39,12 @@ test('opens the collapser by pressing the "s" key', () => {
   );
 });
 
-test('opens the collapser by pressing the "cmd+f" key combination', () => {
+test('opens the collapser by pressing the "f" key', () => {
   render(
     <Collapser title="The title">The content inside the callout</Collapser>
   );
 
-  fireEvent.keyDown(document, { key: 'f', metaKey: true });
+  fireEvent.keyDown(document, { key: 'f' });
 
   expect(screen.getByText(/The content/)).toHaveAttribute(
     'aria-hidden',

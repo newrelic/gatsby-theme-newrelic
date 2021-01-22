@@ -15,8 +15,7 @@ const Collapser = ({ title, id, defaultOpen, className, children }) => {
   const { height: viewHeight } = useSpring({ height: isOpen ? height : 0 });
   const previousIsOpen = usePrevious(isOpen);
 
-  useKeyPress(['s', 'cmd+f'], () => setIsOpen(true));
-  useKeyPress('h', () => setIsOpen(false));
+  useKeyPress(['s', 'f', 'h'], (e) => setIsOpen(e.key !== 'h'));
 
   const observer = useMemo(
     () =>
