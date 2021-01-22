@@ -31,7 +31,10 @@ const matchesAnyCombination = (combinations, event) => {
   );
 };
 
-const useKeyPress = (keys, handler) => {
+const isTypingInInput = (event) =>
+  event.target.matches('input') || event.target.matches('textarea');
+
+const useKeyPress = (keys, handler, { ignoreTextInput = true } = {}) => {
   const savedHandler = useRef();
   const combinations = useDeepMemo(
     () =>
@@ -47,6 +50,10 @@ const useKeyPress = (keys, handler) => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
+      if (ignoreTextInput && isTypingInInput(event)) {
+        return;
+      }
+
       if (matchesAnyCombination(combinations, event)) {
         savedHandler.current(event);
       }
@@ -57,7 +64,7 @@ const useKeyPress = (keys, handler) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [combinations]);
+  }, [combinations, ignoreTextInput]);
 };
 
 export default useKeyPress;

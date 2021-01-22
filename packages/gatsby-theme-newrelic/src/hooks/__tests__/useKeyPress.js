@@ -116,3 +116,38 @@ test('allows multiple keys to be specified', () => {
 
   expect(handler).not.toHaveBeenCalled();
 });
+
+test('by default, does not fire when typing in an input or textarea', () => {
+  const handler = jest.fn();
+
+  renderHook(() => useKeyPress('a', handler));
+
+  const input = document.createElement('input');
+  const textarea = document.createElement('textarea');
+  document.body.appendChild(input);
+  document.body.appendChild(textarea);
+
+  fireEvent.keyDown(input, { key: 'a' });
+  fireEvent.keyDown(textarea, { key: 'a' });
+
+  expect(handler).not.toHaveBeenCalled();
+});
+
+test('allows handler to fire when not ignoring text input', () => {
+  const handler = jest.fn();
+
+  renderHook(() => useKeyPress('a', handler, { ignoreTextInput: false }));
+
+  const input = document.createElement('input');
+  const textarea = document.createElement('textarea');
+  document.body.appendChild(input);
+  document.body.appendChild(textarea);
+
+  fireEvent.keyDown(input, { key: 'a' });
+
+  expect(handler).toHaveBeenCalledTimes(1);
+
+  fireEvent.keyDown(textarea, { key: 'a' });
+
+  expect(handler).toHaveBeenCalledTimes(2);
+});
