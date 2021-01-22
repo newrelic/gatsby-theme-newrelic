@@ -37,12 +37,6 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
   const { branch, repository, siteUrl } = siteMetadata;
   const { pathname } = useLocation();
 
-  const page = { title: pageTitle, slug: pathname, siteUrl };
-  const title = pageTitle && `Issue: ${pageTitle}`;
-  const labels = ['bug'];
-
-  const issueUrl = createIssueURL({ repository, title, page, labels });
-
   return (
     <footer
       data-swiftype-index={false}
@@ -90,7 +84,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
           />
         </Link>
         <div>
-          {fileRelativePath && (
+          {repository && fileRelativePath && (
             <Button
               as={ExternalLink}
               href={`${repository}/blob/${branch}/${fileRelativePath}`}
@@ -110,20 +104,27 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
             </Button>
           )}
 
-          <Button
-            as={ExternalLink}
-            href={issueUrl}
-            variant={Button.VARIANT.OUTLINE}
-            size={Button.SIZE.SMALL}
-          >
-            <Icon
-              name="fe-github"
-              css={css`
-                margin-right: 0.5rem;
-              `}
-            />
-            {t('github.createIssue')}
-          </Button>
+          {repository && (
+            <Button
+              as={ExternalLink}
+              href={createIssueURL({
+                repository,
+                title: pageTitle && `Issue: ${pageTitle}`,
+                page: { title: pageTitle, slug: pathname, siteUrl },
+                labels: ['bug'],
+              })}
+              variant={Button.VARIANT.OUTLINE}
+              size={Button.SIZE.SMALL}
+            >
+              <Icon
+                name="fe-github"
+                css={css`
+                  margin-right: 0.5rem;
+                `}
+              />
+              {t('github.createIssue')}
+            </Button>
+          )}
         </div>
       </div>
 
