@@ -37,7 +37,7 @@ const useKeyPress = (keys, handler) => {
     () =>
       Array.isArray(keys)
         ? keys.map(normalizeKeyCombination)
-        : [normalizeKeyCombination(keys)],
+        : [normalizeKeyCombination(keys ?? '')],
     [keys]
   );
 
