@@ -8,7 +8,7 @@ import useKeyPress from '../hooks/useKeyPress';
 
 const ResizeObserver = global.ResizeObserver || class ResizeObserver {};
 
-const Collapser = ({ title, id, defaultOpen, className, children }) => {
+const Collapser = ({ title, id, defaultOpen, children }) => {
   const [element, ref] = useState();
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const [height, setHeight] = useState(0);
@@ -41,7 +41,6 @@ const Collapser = ({ title, id, defaultOpen, className, children }) => {
 
   return (
     <div
-      className={className}
       css={css`
         display: flex;
         flex-direction: column;
@@ -157,7 +156,6 @@ Collapser.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   id: PropTypes.string,
   defaultOpen: PropTypes.bool,
-  className: PropTypes.string,
   children: PropTypes.node.isRequired,
 };
 
