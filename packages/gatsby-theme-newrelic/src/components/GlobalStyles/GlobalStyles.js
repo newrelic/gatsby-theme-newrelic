@@ -6,6 +6,7 @@ import colors from './colors';
 import fonts from './fonts';
 import themes from './themes';
 import variables from './variables';
+import shadows from './shadows';
 
 const GlobalStyles = ({ layout }) => (
   <Global
@@ -16,6 +17,7 @@ const GlobalStyles = ({ layout }) => (
         ${variables};
         ${colors};
         ${fonts};
+        ${shadows};
 
         --site-max-width: ${layout.maxWidth};
         --site-content-padding: ${layout.contentPadding};

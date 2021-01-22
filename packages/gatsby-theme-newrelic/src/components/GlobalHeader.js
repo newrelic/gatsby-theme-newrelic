@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql, useStaticQuery, navigate, Link } from 'gatsby';
@@ -16,7 +16,6 @@ import SearchInput from './SearchInput';
 import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
-import useKeyPress from '../hooks/useKeyPress';
 import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import path from 'path';
@@ -45,7 +44,6 @@ const actionIcon = css`
 
 const GlobalHeader = ({ className }) => {
   const location = useLocation();
-  const searchRef = useRef();
   const { queryParams, setQueryParam } = useQueryParams();
   const [searchQuery, setSearchQuery] = useState('');
   const { t } = useThemeTranslation();
@@ -74,17 +72,6 @@ const GlobalHeader = ({ className }) => {
   const {
     siteMetadata: { utmSource, siteUrl },
   } = site;
-
-  useKeyPress('/', (e) => {
-    // Don't trigger overlay when typing in an input or textarea
-    if (e.target.matches('input') || e.target.matches('textarea')) {
-      return;
-    }
-
-    e.preventDefault();
-
-    searchRef.current.focus();
-  });
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
   const useCondensedHeader = useMedia({ maxWidth: '585px' });
@@ -260,7 +247,6 @@ const GlobalHeader = ({ className }) => {
                 </Link>
               ) : (
                 <SearchInput
-                  ref={searchRef}
                   placeholder={t('searchInput.placeholder')}
                   size={SearchInput.SIZE.SMALL}
                   onClear={() => setSearchQuery('')}
@@ -269,6 +255,7 @@ const GlobalHeader = ({ className }) => {
                     setQueryParam('q', value);
                   }}
                   value={searchQuery}
+                  focusWithHotKey="/"
                   css={css`
                     min-width: 150px;
                     max-width: 350px;
