@@ -186,7 +186,7 @@ are optional, they are highly recommended.
 
 #### `sitemap`
 
-Toggles the automatic creation of a sitemap on and off. Set this value to
+Toggles the automatic creation of a sitemap. Set this value to
 `false` to disable sitemaps.
 
 **Default:** `true`
