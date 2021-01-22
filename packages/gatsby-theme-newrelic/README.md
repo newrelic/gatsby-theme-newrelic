@@ -27,6 +27,8 @@ websites](https://opensource.newrelic.com).
   - [`Button`](#button)
   - [`Callout`](#callout)
   - [`CodeBlock`](#codeblock)
+  - [`Collapser`](#collapser)
+  - [`CollapserGroup`](#collapsergroup)
   - [`ContributingGuidelines`](#contributingguidelines)
   - [`CookieConsentDialog`](#cookieconsentdialog)
   - [`Dropdown`](#dropdown)
@@ -654,6 +656,80 @@ const Documentation = () => (
     {codeSample}
   </CodeBlock>
 );
+```
+
+### `Collapser`
+
+This element is used to reveal or hide content associated with it. Use in
+conjunction with a [`CollapserGroup`](#collapsergroup) when using multiple
+`Collapser`s in tandom.
+
+```js
+import { Collapser } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop          | Type                    | Required | Default | Description                                                                                                                  |
+| ------------- | ----------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `children`    | enum                    | yes      |         | The content that will be hidden or revealed when the user interacts with the `Collapser`.                                    |
+| `defaultOpen` | boolean                 | yes      | false   | Determines if the `Collapser` should default to its open state.                                                              |
+| `id`          | string                  | no       |         | An HTML `id` attribute that will be attached to the `Collapser` `title`. Useful if you want to deep link to the `Collapser`. |
+| `title`       | string \| React element | yes      |         | The text that will be rendered on the interactive button used to toggle the open state on the `Collapser`.                   |
+
+**Examples**
+
+```js
+import { Collapser } from '@newrelic/gatsby-theme-newrelic';
+
+<Collapser title="The Ruby Agent API">
+  This is some information about the Ruby Agent. You'll have to interact with
+  the Collapser to see me.
+</Collapser>;
+```
+
+**Multiple collapsers**
+
+```js
+import { Collapser, CollapserGroup } from '@newrelic/gatsby-theme-newrelic';
+
+<CollapserGroup>
+  <Collapser title="Collapser 1">
+    The first collapser! I will be hidden by default.
+  </Collapser>
+  <Collapser title="Collapser 2" defaultOpen>
+    The second collapser! The user will see this content by default.
+  </Collapser>
+</CollapserGroup>;
+```
+
+### `CollapserGroup`
+
+Used in conjunction with multiple `Collapser`s to group them together.
+
+```js
+import { Collapser, CollapserGroup } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop       | Type          | Required | Default | Description                                                                            |
+| ---------- | ------------- | -------- | ------- | -------------------------------------------------------------------------------------- |
+| `children` | React element | yes      |         | The set of `Collapser` elements that will be rendered as part of the `CollapserGroup`. |
+
+**Examples**
+
+```js
+import { Collapser, CollapserGroup } from '@newrelic/gatsby-theme-newrelic';
+
+<CollapserGroup>
+  <Collapser title="Collapser 1">
+    The first collapser! I will be hidden by default.
+  </Collapser>
+  <Collapser title="Collapser 2" defaultOpen>
+    The second collapser! The user will see this content by default.
+  </Collapser>
+</CollapserGroup>;
 ```
 
 ### `ContributingGuidelines`
