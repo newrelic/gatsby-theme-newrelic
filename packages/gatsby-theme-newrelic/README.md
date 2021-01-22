@@ -672,7 +672,7 @@ import { Collapser } from '@newrelic/gatsby-theme-newrelic'`
 
 | Prop          | Type                    | Required | Default | Description                                                                                                                  |
 | ------------- | ----------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `children`    | enum                    | yes      |         | The content that will be hidden or revealed when the user interacts with the `Collapser`.                                    |
+| `children`    | node                    | yes      |         | The content that will be hidden or revealed when the user interacts with the `Collapser`.                                    |
 | `defaultOpen` | boolean                 | yes      | false   | Determines if the `Collapser` should default to its open state.                                                              |
 | `id`          | string                  | no       |         | An HTML `id` attribute that will be attached to the `Collapser` `title`. Useful if you want to deep link to the `Collapser`. |
 | `title`       | string \| React element | yes      |         | The text that will be rendered on the interactive button used to toggle the open state on the `Collapser`.                   |
