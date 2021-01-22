@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
 import Icon from './Icon';
 
 const SIZES = {
@@ -46,13 +45,17 @@ const SearchInput = forwardRef(
     };
 
     return (
-      <StyledContainer
+      <div
         width={width}
         className={className}
         style={style}
-        size={size}
+        css={css`
+          position: relative;
+          width: ${(props) => props.width || '100%'};
+          ${size && styles.size[size].container}
+        `}
       >
-        <StyledIcon
+        <Icon
           css={css`
             position: absolute;
             left: 1rem;
@@ -61,16 +64,31 @@ const SearchInput = forwardRef(
           `}
           name={iconName}
         />
-        <StyledInput
+        <input
           ref={ref}
           value={value}
-          size={size}
           {...props}
           type="text"
           onKeyDown={handleKeyDown}
+          css={css`
+            width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--primary-background-color);
+            color: var(--primary-text-color);
+            transition: 0.15s ease-out;
+            line-height: 1;
+            ${size && styles.size[size].input}
+
+            &:focus {
+              outline: none;
+              border: 1px solid rgba(0, 126, 138, 0.6);
+              box-shadow: 0 0 0 4px rgba(0, 126, 138, 0.1);
+            }
+          `}
         />
         {value && onClear && (
-          <StyledButton
+          <button
             onClick={handleClick}
             css={css`
               right: 1rem;
@@ -79,20 +97,27 @@ const SearchInput = forwardRef(
               &:hover {
                 cursor: pointer;
               }
+
+              position: absolute;
+              background-color: transparent;
+              border: none;
+              margin: 0;
+              padding: 0;
+              outline: none;
+              ${size && styles.size[size].button}
             `}
             onKeyDown={handleKeyDown}
             type="button"
-            size={size}
           >
-            <StyledIcon
+            <Icon
               name="fe-x"
               css={css`
                 display: block;
               `}
             />
-          </StyledButton>
+          </button>
         )}
-      </StyledContainer>
+      </div>
     );
   }
 );
@@ -144,42 +169,3 @@ const styles = {
     },
   },
 };
-
-const StyledContainer = styled.div`
-  position: relative;
-  width: ${(props) => props.width || '100%'};
-  ${({ size }) => size && styles.size[size].container}
-`;
-
-const StyledInput = styled.input`
-  width: 100%;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background: var(--primary-background-color);
-  color: var(--primary-text-color);
-  transition: 0.15s ease-out;
-  line-height: 1;
-  ${({ size }) => size && styles.size[size].input}
-
-  &:focus {
-    outline: none;
-    border: 1px solid rgba(0, 126, 138, 0.6);
-    box-shadow: 0 0 0 4px rgba(0, 126, 138, 0.1);
-  }
-`;
-
-const StyledIcon = styled(Icon)`
-  stroke: var(--primary-text-color);
-  height: var(--icon-size);
-  width: var(--icon-size);
-`;
-
-const StyledButton = styled.button`
-  position: absolute;
-  background-color: transparent;
-  border: none;
-  margin: 0;
-  padding: 0;
-  outline: none;
-  ${({ size }) => size && styles.size[size].button}
-`;
