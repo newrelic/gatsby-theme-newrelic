@@ -95,3 +95,24 @@ test('ignores whitespace', () => {
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
+
+test('allows multiple keys to be specified', () => {
+  const handler = jest.fn();
+
+  renderHook(() => useKeyPress(['a', 'cmd+b'], handler));
+
+  fireEvent.keyDown(document, { key: 'a' });
+
+  expect(handler).toHaveBeenCalledTimes(1);
+
+  fireEvent.keyDown(document, { key: 'b', metaKey: true });
+
+  expect(handler).toHaveBeenCalledTimes(2);
+
+  handler.mockReset();
+
+  fireEvent.keyDown(document, { key: 'b' });
+  fireEvent.keyDown(document, { key: 'c' });
+
+  expect(handler).not.toHaveBeenCalled();
+});

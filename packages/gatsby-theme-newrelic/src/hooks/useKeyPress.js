@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import useDeepMemo from './useDeepMemo';
 
-const normalizeInput = (keys) => {
+const normalizeKeyCombination = (keys) => {
   const [modifier, k] = keys.toLowerCase().split(/\s*\+\s*/);
 
   return k == null ? [null, modifier] : [modifier, k];
@@ -24,18 +24,31 @@ const matchesModifierKey = (modifier, event) => {
   }
 };
 
+const matchesAnyCombination = (combinations, event) => {
+  return combinations.some(
+    ([modifier, key]) =>
+      event.key === key && matchesModifierKey(modifier, event)
+  );
+};
+
 const useKeyPress = (keys, handler) => {
   const savedHandler = useRef();
-  const [modifier, key] = useDeepMemo(() => normalizeInput(keys), [keys]);
+  const combinations = useDeepMemo(
+    () =>
+      Array.isArray(keys)
+        ? keys.map(normalizeKeyCombination)
+        : [normalizeKeyCombination(keys)],
+    [keys]
+  );
 
   useEffect(() => {
     savedHandler.current = handler;
   }, [handler]);
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === key && matchesModifierKey(modifier, e)) {
-        savedHandler.current(e);
+    const handleKeyDown = (event) => {
+      if (matchesAnyCombination(combinations, event)) {
+        savedHandler.current(event);
       }
     };
 
@@ -44,7 +57,7 @@ const useKeyPress = (keys, handler) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [modifier, key]);
+  }, [combinations]);
 };
 
 export default useKeyPress;
