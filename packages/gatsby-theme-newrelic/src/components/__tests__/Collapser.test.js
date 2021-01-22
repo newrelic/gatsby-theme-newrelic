@@ -31,7 +31,7 @@ test('opens the collapser by pressing the "s" key', () => {
     <Collapser title="The title">The content inside the callout</Collapser>
   );
 
-  fireEvent.keyDown(document, { key: 's' });
+  fireEvent.keyDown(document.body, { key: 's' });
 
   expect(screen.getByText(/The content/)).toHaveAttribute(
     'aria-hidden',
@@ -44,7 +44,7 @@ test('opens the collapser by pressing the "f" key', () => {
     <Collapser title="The title">The content inside the callout</Collapser>
   );
 
-  fireEvent.keyDown(document, { key: 'f' });
+  fireEvent.keyDown(document.body, { key: 'f' });
 
   expect(screen.getByText(/The content/)).toHaveAttribute(
     'aria-hidden',

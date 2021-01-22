@@ -7,7 +7,7 @@ test('calls handler when the key is pressed', () => {
 
   renderHook(() => useKeyPress('a', handler));
 
-  fireEvent.keyDown(document, { key: 'a' });
+  fireEvent.keyDown(document.body, { key: 'a' });
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
@@ -17,11 +17,11 @@ test('handles cmd modifier key command', () => {
 
   renderHook(() => useKeyPress('cmd+s', handler));
 
-  fireEvent.keyDown(document, { key: 's' });
+  fireEvent.keyDown(document.body, { key: 's' });
 
   expect(handler).not.toHaveBeenCalled();
 
-  fireEvent.keyDown(document, { key: 's', metaKey: true });
+  fireEvent.keyDown(document.body, { key: 's', metaKey: true });
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
@@ -31,7 +31,7 @@ test('maps ctrl key when using cmd for windows support', () => {
 
   renderHook(() => useKeyPress('cmd+s', handler));
 
-  fireEvent.keyDown(document, { key: 's', ctrlKey: true });
+  fireEvent.keyDown(document.body, { key: 's', ctrlKey: true });
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
@@ -41,7 +41,7 @@ test('handles ctrl key', () => {
 
   renderHook(() => useKeyPress('ctrl+s', handler));
 
-  fireEvent.keyDown(document, { key: 's', ctrlKey: true });
+  fireEvent.keyDown(document.body, { key: 's', ctrlKey: true });
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
@@ -51,7 +51,7 @@ test('does not map cmd key if ctrl is specified', () => {
 
   renderHook(() => useKeyPress('ctrl+s', handler));
 
-  fireEvent.keyDown(document, { key: 's', metaKey: true });
+  fireEvent.keyDown(document.body, { key: 's', metaKey: true });
 
   expect(handler).not.toHaveBeenCalled();
 });
@@ -61,7 +61,7 @@ test('handles shift key', () => {
 
   renderHook(() => useKeyPress('shift+s', handler));
 
-  fireEvent.keyDown(document, { key: 's', shiftKey: true });
+  fireEvent.keyDown(document.body, { key: 's', shiftKey: true });
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
@@ -71,7 +71,7 @@ test('handles alt key', () => {
 
   renderHook(() => useKeyPress('alt+b', handler));
 
-  fireEvent.keyDown(document, { key: 'b', altKey: true });
+  fireEvent.keyDown(document.body, { key: 'b', altKey: true });
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
@@ -81,7 +81,7 @@ test('does not care about casing', () => {
 
   renderHook(() => useKeyPress('sHiFt+B', handler));
 
-  fireEvent.keyDown(document, { key: 'b', shiftKey: true });
+  fireEvent.keyDown(document.body, { key: 'b', shiftKey: true });
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
@@ -91,7 +91,7 @@ test('ignores whitespace', () => {
 
   renderHook(() => useKeyPress('ctrl  + C', handler));
 
-  fireEvent.keyDown(document, { key: 'c', ctrlKey: true });
+  fireEvent.keyDown(document.body, { key: 'c', ctrlKey: true });
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
@@ -101,18 +101,18 @@ test('allows multiple keys to be specified', () => {
 
   renderHook(() => useKeyPress(['a', 'cmd+b'], handler));
 
-  fireEvent.keyDown(document, { key: 'a' });
+  fireEvent.keyDown(document.body, { key: 'a' });
 
   expect(handler).toHaveBeenCalledTimes(1);
 
-  fireEvent.keyDown(document, { key: 'b', metaKey: true });
+  fireEvent.keyDown(document.body, { key: 'b', metaKey: true });
 
   expect(handler).toHaveBeenCalledTimes(2);
 
   handler.mockReset();
 
-  fireEvent.keyDown(document, { key: 'b' });
-  fireEvent.keyDown(document, { key: 'c' });
+  fireEvent.keyDown(document.body, { key: 'b' });
+  fireEvent.keyDown(document.body, { key: 'c' });
 
   expect(handler).not.toHaveBeenCalled();
 });
