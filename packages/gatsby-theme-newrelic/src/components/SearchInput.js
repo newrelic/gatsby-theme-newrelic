@@ -51,7 +51,7 @@ const SearchInput = forwardRef(
         style={style}
         css={css`
           position: relative;
-          width: ${(props) => props.width || '100%'};
+          width: ${width || '100%'};
           box-shadow: var(--shadow-1);
           ${size && styles.size[size].container}
         `}
