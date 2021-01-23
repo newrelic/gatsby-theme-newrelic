@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.24.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.24.0...v1.24.1) (2021-01-23)
+
+
+### Bug Fixes
+
+* **SearchInput:** fix emotion warning about stringified function ([7ec637b](https://github.com/newrelic/gatsby-theme-newrelic/commit/7ec637ba2eb3e4ffe50c93f79740a676807b1efd))
+
+
+
+
+
 # [1.24.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.23.3...v1.24.0) (2021-01-22)
 
 
