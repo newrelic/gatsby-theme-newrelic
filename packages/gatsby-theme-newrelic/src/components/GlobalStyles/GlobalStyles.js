@@ -81,6 +81,10 @@ const GlobalStyles = ({ layout }) => (
         .anchor:focus svg {
           opacity: 1;
         }
+
+        code {
+          font-size: inherit;
+        }
       }
 
       ul {
