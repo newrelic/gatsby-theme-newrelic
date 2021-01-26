@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
-const Table = ({ children }) => (
+const Table = ({ className, children }) => (
   <table
+    className={className}
     css={css`
       border-collapse: collapse;
       border-spacing: 0;
@@ -35,6 +36,7 @@ const Table = ({ children }) => (
 );
 
 Table.propTypes = {
+  className: PropTypes.string,
   children: PropTypes.node,
 };
 
