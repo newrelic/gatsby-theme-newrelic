@@ -11,6 +11,8 @@ module.exports = {
     branch: 'develop',
   },
   plugins: [
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
       resolve: '@newrelic/gatsby-theme-newrelic',
       options: {
@@ -49,6 +51,18 @@ module.exports = {
       },
     },
     'gatsby-plugin-remove-trailing-slashes',
-    'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
+      },
+    },
   ],
 };
