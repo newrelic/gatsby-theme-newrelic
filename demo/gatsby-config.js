@@ -42,6 +42,13 @@ module.exports = {
         gaTrackingId: 'UA-3047412-33',
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/pages`,
+      },
+    },
+    'gatsby-plugin-remove-trailing-slashes',
     'gatsby-plugin-mdx',
   ],
 };
