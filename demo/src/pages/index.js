@@ -63,14 +63,6 @@ const IndexPage = () => {
           section {
             margin-bottom: 4rem;
           }
-
-          h2 {
-            margin-bottom: 1rem;
-
-            &:not(:first-child) {
-              margin-top: 1rem;
-            }
-          }
         `}
       >
         <h1>{t('home.welcome')}</h1>

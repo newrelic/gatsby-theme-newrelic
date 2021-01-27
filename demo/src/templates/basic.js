@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import { SEO, Layout, MDXContainer } from '@newrelic/gatsby-theme-newrelic';
+import {
+  SEO,
+  Layout,
+  MarkdownContainer,
+  MDX,
+} from '@newrelic/gatsby-theme-newrelic';
 
 const BasicTemplate = ({ data, location }) => {
   const {
@@ -13,7 +18,9 @@ const BasicTemplate = ({ data, location }) => {
       <SEO location={location} title={frontmatter.title} />
       <h1>{frontmatter.title}</h1>
       <Layout.Content>
-        <MDXContainer body={body} />
+        <MarkdownContainer>
+          <MDX body={body} />
+        </MarkdownContainer>
       </Layout.Content>
     </Layout.Main>
   );
