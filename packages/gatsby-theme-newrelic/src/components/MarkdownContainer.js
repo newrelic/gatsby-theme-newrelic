@@ -12,6 +12,9 @@ const MarkdownContainer = ({
       dangerouslySetInnerHTML={dangerouslySetInnerHTML}
       className={className}
       css={css`
+        --block-element-spacing: 1.5rem;
+        --text-spacing: var(--paragraph-spacing);
+
         > *:first-child {
           margin-top: 0;
         }
@@ -19,7 +22,7 @@ const MarkdownContainer = ({
         ul,
         ol {
           &:not(:last-child) {
-            margin-bottom: var(--paragraph-spacing);
+            margin-bottom: var(--text-spacing);
           }
         }
       `}
