@@ -33,7 +33,6 @@ const Callout = ({ title, variant, children }) => {
     <div
       css={css`
         padding: 1.25rem;
-        margin: 1.5rem 0;
         color: var(--primary-text-color);
         ${styles.variant[variant]}
       `}
