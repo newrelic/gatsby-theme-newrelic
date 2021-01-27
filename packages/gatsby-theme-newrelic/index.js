@@ -22,6 +22,7 @@ export { default as MDXCallout } from './src/components/MDXCallout';
 export { default as MDXCodeBlock } from './src/components/MDXCodeBlock';
 export { default as MDXCollapserGroup } from './src/components/MDXCollapserGroup';
 export { default as MDXLink } from './src/components/MDXLink';
+export { default as MDXTable } from './src/components/MDXTable';
 export { default as MDXVideo } from './src/components/MDXVideo';
 export { default as NavItem } from './src/components/NavItem';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
