@@ -39,7 +39,7 @@ const MDX = ({ body, components }) => {
 };
 
 MDX.propTypes = {
-  body: PropTypes.node,
+  body: PropTypes.string.isRequired,
   components: PropTypes.object,
 };
 
