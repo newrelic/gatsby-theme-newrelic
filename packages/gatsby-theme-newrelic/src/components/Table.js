@@ -10,22 +10,30 @@ const Table = ({ className, children }) => (
       border-spacing: 0;
       width: 100%;
       text-align: left;
+
       td,
       th {
         padding: 0.5rem 1rem;
       }
-      th {
-        border-bottom: 3px solid var(--color-brand-600);
+
+      thead + tbody tr:first-child {
+        border-top: 3px solid var(--color-brand-600);
       }
+
       tbody {
         tr {
           border: 1px solid var(--border-color);
-          border-top: 0;
-        }
-        tr:nth-child(odd) {
-          background-color: var(--color-neutrals-100);
-          .dark-mode & {
-            background-color: var(--color-dark-100);
+
+          &:nth-child(even) {
+            background: var(--primary-background-color);
+          }
+
+          &:nth-child(odd) {
+            background: var(--color-neutrals-100);
+
+            .dark-mode & {
+              background: var(--color-dark-100);
+            }
           }
         }
       }
