@@ -88,6 +88,14 @@ const GlobalStyles = ({ layout }) => (
         }
       }
 
+      h1 {
+        line-height: 1.15;
+      }
+
+      h2 {
+        line-height: 1.25;
+      }
+
       ul {
         margin: 0;
         padding-left: 2rem;
