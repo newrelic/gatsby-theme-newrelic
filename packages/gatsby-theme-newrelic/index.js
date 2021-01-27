@@ -18,6 +18,7 @@ export { default as Link } from './src/components/Link';
 export { default as Logo } from './src/components/Logo';
 export { default as MarkdownContainer } from './src/components/MarkdownContainer';
 export { default as MDXCodeBlock } from './src/components/MDXCodeBlock';
+export { default as MDXVideo } from './src/components/MDXVideo';
 export { default as NavItem } from './src/components/NavItem';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 export { default as Overlay } from './src/components/Overlay';
