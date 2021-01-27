@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { normalize } from 'polished';
 import { Global, css } from '@emotion/core';
 import colors from './colors';
-import fonts from './fonts';
+import typography from './typography';
 import themes from './themes';
 import variables from './variables';
 import shadows from './shadows';
@@ -16,7 +16,7 @@ const GlobalStyles = ({ layout }) => (
       :root {
         ${variables};
         ${colors};
-        ${fonts};
+        ${typography};
         ${shadows};
 
         --site-max-width: ${layout.maxWidth};
