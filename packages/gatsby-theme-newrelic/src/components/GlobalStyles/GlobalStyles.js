@@ -64,9 +64,7 @@ const GlobalStyles = ({ layout }) => (
       h5,
       h6 {
         margin-top: 0;
-        margin-bottom: 0.5rem;
         font-weight: 600;
-        font-family: var(--primary-font-family);
         color: var(--heading-text-color);
         scroll-margin-top: calc(
           var(--global-header-height) + var(--site-content-padding)
@@ -90,10 +88,26 @@ const GlobalStyles = ({ layout }) => (
 
       h1 {
         line-height: 1.15;
+        font-weight: bold;
+        margin-bottom: 1rem;
       }
 
       h2 {
         line-height: 1.25;
+        margin-bottom: 1.25rem;
+        font-weight: 600;
+      }
+
+      h3 {
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      h4,
+      h5,
+      h6 {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
       }
 
       ol,
