@@ -49,7 +49,7 @@ const GlobalStyles = ({ layout }) => (
 
       p {
         margin-top: 0;
-        margin-bottom: 1.25rem;
+        margin-bottom: var(--paragraph-spacing);
         line-height: 1.75;
 
         &:last-child {
