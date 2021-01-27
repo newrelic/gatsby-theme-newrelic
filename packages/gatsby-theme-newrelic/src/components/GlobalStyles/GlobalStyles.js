@@ -49,7 +49,8 @@ const GlobalStyles = ({ layout }) => (
 
       p {
         margin-top: 0;
-        margin-bottom: 1rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.75;
 
         &:last-child {
           margin-bottom: 0;
