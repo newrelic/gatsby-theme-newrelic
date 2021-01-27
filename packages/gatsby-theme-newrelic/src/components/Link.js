@@ -5,8 +5,7 @@ import useLocale from '../hooks/useLocale';
 import { localizePath } from '../utils/localization';
 
 const isHash = (to) => to.startsWith('#');
-const isInternal = (to) => /^\/(?!\/)/.test(to);
-const isFile = (to) => /\..+$/.test(to);
+const isExternal = (to) => to.startsWith('http');
 
 const Link = ({ to, ...props }) => {
   const locale = useLocale();
@@ -29,12 +28,12 @@ const Link = ({ to, ...props }) => {
     to = to.replace(siteUrl, '');
   }
 
-  if (isHash(to) || isFile(to)) {
+  if (isHash(to)) {
     // eslint-disable-next-line jsx-a11y/anchor-has-content
     return <a href={to} {...props} />;
   }
 
-  if (!isInternal(to)) {
+  if (isExternal(to)) {
     // eslint-disable-next-line jsx-a11y/anchor-has-content
     return <a href={to} target="_blank" rel="noopener noreferrer" {...props} />;
   }
