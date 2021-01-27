@@ -92,6 +92,14 @@ const GlobalStyles = ({ layout }) => (
         padding-left: 2rem;
       }
 
+      ul > li::marker {
+        color: var(--color-neutrals-500);
+
+        .dark-mode & {
+          color: var(--color-dark-500);
+        }
+      }
+
       code {
         font-family: var(--code-font);
       }
