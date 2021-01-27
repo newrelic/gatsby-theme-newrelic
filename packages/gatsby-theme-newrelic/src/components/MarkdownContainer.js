@@ -25,6 +25,10 @@ const MarkdownContainer = ({
             margin-bottom: var(--text-spacing);
           }
         }
+
+        blockquote:not(:last-child) {
+          margin-bottom: var(--block-element-spacing);
+        }
       `}
     >
       {children}

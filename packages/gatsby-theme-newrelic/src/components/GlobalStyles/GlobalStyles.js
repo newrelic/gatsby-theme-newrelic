@@ -139,9 +139,14 @@ const GlobalStyles = ({ layout }) => (
       }
 
       blockquote {
-        border-left: 0.25rem solid var(--border-color);
-        padding: 0.94rem 0.31rem 1.25rem 1.25rem;
-        margin: 1.56rem 3.13rem 1.56rem 1.25rem;
+        border-left: 0.25rem solid var(--color-neutrals-700);
+        padding: 0.25rem 1rem;
+        margin: 0;
+        font-style: italic;
+
+        .dark-mode & {
+          border-left-color: var(--color-dark-700);
+        }
       }
 
       pre {
