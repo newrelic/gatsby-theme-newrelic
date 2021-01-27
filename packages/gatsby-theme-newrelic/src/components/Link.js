@@ -25,8 +25,9 @@ const Link = ({ to, ...props }) => {
     to = to.replace(siteUrl, '');
   }
 
-  if (to.startsWith('/')) {
-    return <GatsbyLink to={localizePath({ path: to, locale })} {...props} />;
+  if (to.startsWith('http')) {
+    // eslint-disable-next-line jsx-a11y/anchor-has-content
+    return <a href={to} target="_blank" rel="noopener noreferrer" {...props} />;
   }
 
   if (to.startsWith('#')) {
@@ -34,8 +35,7 @@ const Link = ({ to, ...props }) => {
     return <a href={to} {...props} />;
   }
 
-  // eslint-disable-next-line jsx-a11y/anchor-has-content
-  return <a href={to} target="_blank" rel="noopener noreferrer" {...props} />;
+  return <GatsbyLink to={localizePath({ path: to, locale })} {...props} />;
 };
 
 Link.propTypes = {
