@@ -6,7 +6,9 @@ const MDXTable = (props) => (
   <Table
     {...props}
     css={css`
-      margin-bottom: 2rem;
+      &:not(:last-child) {
+        margin-bottom: var(--block-element-spacing);
+      }
     `}
   />
 );
