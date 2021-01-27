@@ -96,9 +96,14 @@ const GlobalStyles = ({ layout }) => (
         line-height: 1.25;
       }
 
+      ol,
       ul {
         margin: 0;
-        padding-left: 2rem;
+        padding-left: 1.75rem;
+
+        > li {
+          margin: 0.5rem 0;
+        }
       }
 
       ul > li::marker {
