@@ -25,20 +25,22 @@ jobs:
         with:
           node-version: 12
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Download Cached Dependencies
-        id: cache-node-modules
-        uses: actions/cache@v1
-        env:
-          cache-name: node-modules
+      - name: Cache dependencies
+        id: yarn-cache
+        uses: actions/cache@v2
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Cache Gatsby build
+        uses: actions/cache@v2
+        with:
+          path: |
+            demo/public
+            demo/.cache
+          key: ${{ runner.os }}-gatsby-build-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-
+            ${{ runner.os }}-gatsby-build-
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
@@ -50,7 +52,10 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > .npmrc
 
       - name: Test Build
-        run: yarn workspace demo build
+        run: yarn workspace demo build --log-pages
+        env:
+          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
+          CI: true
 
       - name: Lerna Publish
         env:

@@ -6,12 +6,12 @@ import {
   HamburgerMenu,
   GlobalHeader,
   Layout,
+  Link,
   Logo,
   NavItem,
   NewRelicLogo,
   SEO,
 } from '@newrelic/gatsby-theme-newrelic';
-import { Link } from 'gatsby';
 import nav from '../data/sidenav.json';
 
 const MainLayout = (props) => {
