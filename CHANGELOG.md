@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.24.1...v1.25.0) (2021-01-28)
+
+
+### Bug Fixes
+
+* add leading slash to localized links if it is missing ([fc46b9c](https://github.com/newrelic/gatsby-theme-newrelic/commit/fc46b9cc92067fe46febbee0fd2d15ae635c0207))
+* Ensure createPage is not called again when creating additional pages for each locale if it already exists ([499d427](https://github.com/newrelic/gatsby-theme-newrelic/commit/499d427f1fe61e3804aa71bb59e1ef676c2a13c2))
+* fix deprecated icon warning ([677c29a](https://github.com/newrelic/gatsby-theme-newrelic/commit/677c29a421fffd8a1711fc88b5def222a33e59c3))
+* **Callout:** add className support ([a4bbf87](https://github.com/newrelic/gatsby-theme-newrelic/commit/a4bbf87ff731b0681e92aa94b1e192275c6f7a9f))
+* **Callout:** Remove spacing around element. Use MDXCallout instead ([f30e895](https://github.com/newrelic/gatsby-theme-newrelic/commit/f30e895fb2594d1dd4ec9ac793aa36dfd8d9154a))
+* **CollapserGroup:** add className support ([5c63fd6](https://github.com/newrelic/gatsby-theme-newrelic/commit/5c63fd628560a553ec9f2b1ff4ee2eb6db3daa09))
+* **Dropdown.Toggle:** fix prop type warning ([d05dde0](https://github.com/newrelic/gatsby-theme-newrelic/commit/d05dde04e02dceee966180f406777e190c93dbf9))
+* **GlobalStyles:** Add --paragraph-spacing CSS var ([ec68df3](https://github.com/newrelic/gatsby-theme-newrelic/commit/ec68df3ee318ba57c3bd24a45fae870e832da810))
+* **GlobalStyles:** adjust line height and spacing on paragraphs for better readability ([8feab22](https://github.com/newrelic/gatsby-theme-newrelic/commit/8feab22ccb3de2c394d286f829cce78b089eb38c))
+* **GlobalStyles:** adjust line height on large headings for readability ([695e402](https://github.com/newrelic/gatsby-theme-newrelic/commit/695e4025f29b8d972006b2931b84fc805ba8c56f))
+* **GlobalStyles:** adjust spacing and font weights for all headings ([8d5f8ac](https://github.com/newrelic/gatsby-theme-newrelic/commit/8d5f8acb7c3794e327bef187ba646a17079b4276))
+* **GlobalStyles:** adjust spacing for lists ([9c2f91e](https://github.com/newrelic/gatsby-theme-newrelic/commit/9c2f91e8400ab9010a05be475b2b8cc2ae4bd276))
+* **GlobalStyles:** change the list item marker color ([7383534](https://github.com/newrelic/gatsby-theme-newrelic/commit/7383534eedb69978a1c91729597f720b60a5177a))
+* **GlobalStyles:** maintain the same font size on inline code elements in a header ([3395db4](https://github.com/newrelic/gatsby-theme-newrelic/commit/3395db46770089ed1b8a90c21fa1cafb76fcb00d))
+* **GlobalStyles:** Tweak blockquote styles ([9388ce6](https://github.com/newrelic/gatsby-theme-newrelic/commit/9388ce6fe74329a31176a6755b4f35ca7d5880e0))
+* **Link:** make GatsbyLink the default case ([f1e31b9](https://github.com/newrelic/gatsby-theme-newrelic/commit/f1e31b9c9950ccd195a9bbd7338441a8f956dfbc))
+* **MDXCodeBlock:** add bottom margin ([b99f88d](https://github.com/newrelic/gatsby-theme-newrelic/commit/b99f88d77ee67fdfd36645750926302f897726bd))
+* **Table:** add className support ([3f01aae](https://github.com/newrelic/gatsby-theme-newrelic/commit/3f01aaeec25ea7d84cae0651cf6d74a30b5172fb))
+* **Terminal:** add className support ([64bd0a7](https://github.com/newrelic/gatsby-theme-newrelic/commit/64bd0a7ada366388d1e5acac8e746676ce4d66bf))
+
+
+### Features
+
+* add an MDXCallout component ([5829c84](https://github.com/newrelic/gatsby-theme-newrelic/commit/5829c847ef15aa2439a7f5e77b111822bc7949d7))
+* Create a MarkdownContainer to wrap markdown content ([baa01b4](https://github.com/newrelic/gatsby-theme-newrelic/commit/baa01b44b5bbf41ce6cbfc9acf3615922f32f925))
+* Create an InlineCode component ([ab07ab3](https://github.com/newrelic/gatsby-theme-newrelic/commit/ab07ab3ada18216459ed16f209afae110698fa7e))
+* Create an MDX component to render MDX content with default mapped components ([210f5bd](https://github.com/newrelic/gatsby-theme-newrelic/commit/210f5bdb9144d06c3c6d0b81bf9cc2911d5c98f3))
+* Create an MDXCollapserGroup component ([6dde701](https://github.com/newrelic/gatsby-theme-newrelic/commit/6dde701682d48d65e764a0ae2df0b353f82f4c85))
+* Create an MDXLink component ([f7b0ea7](https://github.com/newrelic/gatsby-theme-newrelic/commit/f7b0ea7a53e621edeaaffe20b453730e34b6f8ab))
+* create an MDXTable component ([3bc0778](https://github.com/newrelic/gatsby-theme-newrelic/commit/3bc0778645b004ac78c126f8ad2518d9d15e7d38))
+* Create an MDXVideo component that wraps a Video for MDX content ([a46d4cb](https://github.com/newrelic/gatsby-theme-newrelic/commit/a46d4cb8bdb22324d77101a0d53638aa2f194415))
+
+
+
+
+
 ## [1.24.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.24.0...v1.24.1) (2021-01-23)
 
 
