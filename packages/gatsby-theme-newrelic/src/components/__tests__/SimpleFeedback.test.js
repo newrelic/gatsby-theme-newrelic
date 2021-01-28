@@ -1,7 +1,30 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import SimpleFeedback from '../SimpleFeedback';
 import { createDescription } from '../../utils/createIssueURL';
+import { I18nextProvider } from 'react-i18next';
+import { themeNamespace } from '../../utils/defaultOptions';
+import translations from '../../i18n/translations/en.json';
+import i18n from 'i18next';
+
+i18n.init({
+  defaultNS: 'translation',
+  initImmediate: false,
+  fallbackLng: 'en',
+  lng: 'en',
+  ns: [themeNamespace, 'translation'],
+  resources: {
+    en: {
+      [themeNamespace]: translations,
+    },
+  },
+  interpolation: {
+    escapeValue: false,
+  },
+  react: {
+    useSuspense: false,
+  },
+});
 
 // Defining these here AND in the mock due to a limitation with jest
 // https://github.com/facebook/jest/issues/2567
@@ -9,6 +32,14 @@ const SITE = 'https://github.com/foo/bar';
 const REPO = 'https://foobar.net';
 const SLUG = '/foo-bar';
 const ISSUE_URL = `${REPO}/issues/new`;
+
+const renderFeedback = (props = {}) => {
+  return render(
+    <I18nextProvider i18n={i18n}>
+      <SimpleFeedback {...props} />
+    </I18nextProvider>
+  );
+};
 
 jest.mock('gatsby', () => ({
   __esModule: true,
@@ -36,16 +67,16 @@ describe('SimpleFeedback Component', () => {
   });
 
   it('should render with two feedback buttons', () => {
-    const { getByText } = render(<SimpleFeedback />);
+    renderFeedback();
 
-    expect(getByText('Yes')).toBeInTheDocument();
-    expect(getByText('No')).toBeInTheDocument();
+    expect(screen.getByText('Yes')).toBeInTheDocument();
+    expect(screen.getByText('No')).toBeInTheDocument();
   });
 
   it('should render links with custom issue labels', () => {
     const labels = ['food-feedback', 'tuesday'];
-    const { getAllByRole } = render(<SimpleFeedback labels={labels} />);
-    const [yes] = getAllByRole('button');
+    renderFeedback({ labels });
+    const [yes] = screen.getAllByRole('button');
 
     const params = new URLSearchParams();
     params.set('labels', [...labels, 'feedback-positive'].join(','));
@@ -56,8 +87,8 @@ describe('SimpleFeedback Component', () => {
   });
 
   it('should render links with default issue title', () => {
-    const { getAllByRole } = render(<SimpleFeedback />);
-    const [yes, no] = getAllByRole('button');
+    renderFeedback();
+    const [yes, no] = screen.getAllByRole('button');
 
     const yesParams = new URLSearchParams();
     yesParams.set('labels', ['feedback', 'feedback-positive'].join(','));
@@ -75,8 +106,8 @@ describe('SimpleFeedback Component', () => {
 
   it('should render links with the page title in the issue title', () => {
     const title = 'tacos';
-    const { getAllByRole } = render(<SimpleFeedback pageTitle={title} />);
-    const [yes] = getAllByRole('button');
+    renderFeedback({ pageTitle: title });
+    const [yes] = screen.getAllByRole('button');
 
     const params = new URLSearchParams();
     params.set('labels', ['feedback', 'feedback-positive'].join(','));
@@ -89,10 +120,8 @@ describe('SimpleFeedback Component', () => {
   it('should render links with page URL in the issue body', () => {
     const title = 'tacos';
     const slug = SLUG;
-    const { getAllByRole } = render(
-      <SimpleFeedback pageTitle={title} slug={slug} />
-    );
-    const [yes] = getAllByRole('button');
+    renderFeedback({ pageTitle: title, slug });
+    const [yes] = screen.getAllByRole('button');
 
     const params = new URLSearchParams();
     params.set('labels', ['feedback', 'feedback-positive'].join(','));
