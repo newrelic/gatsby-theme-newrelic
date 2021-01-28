@@ -81,7 +81,7 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
         >
           <Icon
             size="0.75rem"
-            name={Icon.TYPE.THUMBSUP}
+            name="fe-thumbsup"
             css={css`
               margin-right: 0.5rem;
             `}
@@ -97,7 +97,7 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
         >
           <Icon
             size="0.75rem"
-            name={Icon.TYPE.THUMBSDOWN}
+            name="fe-thumbsdown"
             css={css`
               margin-right: 0.5rem;
             `}

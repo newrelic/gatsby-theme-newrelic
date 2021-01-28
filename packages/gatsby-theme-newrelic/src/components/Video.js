@@ -11,6 +11,7 @@ const videoPlatforms = {
 
 const Video = ({ id, type, title, className, width }) => (
   <div
+    className={className}
     css={css`
       max-width: ${width};
     `}
@@ -21,7 +22,6 @@ const Video = ({ id, type, title, className, width }) => (
         padding-top: 56.25%; // 16:9
         height: 0;
       `}
-      className={className}
     >
       <iframe
         src={videoPlatforms[type](id)}

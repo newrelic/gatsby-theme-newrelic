@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "scripts": {
+    "start": "yarn workspace demo develop",
     "release": "lerna publish --conventional-commits --create-release github --no-private",
     "test": "jest",
     "test:watch": "yarn test --watch",

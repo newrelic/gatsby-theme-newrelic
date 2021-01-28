@@ -12,7 +12,7 @@ import MenuBar from './MenuBar';
 import { useIntersection } from 'react-use';
 import useClipboard from '../../hooks/useClipboard';
 
-const Shell = ({ animate, copyable, highlight, code }) => {
+const Shell = ({ animate, className, copyable, highlight, code }) => {
   const { tokens, getTokenProps } = highlight;
   const lines = translateLines(tokens, code);
 
@@ -50,6 +50,7 @@ const Shell = ({ animate, copyable, highlight, code }) => {
   return (
     <div
       ref={ref}
+      className={className}
       css={css`
         --chrome-color: #252526;
         --border-radius: 0.25rem;
@@ -175,6 +176,7 @@ const getTypingDelay = (line, previousLine) => {
 
 Shell.propTypes = {
   animate: PropTypes.bool,
+  className: PropTypes.string,
   code: PropTypes.string.isRequired,
   copyable: PropTypes.bool,
   highlight: PropTypes.shape({
