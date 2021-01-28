@@ -20,6 +20,7 @@ import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import path from 'path';
 import { rgba } from 'polished';
+import SearchModal from './SearchModal';
 
 const action = css`
   color: var(--secondary-text-color);
@@ -46,6 +47,7 @@ const GlobalHeader = ({ className }) => {
   const location = useLocation();
   const { queryParams, setQueryParam } = useQueryParams();
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const { t } = useThemeTranslation();
 
   const {
@@ -88,6 +90,10 @@ const GlobalHeader = ({ className }) => {
 
   return (
     <>
+      <SearchModal
+        onClose={() => setIsSearchModalOpen(false)}
+        isOpen={isSearchModalOpen}
+      />
       <AnnouncementBanner />
       <div
         data-swiftype-index={false}
@@ -260,6 +266,9 @@ const GlobalHeader = ({ className }) => {
                     min-width: 150px;
                     max-width: 350px;
                   `}
+                  onFocus={() => {
+                    setIsSearchModalOpen(true);
+                  }}
                 />
               )}
             </li>
