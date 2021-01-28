@@ -1,3 +1,5 @@
+import { addLeadingSlash } from './location';
+
 export const localizePath = ({ path, locale }) => {
   if (locale.isDefault) {
     return path;
@@ -7,5 +9,5 @@ export const localizePath = ({ path, locale }) => {
 
   return base === locale.localizedPath
     ? path
-    : `/${locale.localizedPath}${path}`;
+    : `/${locale.localizedPath}${addLeadingSlash(path)}`;
 };
