@@ -13,6 +13,7 @@ websites](https://opensource.newrelic.com).
 - [Configuration](#configuration)
   - [Site metadata](#site-metadata)
   - [Options](#options)
+    - [`sitemap`](#sitemap)
     - [`newrelic`](#newrelic)
     - [`robots`](#robots)
     - [`i18n`](#i18n)
@@ -26,6 +27,8 @@ websites](https://opensource.newrelic.com).
   - [`Button`](#button)
   - [`Callout`](#callout)
   - [`CodeBlock`](#codeblock)
+  - [`Collapser`](#collapser)
+  - [`CollapserGroup`](#collapsergroup)
   - [`ContributingGuidelines`](#contributingguidelines)
   - [`CookieConsentDialog`](#cookieconsentdialog)
   - [`Dropdown`](#dropdown)
@@ -48,6 +51,10 @@ websites](https://opensource.newrelic.com).
     - [`Layout.PageTools`](#layoutpagetools)
     - [`Layout.Sidebar`](#layoutsidebar)
   - [`Link`](#link)
+  - [`MarkdownContainer`](#markdowncontainer)
+  - [`MDX`](#mdx)
+    - [Using `MDX`](#using-mdx)
+    - [Default components](#default-components)
   - [`MDXCodeBlock`](#mdxcodeblock)
   - [`NavItem`](#navitem)
     - [`Page`](#page)
@@ -65,6 +72,7 @@ websites](https://opensource.newrelic.com).
   - [`TagList`](#taglist)
   - [`Terminal`](#terminal)
   - [`Video`](#video)
+- [MDX Component variants](#mdx-component-variants)
 - [Hooks](#hooks)
   - [`useClipboard`](#useclipboard)
   - [`useFormattedCode`](#useformattedcode)
@@ -120,6 +128,7 @@ module.exports = {
     {
       resolve: '@newrelic/gatsby-theme-newrelic',
       options: {
+        sitemap: true,
         layout: {
           contentPadding: '2rem',
           maxWidth: '1600px',
@@ -181,6 +190,13 @@ are optional, they are highly recommended.
   the default behavior.
 
 ### Options
+
+#### `sitemap`
+
+Toggles the automatic creation of a sitemap. Set this value to
+`false` to disable sitemaps.
+
+**Default:** `true`
 
 #### `newrelic`
 
@@ -455,10 +471,11 @@ import { Callout } from '@newrelic/gatsby-theme-newrelic'`
 
 **Props**
 
-| Prop    | Type | Required | Default | Description                                                                                                                         |
-| ------- | ---- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| variant | enum | yes      |         | Configures the variant of the callout. Must be one of `Callout.VARIANT.CAUTION`, `Callout.VARIANT.IMPORTANT`, `Callout.VARIANT.TIP` |
-| title   | enum | no       |         | Set the title text. Defaults to variant name. You may hide the title by passing `null` as the value.                                |
+| Prop        | Type   | Required | Default | Description                                                                                                                         |
+| ----------- | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `className` | string | no       |         | Adds a `className` to the callout. Useful if you need to position the callout within its parent element.                            |
+| `variant`   | enum   | yes      |         | Configures the variant of the callout. Must be one of `Callout.VARIANT.CAUTION`, `Callout.VARIANT.IMPORTANT`, `Callout.VARIANT.TIP` |
+| `title`     | enum   | no       |         | Set the title text. Defaults to variant name. You may hide the title by passing `null` as the value.                                |
 
 **Examples**
 
@@ -645,6 +662,81 @@ const Documentation = () => (
     {codeSample}
   </CodeBlock>
 );
+```
+
+### `Collapser`
+
+This element is used to reveal or hide content associated with it. Use in
+conjunction with a [`CollapserGroup`](#collapsergroup) when using multiple
+`Collapser`s in tandom.
+
+```js
+import { Collapser } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop          | Type                    | Required | Default | Description                                                                                                                  |
+| ------------- | ----------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `children`    | node                    | yes      |         | The content that will be hidden or revealed when the user interacts with the `Collapser`.                                    |
+| `defaultOpen` | boolean                 | yes      | false   | Determines if the `Collapser` should default to its open state.                                                              |
+| `id`          | string                  | no       |         | An HTML `id` attribute that will be attached to the `Collapser` `title`. Useful if you want to deep link to the `Collapser`. |
+| `title`       | string \| React element | yes      |         | The text that will be rendered on the interactive button used to toggle the open state on the `Collapser`.                   |
+
+**Examples**
+
+```js
+import { Collapser } from '@newrelic/gatsby-theme-newrelic';
+
+<Collapser title="The Ruby Agent API">
+  This is some information about the Ruby Agent. You'll have to interact with
+  the Collapser to see me.
+</Collapser>;
+```
+
+**Multiple collapsers**
+
+```js
+import { Collapser, CollapserGroup } from '@newrelic/gatsby-theme-newrelic';
+
+<CollapserGroup>
+  <Collapser title="Collapser 1">
+    The first collapser! I will be hidden by default.
+  </Collapser>
+  <Collapser title="Collapser 2" defaultOpen>
+    The second collapser! The user will see this content by default.
+  </Collapser>
+</CollapserGroup>;
+```
+
+### `CollapserGroup`
+
+Used in conjunction with multiple `Collapser`s to group them together.
+
+```js
+import { Collapser, CollapserGroup } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop        | Type          | Required | Default | Description                                                                                                              |
+| ----------- | ------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `className` | string        | no       |         | Adds a `className` to the collapser group. Useful if you need to position the collapser group within its parent element. |
+| `children`  | React element | yes      |         | The set of `Collapser` elements that will be rendered as part of the `CollapserGroup`.                                   |
+
+**Examples**
+
+```js
+import { Collapser, CollapserGroup } from '@newrelic/gatsby-theme-newrelic';
+
+<CollapserGroup>
+  <Collapser title="Collapser 1">
+    The first collapser! I will be hidden by default.
+  </Collapser>
+  <Collapser title="Collapser 2" defaultOpen>
+    The second collapser! The user will see this content by default.
+  </Collapser>
+</CollapserGroup>;
 ```
 
 ### `ContributingGuidelines`
@@ -1017,6 +1109,11 @@ Additional props are forwarded to the underlying `svg` element.
 - `nr-fso`
 - `nr-ai`
 
+**Logos**
+
+- `logo-apple`
+- `logo-android`
+
 #### Shadowing icons
 
 Because this theme only provides a subset of the feather icon set, you may need
@@ -1278,6 +1375,116 @@ depending on whether it is a relative or absolute URL.
 // it will smartly convert this to a relative path.
 <Link to="https://developer.newrelic.com/page-2">
 ```
+
+### `MarkdownContainer`
+
+Container used to wrap markdown content. Provides spacing and additional styles
+necessary for documents rendered via markdown or MDX.
+
+```js
+import { MarkdownContainer } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop                      | Type   | Required | Default | Description                                                                                                        |
+| ------------------------- | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
+| `children`                | node   | yes      |         | Content that will be rendered inside the markdown container. This is usually an [`MDX`](#mdx) component.           |
+| `className`               | string | no       |         | Additional className for the `MarkdownContainer`                                                                   |
+| `dangerouslySetInnerHTML` | string | no       |         | Same as React's `dangerouslySetInnerHTML`. Useful when rendering a compiled markdown string inside this container. |
+
+**Example**
+
+MDX
+
+```jsx
+<MarkdownContainer>
+  <MDX body={body} />
+</MarkdownContainer>
+```
+
+Markdown
+
+```jsx
+<MarkdownContainer dangerouslySetInnerHTML={markdown} />
+```
+
+### `MDX`
+
+Utility to render MDX content on a page. Provides out-of-the-box shortcodes for
+commonly used components.
+
+```js
+import { MDX } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop         | Type   | Required | Default | Description                                                                                                                                                                        |
+| ------------ | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `body`       | string | yes      |         | The compiled MDX string to be rendered for the page. This is usually the `body` property on an `MDX` node in Gatsby.                                                               |
+| `components` | object | no       |         | Provides [shortcodes](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/#shortcodes) for MDX documents. Use this to add additional components or override the default components. |
+
+#### Using `MDX`
+
+When using `MDX`, it is **HIGHLY RECOMMENDED** to wrap the content with the
+[`MarkdownContainer`](#markdowncontainer) component to provide the additional
+styles and proper spacing. If you would like to render additional components
+within the `MarkdownContainer` and want to match spacing, use the following CSS
+variables:
+
+- `--block-element-spacing`: Provides proper spacing for block elements
+  (callouts, code blocks, etc.)
+- `--text-spacing`: Spacing used between paragraphs of text. Use this for
+  textual elements in the document (i.e. unordered/ordered lists)
+
+#### Default components
+
+The `MDX` component ships with a set of default mapped components. Where
+possible, this component uses the [MDX component variants](#mdx-variants) for
+block level components to provide proper spacing.
+
+For more information on the
+set of available shortcodes mapped to built-in elements (such as `a`), see the
+[MDX documentation](https://mdxjs.com/table-of-components#table-of-components)
+
+The following shortcodes are available by default:
+
+- `a`
+- `code`
+- `pre`
+- `table`
+- [`Button`](#button)
+- [`ButtonLink`](#button)
+- [`Callout`](#callout)
+- [`Collapser`](#collapser)
+- [`CollapserGroup`](#collapsergroup)
+- [`Icon`](#icon)
+- `InlineCode`
+- [`Link`](#link)
+- [`Video`](#video)
+
+**Example**
+
+```jsx
+<MarkdownContainer>
+  <MDX body={body} />
+</MarkdownContainer>
+```
+
+Overriding components
+
+```jsx
+const components = {
+  h1: (props) => <h1 style={{ color: 'purple' }} {...props} />,
+};
+
+<MarkdownContainer>
+  <MDX body={body} components={components} />;
+</MarkdownContainer>;
+```
+
+Providing your own components
 
 ### `MDXCodeBlock`
 
@@ -1556,15 +1763,16 @@ import { SearchInput } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop        | Type     | Required | Default | Description                                                                                                                              |
-| ----------- | -------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `className` | string   | no       |         | Additional `className` for the component.                                                                                                |
-| `onClear`   | function | yes      |         | Handler called when the user interacts with the clear button. This handler should be responsible for resetting the `value` of the input. |
-| `size`      | enum     | no       |         | Size of the input. Must be one of `SearchInput.SIZE.MEDIUM` or `SearchInput.SIZE.LARGE`                                                  |
-| `style`     | object   | no       |         | Inline styles for the search input                                                                                                       |
-| `value`     | string   | no       |         | Value of the search input.                                                                                                               |
-| `width`     | string   | no       |         | Width of the input. Accepts any CSS sizing value (e.g. `100px`)                                                                          |
-| `iconName`  | enum     | no       |         | Specify icon to use. Must be one of `SearchInput.ICONS.SEARCH` or `SearchInput.ICONS.FILTER` Defaults to search magnifying glass.        |
+| Prop              | Type     | Required | Default | Description                                                                                                                               |
+| ----------------- | -------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `className`       | string   | no       |         | Additional `className` for the component.                                                                                                 |
+| `onClear`         | function | yes      |         | Handler called when the user interacts with the clear button. This handler should be responsible for resetting the `value` of the input.  |
+| `size`            | enum     | no       |         | Size of the input. Must be one of `SearchInput.SIZE.MEDIUM` or `SearchInput.SIZE.LARGE`                                                   |
+| `style`           | object   | no       |         | Inline styles for the search input                                                                                                        |
+| `value`           | string   | no       |         | Value of the search input.                                                                                                                |
+| `width`           | string   | no       |         | Width of the input. Accepts any CSS sizing value (e.g. `100px`)                                                                           |
+| `iconName`        | enum     | no       |         | Specify icon to use. Must be one of `SearchInput.ICONS.SEARCH` or `SearchInput.ICONS.FILTER` Defaults to search magnifying glass.         |
+| `focusWithHotKey` | string   | no       |         | Adds a listener to focus the input with a hotkey. For example, to focus the search input using the `/` key, specify `focusWithHotKey="/"` |
 
 Additional props are forwarded to the underlying `input` element.
 
@@ -1579,6 +1787,7 @@ const Search = () => (
       value={value}
       onClear={() => setValue('')}
       onChange={(e) => setValue(e.target.value)}
+      focusWithHotKey="/"
     />
   );
 );
@@ -1594,11 +1803,11 @@ import { SEO } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop       | Type   | Required | Default | Description                                                   |
-| ---------- | ------ | -------- | ------- | ------------------------------------------------------------- |
+| Prop       | Type   | Required | Default | Description                                                                                                          |
+| ---------- | ------ | -------- | ------- | -------------------------------------------------------------------------------------------------------------------- |
 | `location` | string | yes      |         | The location object of the page where this is rendered. This object must have properties of `pathname` and `origin`. |
-| `title`    | string | no       |         | title to be displayed in head.                                |
-| `children` | node   | no       |         | any additional tags to be added to the `<head>` of the page   |
+| `title`    | string | no       |         | title to be displayed in head.                                                                                       |
+| `children` | node   | no       |         | any additional tags to be added to the `<head>` of the page                                                          |
 
 **Example**
 
@@ -1900,6 +2109,33 @@ Wistia
 <Video id="abcdefg" type={Video.TYPE.WISTIA} width="500px" />
 ```
 
+## MDX Component variants
+
+When working in an MDX document, adding additional styling, such as spacing for
+layout, become more difficult. The [`MDX`](#mdx) component provides shortcodes
+for the commonly used components from the theme, however, these components
+provide no external spacing.
+
+To ease the burden on adding spacing for these components while working in MDX,
+many of them have been wrapped by an MDX component variant. These components are
+prefixed with `MDX` and mapped as shortcodes instead. For example, the `Callout`
+shortcode is mapped to an `MDXCallout` component, which wraps the real `Callout`
+component.
+
+These MDX component variants forward all props to its wrapped component. The
+following MDX variants are available and mapped inside the `MDX` component:
+
+- `a` --> `MDXLink`
+- `code` --> `MDXCodeBlock`
+- `table` --> `MDXTable`
+- `Callout` --> `MDXCallout`
+- `CollapserGroup` --> `MDXCollapserGroup`
+- `Video` --> `MDXVideo`
+
+**NOTE**: While all of these components are exported and available for use, its
+highly recommended to use these components solely for use in MDX documents. When
+working in regular React components, used the regular component instead.
+
 ## Hooks
 
 ### `useClipboard`
@@ -1994,9 +2230,25 @@ import { useKeyPress } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-- `key` _(string)_: The key being listened for (i.e. the `event.key` value)
+- `key` _(string | Array<string>)_: The key or keys being listened for
+  (i.e. the `event.key` value). This hook also recognizes modifier keys. To add
+  a listener for a modifier key, use the format `<modifier key>+<key>` (i.e.
+  `CMD+S`). The key is case insensitive and ignores whitespace (i.e. `cmd + s`
+  also works.) Pass an array of keys to listen for multiple key combinatations
+  in a single listener. The following modifier keys are supported:
+  - `CMD` - The OS meta key; `Command ⌘` on macOS and the Windows key on Windows.
+    Also maps to `Control` for easier Windows support.
+  - `CTRL` - The `Control` key. NOTE: This does not map to the `Command` key on
+    macOS. Use this modifier if you explictly want the `Control` key on macOS.
+  - `Shift`
+  - `Alt`
 - `callback` _(function)_ : Callback function called when the keydown event
   matches the key. Takes the `event` as the argument.
+- `options` _(object)_: Options for the hook
+  - `ignoreTextInput` _(boolean)_: Determines whether the handler should trigger
+    when the key matches while typing in an `input` or `textarea`. By default,
+    the handler will not be triggered when the user is typing in a text input
+    (`true`). Set to `false` to trigger the handler in text inputs.
 
 **Returns**
 
@@ -2019,6 +2271,22 @@ const Modal = ({ code }) => {
     </>
   );
 };
+```
+
+**Modifier keys**
+
+```js
+useKeyPress('CMD+S', () => {
+  console.log('Save it!');
+});
+```
+
+**Listen for multiple keys**
+
+```js
+useKeyPress(['s', 'h'], (e) => {
+  console.log(e.key); // 's' or 'h'
+});
 ```
 
 ### `useLayout`

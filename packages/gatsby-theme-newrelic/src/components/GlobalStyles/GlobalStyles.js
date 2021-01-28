@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { normalize } from 'polished';
 import { Global, css } from '@emotion/core';
 import colors from './colors';
-import fonts from './fonts';
+import typography from './typography';
 import themes from './themes';
 import variables from './variables';
+import shadows from './shadows';
 
 const GlobalStyles = ({ layout }) => (
   <Global
@@ -15,7 +16,8 @@ const GlobalStyles = ({ layout }) => (
       :root {
         ${variables};
         ${colors};
-        ${fonts};
+        ${typography};
+        ${shadows};
 
         --site-max-width: ${layout.maxWidth};
         --site-content-padding: ${layout.contentPadding};
@@ -39,6 +41,7 @@ const GlobalStyles = ({ layout }) => (
         cursor: pointer;
         text-decoration: none;
         color: var(--link-color);
+        transition: 0.2s ease-out;
 
         &:hover {
           color: var(--link-hover-color);
@@ -47,7 +50,8 @@ const GlobalStyles = ({ layout }) => (
 
       p {
         margin-top: 0;
-        margin-bottom: 1rem;
+        margin-bottom: var(--paragraph-spacing);
+        line-height: 1.75;
 
         &:last-child {
           margin-bottom: 0;
@@ -61,18 +65,68 @@ const GlobalStyles = ({ layout }) => (
       h5,
       h6 {
         margin-top: 0;
-        margin-bottom: 0.5rem;
         font-weight: 600;
-        font-family: var(--primary-font-family);
         color: var(--heading-text-color);
         scroll-margin-top: calc(
           var(--global-header-height) + var(--site-content-padding)
         );
+
+        // additional styles provided by gatsby-remark-autolink-headers
+        .anchor svg {
+          opacity: 0;
+          transition: opacity 0.2s ease-out;
+        }
+
+        &:hover .anchor svg,
+        .anchor:focus svg {
+          opacity: 1;
+        }
+
+        code {
+          font-size: inherit;
+        }
       }
 
+      h1 {
+        line-height: 1.15;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      h2 {
+        line-height: 1.25;
+        margin-bottom: 1.25rem;
+        font-weight: 600;
+      }
+
+      h3 {
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      h4,
+      h5,
+      h6 {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      ol,
       ul {
         margin: 0;
-        padding-left: 2rem;
+        padding-left: 1.75rem;
+
+        > li {
+          margin: 0.5rem 0;
+        }
+      }
+
+      ul > li::marker {
+        color: var(--color-neutrals-500);
+
+        .dark-mode & {
+          color: var(--color-dark-500);
+        }
       }
 
       code {
@@ -86,9 +140,14 @@ const GlobalStyles = ({ layout }) => (
       }
 
       blockquote {
-        border-left: 0.25rem solid var(--border-color);
-        padding: 0.94rem 0.31rem 1.25rem 1.25rem;
-        margin: 1.56rem 3.13rem 1.56rem 1.25rem;
+        border-left: 0.25rem solid var(--color-neutrals-700);
+        padding: 0.25rem 1rem;
+        margin: 0;
+        font-style: italic;
+
+        .dark-mode & {
+          border-left-color: var(--color-dark-700);
+        }
       }
 
       pre {

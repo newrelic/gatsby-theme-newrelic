@@ -3,6 +3,7 @@ import FeatherSVG from '../components/FeatherSVG';
 
 import feather from './feather';
 import newrelic from './newrelic';
+import logo from './logo';
 
 const withPrefix = (prefix, icons) =>
   Object.fromEntries(
@@ -29,4 +30,5 @@ const wrapFeatherIcons = (icons) =>
 export default {
   ...withPrefix('fe', wrapFeatherIcons(feather)),
   ...withPrefix('nr', newrelic),
+  ...withPrefix('logo', logo),
 };

@@ -4,6 +4,9 @@ import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 import { localizePath } from '../utils/localization';
 
+const isHash = (to) => to.startsWith('#');
+const isExternal = (to) => to.startsWith('http');
+
 const Link = ({ to, ...props }) => {
   const locale = useLocale();
 
@@ -25,17 +28,17 @@ const Link = ({ to, ...props }) => {
     to = to.replace(siteUrl, '');
   }
 
-  if (to.startsWith('/')) {
-    return <GatsbyLink to={localizePath({ path: to, locale })} {...props} />;
-  }
-
-  if (to.startsWith('#')) {
+  if (isHash(to)) {
     // eslint-disable-next-line jsx-a11y/anchor-has-content
     return <a href={to} {...props} />;
   }
 
-  // eslint-disable-next-line jsx-a11y/anchor-has-content
-  return <a href={to} target="_blank" rel="noopener noreferrer" {...props} />;
+  if (isExternal(to)) {
+    // eslint-disable-next-line jsx-a11y/anchor-has-content
+    return <a href={to} target="_blank" rel="noopener noreferrer" {...props} />;
+  }
+
+  return <GatsbyLink to={localizePath({ path: to, locale })} {...props} />;
 };
 
 Link.propTypes = {

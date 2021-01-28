@@ -1,8 +1,10 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import styled from '@emotion/styled';
 import Icon from './Icon';
+import composeHandlers from '../utils/composeHandlers';
+import useSyncedRef from '../hooks/useSyncedRef';
+import useKeyPress from '../hooks/useKeyPress';
 
 const SIZES = {
   SMALL: 'small',
@@ -18,6 +20,7 @@ const ICONS = {
 const SearchInput = forwardRef(
   (
     {
+      focusWithHotKey,
       onClear,
       onSubmit,
       value,
@@ -26,33 +29,34 @@ const SearchInput = forwardRef(
       className,
       style,
       iconName = 'fe-search',
+      onBlur,
+      onFocus,
       ...props
     },
     ref
   ) => {
-    const handleClick = (e) => {
+    const inputRef = useSyncedRef(ref);
+    const [showHotKey, setShowHotkey] = useState(Boolean(focusWithHotKey));
+
+    useKeyPress(focusWithHotKey, (e) => {
       e.preventDefault();
-      onClear();
-    };
-    const handleKeyDown = (e) => {
-      switch (e.key) {
-        case 'Escape':
-          return onClear?.();
-        case 'Enter':
-          return onSubmit?.(value);
-        default:
-        // do nothing
-      }
-    };
+
+      inputRef.current.focus();
+    });
 
     return (
-      <StyledContainer
+      <div
         width={width}
         className={className}
         style={style}
-        size={size}
+        css={css`
+          position: relative;
+          width: ${width || '100%'};
+          box-shadow: var(--shadow-1);
+          ${size && styles.size[size].container}
+        `}
       >
-        <StyledIcon
+        <Icon
           css={css`
             position: absolute;
             left: 1rem;
@@ -60,18 +64,52 @@ const SearchInput = forwardRef(
             transform: translateY(-50%);
           `}
           name={iconName}
+          size={styles.size[size].icon}
         />
-        <StyledInput
-          ref={ref}
+        <input
+          ref={inputRef}
           value={value}
-          size={size}
           {...props}
           type="text"
-          onKeyDown={handleKeyDown}
+          onFocus={composeHandlers(onFocus, () => setShowHotkey(false))}
+          onBlur={composeHandlers(onBlur, () =>
+            setShowHotkey(Boolean(focusWithHotKey))
+          )}
+          onKeyDown={(e) => {
+            switch (e.key) {
+              case 'Escape':
+                onClear && onClear();
+                e.target.blur();
+                break;
+              case 'Enter':
+                return onSubmit?.(value);
+              default:
+              // do nothing
+            }
+          }}
+          css={css`
+            width: 100%;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--primary-background-color);
+            color: var(--primary-text-color);
+            transition: 0.15s ease-out;
+            line-height: 1;
+            ${size && styles.size[size].input}
+
+            &:focus {
+              outline: none;
+              border: 1px solid rgba(0, 126, 138, 0.6);
+              box-shadow: 0 0 0 4px rgba(0, 126, 138, 0.1);
+            }
+          `}
         />
         {value && onClear && (
-          <StyledButton
-            onClick={handleClick}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              onClear();
+            }}
             css={css`
               right: 1rem;
               top: 50%;
@@ -79,26 +117,56 @@ const SearchInput = forwardRef(
               &:hover {
                 cursor: pointer;
               }
+
+              color: var(--primary-text-color);
+              border: none;
+              background: transparent;
+              position: absolute;
+              margin: 0;
+              padding: 0;
+              outline: none;
             `}
-            onKeyDown={handleKeyDown}
             type="button"
-            size={size}
           >
-            <StyledIcon
+            <Icon
               name="fe-x"
               css={css`
                 display: block;
               `}
+              size={styles.size[size].icon}
             />
-          </StyledButton>
+          </button>
         )}
-      </StyledContainer>
+        {showHotKey && (
+          <span
+            css={css`
+              position: absolute;
+              right: 1rem;
+              top: 50%;
+              transform: translateY(-50%);
+              border: 1px solid var(--border-color);
+              line-height: 1;
+              text-align: middle;
+              background: var(--color-neutrals-100);
+
+              ${styles.size[size].hotkey}
+
+              .dark-mode & {
+                background: var(--color-dark-200);
+              }
+            `}
+          >
+            {focusWithHotKey}
+          </span>
+        )}
+      </div>
     );
   }
 );
 
 SearchInput.propTypes = {
   className: PropTypes.string,
+  focusWithHotKey: PropTypes.string,
   onClear: PropTypes.func,
   onSubmit: PropTypes.func,
   value: PropTypes.string,
@@ -106,6 +174,8 @@ SearchInput.propTypes = {
   size: PropTypes.oneOf(Object.values(SIZES)),
   style: PropTypes.object,
   iconName: PropTypes.oneOf(Object.values(ICONS)),
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 SearchInput.SIZE = SIZES;
@@ -123,6 +193,12 @@ const styles = {
       container: css`
         --icon-size: 0.75rem;
       `,
+      hotkey: css`
+        border-radius: 0.125rem;
+        font-size: 0.675rem;
+        padding: 0.0625rem 0.3125rem;
+      `,
+      icon: '0.75rem',
     },
     [SIZES.MEDIUM]: {
       input: css`
@@ -132,54 +208,28 @@ const styles = {
       container: css`
         --icon-size: 1rem;
       `,
+      hotkey: css`
+        border-radius: 0.125rem;
+        font-size: 0.875rem;
+        padding: 0.125rem 0.375rem;
+      `,
+      icon: '0.875rem',
     },
     [SIZES.LARGE]: {
       input: css`
         font-size: 1.25rem;
-        padding: 1rem calc(1.5rem + var(--icon-size));
+        font-weight: 500;
+        padding: 0.75rem calc(1.5rem + var(--icon-size));
       `,
       container: css`
         --icon-size: 1.5rem;
       `,
+      hotkey: css`
+        border-radius: 0.125rem;
+        font-size: 1.25rem;
+        padding: 0.125rem 0.4375rem;
+      `,
+      icon: '1.25rem',
     },
   },
 };
-
-const StyledContainer = styled.div`
-  position: relative;
-  width: ${(props) => props.width || '100%'};
-  ${({ size }) => size && styles.size[size].container}
-`;
-
-const StyledInput = styled.input`
-  width: 100%;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background: var(--primary-background-color);
-  color: var(--primary-text-color);
-  transition: 0.15s ease-out;
-  line-height: 1;
-  ${({ size }) => size && styles.size[size].input}
-
-  &:focus {
-    outline: none;
-    border: 1px solid rgba(0, 126, 138, 0.6);
-    box-shadow: 0 0 0 4px rgba(0, 126, 138, 0.1);
-  }
-`;
-
-const StyledIcon = styled(Icon)`
-  stroke: var(--primary-text-color);
-  height: var(--icon-size);
-  width: var(--icon-size);
-`;
-
-const StyledButton = styled.button`
-  position: absolute;
-  background-color: transparent;
-  border: none;
-  margin: 0;
-  padding: 0;
-  outline: none;
-  ${({ size }) => size && styles.size[size].button}
-`;

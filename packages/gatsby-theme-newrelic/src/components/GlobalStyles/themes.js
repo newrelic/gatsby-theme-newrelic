@@ -24,7 +24,7 @@ export default css`
     --callout-important-background-color: #fff9cc30;
     --callout-tip-background-color: #d1f7d925;
 
-    ::placeholder {
+    input::placeholder {
       color: var(--color-neutrals-500);
     }
 
@@ -56,7 +56,7 @@ export default css`
     --callout-important-background-color: #14110020;
     --callout-tip-background-color: #02120020;
 
-    ::placeholder {
+    input::placeholder {
       color: var(--color-dark-500);
     }
 

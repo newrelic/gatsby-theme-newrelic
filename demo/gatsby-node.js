@@ -1,3 +1,5 @@
+const path = require('path');
+
 exports.onCreatePage = ({ page, actions }) => {
   const { createPage, deletePage } = actions;
 
@@ -8,6 +10,18 @@ exports.onCreatePage = ({ page, actions }) => {
       context: {
         ...page.context,
         layout: 'basic',
+      },
+    });
+  }
+
+  if (page.component.endsWith('.mdx')) {
+    deletePage(page);
+    createPage({
+      ...page,
+      component: path.resolve('src/templates/basic.js'),
+      context: {
+        ...page.context,
+        slug: page.path.replace(/^\//, ''),
       },
     });
   }

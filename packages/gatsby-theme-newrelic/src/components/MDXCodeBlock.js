@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import CodeBlock from './CodeBlock';
 import Terminal from './Terminal';
 import { isShellLanguage } from '../utils/codeBlock';
@@ -18,7 +19,15 @@ const MDXCodeBlock = ({
   const language = className?.replace('language-', '');
 
   return isShellLanguage(language) ? (
-    <Terminal animate={animate} copyable={copyable}>
+    <Terminal
+      animate={animate}
+      copyable={copyable}
+      css={css`
+        &:not(:last-child) {
+          margin-bottom: var(--block-element-spacing);
+        }
+      `}
+    >
       {children}
     </Terminal>
   ) : (
@@ -30,6 +39,11 @@ const MDXCodeBlock = ({
       lineNumbers={lineNumbers === 'true'}
       live={live === 'true'}
       preview={preview === 'true'}
+      css={css`
+        &:not(:last-child) {
+          margin-bottom: var(--block-element-spacing);
+        }
+      `}
     >
       {children}
     </CodeBlock>
