@@ -35,11 +35,12 @@ const styles = {
   },
 };
 
-const Callout = ({ title, variant, children }) => {
+const Callout = ({ className, title, variant, children }) => {
   const { t } = useThemeTranslation();
 
   return (
     <div
+      className={className}
       css={css`
         padding: 1.25rem;
         margin: 1.5rem 0;
@@ -75,6 +76,7 @@ const Callout = ({ title, variant, children }) => {
 Callout.VARIANT = VARIANTS;
 
 Callout.propTypes = {
+  className: PropTypes.string,
   title: PropTypes.string,
   variant: PropTypes.oneOf(Object.values(Callout.VARIANT)).isRequired,
   children: PropTypes.node.isRequired,

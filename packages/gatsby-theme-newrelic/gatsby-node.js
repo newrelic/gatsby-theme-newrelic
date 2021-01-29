@@ -15,6 +15,9 @@ const uniq = (arr) => [...new Set(arr)];
 
 const DEFAULT_BRANCH = 'main';
 
+const matchesLocale = (path, locale) =>
+  new RegExp(`^\\/?${locale}(?=$|\\/)`).test(path);
+
 exports.onPreInit = (_, themeOptions) => {
   const { i18n } = themeOptions;
 
@@ -280,7 +283,7 @@ exports.onCreatePage = ({ page, actions }, themeOptions) => {
   if (!page.context.locale) {
     const { locale } =
       additionalLocales.find(({ locale }) =>
-        new RegExp(`^\\/?${locale}/`).test(page.path)
+        matchesLocale(page.path, locale)
       ) || defaultLocale;
 
     page.context.locale = locale;
@@ -293,14 +296,16 @@ exports.onCreatePage = ({ page, actions }, themeOptions) => {
     page.context.fileRelativePath.includes('src/pages/')
   ) {
     additionalLocales.forEach(({ locale }) => {
-      createPage({
-        ...page,
-        path: path.join('/', locale, page.path),
-        context: {
-          ...page.context,
-          locale,
-        },
-      });
+      if (!matchesLocale(page.path, locale)) {
+        createPage({
+          ...page,
+          path: path.join('/', locale, page.path),
+          context: {
+            ...page.context,
+            locale,
+          },
+        });
+      }
     });
   }
 };

@@ -11,6 +11,8 @@ module.exports = {
     branch: 'develop',
   },
   plugins: [
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
       resolve: '@newrelic/gatsby-theme-newrelic',
       options: {
@@ -42,6 +44,25 @@ module.exports = {
         gaTrackingId: 'UA-3047412-33',
       },
     },
-    'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/pages`,
+      },
+    },
+    'gatsby-plugin-remove-trailing-slashes',
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
+      },
+    },
   ],
 };
