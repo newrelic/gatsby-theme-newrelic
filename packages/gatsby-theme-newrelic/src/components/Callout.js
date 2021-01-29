@@ -43,7 +43,6 @@ const Callout = ({ className, title, variant, children }) => {
       className={className}
       css={css`
         padding: 1.25rem;
-        margin: 1.5rem 0;
         border-radius: 0.25rem;
         border: 1px solid;
         border-left-width: 6px;
