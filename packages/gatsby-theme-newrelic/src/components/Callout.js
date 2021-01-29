@@ -62,7 +62,6 @@ const Callout = ({ title, variant, children }) => {
           css={css`
             font-size: 0.75rem !important;
             text-transform: uppercase;
-            /* color: var(--heading-text-color); */
             margin-top: 0 !important;
             ${styles.variant[`${variant}-title`]}
           `}
