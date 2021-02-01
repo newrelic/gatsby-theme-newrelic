@@ -75,10 +75,6 @@ const GlobalHeader = ({ className }) => {
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
   const useCondensedHeader = useMedia({ maxWidth: '585px' });
-  const inDocsSite = [
-    'https://docs.newrelic.com',
-    'https://docs-preview.newrelic.com',
-  ].includes(siteUrl);
 
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
@@ -327,9 +323,7 @@ const GlobalHeader = ({ className }) => {
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
               >
-                <span>
-                  {inDocsSite ? t('button.signUp') : t('button.startNow')}
-                </span>
+                <span>{'Free Account'}</span>
               </Button>
             </li>
           </ul>
