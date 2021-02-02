@@ -64,7 +64,7 @@ const CodeHighlight = ({
 
                 var,
                 mark {
-                  font-size: 1em;
+                  font-size: inherit;
                 }
 
                 var {

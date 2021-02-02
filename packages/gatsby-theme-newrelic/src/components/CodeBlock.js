@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
@@ -7,6 +8,7 @@ import CodeEditor from './CodeEditor';
 import Icon from './Icon';
 import CodeHighlight from './CodeHighlight';
 import MiddleEllipsis from 'react-middle-ellipsis';
+import RawCode from './RawCode';
 import useClipboard from '../hooks/useClipboard';
 import useFormattedCode from '../hooks/useFormattedCode';
 import useThemeTranslation from '../hooks/useThemeTranslation';
@@ -21,9 +23,18 @@ const AUTO_FORMATTED_LANGUAGES = [
   'scss',
 ];
 
+const CONTAINS_VAR = /<var>(.*?)<\/var>/gs;
+const CONTAINS_MARK = /<mark>(.*?)<\/mark>/gs;
+const CONTAINS_LINK = /<a href=.*?>(.*?)<\/a>/gs;
+
 const defaultComponents = {
   Preview: LivePreview,
 };
+
+const containsEmbeddedHTML = (code) =>
+  [CONTAINS_VAR, CONTAINS_MARK, CONTAINS_LINK].some((regex) =>
+    regex.test(code)
+  );
 
 const CodeBlock = ({
   autoFormat,
@@ -40,6 +51,8 @@ const CodeBlock = ({
   preview,
   scope,
 }) => {
+  children = children.trim();
+
   if (isJSLang()) {
     language = 'jsx';
   }
@@ -98,7 +111,9 @@ const CodeBlock = ({
               overflow: auto;
             `}
           >
-            {live ? (
+            {language !== 'html' && containsEmbeddedHTML(children) ? (
+              <RawCode code={children} language={language} />
+            ) : live ? (
               <CodeEditor
                 value={code}
                 language={language}
