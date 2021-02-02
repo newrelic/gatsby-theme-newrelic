@@ -40,6 +40,43 @@ const liveCodeSample = `
 <Button variant={Button.VARIANT.PRIMARY} onClick={() => alert('Hello!')}>Hello!</Button>
 `;
 
+const codeSampleWithAdditionalTags = `
+query AccountQuery(<var>$accountId:</var> ID!) {
+  account(id: <var>$accountId</var>) {
+    <a href="https://docs.newrelic.com/docs/nrql"><var>name</var></a>
+  }
+}
+`;
+
+const anotherSample = `
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <mark>nri-integration-cfg</mark>
+  namespace: default
+data:
+<mark>  apache-config.yaml: |
+    ---
+    # Run auto discovery to find pods with label "app=apache"
+    # https://docs.newrelic.com/docs/integrations/host-integrations/installation/container-auto-discovery
+    discovery:
+      command:
+        # Use the optional arguments:
+        # --namespaces: Comma separated namespaces to discover pods on
+        # --tls: Use secure (TLS) connection
+        # --port: Port used to connect to the kubelet. Default is 10255
+        exec: /var/db/newrelic-infra/nri-discovery-kubernetes --port <var>PORT</var> --tls
+        match:
+          label.app: apache
+    integrations:
+      - name: nri-apache
+        env:
+          # Use the discovered IP as the host address
+          STATUS_URL: http://\${discovery.ip}/server-status?auto
+          METRICS: 1</mark>
+`;
+
 const IndexPage = () => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
@@ -152,6 +189,16 @@ const IndexPage = () => {
           >
             {liveCodeSample}
           </CodeBlock>
+          <h2>Code block w/ embedded var/mark/links</h2>
+          <CodeBlock
+            language="graphql"
+            css={css`
+              margin-bottom: 1rem;
+            `}
+          >
+            {codeSampleWithAdditionalTags}
+          </CodeBlock>
+          <CodeBlock language="yaml">{anotherSample}</CodeBlock>
         </section>
         <section>
           <h2>Terminal</h2>
