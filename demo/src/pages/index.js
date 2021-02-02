@@ -77,6 +77,16 @@ data:
           METRICS: 1</mark>
 `;
 
+const xmlSample = `
+<dependency>
+  <groupId>com.newrelic.agent.java</groupId>
+  <artifactId>newrelic-java</artifactId>
+  <version><var>JAVA_AGENT_VERSION</var></version>
+  <scope>provided</scope>
+  <type>zip</type>
+</dependency>
+`;
+
 const IndexPage = () => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
@@ -104,6 +114,9 @@ const IndexPage = () => {
       >
         <h1>{t('home.welcome')}</h1>
         <p>{t('home.intro')}</p>
+        <p>
+          This is a <mark>demo site</mark>
+        </p>
         <section>
           <h2>Search inputs</h2>
           <SearchInput
@@ -198,7 +211,15 @@ const IndexPage = () => {
           >
             {codeSampleWithAdditionalTags}
           </CodeBlock>
-          <CodeBlock language="yaml">{anotherSample}</CodeBlock>
+          <CodeBlock
+            language="yaml"
+            css={css`
+              margin-bottom: 1rem;
+            `}
+          >
+            {anotherSample}
+          </CodeBlock>
+          <CodeBlock language="xml">{xmlSample}</CodeBlock>
         </section>
         <section>
           <h2>Terminal</h2>
