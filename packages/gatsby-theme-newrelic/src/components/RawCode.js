@@ -2,7 +2,56 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { Link } from '@newrelic/gatsby-theme-newrelic';
-import parse, { attributesToProps, domToReact } from 'html-react-parser';
+import replace from 'react-string-replace';
+
+// The ordering of this array is very important. Since we are using string
+// replacement, there is a possibility the regex will not match if its inner
+// contents have already been replaced by a React component.
+//
+// For example, if we are replacing `<mark><var>$accountId</var></mark>` and
+// we replace <var> before <mark>, the <mark> regex would no longer match since
+// its inner contents have been replaced as a <var> React component instead of
+// a string. In this example, we'd need to replace `<mark>` first so that we can
+// recursively send its inner contents back through the replacement.
+//
+// Because of this specific ordering, there is a possibility of the tags not
+// getting replaced if any of these are reversed in the code block. For example,
+// we support <a><var>text</var></a> but not <var><a>text</a></var>. Looking
+// through the docs site, this should be ok. Check this PR as a reference to the
+// many examples where we use embedded tags in a code block:
+// https://github.com/newrelic/docs-website/pull/724
+//
+// `html-react-parser` (https://github.com/remarkablemark/html-react-parser) was
+// also evaluated as a possibility since it has the ability to (more robustly)
+// replace HTML strings with React components. Unfortunately this library
+// lowercases all tag and attribute names, which is a big downside when
+// the code block is XML. For this reason, we are going with the simple approach
+// of string replacement.
+const REPLACEMENTS = [
+  [
+    /<mark>(.*?)<\/mark>/gs,
+    (match, i) => <mark key={match + i}>{replaceHTML(match)}</mark>,
+  ],
+  [
+    /<a href=.+?>(.*?)<\/a>/gs,
+    (match, i) => (
+      <Link to="" key={match + i}>
+        {replaceHTML(match)}
+      </Link>
+    ),
+  ],
+  [
+    /<var>(.*?)<\/var>/gs,
+    (match, i) => <var key={match + i}>{replaceHTML(match)}</var>,
+  ],
+];
+
+const replaceHTML = (code) => {
+  return REPLACEMENTS.reduce(
+    (code, [regex, replacement]) => replace(code, regex, replacement),
+    code
+  );
+};
 
 const RawCode = ({ code, language }) => {
   return (
@@ -69,28 +118,7 @@ const RawCode = ({ code, language }) => {
           }
         `}
       >
-        {parse(code, {
-          replace: ({ name, attribs, children }) => {
-            if (name === 'a') {
-              const {
-                href,
-                style: _style,
-                className: _className,
-                ...props
-              } = attribs;
-
-              return (
-                <Link to={href} {...attributesToProps(props)}>
-                  {domToReact(children)}
-                </Link>
-              );
-            }
-
-            if (name && name !== 'var' && name !== 'mark') {
-              return domToReact(children);
-            }
-          },
-        })}
+        {replaceHTML(code)}
       </code>
     </pre>
   );

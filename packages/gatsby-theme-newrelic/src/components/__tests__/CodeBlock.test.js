@@ -140,3 +140,22 @@ test('leaves var/mark/a tags as raw text when language is html', () => {
   expect(container.querySelectorAll('mark').length).toEqual(0);
   expect(container.querySelectorAll('a').length).toEqual(0);
 });
+
+test('handles xml tags if no language is specified', () => {
+  const { container } = renderWithTranslation(
+    <CodeBlock>{`
+<dependency>
+  <groupId>com.newrelic.agent.java</groupId>
+  <artifactId>newrelic-java</artifactId>
+  <version><var>JAVA_AGENT_VERSION</var></version>
+  <scope>provided</scope>
+  <type>zip</type>
+</dependency>
+    `}</CodeBlock>
+  );
+
+  const vars = container.querySelectorAll('var');
+
+  expect(vars.length).toEqual(1);
+  expect(vars[0].textContent).toEqual('JAVA_AGENT_VERSION');
+});
