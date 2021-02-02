@@ -322,7 +322,7 @@ const GlobalHeader = ({ className }) => {
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
               >
-                <span> {t('button.signUp')}</span>
+                <span>{t('button.signUp')}</span>
               </Button>
             </li>
           </ul>
