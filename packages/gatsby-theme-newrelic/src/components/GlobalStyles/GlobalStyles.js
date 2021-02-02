@@ -85,6 +85,11 @@ const GlobalStyles = ({ layout }) => (
         code {
           font-size: inherit;
         }
+
+        var,
+        mark {
+          font-size: inherit;
+        }
       }
 
       h1 {
@@ -157,6 +162,44 @@ const GlobalStyles = ({ layout }) => (
       hr {
         border: none;
         border-bottom: 1px solid var(--divider-color);
+      }
+
+      var,
+      mark {
+        line-height: 1.25;
+        display: inline-block;
+        padding: 0.125rem;
+        border-radius: 0.125rem;
+        font-size: 85%;
+      }
+
+      var {
+        font-style: normal;
+        transition: all 0.15s ease-out;
+        color: var(--color-neutrals-900);
+        background: var(--color-brand-100);
+
+        .dark-mode & {
+          color: var(--color-white);
+          background: var(--color-brand-600);
+        }
+      }
+
+      mark {
+        background: var(--color-yellow-100);
+        color: var(--color-neutrals-900);
+
+        .dark-mode & {
+          background: var(--color-yellow-200);
+        }
+      }
+
+      a:hover var {
+        background: var(--color-brand-200);
+
+        .dark-mode & {
+          background: var(--color-brand-500);
+        }
       }
     `}
   />
