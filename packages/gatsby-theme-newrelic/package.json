@@ -66,6 +66,7 @@
     "gatsby-plugin-use-dark-mode": "^1.1.2",
     "gatsby-source-filesystem": "^2.3.19",
     "gatsby-transformer-sharp": "^2.5.11",
+    "html-react-parser": "^1.2.4",
     "i18next": "^19.8.4",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.20",
