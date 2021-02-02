@@ -56,7 +56,6 @@ const GlobalHeader = ({ className }) => {
       site {
         siteMetadata {
           utmSource
-          siteUrl
         }
       }
       allLocale(sort: { fields: [isDefault, locale], order: [DESC, ASC] }) {
@@ -70,7 +69,7 @@ const GlobalHeader = ({ className }) => {
   `);
 
   const {
-    siteMetadata: { utmSource, siteUrl },
+    siteMetadata: { utmSource },
   } = site;
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
@@ -323,7 +322,7 @@ const GlobalHeader = ({ className }) => {
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
               >
-                <span>{'Free Account'}</span>
+                <span> {t('button.signUp')}</span>
               </Button>
             </li>
           </ul>
