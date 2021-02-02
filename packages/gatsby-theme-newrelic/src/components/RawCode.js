@@ -72,7 +72,18 @@ const RawCode = ({ code, language }) => {
         {parse(code, {
           replace: ({ name, attribs, children }) => {
             if (name === 'a') {
-              return <Link to={attribs.href}>{domToReact(children)}</Link>;
+              const {
+                href,
+                style: _style,
+                className: _className,
+                ...props
+              } = attribs;
+
+              return (
+                <Link to={href} {...props}>
+                  {domToReact(children)}
+                </Link>
+              );
             }
 
             if (name && name !== 'var' && name !== 'mark') {
