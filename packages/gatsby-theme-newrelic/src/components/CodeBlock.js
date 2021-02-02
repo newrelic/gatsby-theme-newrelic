@@ -23,18 +23,15 @@ const AUTO_FORMATTED_LANGUAGES = [
   'scss',
 ];
 
-const CONTAINS_VAR = /<var>(.*?)<\/var>/gs;
-const CONTAINS_MARK = /<mark>(.*?)<\/mark>/gs;
-const CONTAINS_LINK = /<a href=.*?>(.*?)<\/a>/gs;
-
 const defaultComponents = {
   Preview: LivePreview,
 };
 
-const containsEmbeddedHTML = (code) =>
-  [CONTAINS_VAR, CONTAINS_MARK, CONTAINS_LINK].some((regex) =>
-    regex.test(code)
-  );
+const replaceHTML = (code) =>
+  code
+    .replace(/<var>(.*?)<\/var>/gs, '$1')
+    .replace(/<mark>(.*?)<\/mark>/gs, '')
+    .replace(/<a href=.*?>(.*?)<\/a>/gs, '');
 
 const CodeBlock = ({
   autoFormat,
@@ -57,6 +54,8 @@ const CodeBlock = ({
     language = 'jsx';
   }
 
+  const normalizedCode = replaceHTML(children);
+  const containsEmbeddedHTML = children !== normalizedCode;
   const { t } = useThemeTranslation();
   const components = { ...defaultComponents, ...componentOverrides };
   const formattedCode = useFormattedCode(children, {
@@ -111,7 +110,7 @@ const CodeBlock = ({
               overflow: auto;
             `}
           >
-            {language !== 'html' && containsEmbeddedHTML(children) ? (
+            {language !== 'html' && containsEmbeddedHTML ? (
               <RawCode code={children} language={language} />
             ) : live ? (
               <CodeEditor
