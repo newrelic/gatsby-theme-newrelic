@@ -42,7 +42,7 @@ const liveCodeSample = `
 
 const codeSampleWithAdditionalTags = `
 query AccountQuery(<var>$accountId:</var> ID!) {
-  account(id: <var>$accountId</var>) {
+  <a href="https://docs.newrelic.com/docs/nerdgraph">account</a>(id: <var>$accountId</var>) {
     <a href="https://docs.newrelic.com/docs/nrql"><var>name</var></a>
   }
 }
