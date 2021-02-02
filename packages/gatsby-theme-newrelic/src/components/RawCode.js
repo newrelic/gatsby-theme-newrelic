@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { Link } from '@newrelic/gatsby-theme-newrelic';
-import parse, { domToReact } from 'html-react-parser';
+import parse, { attributesToProps, domToReact } from 'html-react-parser';
 
 const RawCode = ({ code, language }) => {
   return (
@@ -80,7 +80,7 @@ const RawCode = ({ code, language }) => {
               } = attribs;
 
               return (
-                <Link to={href} {...props}>
+                <Link to={href} {...attributesToProps(props)}>
                   {domToReact(children)}
                 </Link>
               );
