@@ -43,8 +43,8 @@ const liveCodeSample = `
 
 const codeSampleWithAdditionalTags = `
 query AccountQuery(<var>$accountId:</var> ID!) {
-  <a href="https://docs.newrelic.com/docs/nerdgraph">account</a>(id: <var>$accountId</var>) {
-    <a href="https://docs.newrelic.com/docs/nrql"><var>name</var></a>
+  <a href="/build-apps">account</a>(id: <var>$accountId</var>) {
+    <a href="/build-apps/build-hello-world-app"><var>name</var></a>
   }
 }
 `;
@@ -115,9 +115,6 @@ const IndexPage = () => {
       >
         <h1>{t('home.welcome')}</h1>
         <p>{t('home.intro')}</p>
-        <p>
-          This is a <mark>demo site</mark>
-        </p>
         <section>
           <h2>Search inputs</h2>
           <SearchInput

@@ -29,9 +29,10 @@ const defaultComponents = {
 
 const replaceHTML = (code) =>
   code
-    .replace(/<var>(.*?)<\/var>/gs, '$1')
-    .replace(/<mark>(.*?)<\/mark>/gs, '')
-    .replace(/<a href=.*?>(.*?)<\/a>/gs, '');
+    .replace(/<\/?var>/g, '')
+    .replace(/<\/?mark>/g, '')
+    .replace(/<a href=.*?>/g, '')
+    .replace(/<\/a>/g, '');
 
 const CodeBlock = ({
   autoFormat,
@@ -165,7 +166,9 @@ const CodeBlock = ({
               <Button
                 type="button"
                 variant={Button.VARIANT.LINK}
-                onClick={() => copy(code)}
+                onClick={() =>
+                  copy(containsEmbeddedHTML ? normalizedCode : code)
+                }
                 size={Button.SIZE.SMALL}
                 css={css`
                   white-space: nowrap;

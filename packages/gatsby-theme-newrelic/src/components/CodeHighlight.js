@@ -57,7 +57,6 @@ const CodeHighlight = ({
           >
             <code
               css={css`
-                display: table;
                 width: 100%;
                 padding: 0;
                 background: none;

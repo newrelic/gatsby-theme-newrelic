@@ -80,6 +80,7 @@ query MyQuery($accountId: ID!) {
 
   expect(anchors.length).toEqual(1);
   expect(anchors[0].textContent).toEqual('account');
+  expect(anchors[0].getAttribute('href')).toEqual('/docs/nerd-graph');
 });
 
 test('handles combinations of tags', () => {
