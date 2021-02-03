@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { Link } from '@newrelic/gatsby-theme-newrelic';
-import replace from 'react-string-replace';
 
 // The ordering of this array is very important. Since we are using string
 // replacement, there is a possibility the regex will not match if its inner
@@ -28,28 +27,15 @@ import replace from 'react-string-replace';
 // the code block is XML. For this reason, we are going with the simple approach
 // of string replacement.
 const REPLACEMENTS = [
-  [
-    /<mark>(.*?)<\/mark>/gs,
-    (match, i) => <mark key={match + i}>{replaceHTML(match)}</mark>,
-  ],
-  [
-    /<a href=.+?>(.*?)<\/a>/gs,
-    (match, i) => (
-      <Link to="" key={match + i}>
-        {replaceHTML(match)}
-      </Link>
-    ),
-  ],
-  [
-    /<var>(.*?)<\/var>/gs,
-    (match, i) => <var key={match + i}>{replaceHTML(match)}</var>,
-  ],
+  [/&lt;mark>(.*?)&lt;\/mark>/gs, '<mark>$1</mark>'],
+  [/&lt;a href=['"](.+?)['"](.*?)>(.*?)&lt;\/a>/gs, '<a href="$1"$2>$3</a>'],
+  [/&lt;var>(.*?)&lt;\/var>/gs, '<var>$1</var>'],
 ];
 
 const replaceHTML = (code) => {
   return REPLACEMENTS.reduce(
-    (code, [regex, replacement]) => replace(code, regex, replacement),
-    code
+    (code, [regex, replacement]) => code.replace(regex, replacement),
+    code.replace(/</g, '&lt;')
   );
 };
 
@@ -116,9 +102,8 @@ const RawCode = ({ code, language }) => {
             }
           }
         `}
-      >
-        {replaceHTML(code)}
-      </code>
+        dangerouslySetInnerHTML={{ __html: replaceHTML(code) }}
+      />
     </pre>
   );
 };
