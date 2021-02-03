@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { Link } from '@newrelic/gatsby-theme-newrelic';
+import parse, { domToReact, attributesToProps } from 'html-react-parser';
 
 // The ordering of this array is very important. Since we are using string
 // replacement, there is a possibility the regex will not match if its inner
@@ -33,10 +34,26 @@ const REPLACEMENTS = [
 ];
 
 const replaceHTML = (code) => {
-  return REPLACEMENTS.reduce(
+  const html = REPLACEMENTS.reduce(
     (code, [regex, replacement]) => code.replace(regex, replacement),
     code.replace(/</g, '&lt;')
   );
+
+  return parse(html, {
+    replace: (domNode) => {
+      const { name, attribs, children } = domNode;
+
+      if (name === 'a') {
+        const { href, ...props } = attribs;
+
+        return (
+          <Link to={href} {...attributesToProps(props)}>
+            {domToReact(children)}
+          </Link>
+        );
+      }
+    },
+  });
 };
 
 const RawCode = ({ code, language }) => {
@@ -102,8 +119,9 @@ const RawCode = ({ code, language }) => {
             }
           }
         `}
-        dangerouslySetInnerHTML={{ __html: replaceHTML(code) }}
-      />
+      >
+        {replaceHTML(code)}
+      </code>
     </pre>
   );
 };
