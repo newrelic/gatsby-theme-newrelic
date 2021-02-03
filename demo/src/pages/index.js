@@ -115,9 +115,6 @@ const IndexPage = () => {
       >
         <h1>{t('home.welcome')}</h1>
         <p>{t('home.intro')}</p>
-        <p>
-          This is a <mark>demo site</mark>
-        </p>
         <section>
           <h2>Search inputs</h2>
           <SearchInput
