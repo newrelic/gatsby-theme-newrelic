@@ -4,29 +4,6 @@ import { css } from '@emotion/core';
 import { Link } from '@newrelic/gatsby-theme-newrelic';
 import parse, { domToReact, attributesToProps } from 'html-react-parser';
 
-// The ordering of this array is very important. Since we are using string
-// replacement, there is a possibility the regex will not match if its inner
-// contents have already been replaced by a React component.
-//
-// For example, if we are replacing `<mark><var>$accountId</var></mark>` and
-// we replace <var> before <mark>, the <mark> regex would no longer match since
-// its inner contents have been replaced as a <var> React component instead of
-// a string. In this example, we'd need to replace `<mark>` first so that we can
-// recursively send its inner contents back through the replacement.
-//
-// Because of this specific ordering, there is a possibility of the tags not
-// getting replaced if any of these are reversed in the code block. For example,
-// we support <a><var>text</var></a> but not <var><a>text</a></var>. Looking
-// through the docs site, this should be ok. Check this PR as a reference to the
-// many examples where we use embedded tags in a code block:
-// https://github.com/newrelic/docs-website/pull/724
-//
-// `html-react-parser` (https://github.com/remarkablemark/html-react-parser) was
-// also evaluated as a possibility since it has the ability to (more robustly)
-// replace HTML strings with React components. Unfortunately this library
-// lowercases all tag and attribute names, which is a big downside when
-// the code block is XML. For this reason, we are going with the simple approach
-// of string replacement.
 const REPLACEMENTS = [
   [/&lt;mark>(.*?)&lt;\/mark>/gs, '<mark>$1</mark>'],
   [/&lt;a href=['"](.+?)['"](.*?)>(.*?)&lt;\/a>/gs, '<a href="$1"$2>$3</a>'],
