@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.26.0...v1.26.1) (2021-02-03)
+
+
+### Bug Fixes
+
+* **CodeBlock:** ensure anchor tags copy over the href ([1c920c9](https://github.com/newrelic/gatsby-theme-newrelic/commit/1c920c90cd652ed050c27f3ed140190cacf39c1d))
+* **CodeBlock:** ensure copied text does not contain var, mark, or anchor tags ([2ffaebf](https://github.com/newrelic/gatsby-theme-newrelic/commit/2ffaebf81aadd23f5e6c8d953228d1fc068d1fda))
+* **CodeBlock:** remove table display causing weird issues with inline-block elements ([eea664f](https://github.com/newrelic/gatsby-theme-newrelic/commit/eea664f0086590334bf22cc2f250bd570e8b717f))
+* **GlobalStyles:** make var and mark tags inline elements ([a9af5fe](https://github.com/newrelic/gatsby-theme-newrelic/commit/a9af5fe53f5edf04dace29ab91d44f6723b60552))
+* **Table:** add className to outer wrapper ([eee903f](https://github.com/newrelic/gatsby-theme-newrelic/commit/eee903f6a4bfcad08814c258eb9a5b34abea9e25))
+
+
+
+
+
 # [1.26.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.25.1...v1.26.0) (2021-02-03)
 
 
