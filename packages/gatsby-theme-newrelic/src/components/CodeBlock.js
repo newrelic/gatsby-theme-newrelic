@@ -30,8 +30,8 @@ const defaultComponents = {
 const replaceHTML = (code) =>
   code
     .replace(/<var>(.*?)<\/var>/gs, '$1')
-    .replace(/<mark>(.*?)<\/mark>/gs, '')
-    .replace(/<a href=.*?>(.*?)<\/a>/gs, '');
+    .replace(/<mark>(.*?)<\/mark>/gs, '$1')
+    .replace(/<a href=.*?>(.*?)<\/a>/gs, '$1');
 
 const CodeBlock = ({
   autoFormat,
