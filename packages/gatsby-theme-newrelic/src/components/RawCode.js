@@ -5,9 +5,10 @@ import { Link } from '@newrelic/gatsby-theme-newrelic';
 import parse, { domToReact, attributesToProps } from 'html-react-parser';
 
 const REPLACEMENTS = [
-  [/&lt;mark>(.*?)&lt;\/mark>/gs, '<mark>$1</mark>'],
-  [/&lt;a href=['"](.+?)['"](.*?)>(.*?)&lt;\/a>/gs, '<a href="$1"$2>$3</a>'],
-  [/&lt;var>(.*?)&lt;\/var>/gs, '<var>$1</var>'],
+  [/&lt;(\/?)mark>/g, '<$1mark>'],
+  [/&lt;(\/?)var>/g, '<$1var>'],
+  [/&lt;a href=['"](.+?)['"](.*?)>/g, '<a href="$1"$2>'],
+  [/&lt;\/a>/g, '</a>'],
 ];
 
 const replaceHTML = (code) => {
