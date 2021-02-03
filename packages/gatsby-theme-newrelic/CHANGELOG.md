@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.25.1...v1.26.0) (2021-02-03)
+
+
+### Bug Fixes
+
+* **CodeBlock:** add embedded var/mark styles ([7aa8d3c](https://github.com/newrelic/gatsby-theme-newrelic/commit/7aa8d3c92b139e5b2ffab997a5fc696be874a416))
+* **GlobalStyles:** add var and mark styles ([1396f8e](https://github.com/newrelic/gatsby-theme-newrelic/commit/1396f8e00fcd2cb6f73da437967fe987e994bb12))
+* **Table:** add min-width to table cells and ensure the table can scroll horizontally ([78718f2](https://github.com/newrelic/gatsby-theme-newrelic/commit/78718f2293bd45bcf8b7a12695f05355eb2c611d))
+* add support for yaml syntax highlighting ([3596258](https://github.com/newrelic/gatsby-theme-newrelic/commit/3596258f8ddb9c1758570919f835dccb4b758702))
+
+
+### Features
+
+* **CodeBlock:** allow var, mark, and anchor tags within code blocks ([a916fbb](https://github.com/newrelic/gatsby-theme-newrelic/commit/a916fbb0982a33067308f5b81d7db30df16f6baf))
+
+
+
+
+
 ## [1.25.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.25.0...v1.25.1) (2021-01-29)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
