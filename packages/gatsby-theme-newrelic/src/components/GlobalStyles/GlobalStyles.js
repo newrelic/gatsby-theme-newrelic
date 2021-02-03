@@ -167,7 +167,7 @@ const GlobalStyles = ({ layout }) => (
       var,
       mark {
         line-height: 1.25;
-        display: inline-block;
+        display: inline;
         padding: 0.125rem;
         border-radius: 0.125rem;
         font-size: 85%;
