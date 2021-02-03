@@ -4,13 +4,13 @@ import { css } from '@emotion/core';
 
 const Table = ({ className, children }) => (
   <div
+    className={className}
     css={css`
       width: 100%;
       overflow-x: auto;
     `}
   >
     <table
-      className={className}
       css={css`
         border-collapse: collapse;
         border-spacing: 0;
