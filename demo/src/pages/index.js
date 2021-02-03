@@ -14,6 +14,7 @@ import {
   SearchInput,
   SimpleFeedback,
   Surface,
+  Table,
   Tag,
   TagList,
   Terminal,
@@ -389,6 +390,32 @@ nr1 create --type nerdpack --name pageviews-app
           >
             <SimpleFeedback title="Demo Site" slug="/demo/test-site" />
           </div>
+        </section>
+
+        <section>
+          <h2>Tables</h2>
+          <Table>
+            <thead>
+              <tr>
+                <td>Col 1</td>
+                <td>Col 2</td>
+                <td>Col 3</td>
+                <td>Col 4</td>
+                <td>Col 5</td>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+                <tr key={num}>
+                  <td>Row {num} - Column 1</td>
+                  <td>Row {num} - Column 2</td>
+                  <td>Row {num} - Column 3</td>
+                  <td>Row {num} - Column 4</td>
+                  <td>Row {num} - Column 5</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </section>
 
         <section>
