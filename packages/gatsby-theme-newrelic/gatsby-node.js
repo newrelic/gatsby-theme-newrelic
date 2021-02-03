@@ -212,6 +212,7 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
         'graphql',
         'sass',
         'scss',
+        'yaml',
         ...(prism.languages || []),
       ]),
     },

@@ -61,6 +61,24 @@ const CodeHighlight = ({
                 width: 100%;
                 padding: 0;
                 background: none;
+
+                var,
+                mark {
+                  font-size: inherit;
+                }
+
+                var {
+                  background: var(--color-nord-2);
+                  color: inherit;
+                }
+
+                a:hover var {
+                  background: var(--color-nord-3);
+                }
+
+                mark .token {
+                  color: var(--color-neutrals-900) !important;
+                }
               `}
             >
               {tokens.map((line, idx) => (
