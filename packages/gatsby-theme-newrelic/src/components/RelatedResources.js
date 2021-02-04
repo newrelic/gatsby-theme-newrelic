@@ -16,7 +16,7 @@ const findLabel = (url, labels) => {
   return label;
 };
 
-const Resources = ({ resources, title }) => {
+const RelatedResources = ({ resources, title }) => {
   const { t } = useThemeTranslation();
   const {
     site: {
@@ -122,7 +122,7 @@ const Resources = ({ resources, title }) => {
   );
 };
 
-Resources.propTypes = {
+RelatedResources.propTypes = {
   resources: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -132,4 +132,4 @@ Resources.propTypes = {
   title: PropTypes.string,
 };
 
-export default Resources;
+export default RelatedResources;
