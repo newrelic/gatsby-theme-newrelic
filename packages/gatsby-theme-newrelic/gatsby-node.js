@@ -84,38 +84,11 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
 
-  createTypes(`
-    type SiteLayout @dontInfer {
-      contentPadding: String
-      maxWidth: String
-    }
-
-    type MdxFrontmatter @infer {
-      startDate: Date @dateformat(formatString: "YYYY-MM-DD")
-      endDate: Date @dateformat(formatString: "YYYY-MM-DD")
-    }
-
-    type SiteSiteMetadata {
-      repository: String
-      utmSource: String
-      branch: String!
-      contributingUrl: String
-      title: String
-      titleTemplate: String
-    }
-
-    type Locale implements Node {
-      name: String!
-      locale: String!
-      isDefault: Boolean!
-    }
-
-    type RelatedResource implements Node {
-      id: ID!
-      title: String!
-      url: String!
-    }
-  `);
+  createTypes(
+    fs.readFileSync(path.resolve(__dirname, './gatsby/type-defs.graphql'), {
+      encoding: 'utf-8',
+    })
+  );
 };
 
 exports.sourceNodes = (

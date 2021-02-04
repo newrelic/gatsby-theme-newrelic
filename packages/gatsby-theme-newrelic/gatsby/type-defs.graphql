@@ -1,0 +1,30 @@
+type SiteLayout @dontInfer {
+  contentPadding: String
+  maxWidth: String
+}
+
+type MdxFrontmatter @infer {
+  startDate: Date @dateformat(formatString: "YYYY-MM-DD")
+  endDate: Date @dateformat(formatString: "YYYY-MM-DD")
+}
+
+type SiteSiteMetadata {
+  repository: String
+  utmSource: String
+  branch: String!
+  contributingUrl: String
+  title: String
+  titleTemplate: String
+}
+
+type Locale implements Node {
+  name: String!
+  locale: String!
+  isDefault: Boolean!
+}
+
+type RelatedResource implements Node {
+  id: ID!
+  title: String!
+  url: String!
+}
