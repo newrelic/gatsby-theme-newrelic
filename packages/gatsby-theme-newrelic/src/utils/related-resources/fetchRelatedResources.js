@@ -1,6 +1,6 @@
 const fs = require('fs');
 const search = require('./search');
-const { once } = require('lodash');
+const { once, memoize } = require('lodash');
 
 const getExcludedUrls = (node, siteUrl) => {
   const { frontmatter = {} } = node;
@@ -40,10 +40,12 @@ const getResultsFromSwiftype = ({ node, siteUrl, slug }, swiftypeOptions) => {
   );
 };
 
-const getLocalResults = ({ slug }, swiftypeOptions) => {
-  const { resultsPath } = swiftypeOptions;
+const readResultsFromLocalFile = memoize((resultsPath) =>
+  JSON.parse(fs.readFileSync(resultsPath, { encoding: 'utf-8' }))
+);
 
-  const data = JSON.parse(fs.readFileSync(resultsPath));
+const getLocalResults = ({ slug }, swiftypeOptions) => {
+  const data = readResultsFromLocalFile(swiftypeOptions.resultsPath);
 
   return data[slug] || [];
 };
