@@ -104,15 +104,17 @@ const RelatedResources = ({ resources, title }) => {
                   )}
                 </Link>
 
-                <Tag
-                  css={css`
-                    text-transform: uppercase;
-                    font-size: 0.5625rem;
-                    letter-spacing: 0.5px;
-                  `}
-                >
-                  {label}
-                </Tag>
+                {label && (
+                  <Tag
+                    css={css`
+                      text-transform: uppercase;
+                      font-size: 0.5625rem;
+                      letter-spacing: 0.5px;
+                    `}
+                  >
+                    {label}
+                  </Tag>
+                )}
               </li>
             );
           })}
