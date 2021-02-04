@@ -23,40 +23,43 @@ const warn = once((reporter) => {
   );
 });
 
-module.exports = async ({ node, slug, siteUrl, reporter }, swiftypeOptions) => {
-  const {
-    refetch,
-    engineKey,
-    limit,
-    resultsPath,
-    getParams = () => ({}),
-  } = swiftypeOptions;
+const getResultsFromSwiftype = ({ node, siteUrl, slug }, swiftypeOptions) => {
+  const { engineKey, limit, getParams = () => ({}) } = swiftypeOptions;
+  const { frontmatter = {} } = node;
+  const defaultParams = { q: frontmatter.title };
+  const params = getParams({ node, slug });
 
-  const isProdEnv = process.env.NODE_ENV === 'production';
+  return search(
+    siteUrl + slug,
+    { ...defaultParams, ...params },
+    {
+      engineKey,
+      limit,
+      excludedUrls: getExcludedUrls(node, siteUrl),
+    }
+  );
+};
 
-  if (refetch && !isProdEnv) {
-    warn(reporter);
-  }
-
-  // Force disable refetch if in development mode to prevent us from
-  // accidentally triggering potentially many queries
-  if (refetch && isProdEnv) {
-    const { frontmatter = {} } = node;
-    const defaultParams = { q: frontmatter.title };
-    const params = getParams({ node, slug });
-
-    return search(
-      siteUrl + slug,
-      { ...defaultParams, ...params },
-      {
-        engineKey,
-        limit,
-        excludedUrls: getExcludedUrls(node, siteUrl),
-      }
-    );
-  }
+const getLocalResults = ({ slug }, swiftypeOptions) => {
+  const { resultsPath } = swiftypeOptions;
 
   const data = JSON.parse(fs.readFileSync(resultsPath));
 
   return data[slug] || [];
+};
+
+module.exports = async (helpers, swiftypeOptions) => {
+  const { reporter } = helpers;
+  const { refetch } = swiftypeOptions;
+  const isProdEnv = process.env.NODE_ENV === 'production';
+
+  if (refetch) {
+    if (isProdEnv) {
+      return getResultsFromSwiftype(helpers, swiftypeOptions);
+    }
+
+    warn(reporter);
+  }
+
+  return getLocalResults(helpers, swiftypeOptions);
 };
