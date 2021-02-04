@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.27.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.26.1...v1.27.0) (2021-02-04)
+
+
+### Features
+
+* add a NewRelicThemeConfig field to the GraphQL schema ([4e6ba5b](https://github.com/newrelic/gatsby-theme-newrelic/commit/4e6ba5b6fbba548b2731bad7b9e71b054223b290))
+* Always allow related resources from frontmatter. Add ability to selectively fetch related resources from swiftype ([f6d93be](https://github.com/newrelic/gatsby-theme-newrelic/commit/f6d93be832c99bfa8c3b0259fd2832a8335d90a7))
+* automatically filter out frontmatter resources and redirects in swiftype query ([840ac82](https://github.com/newrelic/gatsby-theme-newrelic/commit/840ac82c594baa29a9d966a6b534ffe1eec8a70b))
+* Create a RelatedResources comnponent to use with PageTools ([4c73365](https://github.com/newrelic/gatsby-theme-newrelic/commit/4c73365a4e369bdd522e2eab69a1bffa8a899e6a))
+
+
+
+
+
 ## [1.26.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.26.0...v1.26.1) (2021-02-03)
 
 
