@@ -348,10 +348,12 @@ const createRelatedResources = async (
     return;
   }
 
-  const frontmatterResources =
-    (node.frontmatter && node.frontmatter.resources) || [];
+  const { frontmatter = {} } = node;
 
-  frontmatterResources.forEach((resource) => {
+  const resources = frontmatter.resources || [];
+  const redirects = frontmatter.redirects || [];
+
+  resources.forEach((resource) => {
     const child = createRelatedResourceNode({
       parent: node.id,
       resource,
@@ -382,14 +384,19 @@ const createRelatedResources = async (
     },
   ] = getNodesByType('Site');
 
-  const resources = await getRelatedResources(
-    { slug, siteUrl, params },
+  const excludedUrls = resources
+    .map((resource) => resource.url)
+    .concat(redirects)
+    .map((url) => (url.startsWith('/') ? siteUrl + url : url));
+
+  const swiftypeResources = await getRelatedResources(
+    { slug, siteUrl, params, excludedUrls },
     swiftype
   );
 
-  writeableRelatedResourceData[slug] = resources;
+  writeableRelatedResourceData[slug] = swiftypeResources;
 
-  resources.forEach((resource) => {
+  swiftypeResources.forEach((resource) => {
     const child = createRelatedResourceNode({
       parent: node.id,
       resource,
