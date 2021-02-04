@@ -95,10 +95,10 @@ exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   themeOptions
 ) => {
-  const { i18n = {} } = themeOptions;
+  const { i18n, relatedResources } = withDefaults(themeOptions);
   const { createNode } = actions;
 
-  (i18n.additionalLocales || []).concat(defaultLocale).forEach((locale) => {
+  i18n.locales.forEach((locale) => {
     const isDefault = locale.locale === defaultLocale.locale;
 
     const data = {
@@ -117,6 +117,29 @@ exports.sourceNodes = (
         contentDigest: createContentDigest(data),
       },
     });
+  });
+
+  const config = {
+    relatedResources: {
+      labels: Object.entries(relatedResources.labels).map(
+        ([baseUrl, label]) => ({
+          baseUrl,
+          label,
+        })
+      ),
+    },
+  };
+
+  createNode({
+    ...config,
+    id: createNodeId('@newrelic/gatsby-theme-newrelic:config'),
+    parent: null,
+    children: [],
+    internal: {
+      type: 'NewRelicThemeConfig',
+      contentDigest: createContentDigest(config),
+      content: JSON.stringify(config),
+    },
   });
 };
 

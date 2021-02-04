@@ -28,3 +28,16 @@ type RelatedResource implements Node {
   title: String!
   url: String!
 }
+
+type NewRelicThemeConfig implements Node {
+  relatedResources: NewRelicThemeRelatedResourceConfig!
+}
+
+type NewRelicThemeRelatedResourceConfig {
+  labels: [RelatedResourceLabel!]!
+}
+
+type RelatedResourceLabel {
+  baseUrl: String!
+  label: String!
+}
