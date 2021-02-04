@@ -81,7 +81,9 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
       message: 'Creating an empty related resources file',
     });
 
-    writeableRelatedResourceData = fs.readFileSync(resultsPath);
+    writeableRelatedResourceData = JSON.parse(
+      fs.readFileSync(resultsPath, { encoding: 'utf-8' })
+    );
   }
 };
 
@@ -358,7 +360,6 @@ const createRelatedResources = async (
   const { frontmatter = {} } = node;
 
   const resources = frontmatter.resources || [];
-  const redirects = frontmatter.redirects || [];
 
   resources.forEach((resource) => {
     const child = createRelatedResourceNode({
@@ -372,8 +373,7 @@ const createRelatedResources = async (
     createParentChildLink({ parent: node, child: child });
   });
 
-  const { getSlug, filter = () => true, getParams = () => ({}) } =
-    swiftype || {};
+  const { getSlug, filter = () => true } = swiftype || {};
 
   const slug = getSlug
     ? getSlug({ node })
@@ -383,21 +383,14 @@ const createRelatedResources = async (
     return;
   }
 
-  const params = getParams({ node, slug });
-
   const [
     {
       siteMetadata: { siteUrl },
     },
   ] = getNodesByType('Site');
 
-  const excludedUrls = resources
-    .map((resource) => resource.url)
-    .concat(redirects)
-    .map((url) => (url.startsWith('/') ? siteUrl + url : url));
-
   const swiftypeResources = await getRelatedResources(
-    { slug, siteUrl, params, excludedUrls },
+    { node, slug, siteUrl },
     swiftype
   );
 
