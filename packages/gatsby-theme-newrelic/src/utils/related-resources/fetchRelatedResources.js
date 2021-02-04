@@ -1,23 +1,17 @@
 const fs = require('fs');
 const search = require('./search');
 
-module.exports = async ({ pathname, node, siteUrl }, swiftypeOptions) => {
-  const {
-    refetch,
-    engineKey,
-    limit,
-    file,
-    getParams = () => ({}),
-  } = swiftypeOptions;
+module.exports = async ({ slug, params, siteUrl }, swiftypeOptions) => {
+  const { refetch, engineKey, limit, resultsPath } = swiftypeOptions;
 
   if (refetch) {
-    return search(siteUrl + pathname, getParams({ node }), {
+    return search(siteUrl + slug, params, {
       engineKey,
       limit,
     });
   }
 
-  const data = JSON.parse(fs.readFileSync(file));
+  const data = JSON.parse(fs.readFileSync(resultsPath));
 
-  return data[pathname] || [];
+  return data[slug] || [];
 };
