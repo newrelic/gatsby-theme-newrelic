@@ -65,8 +65,11 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
       });
   }
 
-  if (swiftype.file && !fs.existsSync(swiftype.file)) {
-    fs.writeFileSync(swiftype.file, '{}');
+  if (swiftype.file) {
+    createFile(swiftype.file, '{}', {
+      reporter,
+      message: 'Creating an empty related resources file',
+    });
   }
 };
 
