@@ -367,21 +367,24 @@ const createRelatedResources = async (
     createParentChildLink({ parent: node, child: child });
   });
 
-  const { getSlug, filter = () => true, getParams = () => ({}) } = swiftype;
+  const { getSlug, filter = () => true, getParams = () => ({}) } =
+    swiftype || {};
 
-  if (!swiftype || !filter({ node })) {
+  const slug = getSlug
+    ? getSlug({ node })
+    : createFilePath({ node, getNode, trailingSlash: false });
+
+  if (!swiftype || !filter({ node, slug })) {
     return;
   }
+
+  const params = getParams({ node, slug });
 
   const [
     {
       siteMetadata: { siteUrl },
     },
   ] = getNodesByType('Site');
-
-  const defaultSlug = createFilePath({ node, getNode, trailingSlash: false });
-  const slug = getSlug ? getSlug({ node }) : defaultSlug;
-  const params = getParams({ node, slug });
 
   const resources = await getRelatedResources(
     { slug, siteUrl, params },
