@@ -2,20 +2,21 @@ module.exports = ({
   createNode,
   createNodeId,
   createContentDigest,
-  resource,
+  resource: { title, url },
   parent,
 }) => {
+  const data = { title, url };
+
   const node = {
-    id: createNodeId(`RelatedResource-${resource.url}`),
-    title: resource.title,
-    url: resource.url,
+    ...data,
+    id: createNodeId(`RelatedResource-${url}`),
     parent,
     children: [],
-    plugin: 'gatsby-source-swiftype',
+    plugin: '@newrelic/gatsby-theme-newrelic',
     internal: {
       type: 'RelatedResource',
-      content: JSON.stringify(resource),
-      contentDigest: createContentDigest(resource),
+      content: JSON.stringify(data),
+      contentDigest: createContentDigest(data),
     },
   };
 
