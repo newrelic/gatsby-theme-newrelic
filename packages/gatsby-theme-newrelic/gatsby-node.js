@@ -421,13 +421,13 @@ const validateSwiftypeOptions = (swiftypeOptions) => {
 
   if (!resultsPath) {
     throw new Error(
-      "[@newrelic/gatsby-theme-newrelic] You have enabled swiftype searches, but the 'resultsPath' is not defined. Please define a 'relatedResources.swiftype.resultsPath' option"
+      "You have enabled swiftype searches, but the 'resultsPath' is not defined. Please define a 'relatedResources.swiftype.resultsPath' option"
     );
   }
 
   if (!engineKey) {
     throw new Error(
-      "[@newrelic/gatsby-theme-newrelic] You have enabled swiftype searches, but the 'engineKey' is missing. Please define a 'relatedResources.swiftype.engineKey' option"
+      "You have enabled swiftype searches, but the 'engineKey' is missing. Please define a 'relatedResources.swiftype.engineKey' option"
     );
   }
 };
