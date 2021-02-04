@@ -47,6 +47,9 @@
     "cookiePolicy": "Cookie Policy",
     "ukSlaveryAct": "UK Slavery Act"
   },
+  "relatedResources": {
+    "title": "Related resources"
+  },
   "searchInput": {
     "placeholder": "Search Docs, Developer, Open Source"
   },

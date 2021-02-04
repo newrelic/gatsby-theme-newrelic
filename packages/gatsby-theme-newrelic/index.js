@@ -29,6 +29,7 @@ export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 export { default as Overlay } from './src/components/Overlay';
 export { default as PageTools } from './src/components/PageTools';
 export { default as Portal } from './src/components/Portal';
+export { default as RelatedResources } from './src/components/RelatedResources';
 export { default as SearchInput } from './src/components/SearchInput';
 export { default as SEO } from './src/components/SEO';
 export { default as SimpleFeedback } from './src/components/SimpleFeedback';
