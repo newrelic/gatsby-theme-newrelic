@@ -63,6 +63,7 @@ websites](https://opensource.newrelic.com).
   - [`PageTools`](#pagetools)
     - [`PageTools.Section`](#pagetoolssection)
     - [`PageTools.Title`](#pagetoolstitle)
+  - [`RelatedResources`](#relatedresources-1)
   - [`SearchInput`](#searchinput)
   - [`SEO`](#seo)
   - [`SimpleFeedback`](#simplefeedback)
@@ -1818,6 +1819,37 @@ section of content inside of `PageTools`. Render this inside of a
 | ----------- | ------ | -------- | ------- | -------------------------------------------------------- |
 | `className` | string | no       |         | Additional `className` for the component.                |
 | `children`  | node   | no       |         | Title to be displayed in the `PageTools.Title` component |
+
+### `RelatedResources`
+
+Used to display related resources for the current page. This is meant to be used
+as a section inside of the [`PageTools`](#pagetools) component.
+
+```js
+import { RelatedResources } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop        | Type       | Required | Default             | Description                                          |
+| ----------- | ---------- | -------- | ------------------- | ---------------------------------------------------- |
+| `resources` | Resource[] | yes      |                     | Array of resources to be displayed in the component. |
+| `title`     | string     | no       | 'Related resources' | Title to be displayed as the title for this section  |
+
+```ts
+type Resource = {
+  url: string
+  title: string
+}
+```
+
+**Examples**
+
+```js
+<PageTools>
+  <RelatedResources resources={relatedResources} />
+</PageTools>
+```
 
 ### `SearchInput`
 
