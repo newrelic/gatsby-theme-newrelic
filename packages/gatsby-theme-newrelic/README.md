@@ -16,6 +16,7 @@ websites](https://opensource.newrelic.com).
     - [`sitemap`](#sitemap)
     - [`newrelic`](#newrelic)
     - [`robots`](#robots)
+    - [`relatedResources`](#relatedresources)
     - [`i18n`](#i18n)
     - [`layout`](#layout)
     - [`prism`](#prism)
@@ -62,6 +63,7 @@ websites](https://opensource.newrelic.com).
   - [`PageTools`](#pagetools)
     - [`PageTools.Section`](#pagetoolssection)
     - [`PageTools.Title`](#pagetoolstitle)
+  - [`RelatedResources`](#relatedresources-1)
   - [`SearchInput`](#searchinput)
   - [`SEO`](#seo)
   - [`SimpleFeedback`](#simplefeedback)
@@ -165,6 +167,11 @@ module.exports = {
             authorizationKey: 'my-auth-key',
           },
         },
+        relatedResources: {
+          labels: {
+            'https://my.website': 'my-website'
+          },
+        },
         gaTrackingId: 'UA-XXXXXX-XX',
       },
     },
@@ -217,6 +224,61 @@ documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 
 **Default**: `{ policy: [{ userAgent: '*', allow: '/' }] }`
 
+#### `relatedResources`
+
+Optional configuration for related resources used in the right rail. Currently
+only `Mdx` nodes are supported.
+
+**Options:**
+
+- `labels` _(object)_: Map of URLs to their label. This is used to match
+  results displayed in the right rail with the label in the tag displayed
+  underneath the link. Use this to add additional labels not covered by the
+  default set of labels.
+
+- `swiftype` _(object | false)_: Configuration used for fetching results from
+  Swiftype for an `Mdx` node. Set this to `false` (the default) to disable
+  fetching related resources through Swiftype. If this is disabled, related
+  resources can only be sourced via frontmatter. If enabled, this takes the
+  following configuration:
+
+  - `resultsPath` _(string)_ **required**: Path to the file where Swiftype
+    results will be stored. If the `refetch` option is set to `false` (the
+    default), this file will be used to read related resource values for each
+    `Mdx` node. This file is only written to when `refetch` is set to `true`.
+
+  - `refetch` _(boolean)_: Determines whether to refetch results from Swiftype
+    for every `Mdx` node during a build. It's a good idea to only set this on a
+    special build (e.g. a build that happens on a cron job) so that Swiftype is
+    not searched on development or every build on the site.
+
+    - **Default**: `false`
+
+  - `engineKey` _(string)_ **required**: Swiftype's engine key used to fetch
+    results from a Swiftype search engine.
+
+  - `getSlug` _(function)_: Function to get the slug for an `Mdx` node.
+    Useful if the slug is set from something other than the filesystem. By
+    default, this will use the `createFilePath` helper to generate the slug for
+    the `Mdx` node. This function should accept an object as its only argument
+    with a key of `node` (i.e. `getSlug: ({ node }) => { /* do something */ }`)
+
+  - `filter` _(function)_: Function to determine whether Swfitype should be
+    queried for the `Mdx` node. Useful if you only need to get related resources
+    for a subset of nodes on the site. By default, all `Mdx` nodes are fetched.
+    This function should accept an object as its only argument with a key of
+    `node` and a key of `slug` (i.e. `filter: ({ node, slug }) => { /* do something */ }`).
+
+  - `getParams` _(function)_: Function that allows you to specify additional
+    params passed to Swiftype when running a search query. Useful if you want to
+    provide additional filters or field boosts. This function should accept an
+    object as its only argument with a key of `node` and a key of `slug`.
+
+  - `limit` _(integer)_: The limit of related resources that should be fetched
+    from Swiftype.
+
+    - **Default**: `5`
+
 #### `i18n`
 
 Optional configuration for internationalization (i18n).
@@ -267,6 +329,11 @@ query {
   }
 }
 ```
+
+These values are also available as global CSS variables. You can access them as:
+
+- `maxWidth`: `var(--site-max-width)`
+- `contentPadding`: `var(--site-content-padding)`
 
 #### `prism`
 
@@ -1752,6 +1819,37 @@ section of content inside of `PageTools`. Render this inside of a
 | ----------- | ------ | -------- | ------- | -------------------------------------------------------- |
 | `className` | string | no       |         | Additional `className` for the component.                |
 | `children`  | node   | no       |         | Title to be displayed in the `PageTools.Title` component |
+
+### `RelatedResources`
+
+Used to display related resources for the current page. This is meant to be used
+as a section inside of the [`PageTools`](#pagetools) component.
+
+```js
+import { RelatedResources } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop        | Type       | Required | Default             | Description                                          |
+| ----------- | ---------- | -------- | ------------------- | ---------------------------------------------------- |
+| `resources` | Resource[] | yes      |                     | Array of resources to be displayed in the component. |
+| `title`     | string     | no       | 'Related resources' | Title to be displayed as the title for this section  |
+
+```ts
+type Resource = {
+  url: string
+  title: string
+}
+```
+
+**Examples**
+
+```js
+<PageTools>
+  <RelatedResources resources={relatedResources} />
+</PageTools>
+```
 
 ### `SearchInput`
 
