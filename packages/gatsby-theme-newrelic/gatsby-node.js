@@ -13,6 +13,7 @@ let writeableRelatedResourceData = {};
 
 const uniq = (arr) => [...new Set(arr)];
 
+const ANNOUNCEMENTS_DIRECTORY = 'src/announcements';
 const DEFAULT_BRANCH = 'main';
 
 const matchesLocale = (path, locale) =>
@@ -35,7 +36,10 @@ exports.onPreInit = (_, themeOptions) => {
 exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   const { program } = store.getState();
   const imagePath = path.join(program.directory, 'src/images');
-  const announcementsPath = path.join(program.directory, 'src/announcements');
+  const announcementsPath = path.join(
+    program.directory,
+    ANNOUNCEMENTS_DIRECTORY
+  );
   const { relatedResources = {} } = themeOptions;
 
   createDirectory(imagePath, {
@@ -344,7 +348,10 @@ const createRelatedResources = async (
   const { swiftype } = options;
   const { createNode, createParentChildLink } = actions;
 
-  if (node.internal.type !== 'Mdx') {
+  if (
+    node.internal.type !== 'Mdx' ||
+    node.fileAbsolutePath.includes(ANNOUNCEMENTS_DIRECTORY)
+  ) {
     return;
   }
 
