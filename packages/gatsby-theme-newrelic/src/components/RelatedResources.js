@@ -60,8 +60,11 @@ const RelatedResources = ({ resources, title }) => {
             padding: 0;
           `}
         >
-          {resources.map((resource) => {
-            const { url } = resource;
+          {resources.map(({ url, title }) => {
+            if (url.startsWith(siteUrl)) {
+              url = url.replace(siteUrl, '');
+            }
+
             const label = isRelative(url)
               ? currentSiteLabel
               : findLabel(url, labels);
@@ -90,7 +93,7 @@ const RelatedResources = ({ resources, title }) => {
                       vertical-align: middle;
                     `}
                   >
-                    {resource.title}
+                    {title}
                   </span>
 
                   {!isRelative(url) && (
