@@ -344,7 +344,15 @@ const createFile = (filepath, data, { reporter, message } = {}) => {
 };
 
 const createRelatedResources = async (
-  { node, actions, createContentDigest, getNodesByType, getNode, createNodeId },
+  {
+    node,
+    actions,
+    createContentDigest,
+    getNodesByType,
+    getNode,
+    createNodeId,
+    reporter,
+  },
   options
 ) => {
   const { swiftype } = options;
@@ -390,7 +398,7 @@ const createRelatedResources = async (
   ] = getNodesByType('Site');
 
   const swiftypeResources = await getRelatedResources(
-    { node, slug, siteUrl },
+    { node, slug, siteUrl, reporter },
     swiftype
   );
 
