@@ -7,11 +7,17 @@ const themeSupportedLocales = ['en'];
 const uniq = (arr) => [...new Set(arr)];
 
 const withDefaults = (themeOptions) => {
-  const { i18n = {} } = themeOptions;
+  const { i18n = {}, relatedResources = {} } = themeOptions;
   const { i18nextOptions = {} } = i18n;
 
   return {
     ...themeOptions,
+    relatedResources: {
+      ...relatedResources,
+      swiftype: relatedResources.swiftype
+        ? { limit: 5, refetch: false, ...relatedResources.swiftype }
+        : false,
+    },
     i18n: {
       extract: true,
       ...themeOptions.i18n,
