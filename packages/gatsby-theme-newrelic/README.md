@@ -312,6 +312,8 @@ Optional configuration for Tessen tracking.
     object as its only argument with both the `location` and `env` as properties
     on that object. The `env` is determined by the result of the
     [`resolveEnv`](#resolvenv) configuration.
+  - `...rest`: All other properties will be added as `properties` to
+    `tessen.page`.
 - `env` _(object)_: Environment-specific configuration. This takes the same
   properties as listed above. These values override the values set above. Useful
   if you have environment overrides you'd like to apply. The environment is
