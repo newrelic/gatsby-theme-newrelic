@@ -461,11 +461,11 @@ const validateSwiftypeOptions = (swiftypeOptions) => {
 };
 
 const validateTessenOptions = (tessenOptions) => {
-  const { writeKey } = tessenOptions;
+  const { segmentWriteKey } = tessenOptions;
 
-  if (!writeKey) {
+  if (!segmentWriteKey) {
     throw new Error(
-      "You have enabled Tessen, but the 'writeKey' is missing. Please define a 'tessen.writeKey' option"
+      "You have enabled Tessen, but the 'writeKey' is missing. Please define a 'tessen.segmentWriteKey' option"
     );
   }
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Terser from 'terser';
 
-const generateScript = ({ writeKey }) => `
+const generateScript = ({ segmentWriteKey }) => `
 (function(writeKey) {
   Tessen.load(["Segment", "NewRelic"], {
     Segment: {
@@ -12,7 +12,7 @@ const generateScript = ({ writeKey }) => `
   })
 
   Tessen.identify({})
-})('${writeKey}')
+})('${segmentWriteKey}')
 `;
 
 const TessenHydrationScriptTag = ({ tessenOptions }) => {
@@ -32,7 +32,7 @@ const TessenHydrationScriptTag = ({ tessenOptions }) => {
 TessenHydrationScriptTag.propTypes = {
   tessenOptions: PropTypes.shape({
     minify: PropTypes.bool.isRequired,
-    writeKey: PropTypes.string,
+    segmentWriteKey: PropTypes.string,
   }).isRequired,
 };
 
