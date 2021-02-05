@@ -20,7 +20,6 @@ const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
       key="tessen"
       type="text/javascript"
       src={`/${path.basename(TESSEN_PATH)}`}
-      async=""
     />,
   ]);
 };
