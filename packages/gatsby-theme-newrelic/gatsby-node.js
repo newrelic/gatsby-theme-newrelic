@@ -8,6 +8,7 @@ const {
 } = require('./src/utils/defaultOptions');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
+const { TESSEN_PATH } = require('./gatsby/constants');
 
 let writeableRelatedResourceData = {};
 
@@ -35,6 +36,11 @@ exports.onPreInit = (_, themeOptions) => {
 
 exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   const { program } = store.getState();
+  const tessenLibrary = path.join(
+    program.directory,
+    'static',
+    path.basename(TESSEN_PATH)
+  );
   const imagePath = path.join(program.directory, 'src/images');
   const announcementsPath = path.join(
     program.directory,
@@ -78,11 +84,21 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
 
     createFile(resultsPath, '{}', {
       reporter,
-      message: 'Creating an empty related resources file',
+      message: 'creating an empty related resources file',
     });
 
     writeableRelatedResourceData = JSON.parse(
       fs.readFileSync(resultsPath, { encoding: 'utf-8' })
+    );
+  }
+
+  if (!fs.existsSync(tessenLibrary)) {
+    createDirectory(path.dirname(tessenLibrary));
+
+    fs.copyFileSync(TESSEN_PATH, tessenLibrary);
+
+    reporter.info(
+      '[@newrelic/gatsby-theme-newrelic] adding Tessen library. Please commit this file.'
     );
   }
 };
