@@ -22,24 +22,12 @@ const DEFAULT_SITE_LABELS = {
   'https://learn.newrelic.com': 'learn',
 };
 
-const defaultResolveEnv = () =>
-  process.env.GATSBY_NEWRELIC_ENV ||
-  process.env.GATSBY_ACTIVE_ENV ||
-  process.env.NODE_ENV ||
-  DEFAULT_ENV;
-
 const withDefaults = (themeOptions) => {
-  const {
-    i18n = {},
-    relatedResources = {},
-    resolveEnv = defaultResolveEnv,
-  } = themeOptions;
+  const { i18n = {}, relatedResources = {} } = themeOptions;
   const { i18nextOptions = {} } = i18n;
-  const env = resolveEnv();
 
   return {
     ...themeOptions,
-    env,
     relatedResources: {
       ...relatedResources,
       labels: {
