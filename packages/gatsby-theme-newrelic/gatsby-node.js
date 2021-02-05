@@ -8,7 +8,9 @@ const {
 } = require('./src/utils/defaultOptions');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
+const getTessenConfig = require('./src/utils/config/tessen');
 const { TESSEN_PATH } = require('./gatsby/constants');
+const { getResolvedEnv } = require('./src/utils/config');
 
 let writeableRelatedResourceData = {};
 
@@ -121,8 +123,10 @@ exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   themeOptions
 ) => {
-  const { i18n, relatedResources, tessen, env } = withDefaults(themeOptions);
+  const { i18n, relatedResources } = withDefaults(themeOptions);
   const { createNode } = actions;
+  const tessen = getTessenConfig(themeOptions);
+  const env = getResolvedEnv(themeOptions);
 
   i18n.locales.forEach((locale) => {
     const isDefault = locale.locale === defaultLocale.locale;
