@@ -1,7 +1,5 @@
 const prefixStorageKey = (name) => ['gatsby-theme-newrelic', name].join(':');
 
-export const DEFAULT_ENV = 'development';
-
 export const SPLITS = {
   GLOBAL_HEADER_GITHUB_BUTTONS: 'developer-website_global-header-gh-buttons',
 };
