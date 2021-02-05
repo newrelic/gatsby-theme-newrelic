@@ -12,7 +12,7 @@ const Backdrop = ({ onClick }) => {
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: ${lighten(0.2, '#1c2a2f')};
+        background-color: ${lighten(0.1, '#1c2a2f')};
         opacity: 0.75;
         z-index: 100;
       `}

@@ -21,6 +21,7 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 import path from 'path';
 import { rgba } from 'polished';
 import SearchModal from './SearchModal';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const action = css`
   color: var(--secondary-text-color);
@@ -42,6 +43,8 @@ const actionIcon = css`
   display: block;
   cursor: pointer;
 `;
+
+const queryClient = new QueryClient();
 
 const GlobalHeader = ({ className }) => {
   const location = useLocation();
@@ -90,10 +93,12 @@ const GlobalHeader = ({ className }) => {
 
   return (
     <>
-      <SearchModal
-        onClose={() => setIsSearchModalOpen(false)}
-        isOpen={isSearchModalOpen}
-      />
+      <QueryClientProvider client={queryClient}>
+        <SearchModal
+          onClose={() => setIsSearchModalOpen(false)}
+          isOpen={isSearchModalOpen}
+        />
+      </QueryClientProvider>
       <AnnouncementBanner />
       <div
         data-swiftype-index={false}

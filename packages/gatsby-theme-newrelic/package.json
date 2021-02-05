@@ -75,6 +75,7 @@
     "react-i18next": "^11.8.5",
     "react-live": "^2.2.2",
     "react-middle-ellipsis": "^1.1.0",
+    "react-query": "^3.7.1",
     "react-simple-code-editor": "^0.11.0",
     "react-spring": "^8.0.27",
     "react-typist": "^2.0.5",

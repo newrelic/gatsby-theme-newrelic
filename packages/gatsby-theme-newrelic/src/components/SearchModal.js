@@ -5,10 +5,14 @@ import Backdrop from './Backdrop';
 import SearchInput from './SearchInput';
 import Portal from './Portal';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import { useQuery } from 'react-query';
 
 const SearchModal = ({ onClose, isOpen }) => {
   const { t } = useThemeTranslation();
   const searchInput = useRef();
+  const { isLoading, data } = useSwiftypeSearch();
+
+  console.log(data);
 
   useEffect(() => {
     isOpen && searchInput.current.focus();
@@ -38,6 +42,25 @@ const SearchModal = ({ onClose, isOpen }) => {
       </div>
     </Portal>
   ) : null;
+};
+
+const useSwiftypeSearch = () => {
+  return useQuery('swiftype', () => {
+    return fetch(
+      'https://search-api.swiftype.com/api/v1/public/engines/search.json',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          q: 'agents',
+          engine_key: 'Ad9HfGjDw4GRkcmJjUut',
+          per_page: 10,
+        }),
+      }
+    ).then((res) => res.json());
+  });
 };
 
 SearchModal.propTypes = {
