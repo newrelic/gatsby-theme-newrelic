@@ -2,7 +2,7 @@ import warning from 'warning';
 
 const warnAboutNoop = ({ config, action, name, category }) => {
   warning(
-    config == null,
+    config,
     `tessen.${action}: You are attempting to use a Tessen action, but do not have Tessen enabled. Calls to '${action}' will result in a noop. Please configure Tessen to track Tessen actions.`
   );
 
