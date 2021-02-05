@@ -33,11 +33,13 @@ const onRouteUpdate = ({ location }, themeOptions) => {
 
   const { name, category, getProperties } = pageView;
 
-  tessen.page(
-    name,
-    category,
-    getProperties && getProperties({ location, env })
-  );
+  requestAnimationFrame(() => {
+    tessen.page(
+      name,
+      category,
+      getProperties && getProperties({ location, env })
+    );
+  });
 };
 
 export default onRouteUpdate;
