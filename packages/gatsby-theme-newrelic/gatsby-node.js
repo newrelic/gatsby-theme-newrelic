@@ -8,6 +8,9 @@ const {
 } = require('./src/utils/defaultOptions');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
+const getTessenConfig = require('./src/utils/config/tessen');
+const { TESSEN_PATH } = require('./gatsby/constants');
+const { getResolvedEnv } = require('./src/utils/config');
 
 let writeableRelatedResourceData = {};
 
@@ -20,7 +23,7 @@ const matchesLocale = (path, locale) =>
   new RegExp(`^\\/?${locale}(?=$|\\/)`).test(path);
 
 exports.onPreInit = (_, themeOptions) => {
-  const { i18n, relatedResources = {} } = themeOptions;
+  const { i18n, relatedResources = {}, tessen } = themeOptions;
 
   if (i18n && !i18n.translationsPath) {
     throw new Error(
@@ -31,16 +34,25 @@ exports.onPreInit = (_, themeOptions) => {
   if (relatedResources.swiftype) {
     validateSwiftypeOptions(relatedResources.swiftype);
   }
+
+  if (tessen) {
+    validateTessenOptions(tessen);
+  }
 };
 
 exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   const { program } = store.getState();
+  const tessenLibrary = path.join(
+    program.directory,
+    'static',
+    path.basename(TESSEN_PATH)
+  );
   const imagePath = path.join(program.directory, 'src/images');
   const announcementsPath = path.join(
     program.directory,
     ANNOUNCEMENTS_DIRECTORY
   );
-  const { relatedResources = {} } = themeOptions;
+  const { relatedResources = {}, tessen } = themeOptions;
 
   createDirectory(imagePath, {
     reporter,
@@ -78,11 +90,21 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
 
     createFile(resultsPath, '{}', {
       reporter,
-      message: 'Creating an empty related resources file',
+      message: 'creating an empty related resources file',
     });
 
     writeableRelatedResourceData = JSON.parse(
       fs.readFileSync(resultsPath, { encoding: 'utf-8' })
+    );
+  }
+
+  if (tessen && !fs.existsSync(tessenLibrary)) {
+    createDirectory(path.dirname(tessenLibrary));
+
+    fs.copyFileSync(TESSEN_PATH, tessenLibrary);
+
+    reporter.info(
+      '[@newrelic/gatsby-theme-newrelic] adding Tessen library. Please commit this file.'
     );
   }
 };
@@ -103,6 +125,8 @@ exports.sourceNodes = (
 ) => {
   const { i18n, relatedResources } = withDefaults(themeOptions);
   const { createNode } = actions;
+  const tessen = getTessenConfig(themeOptions);
+  const env = getResolvedEnv(themeOptions);
 
   i18n.locales.forEach((locale) => {
     const isDefault = locale.locale === defaultLocale.locale;
@@ -126,6 +150,7 @@ exports.sourceNodes = (
   });
 
   const config = {
+    env,
     relatedResources: {
       labels: Object.entries(relatedResources.labels).map(
         ([baseUrl, label]) => ({
@@ -134,6 +159,9 @@ exports.sourceNodes = (
         })
       ),
     },
+    tessen: tessen
+      ? { product: tessen.product, subproduct: tessen.subproduct }
+      : null,
   };
 
   createNode({
@@ -293,6 +321,9 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
   const { i18n } = themeOptions;
 
   actions.setWebpackConfig({
+    externals: {
+      tessen: 'Tessen',
+    },
     plugins: [
       plugins.define({
         GATSBY_THEME_NEWRELIC_I18N_PATH: JSON.stringify(
@@ -429,6 +460,16 @@ const validateSwiftypeOptions = (swiftypeOptions) => {
   if (!engineKey) {
     throw new Error(
       "You have enabled swiftype searches, but the 'engineKey' is missing. Please define a 'relatedResources.swiftype.engineKey' option"
+    );
+  }
+};
+
+const validateTessenOptions = (tessenOptions) => {
+  const { segmentWriteKey } = tessenOptions;
+
+  if (!segmentWriteKey) {
+    throw new Error(
+      "You have enabled Tessen, but the 'segmentWriteKey' is missing. Please define a 'tessen.segmentWriteKey' option"
     );
   }
 };
