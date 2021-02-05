@@ -1,15 +1,15 @@
 import React from 'react';
 import TessenHydrationScriptTag from './tessen-hyration-script-tag';
-import { withDefaults } from '../src/utils/defaultOptions';
+import getTessenConfig from '../src/utils/config/tessen';
 
 const onRenderBody = ({ setPostBodyComponents }, themeOptions) => {
-  const { tessen } = withDefaults(themeOptions);
+  const tessenConfig = getTessenConfig(themeOptions);
 
-  if (tessen) {
+  if (tessenConfig) {
     setPostBodyComponents([
       <TessenHydrationScriptTag
         key="@newrelic/gatsby-plugin-newrelic:tessen"
-        tessenOptions={tessen}
+        config={tessenConfig}
       />,
     ]);
   }

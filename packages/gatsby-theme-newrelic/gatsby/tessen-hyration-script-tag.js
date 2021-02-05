@@ -15,10 +15,9 @@ const generateScript = ({ segmentWriteKey }) => `
 })('${segmentWriteKey}')
 `;
 
-const TessenHydrationScriptTag = ({ tessenOptions }) => {
-  const { minify } = tessenOptions;
-
-  const tessenScript = generateScript(tessenOptions);
+const TessenHydrationScriptTag = ({ config }) => {
+  const { minify } = config;
+  const tessenScript = generateScript(config);
 
   return (
     <script
@@ -30,7 +29,7 @@ const TessenHydrationScriptTag = ({ tessenOptions }) => {
 };
 
 TessenHydrationScriptTag.propTypes = {
-  tessenOptions: PropTypes.shape({
+  config: PropTypes.shape({
     minify: PropTypes.bool.isRequired,
     segmentWriteKey: PropTypes.string,
   }).isRequired,
