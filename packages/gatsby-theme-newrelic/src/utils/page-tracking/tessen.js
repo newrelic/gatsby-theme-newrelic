@@ -30,12 +30,15 @@ const trackViaTessen = ({ location }, tessenConfig, env) => {
 
   const { name, category, getProperties } = pageView;
 
+  // wrap inside a timeout to make sure react-helmet is done with its changes (https://github.com/gatsbyjs/gatsby/issues/11592)
   requestAnimationFrame(() => {
-    tessen.page(
-      name,
-      category,
-      getProperties && getProperties({ location, env })
-    );
+    requestAnimationFrame(() => {
+      tessen.page(
+        name,
+        category,
+        getProperties && getProperties({ location, env })
+      );
+    });
   });
 };
 
