@@ -1,4 +1,4 @@
-import createTessen from '../src/utils/createTessen';
+import createTessen from '../createTessen';
 import warning from 'warning';
 
 const warnAboutNoop = (pageView) => {
