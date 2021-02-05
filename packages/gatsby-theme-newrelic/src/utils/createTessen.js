@@ -1,23 +1,33 @@
 import warning from 'warning';
 
-const warnAboutConfig = (config, action) => {
+const warnAboutNoop = ({ config, action, name, category }) => {
   warning(
     config == null,
-    `You are attempting to use a Tessen action, but do not have Tessen enabled. Calls to '${action}' will result in a noop. Please configure Tessen to track Tessen actions.`
+    `tessen.${action}: You are attempting to use a Tessen action, but do not have Tessen enabled. Calls to '${action}' will result in a noop. Please configure Tessen to track Tessen actions.`
   );
 
   warning(
     config?.product && config?.subproduct,
-    `You are attempting to use a Tessen action, but Tessen is misconfigured. Calls to '${action}' will result in a noop. Please configure both the 'tessen.product' and 'tessen.subproduct' option in gatsby-config.js`
+    `tessen.${action}: You are attempting to use a Tessen action, but Tessen is misconfigured. Calls to '${action}' will result in a noop. Please configure both the 'tessen.product' and 'tessen.subproduct' option in gatsby-config.js`
+  );
+
+  warning(
+    name,
+    `tessen.${action}: The 'name' argument is not defined. This has resulted in a noop. Please provide a 'name' argument.`
+  );
+
+  warning(
+    category,
+    `tessen.${action}: The 'category' argument is not defined. This has resulted in a noop. Please provide a 'category' argument.`
   );
 };
 
-const hasValidConfig = (config) =>
-  config && config.product && config.subproduct;
+const canSendAction = ({ config, name, category }) =>
+  name && category && config && config.product && config.subproduct;
 
 const tessenAction = (action, config) => (name, category, properties = {}) => {
-  if (!hasValidConfig(config)) {
-    return warnAboutConfig(config, action);
+  if (!canSendAction({ config, name, category })) {
+    return warnAboutNoop({ config, action, name, category });
   }
 
   if (!window.Tessen) {
@@ -26,8 +36,6 @@ const tessenAction = (action, config) => (name, category, properties = {}) => {
       `tessen.${name}: You are attempting to use a Tessen action, but Tessen is not available on 'window'. Calls to '${name}' will result in a noop.`
     );
   }
-
-  warning(category, `tessen.${action}: Please provide a category`);
 
   window.Tessen[action](name, {
     ...properties,
