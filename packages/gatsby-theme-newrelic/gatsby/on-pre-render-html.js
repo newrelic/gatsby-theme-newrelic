@@ -6,8 +6,6 @@ const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
   themeOptions
 ) => {
-  const { tessen } = themeOptions;
-
   replaceHeadComponents(
     [
       ...getHeadComponents(),
@@ -22,7 +20,7 @@ const onPreRenderHTML = (
         src="//cdn.bizible.com/scripts/bizible.js"
         async=""
       />,
-      tessen && (
+      themeOptions.tessen && (
         <script
           key="tessen"
           type="text/javascript"
