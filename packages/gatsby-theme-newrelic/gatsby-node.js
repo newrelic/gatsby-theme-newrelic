@@ -21,7 +21,7 @@ const matchesLocale = (path, locale) =>
   new RegExp(`^\\/?${locale}(?=$|\\/)`).test(path);
 
 exports.onPreInit = (_, themeOptions) => {
-  const { i18n, relatedResources = {} } = themeOptions;
+  const { i18n, relatedResources = {}, tessen } = themeOptions;
 
   if (i18n && !i18n.translationsPath) {
     throw new Error(
@@ -31,6 +31,10 @@ exports.onPreInit = (_, themeOptions) => {
 
   if (relatedResources.swiftype) {
     validateSwiftypeOptions(relatedResources.swiftype);
+  }
+
+  if (tessen) {
+    validateTessenOptions(tessen);
   }
 };
 
@@ -46,7 +50,7 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
     program.directory,
     ANNOUNCEMENTS_DIRECTORY
   );
-  const { relatedResources = {} } = themeOptions;
+  const { relatedResources = {}, tessen } = themeOptions;
 
   createDirectory(imagePath, {
     reporter,
@@ -92,7 +96,7 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
     );
   }
 
-  if (!fs.existsSync(tessenLibrary)) {
+  if (tessen && !fs.existsSync(tessenLibrary)) {
     createDirectory(path.dirname(tessenLibrary));
 
     fs.copyFileSync(TESSEN_PATH, tessenLibrary);
@@ -448,6 +452,16 @@ const validateSwiftypeOptions = (swiftypeOptions) => {
   if (!engineKey) {
     throw new Error(
       "You have enabled swiftype searches, but the 'engineKey' is missing. Please define a 'relatedResources.swiftype.engineKey' option"
+    );
+  }
+};
+
+const validateTessenOptions = (tessenOptions) => {
+  const { writeKey } = tessenOptions;
+
+  if (!writeKey) {
+    throw new Error(
+      "You have enabled Tessen, but the 'writeKey' is missing. Please define a 'tessen.writeKey' option"
     );
   }
 };

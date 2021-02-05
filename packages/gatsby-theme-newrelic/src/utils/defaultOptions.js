@@ -22,7 +22,7 @@ const DEFAULT_SITE_LABELS = {
 };
 
 const withDefaults = (themeOptions) => {
-  const { i18n = {}, relatedResources = {}, tessen = {} } = themeOptions;
+  const { i18n = {}, relatedResources = {}, tessen } = themeOptions;
   const { i18nextOptions = {} } = i18n;
 
   return {
@@ -37,10 +37,12 @@ const withDefaults = (themeOptions) => {
         ? { limit: 5, refetch: false, ...relatedResources.swiftype }
         : false,
     },
-    tessen: {
-      minify: process.env.NODE_ENV !== 'development',
-      ...tessen,
-    },
+    tessen: tessen
+      ? {
+          minify: process.env.NODE_ENV !== 'development',
+          ...tessen,
+        }
+      : false,
     i18n: {
       extract: true,
       ...themeOptions.i18n,

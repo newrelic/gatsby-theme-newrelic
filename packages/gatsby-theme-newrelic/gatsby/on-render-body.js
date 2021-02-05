@@ -3,14 +3,16 @@ import TessenHydrationScriptTag from './tessen-hyration-script-tag';
 import { withDefaults } from '../src/utils/defaultOptions';
 
 const onRenderBody = ({ setPostBodyComponents }, themeOptions) => {
-  const { tessen = {} } = withDefaults(themeOptions);
+  const { tessen } = withDefaults(themeOptions);
 
-  setPostBodyComponents([
-    <TessenHydrationScriptTag
-      key="@newrelic/gatsby-plugin-newrelic:tessen"
-      tessenOptions={tessen}
-    />,
-  ]);
+  if (tessen) {
+    setPostBodyComponents([
+      <TessenHydrationScriptTag
+        key="@newrelic/gatsby-plugin-newrelic:tessen"
+        tessenOptions={tessen}
+      />,
+    ]);
+  }
 };
 
 export default onRenderBody;
