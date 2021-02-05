@@ -2578,7 +2578,7 @@ type Tessen = {
 
 ```js
 const MyComponent = () => {
-  const tessen = useUserId();
+  const tessen = useTessen();
 
   return (
     <button onClick={() => tessen.track('copyButtonClicked', 'MyCategory')}>
