@@ -42,7 +42,7 @@ const tessenAction = (action, config) => (name, category, properties = {}) => {
     category,
     nr_product: config.product,
     nr_subproduct: config.subproduct,
-    location: 'public',
+    location: 'Public',
   });
 };
 
