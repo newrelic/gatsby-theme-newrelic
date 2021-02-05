@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { useLocation } from '@reach/router';
 import warning from 'warning';
 
 const warnAboutConfig = (config, action) => {
@@ -18,11 +17,7 @@ const warnAboutConfig = (config, action) => {
 const hasValidConfig = (config) =>
   config && config.product && config.subproduct;
 
-const tessenAction = (action, config, location) => (
-  name,
-  category,
-  properties = {}
-) => {
+const tessenAction = (action, config) => (name, category, properties = {}) => {
   if (!hasValidConfig(config)) {
     return warnAboutConfig(config, action);
   }
@@ -38,7 +33,6 @@ const tessenAction = (action, config, location) => (
 
   window.Tessen[action](name, {
     ...properties,
-    path: location.pathname,
     category,
     nr_product: config?.product,
     nr_subproduct: config?.subproduct,
@@ -47,8 +41,6 @@ const tessenAction = (action, config, location) => (
 };
 
 const useTessen = () => {
-  const location = useLocation();
-
   const {
     newRelicThemeConfig: { tessen: config },
   } = useStaticQuery(graphql`
@@ -64,10 +56,10 @@ const useTessen = () => {
 
   const tessen = useMemo(
     () => ({
-      page: tessenAction('page', config, location),
-      track: tessenAction('track', config, location),
+      page: tessenAction('page', config),
+      track: tessenAction('track', config),
     }),
-    [config, location]
+    [config]
   );
 
   return tessen;
