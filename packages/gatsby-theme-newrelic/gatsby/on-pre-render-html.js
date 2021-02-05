@@ -14,6 +14,12 @@ const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
       src="//cdn.bizible.com/scripts/bizible.js"
       async=""
     />,
+    <script
+      key="tessen"
+      type="text/javascript"
+      src="/tessen.min-1.3.0.js"
+      async=""
+    />,
   ]);
 };
 
