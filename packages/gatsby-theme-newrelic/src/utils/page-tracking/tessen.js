@@ -1,5 +1,7 @@
 import createTessen from '../createTessen';
 import warning from 'warning';
+import getTessenConfig from '../config/tessen';
+import { getResolvedEnv } from '../config';
 
 const warnAboutNoop = (pageView) => {
   warning(
@@ -16,7 +18,10 @@ const warnAboutNoop = (pageView) => {
 const canSendPageView = (pageView) =>
   pageView && pageView.name && pageView.category;
 
-const trackViaTessen = ({ location }, tessenConfig, env) => {
+const trackViaTessen = ({ location }, themeOptions) => {
+  const env = getResolvedEnv(themeOptions);
+  const tessenConfig = getTessenConfig(themeOptions);
+
   if (!tessenConfig || !tessenConfig.trackPageViews) {
     return;
   }
