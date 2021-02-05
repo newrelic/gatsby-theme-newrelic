@@ -1,3 +1,4 @@
+const DEFAULT_ENV = 'development';
 const DEFAULT_NAMESPACE = 'translation';
 
 const defaultLocale = { name: 'English', locale: 'en' };
@@ -21,12 +22,24 @@ const DEFAULT_SITE_LABELS = {
   'https://learn.newrelic.com': 'learn',
 };
 
+const defaultResolveEnv = () =>
+  process.env.GATSBY_NEWRELIC_ENV ||
+  process.env.GATSBY_ACTIVE_ENV ||
+  process.env.NODE_ENV ||
+  DEFAULT_ENV;
+
 const withDefaults = (themeOptions) => {
-  const { i18n = {}, relatedResources = {}, tessen } = themeOptions;
+  const {
+    i18n = {},
+    relatedResources = {},
+    resolveEnv = defaultResolveEnv,
+    tessen,
+  } = themeOptions;
   const { i18nextOptions = {} } = i18n;
 
   return {
     ...themeOptions,
+    env: resolveEnv(),
     relatedResources: {
       ...relatedResources,
       labels: {

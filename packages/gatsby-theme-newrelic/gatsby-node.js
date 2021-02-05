@@ -121,7 +121,7 @@ exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   themeOptions
 ) => {
-  const { i18n, relatedResources } = withDefaults(themeOptions);
+  const { i18n, relatedResources, env } = withDefaults(themeOptions);
   const { createNode } = actions;
 
   i18n.locales.forEach((locale) => {
@@ -146,6 +146,7 @@ exports.sourceNodes = (
   });
 
   const config = {
+    env,
     relatedResources: {
       labels: Object.entries(relatedResources.labels).map(
         ([baseUrl, label]) => ({
