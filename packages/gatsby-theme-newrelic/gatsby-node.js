@@ -121,7 +121,7 @@ exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   themeOptions
 ) => {
-  const { i18n, relatedResources, env } = withDefaults(themeOptions);
+  const { i18n, relatedResources, tessen, env } = withDefaults(themeOptions);
   const { createNode } = actions;
 
   i18n.locales.forEach((locale) => {
@@ -155,6 +155,9 @@ exports.sourceNodes = (
         })
       ),
     },
+    tessen: tessen
+      ? { product: tessen.product, subproduct: tessen.subproduct }
+      : null,
   };
 
   createNode({

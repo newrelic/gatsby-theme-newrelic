@@ -32,6 +32,7 @@ type RelatedResource implements Node {
 type NewRelicThemeConfig implements Node {
   env: String!
   relatedResources: NewRelicThemeRelatedResourceConfig!
+  tessen: NewRelicThemeTessenConfig
 }
 
 type NewRelicThemeRelatedResourceConfig {
@@ -41,4 +42,9 @@ type NewRelicThemeRelatedResourceConfig {
 type RelatedResourceLabel {
   baseUrl: String!
   label: String!
+}
+
+type NewRelicThemeTessenConfig {
+  product: String
+  subproduct: String
 }
