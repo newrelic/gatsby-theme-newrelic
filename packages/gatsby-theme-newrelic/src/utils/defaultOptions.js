@@ -36,10 +36,11 @@ const withDefaults = (themeOptions) => {
     tessen,
   } = themeOptions;
   const { i18nextOptions = {} } = i18n;
+  const env = resolveEnv();
 
   return {
     ...themeOptions,
-    env: resolveEnv(),
+    env,
     relatedResources: {
       ...relatedResources,
       labels: {
@@ -53,6 +54,7 @@ const withDefaults = (themeOptions) => {
     tessen: tessen
       ? {
           minify: process.env.NODE_ENV !== 'development',
+          trackPageViews: false,
           ...tessen,
         }
       : false,
