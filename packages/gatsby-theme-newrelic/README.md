@@ -81,6 +81,7 @@ websites](https://opensource.newrelic.com).
   - [`useKeyPress`](#usekeypress)
   - [`useLayout`](#uselayout)
   - [`useQueryParams`](#usequeryparams)
+  - [`useTessen`](#usetessen)
   - [`useTimeout`](#usetimeout)
   - [`useUserId`](#useuserid)
   - [`usePrevious`](#useprevious)
@@ -1838,9 +1839,9 @@ import { RelatedResources } from '@newrelic/gatsby-theme-newrelic'`
 
 ```ts
 type Resource = {
-  url: string
-  title: string
-}
+  url: string;
+  title: string;
+};
 ```
 
 **Examples**
@@ -2459,6 +2460,47 @@ const SearchInput = () => {
         setQueryParam('q', e.target.value);
       }}
     />
+  );
+};
+```
+
+### `useTessen`
+
+A hook that gets allows you to instrument actions with Tessen. This hook
+requires that [`tessen`](#tessen) is configured. If `tessen` is not configured,
+calls to each action will result in a no-op.
+
+```js
+import { useTessen } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+none
+
+**Returns**
+
+`Tessen` - The Tessen object that allows you to call actions.
+
+**Types**
+
+```ts
+type Tessen = {
+  page: (name: string, category: string, properties?: object) => void;
+  track: (name: string, category: string, properties?: object) => void;
+};
+```
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const tessen = useUserId();
+
+  return (
+    <button onClick={() => tessen.track('copyButtonClicked', 'MyCategory')}>
+      Copy
+    </button>
   );
 };
 ```
