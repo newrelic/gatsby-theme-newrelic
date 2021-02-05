@@ -1,4 +1,6 @@
 import React from 'react';
+import path from 'path';
+import { TESSEN_PATH } from './constants';
 
 const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
   replaceHeadComponents([
@@ -17,7 +19,7 @@ const onPreRenderHTML = ({ getHeadComponents, replaceHeadComponents }) => {
     <script
       key="tessen"
       type="text/javascript"
-      src="/tessen.min-1.3.0.js"
+      src={`/${path.basename(TESSEN_PATH)}`}
       async=""
     />,
   ]);
