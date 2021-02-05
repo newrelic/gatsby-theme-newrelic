@@ -465,7 +465,7 @@ const validateTessenOptions = (tessenOptions) => {
 
   if (!segmentWriteKey) {
     throw new Error(
-      "You have enabled Tessen, but the 'writeKey' is missing. Please define a 'tessen.segmentWriteKey' option"
+      "You have enabled Tessen, but the 'segmentWriteKey' is missing. Please define a 'tessen.segmentWriteKey' option"
     );
   }
 };
