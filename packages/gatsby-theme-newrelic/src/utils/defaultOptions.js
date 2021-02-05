@@ -33,7 +33,6 @@ const withDefaults = (themeOptions) => {
     i18n = {},
     relatedResources = {},
     resolveEnv = defaultResolveEnv,
-    tessen,
   } = themeOptions;
   const { i18nextOptions = {} } = i18n;
   const env = resolveEnv();
@@ -51,13 +50,6 @@ const withDefaults = (themeOptions) => {
         ? { limit: 5, refetch: false, ...relatedResources.swiftype }
         : false,
     },
-    tessen: tessen
-      ? {
-          minify: process.env.NODE_ENV !== 'development',
-          trackPageViews: false,
-          ...tessen,
-        }
-      : false,
     i18n: {
       extract: true,
       ...themeOptions.i18n,
