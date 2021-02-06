@@ -201,6 +201,11 @@ const GlobalStyles = ({ layout }) => (
         }
       }
 
+      figcaption {
+        font-size: 0.75rem;
+        color: var(--accent-text-color);
+      }
+
       .gatsby-resp-image-wrapper,
       .gatsby-resp-image-image,
       .gatsby-resp-image-background-image {
