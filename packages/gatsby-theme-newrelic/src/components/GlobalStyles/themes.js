@@ -13,8 +13,8 @@ export default css`
     --tertiary-background-color: var(--color-neutrals-200);
 
     --accent-text-color: var(--color-neutrals-500);
-    --link-color: var(--color-brand-600);
-    --link-hover-color: var(--color-brand-500);
+    --link-color: var(--color-brand-500);
+    --link-hover-color: var(--color-brand-300);
     --border-color: var(--color-neutrals-400);
     --border-hover-color: var(--color-neutrals-500);
     --divider-color: var(--color-neutrals-100);
