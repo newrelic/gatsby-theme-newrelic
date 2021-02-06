@@ -15,6 +15,7 @@ const Tag = styled.span`
   font-size: 0.75rem;
   transition: all 0.07s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   backface-visibility: hidden;
+  text-decoration: none;
 
   .dark-mode & {
     color: var(--color-dark-700);

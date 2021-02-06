@@ -35,14 +35,15 @@ const GlobalNavLink = ({ children, href }) => {
         color: var(--secondary-text-color);
         font-size: 0.6875rem;
         transition: 0.2s;
+        text-decoration: none;
 
         ${isCurrentSite && '&,'}
         &:hover {
-          background-color: var(--color-neutrals-200);
+          background-color: var(--color-neutrals-300);
           color: var(--color-neutrals-700);
 
           .dark-mode & {
-            background-color: var(--color-dark-200);
+            background-color: var(--color-dark-300);
             color: var(--color-dark-700);
           }
         }
