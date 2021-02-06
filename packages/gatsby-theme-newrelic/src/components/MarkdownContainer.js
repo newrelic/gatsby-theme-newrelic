@@ -29,6 +29,10 @@ const MarkdownContainer = ({
         blockquote:not(:last-child) {
           margin-bottom: var(--block-element-spacing);
         }
+
+        figcaption {
+          margin-bottom: var(--text-spacing);
+        }
       `}
     >
       {children}
