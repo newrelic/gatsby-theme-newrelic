@@ -38,11 +38,11 @@ const GlobalNavLink = ({ children, href }) => {
 
         ${isCurrentSite && '&,'}
         &:hover {
-          background-color: var(--color-neutrals-200);
+          background-color: var(--color-neutrals-300);
           color: var(--color-neutrals-700);
 
           .dark-mode & {
-            background-color: var(--color-dark-200);
+            background-color: var(--color-dark-300);
             color: var(--color-dark-700);
           }
         }
