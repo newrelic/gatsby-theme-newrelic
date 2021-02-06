@@ -184,6 +184,7 @@ const GlobalHeader = ({ className }) => {
                 -ms-overflow-style: -ms-autohiding-scrollbar;
 
                 > li {
+                  margin: 0;
                   flex: 0 0 auto;
                 }
               `}
