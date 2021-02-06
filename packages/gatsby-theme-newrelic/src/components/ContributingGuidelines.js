@@ -101,8 +101,8 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
             text-align: center;
           `}
         >
-          Read our <ExternalLink href={contributingUrl}>guide</ExternalLink> on
-          how to contribute
+          Suggest a change or learn how to
+          <ExternalLink href={contributingUrl}>contribute</ExternalLink>
         </Trans>
       )}
     </PageTools.Section>
