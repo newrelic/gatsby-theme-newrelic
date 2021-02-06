@@ -39,7 +39,6 @@ const GlobalStyles = ({ layout }) => (
 
       a {
         cursor: pointer;
-        text-decoration: none;
         color: var(--link-color);
         transition: 0.2s ease-out;
 
@@ -200,6 +199,17 @@ const GlobalStyles = ({ layout }) => (
         .dark-mode & {
           background: var(--color-brand-500);
         }
+      }
+
+      figcaption {
+        font-size: 0.75rem;
+        color: var(--accent-text-color);
+      }
+
+      .gatsby-resp-image-wrapper,
+      .gatsby-resp-image-image,
+      .gatsby-resp-image-background-image {
+        border-radius: 0.25rem;
       }
     `}
   />

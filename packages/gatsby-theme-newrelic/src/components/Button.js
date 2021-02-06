@@ -122,6 +122,7 @@ const Button = styled.button`
   border: 1px solid transparent;
   transition: all 0.15s ease-out;
   white-space: nowrap;
+  text-decoration: none;
 
   ${({ variant }) => styles.variant[variant]}
   ${({ size }) => styles.size[size]}

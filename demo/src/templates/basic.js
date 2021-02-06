@@ -17,30 +17,40 @@ const BasicTemplate = ({ data, location }) => {
   } = data;
 
   return (
-    <Layout.Main
-      css={css`
-        display: grid;
-        grid-template-areas: 'content page-tools';
-        grid-template-columns: minmax(0, 1fr) 320px;
-        grid-column-gap: var(--site-content-padding);
-      `}
-    >
+    <>
       <SEO location={location} title={frontmatter.title} />
-      <h1>{frontmatter.title}</h1>
-      <Layout.Content>
-        <MarkdownContainer>
-          <MDX body={body} />
-        </MarkdownContainer>
-      </Layout.Content>
+      <Layout.Main
+        css={css`
+          display: grid;
+          grid-template-areas:
+            'page-title page-tools'
+            'content page-tools';
+          grid-template-columns: minmax(0, 1fr) 320px;
+          grid-column-gap: var(--site-content-padding);
+        `}
+      >
+        <h1
+          css={css`
+            grid-area: page-title;
+          `}
+        >
+          {frontmatter.title}
+        </h1>
+        <Layout.Content>
+          <MarkdownContainer>
+            <MDX body={body} />
+          </MarkdownContainer>
+        </Layout.Content>
 
-      <Layout.PageTools>
-        <ContributingGuidelines
-          fileRelativePath={fields.fileRelativePath}
-          pageTitle={frontmatter.title}
-        />
-        <RelatedResources resources={relatedResources} />
-      </Layout.PageTools>
-    </Layout.Main>
+        <Layout.PageTools>
+          <ContributingGuidelines
+            fileRelativePath={fields.fileRelativePath}
+            pageTitle={frontmatter.title}
+          />
+          <RelatedResources resources={relatedResources} />
+        </Layout.PageTools>
+      </Layout.Main>
+    </>
   );
 };
 

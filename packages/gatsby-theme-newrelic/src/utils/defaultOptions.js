@@ -1,3 +1,4 @@
+const DEFAULT_ENV = 'development';
 const DEFAULT_NAMESPACE = 'translation';
 
 const defaultLocale = { name: 'English', locale: 'en' };
