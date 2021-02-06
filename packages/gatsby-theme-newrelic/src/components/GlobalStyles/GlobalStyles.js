@@ -201,6 +201,12 @@ const GlobalStyles = ({ layout }) => (
           background: var(--color-brand-500);
         }
       }
+
+      .gatsby-resp-image-wrapper,
+      .gatsby-resp-image-image,
+      .gatsby-resp-image-background-image {
+        border-radius: 0.25rem;
+      }
     `}
   />
 );
