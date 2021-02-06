@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.27.0...v1.28.0) (2021-02-06)
+
+
+### Bug Fixes
+
+* **GlobalHeader:** ensure site links are full header width ([c65d5bf](https://github.com/newrelic/gatsby-theme-newrelic/commit/c65d5bfc2052a8cc5049945ebb0fd1fbcaf1e4ca))
+* **GlobalNavLink:** make the background a bit lighter to remove the low contrast ([25af6b5](https://github.com/newrelic/gatsby-theme-newrelic/commit/25af6b5c9c7b701df6f644d54e44c57c638599c7))
+* **GlobalStyles:** add figcaption styles ([284f3c3](https://github.com/newrelic/gatsby-theme-newrelic/commit/284f3c35d26624e266b0bc62176584c9928d21a8))
+* **GlobalStyles:** links now use text decoration ([d0cd6a5](https://github.com/newrelic/gatsby-theme-newrelic/commit/d0cd6a50f116dbd7f65c634e5723274201a2b908))
+* **MarkdownContainer:** add figcaption styles ([4e718c9](https://github.com/newrelic/gatsby-theme-newrelic/commit/4e718c9a7a3fb900f74b577198dbc61b22f1b8bf))
+* add tessen library and load it in head ([d6b3e6f](https://github.com/newrelic/gatsby-theme-newrelic/commit/d6b3e6ff57505a8f59bed4d05c55c0523a56ef9d))
+* add the ability to resolve the environment name via config. ([cff9b3e](https://github.com/newrelic/gatsby-theme-newrelic/commit/cff9b3ef7ae0b06185ebeb881f921c9cd9a2107f))
+* copy tessen library to static folder of site when bootstrapping the site ([9fbe124](https://github.com/newrelic/gatsby-theme-newrelic/commit/9fbe12449adb2e535ba8947d275293198c591b9b))
+* load tessen as external so you can import it like a module via 'tessen' ([97dc03a](https://github.com/newrelic/gatsby-theme-newrelic/commit/97dc03a4b13715ca0264e068d3a43fd4475a10b2))
+* make link color a shade lighter in light mode ([3ce3a23](https://github.com/newrelic/gatsby-theme-newrelic/commit/3ce3a23cd8b31eabd44013dc6bc3e5c13ddf2b66))
+
+
+### Features
+
+* add a useTessen hook to track tessen actions ([2c93396](https://github.com/newrelic/gatsby-theme-newrelic/commit/2c93396f89a3e87c83bec8957c945173cc14fc93))
+* add ability to auto track page views via tessen on route updates ([635fe8f](https://github.com/newrelic/gatsby-theme-newrelic/commit/635fe8f9b9d13e777dcbdc63b241de1359c32ebd))
+
+
+
+
+
 # [1.27.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.26.1...v1.27.0) (2021-02-04)
 
 
