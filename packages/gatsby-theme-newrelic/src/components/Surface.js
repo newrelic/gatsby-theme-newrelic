@@ -34,6 +34,7 @@ const styles = {
 const Surface = styled.div`
   border-radius: 0.25rem;
   box-shadow: var(--shadow-3);
+  text-decoration: none;
 
   ${({ base }) => styles.base[base]};
 

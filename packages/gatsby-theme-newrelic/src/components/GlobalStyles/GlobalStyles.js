@@ -39,7 +39,6 @@ const GlobalStyles = ({ layout }) => (
 
       a {
         cursor: pointer;
-        text-decoration: none;
         color: var(--link-color);
         transition: 0.2s ease-out;
 
