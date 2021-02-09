@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useLocation } from '@reach/router';
 import { css } from '@emotion/core';
 import Button from './Button';
+import Link from './Link';
 import ExternalLink from './ExternalLink';
 import Icon from './Icon';
 import PageTools from './PageTools';
@@ -102,7 +103,7 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
           `}
         >
           Suggest a change or learn how to
-          <ExternalLink href={contributingUrl}>contribute</ExternalLink>
+          <Link to={contributingUrl}>contribute</Link>
         </Trans>
       )}
     </PageTools.Section>
