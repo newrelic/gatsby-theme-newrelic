@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
 import { animated, useSpring } from 'react-spring';
 import { usePrevious, useIsomorphicLayoutEffect } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
+import useQueryParams from '../hooks/useQueryParams';
 
 const ResizeObserver = global.ResizeObserver || class ResizeObserver {};
 
@@ -16,6 +17,15 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
   const previousIsOpen = usePrevious(isOpen);
 
   useKeyPress(['s', 'f', 'h'], (e) => setIsOpen(e.key !== 'h'));
+
+  const { queryParams } = useQueryParams();
+
+  useEffect(() => {
+    setIsOpen(
+      queryParams.has('collapsers') &&
+        queryParams.get('collapsers') === 'showAll'
+    );
+  });
 
   const observer = useMemo(
     () =>
