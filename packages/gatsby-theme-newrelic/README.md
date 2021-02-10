@@ -237,15 +237,15 @@ documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 Optional configuration for related resources used in the right rail. Currently
 only `Mdx` nodes are supported.
 
-The related resources component is controlled by specific Frontmatter slugs that
-are defined on a page by setting the Frontmatter for `resources`.
+The related resources component is controlled by specific front matter slugs that
+are defined on a page by setting the front matter for `resources`.
 
-If no resources are available in the page Frontmatter the component will fallback to using the page title as the search query term and related resources will be auto generated.
+If no resources are available in the page front matter, the component will use the front matter `title` field as a fallback for the search query term.
 
-The order of priority for populating content in this component is driven by:
+The order of priority for populating content is driven by:
 
-1. Any resources defined in the page Frontmatter.
-2. Any labels defined in the the page Frontmatter will send a search query term and return results from Swiftype.
+1. Any resources defined in the page front matter.
+2. Any labels defined in the the page front matter will send a search query term and return results from Swiftype.
    2b. Any Swifttype results that match the page title.
 
 Resource site labels define the labels that appears below each resource URL. These can be found in the `Resources.js` in the specific site repository.
@@ -260,7 +260,7 @@ Resource site labels define the labels that appears below each resource URL. The
 - `swiftype` _(object | false)_: Configuration used for fetching results from
   Swiftype for an `Mdx` node. Set this to `false` (the default) to disable
   fetching related resources through Swiftype. If this is disabled, related
-  resources can only be sourced via frontmatter. If enabled, this takes the
+  resources can only be sourced via front matter. If enabled, this takes the
   following configuration:
 
   - `resultsPath` _(string)_ **required**: Path to the file where Swiftype
@@ -2747,7 +2747,7 @@ Because announcements use `mdx` under the hood, you **must** ensure that
 **NOTE:** If the `src/announcements` directory does not exist, the theme will
 create it automatically.
 
-**Frontmatter**
+**Front matter**
 
 | key         | Required | Format       | Description                                                        |
 | ----------- | -------- | ------------ | ------------------------------------------------------------------ |
