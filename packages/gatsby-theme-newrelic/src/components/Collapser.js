@@ -23,7 +23,7 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
   useEffect(() => {
     setIsOpen(
       queryParams.has('collapsers') &&
-        queryParams.get('collapsers') === 'showAll'
+        queryParams.get('collapsers') === 'openAll'
     );
   });
 
