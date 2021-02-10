@@ -238,21 +238,17 @@ Optional configuration for related resources used in the right rail. Currently
 only `Mdx` nodes are supported.
 
 The related resources component is controlled by specific Frontmatter slugs that
-are defined on a page. By setting the Frontmatter for `resources` and `tags` you can control what is populated in this component.
+are defined on a page by setting the Frontmatter for `resources`.
 
-If no resources or tags are available in the page Frontmatter the component will fallback to using the page title as the search query term and related resources will be auto generated.
+If no resources are available in the page Frontmatter the component will fallback to using the page title as the search query term and related resources will be auto generated.
 
 The order of priority for populating content in this component is driven by:
 
 1. Any resources defined in the page Frontmatter.
-2. Any tags defined in the the page Frontmatter will send a search query term and return results from Swiftype.
+2. Any labels defined in the the page Frontmatter will send a search query term and return results from Swiftype.
    2b. Any Swifttype results that match the page title.
 
-Resource site tags control the labels that appears below each resource URL. These can be found in the `Resources.js` in the specific site repository.
-If you are adding a resource that doesn't currently have a defined site tag
-you will need to modify this file an add a new site tag accordingly.
-
-When naming the site tag the site domain name should be used for the site tag name.
+Resource site labels define the labels that appears below each resource URL. These can be found in the `Resources.js` in the specific site repository.
 
 **Options:**
 
