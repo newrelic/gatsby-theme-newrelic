@@ -1,10 +1,13 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
+import { LocationProvider } from '@reach/router';
 import Collapser from '../Collapser';
 
 test('hides collapser content by default', () => {
   render(
-    <Collapser title="The title">The content inside the callout</Collapser>
+    <LocationProvider>
+      <Collapser title="The title">The content inside the callout</Collapser>
+    </LocationProvider>
   );
 
   expect(screen.getByText(/The content/)).toHaveAttribute(
@@ -15,9 +18,11 @@ test('hides collapser content by default', () => {
 
 test('allows collapser to be open by default', () => {
   render(
-    <Collapser defaultOpen title="The title">
-      The content inside the callout
-    </Collapser>
+    <LocationProvider>
+      <Collapser defaultOpen title="The title">
+        The content inside the callout
+      </Collapser>
+    </LocationProvider>
   );
 
   expect(screen.getByText(/The content/)).toHaveAttribute(
@@ -28,7 +33,9 @@ test('allows collapser to be open by default', () => {
 
 test('opens the collapser by pressing the "s" key', () => {
   render(
-    <Collapser title="The title">The content inside the callout</Collapser>
+    <LocationProvider>
+      <Collapser title="The title">The content inside the callout</Collapser>
+    </LocationProvider>
   );
 
   fireEvent.keyDown(document.body, { key: 's' });
@@ -41,7 +48,9 @@ test('opens the collapser by pressing the "s" key', () => {
 
 test('opens the collapser by pressing the "f" key', () => {
   render(
-    <Collapser title="The title">The content inside the callout</Collapser>
+    <LocationProvider>
+      <Collapser title="The title">The content inside the callout</Collapser>
+    </LocationProvider>
   );
 
   fireEvent.keyDown(document.body, { key: 'f' });
