@@ -14,7 +14,7 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
   const [element, ref] = useState();
   const [isOpen, setIsOpen] = useState(() => {
     return queryParams.has('collapsers') &&
-      queryParams.get('collapsers') === 'openAll'
+      queryParams.get('collapsers') === 'open'
       ? true
       : defaultOpen;
   });
