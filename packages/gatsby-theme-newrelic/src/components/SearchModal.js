@@ -14,8 +14,10 @@ const SearchModal = ({ onClose, isOpen }) => {
   const { t } = useThemeTranslation();
   const searchInput = useRef();
   const [searchTerm, setSearchTerm] = useState('');
-  const { setQueryParam } = useQueryParams();
-  const { isLoading, refetch, data } = useSwiftypeSearch(searchTerm);
+  const { isLoading, refetch, data = {} } = useSwiftypeSearch(searchTerm);
+  const { records: { page: results } = {} } = data;
+
+  console.log(data);
 
   useEffect(() => {
     isOpen && searchInput.current.focus();
@@ -31,7 +33,7 @@ const SearchModal = ({ onClose, isOpen }) => {
     [searchTerm]
   );
 
-  return isOpen ? (
+  return true ? (
     <Portal>
       <Backdrop onClick={onClose} />
       <div
@@ -45,6 +47,9 @@ const SearchModal = ({ onClose, isOpen }) => {
           transform: translateX(-50%);
           margin: var(--site-content-padding);
           box-shadow: var(--shadow-4);
+          height: calc(100vh - 2 * var(--site-content-padding));
+          display: flex;
+          flex-direction: column;
         `}
       >
         <SearchInput
@@ -63,7 +68,34 @@ const SearchModal = ({ onClose, isOpen }) => {
             `}
           />
         )}
-        {data && <div>{JSON.stringify(data, null, 2)}</div>}
+        {results && (
+          <div
+            css={css`
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              background-color: var(--color-dark-100);
+              flex-grow: 1;
+            `}
+          >
+            <div>
+              {results.map(({ title, highlight }) => {
+                return (
+                  <div>
+                    <h4>{title}</h4>
+                    <p dangerouslySetInnerHTML={{ __html: highlight.body }}></p>
+                  </div>
+                );
+              })}
+            </div>
+            <div
+              css={css`
+                padding: 1rem;
+              `}
+            >
+              Right
+            </div>
+          </div>
+        )}
       </div>
     </Portal>
   ) : null;
@@ -85,6 +117,13 @@ const useSwiftypeSearch = (query, params = {}) => {
             q: query,
             engine_key: 'Ad9HfGjDw4GRkcmJjUut',
             per_page: 10,
+            highlight_fields: {
+              page: {
+                body: {
+                  size: 60,
+                },
+              },
+            },
           }),
         }
       ).then((res) => res.json());
