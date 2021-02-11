@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/core';
 import {
-  Backdrop,
   Button,
   CodeBlock,
   Callout,
