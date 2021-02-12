@@ -6,6 +6,7 @@ export { default as Collapser } from './src/components/Collapser';
 export { default as CollapserGroup } from './src/components/CollapserGroup';
 export { default as ContributingGuidelines } from './src/components/ContributingGuidelines';
 export { default as CookieConsentDialog } from './src/components/CookieConsentDialog';
+export { default as CreateIssueButton } from './src/components/CreateIssueButton';
 export { default as ExternalLink } from './src/components/ExternalLink';
 export { default as FeatherSVG } from './src/components/FeatherSVG';
 export { default as GlobalFooter } from './src/components/GlobalFooter';
