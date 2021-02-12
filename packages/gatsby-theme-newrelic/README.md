@@ -79,6 +79,7 @@ websites](https://opensource.newrelic.com).
   - [`Tag`](#tag)
   - [`TagList`](#taglist)
   - [`Terminal`](#terminal)
+  - [`TextHighlight`](#texthighlight)
   - [`Video`](#video)
 - [MDX Component variants](#mdx-component-variants)
 - [Hooks](#hooks)
@@ -2399,6 +2400,31 @@ nr1 create --type nerdpack --name pageviews-app
 `;
 
 const Example = () => <Terminal>{shellCommand}</Terminal>;
+```
+
+### `TextHighlight`
+
+Component used to highlight text matches in a string. Useful if filtering text
+and want to show a matched search term.
+
+```js
+import { TextHighlight } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop            | Type    | Required | Default | Description                                                 |
+| --------------- | ------- | -------- | ------- | ----------------------------------------------------------- |
+| `text`          | string  | yes      |         | The text that should be highlighted with the matching term. |
+| `match`         | string  | yes      |         | String used as the matching term.                           |
+| `caseSensitive` | boolean | no       | `false` | Determines if the match should be case sensitive or not.    |
+
+**Examples**
+
+```js
+import { TextHighlight } from '@newrelic/gatsby-theme-newrelic';
+
+<TextHighlight text="New Relic" match="New" />;
 ```
 
 ### `Video`
