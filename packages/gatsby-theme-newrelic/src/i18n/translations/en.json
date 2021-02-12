@@ -29,14 +29,9 @@
     "disagree": "No"
   },
   "feedback": {
-    "thanks": "Thank you for your feedback",
     "question": "Was this page helpful?",
     "positive": "Yes",
-    "negative": "No",
-    "commentPlaceholder": "Additional feedback (optional)",
-    "validationError": "Please provide a vote or comment",
-    "submitButton": "Submit feedback",
-    "title": "Feedback"
+    "negative": "No"
   },
   "footer": {
     "copyright": "Copyright {{copyrightSymbol}} 2021 New Relic Inc.",

@@ -44,30 +44,39 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
   });
 
   return (
-    <PageTools.Section>
-      <PageTools.Title>{t('feedback.title')}</PageTools.Title>
-      <div
+    <PageTools.Section
+      css={css`
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background: var(--divider-color);
+        padding: 0.5rem 1rem;
+        gap: 1rem;
+
+        @supports not (gap: 1rem) {
+          > :first-child {
+            margin-right: 1rem;
+          }
+        }
+      `}
+    >
+      <h6
         css={css`
-          font-size: 0.875rem;
+          margin-bottom: 0;
         `}
       >
         {t('feedback.question')}
-      </div>
+      </h6>
       <div
         css={css`
           display: flex;
-          margin-top: 0.5rem;
           justify-content: center;
           align-items: flex-start;
-          gap: 0.5rem;
-
-          a {
-            flex-grow: 1;
-          }
+          gap: 0.25rem;
 
           @supports not (gap: 0.5rem) {
             a:first-of-type {
-              margin-right: 0.5rem;
+              margin-right: 0.25rem;
             }
           }
         `}
@@ -75,9 +84,10 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
         <Button
           as="a"
           href={positiveFeedback}
-          variant={Button.VARIANT.NORMAL}
+          variant={Button.VARIANT.LINK}
           target="_blank"
           role="button"
+          size={Button.SIZE.EXTRA_SMALL}
         >
           <Icon
             size="0.75rem"
@@ -91,9 +101,10 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
         <Button
           as="a"
           href={negativeFeedback}
-          variant={Button.VARIANT.NORMAL}
+          variant={Button.VARIANT.LINK}
           target="_blank"
           role="button"
+          size={Button.SIZE.EXTRA_SMALL}
         >
           <Icon
             size="0.75rem"
