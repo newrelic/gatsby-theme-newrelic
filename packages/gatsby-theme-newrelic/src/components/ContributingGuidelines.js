@@ -8,7 +8,6 @@ import Icon from './Icon';
 import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
 import CreateIssueButton from './CreateIssueButton';
-import GitHubIssueButton from './GitHubIssueButton';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 
