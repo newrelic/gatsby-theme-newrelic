@@ -2,44 +2,56 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import Link from './Link';
-import createIssueURL from '../utils/createIssueURL';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
+import UAParser from 'ua-parser-js';
 
-const createDefaultIssueBody = ({ pageUrl } = {}) => `
-## Description
+const generatePageContextMarkdown = ({ pageUrl }) => {
+  const { os, browser, device } = new UAParser().getResult();
 
-[NOTE]: # (Describe the problem you're encountering.)
-[TIP]: # (Do NOT give us access or passwords to your New Relic account or API keys!)
-
-## Steps to Reproduce
-
-[NOTE]: # (Please be as specific as possible.)
-
-## Expected Behavior
-
-[NOTE]: # (Tell us what you expected to happen.)
-
-## Relevant Logs / Console output
-
-[NOTE]: # (Please provide specifics of the local error logs, Browser Dev Tools console, etc. if appropriate and possible.)
-
-## Your Environment
-
-[TIP]: # (Include as many relevant details about your environment as possible.)
-[TIP]: # (ex: Browser name and version)
-[TIP]: # (ex: Operating System and version)
-
+  return `
 ## Additional context
-
-[TIP]: # (Add any other context about the problem here.)
-
-## Page context
 
 [NOTE]: # (PLEASE DO NOT DELETE THIS SECTION. This contains useful information for the team.)
 
-Page: ${pageUrl}
+### Page
+${pageUrl}
+
+### Environment
+* ${getEnvironmentString('OS', os.name, os.version)}
+* ${getEnvironmentString('Browser', browser.name, browser.version)}
+* ${getEnvironmentString(
+    'Device',
+    device.type && `[${device.type}]`,
+    device.vendor,
+    device.model
+  )}
 `;
+};
+
+const getEnvironmentString = (key, ...info) =>
+  `**${key}**: ${info.filter(Boolean).join(' ') || 'Unknown'}`;
+
+const createIssueURL = ({ repository, issueTitle, issueBody, labels = [] }) => {
+  const url = new URL(`${repository}/issues/new`);
+  const params = new URLSearchParams();
+
+  if (labels?.length) {
+    params.set('labels', labels.join(','));
+  }
+
+  if (issueTitle) {
+    params.set('title', issueTitle);
+  }
+
+  if (issueBody) {
+    params.set('body', issueBody);
+  }
+
+  url.search = params;
+
+  return url.href;
+};
 
 const GitHubIssueButton = ({ labels, issueTitle, issueBody, ...props }) => {
   const { pathname } = useLocation();
@@ -70,7 +82,7 @@ const GitHubIssueButton = ({ labels, issueTitle, issueBody, ...props }) => {
         repository,
         labels,
         issueTitle,
-        issueBody: issueBody || createDefaultIssueBody({ pageUrl }),
+        issueBody: issueBody + generatePageContextMarkdown({ pageUrl }),
       })}
     />
   );
@@ -79,11 +91,7 @@ const GitHubIssueButton = ({ labels, issueTitle, issueBody, ...props }) => {
 GitHubIssueButton.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string),
   issueTitle: PropTypes.string,
-  issueBody: PropTypes.string,
-  slug: PropTypes.string,
+  issueBody: PropTypes.string.isRequired,
 };
-
-GitHubIssueButton.SIZE = Button.SIZE;
-GitHubIssueButton.VARIANT = Button.VARIANT;
 
 export default GitHubIssueButton;
