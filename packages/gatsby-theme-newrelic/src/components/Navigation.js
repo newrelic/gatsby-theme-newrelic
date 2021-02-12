@@ -22,7 +22,7 @@ const Navigation = ({ className, children, searchTerm }) => {
 };
 
 Navigation.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
   searchTerm: PropTypes.string,
 };
