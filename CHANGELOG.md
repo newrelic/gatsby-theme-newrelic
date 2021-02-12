@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.30.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.29.0...v1.30.0) (2021-02-12)
+
+
+### Bug Fixes
+
+* **NavItem:** Filter nav items based on search term ([ce64f3d](https://github.com/newrelic/gatsby-theme-newrelic/commit/ce64f3d594ea43b9d6fb66ff7b025256d1ab4255))
+* **SearchInput:** Horizontal spacing adjustments for small search inputs ([2e88011](https://github.com/newrelic/gatsby-theme-newrelic/commit/2e88011ec2423eb7a8499e19bdf625c0bad69109))
+
+
+### Features
+
+* Create a TextHighlight component ([8740878](https://github.com/newrelic/gatsby-theme-newrelic/commit/87408784605c24cb54f9c3efa3742145b3a4027a))
+* create new Navigation component ([5aba671](https://github.com/newrelic/gatsby-theme-newrelic/commit/5aba671fb7f2295c6b96c38b7a05ee36186389d2))
+
+
+
+
+
 # [1.29.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.28.0...v1.29.0) (2021-02-12)
 
 
