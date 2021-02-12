@@ -84,7 +84,6 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
         <div>
           {repository && (
             <GitHubIssueButton
-              pageTitle={pageTitle}
               issueTitle={pageTitle && `Issue: ${pageTitle}`}
               labels={['bug']}
               variant={Button.VARIANT.OUTLINE}

@@ -6,10 +6,8 @@ import createIssueURL from '../utils/createIssueURL';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 
-const createDefaultIssueBody = ({ pageTitle, pageUrl } = {}) => `
+const createDefaultIssueBody = ({ pageUrl } = {}) => `
 ## Description
-
-Page: ${pageTitle ? `[${pageTitle}](${pageUrl})` : pageUrl}
 
 [NOTE]: # (Describe the problem you're encountering.)
 [TIP]: # (Do NOT give us access or passwords to your New Relic account or API keys!)
@@ -35,15 +33,15 @@ Page: ${pageTitle ? `[${pageTitle}](${pageUrl})` : pageUrl}
 ## Additional context
 
 [TIP]: # (Add any other context about the problem here.)
+
+## Page context
+
+[NOTE]: # (PLEASE DO NOT DELETE THIS SECTION. This contains useful information for the team.)
+
+Page: ${pageUrl}
 `;
 
-const GitHubIssueButton = ({
-  labels,
-  pageTitle,
-  issueTitle,
-  issueBody,
-  ...props
-}) => {
+const GitHubIssueButton = ({ labels, issueTitle, issueBody, ...props }) => {
   const { pathname } = useLocation();
 
   const {
@@ -72,7 +70,7 @@ const GitHubIssueButton = ({
         repository,
         labels,
         issueTitle,
-        issueBody: issueBody || createDefaultIssueBody({ pageTitle, pageUrl }),
+        issueBody: issueBody || createDefaultIssueBody({ pageUrl }),
       })}
     />
   );
@@ -80,7 +78,6 @@ const GitHubIssueButton = ({
 
 GitHubIssueButton.propTypes = {
   labels: PropTypes.arrayOf(PropTypes.string),
-  pageTitle: PropTypes.string,
   issueTitle: PropTypes.string,
   issueBody: PropTypes.string,
   slug: PropTypes.string,

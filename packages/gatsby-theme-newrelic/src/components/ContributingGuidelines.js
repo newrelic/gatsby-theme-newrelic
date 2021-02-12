@@ -53,7 +53,6 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
       >
         <GitHubIssueButton
           labels={['bug']}
-          pageTitle={pageTitle}
           issueTitle={pageTitle && `Issue: ${pageTitle}`}
           variant={Button.VARIANT.OUTLINE}
           size={Button.SIZE.SMALL}

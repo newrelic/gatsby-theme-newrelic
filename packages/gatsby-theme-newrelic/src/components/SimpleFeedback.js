@@ -70,7 +70,6 @@ const SimpleFeedback = ({ pageTitle, issueBody, labels = [] }) => {
           labels={[...labels, 'feedback', 'feedback-negative']}
           issueTitle={issueTitle}
           issueBody={issueBody}
-          pageTitle={pageTitle}
           variant={GitHubIssueButton.VARIANT.LINK}
           size={GitHubIssueButton.SIZE.EXTRA_SMALL}
         >
