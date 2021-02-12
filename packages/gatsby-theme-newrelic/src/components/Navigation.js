@@ -6,7 +6,7 @@ import NavigationContext from './NavigationContext';
 const sanitizeSearchTerm = (searchTerm) =>
   searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-const Navigation = ({ children, searchTerm }) => {
+const Navigation = ({ className, children, searchTerm }) => {
   const value = useMemo(
     () => ({ searchTerm: sanitizeSearchTerm(searchTerm) }),
     [searchTerm]
@@ -14,7 +14,7 @@ const Navigation = ({ children, searchTerm }) => {
 
   return (
     <NavigationContext value={value}>
-      <nav role="navigation" aria-label="Navigation">
+      <nav role="navigation" aria-label="Navigation" className={className}>
         {children}
       </nav>
     </NavigationContext>
@@ -23,6 +23,7 @@ const Navigation = ({ children, searchTerm }) => {
 
 Navigation.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   searchTerm: PropTypes.string,
 };
 
