@@ -74,6 +74,7 @@ websites](https://opensource.newrelic.com).
   - [`Spinner`](#spinner)
   - [`Surface`](#surface)
   - [`Table`](#table)
+  - [`TableOfContents`](#tableofcontents)
   - [`Tag`](#tag)
   - [`TagList`](#taglist)
   - [`Terminal`](#terminal)
@@ -2166,6 +2167,49 @@ import { Table } from '@newrelic/gatsby-theme-newrelic';
     </tr>
   </tbody>
 </Table>
+```
+
+### `TableOfContents`
+
+Component used to create a table of contents for the page. This is meant to be
+used as a section inside of the [`PageTools`](#pagetools) component.
+
+```js
+import { TableOfContents } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type      | Required | Default | Description                                                        |
+| ---------- | --------- | -------- | ------- | ------------------------------------------------------------------ |
+| `headings` | Heading[] | yes      |         | List of headings that should be rendered in the table of contents. |
+
+**NOTE**: The heading `id` attribute **MUST** be defined on the DOM node that
+will be linked to. If not, the table of contents link will not work. Consider
+using a plugin such as
+[`gatsby-remark-autolink-headers`](https://www.gatsbyjs.com/plugins/gatsby-remark-autolink-headers/)
+to handle this for you.
+
+```ts
+type Heading = {
+  id: string;
+  text: string;
+};
+```
+
+**Example**
+
+```jsx
+import { TableOfContents } from '@newrelic/gatsby-theme-newrelic';
+
+const headings = [
+  { id: 'code-monkey', text: 'Code monkey' },
+  { id: 'code-ninja', text: 'Code ninja' },
+]
+
+<TableOfContents
+  headings={headings}
+/>;
 ```
 
 ### `Tag`
