@@ -1,6 +1,12 @@
 import React from 'react';
 
 export default {
+  'arrow-left': (
+    <>
+      <line x1="19" y1="12" x2="5" y2="12" />
+      <polyline points="12 19 5 12 12 5" />
+    </>
+  ),
   'chevron-down': <polyline points="6 9 12 15 18 9" />,
   cloud: <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />,
   copy: (

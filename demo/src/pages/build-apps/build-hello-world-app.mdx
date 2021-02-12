@@ -186,6 +186,23 @@ For this reason, your network administrator may need to enable access to:
 
 - Any subdomain of nr-ext.net, or, at the very least, to any domain in the shape of `<NerdpackUuid>`.g `<NerdpackGid>`.nr-ext.net, where NerdpackUuid is the UUID assigned to your package, and NerdpackGid is zero, or a positive integer (you can use `0|[1-9]\d+` to discriminate it).
 
+## Sample code
+
+The following is some sample code that you can use as configuration in your application.
+
+```xml
+<dependency>
+  <groupId>com.newrelic.agent.java</groupId>
+  <artifactId>newrelic-java</artifactId>
+  <version><var>JAVA_AGENT_VERSION</var></version>
+  <scope>provided</scope>
+  <type>zip</type>
+  <accountId><mark>YOUR_ACCOUNT_ID</mark></accountId>
+</dependency>
+```
+
+Replace <mark>YOUR_ACCOUNT_ID</mark> with your account ID and <var>JAVA_AGENT_VERSION</var> with the agent version you want to install.
+
 ## Summary
 
 Now that you've completed the steps in this example, you learned the basic steps to:

@@ -9,92 +9,95 @@ websites](https://opensource.newrelic.com).
 
 <!-- TOC GFM -->
 
-- [`gatsby-theme-newrelic`](#gatsby-theme-newrelic)
-  - [Installation](#installation)
-  - [Configuration](#configuration)
-    - [Site metadata](#site-metadata)
-    - [Options](#options)
-      - [`sitemap`](#sitemap)
-      - [`newrelic`](#newrelic)
-      - [`robots`](#robots)
-      - [`relatedResources`](#relatedresources)
-      - [`tessen`](#tessen)
-      - [`resolveEnv`](#resolveenv)
-      - [`i18n`](#i18n)
-      - [`layout`](#layout)
-      - [`prism`](#prism)
-      - [`gaTrackingId`](#gatrackingid)
-      - [`splitio`](#splitio)
-        - [Environment-specific configuration](#environment-specific-configuration)
-  - [Components](#components)
-    - [`Banner`](#banner)
-    - [`Button`](#button)
-    - [`Callout`](#callout)
-    - [`CodeBlock`](#codeblock)
-    - [`Collapser`](#collapser)
-    - [`CollapserGroup`](#collapsergroup)
-    - [`ContributingGuidelines`](#contributingguidelines)
-    - [`CookieConsentDialog`](#cookieconsentdialog)
-    - [`Dropdown`](#dropdown)
-      - [`Dropdown.Toggle`](#dropdowntoggle)
-      - [`Dropdown.Menu`](#dropdownmenu)
-      - [`Dropdown.MenuItem`](#dropdownmenuitem)
-    - [`ExternalLink`](#externallink)
-    - [`FeatherSVG`](#feathersvg)
-    - [`Feedback`](#feedback)
-    - [`GlobalFooter`](#globalfooter)
-    - [`GlobalHeader`](#globalheader)
-    - [`HamburgerMenu`](#hamburgermenu)
-    - [`Icon`](#icon)
-      - [Available icons](#available-icons)
-      - [Shadowing icons](#shadowing-icons)
-    - [`Layout`](#layout-1)
-      - [`Layout.Content`](#layoutcontent)
-      - [`Layout.Footer`](#layoutfooter)
-      - [`Layout.Main`](#layoutmain)
-      - [`Layout.PageTools`](#layoutpagetools)
-      - [`Layout.Sidebar`](#layoutsidebar)
-    - [`Link`](#link)
-    - [`MarkdownContainer`](#markdowncontainer)
-    - [`MDX`](#mdx)
-      - [Using `MDX`](#using-mdx)
-      - [Default components](#default-components)
-    - [`MDXCodeBlock`](#mdxcodeblock)
-    - [`NavItem`](#navitem)
-      - [`Page`](#page)
-    - [`NewRelicLogo`](#newreliclogo)
-    - [`PageTools`](#pagetools)
-      - [`PageTools.Section`](#pagetoolssection)
-      - [`PageTools.Title`](#pagetoolstitle)
-    - [`RelatedResources`](#relatedresources-1)
-    - [`SearchInput`](#searchinput)
-    - [`SEO`](#seo)
-    - [`SimpleFeedback`](#simplefeedback)
-    - [`Spinner`](#spinner)
-    - [`Surface`](#surface)
-    - [`Table`](#table)
-    - [`Tag`](#tag)
-    - [`TagList`](#taglist)
-    - [`Terminal`](#terminal)
-    - [`Video`](#video)
-  - [MDX Component variants](#mdx-component-variants)
-  - [Hooks](#hooks)
-    - [`useClipboard`](#useclipboard)
-    - [`useFormattedCode`](#useformattedcode)
-    - [`useKeyPress`](#usekeypress)
-    - [`useLayout`](#uselayout)
-    - [`useQueryParams`](#usequeryparams)
-    - [`useTessen`](#usetessen)
-    - [`useTimeout`](#usetimeout)
-    - [`useUserId`](#useuserid)
-    - [`usePrevious`](#useprevious)
-  - [I18n](#i18n-1)
-  - [Announcements](#announcements)
-  - [Utils](#utils)
-    - [`formatCode`](#formatcode)
-  - [Testing](#testing)
-    - [Changes to Jest config](#changes-to-jest-config)
-    - [Mocking `ReactDOM.createPortal` for snapshot testing](#mocking-reactdomcreateportal-for-snapshot-testing)
+- [Installation](#installation)
+- [Configuration](#configuration)
+  - [Site metadata](#site-metadata)
+  - [Options](#options)
+    - [`sitemap`](#sitemap)
+    - [`newrelic`](#newrelic)
+    - [`robots`](#robots)
+    - [`relatedResources`](#relatedresources)
+    - [`tessen`](#tessen)
+    - [`resolveEnv`](#resolveenv)
+    - [`i18n`](#i18n)
+    - [`layout`](#layout)
+    - [`prism`](#prism)
+    - [`gaTrackingId`](#gatrackingid)
+    - [`splitio`](#splitio)
+      - [Environment-specific configuration](#environment-specific-configuration)
+- [Components](#components)
+  - [`Banner`](#banner)
+  - [`Button`](#button)
+  - [`Callout`](#callout)
+  - [`CodeBlock`](#codeblock)
+  - [`Collapser`](#collapser)
+  - [`CollapserGroup`](#collapsergroup)
+  - [`ContributingGuidelines`](#contributingguidelines)
+  - [`CookieConsentDialog`](#cookieconsentdialog)
+  - [`CreateIssueButton`](#createissuebutton)
+  - [`Dropdown`](#dropdown)
+    - [`Dropdown.Toggle`](#dropdowntoggle)
+    - [`Dropdown.Menu`](#dropdownmenu)
+    - [`Dropdown.MenuItem`](#dropdownmenuitem)
+  - [`ExternalLink`](#externallink)
+  - [`FeatherSVG`](#feathersvg)
+  - [`GitHubIssueButton`](#githubissuebutton)
+    - [Environment information](#environment-information)
+  - [`GlobalFooter`](#globalfooter)
+  - [`GlobalHeader`](#globalheader)
+  - [`HamburgerMenu`](#hamburgermenu)
+  - [`Icon`](#icon)
+    - [Available icons](#available-icons)
+    - [Shadowing icons](#shadowing-icons)
+  - [`Layout`](#layout-1)
+    - [`Layout.Content`](#layoutcontent)
+    - [`Layout.Footer`](#layoutfooter)
+    - [`Layout.Main`](#layoutmain)
+    - [`Layout.PageTools`](#layoutpagetools)
+    - [`Layout.Sidebar`](#layoutsidebar)
+  - [`Link`](#link)
+  - [`MarkdownContainer`](#markdowncontainer)
+  - [`MDX`](#mdx)
+    - [Using `MDX`](#using-mdx)
+    - [Default components](#default-components)
+  - [`MDXCodeBlock`](#mdxcodeblock)
+  - [`NavItem`](#navitem)
+    - [`Page`](#page)
+  - [`NewRelicLogo`](#newreliclogo)
+  - [`PageTools`](#pagetools)
+    - [`PageTools.Section`](#pagetoolssection)
+    - [`PageTools.Title`](#pagetoolstitle)
+  - [`RelatedResources`](#relatedresources-1)
+  - [`SearchInput`](#searchinput)
+  - [`SEO`](#seo)
+  - [`SimpleFeedback`](#simplefeedback)
+  - [`Spinner`](#spinner)
+  - [`Surface`](#surface)
+  - [`Table`](#table)
+  - [`TableOfContents`](#tableofcontents)
+  - [`Tag`](#tag)
+  - [`TagList`](#taglist)
+  - [`Terminal`](#terminal)
+  - [`Video`](#video)
+- [MDX Component variants](#mdx-component-variants)
+- [Hooks](#hooks)
+  - [`useActiveHash`](#useactivehash)
+  - [`useClipboard`](#useclipboard)
+  - [`useFormattedCode`](#useformattedcode)
+  - [`useKeyPress`](#usekeypress)
+  - [`useLayout`](#uselayout)
+  - [`useQueryParams`](#usequeryparams)
+  - [`useTessen`](#usetessen)
+  - [`useTimeout`](#usetimeout)
+  - [`useUserId`](#useuserid)
+  - [`usePrevious`](#useprevious)
+- [I18n](#i18n-1)
+- [Announcements](#announcements)
+- [Utils](#utils)
+  - [`formatCode`](#formatcode)
+- [Testing](#testing)
+  - [Changes to Jest config](#changes-to-jest-config)
+  - [Mocking `ReactDOM.createPortal` for snapshot testing](#mocking-reactdomcreateportal-for-snapshot-testing)
 
 <!-- /TOC -->
 
@@ -237,18 +240,16 @@ documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 Optional configuration for related resources used in the right rail. Currently
 only `Mdx` nodes are supported.
 
-The related resources component is controlled by specific front matter slugs that
-are defined on a page by setting the front matter for `resources`.
+The related resources component is controlled by specific front matter slugs
+that are defined on a page by setting the front matter for `resources`. If no
+resources are available in the page front matter, the component will backfill
+use the related resource items using Swiftype. See the `swiftype` options below
+for more information on customizing the search behavior.
 
-If no resources are available in the page front matter, the component will use the front matter `title` field as a fallback for the search query term.
+In short, the order of priority for populating content is driven by:
 
-The order of priority for populating content is driven by:
-
-1. Any resources defined in the page front matter.
-2. Any labels defined in the the page front matter will send a search query term and return results from Swiftype.
-   2b. Any Swifttype results that match the page title.
-
-Resource site labels define the labels that appears below each resource URL. These can be found in the `Resources.js` in the specific site repository.
+1. Resources defined via the `resources` front matter item.
+2. Resources defined from executing a Swiftype search for the page.
 
 **Options:**
 
@@ -953,6 +954,36 @@ const MyLayout = () => (
 );
 ```
 
+### `CreateIssueButton`
+
+Pre-defined [`GitHubIssueButton`](#githubissuebutton) used specifically for the
+"Create issue" button in the [`ContributingGuidelines`](#contributingguidelines)
+and [`GlobalFooter`](#globalfooter) components.
+
+```js
+import { CreateIssueButton } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                                                         |
+| ----------- | ------ | -------- | ------- | --------------------------------------------------------------------------------------------------- |
+| `pageTitle` | string | no       |         | Title of the page where the user clicked the "Create issue" button. Used to pre-populate the issue. |
+
+All other props are forwarded to [`Button`](#button) component.
+
+**Example**
+
+```jsx
+import { Button, CreateIssueButton } from '@newrelic/gatsby-theme-newrelic';
+
+<CreateIssueButton
+  pageTitle="Demo"
+  size={Button.SIZE.SMALL}
+  variant={Button.VARIANT.OUTLINE}
+/>;
+```
+
 ### `Dropdown`
 
 Used in combination with [`Dropdown.Toggle`](#dropdowntoggle), [`Dropdown.Menu`](#dropdownmenu), and [`Dropdown.MenuItem`](#dropdownmenuitem) to create a dropdown.
@@ -1068,31 +1099,62 @@ const ChevronDownIcon = (props) => (
 );
 ```
 
-### `Feedback`
+### `GitHubIssueButton`
 
-Renders feedback controls that can be used to collect user sentiment about a page. Feedback can only be submitted once per page load.
+Button used to create issues on GitHub. This component depends on the
+`repository` and `siteUrl` fields configured in [site metadata](#site-metadata).
 
 ```js
-import { Feedback } from '@newrelic/gatsby-theme-newrelic';
+import { GitHubIssueButton } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 **Props**
 
-| Prop       | Type     | Required | Default                | Description                                                                                                                                                             |
-| ---------- | -------- | -------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `align`    | enum     | no       | `Feedback.ALIGN.LEFT`  | Configures the alignment of the feedback component. Must be one of `Feedback.ALIGNMENT.LEFT` or `Feedback.ALIGNMENT.CENTER`.                                            |
-| `onSubmit` | function | yes      |                        | Handler that is called once feedback is provided. The user must supply a sentiment, a comment, or both. An object containing the `sentiment` and `comment` is returned. |
-| `message`  | string   | no       | Was this page helpful? | Message to be displayed above the buttons.                                                                                                                              |
+| Prop         | Type     | Required | Default | Description                                                                                                                       |
+| ------------ | -------- | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `labels`     | string[] | no       |         | Labels that should be prepopulated for the issue. NOTE: This labels must be created in the repository where this button links to. |
+| `issueTitle` | string   | no       |         | The value that will pre-populate the issue title.                                                                                 |
+| `issueBody`  | string   | no       |         | The value that will pre-populate the issue body.                                                                                  |
+
+All other props are forwarded to [`Button`](#button)
+
+#### Environment information
+
+As a convenience, this component attaches environment information to the issue
+body to allow for easier debugging. This eliminates the need for a section in
+the issue body asking for environment information from the user filing the
+issue.
+
+The information gathered is:
+
+- Page URL
+- Browser name and version
+- Operating system name and version
+- Device type (mobile, tablet, etc.), vendor and model
+
+If the browser environment is unable to be determined, these values are simply
+set to "Unknown".
 
 **Example**
 
 ```jsx
-<Feedback
-  message="Tell us what you think!"
-  onSubmit={({ sentiment, comment }) => {
-    alert('${sentiment} feedback recieved: ${comment}');
-  }}
-/>
+import { Button, GitHubIssueButton } from '@newrelic/gatsby-theme-newrelic';
+
+const ISSUE_BODY = `
+## Description
+
+[NOTE]: # (Tell us some information!)
+`
+
+<GitHubIssueButton
+  labels={['bug']}
+  issueTitle="Bug found"
+  issueBody={ISSUE_BODY}
+  size={Button.SIZE.SMALL}
+  variant={Button.VARIANT.OUTLINE}
+>
+  Found a bug!
+</GitHubIssueButton>
 ```
 
 ### `GlobalFooter`
@@ -2108,6 +2170,49 @@ import { Table } from '@newrelic/gatsby-theme-newrelic';
 </Table>
 ```
 
+### `TableOfContents`
+
+Component used to create a table of contents for the page. This is meant to be
+used as a section inside of the [`PageTools`](#pagetools) component.
+
+```js
+import { TableOfContents } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type      | Required | Default | Description                                                        |
+| ---------- | --------- | -------- | ------- | ------------------------------------------------------------------ |
+| `headings` | Heading[] | yes      |         | List of headings that should be rendered in the table of contents. |
+
+**NOTE**: The heading `id` attribute **MUST** be defined on the DOM node that
+will be linked to. If not, the table of contents link will not work. Consider
+using a plugin such as
+[`gatsby-remark-autolink-headers`](https://www.gatsbyjs.com/plugins/gatsby-remark-autolink-headers/)
+to handle this for you.
+
+```ts
+type Heading = {
+  id: string;
+  text: string;
+};
+```
+
+**Example**
+
+```jsx
+import { TableOfContents } from '@newrelic/gatsby-theme-newrelic';
+
+const headings = [
+  { id: 'code-monkey', text: 'Code monkey' },
+  { id: 'code-ninja', text: 'Code ninja' },
+]
+
+<TableOfContents
+  headings={headings}
+/>;
+```
+
 ### `Tag`
 
 Used to render a keyword or tag.
@@ -2328,6 +2433,49 @@ highly recommended to use these components solely for use in MDX documents. When
 working in regular React components, used the regular component instead.
 
 ## Hooks
+
+### `useActiveHash`
+
+A hook that determines the active hash ID given the scroll position on the page.
+
+```js
+import { useActiveHash } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `ids` _(string[])_: List of DOM `id`s that should be monitored. The `id`
+  corresponding to the nearest element based on scroll position will be
+  returned.
+
+**Returns**
+
+`string` - The `id` of the active hash.
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const activeHash = useActiveHash(['code-monkey', 'code-ninja']);
+
+  return (
+    <div>
+      <h2
+        id="code-monkey"
+        style={{ color: activeHash === 'code-monkey' ? 'red' : 'currentColor' }}
+      >
+        Code monkey
+      </h2>
+      <h2
+        id="code-ninja"
+        style={{ color: activeHash === 'code-ninja' ? 'red' : 'currentColor' }}
+      >
+        > Code ninja
+      </h2>
+    </div>
+  );
+};
+```
 
 ### `useClipboard`
 
