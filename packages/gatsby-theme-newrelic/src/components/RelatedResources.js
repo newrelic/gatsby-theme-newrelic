@@ -16,7 +16,7 @@ const findLabel = (url, labels) => {
   return label;
 };
 
-const RelatedResources = ({ resources, title }) => {
+const RelatedResources = ({ className, resources, title }) => {
   const { t } = useThemeTranslation();
   const {
     site: {
@@ -50,7 +50,7 @@ const RelatedResources = ({ resources, title }) => {
   const currentSiteLabel = findLabel(siteUrl, labels);
 
   return (
-    <PageTools.Section>
+    <PageTools.Section className={className}>
       <PageTools.Title>{title || t('relatedResources.title')}</PageTools.Title>
       <nav>
         <ul
@@ -128,6 +128,7 @@ const RelatedResources = ({ resources, title }) => {
 };
 
 RelatedResources.propTypes = {
+  className: PropTypes.string,
   resources: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
