@@ -12,7 +12,7 @@ import createIssueURL from '../utils/createIssueURL';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 
-const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
+const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
   const { t } = useThemeTranslation();
   const {
     site: {
@@ -41,8 +41,9 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
 
   return (
     <PageTools.Section
+      className={className}
       css={css`
-        background-color: var(--divider-color);
+        border-bottom: 1px solid var(--divider-color);
       `}
     >
       <div
@@ -97,7 +98,6 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
           i18nKey="contributing.guide"
           parent="p"
           css={css`
-            margin-bottom: 0 !important;
             font-size: 0.75rem;
             text-align: center;
           `}
@@ -111,6 +111,7 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
 };
 
 ContributingGuidelines.propTypes = {
+  className: PropTypes.string,
   fileRelativePath: PropTypes.string,
   pageTitle: PropTypes.string,
 };
