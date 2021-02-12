@@ -8,7 +8,6 @@ export { default as ContributingGuidelines } from './src/components/Contributing
 export { default as CookieConsentDialog } from './src/components/CookieConsentDialog';
 export { default as ExternalLink } from './src/components/ExternalLink';
 export { default as FeatherSVG } from './src/components/FeatherSVG';
-export { default as Feedback } from './src/components/Feedback';
 export { default as GlobalFooter } from './src/components/GlobalFooter';
 export { default as GlobalHeader } from './src/components/GlobalHeader';
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';

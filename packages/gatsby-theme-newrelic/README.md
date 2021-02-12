@@ -40,7 +40,6 @@ websites](https://opensource.newrelic.com).
     - [`Dropdown.MenuItem`](#dropdownmenuitem)
   - [`ExternalLink`](#externallink)
   - [`FeatherSVG`](#feathersvg)
-  - [`Feedback`](#feedback)
   - [`GlobalFooter`](#globalfooter)
   - [`GlobalHeader`](#globalheader)
   - [`HamburgerMenu`](#hamburgermenu)
@@ -1052,33 +1051,6 @@ const ChevronDownIcon = (props) => (
     <polyline points="6 9 12 15 18 9" />
   </FeatherSVG>
 );
-```
-
-### `Feedback`
-
-Renders feedback controls that can be used to collect user sentiment about a page. Feedback can only be submitted once per page load.
-
-```js
-import { Feedback } from '@newrelic/gatsby-theme-newrelic';
-```
-
-**Props**
-
-| Prop       | Type     | Required | Default                | Description                                                                                                                                                             |
-| ---------- | -------- | -------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `align`    | enum     | no       | `Feedback.ALIGN.LEFT`  | Configures the alignment of the feedback component. Must be one of `Feedback.ALIGNMENT.LEFT` or `Feedback.ALIGNMENT.CENTER`.                                            |
-| `onSubmit` | function | yes      |                        | Handler that is called once feedback is provided. The user must supply a sentiment, a comment, or both. An object containing the `sentiment` and `comment` is returned. |
-| `message`  | string   | no       | Was this page helpful? | Message to be displayed above the buttons.                                                                                                                              |
-
-**Example**
-
-```jsx
-<Feedback
-  message="Tell us what you think!"
-  onSubmit={({ sentiment, comment }) => {
-    alert('${sentiment} feedback recieved: ${comment}');
-  }}
-/>
 ```
 
 ### `GlobalFooter`
