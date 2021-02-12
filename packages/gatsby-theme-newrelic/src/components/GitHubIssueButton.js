@@ -6,8 +6,11 @@ import createIssueURL from '../utils/createIssueURL';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 
-const createDefaultIssueBody = ({ pageTitle, pageUrl } = {}) => `## Description
-${pageTitle ? `Page: [${pageTitle}](${pageUrl})\n` : `Page: ${pageUrl}`}
+const createDefaultIssueBody = ({ pageTitle, pageUrl } = {}) => `
+## Description
+
+Page: ${pageTitle ? `[${pageTitle}](${pageUrl})` : pageUrl}
+
 [NOTE]: # (Describe the problem you're encountering.)
 [TIP]: # (Do NOT give us access or passwords to your New Relic account or API keys!)
 
