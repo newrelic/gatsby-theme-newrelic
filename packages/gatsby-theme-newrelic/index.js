@@ -25,6 +25,7 @@ export { default as MDXCollapserGroup } from './src/components/MDXCollapserGroup
 export { default as MDXLink } from './src/components/MDXLink';
 export { default as MDXTable } from './src/components/MDXTable';
 export { default as MDXVideo } from './src/components/MDXVideo';
+export { default as Navigation } from './src/components/Navigation';
 export { default as NavItem } from './src/components/NavItem';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 export { default as Overlay } from './src/components/Overlay';
@@ -41,6 +42,7 @@ export { default as TableOfContents } from './src/components/TableOfContents';
 export { default as Tag } from './src/components/Tag';
 export { default as TagList } from './src/components/TagList';
 export { default as Terminal } from './src/components/Terminal';
+export { default as TextHighlight } from './src/components/TextHighlight';
 export { default as Video } from './src/components/Video';
 
 export { default as formatCode } from './src/utils/formatCode';

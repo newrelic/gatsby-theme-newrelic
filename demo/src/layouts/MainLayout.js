@@ -8,13 +8,16 @@ import {
   Layout,
   Link,
   Logo,
+  Navigation,
   NavItem,
   NewRelicLogo,
+  SearchInput,
   SEO,
 } from '@newrelic/gatsby-theme-newrelic';
 import nav from '../data/sidenav.json';
 
 const MainLayout = (props) => {
+  const [searchTerm, setSearchTerm] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { children, pageContext, location } = props;
 
@@ -45,16 +48,21 @@ const MainLayout = (props) => {
           <Link to="/">
             <Logo width="150px" />
           </Link>
-          <nav
-            role="navigation"
+          <SearchInput
+            placeholder="Filter navigation"
+            onClear={() => setSearchTerm('')}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
             css={css`
-              margin-top: 2rem;
+              margin-top: 1rem;
+              margin-bottom: 1.5rem;
             `}
-          >
+          />
+          <Navigation searchTerm={searchTerm}>
             {nav.map((page) => (
               <NavItem key={page.url} page={page} />
             ))}
-          </nav>
+          </Navigation>
         </Layout.Sidebar>
         {children}
         <Layout.Footer fileRelativePath={pageContext.fileRelativePath} />
