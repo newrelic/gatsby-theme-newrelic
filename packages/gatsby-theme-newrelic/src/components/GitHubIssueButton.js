@@ -9,7 +9,7 @@ import { useLocation } from '@reach/router';
 const DEFAULT_TITLE = 'Website Feedback';
 
 const createDefaultIssueBody = ({ pageTitle, pageUrl } = {}) => `## Description
-${pageTitle && pageUrl ? `Page: [${pageTitle}](${pageUrl})\n` : ''}
+${pageTitle ? `Page: [${pageTitle}](${pageUrl})\n` : `Page: ${pageUrl}`}
 [NOTE]: # (Describe the problem you're encountering.)
 [TIP]: # (Do NOT give us access or passwords to your New Relic account or API keys!)
 
@@ -46,7 +46,9 @@ const GitHubIssueButton = ({
   const { pathname } = useLocation();
 
   const {
-    site: { siteUrl, repository },
+    site: {
+      siteMetadata: { siteUrl, repository },
+    },
   } = useStaticQuery(graphql`
     query {
       site {
