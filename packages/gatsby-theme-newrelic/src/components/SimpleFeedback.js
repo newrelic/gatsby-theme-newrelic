@@ -1,47 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from '@reach/router';
-import { graphql, useStaticQuery } from 'gatsby';
 import { css } from '@emotion/core';
 
-import Button from './Button';
+import GitHubIssueButton from './GitHubIssueButton';
 import Icon from './Icon';
 import PageTools from './PageTools';
-import createIssueURL from '../utils/createIssueURL';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
-const SimpleFeedback = ({ pageTitle, labels }) => {
+const SimpleFeedback = ({ pageTitle, issueBody, labels = [] }) => {
   const { t } = useThemeTranslation();
-  const { site } = useStaticQuery(graphql`
-    query FeedbackQuery {
-      site {
-        siteMetadata {
-          siteUrl
-          repository
-        }
-      }
-    }
-  `);
-
-  const { repository, siteUrl } = site.siteMetadata;
-  const { pathname } = useLocation();
-
-  const page = { title: pageTitle, slug: pathname, siteUrl };
-  const title = pageTitle && `Feedback: ${pageTitle}`;
-
-  const positiveFeedback = createIssueURL({
-    repository,
-    page,
-    title,
-    labels: [...labels, 'feedback-positive'],
-  });
-
-  const negativeFeedback = createIssueURL({
-    repository,
-    page,
-    title,
-    labels: [...labels, 'feedback-negative'],
-  });
+  const issueTitle = pageTitle ? `Feedback: ${pageTitle}` : 'Website feedback';
 
   return (
     <PageTools.Section
@@ -81,13 +49,13 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
           }
         `}
       >
-        <Button
-          as="a"
-          href={positiveFeedback}
-          variant={Button.VARIANT.LINK}
-          target="_blank"
-          role="button"
-          size={Button.SIZE.EXTRA_SMALL}
+        <GitHubIssueButton
+          labels={[...labels, 'feedback', 'feedback-positive']}
+          issueTitle={issueTitle}
+          pageTitle={pageTitle}
+          issueBody={issueBody}
+          variant={GitHubIssueButton.VARIANT.LINK}
+          size={GitHubIssueButton.SIZE.EXTRA_SMALL}
         >
           <Icon
             size="0.75rem"
@@ -97,14 +65,14 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
             `}
           />
           {t('feedback.positive')}
-        </Button>
-        <Button
-          as="a"
-          href={negativeFeedback}
-          variant={Button.VARIANT.LINK}
-          target="_blank"
-          role="button"
-          size={Button.SIZE.EXTRA_SMALL}
+        </GitHubIssueButton>
+        <GitHubIssueButton
+          labels={[...labels, 'feedback', 'feedback-negative']}
+          issueTitle={issueTitle}
+          issueBody={issueBody}
+          pageTitle={pageTitle}
+          variant={GitHubIssueButton.VARIANT.LINK}
+          size={GitHubIssueButton.SIZE.EXTRA_SMALL}
         >
           <Icon
             size="0.75rem"
@@ -114,7 +82,7 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
             `}
           />
           {t('feedback.negative')}
-        </Button>
+        </GitHubIssueButton>
       </div>
     </PageTools.Section>
   );
@@ -123,10 +91,7 @@ const SimpleFeedback = ({ pageTitle, labels }) => {
 SimpleFeedback.propTypes = {
   pageTitle: PropTypes.string,
   labels: PropTypes.arrayOf(PropTypes.string),
-};
-
-SimpleFeedback.defaultProps = {
-  labels: ['feedback'],
+  issueBody: PropTypes.string,
 };
 
 export default SimpleFeedback;
