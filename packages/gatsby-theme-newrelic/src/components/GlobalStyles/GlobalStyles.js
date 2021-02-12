@@ -188,8 +188,12 @@ const GlobalStyles = ({ layout }) => (
         background: var(--color-yellow-100);
         color: var(--color-neutrals-900);
 
-        .dark-mode & {
-          background: var(--color-yellow-200);
+        a {
+          color: var(--color-brand-600);
+
+          &:hover {
+            color: var(--color-brand-300);
+          }
         }
       }
 
