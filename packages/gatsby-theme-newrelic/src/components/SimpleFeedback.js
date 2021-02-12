@@ -2,12 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
+import Button from './Button';
 import GitHubIssueButton from './GitHubIssueButton';
 import Icon from './Icon';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
-const SimpleFeedback = ({ pageTitle, issueBody, labels = [] }) => {
+const ISSUE_BODY = `
+## Feedback
+
+[NOTE]: # (Please put any feedback you have here)
+`;
+
+const SimpleFeedback = ({ pageTitle, labels = [] }) => {
   const { t } = useThemeTranslation();
   const issueTitle = pageTitle ? `Feedback: ${pageTitle}` : 'Website feedback';
 
@@ -52,10 +59,9 @@ const SimpleFeedback = ({ pageTitle, issueBody, labels = [] }) => {
         <GitHubIssueButton
           labels={[...labels, 'feedback', 'feedback-positive']}
           issueTitle={issueTitle}
-          pageTitle={pageTitle}
-          issueBody={issueBody}
-          variant={GitHubIssueButton.VARIANT.LINK}
-          size={GitHubIssueButton.SIZE.EXTRA_SMALL}
+          issueBody={ISSUE_BODY}
+          variant={Button.VARIANT.LINK}
+          size={Button.SIZE.EXTRA_SMALL}
         >
           <Icon
             size="0.75rem"
@@ -69,9 +75,9 @@ const SimpleFeedback = ({ pageTitle, issueBody, labels = [] }) => {
         <GitHubIssueButton
           labels={[...labels, 'feedback', 'feedback-negative']}
           issueTitle={issueTitle}
-          issueBody={issueBody}
-          variant={GitHubIssueButton.VARIANT.LINK}
-          size={GitHubIssueButton.SIZE.EXTRA_SMALL}
+          issueBody={ISSUE_BODY}
+          variant={Button.VARIANT.LINK}
+          size={Button.SIZE.EXTRA_SMALL}
         >
           <Icon
             size="0.75rem"
