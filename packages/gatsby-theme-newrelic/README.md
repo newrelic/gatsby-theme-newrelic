@@ -34,12 +34,15 @@ websites](https://opensource.newrelic.com).
   - [`CollapserGroup`](#collapsergroup)
   - [`ContributingGuidelines`](#contributingguidelines)
   - [`CookieConsentDialog`](#cookieconsentdialog)
+  - [`CreateIssueButton`](#createissuebutton)
   - [`Dropdown`](#dropdown)
     - [`Dropdown.Toggle`](#dropdowntoggle)
     - [`Dropdown.Menu`](#dropdownmenu)
     - [`Dropdown.MenuItem`](#dropdownmenuitem)
   - [`ExternalLink`](#externallink)
   - [`FeatherSVG`](#feathersvg)
+  - [`GitHubIssueButton`](#githubissuebutton)
+    - [Environment information](#environment-information)
   - [`GlobalFooter`](#globalfooter)
   - [`GlobalHeader`](#globalheader)
   - [`HamburgerMenu`](#hamburgermenu)
@@ -949,6 +952,36 @@ const MyLayout = () => (
 );
 ```
 
+### `CreateIssueButton`
+
+Pre-defined [`GitHubIssueButton`](#githubissuebutton) used specifically for the
+"Create issue" button in the [`ContributingGuidelines`](#contributingguidelines)
+and [`GlobalFooter`](#globalfooter) components.
+
+```js
+import { CreateIssueButton } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                                                         |
+| ----------- | ------ | -------- | ------- | --------------------------------------------------------------------------------------------------- |
+| `pageTitle` | string | no       |         | Title of the page where the user clicked the "Create issue" button. Used to pre-populate the issue. |
+
+All other props are forwarded to [`Button`](#button) component.
+
+**Example**
+
+```jsx
+import { Button, CreateIssueButton } from '@newrelic/gatsby-theme-newrelic';
+
+<CreateIssueButton
+  pageTitle="Demo"
+  size={Button.SIZE.SMALL}
+  variant={Button.VARIANT.OUTLINE}
+/>;
+```
+
 ### `Dropdown`
 
 Used in combination with [`Dropdown.Toggle`](#dropdowntoggle), [`Dropdown.Menu`](#dropdownmenu), and [`Dropdown.MenuItem`](#dropdownmenuitem) to create a dropdown.
@@ -1062,6 +1095,64 @@ const ChevronDownIcon = (props) => (
     <polyline points="6 9 12 15 18 9" />
   </FeatherSVG>
 );
+```
+
+### `GitHubIssueButton`
+
+Button used to create issues on GitHub. This component depends on the
+`repository` and `siteUrl` fields configured in [site metadata](#site-metadata).
+
+```js
+import { GitHubIssueButton } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop         | Type     | Required | Default | Description                                                                                                                       |
+| ------------ | -------- | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `labels`     | string[] | no       |         | Labels that should be prepopulated for the issue. NOTE: This labels must be created in the repository where this button links to. |
+| `issueTitle` | string   | no       |         | The value that will pre-populate the issue title.                                                                                 |
+| `issueBody`  | string   | no       |         | The value that will pre-populate the issue body.                                                                                  |
+
+All other props are forwarded to [`Button`](#button)
+
+#### Environment information
+
+As a convenience, this component attaches environment information to the issue
+body to allow for easier debugging. This eliminates the need for a section in
+the issue body asking for environment information from the user filing the
+issue.
+
+The information gathered is:
+
+- Page URL
+- Browser name and version
+- Operating system name and version
+- Device type (mobile, tablet, etc.), vendor and model
+
+If the browser environment is unable to be determined, these values are simply
+set to "Unknown".
+
+**Example**
+
+```jsx
+import { Button, GitHubIssueButton } from '@newrelic/gatsby-theme-newrelic';
+
+const ISSUE_BODY = `
+## Description
+
+[NOTE]: # (Tell us some information!)
+`
+
+<GitHubIssueButton
+  labels={['bug']}
+  issueTitle="Bug found"
+  issueBody={ISSUE_BODY}
+  size={Button.SIZE.SMALL}
+  variant={Button.VARIANT.OUTLINE}
+>
+  Found a bug!
+</GitHubIssueButton>
 ```
 
 ### `GlobalFooter`
