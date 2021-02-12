@@ -99,12 +99,12 @@ const GlobalStyles = ({ layout }) => (
 
       h2 {
         line-height: 1.25;
-        margin-bottom: 1.25rem;
+        margin-bottom: 0.75rem;
         font-weight: 600;
       }
 
       h3 {
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
         font-weight: 600;
       }
 
