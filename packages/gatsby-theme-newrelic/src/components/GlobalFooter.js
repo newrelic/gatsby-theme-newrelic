@@ -82,26 +82,6 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
           />
         </Link>
         <div>
-          {repository && fileRelativePath && (
-            <Button
-              as={ExternalLink}
-              href={`${repository}/blob/${branch}/${fileRelativePath}`}
-              variant={Button.VARIANT.OUTLINE}
-              size={Button.SIZE.SMALL}
-              css={css`
-                margin-right: 1rem;
-              `}
-            >
-              <Icon
-                name="fe-edit"
-                css={css`
-                  margin-right: 0.5rem;
-                `}
-              />
-              {t('github.editPage')}
-            </Button>
-          )}
-
           {repository && (
             <GitHubIssueButton
               pageTitle={pageTitle}
@@ -109,6 +89,9 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
               labels={['bug']}
               variant={Button.VARIANT.OUTLINE}
               size={Button.SIZE.SMALL}
+              css={css`
+                margin-right: 0.5rem;
+              `}
             >
               <Icon
                 name="fe-github"
@@ -118,6 +101,23 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
               />
               {t('github.createIssue')}
             </GitHubIssueButton>
+          )}
+
+          {repository && fileRelativePath && (
+            <Button
+              as={ExternalLink}
+              href={`${repository}/blob/${branch}/${fileRelativePath}`}
+              variant={Button.VARIANT.OUTLINE}
+              size={Button.SIZE.SMALL}
+            >
+              <Icon
+                name="fe-edit"
+                css={css`
+                  margin-right: 0.5rem;
+                `}
+              />
+              {t('github.editPage')}
+            </Button>
           )}
         </div>
       </div>
