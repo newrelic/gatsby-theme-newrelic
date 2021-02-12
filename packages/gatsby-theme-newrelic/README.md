@@ -2017,6 +2017,7 @@ import { RelatedResources } from '@newrelic/gatsby-theme-newrelic'`
 
 | Prop        | Type       | Required | Default             | Description                                          |
 | ----------- | ---------- | -------- | ------------------- | ---------------------------------------------------- |
+| `className` | string     | no       |                     | Additional `className` for the component             |
 | `resources` | Resource[] | yes      |                     | Array of resources to be displayed in the component. |
 | `title`     | string     | no       | 'Related resources' | Title to be displayed as the title for this section  |
 
