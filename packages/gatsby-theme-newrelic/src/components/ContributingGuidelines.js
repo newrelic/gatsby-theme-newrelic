@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from '@reach/router';
 import { css } from '@emotion/core';
 import Button from './Button';
 import Link from './Link';
@@ -8,21 +7,20 @@ import ExternalLink from './ExternalLink';
 import Icon from './Icon';
 import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
-import createIssueURL from '../utils/createIssueURL';
+import CreateIssueButton from './CreateIssueButton';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 
-const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
+const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
   const { t } = useThemeTranslation();
   const {
     site: {
-      siteMetadata: { repository, branch, contributingUrl, siteUrl },
+      siteMetadata: { repository, branch, contributingUrl },
     },
   } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
-          siteUrl
           repository
           branch
           contributingUrl
@@ -31,18 +29,11 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
     }
   `);
 
-  const { pathname } = useLocation();
-
-  const page = { title: pageTitle, slug: pathname, siteUrl };
-  const title = pageTitle && `Issue: ${pageTitle}`;
-  const labels = ['bug'];
-
-  const issueUrl = createIssueURL({ repository, title, page, labels });
-
   return (
     <PageTools.Section
+      className={className}
       css={css`
-        background-color: var(--divider-color);
+        border-bottom: 1px solid var(--divider-color);
       `}
     >
       <div
@@ -60,20 +51,11 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
           }
         `}
       >
-        <Button
-          as={ExternalLink}
-          href={issueUrl}
+        <CreateIssueButton
+          pageTitle={pageTitle}
           variant={Button.VARIANT.OUTLINE}
           size={Button.SIZE.SMALL}
-        >
-          <Icon
-            name="fe-github"
-            css={css`
-              margin-right: 0.5rem;
-            `}
-          />
-          {t('github.createIssue')}
-        </Button>
+        />
 
         {fileRelativePath && (
           <Button
@@ -97,7 +79,6 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
           i18nKey="contributing.guide"
           parent="p"
           css={css`
-            margin-bottom: 0 !important;
             font-size: 0.75rem;
             text-align: center;
           `}
@@ -111,6 +92,7 @@ const ContributingGuidelines = ({ fileRelativePath, pageTitle }) => {
 };
 
 ContributingGuidelines.propTypes = {
+  className: PropTypes.string,
   fileRelativePath: PropTypes.string,
   pageTitle: PropTypes.string,
 };

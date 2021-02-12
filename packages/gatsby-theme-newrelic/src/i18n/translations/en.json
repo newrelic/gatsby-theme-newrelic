@@ -16,11 +16,11 @@
     "important": "Important"
   },
   "github": {
-    "createIssue": "Create an issue",
-    "editPage": "Edit this page"
+    "createIssue": "Create issue",
+    "editPage": "Edit page"
   },
   "contributing": {
-    "guide": "Suggest a change or learn how to <1>contribute</1>"
+    "guide": "Suggest a change and learn how to <1>contribute</1>"
   },
   "cookieConsent": {
     "title": "This site uses cookies",
@@ -29,14 +29,9 @@
     "disagree": "No"
   },
   "feedback": {
-    "thanks": "Thank you for your feedback",
     "question": "Was this page helpful?",
     "positive": "Yes",
-    "negative": "No",
-    "commentPlaceholder": "Additional feedback (optional)",
-    "validationError": "Please provide a vote or comment",
-    "submitButton": "Submit feedback",
-    "title": "Feedback"
+    "negative": "No"
   },
   "footer": {
     "copyright": "Copyright {{copyrightSymbol}} 2021 New Relic Inc.",

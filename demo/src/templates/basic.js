@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql } from 'gatsby';
@@ -9,12 +9,32 @@ import {
   MarkdownContainer,
   MDX,
   RelatedResources,
+  SimpleFeedback,
+  TableOfContents,
 } from '@newrelic/gatsby-theme-newrelic';
+import GitHubSlugger from 'github-slugger';
+import toString from 'mdast-util-to-string';
 
 const BasicTemplate = ({ data, location }) => {
+  const slugger = useMemo(() => new GitHubSlugger(), []);
   const {
-    mdx: { body, frontmatter, fields, relatedResources },
+    mdx: { body, frontmatter, fields, relatedResources, mdxAST },
   } = data;
+
+  const headings = useMemo(() => {
+    return mdxAST.children
+      .filter(
+        (node) =>
+          node.type === 'heading' &&
+          node.depth === 2 &&
+          node.children.length > 0
+      )
+      .map((heading) => {
+        const text = toString(heading);
+
+        return { id: slugger.slug(text), text };
+      });
+  }, [mdxAST, slugger]);
 
   return (
     <>
@@ -43,10 +63,12 @@ const BasicTemplate = ({ data, location }) => {
         </Layout.Content>
 
         <Layout.PageTools>
+          <SimpleFeedback pageTitle="Demo Site" />
           <ContributingGuidelines
             fileRelativePath={fields.fileRelativePath}
             pageTitle={frontmatter.title}
           />
+          <TableOfContents headings={headings} />
           <RelatedResources resources={relatedResources} />
         </Layout.PageTools>
       </Layout.Main>
@@ -63,6 +85,7 @@ export const pageQuery = graphql`
   query($slug: String!) {
     mdx(slug: { eq: $slug }) {
       body
+      mdxAST
       frontmatter {
         title
       }

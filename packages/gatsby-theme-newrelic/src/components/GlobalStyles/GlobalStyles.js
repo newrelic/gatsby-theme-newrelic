@@ -99,12 +99,12 @@ const GlobalStyles = ({ layout }) => (
 
       h2 {
         line-height: 1.25;
-        margin-bottom: 1.25rem;
+        margin-bottom: 0.75rem;
         font-weight: 600;
       }
 
       h3 {
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
         font-weight: 600;
       }
 
@@ -133,11 +133,14 @@ const GlobalStyles = ({ layout }) => (
         }
       }
 
-      code {
+      code,
+      var {
         font-family: var(--code-font);
       }
 
-      *:not(pre) > code {
+      *:not(pre) > code,
+      var,
+      mark {
         padding: 0.2em 0.4em;
         border-radius: 3px;
         font-size: 85%;
@@ -167,37 +170,22 @@ const GlobalStyles = ({ layout }) => (
       mark {
         line-height: 1.25;
         display: inline;
-        padding: 0.125rem;
-        border-radius: 0.125rem;
-        font-size: 85%;
       }
 
       var {
         font-style: normal;
-        transition: all 0.15s ease-out;
-        color: var(--color-neutrals-900);
-        background: var(--color-brand-100);
-
-        .dark-mode & {
-          color: var(--color-white);
-          background: var(--color-brand-600);
-        }
       }
 
       mark {
         background: var(--color-yellow-100);
         color: var(--color-neutrals-900);
 
-        .dark-mode & {
-          background: var(--color-yellow-200);
-        }
-      }
+        a {
+          color: var(--color-brand-600);
 
-      a:hover var {
-        background: var(--color-brand-200);
-
-        .dark-mode & {
-          background: var(--color-brand-500);
+          &:hover {
+            color: var(--color-brand-300);
+          }
         }
       }
 
