@@ -1,5 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`fe-arrow-left icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <line
+    x1="19"
+    x2="5"
+    y1="12"
+    y2="12"
+  />
+  <polyline
+    points="12 19 5 12 12 5"
+  />
+</svg>
+`;
+
 exports[`fe-chevron-down icon matches its snapshot 1`] = `
 .emotion-0 {
   width: 1em;

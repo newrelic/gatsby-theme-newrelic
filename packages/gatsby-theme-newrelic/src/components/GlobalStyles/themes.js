@@ -28,7 +28,8 @@ export default css`
       color: var(--color-neutrals-500);
     }
 
-    *:not(pre) > code {
+    *:not(pre) > code,
+    var {
       background: var(--color-neutrals-200);
     }
   }
@@ -60,7 +61,8 @@ export default css`
       color: var(--color-dark-500);
     }
 
-    *:not(pre) > code {
+    *:not(pre) > code,
+    var {
       background: var(--color-dark-200);
     }
   }

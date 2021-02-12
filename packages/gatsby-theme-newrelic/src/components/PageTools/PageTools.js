@@ -10,6 +10,8 @@ const PageTools = ({ className, children }) => {
       data-swiftype-index={false}
       className={className}
       css={css`
+        display: flex;
+        flex-direction: column;
         border: 1px solid var(--divider-color);
         border-radius: 0.25rem;
       `}
