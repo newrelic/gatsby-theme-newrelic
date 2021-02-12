@@ -61,6 +61,7 @@ websites](https://opensource.newrelic.com).
     - [Using `MDX`](#using-mdx)
     - [Default components](#default-components)
   - [`MDXCodeBlock`](#mdxcodeblock)
+  - [`Navigation`](#navigation)
   - [`NavItem`](#navitem)
     - [`Page`](#page)
   - [`NewRelicLogo`](#newreliclogo)
@@ -1824,6 +1825,33 @@ this component.
 ```js preview=true
 ```
 ````
+
+### `Navigation`
+
+Used to wrap [`NavItem`](#navitem) components.
+
+```js
+import { Navigation } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop         | Type   | Required | Default | Description                                |
+| ------------ | ------ | -------- | ------- | ------------------------------------------ |
+| `children`   | node   | yes      |         | Nav items to be rendered in the navigation |
+| `className`  | string | no       |         | Additional `className` for the component   |
+| `searchTerm` | string | no       |         | Search term used to filter nav items       |
+
+**Examples**
+
+```js
+import { Navigation } from '@newrelic/gatsby-theme-newrelic';
+
+<Navigation searchTerm="New Relic">
+  <NavItem page={page1} />
+  <NavItem page={page2} />
+</Navigation>;
+```
 
 ### `NavItem`
 
