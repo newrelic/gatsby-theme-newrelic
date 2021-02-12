@@ -9,6 +9,7 @@ import {
   MarkdownContainer,
   MDX,
   RelatedResources,
+  SimpleFeedback,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const BasicTemplate = ({ data, location }) => {
@@ -43,6 +44,7 @@ const BasicTemplate = ({ data, location }) => {
         </Layout.Content>
 
         <Layout.PageTools>
+          <SimpleFeedback title="Demo Site" slug="/demo/test-site" />
           <ContributingGuidelines
             fileRelativePath={fields.fileRelativePath}
             pageTitle={frontmatter.title}

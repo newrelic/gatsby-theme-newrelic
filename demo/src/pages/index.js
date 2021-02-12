@@ -8,7 +8,6 @@ import {
   Collapser,
   CollapserGroup,
   ContributingGuidelines,
-  Feedback,
   Layout,
   PageTools,
   SearchInput,
@@ -364,32 +363,6 @@ nr1 create --type nerdpack --name pageviews-app
         </section>
 
         <section>
-          <h2>Feedback</h2>
-          <div
-            css={css`
-              max-width: 350px;
-            `}
-          >
-            <Feedback
-              onSubmit={({ sentiment, comment }) => {
-                console.log('comment', sentiment, comment);
-              }}
-            />
-          </div>
-        </section>
-
-        <section>
-          <h2>Simple Feedback</h2>
-          <div
-            css={css`
-              max-width: 350px;
-            `}
-          >
-            <SimpleFeedback title="Demo Site" slug="/demo/test-site" />
-          </div>
-        </section>
-
-        <section>
           <h2>Tables</h2>
           <Table>
             <thead>
@@ -429,6 +402,7 @@ nr1 create --type nerdpack --name pageviews-app
           }
         `}
       >
+        <SimpleFeedback title="Demo Site" slug="/demo/test-site" />
         <ContributingGuidelines fileRelativePath="demo/src/pages/index.js" />
         <PageTools.Section>
           <PageTools.Title>How to use</PageTools.Title>
