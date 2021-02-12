@@ -10,6 +10,7 @@ export { default as ExternalLink } from './src/components/ExternalLink';
 export { default as FeatherSVG } from './src/components/FeatherSVG';
 export { default as GlobalFooter } from './src/components/GlobalFooter';
 export { default as GlobalHeader } from './src/components/GlobalHeader';
+export { default as GitHubIssueButton } from './src/components/GitHubIssueButton';
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';
 export { default as Layout } from './src/components/Layout';
