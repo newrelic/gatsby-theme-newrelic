@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from '@reach/router';
 import Button from './Button';
 import Icon from './Icon';
 import Logo from './Logo';
 import ExternalLink from './ExternalLink';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import { css } from '@emotion/core';
-import createIssueURL from '../utils/createIssueURL';
+import GitHubIssueButton from './GitHubIssueButton';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 
@@ -34,8 +33,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
   `);
 
   const { siteMetadata } = site;
-  const { branch, repository, siteUrl } = siteMetadata;
-  const { pathname } = useLocation();
+  const { branch, repository } = siteMetadata;
 
   return (
     <footer
@@ -105,14 +103,10 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
           )}
 
           {repository && (
-            <Button
-              as={ExternalLink}
-              href={createIssueURL({
-                repository,
-                title: pageTitle && `Issue: ${pageTitle}`,
-                page: { title: pageTitle, slug: pathname, siteUrl },
-                labels: ['bug'],
-              })}
+            <GitHubIssueButton
+              pageTitle={pageTitle}
+              issueTitle={pageTitle && `Issue: ${pageTitle}`}
+              labels={['bug']}
               variant={Button.VARIANT.OUTLINE}
               size={Button.SIZE.SMALL}
             >
@@ -123,7 +117,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
                 `}
               />
               {t('github.createIssue')}
-            </Button>
+            </GitHubIssueButton>
           )}
         </div>
       </div>
