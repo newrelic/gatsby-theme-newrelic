@@ -13,11 +13,11 @@ const Navigation = ({ className, children, searchTerm }) => {
   );
 
   return (
-    <NavigationContext value={value}>
+    <NavigationContext.Provider value={value}>
       <nav role="navigation" aria-label="Navigation" className={className}>
         {children}
       </nav>
-    </NavigationContext>
+    </NavigationContext.Provider>
   );
 };
 
