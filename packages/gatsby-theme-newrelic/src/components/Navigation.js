@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import NavigationContext from './NavigationContext';
 
-const Navigation = ({ children, searchTerm }) => (
-  <NavigationContext value={{ searchTerm }}>
-    <nav role="navigation" aria-label="Navigation">
-      {children}
-    </nav>
-  </NavigationContext>
-);
+const Navigation = ({ children, searchTerm }) => {
+  const value = useMemo(() => ({ searchTerm }), [searchTerm]);
+
+  return (
+    <NavigationContext value={value}>
+      <nav role="navigation" aria-label="Navigation">
+        {children}
+      </nav>
+    </NavigationContext>
+  );
+};
 
 Navigation.propTypes = {
   children: PropTypes.node,
