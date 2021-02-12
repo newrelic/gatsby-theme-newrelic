@@ -16,8 +16,8 @@
     "important": "Important"
   },
   "github": {
-    "createIssue": "Create an issue",
-    "editPage": "Edit this page"
+    "createIssue": "Create issue",
+    "editPage": "Edit page"
   },
   "contributing": {
     "guide": "Suggest a change or learn how to <1>contribute</1>"
