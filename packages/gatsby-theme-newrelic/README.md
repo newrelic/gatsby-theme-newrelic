@@ -235,18 +235,16 @@ documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 Optional configuration for related resources used in the right rail. Currently
 only `Mdx` nodes are supported.
 
-The related resources component is controlled by specific front matter slugs that
-are defined on a page by setting the front matter for `resources`.
+The related resources component is controlled by specific front matter slugs
+that are defined on a page by setting the front matter for `resources`. If no
+resources are available in the page front matter, the component will backfill
+use the related resource items using Swiftype. See the `swiftype` options below
+for more information on customizing the search behavior.
 
-If no resources are available in the page front matter, the component will use the front matter `title` field as a fallback for the search query term.
+In short, the order of priority for populating content is driven by:
 
-The order of priority for populating content is driven by:
-
-1. Any resources defined in the page front matter.
-2. Any labels defined in the the page front matter will send a search query term and return results from Swiftype.
-   2b. Any Swifttype results that match the page title.
-
-Resource site labels define the labels that appears below each resource URL. These can be found in the `Resources.js` in the specific site repository.
+1. Resources defined via the `resources` front matter item.
+2. Resources defined from executing a Swiftype search for the page.
 
 **Options:**
 
