@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import NavLink from './NavLink';
+import TextHighlight from './TextHighlight';
 import { useLocation } from '@reach/router';
 import usePrevious from '../hooks/usePrevious';
 import useLocale from '../hooks/useLocale';
@@ -74,7 +75,11 @@ const NavItem = ({ page, __parent: parent }) => {
             : 'var(--nav-link-padding)'};
         `}
       >
-        {page.title}
+        {searchTerm ? (
+          <TextHighlight text={page.title} match={searchTerm} />
+        ) : (
+          page.title
+        )}
       </NavLink>
 
       {isExpanded &&
