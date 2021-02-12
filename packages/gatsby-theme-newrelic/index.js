@@ -42,6 +42,7 @@ export { default as TableOfContents } from './src/components/TableOfContents';
 export { default as Tag } from './src/components/Tag';
 export { default as TagList } from './src/components/TagList';
 export { default as Terminal } from './src/components/Terminal';
+export { default as TextHighlight } from './src/components/TextHighlight';
 export { default as Video } from './src/components/Video';
 
 export { default as formatCode } from './src/utils/formatCode';
