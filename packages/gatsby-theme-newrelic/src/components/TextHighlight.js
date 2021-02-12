@@ -8,14 +8,15 @@ const TextHighlight = ({ text, match, caseSensitive = false }) => {
   );
 
   return (
-    <span>
-      {parts.map((part) => {
+    <>
+      {parts.map((part, idx) => {
         const matches = caseSensitive
           ? part === match
           : part.toLowerCase() === match.toLowerCase();
 
         return matches ? (
           <strong
+            key={idx}
             css={css`
               border-radius: 0.125rem;
               padding: 0.125rem 0;
@@ -34,7 +35,7 @@ const TextHighlight = ({ text, match, caseSensitive = false }) => {
           part
         );
       })}
-    </span>
+    </>
   );
 };
 
