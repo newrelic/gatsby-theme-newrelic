@@ -66,10 +66,11 @@ const RawCode = ({ code, language }) => {
           var,
           mark {
             font-size: inherit;
+            padding: 0.125rem;
           }
 
           var {
-            background: var(--color-nord-2);
+            background: var(--color-nord-3);
             color: inherit;
 
             .light-mode & {
