@@ -37,6 +37,7 @@ export { default as SimpleFeedback } from './src/components/SimpleFeedback';
 export { default as Surface } from './src/components/Surface';
 export { default as Spinner } from './src/components/Spinner';
 export { default as Table } from './src/components/Table';
+export { default as TableOfContents } from './src/components/TableOfContents';
 export { default as Tag } from './src/components/Tag';
 export { default as TagList } from './src/components/TagList';
 export { default as Terminal } from './src/components/Terminal';
