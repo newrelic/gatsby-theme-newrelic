@@ -7,6 +7,7 @@ import ExternalLink from './ExternalLink';
 import Icon from './Icon';
 import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
+import CreateIssueButton from './CreateIssueButton';
 import GitHubIssueButton from './GitHubIssueButton';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
@@ -51,20 +52,11 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
           }
         `}
       >
-        <GitHubIssueButton
-          labels={['bug']}
-          issueTitle={pageTitle && `Issue: ${pageTitle}`}
+        <CreateIssueButton
+          pageTitle={pageTitle}
           variant={Button.VARIANT.OUTLINE}
           size={Button.SIZE.SMALL}
-        >
-          <Icon
-            name="fe-github"
-            css={css`
-              margin-right: 0.5rem;
-            `}
-          />
-          {t('github.createIssue')}
-        </GitHubIssueButton>
+        />
 
         {fileRelativePath && (
           <Button
