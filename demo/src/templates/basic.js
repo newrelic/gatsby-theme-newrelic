@@ -44,7 +44,7 @@ const BasicTemplate = ({ data, location }) => {
         </Layout.Content>
 
         <Layout.PageTools>
-          <SimpleFeedback title="Demo Site" slug="/demo/test-site" />
+          <SimpleFeedback pageTitle="Demo Site" />
           <ContributingGuidelines
             fileRelativePath={fields.fileRelativePath}
             pageTitle={frontmatter.title}
