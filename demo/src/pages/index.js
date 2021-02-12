@@ -402,7 +402,7 @@ nr1 create --type nerdpack --name pageviews-app
           }
         `}
       >
-        <SimpleFeedback title="Demo Site" />
+        <SimpleFeedback pageTitle="Demo Site" />
         <ContributingGuidelines fileRelativePath="demo/src/pages/index.js" />
         <PageTools.Section>
           <PageTools.Title>How to use</PageTools.Title>
