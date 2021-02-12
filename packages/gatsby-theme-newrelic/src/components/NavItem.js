@@ -1,15 +1,21 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useLayoutEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import NavLink from './NavLink';
+import TextHighlight from './TextHighlight';
 import { useLocation } from '@reach/router';
 import usePrevious from '../hooks/usePrevious';
 import useLocale from '../hooks/useLocale';
+import useNavigation from '../hooks/useNavigation';
 import { stripTrailingSlash } from '../utils/location';
 
 const NavItem = ({ page, __parent: parent }) => {
   const locale = useLocale();
   const location = useLocation();
+  const { searchTerm } = useNavigation();
+  const matchesSearch = searchTerm
+    ? matchesSearchTerm(page, searchTerm)
+    : false;
   const pathname = stripTrailingSlash(location.pathname).replace(
     new RegExp(`\\/${locale.locale}(?=\\/)`),
     ''
@@ -30,6 +36,18 @@ const NavItem = ({ page, __parent: parent }) => {
     }
   }, [hasChangedPage, shouldExpand]);
 
+  useEffect(() => {
+    if (matchesSearch && !isExpanded) {
+      setIsExpanded(true);
+    }
+  }, [matchesSearch, isExpanded, searchTerm]);
+
+  useLayoutEffect(() => {
+    if (!searchTerm) {
+      setIsExpanded(shouldExpand);
+    }
+  }, [searchTerm, shouldExpand]);
+
   return (
     <div
       css={css`
@@ -37,6 +55,7 @@ const NavItem = ({ page, __parent: parent }) => {
         --icon-spacing: 0.5rem;
         --nav-link-padding: 1rem;
 
+        display: ${matchesSearch || !searchTerm ? 'block' : 'none'};
         padding-left: ${parent == null ? '0' : 'var(--nav-link-padding)'};
       `}
     >
@@ -56,7 +75,11 @@ const NavItem = ({ page, __parent: parent }) => {
             : 'var(--nav-link-padding)'};
         `}
       >
-        {page.title}
+        {searchTerm ? (
+          <TextHighlight text={page.title} match={searchTerm} />
+        ) : (
+          page.title
+        )}
       </NavLink>
 
       {isExpanded &&
@@ -94,5 +117,9 @@ const containsPage = (page, url) => {
 
   return page.pages.some((child) => containsPage(child, url));
 };
+
+const matchesSearchTerm = (page, searchTerm) =>
+  new RegExp(searchTerm, 'i').test(page.title) ||
+  (page.pages || []).some((child) => matchesSearchTerm(child, searchTerm));
 
 export default NavItem;
