@@ -69,7 +69,7 @@ data:
         exec: /var/db/newrelic-infra/nri-discovery-kubernetes --port <var>PORT</var> --tls
         match:
           label.app: apache
-    integrations:
+    <a href="https://one.newrelic.com">integrations</a>:
       - name: nri-apache
         env:
           # Use the discovered IP as the host address
