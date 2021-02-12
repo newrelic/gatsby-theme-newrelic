@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.29.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.28.0...v1.29.0) (2021-02-12)
+
+
+### Bug Fixes
+
+* **ContributingGuidelines:** Update design treatment ([3a2ab5c](https://github.com/newrelic/gatsby-theme-newrelic/commit/3a2ab5cd26ab4e3d154c9169bd64897701751370))
+* **GlobalFooter:** Swap order of GitHub buttons to match contributing guidelines ([72df860](https://github.com/newrelic/gatsby-theme-newrelic/commit/72df86088958c2a1167e7c928d010f7f17c15427))
+* **GlobalStyles:** lighten mark background in dark mode and darken links inside marks ([bd6bf10](https://github.com/newrelic/gatsby-theme-newrelic/commit/bd6bf103fd07e3c6cc6c51a7b2e41078026013d7))
+* **GlobalStyles:** make var more like a code tag ([1614ad4](https://github.com/newrelic/gatsby-theme-newrelic/commit/1614ad46850a7aafb228de0822c26ea42fb3f6c8))
+* **GlobalStyles:** tighten up spacing on headers and add some spacing between headers on pages ([67465cc](https://github.com/newrelic/gatsby-theme-newrelic/commit/67465cc53987e1612d50f9dbdaa10b9570e988ef))
+* **Icon:** add arrow-left feather icon ([fac2552](https://github.com/newrelic/gatsby-theme-newrelic/commit/fac2552950bcfb7c1813f7138890965711fcab8d))
+* **SimpleFeedback:** Update design treatment ([c3d8083](https://github.com/newrelic/gatsby-theme-newrelic/commit/c3d8083600f40370b96c9436860c6b2b68b5cfb2))
+* make a minor change to the contributing guide verbiage ([9f1c3e2](https://github.com/newrelic/gatsby-theme-newrelic/commit/9f1c3e2ff5e0f143f5f50274ace9252aba049032))
+* remove Feedback component that is not used nor should be used. Use SimpleFeedback instead ([5e4082b](https://github.com/newrelic/gatsby-theme-newrelic/commit/5e4082be0b7e0e374899b3c11e875a6f170522c2))
+* update tests to include LocationProvider to fix test failures ([5c601e6](https://github.com/newrelic/gatsby-theme-newrelic/commit/5c601e6bf47fc6b3864e96dc17eab7236020c3b4))
+* Use terser language on GitHub buttons ([0a53b66](https://github.com/newrelic/gatsby-theme-newrelic/commit/0a53b661e5902df05b2851f8c03be68c72352811))
+
+
+### Features
+
+* add a useActiveHash hook ([b97d09f](https://github.com/newrelic/gatsby-theme-newrelic/commit/b97d09f471e603b4e0dcc227be4c417e5d5db173))
+* Create a CreateIssue button ([55e6a90](https://github.com/newrelic/gatsby-theme-newrelic/commit/55e6a90cb62e629d8e20a6eeedf943ab64f94806))
+* create a GitHubIssue button component to make it easy to create a new GitHub issue with params ([848a1d3](https://github.com/newrelic/gatsby-theme-newrelic/commit/848a1d36b55fd0d8f40aba71a02e1ce9a586b5d2))
+* Create a TableOfContents component ([9c18c32](https://github.com/newrelic/gatsby-theme-newrelic/commit/9c18c3252cc46d7e449860d55d6628fa7555dc26))
+* support opening collapsers by default via query param ([3017a82](https://github.com/newrelic/gatsby-theme-newrelic/commit/3017a82a1e32e7f17c94c161121b0b1e69d7a742))
+
+
+
+
+
 # [1.28.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.27.0...v1.28.0) (2021-02-06)
 
 
