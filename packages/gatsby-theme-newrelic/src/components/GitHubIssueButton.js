@@ -6,8 +6,6 @@ import createIssueURL from '../utils/createIssueURL';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 
-const DEFAULT_TITLE = 'Website Feedback';
-
 const createDefaultIssueBody = ({ pageTitle, pageUrl } = {}) => `## Description
 ${pageTitle ? `Page: [${pageTitle}](${pageUrl})\n` : `Page: ${pageUrl}`}
 [NOTE]: # (Describe the problem you're encountering.)
@@ -70,7 +68,7 @@ const GitHubIssueButton = ({
       to={createIssueURL({
         repository,
         labels,
-        issueTitle: issueTitle || DEFAULT_TITLE,
+        issueTitle,
         issueBody: issueBody || createDefaultIssueBody({ pageTitle, pageUrl }),
       })}
     />
