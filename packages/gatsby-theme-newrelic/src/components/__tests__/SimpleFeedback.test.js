@@ -28,9 +28,7 @@ i18n.init({
 
 // Defining these here AND in the mock due to a limitation with jest
 // https://github.com/facebook/jest/issues/2567
-const SITE = 'https://github.com/foo/bar';
 const REPO = 'https://foobar.net';
-const SLUG = '/foo-bar';
 const ISSUE_URL = `${REPO}/issues/new`;
 
 const renderFeedback = (props = {}) => {
@@ -79,8 +77,7 @@ describe('SimpleFeedback Component', () => {
 
   it('should render links with custom issue labels', () => {
     const labels = ['food-feedback', 'tuesday'];
-    renderFeedback({ labels });
-    const [yes] = screen.getAllByRole('button');
+    const { yes } = renderFeedback({ labels });
 
     const params = new URLSearchParams();
     params.set(
@@ -94,8 +91,7 @@ describe('SimpleFeedback Component', () => {
   });
 
   it('should render links with default issue title', () => {
-    renderFeedback();
-    const [yes, no] = screen.getAllByRole('button');
+    const { yes, no } = renderFeedback();
 
     const yesParams = new URLSearchParams();
     yesParams.set('labels', ['feedback', 'feedback-positive'].join(','));
@@ -113,8 +109,7 @@ describe('SimpleFeedback Component', () => {
 
   it('should render links with the page title in the issue title', () => {
     const title = 'tacos';
-    renderFeedback({ pageTitle: title });
-    const [yes] = screen.getAllByRole('button');
+    const { yes } = renderFeedback({ pageTitle: title });
 
     const params = new URLSearchParams();
     params.set('labels', ['feedback', 'feedback-positive'].join(','));
