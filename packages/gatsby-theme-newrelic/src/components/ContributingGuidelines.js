@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from '@reach/router';
 import { css } from '@emotion/core';
 import Button from './Button';
 import Link from './Link';
@@ -8,7 +7,7 @@ import ExternalLink from './ExternalLink';
 import Icon from './Icon';
 import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
-import createIssueURL from '../utils/createIssueURL';
+import GitHubIssueButton from './GitHubIssueButton';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 
@@ -16,13 +15,12 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
   const { t } = useThemeTranslation();
   const {
     site: {
-      siteMetadata: { repository, branch, contributingUrl, siteUrl },
+      siteMetadata: { repository, branch, contributingUrl },
     },
   } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
-          siteUrl
           repository
           branch
           contributingUrl
@@ -30,14 +28,6 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
       }
     }
   `);
-
-  const { pathname } = useLocation();
-
-  const page = { title: pageTitle, slug: pathname, siteUrl };
-  const title = pageTitle && `Issue: ${pageTitle}`;
-  const labels = ['bug'];
-
-  const issueUrl = createIssueURL({ repository, title, page, labels });
 
   return (
     <PageTools.Section
@@ -61,9 +51,10 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
           }
         `}
       >
-        <Button
-          as={ExternalLink}
-          href={issueUrl}
+        <GitHubIssueButton
+          labels={['bug']}
+          pageTitle={pageTitle}
+          issueTitle={pageTitle && `Issue: ${pageTitle}`}
           variant={Button.VARIANT.OUTLINE}
           size={Button.SIZE.SMALL}
         >
@@ -74,7 +65,7 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
             `}
           />
           {t('github.createIssue')}
-        </Button>
+        </GitHubIssueButton>
 
         {fileRelativePath && (
           <Button
