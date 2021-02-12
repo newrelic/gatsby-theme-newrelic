@@ -81,6 +81,7 @@ websites](https://opensource.newrelic.com).
   - [`Video`](#video)
 - [MDX Component variants](#mdx-component-variants)
 - [Hooks](#hooks)
+  - [`useActiveHash`](#useactivehash)
   - [`useClipboard`](#useclipboard)
   - [`useFormattedCode`](#useformattedcode)
   - [`useKeyPress`](#usekeypress)
@@ -2432,6 +2433,49 @@ highly recommended to use these components solely for use in MDX documents. When
 working in regular React components, used the regular component instead.
 
 ## Hooks
+
+### `useActiveHash`
+
+A hook that determines the active hash ID given the scroll position on the page.
+
+```js
+import { useActiveHash } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `ids` _(string[])_: List of DOM `id`s that should be monitored. The `id`
+  corresponding to the nearest element based on scroll position will be
+  returned.
+
+**Returns**
+
+`string` - The `id` of the active hash.
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const activeHash = useActiveHash(['code-monkey', 'code-ninja']);
+
+  return (
+    <div>
+      <h2
+        id="code-monkey"
+        style={{ color: activeHash === 'code-monkey' ? 'red' : 'currentColor' }}
+      >
+        Code monkey
+      </h2>
+      <h2
+        id="code-ninja"
+        style={{ color: activeHash === 'code-ninja' ? 'red' : 'currentColor' }}
+      >
+        > Code ninja
+      </h2>
+    </div>
+  );
+};
+```
 
 ### `useClipboard`
 
