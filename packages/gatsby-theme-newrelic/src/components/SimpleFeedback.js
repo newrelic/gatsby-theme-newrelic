@@ -8,10 +8,18 @@ import Icon from './Icon';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
-const ISSUE_BODY = `
+const POSITIVE_ISSUE_BODY = `
 ## Feedback
 
 [NOTE]: # (Please put any feedback you have here)
+[TIP]: # (We'd love to hear what you like!)
+`;
+
+const NEGATIVE_ISSUE_BODY = `
+## Feedback
+
+[NOTE]: # (Please put any feedback you have here)
+[TIP]: # (Help us figure out what we could be doing better)
 `;
 
 const SimpleFeedback = ({ pageTitle, labels = [] }) => {
@@ -59,7 +67,7 @@ const SimpleFeedback = ({ pageTitle, labels = [] }) => {
         <GitHubIssueButton
           labels={[...labels, 'feedback', 'feedback-positive']}
           issueTitle={issueTitle}
-          issueBody={ISSUE_BODY}
+          issueBody={POSITIVE_ISSUE_BODY}
           variant={Button.VARIANT.LINK}
           size={Button.SIZE.EXTRA_SMALL}
         >
@@ -75,7 +83,7 @@ const SimpleFeedback = ({ pageTitle, labels = [] }) => {
         <GitHubIssueButton
           labels={[...labels, 'feedback', 'feedback-negative']}
           issueTitle={issueTitle}
-          issueBody={ISSUE_BODY}
+          issueBody={NEGATIVE_ISSUE_BODY}
           variant={Button.VARIANT.LINK}
           size={Button.SIZE.EXTRA_SMALL}
         >
