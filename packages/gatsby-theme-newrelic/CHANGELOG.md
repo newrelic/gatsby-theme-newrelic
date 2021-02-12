@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.30.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.30.0...v1.30.1) (2021-02-12)
+
+
+### Bug Fixes
+
+* allow className on RelatedResources component ([d4e421b](https://github.com/newrelic/gatsby-theme-newrelic/commit/d4e421b18aa573a2fd3f21b99eedef79212fe483))
+
+
+
+
+
 # [1.30.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.29.0...v1.30.0) (2021-02-12)
 
 
