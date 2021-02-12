@@ -133,11 +133,14 @@ const GlobalStyles = ({ layout }) => (
         }
       }
 
-      code {
+      code,
+      var {
         font-family: var(--code-font);
       }
 
-      *:not(pre) > code {
+      *:not(pre) > code,
+      var,
+      mark {
         padding: 0.2em 0.4em;
         border-radius: 3px;
         font-size: 85%;
@@ -167,21 +170,10 @@ const GlobalStyles = ({ layout }) => (
       mark {
         line-height: 1.25;
         display: inline;
-        padding: 0.125rem;
-        border-radius: 0.125rem;
-        font-size: 85%;
       }
 
       var {
         font-style: normal;
-        transition: all 0.15s ease-out;
-        color: var(--color-neutrals-900);
-        background: var(--color-brand-100);
-
-        .dark-mode & {
-          color: var(--color-white);
-          background: var(--color-brand-600);
-        }
       }
 
       mark {
@@ -194,14 +186,6 @@ const GlobalStyles = ({ layout }) => (
           &:hover {
             color: var(--color-brand-300);
           }
-        }
-      }
-
-      a:hover var {
-        background: var(--color-brand-200);
-
-        .dark-mode & {
-          background: var(--color-brand-500);
         }
       }
 
