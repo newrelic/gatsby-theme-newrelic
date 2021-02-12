@@ -9,91 +9,92 @@ websites](https://opensource.newrelic.com).
 
 <!-- TOC GFM -->
 
-- [Installation](#installation)
-- [Configuration](#configuration)
-  - [Site metadata](#site-metadata)
-  - [Options](#options)
-    - [`sitemap`](#sitemap)
-    - [`newrelic`](#newrelic)
-    - [`robots`](#robots)
-    - [`relatedResources`](#relatedresources)
-    - [`tessen`](#tessen)
-    - [`resolveEnv`](#resolveenv)
-    - [`i18n`](#i18n)
-    - [`layout`](#layout)
-    - [`prism`](#prism)
-    - [`gaTrackingId`](#gatrackingid)
-    - [`splitio`](#splitio)
-      - [Environment-specific configuration](#environment-specific-configuration)
-- [Components](#components)
-  - [`Banner`](#banner)
-  - [`Button`](#button)
-  - [`Callout`](#callout)
-  - [`CodeBlock`](#codeblock)
-  - [`Collapser`](#collapser)
-  - [`CollapserGroup`](#collapsergroup)
-  - [`ContributingGuidelines`](#contributingguidelines)
-  - [`CookieConsentDialog`](#cookieconsentdialog)
-  - [`Dropdown`](#dropdown)
-    - [`Dropdown.Toggle`](#dropdowntoggle)
-    - [`Dropdown.Menu`](#dropdownmenu)
-    - [`Dropdown.MenuItem`](#dropdownmenuitem)
-  - [`ExternalLink`](#externallink)
-  - [`FeatherSVG`](#feathersvg)
-  - [`Feedback`](#feedback)
-  - [`GlobalFooter`](#globalfooter)
-  - [`GlobalHeader`](#globalheader)
-  - [`HamburgerMenu`](#hamburgermenu)
-  - [`Icon`](#icon)
-    - [Available icons](#available-icons)
-    - [Shadowing icons](#shadowing-icons)
-  - [`Layout`](#layout-1)
-    - [`Layout.Content`](#layoutcontent)
-    - [`Layout.Footer`](#layoutfooter)
-    - [`Layout.Main`](#layoutmain)
-    - [`Layout.PageTools`](#layoutpagetools)
-    - [`Layout.Sidebar`](#layoutsidebar)
-  - [`Link`](#link)
-  - [`MarkdownContainer`](#markdowncontainer)
-  - [`MDX`](#mdx)
-    - [Using `MDX`](#using-mdx)
-    - [Default components](#default-components)
-  - [`MDXCodeBlock`](#mdxcodeblock)
-  - [`NavItem`](#navitem)
-    - [`Page`](#page)
-  - [`NewRelicLogo`](#newreliclogo)
-  - [`PageTools`](#pagetools)
-    - [`PageTools.Section`](#pagetoolssection)
-    - [`PageTools.Title`](#pagetoolstitle)
-  - [`RelatedResources`](#relatedresources-1)
-  - [`SearchInput`](#searchinput)
-  - [`SEO`](#seo)
-  - [`SimpleFeedback`](#simplefeedback)
-  - [`Spinner`](#spinner)
-  - [`Surface`](#surface)
-  - [`Table`](#table)
-  - [`Tag`](#tag)
-  - [`TagList`](#taglist)
-  - [`Terminal`](#terminal)
-  - [`Video`](#video)
-- [MDX Component variants](#mdx-component-variants)
-- [Hooks](#hooks)
-  - [`useClipboard`](#useclipboard)
-  - [`useFormattedCode`](#useformattedcode)
-  - [`useKeyPress`](#usekeypress)
-  - [`useLayout`](#uselayout)
-  - [`useQueryParams`](#usequeryparams)
-  - [`useTessen`](#usetessen)
-  - [`useTimeout`](#usetimeout)
-  - [`useUserId`](#useuserid)
-  - [`usePrevious`](#useprevious)
-- [I18n](#i18n-1)
-- [Announcements](#announcements)
-- [Utils](#utils)
-  - [`formatCode`](#formatcode)
-- [Testing](#testing)
-  - [Changes to Jest config](#changes-to-jest-config)
-  - [Mocking `ReactDOM.createPortal` for snapshot testing](#mocking-reactdomcreateportal-for-snapshot-testing)
+- [`gatsby-theme-newrelic`](#gatsby-theme-newrelic)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+    - [Site metadata](#site-metadata)
+    - [Options](#options)
+      - [`sitemap`](#sitemap)
+      - [`newrelic`](#newrelic)
+      - [`robots`](#robots)
+      - [`relatedResources`](#relatedresources)
+      - [`tessen`](#tessen)
+      - [`resolveEnv`](#resolveenv)
+      - [`i18n`](#i18n)
+      - [`layout`](#layout)
+      - [`prism`](#prism)
+      - [`gaTrackingId`](#gatrackingid)
+      - [`splitio`](#splitio)
+        - [Environment-specific configuration](#environment-specific-configuration)
+  - [Components](#components)
+    - [`Banner`](#banner)
+    - [`Button`](#button)
+    - [`Callout`](#callout)
+    - [`CodeBlock`](#codeblock)
+    - [`Collapser`](#collapser)
+    - [`CollapserGroup`](#collapsergroup)
+    - [`ContributingGuidelines`](#contributingguidelines)
+    - [`CookieConsentDialog`](#cookieconsentdialog)
+    - [`Dropdown`](#dropdown)
+      - [`Dropdown.Toggle`](#dropdowntoggle)
+      - [`Dropdown.Menu`](#dropdownmenu)
+      - [`Dropdown.MenuItem`](#dropdownmenuitem)
+    - [`ExternalLink`](#externallink)
+    - [`FeatherSVG`](#feathersvg)
+    - [`Feedback`](#feedback)
+    - [`GlobalFooter`](#globalfooter)
+    - [`GlobalHeader`](#globalheader)
+    - [`HamburgerMenu`](#hamburgermenu)
+    - [`Icon`](#icon)
+      - [Available icons](#available-icons)
+      - [Shadowing icons](#shadowing-icons)
+    - [`Layout`](#layout-1)
+      - [`Layout.Content`](#layoutcontent)
+      - [`Layout.Footer`](#layoutfooter)
+      - [`Layout.Main`](#layoutmain)
+      - [`Layout.PageTools`](#layoutpagetools)
+      - [`Layout.Sidebar`](#layoutsidebar)
+    - [`Link`](#link)
+    - [`MarkdownContainer`](#markdowncontainer)
+    - [`MDX`](#mdx)
+      - [Using `MDX`](#using-mdx)
+      - [Default components](#default-components)
+    - [`MDXCodeBlock`](#mdxcodeblock)
+    - [`NavItem`](#navitem)
+      - [`Page`](#page)
+    - [`NewRelicLogo`](#newreliclogo)
+    - [`PageTools`](#pagetools)
+      - [`PageTools.Section`](#pagetoolssection)
+      - [`PageTools.Title`](#pagetoolstitle)
+    - [`RelatedResources`](#relatedresources-1)
+    - [`SearchInput`](#searchinput)
+    - [`SEO`](#seo)
+    - [`SimpleFeedback`](#simplefeedback)
+    - [`Spinner`](#spinner)
+    - [`Surface`](#surface)
+    - [`Table`](#table)
+    - [`Tag`](#tag)
+    - [`TagList`](#taglist)
+    - [`Terminal`](#terminal)
+    - [`Video`](#video)
+  - [MDX Component variants](#mdx-component-variants)
+  - [Hooks](#hooks)
+    - [`useClipboard`](#useclipboard)
+    - [`useFormattedCode`](#useformattedcode)
+    - [`useKeyPress`](#usekeypress)
+    - [`useLayout`](#uselayout)
+    - [`useQueryParams`](#usequeryparams)
+    - [`useTessen`](#usetessen)
+    - [`useTimeout`](#usetimeout)
+    - [`useUserId`](#useuserid)
+    - [`usePrevious`](#useprevious)
+  - [I18n](#i18n-1)
+  - [Announcements](#announcements)
+  - [Utils](#utils)
+    - [`formatCode`](#formatcode)
+  - [Testing](#testing)
+    - [Changes to Jest config](#changes-to-jest-config)
+    - [Mocking `ReactDOM.createPortal` for snapshot testing](#mocking-reactdomcreateportal-for-snapshot-testing)
 
 <!-- /TOC -->
 
@@ -236,6 +237,19 @@ documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 Optional configuration for related resources used in the right rail. Currently
 only `Mdx` nodes are supported.
 
+The related resources component is controlled by specific front matter slugs that
+are defined on a page by setting the front matter for `resources`.
+
+If no resources are available in the page front matter, the component will use the front matter `title` field as a fallback for the search query term.
+
+The order of priority for populating content is driven by:
+
+1. Any resources defined in the page front matter.
+2. Any labels defined in the the page front matter will send a search query term and return results from Swiftype.
+   2b. Any Swifttype results that match the page title.
+
+Resource site labels define the labels that appears below each resource URL. These can be found in the `Resources.js` in the specific site repository.
+
 **Options:**
 
 - `labels` _(object)_: Map of URLs to their label. This is used to match
@@ -246,7 +260,7 @@ only `Mdx` nodes are supported.
 - `swiftype` _(object | false)_: Configuration used for fetching results from
   Swiftype for an `Mdx` node. Set this to `false` (the default) to disable
   fetching related resources through Swiftype. If this is disabled, related
-  resources can only be sourced via frontmatter. If enabled, this takes the
+  resources can only be sourced via front matter. If enabled, this takes the
   following configuration:
 
   - `resultsPath` _(string)_ **required**: Path to the file where Swiftype
@@ -2733,7 +2747,7 @@ Because announcements use `mdx` under the hood, you **must** ensure that
 **NOTE:** If the `src/announcements` directory does not exist, the theme will
 create it automatically.
 
-**Frontmatter**
+**Front matter**
 
 | key         | Required | Format       | Description                                                        |
 | ----------- | -------- | ------------ | ------------------------------------------------------------------ |
