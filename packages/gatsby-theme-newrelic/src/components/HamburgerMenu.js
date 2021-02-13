@@ -6,7 +6,7 @@ const menuLine = (isOpen) => css`
   width: 100%;
   height: 2px;
   background-color: var(--color-brand-600);
-  margin: 4px 0;
+  margin: 2px 0;
   border-radius: 5px;
   transition: 0.18s;
 
@@ -36,13 +36,21 @@ const HamburgerMenu = ({ onToggle, isOpen, className }) => (
     aria-label="Mobile Menu"
     type="button"
     css={css`
+      --line-width: 1rem;
+      --x-padding: 1rem;
+
       display: block;
-      background: none;
+      background: var(--color-neutrals-100);
       border: 0;
       cursor: pointer;
-      width: 1.5rem;
+      width: calc(var(--line-width) + 2 * var(--x-padding));
       outline: none;
-      padding: 0;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+
+      .dark-mode & {
+        background: var(--color-dark-100);
+      }
     `}
     className={className}
     onClick={() => onToggle()}
