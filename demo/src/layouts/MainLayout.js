@@ -10,7 +10,6 @@ import {
   Logo,
   Navigation,
   NavItem,
-  NewRelicLogo,
   SearchInput,
   SEO,
 } from '@newrelic/gatsby-theme-newrelic';
@@ -32,12 +31,12 @@ const MainLayout = (props) => {
           justify-content: space-between;
           align-items: center;
 
-          @media screen and (max-width: 400px) {
+          @media screen and (max-width: 760px) {
             display: flex;
           }
         `}
       >
-        <NewRelicLogo />
+        <Logo />
         <HamburgerMenu
           onToggle={() => setIsMenuOpen((isOpen) => !isOpen)}
           isOpen={isMenuOpen}

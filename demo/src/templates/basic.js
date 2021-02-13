@@ -47,6 +47,14 @@ const BasicTemplate = ({ data, location }) => {
             'content page-tools';
           grid-template-columns: minmax(0, 1fr) 320px;
           grid-column-gap: var(--site-content-padding);
+
+          @media screen and (max-width: 760px) {
+            grid-template-areas:
+              'page-title'
+              'content'
+              'page-tools';
+            grid-template-columns: minmax(0, 1fr);
+          }
         `}
       >
         <h1
