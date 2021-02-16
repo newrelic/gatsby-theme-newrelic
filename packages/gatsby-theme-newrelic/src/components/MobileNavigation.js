@@ -27,7 +27,7 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
           css={css`
             display: flex;
             flex-direction: column;
-            border-radius: 0.25rem;
+            border-radius: 0.5rem;
             position: fixed;
             top: 1rem;
             bottom: 0.5rem;
@@ -47,7 +47,7 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
           <header
             css={css`
               display: flex;
-              justify-content: space-between;
+              justify-content: flex-end;
               align-items: center;
               position: sticky;
               top: 0;
@@ -60,7 +60,6 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
               }
             `}
           >
-            <Logo width="7rem" />
             <button
               type="button"
               onClick={onClose}
