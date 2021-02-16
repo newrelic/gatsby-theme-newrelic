@@ -8,6 +8,7 @@ import {
   Layout,
   Link,
   Logo,
+  MobileNavigation,
   Navigation,
   NavItem,
   SearchInput,
@@ -41,6 +42,14 @@ const MainLayout = (props) => {
           onToggle={() => setIsMenuOpen((isOpen) => !isOpen)}
           isOpen={isMenuOpen}
         />
+        <MobileNavigation
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+        >
+          {nav.map((page) => (
+            <NavItem key={page.url} page={page} />
+          ))}
+        </MobileNavigation>
       </header>
       <Layout>
         <Layout.Sidebar>
