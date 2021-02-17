@@ -27,8 +27,17 @@ module.exports = {
         },
         newrelic: {
           configs: {
-            staging: {},
-            production: {},
+            development: {
+              instrumentationType: 'proAndSPA',
+              accountId: '10175106',
+              trustKey: '1',
+              agentID: '29802175',
+              licenseKey: '23448da482',
+              // New Relic Gatsby Theme - Demo Site
+              applicationID: '29802175',
+              beacon: 'staging-bam.nr-data.net',
+              errorBeacon: 'staging-bam.nr-data.net',
+            },
           },
         },
         splitio: {
