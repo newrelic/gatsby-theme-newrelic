@@ -16,6 +16,7 @@ const NavLink = ({
   expandable,
   onClick,
   onToggle,
+  mobileBreakpoint,
 }) => {
   const isExternalLink = to && !to.startsWith('/');
   const Element = to ? Link : 'div';
@@ -36,6 +37,24 @@ const NavLink = ({
         margin: 0 calc(var(--nav-link-padding) * -1);
         font-size: 0.875rem;
         text-decoration: none;
+        border-radius: 0.25rem;
+
+        ${mobileBreakpoint &&
+        css`
+          @media screen and (max-width: ${mobileBreakpoint}) {
+            border-radius: 0;
+            border-left: var(--border-width) solid transparent;
+
+            ${active &&
+            css`
+              border-left-color: var(--color-neutrals-400);
+
+              .dark-mode & {
+                border-left-color: var(--color-dark-400);
+              }
+            `}
+          }
+        `}
 
         &:hover {
           color: var(--primary-text-hover-color);
@@ -44,7 +63,6 @@ const NavLink = ({
         ${active &&
         css`
           background: var(--color-neutrals-100);
-          border-radius: 0.25rem;
 
           .dark-mode & {
             background: var(--color-dark-100);
@@ -84,10 +102,7 @@ const NavLink = ({
           css={css`
             font-size: 1rem;
             padding: 0.25rem;
-
-            &:hover {
-              transform: none;
-            }
+            transform: translateX(0.25rem);
           `}
         >
           <Icon
@@ -113,6 +128,7 @@ NavLink.propTypes = {
   onClick: PropTypes.func,
   to: PropTypes.string,
   onToggle: PropTypes.func,
+  mobileBreakpoint: PropTypes.string,
 };
 
 export default NavLink;

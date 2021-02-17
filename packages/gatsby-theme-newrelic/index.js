@@ -25,6 +25,8 @@ export { default as MDXCollapserGroup } from './src/components/MDXCollapserGroup
 export { default as MDXLink } from './src/components/MDXLink';
 export { default as MDXTable } from './src/components/MDXTable';
 export { default as MDXVideo } from './src/components/MDXVideo';
+export { default as MobileHeader } from './src/components/MobileHeader';
+export { default as MobileNavigation } from './src/components/MobileNavigation';
 export { default as Navigation } from './src/components/Navigation';
 export { default as NavItem } from './src/components/NavItem';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
@@ -59,5 +61,7 @@ export { default as useTimeout } from './src/hooks/useTimeout';
 export { default as useUserId } from './src/hooks/useUserId';
 export { default as useHasMounted } from './src/hooks/useHasMounted';
 export { default as usePrevious } from './src/hooks/usePrevious';
+export { default as useScrollFreeze } from './src/hooks/useScrollFreeze';
+export { default as useWarning } from './src/hooks/useWarning';
 
 export * from 'react-i18next';

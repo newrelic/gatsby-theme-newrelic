@@ -7,9 +7,10 @@ import { useLocation } from '@reach/router';
 import usePrevious from '../hooks/usePrevious';
 import useLocale from '../hooks/useLocale';
 import useNavigation from '../hooks/useNavigation';
+import { graphql, useStaticQuery } from 'gatsby';
 import { stripTrailingSlash } from '../utils/location';
 
-const NavItem = ({ page, __parent: parent }) => {
+const NavItem = ({ page, __parent: parent, __depth: depth = 0 }) => {
   const locale = useLocale();
   const location = useLocation();
   const { searchTerm } = useNavigation();
@@ -29,6 +30,20 @@ const NavItem = ({ page, __parent: parent }) => {
   const hasChangedPage = pathname !== usePrevious(pathname);
   const [isExpanded, setIsExpanded] = useState(shouldExpand);
   const toggle = (expanded) => !expanded;
+
+  const {
+    site: {
+      layout: { mobileBreakpoint },
+    },
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        layout {
+          mobileBreakpoint
+        }
+      }
+    }
+  `);
 
   useEffect(() => {
     if (hasChangedPage) {
@@ -57,6 +72,13 @@ const NavItem = ({ page, __parent: parent }) => {
 
         display: ${matchesSearch || !searchTerm ? 'block' : 'none'};
         padding-left: ${parent == null ? '0' : 'var(--nav-link-padding)'};
+
+        ${mobileBreakpoint &&
+        css`
+          @media screen and (max-width: ${mobileBreakpoint}) {
+            padding-left: 0;
+          }
+        `}
       `}
     >
       <NavLink
@@ -69,10 +91,20 @@ const NavItem = ({ page, __parent: parent }) => {
           setIsExpanded(isCurrentPage || !page.url ? toggle : true);
         }}
         onToggle={() => setIsExpanded(toggle)}
+        mobileBreakpoint={mobileBreakpoint}
         css={css`
           padding-left: ${parent?.icon
             ? 'calc(var(--icon-size) + var(--icon-spacing))'
             : 'var(--nav-link-padding)'};
+
+          ${mobileBreakpoint &&
+          css`
+            @media screen and (max-width: ${mobileBreakpoint}) {
+              --border-width: 4px;
+
+              padding-left: ${getMobilePadding({ parent, depth })};
+            }
+          `}
         `}
       >
         {searchTerm ? (
@@ -88,6 +120,7 @@ const NavItem = ({ page, __parent: parent }) => {
             key={child.url || child.title}
             page={child}
             __parent={page}
+            __depth={depth + 1}
           />
         ))}
     </div>
@@ -103,7 +136,18 @@ const page = PropTypes.shape({
 
 NavItem.propTypes = {
   __parent: page,
+  __depth: PropTypes.number,
   page: page.isRequired,
+};
+
+const getMobilePadding = ({ parent, depth }) => {
+  if (parent == null) {
+    return 'calc(var(--nav-link-padding) - var(--border-width))';
+  }
+
+  return parent?.icon
+    ? `calc(${depth} * var(--nav-link-padding) + var(--icon-size) + var(--icon-spacing) - var(--border-width))`
+    : `calc(${depth + 1} * var(--nav-link-padding) - var(--border-width))`;
 };
 
 const containsPage = (page, url) => {
