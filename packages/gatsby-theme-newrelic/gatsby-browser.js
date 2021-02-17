@@ -2,6 +2,7 @@ import React from 'react';
 import LayoutContext from './src/components/LayoutContext';
 import SplitIOProvider from './src/components/SplitIOProvider';
 import getSplitConfig from './src/utils/getSplitConfig';
+import getLocale from './src/utils/getLocale';
 
 export const wrapRootElement = ({ element }, pluginOptions) => {
   return (
@@ -15,6 +16,25 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
       )}
     </LayoutContext.Provider>
   );
+};
+
+export const onClientEntry = (_, { newrelic, i18n }) => {
+  const mode = isDarkMode() ? 'dark' : 'light';
+  const locale = getLocale(i18n, window.location);
+  if (newrelic) {
+    window.newrelic.addCustomAttribute('mode', mode);
+    window.newrelic.addCustomAttribute('locale', locale);
+  }
+};
+
+const isDarkMode = () => {
+  const localStorageTheme = localStorage.getItem('darkMode');
+
+  if (localStorageTheme) {
+    return JSON.parse(localeStorageTheme);
+  }
+
+  return document.body.classList.contains('dark-mode');
 };
 
 export { default as onRouteUpdate } from './gatsby/on-route-update';
