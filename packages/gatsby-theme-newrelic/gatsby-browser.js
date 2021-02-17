@@ -23,8 +23,8 @@ export const onClientEntry = (_, { newrelic, i18n }) => {
     const mode = isDarkMode() ? 'dark' : 'light';
     const locale = getLocale(i18n, window.location);
 
-    window.newrelic.addCustomAttribute('mode', mode);
-    window.newrelic.addCustomAttribute('locale', locale);
+    window.newrelic.setCustomAttribute('mode', mode);
+    window.newrelic.setCustomAttribute('locale', locale);
   }
 };
 
