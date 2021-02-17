@@ -55,6 +55,7 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
           pageTitle={pageTitle}
           variant={Button.VARIANT.OUTLINE}
           size={Button.SIZE.SMALL}
+          instrumentation={{ component: 'ContributingGuidelines' }}
         />
 
         {fileRelativePath && (

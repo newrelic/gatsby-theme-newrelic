@@ -87,6 +87,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
               pageTitle={pageTitle}
               variant={Button.VARIANT.OUTLINE}
               size={Button.SIZE.SMALL}
+              instrumentation={{ component: 'GlobalFooter' }}
               css={css`
                 margin-right: 0.5rem;
               `}
