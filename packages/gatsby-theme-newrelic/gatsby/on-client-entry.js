@@ -1,6 +1,6 @@
 import getLocale from '../src/utils/getLocale';
 
-export const onClientEntry = (_, themeOptions) => {
+const onClientEntry = (_, themeOptions) => {
   if (window.newrelic) {
     const mode = isDarkMode() ? 'dark' : 'light';
     const locale = getLocale(themeOptions, window.location);
@@ -19,3 +19,5 @@ const isDarkMode = () => {
 
   return document.body.classList.contains('dark-mode');
 };
+
+export default onClientEntry;
