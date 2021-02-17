@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
-import Icon from './Icon';
 import Logo from './Logo';
 import ExternalLink from './ExternalLink';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import { css } from '@emotion/core';
 import CreateIssueButton from './CreateIssueButton';
+import EditPageButton from './EditPageButton';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 
@@ -95,20 +95,12 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
           )}
 
           {repository && fileRelativePath && (
-            <Button
-              as={ExternalLink}
-              href={`${repository}/blob/${branch}/${fileRelativePath}`}
+            <EditPageButton
+              fileRelativePath={fileRelativePath}
               variant={Button.VARIANT.OUTLINE}
               size={Button.SIZE.SMALL}
-            >
-              <Icon
-                name="fe-edit"
-                css={css`
-                  margin-right: 0.5rem;
-                `}
-              />
-              {t('github.editPage')}
-            </Button>
+              instrumentation={{ component: 'GlobalFooter' }}
+            />
           )}
         </div>
       </div>
