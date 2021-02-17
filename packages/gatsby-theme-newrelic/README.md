@@ -86,6 +86,7 @@ websites](https://opensource.newrelic.com).
   - [`useActiveHash`](#useactivehash)
   - [`useClipboard`](#useclipboard)
   - [`useFormattedCode`](#useformattedcode)
+  - [`useInstrumentedHandler`](#useinstrumentedhandler)
   - [`useKeyPress`](#usekeypress)
   - [`useLayout`](#uselayout)
   - [`useQueryParams`](#usequeryparams)
@@ -2611,6 +2612,63 @@ With formatting options:
 
 ```js
 const formattedCode = useFormattedCode(code, { printWidth: 100 });
+```
+
+### `useInstrumentedHandler`
+
+A hook that wraps a function handler with New Relic Browser instrumentation.
+
+```js
+import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `handler` _(function)_: The function hander that should be augmented with New
+  Relic Browser instrumentation. This can be `null` or `undefined`.
+- `attributes` _(object | function)_: Data passed to the
+  [`newrelic.addPageAction`](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/add-page-action)
+  API when called. The attributes **MUST** contain an `actionName` property,
+  otherwise the handler will not be instrumented. All other attributes will be
+  attached to the `attributes` property of the page action. You can pass a
+  function to instrument dynamic data. If this is a function, the function will
+  be called with the same arguments passed to the handler.
+
+**Returns**
+
+`function` - The wrapped function handler to be instrumented with New Relic
+Browser.
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const handleClick = useInstrumentedHandler(() => console.log('clicked'), {
+    actionName: 'click',
+  });
+
+  return (
+    <Button onClick={handleClick} variant="normal">
+      Click me
+    </Button>
+  );
+};
+```
+
+**Dynamic data**
+
+```js
+const MyComponent = () => {
+  const handler = useInstrumentedHandler(
+    (a, b) => add(a, b),
+    (a, b) => ({
+      actionName: 'add',
+      sum: a + b,
+    })
+  );
+
+  return <Counter adder={handler} />;
+};
 ```
 
 ### `useKeyPress`
