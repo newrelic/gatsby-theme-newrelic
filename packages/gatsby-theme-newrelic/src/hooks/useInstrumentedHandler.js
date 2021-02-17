@@ -19,9 +19,7 @@ const useInstrumentedHandler = (handler, attributes) => {
           'You are attempting to instrument a handler, but the `actionName` property is not set. This will result in a no-op.'
         );
 
-        if (actionName) {
-          actionName && window.newrelic.addPageAction(actionName, attrs);
-        }
+        actionName && window.newrelic.addPageAction(actionName, attrs);
       }
 
       if (savedHandler.current) {
