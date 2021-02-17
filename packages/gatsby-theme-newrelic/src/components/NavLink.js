@@ -102,10 +102,7 @@ const NavLink = ({
           css={css`
             font-size: 1rem;
             padding: 0.25rem;
-
-            &:hover {
-              transform: none;
-            }
+            transform: translateX(0.25rem);
           `}
         >
           <Icon
