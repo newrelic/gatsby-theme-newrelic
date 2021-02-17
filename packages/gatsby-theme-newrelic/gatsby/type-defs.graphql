@@ -1,6 +1,7 @@
 type SiteLayout @dontInfer {
   contentPadding: String
   maxWidth: String
+  mobileBreakpoint: String
 }
 
 type MdxFrontmatter @infer {
