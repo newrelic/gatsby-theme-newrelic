@@ -42,6 +42,9 @@
     "cookiePolicy": "Cookie Policy",
     "ukSlaveryAct": "UK Slavery Act"
   },
+  "mobileNav": {
+    "header": "Pages"
+  },
   "relatedResources": {
     "title": "Related resources"
   },
