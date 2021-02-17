@@ -8,6 +8,7 @@ import Icon from './Icon';
 import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
 import CreateIssueButton from './CreateIssueButton';
+import EditPageButton from './EditPageButton';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 
@@ -59,20 +60,12 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
         />
 
         {fileRelativePath && (
-          <Button
-            as={ExternalLink}
-            href={`${repository}/blob/${branch}/${fileRelativePath}`}
+          <EditPageButton
+            fileRelativePath={fileRelativePath}
             variant={Button.VARIANT.OUTLINE}
             size={Button.SIZE.SMALL}
-          >
-            <Icon
-              name="fe-edit"
-              css={css`
-                margin-right: 0.5rem;
-              `}
-            />
-            {t('github.editPage')}
-          </Button>
+            instrumentation={{ component: 'ContributingGuidelines' }}
+          />
         )}
       </div>
       {contributingUrl && (
