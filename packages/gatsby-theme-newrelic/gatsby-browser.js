@@ -19,9 +19,10 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
 };
 
 export const onClientEntry = (_, { newrelic, i18n }) => {
-  const mode = isDarkMode() ? 'dark' : 'light';
-  const locale = getLocale(i18n, window.location);
   if (newrelic) {
+    const mode = isDarkMode() ? 'dark' : 'light';
+    const locale = getLocale(i18n, window.location);
+
     window.newrelic.addCustomAttribute('mode', mode);
     window.newrelic.addCustomAttribute('locale', locale);
   }
