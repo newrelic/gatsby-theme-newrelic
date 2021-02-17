@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MobileNavModal from './MobileNavModal';
+import useScrollFreeze from '../hooks/useScrollFreeze';
 import { useTransition } from 'react-spring';
 
 const MobileNavigation = ({ isOpen, children, onClose }) => {
+  useScrollFreeze(isOpen);
+
   const transitions = useTransition(isOpen, null, {
     config: { mass: 1, tension: 350, friction: 25, velocity: 10 },
     from: {
