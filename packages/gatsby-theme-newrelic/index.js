@@ -60,5 +60,6 @@ export { default as useUserId } from './src/hooks/useUserId';
 export { default as useHasMounted } from './src/hooks/useHasMounted';
 export { default as usePrevious } from './src/hooks/usePrevious';
 export { default as useScrollFreeze } from './src/hooks/useScrollFreeze';
+export { default as useWarning } from './src/hooks/useWarning';
 
 export * from 'react-i18next';
