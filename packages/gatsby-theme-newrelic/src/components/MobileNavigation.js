@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from './Icon';
-import Logo from './Logo';
 import { animated, useTransition } from 'react-spring';
 import { css } from '@emotion/core';
 import { rgba } from 'polished';
@@ -37,7 +36,7 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
             transform-origin: top right;
             box-shadow: var(--shadow-6);
             background-color: white;
-            padding-bottom: 2rem;
+            padding-bottom: 1rem;
 
             .dark-mode & {
               background: var(--color-dark-050);
@@ -47,10 +46,8 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
           <header
             css={css`
               display: flex;
-              justify-content: flex-end;
+              justify-content: space-between;
               align-items: center;
-              position: sticky;
-              top: 0;
               padding: 1rem;
               border-bottom: 1px solid;
               border-bottom-color: var(--divider-color);
@@ -60,6 +57,15 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
               }
             `}
           >
+            <span
+              css={css`
+                color: var(--accent-text-color);
+                text-transform: uppercase;
+                font-size: 0.875rem;
+              `}
+            >
+              Pages
+            </span>
             <button
               type="button"
               onClick={onClose}
