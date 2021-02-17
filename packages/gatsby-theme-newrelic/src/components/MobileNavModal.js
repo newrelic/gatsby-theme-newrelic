@@ -10,7 +10,7 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 const REM = 16;
 
 const MobileNavModal = ({ children, style, onClose }) => {
-  const scrollRef = useRef();
+  const scrollRef = useRef(null);
   const { y } = useScroll(scrollRef);
   const { t } = useThemeTranslation();
 
