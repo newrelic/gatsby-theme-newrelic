@@ -4,8 +4,10 @@ import Icon from './Icon';
 import { animated, useTransition } from 'react-spring';
 import { css } from '@emotion/core';
 import { rgba } from 'polished';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const MobileNavigation = ({ isOpen, children, onClose }) => {
+  const { t } = useThemeTranslation();
   const transitions = useTransition(isOpen, null, {
     config: { mass: 1, tension: 350, friction: 25, velocity: 10 },
     from: {
@@ -48,7 +50,7 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
               display: flex;
               justify-content: space-between;
               align-items: center;
-              padding: 1rem;
+              padding: 0.75rem 1rem;
               border-bottom: 1px solid;
               border-bottom-color: var(--divider-color);
 
@@ -64,7 +66,7 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
                 font-size: 0.875rem;
               `}
             >
-              Pages
+              {t('mobileNav.header')}
             </span>
             <button
               type="button"
