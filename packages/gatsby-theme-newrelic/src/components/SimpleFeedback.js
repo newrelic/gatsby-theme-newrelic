@@ -112,7 +112,6 @@ const SimpleFeedback = ({ pageTitle, labels = [] }) => {
 SimpleFeedback.propTypes = {
   pageTitle: PropTypes.string,
   labels: PropTypes.arrayOf(PropTypes.string),
-  issueBody: PropTypes.string,
 };
 
 export default SimpleFeedback;
