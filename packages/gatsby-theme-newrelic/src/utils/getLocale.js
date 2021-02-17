@@ -1,4 +1,4 @@
-import { withDefaults, defaultLocale } from '../src/utils/defaultOptions';
+import { withDefaults, defaultLocale } from './defaultOptions';
 
 export default getLocale = (themeOptions, location) => {
   const { i18n } = withDefaults(themeOptions);
