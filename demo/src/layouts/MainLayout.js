@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import {
   CookieConsentDialog,
-  HamburgerMenu,
   GlobalHeader,
   Layout,
   Link,
   Logo,
-  MobileNavigation,
+  MobileHeader,
   Navigation,
   NavItem,
   SearchInput,
@@ -18,39 +17,17 @@ import nav from '../data/sidenav.json';
 
 const MainLayout = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { children, pageContext, location } = props;
 
   return (
     <>
       <SEO location={location} />
       <GlobalHeader />
-      <header
-        css={css`
-          display: none;
-          padding: 1rem var(--site-content-padding);
-          justify-content: space-between;
-          align-items: center;
-
-          @media screen and (max-width: 760px) {
-            display: flex;
-          }
-        `}
-      >
-        <Logo />
-        <HamburgerMenu
-          onToggle={() => setIsMenuOpen((isOpen) => !isOpen)}
-          isOpen={isMenuOpen}
-        />
-        <MobileNavigation
-          isOpen={isMenuOpen}
-          onClose={() => setIsMenuOpen(false)}
-        >
-          {nav.map((page) => (
-            <NavItem key={page.url} page={page} />
-          ))}
-        </MobileNavigation>
-      </header>
+      <MobileHeader>
+        {nav.map((page) => (
+          <NavItem key={page.url} page={page} />
+        ))}
+      </MobileHeader>
       <Layout>
         <Layout.Sidebar>
           <Link to="/">
