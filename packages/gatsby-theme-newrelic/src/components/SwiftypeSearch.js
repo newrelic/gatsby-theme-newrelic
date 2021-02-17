@@ -105,7 +105,7 @@ const SwiftypeSearch = ({ className }) => {
                     {hasResults && (
                       <>
                         <Results
-                          resultView={ResultView}
+                          resultView={(props) => <ResultView {...props} />}
                           titleField="title"
                           urlField="url"
                         />
