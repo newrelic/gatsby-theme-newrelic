@@ -10,22 +10,27 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 const POSITIVE_ISSUE_BODY = `
-## Feedback
+### Tell us more about your feedback
 
-[NOTE]: # (Please put any feedback you have here)
-[TIP]: # (We'd love to hear what you like!)
+We're glad to hear this doc was helpful! We've recorded your feedback. Help us 
+improve other content by telling us what worked and what didn't:
+
+* What worked well in this doc?
+* How could we make this doc even better?
 `;
 
 const NEGATIVE_ISSUE_BODY = `
-## Feedback
+### Tell us more about your feedback
 
-[NOTE]: # (Please put any feedback you have here)
-[TIP]: # (Help us figure out what we could be doing better)
+Sorry to hear this doc wasn't helpful, but we'd love to make it better! We've 
+recorded your feedback. Help us improve this content by providing more info:
+
+* How can we improve this doc?
 `;
 
 const SimpleFeedback = ({ pageTitle, labels = [] }) => {
   const { t } = useThemeTranslation();
-  const issueTitle = pageTitle ? `Feedback: ${pageTitle}` : 'Website feedback';
+  const issueTitle = pageTitle ? `Feedback: ${pageTitle}` : 'Docs feedback';
 
   const handleClick = useInstrumentedHandler(null, (feedback) => ({
     actionName: 'feedback_click',
