@@ -14,7 +14,7 @@ const isDarkMode = () => {
   const localStorageTheme = localStorage.getItem('darkMode');
 
   if (localStorageTheme) {
-    return JSON.parse(localeStorageTheme);
+    return JSON.parse(localStorageTheme);
   }
 
   return document.body.classList.contains('dark-mode');

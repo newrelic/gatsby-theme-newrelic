@@ -1,6 +1,6 @@
 import { withDefaults, defaultLocale } from './defaultOptions';
 
-export default getLocale = (themeOptions, location) => {
+const getLocale = (themeOptions, location) => {
   const { i18n } = withDefaults(themeOptions);
   const [, base] = location.pathname.split('/');
   const locale =
@@ -8,3 +8,5 @@ export default getLocale = (themeOptions, location) => {
     defaultLocale;
   return locale.locale;
 };
+
+export default getLocale;
