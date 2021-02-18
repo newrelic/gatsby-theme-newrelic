@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.31.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.30.1...v1.31.0) (2021-02-18)
+
+
+### Bug Fixes
+
+* **404:** Instrument hits to the 404 page ([6a8f6bf](https://github.com/newrelic/gatsby-theme-newrelic/commit/6a8f6bf98c82d622c9dfeb509a48f824b1be8b9c))
+* **CodeBlock:** Instrument copy button clicks ([c30d11c](https://github.com/newrelic/gatsby-theme-newrelic/commit/c30d11c9db67156f0152f6670dd5f6bcdc198ac9))
+* **CreateIssueButton:** Instrument the click action ([1aa0e76](https://github.com/newrelic/gatsby-theme-newrelic/commit/1aa0e76639c241fc6dcf6b28320f5ff4f5ee45f2))
+* **ExternalLink:** Instrument clicks ([e5f01a8](https://github.com/newrelic/gatsby-theme-newrelic/commit/e5f01a8fb79d205222f67043b701360c1d02ccdc))
+* **HamburgerMenu:** add active styles when the button is pressed ([a6fdc08](https://github.com/newrelic/gatsby-theme-newrelic/commit/a6fdc08957a6ff8266342e481fc44397f5690784))
+* **HamburgerMenu:** update design ([5f6999a](https://github.com/newrelic/gatsby-theme-newrelic/commit/5f6999a40d4f3fe2b39417ffbf3dabad7f9522d7))
+* **Link:** Instrument clicks ([6ddd4a6](https://github.com/newrelic/gatsby-theme-newrelic/commit/6ddd4a6a16d29e0654313b9ee04752b5d269dd10))
+* **NavItem:** Add mobile styles ([3ad70fa](https://github.com/newrelic/gatsby-theme-newrelic/commit/3ad70fa840fc062d48474959e5683d9bc521b0b0))
+* **NavLink:** Properly horizontal align the external link and chevron icons in the nav ([3df02e0](https://github.com/newrelic/gatsby-theme-newrelic/commit/3df02e0a0f3945790d8f9666ad02807045bdebf3))
+* **ResultView:** Instrument clicks on links ([79554e5](https://github.com/newrelic/gatsby-theme-newrelic/commit/79554e539c426a34e16526d0798c6f47917b9165))
+* **SimpleFeedback:** Instrument clicks for feedback buttons ([d69915f](https://github.com/newrelic/gatsby-theme-newrelic/commit/d69915f38bd58f8b7eb0cbdecf8b1f50eed3e6bb))
+* **SwiftypeSearch:** Instrument searches ([7f69177](https://github.com/newrelic/gatsby-theme-newrelic/commit/7f6917792ba5b7f687c4e7d6968f98784a1acbbb))
+* add mobileBreakpoint to layout configuration ([2abd0b5](https://github.com/newrelic/gatsby-theme-newrelic/commit/2abd0b5373886897546a697745bfce10722ff787))
+* add newrelic logo to logo icons ([9f5b21e](https://github.com/newrelic/gatsby-theme-newrelic/commit/9f5b21eaf010cdc8aa906671cc5c954ebc035cfe))
+* update HamburgerMenu design ([0a12364](https://github.com/newrelic/gatsby-theme-newrelic/commit/0a12364b8e32f3aedad62edc5f6d4bcbfc405677))
+* upgrade gatsby-plugin-newrelic ([adeebe4](https://github.com/newrelic/gatsby-theme-newrelic/commit/adeebe43133deb8145d061729925e8f0a21b089f))
+
+
+### Features
+
+* add a useInstrumentedData hook ([707e789](https://github.com/newrelic/gatsby-theme-newrelic/commit/707e78933b4fe2d82f168a1a24eb0e55ca231a2a))
+* add a useInstrumentedHandler hook to easily instrument a handler with New Relic browser ([3e27459](https://github.com/newrelic/gatsby-theme-newrelic/commit/3e27459540e96e45790a9f3fdaa6f9a2c3359970))
+* add a useScrollFreeze hook ([de064cc](https://github.com/newrelic/gatsby-theme-newrelic/commit/de064cce3737a7d543d93a22da708d0bf2af7371))
+* add a useWarning hook ([c59bd74](https://github.com/newrelic/gatsby-theme-newrelic/commit/c59bd74cbf24d38140b6cc49ef04cc396f0d8c96))
+* adds custom attribute to components ([20f1fbb](https://github.com/newrelic/gatsby-theme-newrelic/commit/20f1fbb1311a01f1aacb544b9241100442ff95c4))
+* Create a MobileHeader component ([525989c](https://github.com/newrelic/gatsby-theme-newrelic/commit/525989c329229a7bbd7eba5619f676fe3e1d4c9d))
+* create a MobileNavigation component ([cfe9953](https://github.com/newrelic/gatsby-theme-newrelic/commit/cfe9953a70ac24d16dc52af01015c710ce608606))
+* Create an EditPageButton component ([3aafd45](https://github.com/newrelic/gatsby-theme-newrelic/commit/3aafd45f3a5138033d00e9b4ae9bea84ed667497))
+
+
+
+
+
 ## [1.30.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.30.0...v1.30.1) (2021-02-12)
 
 
