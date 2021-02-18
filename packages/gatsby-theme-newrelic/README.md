@@ -87,6 +87,7 @@ websites](https://opensource.newrelic.com).
   - [`useActiveHash`](#useactivehash)
   - [`useClipboard`](#useclipboard)
   - [`useFormattedCode`](#useformattedcode)
+  - [`useInstrumentedData`](#useinstrumenteddata)
   - [`useInstrumentedHandler`](#useinstrumentedhandler)
   - [`useKeyPress`](#usekeypress)
   - [`useLayout`](#uselayout)
@@ -2658,6 +2659,43 @@ With formatting options:
 
 ```js
 const formattedCode = useFormattedCode(code, { printWidth: 100 });
+```
+
+### `useInstrumentedData`
+
+A hook that instruments raw data with New Relic Browser.
+
+```js
+import { useInstrumentedData } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `attributes` _(object)_: Data passed to the
+  [`newrelic.addPageAction`](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/add-page-action)
+  API when called. These attributes **MUST** contain an `actionName` property,
+  otherwise the data will not be instrumented. All other attributes will be
+  attached to the `attributes` property of the page action.
+- `options` _(object)_: Options for the hook
+  - `enabled` _(boolean)_: Determines whether the data should be instrumented
+    via `newrelic.addPageAction`. Set to `false` to disable instrumentation.
+    **DEFAULT**: `true`
+
+**Returns**
+
+`Void`
+
+**Examples**
+
+```js
+const MyComponent = ({ searchTerm, onChange }) => {
+  useInstrumentedData(
+    { actionName: 'search', searchTerm },
+    { enabled: Boolean(searchTerm) }
+  );
+
+  return <input value={searchTerm} onChange={onChange} />;
+};
 ```
 
 ### `useInstrumentedHandler`
