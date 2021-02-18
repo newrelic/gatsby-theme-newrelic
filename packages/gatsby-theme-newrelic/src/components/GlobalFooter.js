@@ -23,7 +23,6 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
         siteMetadata {
           siteUrl
           repository
-          branch
         }
       }
       sitePage(path: { eq: "/terms" }) {
@@ -33,7 +32,7 @@ const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
   `);
 
   const { siteMetadata } = site;
-  const { branch, repository } = siteMetadata;
+  const { repository } = siteMetadata;
 
   return (
     <footer
