@@ -40,6 +40,7 @@ websites](https://opensource.newrelic.com).
     - [`Dropdown.Menu`](#dropdownmenu)
     - [`Dropdown.MenuItem`](#dropdownmenuitem)
   - [`ExternalLink`](#externallink)
+  - [`EditPageButton`](#editpagebutton)
   - [`FeatherSVG`](#feathersvg)
   - [`GitHubIssueButton`](#githubissuebutton)
     - [Environment information](#environment-information)
@@ -1070,6 +1071,51 @@ All props are forwarded to the underlying `a` tag with the exception of the
 
 ```js
 <ExternalLink href="https://newrelic.com">Link to New Relic</ExternalLink>
+```
+
+### `EditPageButton`
+
+Button used to link to the current page in GitHub. Used for the "Edit page"
+button in the [`ContributingGuidelines`](#contributingguidelines) and
+[`GlobalFooter`](#globalfooter) components.
+
+```js
+import { EditPageButton } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop               | Type            | Required | Default | Description                                                                                                                    |
+| ------------------ | --------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `fileRelativePath` | string          | yes      |         | Relative filepath of the current page.                                                                                         |
+| `instrumentation`  | Instrumentation | yes      |         | Config for the component instrumentation when the button is clicked. See the values below for a desciption on what is allowed. |
+
+All other props are forwarded to [`Button`](#button) component.
+
+```ts
+type Instrumentation = {
+  component: string;
+};
+```
+
+**Instrumentation**
+
+The following fields are available for instrumentation:
+
+- `component` _(string)_ **required** - The name of the component where this
+  button is used. Helps to understand where in the site the button is clicked.
+
+**Example**
+
+```jsx
+import { Button, EditPageButton } from '@newrelic/gatsby-theme-newrelic';
+
+<EditPageButton
+  fileRelativePath="src/content/docs/apm.mdx"
+  size={Button.SIZE.SMALL}
+  variant={Button.VARIANT.OUTLINE}
+  instrumentation={{ component: 'ContributingGuidelines' }}
+/>;
 ```
 
 ### `FeatherSVG`
