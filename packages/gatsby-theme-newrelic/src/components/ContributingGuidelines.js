@@ -3,26 +3,21 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Button from './Button';
 import Link from './Link';
-import ExternalLink from './ExternalLink';
-import Icon from './Icon';
 import PageTools from './PageTools';
 import { graphql, useStaticQuery } from 'gatsby';
 import CreateIssueButton from './CreateIssueButton';
-import useThemeTranslation from '../hooks/useThemeTranslation';
+import EditPageButton from './EditPageButton';
 import Trans from './Trans';
 
 const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
-  const { t } = useThemeTranslation();
   const {
     site: {
-      siteMetadata: { repository, branch, contributingUrl },
+      siteMetadata: { contributingUrl },
     },
   } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
-          repository
-          branch
           contributingUrl
         }
       }
@@ -55,23 +50,16 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
           pageTitle={pageTitle}
           variant={Button.VARIANT.OUTLINE}
           size={Button.SIZE.SMALL}
+          instrumentation={{ component: 'ContributingGuidelines' }}
         />
 
         {fileRelativePath && (
-          <Button
-            as={ExternalLink}
-            href={`${repository}/blob/${branch}/${fileRelativePath}`}
+          <EditPageButton
+            fileRelativePath={fileRelativePath}
             variant={Button.VARIANT.OUTLINE}
             size={Button.SIZE.SMALL}
-          >
-            <Icon
-              name="fe-edit"
-              css={css`
-                margin-right: 0.5rem;
-              `}
-            />
-            {t('github.editPage')}
-          </Button>
+            instrumentation={{ component: 'ContributingGuidelines' }}
+          />
         )}
       </div>
       {contributingUrl && (
