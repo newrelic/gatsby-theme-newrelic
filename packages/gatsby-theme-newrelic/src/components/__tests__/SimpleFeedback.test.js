@@ -84,7 +84,7 @@ describe('SimpleFeedback Component', () => {
       'labels',
       [...labels, 'feedback', 'feedback-positive'].join(',')
     );
-    params.set('title', 'Website feedback');
+    params.set('title', 'Docs feedback');
     const url = `${ISSUE_URL}?${params.toString()}`;
 
     expect(resultWithoutBody(yes)).toBe(url);
@@ -95,12 +95,12 @@ describe('SimpleFeedback Component', () => {
 
     const yesParams = new URLSearchParams();
     yesParams.set('labels', ['feedback', 'feedback-positive'].join(','));
-    yesParams.set('title', 'Website feedback');
+    yesParams.set('title', 'Docs feedback');
     const positiveUrl = `${ISSUE_URL}?${yesParams.toString()}`;
 
     const noParams = new URLSearchParams();
     noParams.set('labels', ['feedback', 'feedback-negative'].join(','));
-    noParams.set('title', 'Website feedback');
+    noParams.set('title', 'Docs feedback');
     const negativeUrl = `${ISSUE_URL}?${noParams.toString()}`;
 
     expect(resultWithoutBody(yes)).toBe(positiveUrl);
