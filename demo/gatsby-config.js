@@ -24,11 +24,21 @@ module.exports = {
           component: require.resolve('./src/layouts'),
           contentPadding: '2rem',
           maxWidth: '1480px',
+          mobileBreakpoint: '760px',
         },
         newrelic: {
           configs: {
-            staging: {},
-            production: {},
+            development: {
+              instrumentationType: 'proAndSPA',
+              accountId: '10175106',
+              trustKey: '1',
+              agentID: '29802175',
+              licenseKey: '23448da482',
+              // New Relic Gatsby Theme - Demo Site
+              applicationID: '29802175',
+              beacon: 'staging-bam.nr-data.net',
+              errorBeacon: 'staging-bam.nr-data.net',
+            },
           },
         },
         splitio: {

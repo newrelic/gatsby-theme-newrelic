@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { LiveError, LivePreview, LiveProvider } from 'react-live';
@@ -12,6 +12,7 @@ import RawCode from './RawCode';
 import useClipboard from '../hooks/useClipboard';
 import useFormattedCode from '../hooks/useFormattedCode';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 const AUTO_FORMATTED_LANGUAGES = [
   'jsx',
@@ -33,6 +34,17 @@ const replaceHTML = (code) =>
     .replace(/<\/?mark>/g, '')
     .replace(/<a href=.*?>/g, '')
     .replace(/<\/a>/g, '');
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'update':
+      return { code: action.payload, modified: true };
+    case 'reformat':
+      return { ...state, code: action.payload };
+    default:
+      return state;
+  }
+};
 
 const CodeBlock = ({
   autoFormat,
@@ -68,10 +80,21 @@ const CodeBlock = ({
         : !autoFormat,
   });
   const [copied, copy] = useClipboard();
-  const [code, setCode] = useState(formattedCode);
+  const [{ code, modified }, dispatch] = useReducer(reducer, {
+    code: formattedCode,
+    modified: false,
+  });
+
+  const handleCopyClick = useInstrumentedHandler(
+    () => copy(containsEmbeddedHTML ? normalizedCode : code),
+    {
+      actionName: 'copyCodeBlock_click',
+      modified,
+    }
+  );
 
   useEffect(() => {
-    setCode(formattedCode);
+    dispatch({ type: 'reformat', payload: formattedCode });
   }, [formattedCode]);
 
   return (
@@ -118,7 +141,7 @@ const CodeBlock = ({
                 value={code}
                 language={language}
                 lineNumbers={lineNumbers}
-                onChange={setCode}
+                onChange={(code) => dispatch({ type: 'update', payload: code })}
               />
             ) : (
               <CodeHighlight
@@ -166,9 +189,7 @@ const CodeBlock = ({
               <Button
                 type="button"
                 variant={Button.VARIANT.LINK}
-                onClick={() =>
-                  copy(containsEmbeddedHTML ? normalizedCode : code)
-                }
+                onClick={handleCopyClick}
                 size={Button.SIZE.SMALL}
                 css={css`
                   white-space: nowrap;

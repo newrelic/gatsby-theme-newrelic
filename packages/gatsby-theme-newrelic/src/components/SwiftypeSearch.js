@@ -17,6 +17,8 @@ import styles from '../styles/SwiftypeSearchStyles';
 import Spinner from './Spinner';
 import useQueryParams from '../hooks/useQueryParams';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import useInstrumentedData from '../hooks/useInstrumentedData';
+import usePrevious from '../hooks/usePrevious';
 
 const connector = new SiteSearchAPIConnector({
   documentType: 'page',
@@ -69,17 +71,28 @@ const SwiftypeSearch = ({ className }) => {
     <div css={styles} className={className}>
       <SearchProvider config={configOptions}>
         <WithSearch
-          mapContextToProps={({ isLoading, results, searchTerm }) => ({
+          mapContextToProps={({
             isLoading,
             results,
             searchTerm,
+            totalResults,
+          }) => ({
+            isLoading,
+            results,
+            searchTerm,
+            totalResults,
           })}
         >
-          {({ isLoading, results, searchTerm }) => {
+          {({ isLoading, results, searchTerm, totalResults }) => {
             const hasResults = !isLoading && results && results.length > 0;
             const hasSearched = !isLoading && searchTerm.length > 0;
             return (
               <>
+                <Instrumentation
+                  searchTerm={searchTerm}
+                  isLoading={isLoading}
+                  totalResults={totalResults}
+                />
                 <SearchBox
                   searchAsYouType
                   debounceLength={500}
@@ -105,7 +118,7 @@ const SwiftypeSearch = ({ className }) => {
                     {hasResults && (
                       <>
                         <Results
-                          resultView={ResultView}
+                          resultView={(props) => <ResultView {...props} />}
                           titleField="title"
                           urlField="url"
                         />
@@ -121,6 +134,24 @@ const SwiftypeSearch = ({ className }) => {
       </SearchProvider>
     </div>
   );
+};
+
+// The `WithSearch` contains the data we need, but its called as a function,
+// which means we can't use hooks. This component allows us to instrument data
+// about the search, but within the lifecycle of a component.
+const Instrumentation = ({ searchTerm, totalResults, isLoading }) => {
+  const previousIsLoading = usePrevious(isLoading);
+
+  // we only want to instrument when search results have just been loaded (i.e.
+  // when transitioning from isLoading === true -> isLoading === false). This
+  // ensures we do not instrument search terms with 0 search results on the
+  // initial load of the page
+  useInstrumentedData(
+    { actionName: 'swiftypeSearch_input', searchTerm, totalResults },
+    { enabled: searchTerm && previousIsLoading === true && isLoading === false }
+  );
+
+  return null;
 };
 
 const InputView = ({ getAutocomplete, getInputProps }) => {

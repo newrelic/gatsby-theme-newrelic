@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import SkewedContainer from '../components/SkewedContainer';
 import GlobalHeader from '../components/GlobalHeader';
@@ -6,9 +7,16 @@ import GlobalFooter from '../components/GlobalFooter';
 import Link from '../components/Link';
 import Trans from '../components/Trans';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import useInstrumentedData from '../hooks/useInstrumentedData';
 
-const NotFoundPage = () => {
+const NotFoundPage = ({ location }) => {
   const { t } = useThemeTranslation();
+
+  useInstrumentedData({
+    actionName: '404_redirect',
+    path: location.pathname,
+  });
+
   return (
     <>
       <GlobalHeader />
@@ -56,6 +64,12 @@ const NotFoundPage = () => {
       </div>
     </>
   );
+};
+
+NotFoundPage.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default NotFoundPage;

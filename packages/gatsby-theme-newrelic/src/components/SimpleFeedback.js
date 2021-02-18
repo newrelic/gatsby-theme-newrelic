@@ -7,6 +7,7 @@ import GitHubIssueButton from './GitHubIssueButton';
 import Icon from './Icon';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 const POSITIVE_ISSUE_BODY = `
 ## Feedback
@@ -25,6 +26,11 @@ const NEGATIVE_ISSUE_BODY = `
 const SimpleFeedback = ({ pageTitle, labels = [] }) => {
   const { t } = useThemeTranslation();
   const issueTitle = pageTitle ? `Feedback: ${pageTitle}` : 'Website feedback';
+
+  const handleClick = useInstrumentedHandler(null, (feedback) => ({
+    actionName: 'feedback_click',
+    feedback,
+  }));
 
   return (
     <PageTools.Section
@@ -70,6 +76,7 @@ const SimpleFeedback = ({ pageTitle, labels = [] }) => {
           issueBody={POSITIVE_ISSUE_BODY}
           variant={Button.VARIANT.LINK}
           size={Button.SIZE.EXTRA_SMALL}
+          onClick={() => handleClick('positive')}
         >
           <Icon
             size="0.75rem"
@@ -86,6 +93,7 @@ const SimpleFeedback = ({ pageTitle, labels = [] }) => {
           issueBody={NEGATIVE_ISSUE_BODY}
           variant={Button.VARIANT.LINK}
           size={Button.SIZE.EXTRA_SMALL}
+          onClick={() => handleClick('negative')}
         >
           <Icon
             size="0.75rem"
@@ -104,7 +112,6 @@ const SimpleFeedback = ({ pageTitle, labels = [] }) => {
 SimpleFeedback.propTypes = {
   pageTitle: PropTypes.string,
   labels: PropTypes.arrayOf(PropTypes.string),
-  issueBody: PropTypes.string,
 };
 
 export default SimpleFeedback;
