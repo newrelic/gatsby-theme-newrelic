@@ -1244,7 +1244,6 @@ import { GlobalHeader } from '@newrelic/gatsby-theme-newrelic';
 | Prop | Type | Required | Default | Description |
 | --------- | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `editUrl` | string | no | | Used by the edit page link in the global header to link to a GitHub URL where a user can edit the page's source. If omitted, the edit page link will be excluded. |
-| `onClick` | function | no | | Function that is called whenever a link in the global header is clicked. A single argument is passed to the function: a string representing the event target. |
 
 **Gatsby configuration**
 
