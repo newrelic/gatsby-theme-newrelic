@@ -42,7 +42,7 @@ const actionIcon = css`
   cursor: pointer;
 `;
 
-const GlobalHeader = ({ className }) => {
+const GlobalHeader = ({ className, onClick }) => {
   const location = useLocation();
   const { queryParams, setQueryParam } = useQueryParams();
   const [searchQuery, setSearchQuery] = useState('');
@@ -189,22 +189,22 @@ const GlobalHeader = ({ className }) => {
                 }
               `}
             >
-              <li>
+              <li onClick={() => onClick('globalHeader_docs')}>
                 <GlobalNavLink href="https://docs.newrelic.com/">
                   Docs
                 </GlobalNavLink>
               </li>
-              <li>
+              <li onClick={() => onClick('globalHeader_developers')}>
                 <GlobalNavLink href="https://developer.newrelic.com/">
                   Developers
                 </GlobalNavLink>
               </li>
-              <li>
+              <li onClick={() => onClick('globalHeader_openSource')}>
                 <GlobalNavLink href="https://opensource.newrelic.com/">
                   Open Source
                 </GlobalNavLink>
               </li>
-              <li>
+              <li onClick={() => onClick('globalHeader_community')}>
                 <GlobalNavLink href="https://discuss.newrelic.com/">
                   Community
                 </GlobalNavLink>
@@ -292,6 +292,7 @@ const GlobalHeader = ({ className }) => {
               <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
             </li>
             <li
+              onClick={() => onClick('globalHeader_login')}
               css={css`
                 display: flex;
                 align-items: center;
@@ -311,6 +312,7 @@ const GlobalHeader = ({ className }) => {
               </Button>
             </li>
             <li
+              onClick={() => onClick('globalHeader_signup')}
               css={css`
                 display: flex;
               `}
@@ -335,6 +337,11 @@ const GlobalHeader = ({ className }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+GlobalHeader.defaultProps = {
+  onClick: () => {},
 };
 
 export default GlobalHeader;
