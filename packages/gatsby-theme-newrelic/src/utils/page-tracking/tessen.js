@@ -27,11 +27,11 @@ const trackViaTessen = ({ location }, themeOptions) => {
     return;
   }
 
-  window.initializeTessenTracking = initializeTessenTracking(
-    tessenConfig,
+  window.initializeTessenTracking = initializeTessenTracking({
+    config: tessenConfig,
     env,
     location
-  );
+  });
 
   window.initializeTessenTracking();
   // wrap inside a timeout to make sure react-helmet is done with its changes (https://github.com/gatsbyjs/gatsby/issues/11592)
