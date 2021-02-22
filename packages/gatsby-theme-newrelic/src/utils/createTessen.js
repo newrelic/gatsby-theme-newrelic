@@ -1,4 +1,5 @@
 import warning from 'warning';
+import { canTrack } from './tracking';
 
 const warnAboutNoop = ({ config, action, name, category }) => {
   warning(
@@ -37,13 +38,15 @@ const tessenAction = (action, config) => (name, category, properties = {}) => {
     );
   }
 
-  window.Tessen[action](name, {
-    ...properties,
-    category,
-    nr_product: config.product,
-    nr_subproduct: config.subproduct,
-    location: 'Public',
-  });
+  if (canTrack()) {
+    window.Tessen[action](name, {
+      ...properties,
+      category,
+      nr_product: config.product,
+      nr_subproduct: config.subproduct,
+      location: 'Public',
+    });
+  }
 };
 
 const createTessen = (config) => ({

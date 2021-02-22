@@ -9,6 +9,5 @@ export const wrapRootElement = ({ element }, pluginOptions) => {
   );
 };
 
-export { default as onRenderBody } from './gatsby/on-render-body';
 export { default as onPreRenderHTML } from './gatsby/on-pre-render-html';
 export { default as wrapPageElement } from './gatsby/wrap-page-element';

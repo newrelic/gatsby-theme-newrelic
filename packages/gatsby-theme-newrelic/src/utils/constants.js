@@ -12,3 +12,5 @@ export const STORAGE_KEYS = {
   USER_ID: prefixStorageKey('userId'),
   LAST_ANNOUNCEMENT_DISMISSED: prefixStorageKey('lastAnnouncementDismissed'),
 };
+
+export const TRACKING_COOKIE_NAME = 'newrelic-gdpr-consent';
