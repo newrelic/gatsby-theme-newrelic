@@ -2,6 +2,7 @@ import createTessen from '../createTessen';
 import warning from 'warning';
 import getTessenConfig from '../config/tessen';
 import { getResolvedEnv } from '../config';
+import { canTrack } from '../tracking';
 
 const warnAboutNoop = (pageView) => {
   warning(
@@ -26,13 +27,23 @@ const trackViaTessen = ({ location }, themeOptions) => {
     return;
   }
 
-  const { pageView } = tessenConfig;
-  const tessen = createTessen(tessenConfig);
+  window.initializeTessenTracking = initializeTessenTracking(
+    tessenConfig,
+    env,
+    location
+  );
 
-  if (!canSendPageView(pageView)) {
-    return warnAboutNoop(pageView);
-  }
+  window.initializeTessenTracking();
+  // wrap inside a timeout to make sure react-helmet is done with its changes (https://github.com/gatsbyjs/gatsby/issues/11592)
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      trackPageView({ config: tessenConfig, env, location });
+    });
+  });
+};
 
+const trackPageView = ({ config, env, location }) => {
+  const { pageView } = config;
   const {
     name,
     category,
@@ -40,15 +51,34 @@ const trackViaTessen = ({ location }, themeOptions) => {
     ...properties
   } = pageView;
 
-  // wrap inside a timeout to make sure react-helmet is done with its changes (https://github.com/gatsbyjs/gatsby/issues/11592)
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      tessen.page(name, category, {
-        ...properties,
-        ...getProperties({ location, env }),
-      });
-    });
+  const tessen = createTessen(tessenConfig);
+
+  if (!canSendPageView(pageView)) {
+    return warnAboutNoop(pageView);
+  }
+
+  tessen.page(name, category, {
+    ...properties,
+    ...getProperties({ location, env }),
   });
+};
+
+const initializeTessenTracking = ({ config, env, location }) => (
+  options = {}
+) => {
+  if (canTrack()) {
+    const { segmentWriteKey } = config;
+    window.Tessen.load(['Segment', 'NewRelic'], {
+      Segment: {
+        identifiable: true,
+        writeKey: segmentWriteKey,
+      },
+    });
+
+    window.Tessen.identify({});
+
+    options.trackPageView && trackPageView({ config, env, location });
+  }
 };
 
 export default trackViaTessen;

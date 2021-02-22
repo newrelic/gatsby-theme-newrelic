@@ -5,12 +5,13 @@ import ExternalLink from './ExternalLink';
 import Button from './Button';
 import Trans from './Trans';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-
-const COOKIE_NAME = 'newrelic-gdpr-consent';
+import { TRACKING_COOKIE_NAME } from '../utils/constants';
 
 const CookieConsentDialog = () => {
   const { t } = useThemeTranslation();
-  const [isCookieSet, setIsCookieSet] = useState(Cookies.get(COOKIE_NAME));
+  const [isCookieSet, setIsCookieSet] = useState(
+    Cookies.get(TRACKING_COOKIE_NAME)
+  );
 
   const writeCookie = (answer) => {
     const currentEnvironment =
@@ -20,9 +21,11 @@ const CookieConsentDialog = () => {
       options.domain = 'newrelic.com';
     }
 
-    Cookies.set(COOKIE_NAME, String(answer), options);
+    Cookies.set(TRACKING_COOKIE_NAME, String(answer), options);
     setIsCookieSet(true);
-    answer && window.trackGoogleAnalytics();
+    if (answer) {
+      window.initializeTessenTracking({ trackPageView: true });
+    }
   };
 
   if (isCookieSet) {
