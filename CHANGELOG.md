@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.32.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.31.2...v1.32.0) (2021-02-23)
+
+
+### Features
+
+* update cookie consent to disable tessen until consent is given ([c7682d1](https://github.com/newrelic/gatsby-theme-newrelic/commit/c7682d1040caf50318f898af88508f7dbe36d4b1))
+
+
+
+
+
 ## [1.31.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.31.1...v1.31.2) (2021-02-22)
 
 **Note:** Version bump only for package gatsby-theme-newrelic
