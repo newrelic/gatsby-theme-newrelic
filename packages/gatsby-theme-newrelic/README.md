@@ -22,7 +22,6 @@ websites](https://opensource.newrelic.com).
     - [`i18n`](#i18n)
     - [`layout`](#layout)
     - [`prism`](#prism)
-    - [`gaTrackingId`](#gatrackingid)
     - [`splitio`](#splitio)
       - [Environment-specific configuration](#environment-specific-configuration)
 - [Components](#components)
@@ -187,8 +186,7 @@ module.exports = {
           labels: {
             'https://my.website': 'my-website'
           },
-        },
-        gaTrackingId: 'UA-XXXXXX-XX',
+        }
       },
     },
   ],
@@ -476,10 +474,6 @@ module.exports = {
   ],
 };
 ```
-
-#### `gaTrackingId`
-
-Tracking ID for use with Google Analytics. For more details on Google Analytics Tracking IDs, visit [the documentation.](https://support.google.com/analytics/answer/1008080?visit_id=637396929080724679-4016043558&rd=1).
 
 #### `splitio`
 

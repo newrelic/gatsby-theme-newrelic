@@ -1,10 +1,4 @@
-module.exports = ({
-  layout,
-  newrelic,
-  robots = {},
-  sitemap = true,
-  gaTrackingId,
-}) => {
+module.exports = ({ layout, newrelic, robots = {}, sitemap = true }) => {
   return {
     plugins: [
       'gatsby-plugin-emotion',
@@ -43,19 +37,6 @@ module.exports = ({
         options: {
           name: 'announcements',
           path: 'src/announcements',
-        },
-      },
-      {
-        resolve: 'gatsby-plugin-gdpr-tracking',
-        options: {
-          debug: false,
-          googleAnalytics: {
-            trackingId: gaTrackingId,
-            autoStart: false,
-            anonymize: true,
-            controlCookieName: 'newrelic-gdpr-consent',
-          },
-          environments: ['production', 'development'],
         },
       },
     ].filter(Boolean),

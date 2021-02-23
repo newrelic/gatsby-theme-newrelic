@@ -10195,14 +10195,6 @@ gatsby-plugin-emotion@^4.3.10:
     "@babel/runtime" "^7.10.3"
     "@emotion/babel-preset-css-prop" "^10.0.27"
 
-gatsby-plugin-gdpr-tracking@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-gdpr-tracking/-/gatsby-plugin-gdpr-tracking-1.2.2.tgz#3f2329cf39ec452c1d0ca0e6c66faeeb858c71e0"
-  integrity sha512-Cr1Ck4W1yv1eh0YP3gppnUWMjndMjffFErhkAmkgeFbNMpBAzBYjtrmAi3B1+mj/o8YFUNjk2f/PDLuBCuYzUA==
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    js-cookie "^2.2.1"
-
 gatsby-plugin-layout@^1.8.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-layout/-/gatsby-plugin-layout-1.8.0.tgz#5f2e313f5b95c5e60e96d4cacd666fcd62c1275d"
