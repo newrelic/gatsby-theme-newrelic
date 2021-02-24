@@ -96,18 +96,18 @@ const ResultView = ({
         )}
       </div>
       <div className="sui-result__body">
-        <ul className="sui-result__details">
-          <li
+        <div className="sui-result__details">
+          <div
             css={css`
-              margin-bottom: 0.25rem;
+              margin-bottom: 0.5rem;
             `}
           >
             <span
               className="sui-result__value"
               dangerouslySetInnerHTML={{ __html: fields.body }}
             />
-          </li>
-          <li>
+          </div>
+          <div>
             <Tag
               css={css`
                 text-transform: uppercase;
@@ -115,8 +115,8 @@ const ResultView = ({
             >
               {newRelicSite}
             </Tag>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </li>
   );
