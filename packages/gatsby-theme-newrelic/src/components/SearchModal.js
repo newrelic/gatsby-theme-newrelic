@@ -10,6 +10,7 @@ import useQueryParams from '../hooks/useQueryParams';
 import Spinner from './Spinner';
 import { useDebounce } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
+import useScrollFreeze from '../hooks/useScrollFreeze';
 
 const SearchModal = ({ onClose, isOpen }) => {
   const { t } = useThemeTranslation();
@@ -18,6 +19,8 @@ const SearchModal = ({ onClose, isOpen }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { isLoading, refetch, data = {} } = useSwiftypeSearch(searchTerm);
   const { records: { page: results } = {} } = data;
+
+  useScrollFreeze(isOpen);
 
   useKeyPress(
     ['ArrowUp', 'ArrowDown'],
@@ -55,7 +58,7 @@ const SearchModal = ({ onClose, isOpen }) => {
 
   const selectedResult = flattenedResults[selectedIndex];
 
-  return true ? (
+  return isOpen ? (
     <Portal>
       <Backdrop onClick={onClose} />
       <div
