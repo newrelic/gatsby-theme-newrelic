@@ -72,7 +72,7 @@ const SearchModal = ({ onClose, isOpen }) => {
           transform: translateX(-50%);
           margin: var(--site-content-padding);
           box-shadow: var(--shadow-4);
-          height: calc(100vh - 2 * var(--site-content-padding));
+          max-height: calc(100vh - 2 * var(--site-content-padding));
           display: flex;
           flex-direction: column;
         `}
@@ -85,6 +85,15 @@ const SearchModal = ({ onClose, isOpen }) => {
             setSearchTerm(e.target.value);
           }}
           value={searchTerm}
+          css={
+            searchTerm &&
+            css`
+              input {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+              }
+            `
+          }
         />
         {isLoading && (
           <Spinner
@@ -93,18 +102,28 @@ const SearchModal = ({ onClose, isOpen }) => {
             `}
           />
         )}
-        {results && (
+        {searchTerm && results && (
           <div
             css={css`
               display: grid;
               grid-template-columns: 1fr 1fr;
-              background-color: var(--color-dark-100);
               flex-grow: 1;
+              background-color: white;
+              border-bottom-left-radius: 0.25rem;
+              border-bottom-right-radius: 0.25rem;
+              box-shadow: var(--shadow-6);
+
+              .dark-mode & {
+                background: var(--color-dark-050);
+              }
             `}
           >
             <div
               css={css`
-                box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.15);
+                --x-padding: 1rem;
+                border-right: 1px solid var(--divider-color);
+                max-height: 100%;
+                overflow: auto;
               `}
             >
               {Array.from(bucketedResults.entries()).map(([type, results]) => {
@@ -112,12 +131,28 @@ const SearchModal = ({ onClose, isOpen }) => {
                   <React.Fragment key={type}>
                     <div
                       css={css`
-                        background-color: var(--color-dark-400);
-                        text-align: center;
                         text-transform: uppercase;
+                        padding: 0.5rem var(--x-padding);
+                        background: var(--color-neutrals-300);
+
+                        .dark-mode & {
+                          background: var(--color-dark-300);
+                        }
                       `}
                     >
-                      <h4>{type}</h4>
+                      <h4
+                        css={css`
+                          font-size: 0.875rem;
+                          margin-bottom: 0;
+                          color: var(--color-neutrals-700);
+
+                          .dark-mode & {
+                            color: var(--color-dark-700);
+                          }
+                        `}
+                      >
+                        {type}
+                      </h4>
                     </div>
                     {results.map((result) => {
                       const resultIndex = flattenedResults.indexOf(result);
@@ -137,6 +172,13 @@ const SearchModal = ({ onClose, isOpen }) => {
             <div
               css={css`
                 padding: 1rem;
+                overflow: auto;
+                max-height: 100%;
+                background: white;
+
+                .dark-mode & {
+                  background: transparent;
+                }
               `}
             >
               <h2>{selectedResult.title}</h2>
@@ -156,22 +198,43 @@ const SearchModal = ({ onClose, isOpen }) => {
 const Result = ({ title, breadcrumb, selected, onMouseOver }) => {
   return (
     <div
+      onFocus={() => {}}
       css={css`
-        border: ${selected ? '2px solid white' : 'none'};
+        cursor: pointer;
+        padding: 0.5rem var(--x-padding);
+
+        &:not(:last-child) {
+          border-bottom: 1px solid var(--divider-color);
+        }
+
+        ${selected &&
+        css`
+          background: var(--color-neutrals-100);
+
+          .dark-mode & {
+            background: var(--color-dark-100);
+          }
+        `}
       `}
       onMouseOver={onMouseOver}
     >
       <h4>{title}</h4>
       <p
         css={css`
-          font-size: 12px;
+          font-size: 0.75rem;
         `}
       >
         {breadcrumb}
       </p>
-      <hr></hr>
     </div>
   );
+};
+
+Result.propTypes = {
+  title: PropTypes.string,
+  breadcrumb: PropTypes.string,
+  selected: PropTypes.bool,
+  onMouseOver: PropTypes.func,
 };
 
 const useSwiftypeSearch = (query, params = {}) => {
