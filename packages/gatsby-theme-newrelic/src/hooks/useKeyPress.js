@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import useDeepMemo from './useDeepMemo';
 
 const normalizeKeyCombination = (keys) => {
-  const [modifier, k] = keys.toLowerCase().split(/\s*\+\s*/);
+  const [modifier, k] = keys.split(/\s*\+\s*/);
 
   return k == null ? [null, modifier] : [modifier, k];
 };

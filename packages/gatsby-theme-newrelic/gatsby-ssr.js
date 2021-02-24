@@ -1,9 +1,7 @@
 import React from 'react';
-import wrapPageElement from './gatsby/wrap-page-element';
-import onPreRenderHTML from './gatsby/on-pre-render-html';
 import LayoutContext from './src/components/LayoutContext';
 
-const wrapRootElement = ({ element }, pluginOptions) => {
+export const wrapRootElement = ({ element }, pluginOptions) => {
   return (
     <LayoutContext.Provider value={pluginOptions.layout}>
       {element}
@@ -11,4 +9,5 @@ const wrapRootElement = ({ element }, pluginOptions) => {
   );
 };
 
-export { onPreRenderHTML, wrapPageElement, wrapRootElement };
+export { default as onPreRenderHTML } from './gatsby/on-pre-render-html';
+export { default as wrapPageElement } from './gatsby/wrap-page-element';

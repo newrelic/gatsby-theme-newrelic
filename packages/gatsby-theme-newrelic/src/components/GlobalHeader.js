@@ -15,6 +15,7 @@ import GlobalNavLink from './GlobalNavLink';
 import SearchInput from './SearchInput';
 import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
+import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import useQueryParams from '../hooks/useQueryParams';
 import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
@@ -53,6 +54,11 @@ const GlobalHeader = ({ className }) => {
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const { t } = useThemeTranslation();
 
+  const handleSignupClick = useInstrumentedHandler(null, {
+    actionName: 'signup_click',
+    component: 'GlobalHeader',
+  });
+
   const {
     allLocale: { nodes: locales },
     site,
@@ -61,7 +67,6 @@ const GlobalHeader = ({ className }) => {
       site {
         siteMetadata {
           utmSource
-          siteUrl
         }
       }
       allLocale(sort: { fields: [isDefault, locale], order: [DESC, ASC] }) {
@@ -75,15 +80,11 @@ const GlobalHeader = ({ className }) => {
   `);
 
   const {
-    siteMetadata: { utmSource, siteUrl },
+    siteMetadata: { utmSource },
   } = site;
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
   const useCondensedHeader = useMedia({ maxWidth: '585px' });
-  const inDocsSite = [
-    'https://docs.newrelic.com',
-    'https://docs-preview.newrelic.com',
-  ].includes(siteUrl);
 
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
@@ -200,6 +201,7 @@ const GlobalHeader = ({ className }) => {
                 -ms-overflow-style: -ms-autohiding-scrollbar;
 
                 > li {
+                  margin: 0;
                   flex: 0 0 auto;
                 }
               `}
@@ -335,15 +337,14 @@ const GlobalHeader = ({ className }) => {
             >
               <Button
                 as={ExternalLink}
+                onClick={handleSignupClick}
                 href={`https://newrelic.com/signup${
                   utmSource ? `?utm_source=${utmSource}` : ''
                 }`}
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
               >
-                <span>
-                  {inDocsSite ? t('button.signUp') : t('button.startNow')}
-                </span>
+                <span>{t('button.signUp')}</span>
               </Button>
             </li>
           </ul>

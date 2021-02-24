@@ -16,10 +16,12 @@ websites](https://opensource.newrelic.com).
     - [`sitemap`](#sitemap)
     - [`newrelic`](#newrelic)
     - [`robots`](#robots)
+    - [`relatedResources`](#relatedresources)
+    - [`tessen`](#tessen)
+    - [`resolveEnv`](#resolveenv)
     - [`i18n`](#i18n)
     - [`layout`](#layout)
     - [`prism`](#prism)
-    - [`gaTrackingId`](#gatrackingid)
     - [`splitio`](#splitio)
       - [Environment-specific configuration](#environment-specific-configuration)
 - [Components](#components)
@@ -31,13 +33,16 @@ websites](https://opensource.newrelic.com).
   - [`CollapserGroup`](#collapsergroup)
   - [`ContributingGuidelines`](#contributingguidelines)
   - [`CookieConsentDialog`](#cookieconsentdialog)
+  - [`CreateIssueButton`](#createissuebutton)
   - [`Dropdown`](#dropdown)
     - [`Dropdown.Toggle`](#dropdowntoggle)
     - [`Dropdown.Menu`](#dropdownmenu)
     - [`Dropdown.MenuItem`](#dropdownmenuitem)
   - [`ExternalLink`](#externallink)
+  - [`EditPageButton`](#editpagebutton)
   - [`FeatherSVG`](#feathersvg)
-  - [`Feedback`](#feedback)
+  - [`GitHubIssueButton`](#githubissuebutton)
+    - [Environment information](#environment-information)
   - [`GlobalFooter`](#globalfooter)
   - [`GlobalHeader`](#globalheader)
   - [`HamburgerMenu`](#hamburgermenu)
@@ -56,29 +61,37 @@ websites](https://opensource.newrelic.com).
     - [Using `MDX`](#using-mdx)
     - [Default components](#default-components)
   - [`MDXCodeBlock`](#mdxcodeblock)
+  - [`Navigation`](#navigation)
   - [`NavItem`](#navitem)
     - [`Page`](#page)
   - [`NewRelicLogo`](#newreliclogo)
   - [`PageTools`](#pagetools)
     - [`PageTools.Section`](#pagetoolssection)
     - [`PageTools.Title`](#pagetoolstitle)
+  - [`RelatedResources`](#relatedresources-1)
   - [`SearchInput`](#searchinput)
   - [`SEO`](#seo)
   - [`SimpleFeedback`](#simplefeedback)
   - [`Spinner`](#spinner)
   - [`Surface`](#surface)
   - [`Table`](#table)
+  - [`TableOfContents`](#tableofcontents)
   - [`Tag`](#tag)
   - [`TagList`](#taglist)
   - [`Terminal`](#terminal)
+  - [`TextHighlight`](#texthighlight)
   - [`Video`](#video)
 - [MDX Component variants](#mdx-component-variants)
 - [Hooks](#hooks)
+  - [`useActiveHash`](#useactivehash)
   - [`useClipboard`](#useclipboard)
   - [`useFormattedCode`](#useformattedcode)
+  - [`useInstrumentedData`](#useinstrumenteddata)
+  - [`useInstrumentedHandler`](#useinstrumentedhandler)
   - [`useKeyPress`](#usekeypress)
   - [`useLayout`](#uselayout)
   - [`useQueryParams`](#usequeryparams)
+  - [`useTessen`](#usetessen)
   - [`useTimeout`](#usetimeout)
   - [`useUserId`](#useuserid)
   - [`usePrevious`](#useprevious)
@@ -165,7 +178,15 @@ module.exports = {
             authorizationKey: 'my-auth-key',
           },
         },
-        gaTrackingId: 'UA-XXXXXX-XX',
+        tessen: {
+          product: 'DEMO',
+          subproduct: 'DEMO',
+        },
+        relatedResources: {
+          labels: {
+            'https://my.website': 'my-website'
+          },
+        }
       },
     },
   ],
@@ -216,6 +237,144 @@ the available configuration options, visit [the
 documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 
 **Default**: `{ policy: [{ userAgent: '*', allow: '/' }] }`
+
+#### `relatedResources`
+
+Optional configuration for related resources used in the right rail. Currently
+only `Mdx` nodes are supported.
+
+The related resources component is controlled by specific front matter slugs
+that are defined on a page by setting the front matter for `resources`. If no
+resources are available in the page front matter, the component will backfill
+use the related resource items using Swiftype. See the `swiftype` options below
+for more information on customizing the search behavior.
+
+In short, the order of priority for populating content is driven by:
+
+1. Resources defined via the `resources` front matter item.
+2. Resources defined from executing a Swiftype search for the page.
+
+**Options:**
+
+- `labels` _(object)_: Map of URLs to their label. This is used to match
+  results displayed in the right rail with the label in the tag displayed
+  underneath the link. Use this to add additional labels not covered by the
+  default set of labels.
+
+- `swiftype` _(object | false)_: Configuration used for fetching results from
+  Swiftype for an `Mdx` node. Set this to `false` (the default) to disable
+  fetching related resources through Swiftype. If this is disabled, related
+  resources can only be sourced via front matter. If enabled, this takes the
+  following configuration:
+
+  - `resultsPath` _(string)_ **required**: Path to the file where Swiftype
+    results will be stored. If the `refetch` option is set to `false` (the
+    default), this file will be used to read related resource values for each
+    `Mdx` node. This file is only written to when `refetch` is set to `true`.
+
+  - `refetch` _(boolean)_: Determines whether to refetch results from Swiftype
+    for every `Mdx` node during a build. It's a good idea to only set this on a
+    special build (e.g. a build that happens on a cron job) so that Swiftype is
+    not searched on development or every build on the site.
+
+    - **Default**: `false`
+
+  - `engineKey` _(string)_ **required**: Swiftype's engine key used to fetch
+    results from a Swiftype search engine.
+
+  - `getSlug` _(function)_: Function to get the slug for an `Mdx` node.
+    Useful if the slug is set from something other than the filesystem. By
+    default, this will use the `createFilePath` helper to generate the slug for
+    the `Mdx` node. This function should accept an object as its only argument
+    with a key of `node` (i.e. `getSlug: ({ node }) => { /* do something */ }`)
+
+  - `filter` _(function)_: Function to determine whether Swfitype should be
+    queried for the `Mdx` node. Useful if you only need to get related resources
+    for a subset of nodes on the site. By default, all `Mdx` nodes are fetched.
+    This function should accept an object as its only argument with a key of
+    `node` and a key of `slug` (i.e. `filter: ({ node, slug }) => { /* do something */ }`).
+
+  - `getParams` _(function)_: Function that allows you to specify additional
+    params passed to Swiftype when running a search query. Useful if you want to
+    provide additional filters or field boosts. This function should accept an
+    object as its only argument with a key of `node` and a key of `slug`.
+
+  - `limit` _(integer)_: The limit of related resources that should be fetched
+    from Swiftype.
+
+    - **Default**: `5`
+
+#### `tessen`
+
+Optional configuration for Tessen tracking.
+
+- `product` _(string)_ **required**: The 4-character product set as `nr_product`
+- `subproduct` _(string)_ **required**: The 4-character subproduct set as `nr_subproduct`
+- `segmentWriteKey` _(string)_ **required**: The write key used for Segment
+  integration.
+- `trackPageViews` _(boolean)_: Determines whether to track page views via
+  Tessen's `tessen.page` action. If this is enabled, you **MUST** configure the
+  `pageView` settings to ensure the `name` and `category` are propertly
+  instrumented.
+  - **Default**: `false`
+- `pageView` _(object)_: Configuration for automatic page view tracking. If
+  `trackPageViews` is enabled, this **MUST** be configured to properly
+  instrument page views. If this is not configured, calls to page views will
+  result in a no-op. This takes the following configuration:
+  - `name` _(string)_ **required**: The name of the page view action. This is
+    passed to `tessen.page` to track page views.
+  - `category` _(string)_ **required**: The category of the page view action.
+    This is passed tot `tessen.page` to track page views.
+  - `getProperties` _(function)_: Function that allows you to specify additional
+    properties that should be instrumented as part of the page view. Takes an
+    object as its only argument with both the `location` and `env` as properties
+    on that object. The `env` is determined by the result of the
+    [`resolveEnv`](#resolvenv) configuration.
+  - `...rest`: All other properties will be added as `properties` to
+    `tessen.page`.
+- `env` _(object)_: Environment-specific configuration. This takes the same
+  properties as listed above. These values override the values set above. Useful
+  if you have environment overrides you'd like to apply. The environment is
+  determined based on the valued returned from [`resolveEnv`](#resolveenv).
+
+**Example**
+
+```js
+const config = {
+  tessen: {
+    product: 'DEMO',
+    subproduct: 'DEMO',
+    trackPageViews: true,
+    pageView: {
+      name: 'pageView',
+      category: 'DemoPageView',
+      getProperties: ({ location, env }) => ({
+        env: env === 'production' ? 'prod' : env,
+      }),
+    },
+    env: {
+      development: {
+        trackPageViews: false,
+      },
+    },
+  },
+};
+```
+
+#### `resolveEnv`
+
+Optional function to determine the environment. Useful to provide a fine-tuned
+environment name for environment-specific configuration like [`tessen`](#tessen).
+
+**Default**:
+
+```js
+const defaultResolveEnv = () =>
+  process.env.GATSBY_NEWRELIC_ENV ||
+  process.env.GATSBY_ACTIVE_ENV ||
+  process.env.NODE_ENV ||
+  'development';
+```
 
 #### `i18n`
 
@@ -268,6 +427,11 @@ query {
 }
 ```
 
+These values are also available as global CSS variables. You can access them as:
+
+- `maxWidth`: `var(--site-max-width)`
+- `contentPadding`: `var(--site-content-padding)`
+
 #### `prism`
 
 Configuration for the [prismjs](https://prismjs.com/) library. This library
@@ -310,10 +474,6 @@ module.exports = {
   ],
 };
 ```
-
-#### `gaTrackingId`
-
-Tracking ID for use with Google Analytics. For more details on Google Analytics Tracking IDs, visit [the documentation.](https://support.google.com/analytics/answer/1008080?visit_id=637396929080724679-4016043558&rd=1).
 
 #### `splitio`
 
@@ -793,6 +953,36 @@ const MyLayout = () => (
 );
 ```
 
+### `CreateIssueButton`
+
+Pre-defined [`GitHubIssueButton`](#githubissuebutton) used specifically for the
+"Create issue" button in the [`ContributingGuidelines`](#contributingguidelines)
+and [`GlobalFooter`](#globalfooter) components.
+
+```js
+import { CreateIssueButton } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop        | Type   | Required | Default | Description                                                                                         |
+| ----------- | ------ | -------- | ------- | --------------------------------------------------------------------------------------------------- |
+| `pageTitle` | string | no       |         | Title of the page where the user clicked the "Create issue" button. Used to pre-populate the issue. |
+
+All other props are forwarded to [`Button`](#button) component.
+
+**Example**
+
+```jsx
+import { Button, CreateIssueButton } from '@newrelic/gatsby-theme-newrelic';
+
+<CreateIssueButton
+  pageTitle="Demo"
+  size={Button.SIZE.SMALL}
+  variant={Button.VARIANT.OUTLINE}
+/>;
+```
+
 ### `Dropdown`
 
 Used in combination with [`Dropdown.Toggle`](#dropdowntoggle), [`Dropdown.Menu`](#dropdownmenu), and [`Dropdown.MenuItem`](#dropdownmenuitem) to create a dropdown.
@@ -878,6 +1068,51 @@ All props are forwarded to the underlying `a` tag with the exception of the
 <ExternalLink href="https://newrelic.com">Link to New Relic</ExternalLink>
 ```
 
+### `EditPageButton`
+
+Button used to link to the current page in GitHub. Used for the "Edit page"
+button in the [`ContributingGuidelines`](#contributingguidelines) and
+[`GlobalFooter`](#globalfooter) components.
+
+```js
+import { EditPageButton } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop               | Type            | Required | Default | Description                                                                                                                    |
+| ------------------ | --------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `fileRelativePath` | string          | yes      |         | Relative filepath of the current page.                                                                                         |
+| `instrumentation`  | Instrumentation | yes      |         | Config for the component instrumentation when the button is clicked. See the values below for a desciption on what is allowed. |
+
+All other props are forwarded to [`Button`](#button) component.
+
+```ts
+type Instrumentation = {
+  component: string;
+};
+```
+
+**Instrumentation**
+
+The following fields are available for instrumentation:
+
+- `component` _(string)_ **required** - The name of the component where this
+  button is used. Helps to understand where in the site the button is clicked.
+
+**Example**
+
+```jsx
+import { Button, EditPageButton } from '@newrelic/gatsby-theme-newrelic';
+
+<EditPageButton
+  fileRelativePath="src/content/docs/apm.mdx"
+  size={Button.SIZE.SMALL}
+  variant={Button.VARIANT.OUTLINE}
+  instrumentation={{ component: 'ContributingGuidelines' }}
+/>;
+```
+
 ### `FeatherSVG`
 
 SVG wrapper for [feather icons](https://feathericons.com/). This is useful when
@@ -908,31 +1143,62 @@ const ChevronDownIcon = (props) => (
 );
 ```
 
-### `Feedback`
+### `GitHubIssueButton`
 
-Renders feedback controls that can be used to collect user sentiment about a page. Feedback can only be submitted once per page load.
+Button used to create issues on GitHub. This component depends on the
+`repository` and `siteUrl` fields configured in [site metadata](#site-metadata).
 
 ```js
-import { Feedback } from '@newrelic/gatsby-theme-newrelic';
+import { GitHubIssueButton } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 **Props**
 
-| Prop       | Type     | Required | Default                | Description                                                                                                                                                             |
-| ---------- | -------- | -------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `align`    | enum     | no       | `Feedback.ALIGN.LEFT`  | Configures the alignment of the feedback component. Must be one of `Feedback.ALIGNMENT.LEFT` or `Feedback.ALIGNMENT.CENTER`.                                            |
-| `onSubmit` | function | yes      |                        | Handler that is called once feedback is provided. The user must supply a sentiment, a comment, or both. An object containing the `sentiment` and `comment` is returned. |
-| `message`  | string   | no       | Was this page helpful? | Message to be displayed above the buttons.                                                                                                                              |
+| Prop         | Type     | Required | Default | Description                                                                                                                       |
+| ------------ | -------- | -------- | ------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `labels`     | string[] | no       |         | Labels that should be prepopulated for the issue. NOTE: This labels must be created in the repository where this button links to. |
+| `issueTitle` | string   | no       |         | The value that will pre-populate the issue title.                                                                                 |
+| `issueBody`  | string   | no       |         | The value that will pre-populate the issue body.                                                                                  |
+
+All other props are forwarded to [`Button`](#button)
+
+#### Environment information
+
+As a convenience, this component attaches environment information to the issue
+body to allow for easier debugging. This eliminates the need for a section in
+the issue body asking for environment information from the user filing the
+issue.
+
+The information gathered is:
+
+- Page URL
+- Browser name and version
+- Operating system name and version
+- Device type (mobile, tablet, etc.), vendor and model
+
+If the browser environment is unable to be determined, these values are simply
+set to "Unknown".
 
 **Example**
 
 ```jsx
-<Feedback
-  message="Tell us what you think!"
-  onSubmit={({ sentiment, comment }) => {
-    alert('${sentiment} feedback recieved: ${comment}');
-  }}
-/>
+import { Button, GitHubIssueButton } from '@newrelic/gatsby-theme-newrelic';
+
+const ISSUE_BODY = `
+## Description
+
+[NOTE]: # (Tell us some information!)
+`
+
+<GitHubIssueButton
+  labels={['bug']}
+  issueTitle="Bug found"
+  issueBody={ISSUE_BODY}
+  size={Button.SIZE.SMALL}
+  variant={Button.VARIANT.OUTLINE}
+>
+  Found a bug!
+</GitHubIssueButton>
 ```
 
 ### `GlobalFooter`
@@ -1603,6 +1869,33 @@ this component.
 ```
 ````
 
+### `Navigation`
+
+Used to wrap [`NavItem`](#navitem) components.
+
+```js
+import { Navigation } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop         | Type   | Required | Default | Description                                |
+| ------------ | ------ | -------- | ------- | ------------------------------------------ |
+| `children`   | node   | yes      |         | Nav items to be rendered in the navigation |
+| `className`  | string | no       |         | Additional `className` for the component   |
+| `searchTerm` | string | no       |         | Search term used to filter nav items       |
+
+**Examples**
+
+```js
+import { Navigation } from '@newrelic/gatsby-theme-newrelic';
+
+<Navigation searchTerm="New Relic">
+  <NavItem page={page1} />
+  <NavItem page={page2} />
+</Navigation>;
+```
+
 ### `NavItem`
 
 A component used for displaying nav items in the [sidebar](#layoutsidebar).
@@ -1752,6 +2045,38 @@ section of content inside of `PageTools`. Render this inside of a
 | ----------- | ------ | -------- | ------- | -------------------------------------------------------- |
 | `className` | string | no       |         | Additional `className` for the component.                |
 | `children`  | node   | no       |         | Title to be displayed in the `PageTools.Title` component |
+
+### `RelatedResources`
+
+Used to display related resources for the current page. This is meant to be used
+as a section inside of the [`PageTools`](#pagetools) component.
+
+```js
+import { RelatedResources } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop        | Type       | Required | Default             | Description                                          |
+| ----------- | ---------- | -------- | ------------------- | ---------------------------------------------------- |
+| `className` | string     | no       |                     | Additional `className` for the component             |
+| `resources` | Resource[] | yes      |                     | Array of resources to be displayed in the component. |
+| `title`     | string     | no       | 'Related resources' | Title to be displayed as the title for this section  |
+
+```ts
+type Resource = {
+  url: string;
+  title: string;
+};
+```
+
+**Examples**
+
+```js
+<PageTools>
+  <RelatedResources resources={relatedResources} />
+</PageTools>
+```
 
 ### `SearchInput`
 
@@ -1917,6 +2242,49 @@ import { Table } from '@newrelic/gatsby-theme-newrelic';
 </Table>
 ```
 
+### `TableOfContents`
+
+Component used to create a table of contents for the page. This is meant to be
+used as a section inside of the [`PageTools`](#pagetools) component.
+
+```js
+import { TableOfContents } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type      | Required | Default | Description                                                        |
+| ---------- | --------- | -------- | ------- | ------------------------------------------------------------------ |
+| `headings` | Heading[] | yes      |         | List of headings that should be rendered in the table of contents. |
+
+**NOTE**: The heading `id` attribute **MUST** be defined on the DOM node that
+will be linked to. If not, the table of contents link will not work. Consider
+using a plugin such as
+[`gatsby-remark-autolink-headers`](https://www.gatsbyjs.com/plugins/gatsby-remark-autolink-headers/)
+to handle this for you.
+
+```ts
+type Heading = {
+  id: string;
+  text: string;
+};
+```
+
+**Example**
+
+```jsx
+import { TableOfContents } from '@newrelic/gatsby-theme-newrelic';
+
+const headings = [
+  { id: 'code-monkey', text: 'Code monkey' },
+  { id: 'code-ninja', text: 'Code ninja' },
+]
+
+<TableOfContents
+  headings={headings}
+/>;
+```
+
 ### `Tag`
 
 Used to render a keyword or tag.
@@ -2077,6 +2445,31 @@ nr1 create --type nerdpack --name pageviews-app
 const Example = () => <Terminal>{shellCommand}</Terminal>;
 ```
 
+### `TextHighlight`
+
+Component used to highlight text matches in a string. Useful if filtering text
+and want to show a matched search term.
+
+```js
+import { TextHighlight } from '@newrelic/gatsby-theme-newrelic'`
+```
+
+**Props**
+
+| Prop            | Type    | Required | Default | Description                                                 |
+| --------------- | ------- | -------- | ------- | ----------------------------------------------------------- |
+| `text`          | string  | yes      |         | The text that should be highlighted with the matching term. |
+| `match`         | string  | yes      |         | String used as the matching term.                           |
+| `caseSensitive` | boolean | no       | `false` | Determines if the match should be case sensitive or not.    |
+
+**Examples**
+
+```js
+import { TextHighlight } from '@newrelic/gatsby-theme-newrelic';
+
+<TextHighlight text="New Relic" match="New" />;
+```
+
 ### `Video`
 
 Used to render a video from either YouTube or Wistia.
@@ -2137,6 +2530,49 @@ highly recommended to use these components solely for use in MDX documents. When
 working in regular React components, used the regular component instead.
 
 ## Hooks
+
+### `useActiveHash`
+
+A hook that determines the active hash ID given the scroll position on the page.
+
+```js
+import { useActiveHash } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `ids` _(string[])_: List of DOM `id`s that should be monitored. The `id`
+  corresponding to the nearest element based on scroll position will be
+  returned.
+
+**Returns**
+
+`string` - The `id` of the active hash.
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const activeHash = useActiveHash(['code-monkey', 'code-ninja']);
+
+  return (
+    <div>
+      <h2
+        id="code-monkey"
+        style={{ color: activeHash === 'code-monkey' ? 'red' : 'currentColor' }}
+      >
+        Code monkey
+      </h2>
+      <h2
+        id="code-ninja"
+        style={{ color: activeHash === 'code-ninja' ? 'red' : 'currentColor' }}
+      >
+        > Code ninja
+      </h2>
+    </div>
+  );
+};
+```
 
 ### `useClipboard`
 
@@ -2217,6 +2653,100 @@ With formatting options:
 
 ```js
 const formattedCode = useFormattedCode(code, { printWidth: 100 });
+```
+
+### `useInstrumentedData`
+
+A hook that instruments raw data with New Relic Browser.
+
+```js
+import { useInstrumentedData } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `attributes` _(object)_: Data passed to the
+  [`newrelic.addPageAction`](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/add-page-action)
+  API when called. These attributes **MUST** contain an `actionName` property,
+  otherwise the data will not be instrumented. All other attributes will be
+  attached to the `attributes` property of the page action.
+- `options` _(object)_: Options for the hook
+  - `enabled` _(boolean)_: Determines whether the data should be instrumented
+    via `newrelic.addPageAction`. Set to `false` to disable instrumentation.
+    **DEFAULT**: `true`
+
+**Returns**
+
+`Void`
+
+**Examples**
+
+```js
+const MyComponent = ({ searchTerm, onChange }) => {
+  useInstrumentedData(
+    { actionName: 'search', searchTerm },
+    { enabled: Boolean(searchTerm) }
+  );
+
+  return <input value={searchTerm} onChange={onChange} />;
+};
+```
+
+### `useInstrumentedHandler`
+
+A hook that wraps a function handler with New Relic Browser instrumentation.
+
+```js
+import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `handler` _(function)_: The function hander that should be augmented with New
+  Relic Browser instrumentation. This can be `null` or `undefined`.
+- `attributes` _(object | function)_: Data passed to the
+  [`newrelic.addPageAction`](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/add-page-action)
+  API when called. The attributes **MUST** contain an `actionName` property,
+  otherwise the handler will not be instrumented. All other attributes will be
+  attached to the `attributes` property of the page action. You can pass a
+  function to instrument dynamic data. If this is a function, the function will
+  be called with the same arguments passed to the handler.
+
+**Returns**
+
+`function` - The wrapped function handler to be instrumented with New Relic
+Browser.
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const handleClick = useInstrumentedHandler(() => console.log('clicked'), {
+    actionName: 'click',
+  });
+
+  return (
+    <Button onClick={handleClick} variant="normal">
+      Click me
+    </Button>
+  );
+};
+```
+
+**Dynamic data**
+
+```js
+const MyComponent = () => {
+  const handler = useInstrumentedHandler(
+    (a, b) => add(a, b),
+    (a, b) => ({
+      actionName: 'add',
+      sum: a + b,
+    })
+  );
+
+  return <Counter adder={handler} />;
+};
 ```
 
 ### `useKeyPress`
@@ -2361,6 +2891,52 @@ const SearchInput = () => {
         setQueryParam('q', e.target.value);
       }}
     />
+  );
+};
+```
+
+### `useTessen`
+
+A hook that gets allows you to instrument actions with Tessen. This hook
+requires that [`tessen`](#tessen) is configured. If `tessen` is not configured,
+calls to each action will result in a no-op.
+
+**NOTE**: Calls to the Tessen actions are pre-configured with the `nr_product`,
+and `nr_subproduct` as configured in the [`tessen`](#tessen) configuration.
+`location` is also pre-configured as `Public`. Setting these values as
+`properties` in the actions will do nothing.
+
+```js
+import { useTessen } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+none
+
+**Returns**
+
+`Tessen` - The Tessen object that allows you to call actions.
+
+**Types**
+
+```ts
+type Tessen = {
+  page: (name: string, category: string, properties?: object) => void;
+  track: (name: string, category: string, properties?: object) => void;
+};
+```
+
+**Examples**
+
+```js
+const MyComponent = () => {
+  const tessen = useTessen();
+
+  return (
+    <button onClick={() => tessen.track('copyButtonClicked', 'MyCategory')}>
+      Copy
+    </button>
   );
 };
 ```
@@ -2510,7 +3086,7 @@ Because announcements use `mdx` under the hood, you **must** ensure that
 **NOTE:** If the `src/announcements` directory does not exist, the theme will
 create it automatically.
 
-**Frontmatter**
+**Front matter**
 
 | key         | Required | Format       | Description                                                        |
 | ----------- | -------- | ------------ | ------------------------------------------------------------------ |

@@ -16,6 +16,7 @@ const MenuItem = ({ as, children, href, onClick }) => {
         font-size: 0.75rem;
         transition: all 0.2s ease-out;
         color: var(--text-color);
+        text-decoration: none;
 
         &:hover {
           color: var(--text-color);

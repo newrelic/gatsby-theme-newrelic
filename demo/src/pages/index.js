@@ -8,12 +8,12 @@ import {
   Collapser,
   CollapserGroup,
   ContributingGuidelines,
-  Feedback,
   Layout,
   PageTools,
   SearchInput,
   SimpleFeedback,
   Surface,
+  Table,
   Tag,
   TagList,
   Terminal,
@@ -38,6 +38,53 @@ export default Button;
 
 const liveCodeSample = `
 <Button variant={Button.VARIANT.PRIMARY} onClick={() => alert('Hello!')}>Hello!</Button>
+`;
+
+const codeSampleWithAdditionalTags = `
+query AccountQuery(<var>$accountId:</var> ID!) {
+  <a href="/build-apps">account</a>(id: <var>$accountId</var>) {
+    <a href="/build-apps/build-hello-world-app"><var>name</var></a>
+  }
+}
+`;
+
+const anotherSample = `
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: <mark>nri-integration-cfg</mark>
+  namespace: default
+data:
+<mark>  apache-config.yaml: |
+    ---
+    # Run auto discovery to find pods with label "app=apache"
+    # https://docs.newrelic.com/docs/integrations/host-integrations/installation/container-auto-discovery
+    discovery:
+      command:
+        # Use the optional arguments:
+        # --namespaces: Comma separated namespaces to discover pods on
+        # --tls: Use secure (TLS) connection
+        # --port: Port used to connect to the kubelet. Default is 10255
+        exec: /var/db/newrelic-infra/nri-discovery-kubernetes --port <var>PORT</var> --tls
+        match:
+          label.app: apache
+    <a href="https://one.newrelic.com">integrations</a>:
+      - name: nri-apache
+        env:
+          # Use the discovered IP as the host address
+          STATUS_URL: http://\${discovery.ip}/server-status?auto
+          METRICS: 1</mark>
+`;
+
+const xmlSample = `
+<dependency>
+  <groupId>com.newrelic.agent.java</groupId>
+  <artifactId>newrelic-java</artifactId>
+  <version><var>JAVA_AGENT_VERSION</var></version>
+  <scope>provided</scope>
+  <type>zip</type>
+</dependency>
 `;
 
 const IndexPage = () => {
@@ -152,6 +199,24 @@ const IndexPage = () => {
           >
             {liveCodeSample}
           </CodeBlock>
+          <h2>Code block w/ embedded var/mark/links</h2>
+          <CodeBlock
+            language="graphql"
+            css={css`
+              margin-bottom: 1rem;
+            `}
+          >
+            {codeSampleWithAdditionalTags}
+          </CodeBlock>
+          <CodeBlock
+            language="yaml"
+            css={css`
+              margin-bottom: 1rem;
+            `}
+          >
+            {anotherSample}
+          </CodeBlock>
+          <CodeBlock language="xml">{xmlSample}</CodeBlock>
         </section>
         <section>
           <h2>Terminal</h2>
@@ -298,29 +363,29 @@ nr1 create --type nerdpack --name pageviews-app
         </section>
 
         <section>
-          <h2>Feedback</h2>
-          <div
-            css={css`
-              max-width: 350px;
-            `}
-          >
-            <Feedback
-              onSubmit={({ sentiment, comment }) => {
-                console.log('comment', sentiment, comment);
-              }}
-            />
-          </div>
-        </section>
-
-        <section>
-          <h2>Simple Feedback</h2>
-          <div
-            css={css`
-              max-width: 350px;
-            `}
-          >
-            <SimpleFeedback title="Demo Site" slug="/demo/test-site" />
-          </div>
+          <h2>Tables</h2>
+          <Table>
+            <thead>
+              <tr>
+                <td>Col 1</td>
+                <td>Col 2</td>
+                <td>Col 3</td>
+                <td>Col 4</td>
+                <td>Col 5</td>
+              </tr>
+            </thead>
+            <tbody>
+              {Array.from({ length: 10 }, (_, i) => i + 1).map((num) => (
+                <tr key={num}>
+                  <td>Row {num} - Column 1</td>
+                  <td>Row {num} - Column 2</td>
+                  <td>Row {num} - Column 3</td>
+                  <td>Row {num} - Column 4</td>
+                  <td>Row {num} - Column 5</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </section>
 
         <section>
@@ -337,6 +402,7 @@ nr1 create --type nerdpack --name pageviews-app
           }
         `}
       >
+        <SimpleFeedback pageTitle="Demo Site" />
         <ContributingGuidelines fileRelativePath="demo/src/pages/index.js" />
         <PageTools.Section>
           <PageTools.Title>How to use</PageTools.Title>

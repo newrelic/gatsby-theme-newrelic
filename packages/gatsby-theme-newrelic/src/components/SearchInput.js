@@ -17,6 +17,12 @@ const ICONS = {
   SEARCH: 'fe-search',
 };
 
+const HORIZONTAL_SPACING = {
+  [SIZES.SMALL]: '0.5rem',
+  [SIZES.MEDIUM]: '1rem',
+  [SIZES.LARGE]: '1rem',
+};
+
 const SearchInput = forwardRef(
   (
     {
@@ -50,6 +56,8 @@ const SearchInput = forwardRef(
         className={className}
         style={style}
         css={css`
+          --horizontal-spacing: ${HORIZONTAL_SPACING[size]};
+
           position: relative;
           width: ${width || '100%'};
           box-shadow: var(--shadow-1);
@@ -59,7 +67,7 @@ const SearchInput = forwardRef(
         <Icon
           css={css`
             position: absolute;
-            left: 1rem;
+            left: var(--horizontal-spacing);
             top: 50%;
             transform: translateY(-50%);
           `}
@@ -95,6 +103,14 @@ const SearchInput = forwardRef(
             color: var(--primary-text-color);
             transition: 0.15s ease-out;
             line-height: 1;
+
+            padding-left: calc(
+              var(--horizontal-spacing) + 0.5rem + var(--icon-size)
+            );
+            padding-right: calc(
+              var(--horizontal-spacing) + 0.5rem + var(--icon-size)
+            );
+
             ${size && styles.size[size].input}
 
             &:focus {
@@ -111,7 +127,7 @@ const SearchInput = forwardRef(
               onClear();
             }}
             css={css`
-              right: 1rem;
+              right: var(--horizontal-spacing);
               top: 50%;
               transform: translateY(-50%);
               &:hover {
@@ -141,7 +157,7 @@ const SearchInput = forwardRef(
           <span
             css={css`
               position: absolute;
-              right: 1rem;
+              right: var(--horizontal-spacing);
               top: 50%;
               transform: translateY(-50%);
               border: 1px solid var(--border-color);
@@ -188,7 +204,8 @@ const styles = {
     [SIZES.SMALL]: {
       input: css`
         font-size: 0.75rem;
-        padding: 0.25rem calc(1.5rem + var(--icon-size));
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
       `,
       container: css`
         --icon-size: 0.75rem;
@@ -203,7 +220,8 @@ const styles = {
     [SIZES.MEDIUM]: {
       input: css`
         font-size: 0.875rem;
-        padding: 0.5rem calc(1.5rem + var(--icon-size));
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
       `,
       container: css`
         --icon-size: 1rem;
@@ -219,7 +237,8 @@ const styles = {
       input: css`
         font-size: 1.25rem;
         font-weight: 500;
-        padding: 0.75rem calc(1.5rem + var(--icon-size));
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
       `,
       container: css`
         --icon-size: 1.5rem;

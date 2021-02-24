@@ -13,7 +13,11 @@ const normalizeUrl = (url) => {
 
 const uniq = (arr) => [...new Set(arr)];
 
-module.exports = async (url, params = {}, { engineKey, limit }) => {
+module.exports = async (
+  url,
+  params = {},
+  { engineKey, limit, excludedUrls }
+) => {
   const { page: pageFilters = {} } = params.filters || {};
 
   const res = await fetch(
@@ -32,6 +36,7 @@ module.exports = async (url, params = {}, { engineKey, limit }) => {
           page: {
             ...pageFilters,
             url: uniq([
+              ...excludedUrls.flatMap((url) => normalizeUrl(`!${url}`)),
               ...normalizeUrl(`!${url}`),
               ...(pageFilters.url || []).flatMap(normalizeUrl),
             ]),

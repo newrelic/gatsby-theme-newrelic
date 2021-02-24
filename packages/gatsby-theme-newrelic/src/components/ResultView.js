@@ -9,6 +9,7 @@ import { isFieldValueWrapper } from '@elastic/react-search-ui-views/es/types/Fie
 import { css } from '@emotion/core';
 import ExternalLink from './ExternalLink';
 import Tag from './Tag';
+import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 const getFieldType = (result, field, type) => {
   if (result[field]) return result[field][type];
@@ -70,6 +71,12 @@ const ResultView = ({
   // e.g. https://developer.newrelic.com => developer
   const newRelicSite = fields.url.split('.newrelic')[0].slice(8);
 
+  const handleClickLink = useInstrumentedHandler(onClickLink, {
+    actionName: 'swiftypeSearchResult_click',
+    href: url,
+    title: getRaw(result, titleField),
+  });
+
   return (
     <li className={appendClassName('sui-result', className)} {...rest}>
       <div className="sui-result__header">
@@ -83,24 +90,24 @@ const ResultView = ({
           <ExternalLink
             className="sui-result__title sui-result__title-link"
             href={url}
-            onClick={onClickLink}
+            onClick={handleClickLink}
             dangerouslySetInnerHTML={{ __html: title }}
           />
         )}
       </div>
       <div className="sui-result__body">
-        <ul className="sui-result__details">
-          <li
+        <div className="sui-result__details">
+          <div
             css={css`
-              margin-bottom: 0.25rem;
+              margin-bottom: 0.5rem;
             `}
           >
             <span
               className="sui-result__value"
               dangerouslySetInnerHTML={{ __html: fields.body }}
             />
-          </li>
-          <li>
+          </div>
+          <div>
             <Tag
               css={css`
                 text-transform: uppercase;
@@ -108,8 +115,8 @@ const ResultView = ({
             >
               {newRelicSite}
             </Tag>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </li>
   );

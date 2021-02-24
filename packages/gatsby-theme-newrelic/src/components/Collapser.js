@@ -5,12 +5,19 @@ import Icon from './Icon';
 import { animated, useSpring } from 'react-spring';
 import { usePrevious, useIsomorphicLayoutEffect } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
+import useQueryParams from '../hooks/useQueryParams';
 
 const ResizeObserver = global.ResizeObserver || class ResizeObserver {};
 
 const Collapser = ({ title, id, defaultOpen, children }) => {
+  const { queryParams } = useQueryParams();
   const [element, ref] = useState();
-  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [isOpen, setIsOpen] = useState(() => {
+    return queryParams.has('collapsers') &&
+      queryParams.get('collapsers') === 'open'
+      ? true
+      : defaultOpen;
+  });
   const [height, setHeight] = useState(0);
   const { height: viewHeight } = useSpring({ height: isOpen ? height : 0 });
   const previousIsOpen = usePrevious(isOpen);

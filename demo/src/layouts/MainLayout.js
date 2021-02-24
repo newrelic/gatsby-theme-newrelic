@@ -3,58 +3,51 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import {
   CookieConsentDialog,
-  HamburgerMenu,
   GlobalHeader,
   Layout,
   Link,
   Logo,
+  MobileHeader,
+  Navigation,
   NavItem,
-  NewRelicLogo,
+  SearchInput,
   SEO,
 } from '@newrelic/gatsby-theme-newrelic';
 import nav from '../data/sidenav.json';
 
 const MainLayout = (props) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const { children, pageContext, location } = props;
 
   return (
     <>
       <SEO location={location} />
       <GlobalHeader />
-      <header
-        css={css`
-          display: none;
-          padding: 1rem var(--site-content-padding);
-          justify-content: space-between;
-          align-items: center;
-
-          @media screen and (max-width: 400px) {
-            display: flex;
-          }
-        `}
-      >
-        <NewRelicLogo />
-        <HamburgerMenu
-          onToggle={() => setIsMenuOpen((isOpen) => !isOpen)}
-          isOpen={isMenuOpen}
-        />
-      </header>
+      <MobileHeader>
+        {nav.map((page) => (
+          <NavItem key={page.url} page={page} />
+        ))}
+      </MobileHeader>
       <Layout>
         <Layout.Sidebar>
           <Link to="/">
             <Logo width="150px" />
           </Link>
-          <nav
-            role="navigation"
+          <SearchInput
+            placeholder="Filter navigation"
+            onClear={() => setSearchTerm('')}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchTerm}
             css={css`
-              margin-top: 2rem;
+              margin-top: 1rem;
+              margin-bottom: 1.5rem;
             `}
-          >
+          />
+          <Navigation searchTerm={searchTerm}>
             {nav.map((page) => (
               <NavItem key={page.url} page={page} />
             ))}
-          </nav>
+          </Navigation>
         </Layout.Sidebar>
         {children}
         <Layout.Footer fileRelativePath={pageContext.fileRelativePath} />

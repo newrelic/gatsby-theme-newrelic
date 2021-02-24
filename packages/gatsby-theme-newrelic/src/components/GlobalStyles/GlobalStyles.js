@@ -39,7 +39,6 @@ const GlobalStyles = ({ layout }) => (
 
       a {
         cursor: pointer;
-        text-decoration: none;
         color: var(--link-color);
         transition: 0.2s ease-out;
 
@@ -85,6 +84,11 @@ const GlobalStyles = ({ layout }) => (
         code {
           font-size: inherit;
         }
+
+        var,
+        mark {
+          font-size: inherit;
+        }
       }
 
       h1 {
@@ -95,12 +99,12 @@ const GlobalStyles = ({ layout }) => (
 
       h2 {
         line-height: 1.25;
-        margin-bottom: 1.25rem;
+        margin-bottom: 0.75rem;
         font-weight: 600;
       }
 
       h3 {
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
         font-weight: 600;
       }
 
@@ -129,11 +133,14 @@ const GlobalStyles = ({ layout }) => (
         }
       }
 
-      code {
+      code,
+      var {
         font-family: var(--code-font);
       }
 
-      *:not(pre) > code {
+      *:not(pre) > code,
+      var,
+      mark {
         padding: 0.2em 0.4em;
         border-radius: 3px;
         font-size: 85%;
@@ -157,6 +164,40 @@ const GlobalStyles = ({ layout }) => (
       hr {
         border: none;
         border-bottom: 1px solid var(--divider-color);
+      }
+
+      var,
+      mark {
+        line-height: 1.25;
+        display: inline;
+      }
+
+      var {
+        font-style: normal;
+      }
+
+      mark {
+        background: var(--color-yellow-100);
+        color: var(--color-neutrals-900);
+
+        a {
+          color: var(--color-brand-600);
+
+          &:hover {
+            color: var(--color-brand-300);
+          }
+        }
+      }
+
+      figcaption {
+        font-size: 0.75rem;
+        color: var(--accent-text-color);
+      }
+
+      .gatsby-resp-image-wrapper,
+      .gatsby-resp-image-image,
+      .gatsby-resp-image-background-image {
+        border-radius: 0.25rem;
       }
     `}
   />
