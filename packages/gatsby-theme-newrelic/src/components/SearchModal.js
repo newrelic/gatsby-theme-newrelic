@@ -9,15 +9,48 @@ import { useQuery } from 'react-query';
 import useQueryParams from '../hooks/useQueryParams';
 import Spinner from './Spinner';
 import { useDebounce } from 'react-use';
+import useKeyPress from '../hooks/useKeyPress';
 
 const SearchModal = ({ onClose, isOpen }) => {
   const { t } = useThemeTranslation();
   const searchInput = useRef();
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const { isLoading, refetch, data = {} } = useSwiftypeSearch(searchTerm);
   const { records: { page: results } = {} } = data;
 
-  console.log(data);
+  useKeyPress(
+    ['ArrowUp', 'ArrowDown'],
+    (e) => {
+      console.log(e.key, selectedIndex);
+      if (e.key === 'ArrowUp' && selectedIndex > 0) {
+        setSelectedIndex(selectedIndex - 1);
+      }
+
+      if (e.key === 'ArrowDown' && selectedIndex < results.length - 1) {
+        setSelectedIndex(selectedIndex + 1);
+      }
+    },
+    { ignoreTextInput: false }
+  );
+  useKeyPress(
+    'ArrowDown',
+    (e) => {
+      console.log(e.key, selectedIndex);
+      if (e.key === 'ArrowUp' && selectedIndex > 0) {
+        setSelectedIndex(selectedIndex - 1);
+      }
+
+      if (e.key === 'ArrowDown' && selectedIndex < results.length - 1) {
+        setSelectedIndex(selectedIndex + 1);
+      }
+    },
+    { ignoreTextInput: false }
+  );
+
+  const bucketedResults = results?.reduce((acc, result) => {
+    return acc.set(result.type, [...(acc.get(result.type) ?? []), result]);
+  }, new Map());
 
   useEffect(() => {
     isOpen && searchInput.current.focus();
@@ -77,15 +110,40 @@ const SearchModal = ({ onClose, isOpen }) => {
               flex-grow: 1;
             `}
           >
-            <div>
-              {results.map(({ title, highlight }) => {
-                return (
-                  <div>
-                    <h4>{title}</h4>
-                    <p dangerouslySetInnerHTML={{ __html: highlight.body }}></p>
-                  </div>
-                );
-              })}
+            <div
+              css={css`
+                box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.15);
+              `}
+            >
+              {Array.from(bucketedResults.entries()).map(
+                ([type, results], index) => {
+                  return (
+                    <React.Fragment key={type}>
+                      <div
+                        css={css`
+                          background-color: var(--color-dark-400);
+                          text-align: center;
+                          text-transform: uppercase;
+                        `}
+                      >
+                        <h4>{type}</h4>
+                      </div>
+                      {results.map((result, resultIndex) => {
+                        return (
+                          <Result
+                            selected={resultIndex + index === selectedIndex}
+                            key={result.id}
+                            onMouseOver={() =>
+                              setSelectedIndex(resultIndex + index)
+                            }
+                            {...result}
+                          />
+                        );
+                      })}
+                    </React.Fragment>
+                  );
+                }
+              )}
             </div>
             <div
               css={css`
@@ -99,6 +157,27 @@ const SearchModal = ({ onClose, isOpen }) => {
       </div>
     </Portal>
   ) : null;
+};
+
+const Result = ({ title, highlight, breadcrumb, selected, onMouseOver }) => {
+  return (
+    <div
+      css={css`
+        border: ${selected ? '2px solid white' : 'none'};
+      `}
+      onMouseOver={onMouseOver}
+    >
+      <h4>{title}</h4>
+      <p
+        css={css`
+          font-size: 12px;
+        `}
+      >
+        {breadcrumb}
+      </p>
+      <hr></hr>
+    </div>
+  );
 };
 
 const useSwiftypeSearch = (query, params = {}) => {
