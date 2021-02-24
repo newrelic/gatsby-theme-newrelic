@@ -4,12 +4,18 @@ import { css } from '@emotion/core';
 import { PageTools } from '@newrelic/gatsby-theme-newrelic';
 import useActiveHash from '../hooks/useActiveHash';
 import useDeepMemo from '../hooks/useDeepMemo';
+import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 const prop = (name) => (obj) => obj[name];
 
 const TableOfContents = ({ headings }) => {
   const headingIds = useDeepMemo(() => headings.map(prop('id')), [headings]);
   const activeHash = useActiveHash(headingIds);
+  const handleClick = useInstrumentedHandler(null, ({ id, text }) => ({
+    actionName: 'tableOfContents_click',
+    heading: text,
+    headingId: id,
+  }));
 
   return headings.length === 0 ? null : (
     <PageTools.Section
@@ -47,6 +53,7 @@ const TableOfContents = ({ headings }) => {
                 <a
                   href={`#${id}`}
                   className={isActive ? 'active' : null}
+                  onClick={() => handleClick({ id, text })}
                   css={css`
                     display: flex;
                     align-items: center;
