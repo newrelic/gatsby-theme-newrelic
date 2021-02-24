@@ -30,11 +30,11 @@ const trackViaTessen = ({ location }, themeOptions) => {
   window.initializeTessenTracking = initializeTessenTracking({
     config: tessenConfig,
     env,
-    location
+    location,
   });
 
   window.initializeTessenTracking();
-  
+
   // wrap inside a timeout to make sure react-helmet is done with its changes (https://github.com/gatsbyjs/gatsby/issues/11592)
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
@@ -52,7 +52,7 @@ const trackPageView = ({ config, env, location }) => {
     ...properties
   } = pageView;
 
-  const tessen = createTessen(tessenConfig);
+  const tessen = createTessen(config);
 
   if (!canSendPageView(pageView)) {
     return warnAboutNoop(pageView);
