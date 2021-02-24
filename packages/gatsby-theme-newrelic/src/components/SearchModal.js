@@ -22,21 +22,6 @@ const SearchModal = ({ onClose, isOpen }) => {
   useKeyPress(
     ['ArrowUp', 'ArrowDown'],
     (e) => {
-      console.log(e.key, selectedIndex);
-      if (e.key === 'ArrowUp' && selectedIndex > 0) {
-        setSelectedIndex(selectedIndex - 1);
-      }
-
-      if (e.key === 'ArrowDown' && selectedIndex < results.length - 1) {
-        setSelectedIndex(selectedIndex + 1);
-      }
-    },
-    { ignoreTextInput: false }
-  );
-  useKeyPress(
-    'ArrowDown',
-    (e) => {
-      console.log(e.key, selectedIndex);
       if (e.key === 'ArrowUp' && selectedIndex > 0) {
         setSelectedIndex(selectedIndex - 1);
       }
@@ -48,7 +33,7 @@ const SearchModal = ({ onClose, isOpen }) => {
     { ignoreTextInput: false }
   );
 
-  const bucketedResults = results?.reduce((acc, result) => {
+  const bucketedResults = (results || []).reduce((acc, result) => {
     return acc.set(result.type, [...(acc.get(result.type) ?? []), result]);
   }, new Map());
 
@@ -65,6 +50,10 @@ const SearchModal = ({ onClose, isOpen }) => {
     200,
     [searchTerm]
   );
+
+  const flattenedResults = Array.from(bucketedResults.values()).flat();
+
+  const selectedResult = flattenedResults[selectedIndex];
 
   return true ? (
     <Portal>
@@ -115,42 +104,44 @@ const SearchModal = ({ onClose, isOpen }) => {
                 box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.15);
               `}
             >
-              {Array.from(bucketedResults.entries()).map(
-                ([type, results], index) => {
-                  return (
-                    <React.Fragment key={type}>
-                      <div
-                        css={css`
-                          background-color: var(--color-dark-400);
-                          text-align: center;
-                          text-transform: uppercase;
-                        `}
-                      >
-                        <h4>{type}</h4>
-                      </div>
-                      {results.map((result, resultIndex) => {
-                        return (
-                          <Result
-                            selected={resultIndex + index === selectedIndex}
-                            key={result.id}
-                            onMouseOver={() =>
-                              setSelectedIndex(resultIndex + index)
-                            }
-                            {...result}
-                          />
-                        );
-                      })}
-                    </React.Fragment>
-                  );
-                }
-              )}
+              {Array.from(bucketedResults.entries()).map(([type, results]) => {
+                return (
+                  <React.Fragment key={type}>
+                    <div
+                      css={css`
+                        background-color: var(--color-dark-400);
+                        text-align: center;
+                        text-transform: uppercase;
+                      `}
+                    >
+                      <h4>{type}</h4>
+                    </div>
+                    {results.map((result) => {
+                      const resultIndex = flattenedResults.indexOf(result);
+                      return (
+                        <Result
+                          selected={resultIndex === selectedIndex}
+                          key={result.id}
+                          onMouseOver={() => setSelectedIndex(resultIndex)}
+                          {...result}
+                        />
+                      );
+                    })}
+                  </React.Fragment>
+                );
+              })}
             </div>
             <div
               css={css`
                 padding: 1rem;
               `}
             >
-              Right
+              <h2>{selectedResult.title}</h2>
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: selectedResult.highlight.body,
+                }}
+              ></p>
             </div>
           </div>
         )}
@@ -159,7 +150,7 @@ const SearchModal = ({ onClose, isOpen }) => {
   ) : null;
 };
 
-const Result = ({ title, highlight, breadcrumb, selected, onMouseOver }) => {
+const Result = ({ title, breadcrumb, selected, onMouseOver }) => {
   return (
     <div
       css={css`
@@ -199,7 +190,7 @@ const useSwiftypeSearch = (query, params = {}) => {
             highlight_fields: {
               page: {
                 body: {
-                  size: 60,
+                  size: 200,
                 },
               },
             },
