@@ -243,27 +243,39 @@ const GlobalHeader = ({ className }) => {
                 flex: 1;
               `}
             >
-              {useCondensedHeader ? (
-                <Link to="?q=" css={actionLink}>
-                  <Icon css={actionIcon} name="fe-search" size="0.875rem" />
-                </Link>
-              ) : (
-                <SearchInput
-                  placeholder={t('searchInput.placeholder')}
-                  size={SearchInput.SIZE.SMALL}
-                  onClear={() => setSearchQuery('')}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onSubmit={(value) => {
-                    setQueryParam('q', value);
-                  }}
-                  value={searchQuery}
-                  focusWithHotKey="/"
-                  css={css`
-                    min-width: 150px;
-                    max-width: 350px;
-                  `}
-                />
-              )}
+              <Link
+                to="?q="
+                css={css`
+                  ${actionLink}
+
+                  display: none;
+
+                  @media screen and (max-width: 585px) {
+                    display: block;
+                  }
+                `}
+              >
+                <Icon css={actionIcon} name="fe-search" size="0.875rem" />
+              </Link>
+              <SearchInput
+                placeholder={t('searchInput.placeholder')}
+                size={SearchInput.SIZE.SMALL}
+                onClear={() => setSearchQuery('')}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onSubmit={(value) => {
+                  setQueryParam('q', value);
+                }}
+                value={searchQuery}
+                focusWithHotKey="/"
+                css={css`
+                  min-width: 150px;
+                  max-width: 350px;
+
+                  @media screen and (max-width: 585px) {
+                    display: none;
+                  }
+                `}
+              />
             </li>
             {locales.length > 1 && (
               <li>
