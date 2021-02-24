@@ -86,6 +86,16 @@ test('ignores whitespace', () => {
   expect(handler).toHaveBeenCalledTimes(1);
 });
 
+test('handles case sensitive keys', () => {
+  const handler = jest.fn();
+
+  renderHook(() => useKeyPress('ArrowDown', handler));
+
+  fireEvent.keyDown(document.body, { key: 'ArrowDown' });
+
+  expect(handler).toHaveBeenCalledTimes(1);
+});
+
 test('allows multiple keys to be specified', () => {
   const handler = jest.fn();
 
