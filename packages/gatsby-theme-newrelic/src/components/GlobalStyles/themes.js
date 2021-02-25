@@ -58,7 +58,7 @@ export default css`
     --callout-tip-background-color: #02120020;
 
     input::placeholder {
-      color: var(--color-dark-500);
+      color: var(--color-dark-400);
     }
 
     *:not(pre) > code,

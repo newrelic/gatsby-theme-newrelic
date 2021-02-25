@@ -1,17 +1,15 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import Backdrop from './Backdrop';
-import SearchInput from './SearchInput';
+import Input from './SearchModal/Input';
 import Portal from './Portal';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import { useQuery } from 'react-query';
-import Spinner from './Spinner';
 import { useDebounce } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import { animated, useTransition } from 'react-spring';
+import { rgba } from 'polished';
 
 const SearchModal = ({ onClose, isOpen }) => {
   const { t } = useThemeTranslation();
@@ -32,6 +30,7 @@ const SearchModal = ({ onClose, isOpen }) => {
   });
 
   useScrollFreeze(isOpen);
+  useKeyPress('Escape', onClose, { ignoreTextInput: false });
 
   useKeyPress(
     ['ArrowUp', 'ArrowDown'],
@@ -73,8 +72,8 @@ const SearchModal = ({ onClose, isOpen }) => {
     ({ item, key, props }) =>
       item && (
         <Portal key={key}>
-          <Backdrop onClick={onClose} style={props} />
-          <div
+          <animated.div
+            style={{ opacity: props.opacity }}
             css={css`
               position: fixed;
               top: 0;
@@ -83,6 +82,11 @@ const SearchModal = ({ onClose, isOpen }) => {
               left: 0;
               padding: var(--site-content-padding);
               z-index: 100;
+              background: ${rgba('#d5d7d7', 0.5)};
+
+              .dark-mode & {
+                background: hsla(195, 20%, 20%, 0.5);
+              }
             `}
             onClick={onClose}
           >
@@ -90,6 +94,8 @@ const SearchModal = ({ onClose, isOpen }) => {
               onClick={(e) => e.stopPropagation()}
               style={props}
               css={css`
+                --horizontal-spacing: 1rem;
+
                 z-index: 101;
                 max-width: 1024px;
                 width: 100%;
@@ -98,16 +104,18 @@ const SearchModal = ({ onClose, isOpen }) => {
                 max-height: calc(100vh - 2 * var(--site-content-padding));
                 display: flex;
                 flex-direction: column;
+                position: relative;
               `}
             >
-              <SearchInput
+              <Input
                 placeholder={t('searchInput.placeholder')}
-                size={SearchInput.SIZE.LARGE}
                 ref={searchInput}
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
                 }}
                 value={searchTerm}
+                onClear={() => setSearchTerm('')}
+                loading={isLoading}
                 css={
                   searchTerm &&
                   css`
@@ -118,13 +126,6 @@ const SearchModal = ({ onClose, isOpen }) => {
                   `
                 }
               />
-              {isLoading && (
-                <Spinner
-                  css={css`
-                    margin-top: 1rem;
-                  `}
-                />
-              )}
               {searchTerm && results && (
                 <div
                   css={css`
@@ -135,7 +136,7 @@ const SearchModal = ({ onClose, isOpen }) => {
                     border-bottom-left-radius: 0.25rem;
                     border-bottom-right-radius: 0.25rem;
                     box-shadow: var(--shadow-6);
-                    border: 1px solid var(--divider-color);
+                    border: 1px solid var(--border-color);
                     border-top: none;
 
                     .dark-mode & {
@@ -145,8 +146,7 @@ const SearchModal = ({ onClose, isOpen }) => {
                 >
                   <div
                     css={css`
-                      --x-padding: 1rem;
-                      border-right: 1px solid var(--divider-color);
+                      border-right: 1px solid var(--border-color);
                       max-height: 100%;
                       overflow: auto;
                     `}
@@ -161,11 +161,13 @@ const SearchModal = ({ onClose, isOpen }) => {
                                 color: var(--color-neutrals-700);
                                 margin-bottom: 0;
                                 text-transform: uppercase;
-                                padding: 0.5rem var(--x-padding);
+                                padding: 0.5rem var(--horizontal-spacing);
                                 background: var(--divider-color);
                                 letter-spacing: 1px;
+                                border-bottom: 1px solid var(--border-color);
 
                                 .dark-mode & {
+                                  background: var(--color-dark-100);
                                   color: var(--color-dark-700);
                                 }
                               `}
@@ -214,7 +216,7 @@ const SearchModal = ({ onClose, isOpen }) => {
                 </div>
               )}
             </animated.div>
-          </div>
+          </animated.div>
         </Portal>
       )
   );
@@ -226,15 +228,18 @@ const Result = ({ title, breadcrumb, selected, onMouseOver }) => {
       onFocus={() => {}}
       css={css`
         cursor: pointer;
-        padding: 0.5rem var(--x-padding);
+        padding: 0.5rem var(--horizontal-spacing);
+        transition: background-color 0.2s ease-out;
 
         &:not(:last-child) {
-          border-bottom: 1px solid var(--divider-color);
+          border-bottom: 1px solid var(--border-color);
         }
 
         ${selected &&
         css`
+          border-left: 0.25rem solid var(--border-color);
           background: var(--color-neutrals-100);
+          padding-left: calc(var(--horizontal-spacing) - 0.25rem);
 
           .dark-mode & {
             background: var(--color-dark-100);

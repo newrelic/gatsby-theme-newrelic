@@ -8,16 +8,17 @@ const spin = keyframes`
   }
 `;
 
-const Spinner = ({ inline }) => (
+const Spinner = ({ className, inline, size }) => (
   <div
+    className={className}
     aria-label="Loading"
     aria-busy
     css={css`
-      --spinner-size: 1rem;
+      --spinner-size: ${size};
 
       display: inline-block;
       position: relative;
-      height: ${inline ? 'var(--spinner-size)' : '100%'};
+      height: ${inline ? 'var(--spinner-size, 1rem)' : '100%'};
       width: ${inline ? 'var(--spinner-size)' : '100%'};
 
       &:after {
@@ -39,11 +40,14 @@ const Spinner = ({ inline }) => (
 );
 
 Spinner.propTypes = {
+  className: PropTypes.string,
   inline: PropTypes.bool,
+  size: PropTypes.string,
 };
 
 Spinner.defaultProps = {
   inline: false,
+  size: '1rem',
 };
 
 export default Spinner;
