@@ -49,6 +49,10 @@ const Input = forwardRef(
             switch (e.key) {
               case 'Enter':
                 return onSubmit?.(value);
+              case 'ArrowUp':
+              case 'ArrowDown':
+                e.preventDefault();
+                break;
               default:
               // do nothing
             }
