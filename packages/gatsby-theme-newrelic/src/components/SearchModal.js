@@ -95,7 +95,7 @@ const SearchModal = ({ onClose, isOpen }) => {
 
               em {
                 border-radius: 0.125rem;
-                padding: 0.2em;
+                padding: 0.125rem 0.25rem;
                 color: var(--color-neutrals-800);
                 background: var(--color-neutrals-200);
                 font-style: normal;

@@ -24,6 +24,10 @@ const Result = ({ result, selected, onSelect }) => {
           border-bottom: 1px solid var(--border-color);
         }
 
+        &:focus {
+          outline: none;
+        }
+
         ${selected &&
         css`
           outline: none;
