@@ -76,22 +76,22 @@ test('handles alt key', () => {
   expect(handler).toHaveBeenCalledTimes(1);
 });
 
-test('does not care about casing', () => {
+test('ignores whitespace', () => {
   const handler = jest.fn();
 
-  renderHook(() => useKeyPress('sHiFt+B', handler));
+  renderHook(() => useKeyPress('ctrl  + c', handler));
 
-  fireEvent.keyDown(document.body, { key: 'b', shiftKey: true });
+  fireEvent.keyDown(document.body, { key: 'c', ctrlKey: true });
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
 
-test('ignores whitespace', () => {
+test('handles case sensitive keys', () => {
   const handler = jest.fn();
 
-  renderHook(() => useKeyPress('ctrl  + C', handler));
+  renderHook(() => useKeyPress('ArrowDown', handler));
 
-  fireEvent.keyDown(document.body, { key: 'c', ctrlKey: true });
+  fireEvent.keyDown(document.body, { key: 'ArrowDown' });
 
   expect(handler).toHaveBeenCalledTimes(1);
 });
