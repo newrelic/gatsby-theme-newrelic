@@ -2,7 +2,7 @@ const DEFAULT_NAMESPACE = 'translation';
 
 const defaultLocale = { name: 'English', locale: 'en' };
 const themeNamespace = 'gatsby-theme-newrelic';
-const themeSupportedLocales = ['en'];
+const themeSupportedLocales = ['en', 'jp'];
 
 const uniq = (arr) => [...new Set(arr)];
 
