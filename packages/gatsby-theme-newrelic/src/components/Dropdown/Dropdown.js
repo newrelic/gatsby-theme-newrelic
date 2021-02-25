@@ -12,7 +12,7 @@ const ALIGNMENTS = {
   right: 'flex-end',
 };
 
-const Dropdown = ({ align, children }) => {
+const Dropdown = ({ align, children, className }) => {
   const [open, setOpen] = useState(false);
   const value = useMemo(
     () => ({ align, open, toggle: () => setOpen((open) => !open) }),
@@ -31,6 +31,7 @@ const Dropdown = ({ align, children }) => {
   return (
     <DropdownContext.Provider value={value}>
       <div
+        className={className}
         css={css`
           display: flex;
           justify-content: ${ALIGNMENTS[align]};
@@ -46,6 +47,7 @@ const Dropdown = ({ align, children }) => {
 Dropdown.propTypes = {
   align: PropTypes.oneOf(Object.keys(ALIGNMENTS)),
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 };
 
 Dropdown.defaultProps = {
