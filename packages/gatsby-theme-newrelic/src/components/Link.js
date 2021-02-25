@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
@@ -9,7 +9,7 @@ import { localizePath } from '../utils/localization';
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
 
-const Link = ({ to, onClick, ...props }) => {
+const Link = forwardRef(({ to, onClick, ...props }, ref) => {
   const locale = useLocale();
   const handleExternalLinkClick = useInstrumentedHandler(onClick, {
     actionName: 'externalLink_click',
@@ -35,12 +35,13 @@ const Link = ({ to, onClick, ...props }) => {
   }
 
   if (isHash(to)) {
-    return <a href={to} {...props} />;
+    return <a ref={ref} href={to} {...props} />;
   }
 
   if (isExternal(to)) {
     return (
       <a
+        ref={ref}
         href={to}
         onClick={handleExternalLinkClick}
         target="_blank"
@@ -50,8 +51,10 @@ const Link = ({ to, onClick, ...props }) => {
     );
   }
 
-  return <GatsbyLink to={localizePath({ path: to, locale })} {...props} />;
-};
+  return (
+    <GatsbyLink ref={ref} to={localizePath({ path: to, locale })} {...props} />
+  );
+});
 
 Link.propTypes = {
   onClick: PropTypes.func,
