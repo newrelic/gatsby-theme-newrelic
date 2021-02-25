@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import Input from './SearchModal/Input';
 import Portal from './Portal';
 import Result from './SearchModal/Result';
+import ResultPreview from './SearchModal/ResultPreview';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import { useQuery } from 'react-query';
 import { useDebounce } from 'react-use';
@@ -70,7 +71,6 @@ const SearchModal = ({ onClose, isOpen }) => {
   );
 
   const flattenedResults = Array.from(bucketedResults.values()).flat();
-
   const selectedResult = flattenedResults[selectedIndex];
 
   return transitions.map(
@@ -213,29 +213,7 @@ const SearchModal = ({ onClose, isOpen }) => {
                       }
                     )}
                   </div>
-                  <div
-                    css={css`
-                      padding: 1rem;
-                      overflow: auto;
-                      max-height: 100%;
-                      background: white;
-
-                      .dark-mode & {
-                        background: transparent;
-                      }
-                    `}
-                  >
-                    {selectedResult && (
-                      <>
-                        <h2>{selectedResult.title}</h2>
-                        <p
-                          dangerouslySetInnerHTML={{
-                            __html: selectedResult.highlight.body,
-                          }}
-                        />
-                      </>
-                    )}
-                  </div>
+                  <ResultPreview result={selectedResult} />
                 </div>
               )}
             </animated.div>
@@ -268,7 +246,7 @@ const useSwiftypeSearch = (query, params = {}) => {
                   fallback: true,
                 },
                 body: {
-                  size: 200,
+                  size: 400,
                   fallback: true,
                 },
               },
