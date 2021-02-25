@@ -87,6 +87,7 @@ const SearchModal = ({ onClose, isOpen }) => {
             onClick={onClose}
           >
             <animated.div
+              onClick={(e) => e.stopPropagation()}
               style={props}
               css={css`
                 z-index: 101;
@@ -152,31 +153,23 @@ const SearchModal = ({ onClose, isOpen }) => {
                       ([type, results]) => {
                         return (
                           <React.Fragment key={type}>
-                            <div
+                            <h4
                               css={css`
+                                font-size: 0.75rem;
+                                color: var(--color-neutrals-700);
+                                margin-bottom: 0;
                                 text-transform: uppercase;
                                 padding: 0.5rem var(--x-padding);
-                                background: var(--color-neutrals-300);
+                                background: var(--divider-color);
+                                letter-spacing: 1px;
 
                                 .dark-mode & {
-                                  background: var(--color-dark-300);
+                                  color: var(--color-dark-700);
                                 }
                               `}
                             >
-                              <h4
-                                css={css`
-                                  font-size: 0.875rem;
-                                  margin-bottom: 0;
-                                  color: var(--color-neutrals-700);
-
-                                  .dark-mode & {
-                                    color: var(--color-dark-700);
-                                  }
-                                `}
-                              >
-                                {type}
-                              </h4>
-                            </div>
+                              {type}
+                            </h4>
                             {results.map((result) => {
                               const resultIndex = flattenedResults.indexOf(
                                 result
