@@ -91,7 +91,7 @@ const SearchModal = ({ onClose, isOpen }) => {
               style={props}
               css={css`
                 z-index: 101;
-                max-width: 900px;
+                max-width: 1024px;
                 width: 100%;
                 margin: auto;
                 box-shadow: var(--shadow-4);
@@ -135,6 +135,8 @@ const SearchModal = ({ onClose, isOpen }) => {
                     border-bottom-left-radius: 0.25rem;
                     border-bottom-right-radius: 0.25rem;
                     box-shadow: var(--shadow-6);
+                    border: 1px solid var(--divider-color);
+                    border-top: none;
 
                     .dark-mode & {
                       background: var(--color-dark-050);
