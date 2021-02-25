@@ -24,13 +24,14 @@ const ResultPreview = ({ result }) => {
               display: inline-block;
               text-transform: uppercase;
               margin-bottom: 1rem;
+              letter-spacing: 1px;
             `}
           >
             {result.type}
           </Tag>
           <div
             css={css`
-              margin-bottom: 0.75rem;
+              margin-bottom: 1rem;
             `}
           >
             <h2
