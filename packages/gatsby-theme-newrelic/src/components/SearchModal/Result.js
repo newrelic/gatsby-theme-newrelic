@@ -1,23 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from '../Icon';
 import Link from '../Link';
 
 const Result = ({ result, selected, onSelect }) => {
-  const ref = useRef();
-
-  useEffect(() => {
-    if (selected) {
-      ref.current.focus();
-    }
-  }, [selected]);
-
   return (
     <Link
-      ref={ref}
       to={result.url}
-      onFocus={onSelect}
+      role="option"
+      aria-selected={selected}
+      tabIndex={-1}
       css={css`
         display: grid;
         grid-template-columns: 1fr auto;
@@ -31,11 +24,10 @@ const Result = ({ result, selected, onSelect }) => {
           border-bottom: 1px solid var(--border-color);
         }
 
-        &:focus {
+        ${selected &&
+        css`
           outline: none;
-          border-left: 0.25rem solid var(--border-color);
           background: var(--color-neutrals-100);
-          padding-left: calc(var(--horizontal-spacing) - 0.25rem);
 
           .dark-mode & {
             background: var(--color-dark-100);
@@ -44,7 +36,7 @@ const Result = ({ result, selected, onSelect }) => {
           svg {
             visibility: visible;
           }
-        }
+        }`}
       `}
       onMouseOver={onSelect}
     >
