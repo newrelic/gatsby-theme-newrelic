@@ -107,6 +107,14 @@ const SearchModal = ({ onClose, isOpen }) => {
                   background: var(--color-dark-200);
                 }
               }
+
+              h2,
+              h3,
+              h4 {
+                em {
+                  font-size: inherit;
+                }
+              }
             `}
             onClick={onClose}
           >

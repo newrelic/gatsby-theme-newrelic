@@ -38,9 +38,8 @@ const ResultPreview = ({ result }) => {
               css={css`
                 margin-bottom: 0.25rem;
               `}
-            >
-              {result.title}
-            </h2>
+              dangerouslySetInnerHTML={{ __html: result.highlight.title }}
+            />
             {result.breadcrumb && (
               <div
                 css={css`

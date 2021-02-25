@@ -45,10 +45,6 @@ const Result = ({ result, selected, onSelect }) => {
           css={css`
             font-size: 1rem;
             margin-bottom: 0.25rem;
-
-            em {
-              font-size: inherit;
-            }
           `}
           dangerouslySetInnerHTML={{ __html: result.highlight.title }}
         />
