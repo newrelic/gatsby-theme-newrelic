@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.32.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.32.0...v1.32.1) (2021-02-25)
+
+
+### Bug Fixes
+
+* Add support for Japanese and add translation strings ([f68bb53](https://github.com/newrelic/gatsby-theme-newrelic/commit/f68bb534454651a2c1715c3e1ec079208b7fee93))
+* **Dropdown:** Add ability to disable chevron and add className support to Dropdown.Toggle ([2cccfac](https://github.com/newrelic/gatsby-theme-newrelic/commit/2cccfac172091d536e6feb1f6cff89d486b16e27))
+* **Dropdown:** Add className support ([a64d250](https://github.com/newrelic/gatsby-theme-newrelic/commit/a64d2507a096d22e67daab464e0fdf811e9a8fd0))
+* **GlobalHeader:** Better mobile styles ([c99a851](https://github.com/newrelic/gatsby-theme-newrelic/commit/c99a85150ee7ed5001aaa6a00232afbb53cf48d5))
+* Add log-in feather icon ([be18586](https://github.com/newrelic/gatsby-theme-newrelic/commit/be18586a813f9fde15d86162efb021d4e34c5731))
+* **GlobalHeader:** remove flash of unstyled content by using media queries instead of JS for search box ([cc333a1](https://github.com/newrelic/gatsby-theme-newrelic/commit/cc333a18402e488d59c0fb730c590c30b721a00a))
+* **TableOfContents:** Instrument clicks on headings ([3ac7a9e](https://github.com/newrelic/gatsby-theme-newrelic/commit/3ac7a9e3407447283133b262cb5c1b9c38bbf20a))
+* **useKeyPress:** Maintain casing when checking against pressed keys since casing does matter on some keys (i.e. `ArrowUp` and `ArrowDown`) ([79110de](https://github.com/newrelic/gatsby-theme-newrelic/commit/79110de59e5da0b0c138ea5ef70ba029fe75be76))
+* Fix reference to undefined variable ([30e0347](https://github.com/newrelic/gatsby-theme-newrelic/commit/30e03474416ecf8e098bed28044ea01be3a489f5))
+* Minor style updates for search to reduce spacing ([fad4035](https://github.com/newrelic/gatsby-theme-newrelic/commit/fad40356d6d63712ebca30e1b1af57d9663443e2))
+
+
+
+
+
 # [1.32.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.31.2...v1.32.0) (2021-02-23)
 
 
