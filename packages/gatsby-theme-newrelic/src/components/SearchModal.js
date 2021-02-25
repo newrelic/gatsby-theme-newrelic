@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Input from './SearchModal/Input';
 import Portal from './Portal';
+import Result from './SearchModal/Result';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import { useQuery } from 'react-query';
 import { useDebounce } from 'react-use';
@@ -54,6 +55,10 @@ const SearchModal = ({ onClose, isOpen }) => {
     isOpen && searchInput.current.focus();
   }, [isOpen]);
 
+  useEffect(() => {
+    setSelectedIndex(0);
+  }, [searchTerm]);
+
   useDebounce(
     () => {
       if (searchTerm) {
@@ -86,6 +91,21 @@ const SearchModal = ({ onClose, isOpen }) => {
 
               .dark-mode & {
                 background: hsla(195, 20%, 20%, 0.5);
+              }
+
+              em {
+                border-radius: 0.125rem;
+                padding: 0.2em;
+                color: var(--color-neutrals-800);
+                background: var(--color-neutrals-200);
+                font-style: normal;
+                font-weight: bold;
+                font-size: 85%;
+
+                .dark-mode & {
+                  color: var(--color-brand-300);
+                  background: var(--color-dark-200);
+                }
               }
             `}
             onClick={onClose}
@@ -155,7 +175,7 @@ const SearchModal = ({ onClose, isOpen }) => {
                       ([type, results]) => {
                         return (
                           <React.Fragment key={type}>
-                            <h4
+                            <h2
                               css={css`
                                 font-size: 0.75rem;
                                 color: var(--color-neutrals-700);
@@ -173,19 +193,18 @@ const SearchModal = ({ onClose, isOpen }) => {
                               `}
                             >
                               {type}
-                            </h4>
+                            </h2>
                             {results.map((result) => {
                               const resultIndex = flattenedResults.indexOf(
                                 result
                               );
+
                               return (
                                 <Result
                                   selected={resultIndex === selectedIndex}
                                   key={result.id}
-                                  onMouseOver={() =>
-                                    setSelectedIndex(resultIndex)
-                                  }
-                                  {...result}
+                                  result={result}
+                                  onSelect={() => setSelectedIndex(resultIndex)}
                                 />
                               );
                             })}
@@ -206,12 +225,16 @@ const SearchModal = ({ onClose, isOpen }) => {
                       }
                     `}
                   >
-                    <h2>{selectedResult.title}</h2>
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: selectedResult.highlight.body,
-                      }}
-                    />
+                    {selectedResult && (
+                      <>
+                        <h2>{selectedResult.title}</h2>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: selectedResult.highlight.body,
+                          }}
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
               )}
@@ -220,51 +243,6 @@ const SearchModal = ({ onClose, isOpen }) => {
         </Portal>
       )
   );
-};
-
-const Result = ({ title, breadcrumb, selected, onMouseOver }) => {
-  return (
-    <div
-      onFocus={() => {}}
-      css={css`
-        cursor: pointer;
-        padding: 0.5rem var(--horizontal-spacing);
-        transition: background-color 0.2s ease-out;
-
-        &:not(:last-child) {
-          border-bottom: 1px solid var(--border-color);
-        }
-
-        ${selected &&
-        css`
-          border-left: 0.25rem solid var(--border-color);
-          background: var(--color-neutrals-100);
-          padding-left: calc(var(--horizontal-spacing) - 0.25rem);
-
-          .dark-mode & {
-            background: var(--color-dark-100);
-          }
-        `}
-      `}
-      onMouseOver={onMouseOver}
-    >
-      <h4>{title}</h4>
-      <p
-        css={css`
-          font-size: 0.75rem;
-        `}
-      >
-        {breadcrumb}
-      </p>
-    </div>
-  );
-};
-
-Result.propTypes = {
-  title: PropTypes.string,
-  breadcrumb: PropTypes.string,
-  selected: PropTypes.bool,
-  onMouseOver: PropTypes.func,
 };
 
 const useSwiftypeSearch = (query, params = {}) => {
@@ -285,9 +263,20 @@ const useSwiftypeSearch = (query, params = {}) => {
             per_page: 10,
             highlight_fields: {
               page: {
+                title: {
+                  size: 100,
+                  fallback: true,
+                },
                 body: {
                   size: 200,
+                  fallback: true,
                 },
+              },
+            },
+            filters: {
+              page: {
+                type: ['docs', 'developer', 'opensource'],
+                document_type: ['!views_page_menu'],
               },
             },
           }),
