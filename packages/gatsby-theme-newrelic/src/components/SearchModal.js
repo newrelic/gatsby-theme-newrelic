@@ -135,6 +135,7 @@ const SearchModal = ({ onClose, isOpen }) => {
                 }}
                 value={searchTerm}
                 onClear={() => setSearchTerm('')}
+                onCancel={onClose}
                 loading={isLoading}
                 css={
                   searchTerm &&

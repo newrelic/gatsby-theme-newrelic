@@ -1,12 +1,23 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import Button from '../Button';
 import Icon from '../Icon';
 import Spinner from '../Spinner';
 
 const Input = forwardRef(
   (
-    { onClear, onSubmit, value, width, className, style, loading, ...props },
+    {
+      onClear,
+      onSubmit,
+      value,
+      width,
+      className,
+      style,
+      loading,
+      onCancel,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -68,6 +79,7 @@ const Input = forwardRef(
             font-weight: 500;
             padding: 1rem
               calc(var(--horizontal-spacing) + 0.5rem + var(--icon-size));
+            padding-right: 7.5rem;
 
             &:focus {
               outline: none;
@@ -91,37 +103,52 @@ const Input = forwardRef(
           />
         )}
         {value && onClear && !loading && (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              onClear();
-            }}
+          <div
             css={css`
+              display: flex;
+              align-items: center;
+              position: absolute;
               right: var(--horizontal-spacing);
               top: 50%;
               transform: translateY(-50%);
-              color: var(--accent-text-color);
-              border: none;
-              background: transparent;
-              position: absolute;
-              margin: 0;
-              padding: 0;
-              outline: none;
-
-              &:hover {
-                cursor: pointer;
-              }
             `}
-            type="button"
           >
-            <Icon
-              name="fe-x"
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                onClear();
+              }}
               css={css`
-                display: block;
+                color: var(--accent-text-color);
+                border: none;
+                background: transparent;
+                margin: 0;
+                padding: 0;
+                outline: none;
+                margin-right: 1rem;
+
+                &:hover {
+                  cursor: pointer;
+                }
               `}
-              size="1.25rem"
-            />
-          </button>
+              type="button"
+            >
+              <Icon
+                name="fe-x"
+                css={css`
+                  display: block;
+                `}
+                size="1.25rem"
+              />
+            </button>
+            <Button
+              variant={Button.VARIANT.PLAIN}
+              size={Button.SIZE.EXTRA_SMALL}
+              onClick={onCancel}
+            >
+              Cancel
+            </Button>
+          </div>
         )}
       </div>
     );
