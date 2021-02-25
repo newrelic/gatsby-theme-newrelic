@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
@@ -6,11 +7,11 @@ import SearchInput from './SearchInput';
 import Portal from './Portal';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import { useQuery } from 'react-query';
-import useQueryParams from '../hooks/useQueryParams';
 import Spinner from './Spinner';
 import { useDebounce } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useScrollFreeze from '../hooks/useScrollFreeze';
+import { animated, useTransition } from 'react-spring';
 
 const SearchModal = ({ onClose, isOpen }) => {
   const { t } = useThemeTranslation();
@@ -19,6 +20,16 @@ const SearchModal = ({ onClose, isOpen }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { isLoading, refetch, data = {} } = useSwiftypeSearch(searchTerm);
   const { records: { page: results } = {} } = data;
+
+  const transitions = useTransition(isOpen, null, {
+    config: { tension: 220, friction: 22 },
+    from: {
+      opacity: 0,
+      transform: 'scale(0.96)',
+    },
+    enter: { opacity: 1, transform: 'scale(1)' },
+    leave: { opacity: 0, transform: 'scale(0.96)' },
+  });
 
   useScrollFreeze(isOpen);
 
@@ -58,141 +69,160 @@ const SearchModal = ({ onClose, isOpen }) => {
 
   const selectedResult = flattenedResults[selectedIndex];
 
-  return isOpen ? (
-    <Portal>
-      <Backdrop onClick={onClose} />
-      <div
-        css={css`
-          z-index: 101;
-          position: absolute;
-          max-width: 900px;
-          width: 100%;
-          left: 50%;
-          top: 0;
-          transform: translateX(-50%);
-          margin: var(--site-content-padding);
-          box-shadow: var(--shadow-4);
-          max-height: calc(100vh - 2 * var(--site-content-padding));
-          display: flex;
-          flex-direction: column;
-        `}
-      >
-        <SearchInput
-          placeholder={t('searchInput.placeholder')}
-          size={SearchInput.SIZE.LARGE}
-          ref={searchInput}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-          }}
-          value={searchTerm}
-          css={
-            searchTerm &&
-            css`
-              input {
-                border-bottom-left-radius: 0;
-                border-bottom-right-radius: 0;
-              }
-            `
-          }
-        />
-        {isLoading && (
-          <Spinner
-            css={css`
-              margin-top: 1rem;
-            `}
-          />
-        )}
-        {searchTerm && results && (
+  return transitions.map(
+    ({ item, key, props }) =>
+      item && (
+        <Portal key={key}>
+          <Backdrop onClick={onClose} style={props} />
           <div
             css={css`
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              flex-grow: 1;
-              background-color: white;
-              border-bottom-left-radius: 0.25rem;
-              border-bottom-right-radius: 0.25rem;
-              box-shadow: var(--shadow-6);
-
-              .dark-mode & {
-                background: var(--color-dark-050);
-              }
+              position: fixed;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              padding: var(--site-content-padding);
+              z-index: 100;
             `}
+            onClick={onClose}
           >
-            <div
+            <animated.div
+              style={props}
               css={css`
-                --x-padding: 1rem;
-                border-right: 1px solid var(--divider-color);
-                max-height: 100%;
-                overflow: auto;
+                z-index: 101;
+                max-width: 900px;
+                width: 100%;
+                margin: auto;
+                box-shadow: var(--shadow-4);
+                max-height: calc(100vh - 2 * var(--site-content-padding));
+                display: flex;
+                flex-direction: column;
               `}
             >
-              {Array.from(bucketedResults.entries()).map(([type, results]) => {
-                return (
-                  <React.Fragment key={type}>
-                    <div
-                      css={css`
-                        text-transform: uppercase;
-                        padding: 0.5rem var(--x-padding);
-                        background: var(--color-neutrals-300);
-
-                        .dark-mode & {
-                          background: var(--color-dark-300);
-                        }
-                      `}
-                    >
-                      <h4
-                        css={css`
-                          font-size: 0.875rem;
-                          margin-bottom: 0;
-                          color: var(--color-neutrals-700);
-
-                          .dark-mode & {
-                            color: var(--color-dark-700);
-                          }
-                        `}
-                      >
-                        {type}
-                      </h4>
-                    </div>
-                    {results.map((result) => {
-                      const resultIndex = flattenedResults.indexOf(result);
-                      return (
-                        <Result
-                          selected={resultIndex === selectedIndex}
-                          key={result.id}
-                          onMouseOver={() => setSelectedIndex(resultIndex)}
-                          {...result}
-                        />
-                      );
-                    })}
-                  </React.Fragment>
-                );
-              })}
-            </div>
-            <div
-              css={css`
-                padding: 1rem;
-                overflow: auto;
-                max-height: 100%;
-                background: white;
-
-                .dark-mode & {
-                  background: transparent;
-                }
-              `}
-            >
-              <h2>{selectedResult.title}</h2>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: selectedResult.highlight.body,
+              <SearchInput
+                placeholder={t('searchInput.placeholder')}
+                size={SearchInput.SIZE.LARGE}
+                ref={searchInput}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
                 }}
-              ></p>
-            </div>
+                value={searchTerm}
+                css={
+                  searchTerm &&
+                  css`
+                    input {
+                      border-bottom-left-radius: 0;
+                      border-bottom-right-radius: 0;
+                    }
+                  `
+                }
+              />
+              {isLoading && (
+                <Spinner
+                  css={css`
+                    margin-top: 1rem;
+                  `}
+                />
+              )}
+              {searchTerm && results && (
+                <div
+                  css={css`
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    flex-grow: 1;
+                    background-color: white;
+                    border-bottom-left-radius: 0.25rem;
+                    border-bottom-right-radius: 0.25rem;
+                    box-shadow: var(--shadow-6);
+
+                    .dark-mode & {
+                      background: var(--color-dark-050);
+                    }
+                  `}
+                >
+                  <div
+                    css={css`
+                      --x-padding: 1rem;
+                      border-right: 1px solid var(--divider-color);
+                      max-height: 100%;
+                      overflow: auto;
+                    `}
+                  >
+                    {Array.from(bucketedResults.entries()).map(
+                      ([type, results]) => {
+                        return (
+                          <React.Fragment key={type}>
+                            <div
+                              css={css`
+                                text-transform: uppercase;
+                                padding: 0.5rem var(--x-padding);
+                                background: var(--color-neutrals-300);
+
+                                .dark-mode & {
+                                  background: var(--color-dark-300);
+                                }
+                              `}
+                            >
+                              <h4
+                                css={css`
+                                  font-size: 0.875rem;
+                                  margin-bottom: 0;
+                                  color: var(--color-neutrals-700);
+
+                                  .dark-mode & {
+                                    color: var(--color-dark-700);
+                                  }
+                                `}
+                              >
+                                {type}
+                              </h4>
+                            </div>
+                            {results.map((result) => {
+                              const resultIndex = flattenedResults.indexOf(
+                                result
+                              );
+                              return (
+                                <Result
+                                  selected={resultIndex === selectedIndex}
+                                  key={result.id}
+                                  onMouseOver={() =>
+                                    setSelectedIndex(resultIndex)
+                                  }
+                                  {...result}
+                                />
+                              );
+                            })}
+                          </React.Fragment>
+                        );
+                      }
+                    )}
+                  </div>
+                  <div
+                    css={css`
+                      padding: 1rem;
+                      overflow: auto;
+                      max-height: 100%;
+                      background: white;
+
+                      .dark-mode & {
+                        background: transparent;
+                      }
+                    `}
+                  >
+                    <h2>{selectedResult.title}</h2>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: selectedResult.highlight.body,
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
+            </animated.div>
           </div>
-        )}
-      </div>
-    </Portal>
-  ) : null;
+        </Portal>
+      )
+  );
 };
 
 const Result = ({ title, breadcrumb, selected, onMouseOver }) => {

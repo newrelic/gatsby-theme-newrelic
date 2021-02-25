@@ -98,7 +98,7 @@ const GlobalHeader = ({ className }) => {
       <QueryClientProvider client={queryClient}>
         <SearchModal
           onClose={() => setIsSearchModalOpen(false)}
-          isOpen={true || isSearchModalOpen}
+          isOpen={isSearchModalOpen}
         />
       </QueryClientProvider>
       <AnnouncementBanner />
