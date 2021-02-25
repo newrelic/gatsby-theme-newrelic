@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import Icon from './Icon';
 import Input from './SearchModal/Input';
 import Portal from './Portal';
 import Result from './SearchModal/Result';
@@ -156,80 +157,166 @@ const SearchModal = ({ onClose, isOpen }) => {
                 }
               />
               {searchTerm && results && (
-                <div
-                  css={css`
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    flex-grow: 1;
-                    background-color: white;
-                    border-bottom-left-radius: 0.25rem;
-                    border-bottom-right-radius: 0.25rem;
-                    box-shadow: var(--shadow-6);
-                    border: 1px solid var(--border-color);
-                    border-top: none;
-
-                    .dark-mode & {
-                      background: var(--color-dark-050);
-                    }
-                  `}
-                >
+                <>
                   <div
                     css={css`
-                      border-right: 1px solid var(--border-color);
-                      max-height: 100%;
-                      overflow: auto;
+                      display: grid;
+                      grid-template-columns: 1fr 1fr;
+                      flex-grow: 1;
+                      background-color: white;
+                      border-bottom-left-radius: 0.25rem;
+                      border-bottom-right-radius: 0.25rem;
+                      box-shadow: var(--shadow-6);
+                      border: 1px solid var(--border-color);
+                      border-top: none;
+                      overflow: hidden;
+
+                      .dark-mode & {
+                        background: var(--color-dark-050);
+                      }
                     `}
                   >
-                    {Array.from(bucketedResults.entries()).map(
-                      ([type, results]) => {
-                        return (
-                          <React.Fragment key={type}>
-                            <h2
-                              css={css`
-                                font-size: 0.75rem;
-                                color: var(--color-neutrals-700);
-                                margin-bottom: 0;
-                                text-transform: uppercase;
-                                padding: 0.5rem var(--horizontal-spacing);
-                                background: var(--divider-color);
-                                letter-spacing: 1px;
-                                border-bottom: 1px solid var(--border-color);
+                    <div
+                      css={css`
+                        border-right: 1px solid var(--border-color);
+                        max-height: 100%;
+                        overflow: auto;
+                      `}
+                    >
+                      {Array.from(bucketedResults.entries()).map(
+                        ([type, results]) => {
+                          return (
+                            <React.Fragment key={type}>
+                              <h2
+                                css={css`
+                                  font-size: 0.75rem;
+                                  color: var(--color-neutrals-700);
+                                  margin-bottom: 0;
+                                  text-transform: uppercase;
+                                  padding: 0.5rem var(--horizontal-spacing);
+                                  background: var(--divider-color);
+                                  letter-spacing: 1px;
+                                  border-bottom: 1px solid var(--border-color);
 
-                                .dark-mode & {
-                                  background: var(--color-dark-100);
-                                  color: var(--color-dark-700);
-                                }
-                              `}
-                            >
-                              {type}
-                            </h2>
-                            {results.map((result) => {
-                              const resultIndex = flattenedResults.indexOf(
-                                result
-                              );
+                                  .dark-mode & {
+                                    background: var(--color-dark-100);
+                                    color: var(--color-dark-700);
+                                  }
+                                `}
+                              >
+                                {type}
+                              </h2>
+                              {results.map((result) => {
+                                const resultIndex = flattenedResults.indexOf(
+                                  result
+                                );
 
-                              return (
-                                <Result
-                                  selected={resultIndex === selectedIndex}
-                                  key={result.id}
-                                  result={result}
-                                  onSelect={() => setSelectedIndex(resultIndex)}
-                                />
-                              );
-                            })}
-                          </React.Fragment>
-                        );
-                      }
-                    )}
+                                return (
+                                  <Result
+                                    selected={resultIndex === selectedIndex}
+                                    key={result.id}
+                                    result={result}
+                                    onSelect={() =>
+                                      setSelectedIndex(resultIndex)
+                                    }
+                                  />
+                                );
+                              })}
+                            </React.Fragment>
+                          );
+                        }
+                      )}
+                    </div>
+                    <ResultPreview result={selectedResult} />
+                    <div
+                      css={css`
+                        font-size: 0.75rem;
+                        display: flex;
+                        border-top: 1px solid var(--border-color);
+                        padding: 1rem var(--horizontal-spacing);
+                        background: var(--color-neutrals-100);
+                        grid-column: span 2;
+
+                        .dark-mode & {
+                          background: var(--color-dark-100);
+                          color: var(--color-dark-700);
+                        }
+                      `}
+                    >
+                      <div
+                        css={css`
+                          display: flex;
+                          align-items: center;
+                          margin-right: 1rem;
+                        `}
+                      >
+                        <Key>
+                          <Icon name="fe-corner-down-left" />
+                        </Key>
+                        Select
+                      </div>
+                      <div
+                        css={css`
+                          display: flex;
+                          align-items: center;
+                          margin-right: 1rem;
+                        `}
+                      >
+                        <Key>
+                          <Icon name="fe-arrow-up" />
+                          <Icon name="fe-arrow-down" />
+                        </Key>
+                        Navigate
+                      </div>
+                      <div
+                        css={css`
+                          display: flex;
+                          align-items: center;
+                        `}
+                      >
+                        <Key
+                          css={css`
+                            line-height: 1;
+                            font-family: var(--code-font);
+                          `}
+                        >
+                          esc
+                        </Key>
+                        Close
+                      </div>
+                    </div>
                   </div>
-                  <ResultPreview result={selectedResult} />
-                </div>
+                </>
               )}
             </animated.div>
           </animated.div>
         </Portal>
       )
   );
+};
+
+const Key = ({ className, children }) => (
+  <span
+    className={className}
+    css={css`
+      display: inline-flex;
+      border-radius: 0.25rem;
+      padding: 0.25rem;
+      margin-right: 0.5rem;
+      background: var(--color-neutrals-300);
+
+      .dark-mode & {
+        background: var(--color-dark-400);
+      }
+    `}
+  >
+    {children}
+  </span>
+);
+
+Key.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node,
 };
 
 const useSwiftypeSearch = (query, params = {}) => {
