@@ -5,10 +5,12 @@ import { PageTools } from '@newrelic/gatsby-theme-newrelic';
 import useActiveHash from '../hooks/useActiveHash';
 import useDeepMemo from '../hooks/useDeepMemo';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const prop = (name) => (obj) => obj[name];
 
 const TableOfContents = ({ headings }) => {
+  const { t } = useThemeTranslation();
   const headingIds = useDeepMemo(() => headings.map(prop('id')), [headings]);
   const activeHash = useActiveHash(headingIds);
   const handleClick = useInstrumentedHandler(null, ({ id, text }) => ({
@@ -25,7 +27,7 @@ const TableOfContents = ({ headings }) => {
         min-height: 150px;
       `}
     >
-      <PageTools.Title>On this page</PageTools.Title>
+      <PageTools.Title>{t('tableOfContents.title')}</PageTools.Title>
       <nav
         css={css`
           margin-left: -1rem;
