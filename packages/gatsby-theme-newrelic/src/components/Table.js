@@ -21,6 +21,7 @@ const Table = ({ className, children }) => (
         th {
           min-width: 5rem;
           padding: 0.5rem 1rem;
+          vertical-align: top;
         }
 
         tr {
