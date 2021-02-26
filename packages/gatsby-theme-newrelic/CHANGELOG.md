@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.32.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.32.1...v1.32.2) (2021-02-26)
+
+
+### Bug Fixes
+
+* **Table:** Vertically align the text in cells to the top of the cell instead of the center ([b7fd46f](https://github.com/newrelic/gatsby-theme-newrelic/commit/b7fd46fc0c0e5e6321f2ff1e03658303aa840b73))
+* Update Japanese translation for sign up button ([b52a60f](https://github.com/newrelic/gatsby-theme-newrelic/commit/b52a60f9aa2fc18a9bc3fe200927bd0e4e704938))
+* **TableOfContents:** Add Japanese translation for title ([4061bd4](https://github.com/newrelic/gatsby-theme-newrelic/commit/4061bd423dba5a0cccf7beb25ea07ec113d39fbd))
+
+
+
+
+
 ## [1.32.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.32.0...v1.32.1) (2021-02-25)
 
 
