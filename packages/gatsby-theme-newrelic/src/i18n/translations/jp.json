@@ -8,7 +8,7 @@
     "copied": "コピー済み",
     "copy": "コピー",
     "login": "ログイン",
-    "signUp": "サインアップ",
+    "signUp": "無料アカウント",
     "startNow": "今すぐ開始"
   },
   "callout": {
@@ -53,5 +53,8 @@
   },
   "search": {
     "pagingInfo": "3つのサイトで<7>{{searchTerm}}</7>を検索した結果の<2>{{start}} - {{end}}</2> ／<5>{{totalResults}}</5>を表示中"
+  },
+  "tableOfContents": {
+    "title": "このページの目次"
   }
 }
