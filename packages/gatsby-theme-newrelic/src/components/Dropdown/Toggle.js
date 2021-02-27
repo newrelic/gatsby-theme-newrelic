@@ -5,16 +5,11 @@ import Button from '../Button';
 import Icon from '../Icon';
 import useDropdown from './useDropdown';
 
-const Toggle = ({ className, children, variant, size, chevron = true }) => {
+const Toggle = ({ style, children, variant, size, chevron = true }) => {
   const { open, toggle } = useDropdown();
 
   return (
-    <Button
-      className={className}
-      variant={variant}
-      onClick={toggle}
-      size={size}
-    >
+    <Button style={style} variant={variant} onClick={toggle} size={size}>
       {children}
       {chevron && (
         <Icon
@@ -32,7 +27,7 @@ const Toggle = ({ className, children, variant, size, chevron = true }) => {
 Toggle.propTypes = {
   chevron: PropTypes.bool,
   children: PropTypes.node,
-  className: PropTypes.string,
+  style: PropTypes.string,
   variant: Button.propTypes.variant,
   size: Button.propTypes.size,
 };

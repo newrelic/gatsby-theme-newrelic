@@ -12,7 +12,7 @@ const ALIGNMENTS = {
   right: 'flex-end',
 };
 
-const Dropdown = ({ align, children, className }) => {
+const Dropdown = ({ align, children, className, closeOnClick = true }) => {
   const [open, setOpen] = useState(false);
   const value = useMemo(
     () => ({ align, open, toggle: () => setOpen((open) => !open) }),
@@ -21,12 +21,14 @@ const Dropdown = ({ align, children, className }) => {
   const hide = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
-    if (open) {
-      document.addEventListener('click', hide);
-    }
+    if (closeOnClick) {
+      if (open) {
+        document.addEventListener('click', hide);
+      }
 
-    return () => document.removeEventListener('click', hide);
-  }, [hide, open]);
+      return () => document.removeEventListener('click', hide);
+    }
+  }, [hide, open, closeOnClick]);
 
   return (
     <DropdownContext.Provider value={value}>
@@ -48,6 +50,7 @@ Dropdown.propTypes = {
   align: PropTypes.oneOf(Object.keys(ALIGNMENTS)),
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  closeOnClick: PropTypes.bool,
 };
 
 Dropdown.defaultProps = {
