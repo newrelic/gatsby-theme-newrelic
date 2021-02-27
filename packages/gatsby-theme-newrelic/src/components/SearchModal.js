@@ -13,13 +13,25 @@ import useKeyPress from '../hooks/useKeyPress';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import { animated, useTransition } from 'react-spring';
 import { rgba } from 'polished';
+import Link from './Link';
+
+const defaultFilters = [
+  { name: 'docs', isSelected: false },
+  { name: 'developer', isSelected: false },
+  { name: 'opensource', isSelected: false },
+];
 
 const SearchModal = ({ onClose, isOpen }) => {
   const { t } = useThemeTranslation();
   const searchInput = useRef();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const { isLoading, refetch, data = {} } = useSwiftypeSearch(searchTerm);
+  const [filters, setFilters] = useState(defaultFilters);
+  const { isLoading, refetch, data = {}, isSuccess } = useSwiftypeSearch(
+    searchTerm,
+    filters
+  );
+
   const { records: { page: results } = {} } = data;
 
   const transitions = useTransition(isOpen, null, {
@@ -71,8 +83,22 @@ const SearchModal = ({ onClose, isOpen }) => {
     [searchTerm]
   );
 
+  useEffect(() => {
+    refetch();
+  }, [filters]);
+
   const flattenedResults = Array.from(bucketedResults.values()).flat();
   const selectedResult = flattenedResults[selectedIndex];
+
+  const onFilter = (filterName) => {
+    const updatedFilters = filters.map(({ name, isSelected }) => {
+      if (name === filterName) {
+        return { name: name, isSelected: !isSelected };
+      }
+      return { name, isSelected };
+    });
+    setFilters(updatedFilters);
+  };
 
   return transitions.map(
     ({ item, key, props }) =>
@@ -142,10 +168,12 @@ const SearchModal = ({ onClose, isOpen }) => {
                 onChange={(e) => {
                   setSearchTerm(e.target.value);
                 }}
+                onFilter={onFilter}
                 value={searchTerm}
                 onClear={() => setSearchTerm('')}
                 onCancel={onClose}
                 loading={isLoading}
+                filters={filters}
                 css={
                   searchTerm &&
                   css`
@@ -156,31 +184,33 @@ const SearchModal = ({ onClose, isOpen }) => {
                   `
                 }
               />
-              {searchTerm && results && (
-                <>
-                  <div
-                    css={css`
-                      display: grid;
-                      grid-template-columns: 1fr 1fr;
-                      flex-grow: 1;
-                      background-color: white;
-                      border-bottom-left-radius: 0.25rem;
-                      border-bottom-right-radius: 0.25rem;
-                      box-shadow: var(--shadow-6);
-                      border: 1px solid var(--border-color);
-                      border-top: none;
-                      overflow: hidden;
 
-                      .dark-mode & {
-                        background: var(--color-dark-050);
-                      }
-                    `}
-                  >
+              <div
+                css={css`
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  flex-grow: 1;
+                  background-color: white;
+                  border-bottom-left-radius: 0.25rem;
+                  border-bottom-right-radius: 0.25rem;
+                  box-shadow: var(--shadow-6);
+                  border: 1px solid var(--border-color);
+                  border-top: none;
+                  overflow: hidden;
+
+                  .dark-mode & {
+                    background: var(--color-dark-050);
+                  }
+                `}
+              >
+                {searchTerm && Boolean(results?.length) && (
+                  <>
                     <div
                       css={css`
                         border-right: 1px solid var(--border-color);
-                        max-height: 100%;
-                        overflow: auto;
+                        height: calc(100vh - 6 * var(--site-content-padding));
+                        max-width: 512px;
+                        overflow: scroll;
                       `}
                     >
                       {Array.from(bucketedResults.entries()).map(
@@ -285,9 +315,58 @@ const SearchModal = ({ onClose, isOpen }) => {
                         Close
                       </div>
                     </div>
+                  </>
+                )}
+                {searchTerm && results.length === 0 && isSuccess && (
+                  <div
+                    css={css`
+                      display: flex;
+                      border-top: 1px solid var(--border-color);
+                      padding: 1rem var(--horizontal-spacing);
+                      background: var(--color-neutrals-100);
+                      grid-column: span 2;
+                      align-items: center;
+                      flex-direction: column;
+
+                      .dark-mode & {
+                        background: var(--color-dark-100);
+                        color: var(--color-dark-700);
+                      }
+                    `}
+                  >
+                    <h5
+                      css={css`
+                        font-size: 0.875rem;
+                        text-transform: uppercase;
+                      `}
+                    >
+                      No Results Found
+                    </h5>
+                    <p
+                      css={css`
+                        font-size: 0.75rem;
+                        max-width: 512px;
+                        line-height: 1.25;
+                        text-align: center;
+                      `}
+                    >
+                      Make a{' '}
+                      <Link
+                        to={
+                          'https://github.com/newrelic/docs-website/issues/new?assignees=&labels=content&template=content-issue.md&title=Summarize+your+docs+request'
+                        }
+                      >
+                        request
+                      </Link>{' '}
+                      for new documentation or start a conversation on our{' '}
+                      <Link to={'https://discuss.newrelic.com/'}>
+                        Explorer's Hub
+                      </Link>
+                      !
+                    </p>
                   </div>
-                </>
-              )}
+                )}
+              </div>
             </animated.div>
           </animated.div>
         </Portal>
@@ -319,7 +398,7 @@ Key.propTypes = {
   children: PropTypes.node,
 };
 
-const useSwiftypeSearch = (query, params = {}) => {
+const useSwiftypeSearch = (query, filters, params = {}) => {
   return useQuery(
     'swiftype',
     () => {
@@ -349,7 +428,7 @@ const useSwiftypeSearch = (query, params = {}) => {
             },
             filters: {
               page: {
-                type: ['docs', 'developer', 'opensource'],
+                type: getFilters(filters).map((filter) => filter.name),
                 document_type: ['!views_page_menu'],
               },
             },
@@ -361,6 +440,11 @@ const useSwiftypeSearch = (query, params = {}) => {
       enabled: false,
     }
   );
+};
+
+const getFilters = (filters) => {
+  const filteredTypes = filters.filter((filter) => filter.isSelected === true);
+  return filteredTypes.length !== 0 ? filteredTypes : filters;
 };
 
 SearchModal.propTypes = {

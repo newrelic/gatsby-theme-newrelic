@@ -4,12 +4,15 @@ import { css } from '@emotion/core';
 import Button from '../Button';
 import Icon from '../Icon';
 import Spinner from '../Spinner';
+import Dropdown from '../Dropdown';
 
 const Input = forwardRef(
   (
     {
       onClear,
       onSubmit,
+      onFilter,
+      filters,
       value,
       width,
       className,
@@ -141,6 +144,102 @@ const Input = forwardRef(
                 size="1.25rem"
               />
             </button>
+            {filters && (
+              <Dropdown align="right" closeOnClick={false}>
+                <Dropdown.Toggle
+                  style={css`
+                    color: var(--accent-text-color);
+                    border: green;
+                    background: transparent;
+                    margin: 0;
+                    padding: 0.5rem;
+                    outline: none;
+                    margin-right: 1rem;
+                    ${filters?.find((filter) => filter.isSelected === true) &&
+                    `
+                    color: var(--color-brand-600);
+                    .dark-mode & {
+                      color: var(--color-brand-200);
+                    }
+                    `}
+
+                    &:hover {
+                      cursor: pointer;
+                    }
+                  `}
+                  chevron={false}
+                  variant={Button.VARIANT.PLAIN}
+                >
+                  <Icon
+                    name="fe-filter"
+                    css={css`
+                      display: block;
+                    `}
+                    size="1rem"
+                  />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {filters.map((filter) => {
+                    return (
+                      <Dropdown.MenuItem
+                        key={filter.name}
+                        onClick={() => onFilter(filter.name)}
+                        css={css`
+                          margin-bottom: 0.15rem;
+                          ${filter.isSelected &&
+                          `color: var(--text-color);
+                            cursor: pointer;
+                            background: var(--color-neutrals-200);
+                            border-radius: 0.25rem;
+
+                            .dark-mode & {
+                              background: var(--color-dark-200);
+                            }`}
+                        `}
+                      >
+                        <div
+                          css={css`
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: space-between;
+                            align-items: baseline;
+                            ${filter.isSelected && ``}
+                          `}
+                        >
+                          <div
+                            css={css`
+                              text-transform: uppercase;
+                              font-size: 0.625rem;
+                            `}
+                          >
+                            {filter.name}
+                          </div>
+                          <div
+                            css={css`
+                              ${filter.isSelected
+                                ? `animation-duration: 0.1s;
+                                animation-name: fadein;
+                                @keyframes fadein {
+                                  from {
+                                    opacity: 0;
+                                  }
+                                  to {
+                                    opacity: 1;
+                                  }
+                                }
+                              `
+                                : `opacity: 0;`}
+                            `}
+                          >
+                            <Icon size="0.625rem" name="fe-check"></Icon>
+                          </div>
+                        </div>
+                      </Dropdown.MenuItem>
+                    );
+                  })}
+                </Dropdown.Menu>
+              </Dropdown>
+            )}
             <Button
               variant={Button.VARIANT.PLAIN}
               size={Button.SIZE.EXTRA_SMALL}
