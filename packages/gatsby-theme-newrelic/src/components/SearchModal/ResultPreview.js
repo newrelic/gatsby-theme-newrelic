@@ -8,8 +8,9 @@ const ResultPreview = ({ result }) => {
     <div
       css={css`
         padding: 1rem 2rem 2rem;
-        overflow: auto;
-        max-height: 100%;
+        height: calc(100vh - 6 * var(--site-content-padding));
+        max-width: 512px;
+        overflow: scroll;
         background: white;
 
         .dark-mode & {
@@ -56,6 +57,41 @@ const ResultPreview = ({ result }) => {
               __html: result.highlight.body,
             }}
           />
+          {result.sections && (
+            <div css={css``}>
+              <h5
+                css={css`
+                  text-transform: uppercase;
+                  padding-top: 1rem;
+                `}
+              >
+                On This Page
+              </h5>
+              <div>
+                {result.sections.map((section) => {
+                  return (
+                    <p
+                      css={css`
+                        font-size: 0.75rem;
+                        &:not(:last-child) {
+                          border-bottom: 1px solid var(--color-neutrals-050);
+                          .dark-mode & {
+                            border-bottom: 1px solid var(--color-dark-100);
+                          }
+                        }
+
+                        padding-bottom: 0.5rem;
+                        padding-top: 0.5rem;
+                        margin: 0;
+                      `}
+                    >
+                      {section}
+                    </p>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </>
       )}
     </div>
