@@ -127,6 +127,7 @@ const Button = styled.button`
   ${({ variant }) => styles.variant[variant]}
   ${({ size }) => styles.size[size]}
   ${({ disabled }) => disabled && styles.disabled}
+  ${({ style }) => style}
 `;
 
 Button.VARIANT = VARIANTS;
@@ -136,6 +137,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(Object.values(Button.SIZE)),
   variant: PropTypes.oneOf(Object.values(Button.VARIANT)).isRequired,
+  style: PropTypes.string,
 };
 
 export default Button;
