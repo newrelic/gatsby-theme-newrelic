@@ -26,6 +26,7 @@ export default {
     </>
   ),
   'chevron-down': <polyline points="6 9 12 15 18 9" />,
+  check: <polyline points="20 6 9 17 4 12" />,
   cloud: <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />,
   copy: (
     <>
