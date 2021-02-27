@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.32.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.32.2...v1.32.3) (2021-02-27)
+
+
+### Bug Fixes
+
+* Standardize issue button template with yes/no template ([b969984](https://github.com/newrelic/gatsby-theme-newrelic/commit/b96998442eb016850ef109d4eed6b5dbe1bbda3b))
+
+
+
+
+
 ## [1.32.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.32.1...v1.32.2) (2021-02-26)
 
 
