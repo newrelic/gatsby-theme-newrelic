@@ -5,10 +5,12 @@ import ExternalLink from './ExternalLink';
 import Button from './Button';
 import Trans from './Trans';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import useHasMounted from '../hooks/useHasMounted';
 import { TRACKING_COOKIE_NAME } from '../utils/constants';
 
 const CookieConsentDialog = () => {
   const { t } = useThemeTranslation();
+  const hasMounted = useHasMounted();
   const [isCookieSet, setIsCookieSet] = useState(
     Cookies.get(TRACKING_COOKIE_NAME)
   );
@@ -23,14 +25,16 @@ const CookieConsentDialog = () => {
 
     Cookies.set(TRACKING_COOKIE_NAME, String(answer), options);
     setIsCookieSet(true);
-    if (answer) {
+
+    if (answer && window.initializeTessenTracking) {
       window.initializeTessenTracking({ trackPageView: true });
     }
   };
 
-  if (isCookieSet) {
+  if (isCookieSet || !hasMounted) {
     return null;
   }
+
   return (
     <div
       css={css`
