@@ -7,15 +7,16 @@ import useLocale from '../hooks/useLocale';
 const isNewRelic = (to) => to.startsWith('https://newrelic.com');
 
 const ExternalLink = ({ children, onClick, href, ...props }) => {
-  const handleClick = useInstrumentedHandler(onClick, {
-    actionName: 'externalLink_click',
-    href,
-  });
   const locale = useLocale();
 
   const link = isNewRelic(href)
     ? localizeExternalLink({ link: href, locale })
     : href;
+
+  const handleClick = useInstrumentedHandler(onClick, {
+    actionName: 'externalLink_click',
+    href: link,
+  });
 
   return (
     <a
