@@ -17,10 +17,9 @@ export const localizeExternalLink = ({ link, locale }) => {
     return link;
   }
 
-  const paths = link.replace('https://', '').split('/');
+  const url = new URL(link);
 
-  paths.splice(1, 0, locale.locale).join('/');
+  url.pathname = localizePath({ path: url.pathname, locale });
 
-  return `https://${paths.join('/')}`;
+  return url.href;
 };
-//{ path: to, locale }
