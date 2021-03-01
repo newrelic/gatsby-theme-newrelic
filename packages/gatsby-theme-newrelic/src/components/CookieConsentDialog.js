@@ -25,7 +25,8 @@ const CookieConsentDialog = () => {
 
     Cookies.set(TRACKING_COOKIE_NAME, String(answer), options);
     setIsCookieSet(true);
-    if (answer) {
+
+    if (answer && window.initializeTessenTracking) {
       window.initializeTessenTracking({ trackPageView: true });
     }
   };
