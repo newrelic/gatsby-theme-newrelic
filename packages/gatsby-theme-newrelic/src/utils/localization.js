@@ -5,6 +5,10 @@ export const localizePath = ({ path, locale }) => {
     return path;
   }
 
+  if (path === '/') {
+    return `/${locale.locale}/`;
+  }
+
   const [, base] = path.split('/');
 
   return base === locale.localizedPath
