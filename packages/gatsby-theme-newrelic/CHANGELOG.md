@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.33.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.32.3...v1.33.0) (2021-03-02)
+
+
+### Bug Fixes
+
+* **Collapser:** Open the collapser if navigating to it via a hash link ([d3bc0fb](https://github.com/newrelic/gatsby-theme-newrelic/commit/d3bc0fbc5f8c00fcc71d31680146980d3c3aec4d))
+* **CookieConsentDialog:** Don't show cookie consent until the client has rendered ([fabf8e8](https://github.com/newrelic/gatsby-theme-newrelic/commit/fabf8e8018629f2da81c27944837fc02796f41f7))
+
+
+### Features
+
+* localizes paths for newrelic.com ([32f488e](https://github.com/newrelic/gatsby-theme-newrelic/commit/32f488e37859874871ffee7747ee84c904675d4e))
+
+
+
+
+
 ## [1.32.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.32.2...v1.32.3) (2021-02-27)
 
 
