@@ -11,3 +11,15 @@ export const localizePath = ({ path, locale }) => {
     ? path
     : `/${locale.localizedPath}${addLeadingSlash(path)}`;
 };
+
+export const localizeExternalLink = ({ link, locale }) => {
+  if (locale.isDefault) {
+    return link;
+  }
+
+  const url = new URL(link);
+
+  url.pathname = localizePath({ path: url.pathname, locale });
+
+  return url.href;
+};
