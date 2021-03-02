@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
-import { localizePath } from '../utils/localization';
+import { localizePath, localizeExternalLink } from '../utils/localization';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
+const isNewRelic = (to) => to.startsWith('https://newrelic.com');
 
 const Link = ({ to, onClick, ...props }) => {
   const locale = useLocale();
@@ -39,9 +40,12 @@ const Link = ({ to, onClick, ...props }) => {
   }
 
   if (isExternal(to)) {
+    const link = isNewRelic(to)
+      ? localizeExternalLink({ link: to, locale })
+      : to;
     return (
       <a
-        href={to}
+        href={link}
         onClick={handleExternalLinkClick}
         target="_blank"
         rel="noopener noreferrer"
