@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
@@ -6,11 +6,13 @@ import { animated, useSpring } from 'react-spring';
 import { usePrevious, useIsomorphicLayoutEffect } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useQueryParams from '../hooks/useQueryParams';
+import { useLocation } from '@reach/router';
 
 const ResizeObserver = global.ResizeObserver || class ResizeObserver {};
 
 const Collapser = ({ title, id, defaultOpen, children }) => {
   const { queryParams } = useQueryParams();
+  const location = useLocation();
   const [element, ref] = useState();
   const [isOpen, setIsOpen] = useState(() => {
     return queryParams.has('collapsers') &&
@@ -23,6 +25,12 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
   const previousIsOpen = usePrevious(isOpen);
 
   useKeyPress(['s', 'f', 'h'], (e) => setIsOpen(e.key !== 'h'));
+
+  useEffect(() => {
+    if (id && location.hash?.replace(/^#/, '') === id) {
+      setIsOpen(true);
+    }
+  }, [id, location.hash]);
 
   const observer = useMemo(
     () =>
