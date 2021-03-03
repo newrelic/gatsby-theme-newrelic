@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.33.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.33.0...v1.33.1) (2021-03-03)
+
+
+### Bug Fixes
+
+* **CreateIssueButton:** Remove duplicate doc information heading ([cf9d8a9](https://github.com/newrelic/gatsby-theme-newrelic/commit/cf9d8a9a4c356979097b2d445cd3d68b8dcae47f))
+* handles localized home link ([ad61ac4](https://github.com/newrelic/gatsby-theme-newrelic/commit/ad61ac4cea1884c8426432ab242c21c01aa0f899))
+* uses link from theme rather than gatsby ([e989335](https://github.com/newrelic/gatsby-theme-newrelic/commit/e989335a092075c8253920f0fd2f22109aeaf641))
+
+
+
+
+
 # [1.33.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.32.3...v1.33.0) (2021-03-02)
 
 
