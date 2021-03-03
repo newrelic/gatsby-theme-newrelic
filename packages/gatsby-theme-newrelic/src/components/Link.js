@@ -47,11 +47,12 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
 
   const trackSignUp = (event) => {
     handleClick();
-    tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
-      href: link,
-      path: location.pathname,
-      ...properties,
-    });
+    tessen &&
+      tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
+        href: link,
+        path: location.pathname,
+        ...properties,
+      });
   };
 
   if (to.startsWith(siteUrl)) {
