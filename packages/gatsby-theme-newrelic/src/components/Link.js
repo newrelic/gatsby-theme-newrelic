@@ -3,14 +3,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
-import { localizePath } from '../utils/localization';
-import ExternalLink from './ExternalLink';
+import useTessen from '../hooks/useTessen';
+import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
+import { useLocation } from '@reach/router';
+import { localizeExternalLink, localizePath } from '../utils/localization';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
+const isNewRelic = (to) => to.startsWith('https://newrelic.com');
+const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 
-const Link = ({ to, onClick, ...props }) => {
+const Link = ({ to, onClick, instrumentation, ...props }) => {
   const locale = useLocale();
+  const tessen = useTessen();
+  const location = useLocation();
 
   const {
     site: {
@@ -26,6 +32,28 @@ const Link = ({ to, onClick, ...props }) => {
     }
   `);
 
+  const properties =
+    typeof instrumentation === 'string'
+      ? { customProp: instrumentation }
+      : instrumentation;
+
+  const handleClick = useInstrumentedHandler(onClick, {
+    actionName: 'externalLink_click',
+    href: to,
+    ...properties,
+  });
+
+  const link = isNewRelic(to) ? localizeExternalLink({ link: to, locale }) : to;
+
+  const trackSignUp = (event) => {
+    handleClick();
+    tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
+      href: link,
+      path: location.pathname,
+      ...properties,
+    });
+  };
+
   if (to.startsWith(siteUrl)) {
     to = to.replace(siteUrl, '');
   }
@@ -35,7 +63,15 @@ const Link = ({ to, onClick, ...props }) => {
   }
 
   if (isExternal(to)) {
-    return <ExternalLink href={to} onClick={onClick} {...props} />;
+    return (
+      <a
+        {...props}
+        href={link}
+        onClick={isSignup(to) ? trackSignUp : handleClick}
+        target="_blank"
+        rel="noopener noreferrer"
+      />
+    );
   }
 
   return <GatsbyLink to={localizePath({ path: to, locale })} {...props} />;
@@ -44,6 +80,7 @@ const Link = ({ to, onClick, ...props }) => {
 Link.propTypes = {
   onClick: PropTypes.func,
   to: PropTypes.string.isRequired,
+  instrumentation: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default Link;

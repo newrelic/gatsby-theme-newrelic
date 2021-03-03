@@ -60,7 +60,7 @@ ExternalLink.propTypes = {
   children: PropTypes.node,
   href: PropTypes.string,
   onClick: PropTypes.func,
-  trackingProps: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  instrumentation: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default ExternalLink;
