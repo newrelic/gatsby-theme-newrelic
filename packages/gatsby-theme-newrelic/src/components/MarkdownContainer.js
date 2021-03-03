@@ -24,6 +24,11 @@ const MarkdownContainer = ({
           &:not(:last-child) {
             margin-bottom: var(--text-spacing);
           }
+          li {
+            p:last-of-type {
+              margin-bottom: 0;
+            }
+          }
         }
 
         blockquote:not(:last-child) {
