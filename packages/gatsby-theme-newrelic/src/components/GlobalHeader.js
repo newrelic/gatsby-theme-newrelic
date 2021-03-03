@@ -51,11 +51,6 @@ const GlobalHeader = ({ className }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const { t } = useThemeTranslation();
 
-  const handleSignupClick = useInstrumentedHandler(null, {
-    actionName: 'signup_click',
-    component: 'GlobalHeader',
-  });
-
   const {
     allLocale: { nodes: locales },
     site,
@@ -426,12 +421,12 @@ const GlobalHeader = ({ className }) => {
             >
               <Button
                 as={ExternalLink}
-                onClick={handleSignupClick}
                 href={`https://newrelic.com/signup${
                   utmSource ? `?utm_source=${utmSource}` : ''
                 }`}
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
+                trackingProperties={{ component: 'GlobalHeader' }}
               >
                 <span>{t('button.signUp')}</span>
               </Button>

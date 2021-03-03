@@ -9,14 +9,25 @@ import { useLocation } from '@reach/router';
 const isNewRelic = (to) => to.startsWith('https://newrelic.com');
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 
-const ExternalLink = ({ children, onClick, href, component, ...props }) => {
+const ExternalLink = ({
+  children,
+  onClick,
+  href,
+  trackingProps = {},
+  ...props
+}) => {
   const locale = useLocale();
   const tessen = useTessen();
   const location = useLocation();
+  const properties =
+    typeof trackingProps === 'string'
+      ? { customProp: trackingProps }
+      : trackingProps;
 
   const handleClick = useInstrumentedHandler(onClick, {
     actionName: 'externalLink_click',
     href: href,
+    ...properties,
   });
 
   const link = isNewRelic(href)
@@ -28,7 +39,7 @@ const ExternalLink = ({ children, onClick, href, component, ...props }) => {
     tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
       href: link,
       path: location.pathname,
-      component,
+      ...properties,
     });
   };
 
@@ -49,6 +60,7 @@ ExternalLink.propTypes = {
   children: PropTypes.node,
   href: PropTypes.string,
   onClick: PropTypes.func,
+  trackingProps: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default ExternalLink;
