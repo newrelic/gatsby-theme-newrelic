@@ -13,7 +13,7 @@ const isExternal = (to) => to.startsWith('http');
 const isNewRelic = (to) => to.startsWith('https://newrelic.com');
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 
-const Link = ({ to, onClick, instrumentation, ...props }) => {
+const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   const locale = useLocale();
   const tessen = useTessen();
   const location = useLocation();
