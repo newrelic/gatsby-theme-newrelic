@@ -9,7 +9,8 @@ import UAParser from 'ua-parser-js';
 const generatePageContextMarkdown = ({ pageUrl }) => {
   const { os, browser, device } = new UAParser().getResult();
 
-  return `### Doc information (don't delete this section)
+  return `
+### Doc information (don't delete this section)
 
 * ${pageUrl}
 * ${getEnvironmentString('OS', os.name, os.version)}

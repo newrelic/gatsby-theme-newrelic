@@ -17,15 +17,13 @@ so be careful with screenshots and sensitive data.** -->
 
 * If you've found something inaccurate, what is it?
 * If something is hard to read, confusing, or missing information, let us know.
-* If you're having trouble completing a task or are uncertain what to do next, 
+* If you're having trouble completing a task or are uncertain what to do next,
   tell us what you're trying to do so we can provide more useful information.
 
 ### Anything else you'd like to share?
 
 Add other context like screenshots, links to other docs, and information about
 your environment (operating system, application framework, etc.).
-
-### Doc information (don't delete this section)
 `;
 
 const CreateIssueButton = ({
