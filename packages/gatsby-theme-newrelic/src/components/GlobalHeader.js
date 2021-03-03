@@ -426,7 +426,7 @@ const GlobalHeader = ({ className }) => {
                 }`}
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
-                trackingProperties={{ component: 'GlobalHeader' }}
+                instrumentation={{ component: 'GlobalHeader' }}
               >
                 <span>{t('button.signUp')}</span>
               </Button>

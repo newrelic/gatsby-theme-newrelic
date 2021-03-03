@@ -13,16 +13,16 @@ const ExternalLink = ({
   children,
   onClick,
   href,
-  trackingProps = {},
+  instrumentation = {},
   ...props
 }) => {
   const locale = useLocale();
   const tessen = useTessen();
   const location = useLocation();
   const properties =
-    typeof trackingProps === 'string'
-      ? { customProp: trackingProps }
-      : trackingProps;
+    typeof instrumentation === 'string'
+      ? { customProp: instrumentation }
+      : instrumentation;
 
   const handleClick = useInstrumentedHandler(onClick, {
     actionName: 'externalLink_click',
