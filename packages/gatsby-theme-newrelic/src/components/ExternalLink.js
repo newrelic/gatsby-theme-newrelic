@@ -34,7 +34,7 @@ const ExternalLink = ({
     ? localizeExternalLink({ link: href, locale })
     : href;
 
-  const trackSignUp = () => {
+  const trackSignUp = (event) => {
     handleClick();
     tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
       href: link,
