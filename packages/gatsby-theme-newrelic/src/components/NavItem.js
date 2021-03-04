@@ -52,10 +52,10 @@ const NavItem = ({ page, __parent: parent, __depth: depth = 0 }) => {
   }, [hasChangedPage, shouldExpand]);
 
   useEffect(() => {
-    if (matchesSearch && !isExpanded) {
+    if (matchesSearch && !shouldExpand) {
       setIsExpanded(true);
     }
-  }, [matchesSearch, isExpanded, searchTerm]);
+  }, [matchesSearch, shouldExpand, searchTerm]);
 
   useLayoutEffect(() => {
     if (!searchTerm) {
