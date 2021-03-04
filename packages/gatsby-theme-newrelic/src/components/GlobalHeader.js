@@ -15,7 +15,6 @@ import GlobalNavLink from './GlobalNavLink';
 import SearchInput from './SearchInput';
 import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
-import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import useQueryParams from '../hooks/useQueryParams';
 import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
@@ -50,11 +49,6 @@ const GlobalHeader = ({ className }) => {
   const { queryParams, setQueryParam } = useQueryParams();
   const [searchQuery, setSearchQuery] = useState('');
   const { t } = useThemeTranslation();
-
-  const handleSignupClick = useInstrumentedHandler(null, {
-    actionName: 'signup_click',
-    component: 'GlobalHeader',
-  });
 
   const {
     allLocale: { nodes: locales },
@@ -426,12 +420,12 @@ const GlobalHeader = ({ className }) => {
             >
               <Button
                 as={ExternalLink}
-                onClick={handleSignupClick}
                 href={`https://newrelic.com/signup${
                   utmSource ? `?utm_source=${utmSource}` : ''
                 }`}
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
+                instrumentation={{ component: 'GlobalHeader' }}
               >
                 <span>{t('button.signUp')}</span>
               </Button>

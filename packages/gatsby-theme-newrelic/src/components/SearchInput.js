@@ -141,6 +141,7 @@ const SearchInput = forwardRef(
               margin: 0;
               padding: 0;
               outline: none;
+              z-index: 123;
             `}
             type="button"
           >
@@ -162,7 +163,7 @@ const SearchInput = forwardRef(
               transform: translateY(-50%);
               border: 1px solid var(--border-color);
               line-height: 1;
-              text-align: middle;
+              text-align: center;
               background: var(--color-neutrals-100);
 
               ${styles.size[size].hotkey}
