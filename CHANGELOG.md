@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.34.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.33.1...v1.34.0) (2021-03-04)
+
+
+### Bug Fixes
+
+* **global-search:** now when cancelling a search the search input is cleared ([66abfc9](https://github.com/newrelic/gatsby-theme-newrelic/commit/66abfc97e7c05d645ec4c6a65d061c8ee50e3059))
+* **markdown:** last li>p element should not have a bottom margin ([309c561](https://github.com/newrelic/gatsby-theme-newrelic/commit/309c56127f00526e3f7108bd8f596565ed2c85d9))
+* **nav:** on search the item collapse should work ([bdb50eb](https://github.com/newrelic/gatsby-theme-newrelic/commit/bdb50ebe0df82713bbb07b9f311b898f0ca8e08f))
+* **search:** bad css ([3a969fb](https://github.com/newrelic/gatsby-theme-newrelic/commit/3a969fba9edb02dc366e7bf8ffd059dc14195dfa))
+
+
+### Features
+
+* tracks tessen for sign up links and allows to specify component ([9360241](https://github.com/newrelic/gatsby-theme-newrelic/commit/9360241483445b83ac09d390fe50b8d6c6b289b1))
+
+
+
+
+
 ## [1.33.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.33.0...v1.33.1) (2021-03-03)
 
 
