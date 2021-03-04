@@ -1,7 +1,7 @@
 import React from 'react';
 import CodeBlock from '../CodeBlock';
 import { render, fireEvent, screen } from '@testing-library/react';
-import { renderWithTranslation } from '../../test-utils/renderHelpers';
+import { renderWithProviders } from '../../test-utils/renderHelpers';
 
 jest.mock('gatsby', () => ({
   __esModule: true,
@@ -24,11 +24,17 @@ jest.mock('gatsby', () => ({
         repository: 'https://foobar.net',
       },
     },
+    newRelicThemeConfig: {
+      tessen: {
+        product: 'foo',
+        subproduct: 'foobar',
+      },
+    },
   }),
 }));
 
 test('renders embedded var tag', () => {
-  const { container } = renderWithTranslation(
+  const { container } = renderWithProviders(
     <CodeBlock language="graphql">{`
 query MyQuery(<var>$accountId</var>: ID!) {
   account(accountId: <var>$accountId</var>) {
@@ -46,7 +52,7 @@ query MyQuery(<var>$accountId</var>: ID!) {
 });
 
 test('renders embedded mark tags', () => {
-  const { container } = renderWithTranslation(
+  const { container } = renderWithProviders(
     <CodeBlock language="graphql">{`
 query <mark>MyQuery</mark>($accountId: ID!) {
   <mark>account(accountId: $accountId) {
@@ -66,7 +72,7 @@ query <mark>MyQuery</mark>($accountId: ID!) {
 });
 
 test('renders embedded anchor tags', () => {
-  const { container } = renderWithTranslation(
+  const { container } = renderWithProviders(
     <CodeBlock language="graphql">{`
 query MyQuery($accountId: ID!) {
   <a href="/docs/nerd-graph">account</a>(accountId: $accountId) {
@@ -84,7 +90,7 @@ query MyQuery($accountId: ID!) {
 });
 
 test('handles combinations of tags', () => {
-  const { container } = renderWithTranslation(
+  const { container } = renderWithProviders(
     <CodeBlock language="graphql">{`
 query MyQuery($accountId: ID!) {
   <a href="/docs/nerd-graph"><var>account</var></a>(accountId: $accountId) {
@@ -102,7 +108,7 @@ query MyQuery($accountId: ID!) {
 });
 
 test('leaves text as-is if other HTML tags are used', () => {
-  const { container, debug } = renderWithTranslation(
+  const { container, debug } = renderWithProviders(
     <CodeBlock language="graphql">{`
 query <span>MyQuery</span>($accountId: ID!) {
   account(<strong>accountId</strong>: $accountId) {
@@ -120,7 +126,7 @@ query <span>MyQuery</span>($accountId: ID!) {
 });
 
 test('leaves var/mark/a tags as raw text when language is html', () => {
-  const { container } = renderWithTranslation(
+  const { container } = renderWithProviders(
     <CodeBlock language="html">{`
     <!DOCTYPE html>
     <html>
@@ -143,7 +149,7 @@ test('leaves var/mark/a tags as raw text when language is html', () => {
 });
 
 test('handles xml tags if no language is specified', () => {
-  const { container } = renderWithTranslation(
+  const { container } = renderWithProviders(
     <CodeBlock>{`
 <dependency>
   <groupId>com.newrelic.agent.java</groupId>

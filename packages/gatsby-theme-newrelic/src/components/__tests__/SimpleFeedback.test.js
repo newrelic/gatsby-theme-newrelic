@@ -26,6 +26,25 @@ i18n.init({
   },
 });
 
+jest.mock('gatsby', () => ({
+  __esModule: true,
+  graphql: () => {},
+  useStaticQuery: () => ({
+    site: {
+      siteMetadata: {
+        siteUrl: 'https://github.com/foo/bar',
+        repository: 'https://foobar.net',
+      },
+    },
+    newRelicThemeConfig: {
+      tessen: {
+        product: 'foo',
+        subproduct: 'foobar',
+      },
+    },
+  }),
+}));
+
 // Defining these here AND in the mock due to a limitation with jest
 // https://github.com/facebook/jest/issues/2567
 const REPO = 'https://foobar.net';
