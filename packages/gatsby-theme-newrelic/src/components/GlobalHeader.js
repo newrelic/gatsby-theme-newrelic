@@ -15,7 +15,6 @@ import GlobalNavLink from './GlobalNavLink';
 import SearchInput from './SearchInput';
 import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
-import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import useQueryParams from '../hooks/useQueryParams';
 import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
