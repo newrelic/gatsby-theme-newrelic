@@ -75,7 +75,7 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
 Link.propTypes = {
   onClick: PropTypes.func,
   to: PropTypes.string.isRequired,
-  instrumentation: PropTypes.object),
+  instrumentation: PropTypes.object,
 };
 
 export default Link;
