@@ -37,7 +37,7 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
       ? { customProp: instrumentation }
       : instrumentation;
 
-  const handleClick = useInstrumentedHandler(onClick, {
+  const handleExternalLinkClick = useInstrumentedHandler(onClick, {
     actionName: 'externalLink_click',
     href: to,
     ...properties,
@@ -46,7 +46,7 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   const link = isNewRelic(to) ? localizeExternalLink({ link: to, locale }) : to;
 
   const trackSignUp = (event) => {
-    handleClick();
+    handleExternalLinkClick();
     tessen &&
       tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
         href: link,
@@ -68,7 +68,7 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
       <a
         {...props}
         href={link}
-        onClick={isSignup(to) ? trackSignUp : handleClick}
+        onClick={isSignup(to) ? trackSignUp : handleExternalLinkClick}
         target="_blank"
         rel="noopener noreferrer"
       />
