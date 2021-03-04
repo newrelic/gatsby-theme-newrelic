@@ -32,15 +32,10 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
     }
   `);
 
-  const properties =
-    typeof instrumentation === 'string'
-      ? { customProp: instrumentation }
-      : instrumentation;
-
   const handleExternalLinkClick = useInstrumentedHandler(onClick, {
     actionName: 'externalLink_click',
     href: to,
-    ...properties,
+    ...instrumentation,
   });
 
   const link = isNewRelic(to) ? localizeExternalLink({ link: to, locale }) : to;
@@ -50,7 +45,7 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
     tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
       href: link,
       path: location.pathname,
-      ...properties,
+      ...instrumentation,
     });
   };
 
@@ -80,7 +75,7 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
 Link.propTypes = {
   onClick: PropTypes.func,
   to: PropTypes.string.isRequired,
-  instrumentation: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  instrumentation: PropTypes.object),
 };
 
 export default Link;
