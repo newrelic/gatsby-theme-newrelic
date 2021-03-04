@@ -3,11 +3,6 @@ import CodeBlock from '../CodeBlock';
 import { render, fireEvent, screen } from '@testing-library/react';
 import { renderWithTranslation } from '../../test-utils/renderHelpers';
 
-jest.mock('tessen', () => ({
-  page: () => {},
-  track: () => {},
-}));
-
 jest.mock('gatsby', () => ({
   __esModule: true,
   graphql: () => {},
