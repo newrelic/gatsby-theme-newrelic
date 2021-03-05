@@ -20,7 +20,7 @@ const Result = ({ result, selected, onSelect }) => {
         padding: 0.5rem var(--horizontal-spacing);
         transition: background-color 0.2s ease-out;
 
-        &:not(:last-child) {
+        &:not(:last-of-type) {
           border-bottom: 1px solid var(--border-color);
         }
 
