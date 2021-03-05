@@ -7,9 +7,9 @@ export const localizePath = ({ path, locale }) => {
 
   const [, base] = path.split('/');
 
-  return base === locale.localizedPath
+  return base === locale.locale
     ? path
-    : `/${locale.localizedPath}${addLeadingSlash(path)}`;
+    : `/${locale.locale}${addLeadingSlash(path)}`;
 };
 
 export const localizeExternalLink = ({ link, locale }) => {

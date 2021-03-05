@@ -1,19 +1,26 @@
-const { getTrailingSlashesConfig } = require('../src/utils/config');
-const { matchesLocale } = require('./utils/locale');
-const { defaultLocale } = require('../src/utils/defaultOptions');
+const {
+  getTrailingSlashesConfig,
+  getI18nConfig,
+} = require('../src/utils/config');
 const { getFileRelativePath } = require('./utils/fs');
+const getLocale = require('./utils/getLocale');
 
 const addLocale = ({ page }, themeOptions) => {
-  const { i18n = {} } = themeOptions;
-  const { additionalLocales = [] } = i18n;
+  const { defaultLocale, locales } = getI18nConfig(themeOptions);
+  const additionalLocales = locales.filter((locale) => !locale.isDefault);
 
-  if (page.context.locale) {
+  // We don't want to add the locale to 404 pageContext because we want to
+  // determine the locale at runtime based on the path in the URL
+  if (page.context.locale || page.path.match(/404/)) {
     return page;
   }
 
   const { locale } =
-    additionalLocales.find(({ locale }) => matchesLocale(page.path, locale)) ||
-    defaultLocale;
+    additionalLocales.find(
+      ({ locale }) =>
+        locale ===
+        getLocale({ location: { pathname: page.path } }, themeOptions)
+    ) || defaultLocale;
 
   return { ...page, context: { ...page.context, locale } };
 };

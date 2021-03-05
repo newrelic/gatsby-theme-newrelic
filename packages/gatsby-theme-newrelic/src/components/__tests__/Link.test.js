@@ -88,8 +88,8 @@ test('localizes the link when the current locale is not the default', () => {
   useStaticData({
     allLocale: {
       nodes: [
-        { locale: 'en', isDefault: true, localizedPath: '' },
-        { locale: 'jp', isDefault: false, localizedPath: 'jp' },
+        { locale: 'en', isDefault: true },
+        { locale: 'jp', isDefault: false },
       ],
     },
   });
@@ -149,8 +149,8 @@ test('localizes the sign up link', () => {
   useStaticData({
     allLocale: {
       nodes: [
-        { locale: 'en', isDefault: true, localizedPath: '' },
-        { locale: 'jp', isDefault: false, localizedPath: 'jp' },
+        { locale: 'en', isDefault: true },
+        { locale: 'jp', isDefault: false },
       ],
     },
     site: {
@@ -193,8 +193,8 @@ describe('when forceTrailingSlashes is enabled', () => {
     useStaticData({
       allLocale: {
         nodes: [
-          { locale: 'en', isDefault: true, localizedPath: '' },
-          { locale: 'jp', isDefault: false, localizedPath: 'jp' },
+          { locale: 'en', isDefault: true },
+          { locale: 'jp', isDefault: false },
         ],
       },
       newRelicThemeConfig: {

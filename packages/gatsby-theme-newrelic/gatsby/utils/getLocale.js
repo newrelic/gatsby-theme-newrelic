@@ -7,7 +7,7 @@ const getLocale = ({ location }, themeOptions) => {
   const locale =
     locales
       .filter((locale) => !locale.isDefault)
-      .find(({ urlPrefix }) => urlPrefix === `/${base}`) || defaultLocale;
+      .find(({ locale }) => locale === base) || defaultLocale;
 
   return locale.locale;
 };

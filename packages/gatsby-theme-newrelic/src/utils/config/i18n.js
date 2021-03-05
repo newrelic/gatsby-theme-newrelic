@@ -8,7 +8,6 @@ const LOCALE_CONFIGS = {
     localName: 'English',
     locale: 'en',
     hrefLang: 'en',
-    urlPrefix: '',
     isDefault: true,
   },
   jp: {
@@ -16,7 +15,6 @@ const LOCALE_CONFIGS = {
     localName: '日本語',
     locale: 'jp',
     hrefLang: 'ja',
-    urlPrefix: '/jp',
     isDefault: false,
   },
 };

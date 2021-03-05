@@ -1,22 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
-const {
-  defaultLocale,
-  withDefaults,
-  themeNamespace,
-} = require('./src/utils/defaultOptions');
+const { withDefaults } = require('./src/utils/defaultOptions');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
 const {
   getTessenConfig,
   getTrailingSlashesConfig,
   getResolvedEnv,
+  getI18nConfig,
 } = require('./src/utils/config');
 const pageTransforms = require('./gatsby/page-transforms');
 const { TESSEN_PATH } = require('./gatsby/constants');
-const { matchesLocale } = require('./gatsby/utils/locale');
 const { getFileRelativePath } = require('./gatsby/utils/fs');
+const getLocale = require('./gatsby/utils/getLocale');
 
 let writeableRelatedResourceData = {};
 
@@ -68,24 +65,23 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   });
 
   if (themeOptions.i18n) {
-    const { i18n } = withDefaults(themeOptions);
+    const {
+      locales,
+      i18nextOptions,
+      translationsPath,
+      themeNamespace,
+    } = getI18nConfig(themeOptions);
 
-    [defaultLocale]
-      .concat(i18n.additionalLocales || [])
-      .forEach(({ locale }) => {
-        i18n.i18nextOptions.ns
-          .filter((ns) => ns !== themeNamespace)
-          .forEach((ns) => {
-            createFile(
-              path.join(i18n.translationsPath, locale, `${ns}.json`),
-              '{}',
-              {
-                reporter,
-                message: `creating the ${locale}/${ns}.json file`,
-              }
-            );
+    locales.forEach(({ locale }) => {
+      i18nextOptions.ns
+        .filter((ns) => ns !== themeNamespace)
+        .forEach((ns) => {
+          createFile(path.join(translationsPath, locale, `${ns}.json`), '{}', {
+            reporter,
+            message: `creating the ${locale}/${ns}.json file`,
           });
-      });
+        });
+    });
   }
 
   if (relatedResources.swiftype) {
@@ -126,29 +122,22 @@ exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   themeOptions
 ) => {
-  const { i18n, relatedResources } = withDefaults(themeOptions);
+  const i18n = getI18nConfig(themeOptions);
+  const { relatedResources } = withDefaults(themeOptions);
   const { createNode } = actions;
   const tessen = getTessenConfig(themeOptions);
   const env = getResolvedEnv(themeOptions);
   const { forceTrailingSlashes } = getTrailingSlashesConfig(themeOptions);
 
   i18n.locales.forEach((locale) => {
-    const isDefault = locale.locale === defaultLocale.locale;
-
-    const data = {
-      ...locale,
-      isDefault,
-      localizedPath: isDefault ? '' : locale.locale,
-    };
-
     createNode({
-      ...data,
+      ...locale,
       id: createNodeId(`Locale-${locale.locale}`),
       parent: null,
       children: [],
       internal: {
         type: 'Locale',
-        contentDigest: createContentDigest(data),
+        contentDigest: createContentDigest(locale),
       },
     });
   });
@@ -285,9 +274,9 @@ exports.onCreateNode = async (utils, themeOptions) => {
 exports.onCreatePage = (helpers, themeOptions) => {
   const { page, actions } = helpers;
   const { createPage, deletePage } = actions;
-  const { i18n = {} } = themeOptions;
-  const { additionalLocales = [] } = i18n;
+  const { locales } = getI18nConfig(themeOptions);
   const { forceTrailingSlashes } = getTrailingSlashesConfig(themeOptions);
+  const additionalLocales = locales.filter((locale) => !locale.isDefault);
 
   const transformedPage = pageTransforms.reduce(
     (page, transform) => transform({ ...helpers, page }, themeOptions),
@@ -304,7 +293,10 @@ exports.onCreatePage = (helpers, themeOptions) => {
     transformedPage.context.fileRelativePath.includes('src/pages/')
   ) {
     additionalLocales.forEach(({ locale }) => {
-      if (!matchesLocale(page.path, locale)) {
+      if (
+        locale !==
+        getLocale({ location: { pathname: page.path } }, themeOptions)
+      ) {
         createPage({
           ...transformedPage,
           path: path.join(
