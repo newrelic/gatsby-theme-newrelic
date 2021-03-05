@@ -3,26 +3,22 @@ const SUPPORTED_LOCALES = ['en', 'jp'];
 const THEME_NAMESPACE = 'gatsby-theme-newrelic';
 
 const LOCALE_CONFIGS = {
-  en: [
-    {
-      name: 'English',
-      localName: 'English',
-      locale: 'en',
-      hrefLang: '',
-      urlPrefix: '',
-      isDefault: true,
-    },
-  ],
-  jp: [
-    {
-      name: 'Japanese',
-      localName: '日本語',
-      locale: 'jp',
-      hrefLang: 'ja',
-      urlPrefix: '/jp',
-      isDefault: false,
-    },
-  ],
+  en: {
+    name: 'English',
+    localName: 'English',
+    locale: 'en',
+    hrefLang: 'en',
+    urlPrefix: '',
+    isDefault: true,
+  },
+  jp: {
+    name: 'Japanese',
+    localName: '日本語',
+    locale: 'jp',
+    hrefLang: 'ja',
+    urlPrefix: '/jp',
+    isDefault: false,
+  },
 };
 
 const uniq = (arr) => [...new Set(arr)];
