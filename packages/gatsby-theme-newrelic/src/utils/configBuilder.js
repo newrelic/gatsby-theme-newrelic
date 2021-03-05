@@ -3,7 +3,7 @@ const getResolvedEnv = require('./config/resolvedEnv');
 
 const buildConfigGetter = (
   configKey,
-  { defaults, envOptions = false } = {}
+  { defaults = {}, envOptions = false } = {}
 ) => (themeOptions) => {
   const config = themeOptions[configKey];
 

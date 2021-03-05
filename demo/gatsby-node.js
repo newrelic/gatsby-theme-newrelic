@@ -8,7 +8,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       allLocale {
         nodes {
           locale
-          localizedPath
           isDefault
         }
       }
@@ -49,9 +48,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       },
     });
 
-    additionalLocales.forEach(({ localizedPath }) => {
+    additionalLocales.forEach(({ locale }) => {
       createPage({
-        path: path.join(`/${localizedPath}`, slug),
+        path: path.join(`/${locale}`, slug),
         component: path.resolve('src/templates/basic.js'),
         context: {
           slug,

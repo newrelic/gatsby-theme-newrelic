@@ -1,35 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import SimpleFeedback from '../SimpleFeedback';
-import { I18nextProvider } from 'react-i18next';
-import { themeNamespace } from '../../utils/defaultOptions';
-import translations from '../../i18n/translations/en.json';
-import i18n from 'i18next';
 import { useLocation } from '@reach/router';
-
-i18n.init({
-  defaultNS: 'translation',
-  initImmediate: false,
-  fallbackLng: 'en',
-  lng: 'en',
-  ns: [themeNamespace, 'translation'],
-  resources: {
-    en: {
-      [themeNamespace]: translations,
-    },
-  },
-  interpolation: {
-    escapeValue: false,
-  },
-  react: {
-    useSuspense: false,
-  },
-});
+import { renderWithTranslation } from '../../test-utils/renderHelpers';
 
 jest.mock('gatsby', () => ({
   __esModule: true,
   graphql: () => {},
   useStaticQuery: () => ({
+    allLocale: {
+      nodes: [{ locale: 'en', isDefault: true }],
+    },
     site: {
       siteMetadata: {
         siteUrl: 'https://github.com/foo/bar',
@@ -51,29 +32,12 @@ const REPO = 'https://foobar.net';
 const ISSUE_URL = `${REPO}/issues/new`;
 
 const renderFeedback = (props = {}) => {
-  const utils = render(
-    <I18nextProvider i18n={i18n}>
-      <SimpleFeedback {...props} />
-    </I18nextProvider>
-  );
+  const utils = renderWithTranslation(<SimpleFeedback {...props} />);
 
   const [yes, no] = screen.getAllByRole('button');
 
   return { ...utils, yes, no };
 };
-
-jest.mock('gatsby', () => ({
-  __esModule: true,
-  graphql: () => {},
-  useStaticQuery: () => ({
-    site: {
-      siteMetadata: {
-        siteUrl: 'https://github.com/foo/bar',
-        repository: 'https://foobar.net',
-      },
-    },
-  }),
-}));
 
 jest.mock('@reach/router', () => ({
   __esModule: true,

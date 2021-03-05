@@ -1,7 +1,6 @@
-const {
-  themeNamespace,
-  themeSupportedLocales,
-} = require('./src/utils/defaultOptions');
+const { getI18nConfig } = require('./src/utils/config');
+
+const { themeNamespace, themeSupportedLocales } = getI18nConfig({});
 
 module.exports = {
   lexers: {

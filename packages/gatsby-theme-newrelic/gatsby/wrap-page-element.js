@@ -2,18 +2,18 @@
 import React from 'react';
 import GlobalStyles from '../src/components/GlobalStyles';
 import i18n from 'i18next';
-import {
-  defaultLocale,
-  withDefaults,
-  themeNamespace,
-  themeSupportedLocales,
-} from '../src/utils/defaultOptions';
+import { getI18nConfig } from '../src/utils/config';
 import { I18nextProvider } from 'react-i18next';
 import LocaleProvider from '../src/components/LocaleProvider';
+import getLocale from './utils/getLocale';
 
 const wrapPageElement = ({ element, props }, themeOptions) => {
-  const { i18n: i18nConfig, layout } = withDefaults(themeOptions);
-  const locale = getLocale(props, themeOptions);
+  const { layout } = themeOptions;
+  const { location, pageContext } = props;
+  const i18nConfig = getI18nConfig(themeOptions);
+  const locale = pageContext.locale
+    ? pageContext.locale
+    : getLocale({ location }, themeOptions);
 
   i18n.init({
     ...i18nConfig.i18nextOptions,
@@ -31,45 +31,32 @@ const wrapPageElement = ({ element, props }, themeOptions) => {
   );
 };
 
-const getLocale = (props, themeOptions) => {
-  const { pageContext, location } = props;
-  const { i18n = {} } = themeOptions;
-
-  // For some reason we enter an infinite loop if we try and create localized
-  // 404 pages in gatsby-node.js. This is a hack that will use the current page
-  // location to find the locale to ensure the 404 page is translated
-  // accordingly.
-  if (!pageContext.fileRelativePath.match(/404/)) {
-    return pageContext.locale || defaultLocale.locale;
-  }
-
-  const [, base] = location.pathname.split('/');
-  const locale =
-    (i18n.additionalLocales || []).find(({ locale }) => locale === base) ||
-    defaultLocale;
-
-  return locale.locale;
-};
-
 const getResources = (i18nConfig, locale) => {
+  const { defaultLocale, themeNamespace } = i18nConfig;
   const namespaces = i18nConfig.i18nextOptions.ns.filter(
     (name) => name !== themeNamespace
   );
 
-  const defaultResources = getResourcesForLocale(
-    defaultLocale.locale,
-    namespaces
-  );
+  const defaultResources = getResourcesForLocale({
+    locale: defaultLocale.locale,
+    namespaces,
+    i18nConfig,
+  });
 
   if (locale === defaultLocale.locale) {
     return defaultResources;
   }
 
-  return { ...defaultResources, ...getResourcesForLocale(locale, namespaces) };
+  return {
+    ...defaultResources,
+    ...getResourcesForLocale({ locale, namespaces, i18nConfig }),
+  };
 };
 
-const getResourcesForLocale = (locale, namespaces) =>
-  namespaces.reduce(
+const getResourcesForLocale = ({ locale, namespaces, i18nConfig }) => {
+  const { themeNamespace, themeSupportedLocales } = i18nConfig;
+
+  return namespaces.reduce(
     (resources, namespace) => ({
       ...resources,
       [locale]: {
@@ -84,5 +71,6 @@ const getResourcesForLocale = (locale, namespaces) =>
     }),
     {}
   );
+};
 
 export default wrapPageElement;
