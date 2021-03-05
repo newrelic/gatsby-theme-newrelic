@@ -56,6 +56,14 @@ test('transforms absolute links to relative links when it matches the siteUrl', 
   expect(link).toHaveAttribute('href', '/path/to/page');
 });
 
+test('transforms absolute links to relative link for home page', () => {
+  renderWithProviders(<Link to="https://example.com">Link</Link>);
+
+  const link = screen.getByText('Link');
+
+  expect(link).toHaveAttribute('href', '/');
+});
+
 test('links hash links to current page', () => {
   renderWithProviders(<Link to="#example">Link</Link>);
 
