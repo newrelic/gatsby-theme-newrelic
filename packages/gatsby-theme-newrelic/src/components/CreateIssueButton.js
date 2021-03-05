@@ -43,7 +43,7 @@ const CreateIssueButton = ({
       {...props}
       issueTitle={pageTitle && `Issue: ${pageTitle}`}
       issueBody={ISSUE_BODY}
-      labels={['bug']}
+      labels={['feedback', 'feedback-issue']}
       onClick={handleClick}
     >
       <Icon
