@@ -8,7 +8,7 @@ const {
 } = require('./src/utils/defaultOptions');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
-const getTessenConfig = require('./src/utils/config/tessen');
+const { getTessenConfig } = require('./src/utils/config');
 const { TESSEN_PATH } = require('./gatsby/constants');
 const { getResolvedEnv } = require('./src/utils/config');
 
