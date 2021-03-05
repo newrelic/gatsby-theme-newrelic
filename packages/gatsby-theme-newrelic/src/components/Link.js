@@ -41,7 +41,8 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   const link = isNewRelic(to) ? localizeExternalLink({ link: to, locale }) : to;
 
   const trackSignUp = (event) => {
-    handleExternalLinkClick();
+    handleExternalLinkClick(event);
+
     tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
       href: link,
       path: location.pathname,
