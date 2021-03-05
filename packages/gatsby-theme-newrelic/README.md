@@ -614,7 +614,7 @@ prop.
 Render a link as a button
 
 ```js
-import { Link } from 'gatsby';
+import { Link } from '@newrelic/gatsby-theme-newrelic';
 
 // ...
 
