@@ -241,8 +241,9 @@ documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 
 #### `forceTrailingSlashes`
 
-Determines whether pages created from the theme and links to pages should force
-a trailing slash.
+Determines whether created should include a trailing slash or not. When enabled,
+this setting also ensures all links that use the `Link` component will append
+the trailing slash.
 
 #### `relatedResources`
 
