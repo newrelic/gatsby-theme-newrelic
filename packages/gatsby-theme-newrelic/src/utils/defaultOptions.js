@@ -1,11 +1,3 @@
-const DEFAULT_NAMESPACE = 'translation';
-
-const defaultLocale = { name: 'English', locale: 'en' };
-const themeNamespace = 'gatsby-theme-newrelic';
-const themeSupportedLocales = ['en', 'jp'];
-
-const uniq = (arr) => [...new Set(arr)];
-
 const DEFAULT_SITE_LABELS = {
   'https://developer.newrelic.com': 'developer',
   'https://opensource.newrelic.com': 'open source',
@@ -22,8 +14,7 @@ const DEFAULT_SITE_LABELS = {
 };
 
 const withDefaults = (themeOptions) => {
-  const { i18n = {}, relatedResources = {} } = themeOptions;
-  const { i18nextOptions = {} } = i18n;
+  const { relatedResources = {} } = themeOptions;
 
   return {
     ...themeOptions,
@@ -37,32 +28,7 @@ const withDefaults = (themeOptions) => {
         ? { limit: 5, refetch: false, ...relatedResources.swiftype }
         : false,
     },
-    i18n: {
-      extract: true,
-      ...themeOptions.i18n,
-      locales: [defaultLocale].concat(i18n.additionalLocales),
-      i18nextOptions: {
-        defaultNS: DEFAULT_NAMESPACE,
-        initImmediate: false,
-        ...i18nextOptions,
-        fallbackLng: defaultLocale.locale,
-        ns: i18nextOptions.ns
-          ? uniq([themeNamespace, ...i18nextOptions.ns])
-          : [themeNamespace, DEFAULT_NAMESPACE],
-        interpolation: {
-          escapeValue: false,
-        },
-        react: {
-          useSuspense: false,
-        },
-      },
-    },
   };
 };
 
-module.exports = {
-  defaultLocale,
-  themeNamespace,
-  withDefaults,
-  themeSupportedLocales,
-};
+module.exports = { withDefaults };

@@ -1,6 +1,10 @@
-import { themeNamespace } from '../utils/defaultOptions';
 import { useTranslation } from 'react-i18next';
+import { getI18nConfig } from '../utils/config';
 
-const useThemeTranslation = () => useTranslation(themeNamespace);
+const useThemeTranslation = () => {
+  const { themeNamespace } = getI18nConfig({});
+
+  return useTranslation(themeNamespace);
+};
 
 export default useThemeTranslation;

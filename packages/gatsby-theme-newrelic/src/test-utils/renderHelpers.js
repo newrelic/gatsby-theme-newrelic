@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { themeNamespace } from '../utils/defaultOptions';
 import { I18nextProvider } from 'react-i18next';
+import { getI18nConfig } from '../utils/config';
 import {
   LocationProvider,
   createHistory,
@@ -11,23 +11,16 @@ import LocaleProvider from '../components/LocaleProvider';
 import translations from '../i18n/translations/en.json';
 import i18n from 'i18next';
 
+const { themeNamespace, i18nextOptions } = getI18nConfig({});
+
 export const renderWithTranslation = (component, options) => {
   i18n.init({
-    defaultNS: 'translation',
-    initImmediate: false,
-    fallbackLng: 'en',
+    ...i18nextOptions,
     lng: 'en',
-    ns: [themeNamespace, 'translation'],
     resources: {
       en: {
         [themeNamespace]: translations,
       },
-    },
-    interpolation: {
-      escapeValue: false,
-    },
-    react: {
-      useSuspense: false,
     },
   });
 
@@ -39,23 +32,17 @@ export const renderWithTranslation = (component, options) => {
   );
 };
 
-export const renderWithProviders = (component, options) => {
+export const renderWithProviders = (
+  component,
+  { locale = 'en', ...options } = {}
+) => {
   i18n.init({
-    defaultNS: 'translation',
-    initImmediate: false,
-    fallbackLng: 'en',
-    lng: 'en',
-    ns: [themeNamespace, 'translation'],
+    ...i18nextOptions,
+    lng: locale,
     resources: {
       en: {
         [themeNamespace]: translations,
       },
-    },
-    interpolation: {
-      escapeValue: false,
-    },
-    react: {
-      useSuspense: false,
     },
   });
 

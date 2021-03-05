@@ -1,27 +1,76 @@
 const path = require('path');
 
+exports.createPages = async ({ actions, graphql, reporter }) => {
+  const { createPage } = actions;
+
+  const { data, errors } = await graphql(`
+    query {
+      allLocale {
+        nodes {
+          locale
+          isDefault
+        }
+      }
+      allMdx(filter: { fileAbsolutePath: { regex: "/src/content/" } }) {
+        nodes {
+          slug
+          fields {
+            fileRelativePath
+          }
+        }
+      }
+    }
+  `);
+
+  if (errors) {
+    reporter.panicOnBuild('Error when running GraphQL query');
+    return;
+  }
+
+  const { allMdx, allLocale } = data;
+
+  const additionalLocales = allLocale.nodes.filter(
+    ({ isDefault }) => !isDefault
+  );
+
+  allMdx.nodes.forEach((node) => {
+    const {
+      slug,
+      fields: { fileRelativePath },
+    } = node;
+
+    createPage({
+      path: slug,
+      component: path.resolve('src/templates/basic.js'),
+      context: {
+        slug,
+        fileRelativePath,
+      },
+    });
+
+    additionalLocales.forEach(({ locale }) => {
+      createPage({
+        path: path.join(`/${locale}`, slug),
+        component: path.resolve('src/templates/basic.js'),
+        context: {
+          slug,
+          fileRelativePath,
+        },
+      });
+    });
+  });
+};
+
 exports.onCreatePage = ({ page, actions }) => {
   const { createPage, deletePage } = actions;
 
-  if (page.path.match(/404/)) {
+  if (page.path.match(/404/) && !page.context.layout) {
     deletePage(page);
     createPage({
       ...page,
       context: {
         ...page.context,
         layout: 'basic',
-      },
-    });
-  }
-
-  if (page.component.endsWith('.mdx')) {
-    deletePage(page);
-    createPage({
-      ...page,
-      component: path.resolve('src/templates/basic.js'),
-      context: {
-        ...page.context,
-        slug: page.path.replace(/^\//, ''),
       },
     });
   }
