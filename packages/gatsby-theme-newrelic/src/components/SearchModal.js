@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
@@ -14,6 +14,7 @@ import useScrollFreeze from '../hooks/useScrollFreeze';
 import { animated, useTransition } from 'react-spring';
 import { rgba } from 'polished';
 import Link from './Link';
+import usePrevious from '../hooks/usePrevious';
 
 const defaultFilters = [
   { name: 'docs', isSelected: false },
@@ -36,7 +37,7 @@ const SearchModal = ({ onClose, isOpen }) => {
 
   const {
     records: { page: results = [] } = {},
-    info: { page: { num_pages: numPages, per_page: perPage } = {} } = {},
+    info: { page: { num_pages: numPages } = {} } = {},
   } = data;
 
   const transitions = useTransition(isOpen, null, {
@@ -75,11 +76,11 @@ const SearchModal = ({ onClose, isOpen }) => {
     setPage(1);
   }, [searchTerm]);
 
-  const onIntersection = () => {
-    if (page * perPage < numPages) {
+  const onIntersection = useCallback(() => {
+    if (page < numPages) {
       setPage(page + 1);
     }
-  };
+  }, [page, numPages]);
 
   useDebounce(
     () => {
@@ -368,14 +369,18 @@ const ScrollContainer = ({ children, onIntersection }) => {
   const root = useRef();
   const intersection = useIntersection(intersectionRef, {
     root: root.current,
-    rootMargin: '0px 0px 10px 0px',
+    rootMargin: '0px 0px 200px 0px',
     threshold: 1,
   });
+
+  const isIntersecting = intersection?.isIntersecting;
+  const wasIntersecting = usePrevious(isIntersecting);
+
   useEffect(() => {
-    if (intersection?.isIntersecting) {
+    if (isIntersecting && !wasIntersecting) {
       onIntersection();
     }
-  }, [intersection]);
+  }, [wasIntersecting, isIntersecting, onIntersection]);
 
   return (
     <div
@@ -391,6 +396,11 @@ const ScrollContainer = ({ children, onIntersection }) => {
       <div ref={intersectionRef} />
     </div>
   );
+};
+
+ScrollContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+  onIntersection: PropTypes.func.isRequired,
 };
 
 const useSwiftypeSearch = ({ query, filters, page, params = {} }) => {
