@@ -13,7 +13,10 @@ const {
   getTrailingSlashesConfig,
   getResolvedEnv,
 } = require('./src/utils/config');
+const pageTransforms = require('./gatsby/page-transforms');
 const { TESSEN_PATH } = require('./gatsby/constants');
+const { matchesLocale } = require('./gatsby/utils/locale');
+const { getFileRelativePath } = require('./gatsby/utils/fs');
 
 let writeableRelatedResourceData = {};
 
@@ -21,9 +24,6 @@ const uniq = (arr) => [...new Set(arr)];
 
 const ANNOUNCEMENTS_DIRECTORY = 'src/announcements';
 const DEFAULT_BRANCH = 'main';
-
-const matchesLocale = (path, locale) =>
-  new RegExp(`^\\/?${locale}(?=$|\\/)`).test(path);
 
 exports.onPreInit = (_, themeOptions) => {
   const { i18n, relatedResources = {}, tessen } = themeOptions;
@@ -267,53 +267,53 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
 
 exports.onCreateNode = async (utils, themeOptions) => {
   const { relatedResources } = withDefaults(themeOptions);
-  const { node, actions } = utils;
+  const { node, actions, store } = utils;
   const { createNodeField } = actions;
+  const { program } = store.getState();
 
   if (['Mdx', 'MarkdownRemark'].includes(node.internal.type)) {
     createNodeField({
       node,
       name: 'fileRelativePath',
-      value: getFileRelativePath(node.fileAbsolutePath),
+      value: getFileRelativePath(node.fileAbsolutePath, program.directory),
     });
   }
 
   await createRelatedResources(utils, relatedResources);
 };
 
-exports.onCreatePage = ({ page, actions }, themeOptions) => {
-  const { createPage } = actions;
+exports.onCreatePage = (helpers, themeOptions) => {
+  const { page, actions } = helpers;
+  const { createPage, deletePage } = actions;
   const { i18n = {} } = themeOptions;
   const { additionalLocales = [] } = i18n;
+  const { forceTrailingSlashes } = getTrailingSlashesConfig(themeOptions);
 
-  if (!page.context.fileRelativePath) {
-    page.context.fileRelativePath = getFileRelativePath(page.componentPath);
+  const transformedPage = pageTransforms.reduce(
+    (page, transform) => transform({ ...helpers, page }, themeOptions),
+    page
+  );
 
-    createPage(page);
-  }
-
-  if (!page.context.locale) {
-    const { locale } =
-      additionalLocales.find(({ locale }) =>
-        matchesLocale(page.path, locale)
-      ) || defaultLocale;
-
-    page.context.locale = locale;
-
-    createPage(page);
+  if (transformedPage !== page) {
+    deletePage(page);
+    createPage(transformedPage);
   }
 
   if (
-    !page.path.match(/404/) &&
-    page.context.fileRelativePath.includes('src/pages/')
+    !transformedPage.path.match(/404/) &&
+    transformedPage.context.fileRelativePath.includes('src/pages/')
   ) {
     additionalLocales.forEach(({ locale }) => {
       if (!matchesLocale(page.path, locale)) {
         createPage({
-          ...page,
-          path: path.join('/', locale, page.path),
+          ...transformedPage,
+          path: path.join(
+            `/${locale}`,
+            transformedPage.path,
+            forceTrailingSlashes ? '/' : ''
+          ),
           context: {
-            ...page.context,
+            ...transformedPage.context,
             locale,
           },
         });
@@ -478,6 +478,3 @@ const validateTessenOptions = (tessenOptions) => {
     );
   }
 };
-
-const getFileRelativePath = (absolutePath) =>
-  absolutePath.replace(`${process.cwd()}/`, '');
