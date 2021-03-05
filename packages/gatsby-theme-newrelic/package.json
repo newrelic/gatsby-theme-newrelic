@@ -10,7 +10,8 @@
     "build": "gatsby build",
     "clean": "gatsby clean",
     "develop": "gatsby develop",
-    "extract-i18n": "i18next"
+    "extract-i18n": "i18next",
+    "lint": "eslint gatsby-*.js gatsby/ src/"
   },
   "homepage": "https://github.com/newrelic/gatsby-theme-newrelic/tree/develop/packages/gatsby-theme-newrelic",
   "repository": "https://github.com/newrelic/gatsby-theme-newrelic",

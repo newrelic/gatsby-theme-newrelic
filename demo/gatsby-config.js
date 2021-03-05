@@ -19,6 +19,7 @@ module.exports = {
     {
       resolve: '@newrelic/gatsby-theme-newrelic',
       options: {
+        forceTrailingSlashes: true,
         i18n: {
           translationsPath: `${__dirname}/src/i18n/translations`,
           additionalLocales: [{ name: '日本語', locale: 'jp' }],
@@ -62,7 +63,12 @@ module.exports = {
         path: `${__dirname}/src/pages`,
       },
     },
-    'gatsby-plugin-remove-trailing-slashes',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/content`,
+      },
+    },
     {
       resolve: 'gatsby-plugin-mdx',
       options: {

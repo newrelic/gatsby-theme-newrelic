@@ -16,7 +16,10 @@ const DarkModeToggle = ({ className, size, onClick }) => {
         darkMode.toggle();
 
         if (window.newrelic) {
-          window.newrelic.setCustomAttribute('mode', darkMode.value ? 'dark' : 'light');
+          window.newrelic.setCustomAttribute(
+            'mode',
+            darkMode.value ? 'dark' : 'light'
+          );
         }
 
         if (onClick) {
