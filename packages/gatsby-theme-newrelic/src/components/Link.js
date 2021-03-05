@@ -3,10 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
-import useTessen from '../hooks/useTessen';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
-import { useLocation } from '@reach/router';
 import { localizeExternalLink, localizePath } from '../utils/localization';
+import SignUpLink from './SignUpLink';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
@@ -15,8 +14,6 @@ const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 
 const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   const locale = useLocale();
-  const tessen = useTessen();
-  const location = useLocation();
 
   const {
     site: {
@@ -38,18 +35,6 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
     ...instrumentation,
   });
 
-  const link = isNewRelic(to) ? localizeExternalLink({ link: to, locale }) : to;
-
-  const trackSignUp = (event) => {
-    handleExternalLinkClick(event);
-
-    tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
-      href: link,
-      path: location.pathname,
-      ...instrumentation,
-    });
-  };
-
   if (to.startsWith(siteUrl)) {
     to = to.replace(siteUrl, '');
   }
@@ -58,12 +43,27 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
     return <a href={to} {...props} />;
   }
 
+  if (isSignup(to)) {
+    return (
+      <SignUpLink
+        {...props}
+        href={to}
+        onClick={handleExternalLinkClick}
+        instrumentation={instrumentation}
+      />
+    );
+  }
+
   if (isExternal(to)) {
+    const link = isNewRelic(to)
+      ? localizeExternalLink({ link: to, locale })
+      : to;
+
     return (
       <a
         {...props}
         href={link}
-        onClick={isSignup(to) ? trackSignUp : handleExternalLinkClick}
+        onClick={handleExternalLinkClick}
         target="_blank"
         rel="noopener noreferrer"
       />
