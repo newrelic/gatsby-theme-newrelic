@@ -62,7 +62,12 @@ module.exports = {
         path: `${__dirname}/src/pages`,
       },
     },
-    'gatsby-plugin-remove-trailing-slashes',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/content`,
+      },
+    },
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
