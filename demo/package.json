@@ -6,7 +6,8 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "GATSBY_NEWRELIC_ENV=development gatsby develop -p 8001",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "lint": "eslint src/"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.16",
