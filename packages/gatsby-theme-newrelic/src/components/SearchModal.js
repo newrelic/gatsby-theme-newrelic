@@ -15,6 +15,7 @@ import { animated, useTransition } from 'react-spring';
 import { rgba } from 'polished';
 import Link from './Link';
 import usePrevious from '../hooks/usePrevious';
+import search from './SearchModal/search';
 
 const defaultFilters = [
   { name: 'docs', isSelected: false },
@@ -29,11 +30,14 @@ const SearchModal = ({ onClose, isOpen }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [page, setPage] = useState(1);
   const [filters, setFilters] = useState(defaultFilters);
-  const { isLoading, refetch, data = {}, isSuccess } = useSwiftypeSearch({
-    searchTerm,
-    filters,
-    page,
-  });
+  const { isLoading, refetch, data = {}, isSuccess } = useQuery(
+    ['swiftype', page],
+    () => search({ searchTerm, filters, page }),
+    {
+      enabled: false,
+      keepPreviousData: true,
+    }
+  );
 
   const {
     records: { page: results = [] } = {},
@@ -94,7 +98,7 @@ const SearchModal = ({ onClose, isOpen }) => {
 
   useEffect(() => {
     refetch();
-  }, [filters, refetch]);
+  }, [filters, refetch, page]);
 
   const selectedResult = results[selectedIndex];
 
@@ -401,57 +405,6 @@ const ScrollContainer = ({ children, onIntersection }) => {
 ScrollContainer.propTypes = {
   children: PropTypes.node.isRequired,
   onIntersection: PropTypes.func.isRequired,
-};
-
-const useSwiftypeSearch = ({ query, filters, page, params = {} }) => {
-  return useQuery(
-    ['swiftype', page],
-    () => {
-      return fetch(
-        'https://search-api.swiftype.com/api/v1/public/engines/search.json',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            ...params,
-            q: query,
-            engine_key: 'Ad9HfGjDw4GRkcmJjUut',
-            page,
-            per_page: 10,
-            highlight_fields: {
-              page: {
-                title: {
-                  size: 100,
-                  fallback: true,
-                },
-                body: {
-                  size: 400,
-                  fallback: true,
-                },
-              },
-            },
-            filters: {
-              page: {
-                type: getFilters(filters).map((filter) => filter.name),
-                document_type: ['!views_page_menu'],
-              },
-            },
-          }),
-        }
-      ).then((res) => res.json());
-    },
-    {
-      enabled: false,
-      keepPreviousData: true,
-    }
-  );
-};
-
-const getFilters = (filters) => {
-  const filteredTypes = filters.filter((filter) => filter.isSelected === true);
-  return filteredTypes.length !== 0 ? filteredTypes : filters;
 };
 
 SearchModal.propTypes = {
