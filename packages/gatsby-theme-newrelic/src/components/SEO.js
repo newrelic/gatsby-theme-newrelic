@@ -46,7 +46,7 @@ const SEO = ({ title, location, children }) => {
       {locales.map(({ hrefLang, isDefault, locale }) => {
         const url = new URL(
           path.join(isDefault ? '/' : locale, subPath),
-          'https://jerelmiller.ngrok.io'
+          siteUrl
         );
 
         return (
