@@ -6,6 +6,7 @@ import useLocale from '../hooks/useLocale';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { localizeExternalLink, localizePath } from '../utils/localization';
 import SignUpLink from './SignUpLink';
+import { addTrailingSlash } from '../utils/location';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
@@ -16,11 +17,15 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   const locale = useLocale();
 
   const {
+    newRelicThemeConfig: { forceTrailingSlashes },
     site: {
       siteMetadata: { siteUrl },
     },
   } = useStaticQuery(graphql`
     query {
+      newRelicThemeConfig {
+        forceTrailingSlashes
+      }
       site {
         siteMetadata {
           siteUrl
@@ -38,7 +43,7 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   if (to.startsWith(siteUrl)) {
     to = to.replace(siteUrl, '');
 
-    // absolute links to the home page
+    // absolute links to the home page without trailing slash
     to = to || '/';
   }
 
@@ -73,7 +78,15 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
     );
   }
 
-  return <GatsbyLink to={localizePath({ path: to, locale })} {...props} />;
+  return (
+    <GatsbyLink
+      to={localizePath({
+        path: forceTrailingSlashes ? addTrailingSlash(to) : to,
+        locale,
+      })}
+      {...props}
+    />
+  );
 };
 
 Link.propTypes = {

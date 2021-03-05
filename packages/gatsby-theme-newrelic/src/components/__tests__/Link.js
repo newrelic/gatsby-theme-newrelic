@@ -152,3 +152,129 @@ test('localizes the sign up link', () => {
   expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   expect(link).toHaveAttribute('target', '_blank');
 });
+
+describe('when forceTrailingSlashes is enabled', () => {
+  test('appends trailing slash to relative links', () => {
+    useStaticData({
+      newRelicThemeConfig: {
+        forceTrailingSlashes: true,
+      },
+    });
+
+    renderWithProviders(<Link to="/apps/one">Link</Link>);
+
+    const link = screen.getByText('Link');
+
+    expect(link).toHaveAttribute('href', '/apps/one/');
+  });
+
+  test('appends trailing slash to localized links', () => {
+    useStaticData({
+      allLocale: {
+        nodes: [
+          { locale: 'en', isDefault: true, localizedPath: '' },
+          { locale: 'jp', isDefault: false, localizedPath: 'jp' },
+        ],
+      },
+      newRelicThemeConfig: {
+        forceTrailingSlashes: true,
+      },
+    });
+
+    renderWithProviders(<Link to="/apps/one">Link</Link>, { locale: 'jp' });
+
+    const link = screen.getByText('Link');
+
+    expect(link).toHaveAttribute('href', '/jp/apps/one/');
+  });
+
+  test('handles links with anchor references', () => {
+    useStaticData({
+      newRelicThemeConfig: {
+        forceTrailingSlashes: true,
+      },
+    });
+
+    renderWithProviders(<Link to="/other/page#example">Link</Link>);
+
+    const link = screen.getByText('Link');
+
+    expect(link).toHaveAttribute('href', '/other/page/#example');
+  });
+
+  test('handles absolute links to current site', () => {
+    useStaticData({
+      newRelicThemeConfig: {
+        forceTrailingSlashes: true,
+      },
+    });
+
+    renderWithProviders(<Link to="https://example.com/other/page">Link</Link>);
+
+    const link = screen.getByText('Link');
+
+    expect(link).toHaveAttribute('href', '/other/page/');
+  });
+
+  test('handles query params', () => {
+    useStaticData({
+      newRelicThemeConfig: {
+        forceTrailingSlashes: true,
+      },
+    });
+
+    renderWithProviders(<Link to="/page?filter=test">Link</Link>);
+
+    const link = screen.getByText('Link');
+
+    expect(link).toHaveAttribute('href', '/page/?filter=test');
+  });
+
+  test('does not apply trailing slash to external links', () => {
+    useStaticData({
+      newRelicThemeConfig: {
+        forceTrailingSlashes: true,
+      },
+    });
+
+    renderWithProviders(<Link to="https://google.com">Link</Link>);
+
+    const link = screen.getByText('Link');
+
+    expect(link).toHaveAttribute('href', 'https://google.com');
+  });
+
+  test('does not apply trailing slash to hash links on same page', () => {
+    useStaticData({
+      newRelicThemeConfig: {
+        forceTrailingSlashes: true,
+      },
+    });
+
+    renderWithProviders(<Link to="#example">Link</Link>);
+
+    const link = screen.getByText('Link');
+
+    expect(link).toHaveAttribute('href', '#example');
+  });
+
+  test('does not append trailing slash to links that already have trailing slash', () => {
+    useStaticData({
+      newRelicThemeConfig: {
+        forceTrailingSlashes: true,
+      },
+    });
+
+    renderWithProviders(<Link to="/test/path/">Link 1</Link>);
+    renderWithProviders(<Link to="/test/path/#example">Link 2</Link>);
+    renderWithProviders(<Link to="/test/path/?test=true">Link 3</Link>);
+
+    const link1 = screen.getByText('Link 1');
+    const link2 = screen.getByText('Link 2');
+    const link3 = screen.getByText('Link 3');
+
+    expect(link1).toHaveAttribute('href', '/test/path/');
+    expect(link2).toHaveAttribute('href', '/test/path/#example');
+    expect(link3).toHaveAttribute('href', '/test/path/?test=true');
+  });
+});
