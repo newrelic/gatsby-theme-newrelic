@@ -37,6 +37,9 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
 
   if (to.startsWith(siteUrl)) {
     to = to.replace(siteUrl, '');
+
+    // absolute links to the home page
+    to = to || '/';
   }
 
   if (isHash(to)) {
