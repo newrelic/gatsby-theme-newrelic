@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 import Logo from './Logo';
 import ExternalLink from './ExternalLink';
-import { graphql, useStaticQuery, Link } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { css } from '@emotion/core';
 import CreateIssueButton from './CreateIssueButton';
 import EditPageButton from './EditPageButton';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
+import Link from './Link';
 
 // We need to use this as a JS value otherwise the HTML entity gets saved in the
 // string and escaped by React, therefore rendering the literal &copy; text in

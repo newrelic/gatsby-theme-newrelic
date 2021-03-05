@@ -1,30 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
+import Link from './Link';
 
-const ExternalLink = ({ children, onClick, href, ...props }) => {
-  const handleClick = useInstrumentedHandler(onClick, {
-    actionName: 'externalLink_click',
-    href,
-  });
-
-  return (
-    <a
-      {...props}
-      href={href}
-      onClick={handleClick}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {children}
-    </a>
-  );
+const ExternalLink = ({ href, ...props }) => {
+  return <Link to={href} {...props} />;
 };
 
 ExternalLink.propTypes = {
-  children: PropTypes.node,
   href: PropTypes.string,
-  onClick: PropTypes.func,
 };
 
 export default ExternalLink;

@@ -3,18 +3,20 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
+import useTessen from '../hooks/useTessen';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
-import { localizePath } from '../utils/localization';
+import { useLocation } from '@reach/router';
+import { localizeExternalLink, localizePath } from '../utils/localization';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
+const isNewRelic = (to) => to.startsWith('https://newrelic.com');
+const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 
-const Link = forwardRef(({ to, onClick, ...props }, ref) => {
+const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   const locale = useLocale();
-  const handleExternalLinkClick = useInstrumentedHandler(onClick, {
-    actionName: 'externalLink_click',
-    href: to,
-  });
+  const tessen = useTessen();
+  const location = useLocation();
 
   const {
     site: {
@@ -30,6 +32,23 @@ const Link = forwardRef(({ to, onClick, ...props }, ref) => {
     }
   `);
 
+  const handleExternalLinkClick = useInstrumentedHandler(onClick, {
+    actionName: 'externalLink_click',
+    href: to,
+    ...instrumentation,
+  });
+
+  const link = isNewRelic(to) ? localizeExternalLink({ link: to, locale }) : to;
+
+  const trackSignUp = (event) => {
+    handleExternalLinkClick();
+    tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
+      href: link,
+      path: location.pathname,
+      ...instrumentation,
+    });
+  };
+
   if (to.startsWith(siteUrl)) {
     to = to.replace(siteUrl, '');
   }
@@ -41,12 +60,11 @@ const Link = forwardRef(({ to, onClick, ...props }, ref) => {
   if (isExternal(to)) {
     return (
       <a
-        ref={ref}
-        href={to}
-        onClick={handleExternalLinkClick}
+        {...props}
+        href={link}
+        onClick={isSignup(to) ? trackSignUp : handleExternalLinkClick}
         target="_blank"
         rel="noopener noreferrer"
-        {...props}
       />
     );
   }
@@ -59,6 +77,7 @@ const Link = forwardRef(({ to, onClick, ...props }, ref) => {
 Link.propTypes = {
   onClick: PropTypes.func,
   to: PropTypes.string.isRequired,
+  instrumentation: PropTypes.object,
 };
 
 export default Link;

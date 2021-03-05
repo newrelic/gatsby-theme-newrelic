@@ -3,6 +3,9 @@ require('dotenv').config({
 });
 
 module.exports = {
+  flags: {
+    DEV_SSR: true,
+  },
   siteMetadata: {
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
     siteUrl: 'https://developer.newrelic.com',
