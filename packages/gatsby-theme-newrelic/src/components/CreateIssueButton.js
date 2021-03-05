@@ -5,6 +5,7 @@ import GitHubIssueButton from './GitHubIssueButton';
 import Icon from './Icon';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
+import { graphql, useStaticQuery } from 'gatsby';
 
 const ISSUE_BODY = `
 <!-- Thanks for filing an issue on our docs! Your feedback helps us improve our
@@ -38,12 +39,32 @@ const CreateIssueButton = ({
     component: instrumentation?.component,
   });
 
+  const { site } = useStaticQuery(graphql`
+    query CreateIssueQuery {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
+    }
+  `);
+
+  const {
+    siteMetadata: { siteUrl },
+  } = site;
+
+  const inDocSite = [
+    'https://docs.newrelic.com',
+    'https://developer.newrelic.com',
+    'https://opensource.newrelic.com',
+  ].includes(siteUrl);
+
   return (
     <GitHubIssueButton
       {...props}
       issueTitle={pageTitle && `Issue: ${pageTitle}`}
       issueBody={ISSUE_BODY}
-      labels={['feedback', 'feedback-issue']}
+      labels={inDocSite ? ['feedback', 'feedback-issue'] : 'bug'}
       onClick={handleClick}
     >
       <Icon
