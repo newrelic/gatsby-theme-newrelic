@@ -123,7 +123,9 @@ exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   themeOptions
 ) => {
-  const { i18n, relatedResources } = withDefaults(themeOptions);
+  const { i18n, relatedResources, forceTrailingSlashes = false } = withDefaults(
+    themeOptions
+  );
   const { createNode } = actions;
   const tessen = getTessenConfig(themeOptions);
   const env = getResolvedEnv(themeOptions);
@@ -151,6 +153,7 @@ exports.sourceNodes = (
 
   const config = {
     env,
+    forceTrailingSlashes,
     relatedResources: {
       labels: Object.entries(relatedResources.labels).map(
         ([baseUrl, label]) => ({
