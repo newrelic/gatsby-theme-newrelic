@@ -1,7 +1,6 @@
 import createTessen from '../createTessen';
 import warning from 'warning';
-import getTessenConfig from '../config/tessen';
-import { getResolvedEnv } from '../config';
+import { getResolvedEnv, getTessenConfig } from '../config';
 import { canTrack } from '../tracking';
 
 const warnAboutNoop = (pageView) => {

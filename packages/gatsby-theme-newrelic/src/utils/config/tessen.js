@@ -1,4 +1,4 @@
-const { buildConfigGetter } = require('../config');
+const { buildConfigGetter } = require('../configBuilder');
 
 module.exports = buildConfigGetter('tessen', {
   envOptions: true,

@@ -1,18 +1,5 @@
 const { merge, omit } = require('lodash');
-
-const DEFAULT_ENV = 'development';
-
-const defaultResolveEnv = () =>
-  process.env.GATSBY_NEWRELIC_ENV ||
-  process.env.GATSBY_ACTIVE_ENV ||
-  process.env.NODE_ENV ||
-  DEFAULT_ENV;
-
-const getResolvedEnv = (themeOptions) => {
-  const { resolveEnv = defaultResolveEnv } = themeOptions;
-
-  return resolveEnv();
-};
+const getResolvedEnv = require('./config/resolvedEnv');
 
 const buildConfigGetter = (
   configKey,
@@ -31,4 +18,4 @@ const buildConfigGetter = (
   );
 };
 
-module.exports = { getResolvedEnv, buildConfigGetter };
+module.exports = { buildConfigGetter };

@@ -3,10 +3,10 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
-import useTessen from '../hooks/useTessen';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
-import { useLocation } from '@reach/router';
 import { localizeExternalLink, localizePath } from '../utils/localization';
+import SignUpLink from './SignUpLink';
+import { addTrailingSlash } from '../utils/location';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
@@ -15,15 +15,17 @@ const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 
 const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   const locale = useLocale();
-  const tessen = useTessen();
-  const location = useLocation();
 
   const {
+    newRelicThemeConfig: { forceTrailingSlashes },
     site: {
       siteMetadata: { siteUrl },
     },
   } = useStaticQuery(graphql`
     query {
+      newRelicThemeConfig {
+        forceTrailingSlashes
+      }
       site {
         siteMetadata {
           siteUrl
@@ -38,31 +40,38 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
     ...instrumentation,
   });
 
-  const link = isNewRelic(to) ? localizeExternalLink({ link: to, locale }) : to;
-
-  const trackSignUp = (event) => {
-    handleExternalLinkClick();
-    tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
-      href: link,
-      path: location.pathname,
-      ...instrumentation,
-    });
-  };
-
   if (to.startsWith(siteUrl)) {
     to = to.replace(siteUrl, '');
+
+    // absolute links to the home page without trailing slash
+    to = to || '/';
   }
 
   if (isHash(to)) {
     return <a ref={ref} href={to} {...props} />;
   }
 
+  if (isSignup(to)) {
+    return (
+      <SignUpLink
+        {...props}
+        href={to}
+        onClick={handleExternalLinkClick}
+        instrumentation={instrumentation}
+      />
+    );
+  }
+
   if (isExternal(to)) {
+    const link = isNewRelic(to)
+      ? localizeExternalLink({ link: to, locale })
+      : to;
+
     return (
       <a
         {...props}
         href={link}
-        onClick={isSignup(to) ? trackSignUp : handleExternalLinkClick}
+        onClick={handleExternalLinkClick}
         target="_blank"
         rel="noopener noreferrer"
       />
@@ -70,9 +79,15 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   }
 
   return (
-    <GatsbyLink ref={ref} to={localizePath({ path: to, locale })} {...props} />
+    <GatsbyLink
+      to={localizePath({
+        path: forceTrailingSlashes ? addTrailingSlash(to) : to,
+        locale,
+      })}
+      {...props}
+    />
   );
-});
+};
 
 Link.propTypes = {
   onClick: PropTypes.func,
