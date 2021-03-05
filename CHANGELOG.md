@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.35.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.34.0...v1.35.0) (2021-03-05)
+
+
+### Bug Fixes
+
+* **Link:** Ensure sign up links add the utm_source ([d4bc1d2](https://github.com/newrelic/gatsby-theme-newrelic/commit/d4bc1d2960b4a3040ac75a0569c5876e3b518f75))
+* **Link:** Proxy the event through to the onClick handler when the event is instrumented via tessen. ([cd9961b](https://github.com/newrelic/gatsby-theme-newrelic/commit/cd9961b020d69cf5da430dc754c445a1d4d89a39))
+* **SEO:** Set the lang on the html, set a canonical link, and fix the hrefLang for Japanese ([355c574](https://github.com/newrelic/gatsby-theme-newrelic/commit/355c574cd2d64d1e37ff9467378973f6d6b8ceec))
+
+
+### Features
+
+* Revamp the locale data. Remove localePath and rely on locale directly. ([c79b2aa](https://github.com/newrelic/gatsby-theme-newrelic/commit/c79b2aaf3066f9e77ce2ddd1163b2f3651771581))
+* **Link:** Honor forceTrailingSlashes config and append a trailing slash when needed ([e330a33](https://github.com/newrelic/gatsby-theme-newrelic/commit/e330a3301fc3beb1f64e3e572e66ace7cbaa715d))
+* add option to force trailing slashes ([4c05933](https://github.com/newrelic/gatsby-theme-newrelic/commit/4c0593359bc4c0b62b9c30be5bd3dc2dd73f9129))
+
+
+
+
+
 # [1.34.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.33.1...v1.34.0) (2021-03-04)
 
 
