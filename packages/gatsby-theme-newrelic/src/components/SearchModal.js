@@ -8,7 +8,7 @@ import Result from './SearchModal/Result';
 import ResultPreview from './SearchModal/ResultPreview';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import { useQuery } from 'react-query';
-import { useDebounce } from 'react-use';
+import { useDebounce, useIntersection } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import { animated, useTransition } from 'react-spring';
@@ -26,13 +26,18 @@ const SearchModal = ({ onClose, isOpen }) => {
   const searchInput = useRef();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [page, setPage] = useState(1);
   const [filters, setFilters] = useState(defaultFilters);
-  const { isLoading, refetch, data = {}, isSuccess } = useSwiftypeSearch(
+  const { isLoading, refetch, data = {}, isSuccess } = useSwiftypeSearch({
     searchTerm,
-    filters
-  );
+    filters,
+    page,
+  });
 
-  const { records: { page: results } = {} } = data;
+  const {
+    records: { page: results = [] } = {},
+    info: { page: { num_pages: numPages, per_page: perPage } = {} } = {},
+  } = data;
 
   const transitions = useTransition(isOpen, null, {
     config: { tension: 220, friction: 22 },
@@ -61,17 +66,20 @@ const SearchModal = ({ onClose, isOpen }) => {
     { ignoreTextInput: false }
   );
 
-  const bucketedResults = (results || []).reduce((acc, result) => {
-    return acc.set(result.type, [...(acc.get(result.type) ?? []), result]);
-  }, new Map());
-
   useEffect(() => {
     isOpen && searchInput.current.focus();
   }, [isOpen]);
 
   useEffect(() => {
     setSelectedIndex(0);
+    setPage(1);
   }, [searchTerm]);
+
+  const onIntersection = () => {
+    if (page * perPage < numPages) {
+      setPage(page + 1);
+    }
+  };
 
   useDebounce(
     () => {
@@ -80,15 +88,14 @@ const SearchModal = ({ onClose, isOpen }) => {
       }
     },
     200,
-    [searchTerm]
+    [searchTerm, refetch]
   );
 
   useEffect(() => {
     refetch();
-  }, [filters]);
+  }, [filters, refetch]);
 
-  const flattenedResults = Array.from(bucketedResults.values()).flat();
-  const selectedResult = flattenedResults[selectedIndex];
+  const selectedResult = results[selectedIndex];
 
   const onFilter = (filterName) => {
     const updatedFilters = filters.map(({ name, isSelected }) => {
@@ -205,58 +212,20 @@ const SearchModal = ({ onClose, isOpen }) => {
               >
                 {searchTerm && Boolean(results?.length) && (
                   <>
-                    <div
-                      css={css`
-                        border-right: 1px solid var(--border-color);
-                        height: calc(100vh - 6 * var(--site-content-padding));
-                        max-width: 512px;
-                        overflow: scroll;
-                      `}
-                    >
-                      {Array.from(bucketedResults.entries()).map(
-                        ([type, results]) => {
-                          return (
-                            <React.Fragment key={type}>
-                              <h2
-                                css={css`
-                                  font-size: 0.75rem;
-                                  color: var(--color-neutrals-700);
-                                  margin-bottom: 0;
-                                  text-transform: uppercase;
-                                  padding: 0.5rem var(--horizontal-spacing);
-                                  background: var(--divider-color);
-                                  letter-spacing: 1px;
-                                  border-bottom: 1px solid var(--border-color);
+                    <ScrollContainer onIntersection={onIntersection}>
+                      {results.map((result) => {
+                        const resultIndex = results.indexOf(result);
 
-                                  .dark-mode & {
-                                    background: var(--color-dark-100);
-                                    color: var(--color-dark-700);
-                                  }
-                                `}
-                              >
-                                {type}
-                              </h2>
-                              {results.map((result) => {
-                                const resultIndex = flattenedResults.indexOf(
-                                  result
-                                );
-
-                                return (
-                                  <Result
-                                    selected={resultIndex === selectedIndex}
-                                    key={result.id}
-                                    result={result}
-                                    onSelect={() =>
-                                      setSelectedIndex(resultIndex)
-                                    }
-                                  />
-                                );
-                              })}
-                            </React.Fragment>
-                          );
-                        }
-                      )}
-                    </div>
+                        return (
+                          <Result
+                            selected={resultIndex === selectedIndex}
+                            key={result.id}
+                            result={result}
+                            onSelect={() => setSelectedIndex(resultIndex)}
+                          />
+                        );
+                      })}
+                    </ScrollContainer>
                     <ResultPreview result={selectedResult} />
                     <div
                       css={css`
@@ -351,15 +320,11 @@ const SearchModal = ({ onClose, isOpen }) => {
                       `}
                     >
                       Make a{' '}
-                      <Link
-                        to={
-                          'https://github.com/newrelic/docs-website/issues/new?assignees=&labels=content&template=content-issue.md&title=Summarize+your+docs+request'
-                        }
-                      >
+                      <Link to="https://github.com/newrelic/docs-website/issues/new?assignees=&labels=content&template=content-issue.md&title=Summarize+your+docs+request">
                         request
                       </Link>{' '}
                       for new documentation or start a conversation on our{' '}
-                      <Link to={'https://discuss.newrelic.com/'}>
+                      <Link to="https://discuss.newrelic.com/">
                         Explorer's Hub
                       </Link>
                       !
@@ -398,9 +363,39 @@ Key.propTypes = {
   children: PropTypes.node,
 };
 
-const useSwiftypeSearch = (query, filters, params = {}) => {
+const ScrollContainer = ({ children, onIntersection }) => {
+  const intersectionRef = useRef();
+  const root = useRef();
+  const intersection = useIntersection(intersectionRef, {
+    root: root.current,
+    rootMargin: '0px 0px 10px 0px',
+    threshold: 1,
+  });
+  useEffect(() => {
+    if (intersection?.isIntersecting) {
+      onIntersection();
+    }
+  }, [intersection]);
+
+  return (
+    <div
+      ref={root}
+      css={css`
+        border-right: 1px solid var(--border-color);
+        height: calc(100vh - 6 * var(--site-content-padding));
+        max-width: 512px;
+        overflow: scroll;
+      `}
+    >
+      {children}
+      <div ref={intersectionRef} />
+    </div>
+  );
+};
+
+const useSwiftypeSearch = ({ query, filters, page, params = {} }) => {
   return useQuery(
-    'swiftype',
+    ['swiftype', page],
     () => {
       return fetch(
         'https://search-api.swiftype.com/api/v1/public/engines/search.json',
@@ -413,6 +408,7 @@ const useSwiftypeSearch = (query, filters, params = {}) => {
             ...params,
             q: query,
             engine_key: 'Ad9HfGjDw4GRkcmJjUut',
+            page,
             per_page: 10,
             highlight_fields: {
               page: {
@@ -438,6 +434,7 @@ const useSwiftypeSearch = (query, filters, params = {}) => {
     },
     {
       enabled: false,
+      keepPreviousData: true,
     }
   );
 };
