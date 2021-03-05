@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
@@ -7,13 +7,15 @@ import Portal from './Portal';
 import Result from './SearchModal/Result';
 import ResultPreview from './SearchModal/ResultPreview';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import { useQuery } from 'react-query';
+import { useInfiniteQuery, useQueryClient } from 'react-query';
 import { useDebounce, useIntersection } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import { animated, useTransition } from 'react-spring';
 import { rgba } from 'polished';
 import Link from './Link';
+import usePrevious from '../hooks/usePrevious';
+import search from './SearchModal/search';
 
 const defaultFilters = [
   { name: 'docs', isSelected: false },
@@ -23,21 +25,15 @@ const defaultFilters = [
 
 const SearchModal = ({ onClose, isOpen }) => {
   const { t } = useThemeTranslation();
+  const queryClient = useQueryClient();
   const searchInput = useRef();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [page, setPage] = useState(1);
   const [filters, setFilters] = useState(defaultFilters);
-  const { isLoading, refetch, data = {}, isSuccess } = useSwiftypeSearch({
+  const { isLoading, results, isSuccess, fetchNextPage } = useSearch({
     searchTerm,
     filters,
-    page,
   });
-
-  const {
-    records: { page: results = [] } = {},
-    info: { page: { num_pages: numPages, per_page: perPage } = {} } = {},
-  } = data;
 
   const transitions = useTransition(isOpen, null, {
     config: { tension: 220, friction: 22 },
@@ -72,28 +68,35 @@ const SearchModal = ({ onClose, isOpen }) => {
 
   useEffect(() => {
     setSelectedIndex(0);
-    setPage(1);
   }, [searchTerm]);
 
-  const onIntersection = () => {
-    if (page * perPage < numPages) {
-      setPage(page + 1);
-    }
-  };
+  const onIntersection = useCallback(() => {
+    fetchNextPage();
+  }, [fetchNextPage]);
 
   useDebounce(
     () => {
       if (searchTerm) {
-        refetch();
+        queryClient.setQueryData('swiftype', () => ({
+          pages: [],
+          pageParam: 1,
+        }));
+
+        fetchNextPage({ pageParam: 1 });
       }
     },
     200,
-    [searchTerm, refetch]
+    [searchTerm, fetchNextPage]
   );
 
   useEffect(() => {
-    refetch();
-  }, [filters, refetch]);
+    queryClient.setQueryData('swiftype', () => ({
+      pages: [],
+      pageParam: 1,
+    }));
+
+    fetchNextPage({ pageParam: 1 });
+  }, [filters, fetchNextPage, queryClient]);
 
   const selectedResult = results[selectedIndex];
 
@@ -363,19 +366,70 @@ Key.propTypes = {
   children: PropTypes.node,
 };
 
+const useSearch = ({ searchTerm, filters }) => {
+  const queryClient = useQueryClient();
+  const { isLoading, data = {}, isSuccess, fetchNextPage } = useInfiniteQuery(
+    'swiftype',
+    ({ pageParam = 1 }) => search({ searchTerm, filters, page: pageParam }),
+    {
+      enabled: false,
+      getNextPageParam: (lastPage) => {
+        if (!lastPage) {
+          return;
+        }
+
+        const { page } = lastPage.info;
+        const nextPage = page.current_page + 1;
+
+        return nextPage < page.num_pages ? nextPage : undefined;
+      },
+    }
+  );
+
+  const refetch = useCallback(() => {
+    queryClient.setQueryData('swiftype', () => ({
+      pages: [],
+      pageParam: 1,
+    }));
+
+    fetchNextPage({ pageParam: 1 });
+  }, [queryClient, fetchNextPage]);
+
+  useDebounce(
+    () => {
+      if (searchTerm) {
+        refetch();
+      }
+    },
+    200,
+    [searchTerm, refetch]
+  );
+
+  useEffect(() => refetch(), [refetch]);
+
+  const { pages } = data;
+  const results = pages?.flatMap((page) => page.records.page) ?? [];
+
+  return { isLoading, isSuccess, results, fetchNextPage };
+};
+
 const ScrollContainer = ({ children, onIntersection }) => {
   const intersectionRef = useRef();
   const root = useRef();
   const intersection = useIntersection(intersectionRef, {
     root: root.current,
-    rootMargin: '0px 0px 10px 0px',
+    rootMargin: '0px 0px 200px 0px',
     threshold: 1,
   });
+
+  const isIntersecting = intersection?.isIntersecting;
+  const wasIntersecting = usePrevious(isIntersecting);
+
   useEffect(() => {
-    if (intersection?.isIntersecting) {
+    if (isIntersecting && !wasIntersecting) {
       onIntersection();
     }
-  }, [intersection]);
+  }, [wasIntersecting, isIntersecting, onIntersection]);
 
   return (
     <div
@@ -393,55 +447,9 @@ const ScrollContainer = ({ children, onIntersection }) => {
   );
 };
 
-const useSwiftypeSearch = ({ query, filters, page, params = {} }) => {
-  return useQuery(
-    ['swiftype', page],
-    () => {
-      return fetch(
-        'https://search-api.swiftype.com/api/v1/public/engines/search.json',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            ...params,
-            q: query,
-            engine_key: 'Ad9HfGjDw4GRkcmJjUut',
-            page,
-            per_page: 10,
-            highlight_fields: {
-              page: {
-                title: {
-                  size: 100,
-                  fallback: true,
-                },
-                body: {
-                  size: 400,
-                  fallback: true,
-                },
-              },
-            },
-            filters: {
-              page: {
-                type: getFilters(filters).map((filter) => filter.name),
-                document_type: ['!views_page_menu'],
-              },
-            },
-          }),
-        }
-      ).then((res) => res.json());
-    },
-    {
-      enabled: false,
-      keepPreviousData: true,
-    }
-  );
-};
-
-const getFilters = (filters) => {
-  const filteredTypes = filters.filter((filter) => filter.isSelected === true);
-  return filteredTypes.length !== 0 ? filteredTypes : filters;
+ScrollContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+  onIntersection: PropTypes.func.isRequired,
 };
 
 SearchModal.propTypes = {
