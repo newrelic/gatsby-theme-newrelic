@@ -39,12 +39,15 @@ export const renderWithTranslation = (component, options) => {
   );
 };
 
-export const renderWithProviders = (component, options) => {
+export const renderWithProviders = (
+  component,
+  { locale = 'en', ...options } = {}
+) => {
   i18n.init({
     defaultNS: 'translation',
     initImmediate: false,
     fallbackLng: 'en',
-    lng: 'en',
+    lng: locale,
     ns: [themeNamespace, 'translation'],
     resources: {
       en: {
