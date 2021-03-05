@@ -124,6 +124,27 @@ test('adds the utm_source to signup links', () => {
   expect(link).toHaveAttribute('target', '_blank');
 });
 
+test('switches the utm_source to the configured value if set', () => {
+  useStaticData({
+    site: {
+      siteMetadata: {
+        utmSource: 'test-site',
+      },
+    },
+  });
+
+  renderWithProviders(
+    <Link to="https://newrelic.com/signup?utm_source=invalid">Link</Link>
+  );
+
+  const link = screen.getByText('Link');
+
+  expect(link).toHaveAttribute(
+    'href',
+    'https://newrelic.com/signup?utm_source=test-site'
+  );
+});
+
 test('localizes the sign up link', () => {
   useStaticData({
     allLocale: {
