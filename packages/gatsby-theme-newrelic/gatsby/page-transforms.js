@@ -40,7 +40,11 @@ const addFileRelativePath = ({ page, store }) => {
 const addTrailingSlash = ({ page }, themeOptions) => {
   const { forceTrailingSlashes } = getTrailingSlashesConfig(themeOptions);
 
-  if (page.path.endsWith('/') || !forceTrailingSlashes) {
+  if (
+    page.path.endsWith('/') ||
+    page.path.match(/404/) ||
+    !forceTrailingSlashes
+  ) {
     return page;
   }
 
