@@ -21,39 +21,40 @@ const SEO = ({ title, location, children }) => {
       allLocale {
         nodes {
           locale
-          localizedPath
+          hrefLang
           isDefault
         }
       }
     }
   `);
 
-  const currentLocale = useLocale();
-
+  const locale = useLocale();
   const defaultLocale = locales.find(({ isDefault }) => isDefault);
-
   const { defaultTitle, titleTemplate, siteUrl } = siteMetadata;
-
   const template = title ? titleTemplate : '%s';
 
   const subPath =
-    currentLocale.locale === defaultLocale.locale
+    locale.locale === defaultLocale.locale
       ? location.pathname
-      : location.pathname.replace(
-          new RegExp(`\\/${currentLocale.locale}`),
-          '/'
-        );
+      : location.pathname.replace(new RegExp(`^\\/${locale.locale}`), '/');
 
   return (
     <Helmet titleTemplate={template}>
+      <html lang={locale.hrefLang} />
       <title>{title || defaultTitle}</title>
-      {locales.map(({ locale, localizedPath }, i) => {
+      <link rel="canonical" href={new URL(location.pathname, siteUrl).href} />
+      {locales.map(({ hrefLang, isDefault, locale }) => {
+        const url = new URL(
+          path.join(isDefault ? '/' : locale, subPath),
+          'https://jerelmiller.ngrok.io'
+        );
+
         return (
           <link
-            key={i}
+            key={locale}
             rel="alternate"
-            href={path.join(siteUrl, localizedPath, subPath)}
-            hrefLang={locale}
+            href={url.href}
+            hrefLang={hrefLang}
           />
         );
       })}
