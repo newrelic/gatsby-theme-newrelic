@@ -7,7 +7,7 @@ import Portal from './Portal';
 import Result from './SearchModal/Result';
 import ResultPreview from './SearchModal/ResultPreview';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import { useQuery } from 'react-query';
+import { useInfiniteQuery, useQueryClient } from 'react-query';
 import { useDebounce, useIntersection } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useScrollFreeze from '../hooks/useScrollFreeze';
@@ -25,24 +25,15 @@ const defaultFilters = [
 
 const SearchModal = ({ onClose, isOpen }) => {
   const { t } = useThemeTranslation();
+  const queryClient = useQueryClient();
   const searchInput = useRef();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [page, setPage] = useState(1);
   const [filters, setFilters] = useState(defaultFilters);
-  const { isLoading, refetch, data = {}, isSuccess } = useQuery(
-    ['swiftype', page],
-    () => search({ searchTerm, filters, page }),
-    {
-      enabled: false,
-      keepPreviousData: true,
-    }
-  );
-
-  const {
-    records: { page: results = [] } = {},
-    info: { page: { num_pages: numPages } = {} } = {},
-  } = data;
+  const { isLoading, results, isSuccess, fetchNextPage } = useSearch({
+    searchTerm,
+    filters,
+  });
 
   const transitions = useTransition(isOpen, null, {
     config: { tension: 220, friction: 22 },
@@ -77,28 +68,35 @@ const SearchModal = ({ onClose, isOpen }) => {
 
   useEffect(() => {
     setSelectedIndex(0);
-    setPage(1);
   }, [searchTerm]);
 
   const onIntersection = useCallback(() => {
-    if (page < numPages) {
-      setPage(page + 1);
-    }
-  }, [page, numPages]);
+    fetchNextPage();
+  }, [fetchNextPage]);
 
   useDebounce(
     () => {
       if (searchTerm) {
-        refetch();
+        queryClient.setQueryData('swiftype', () => ({
+          pages: [],
+          pageParam: 1,
+        }));
+
+        fetchNextPage({ pageParam: 1 });
       }
     },
     200,
-    [searchTerm, refetch]
+    [searchTerm, fetchNextPage]
   );
 
   useEffect(() => {
-    refetch();
-  }, [filters, refetch, page]);
+    queryClient.setQueryData('swiftype', () => ({
+      pages: [],
+      pageParam: 1,
+    }));
+
+    fetchNextPage({ pageParam: 1 });
+  }, [filters, fetchNextPage, queryClient]);
 
   const selectedResult = results[selectedIndex];
 
@@ -366,6 +364,53 @@ const Key = ({ className, children }) => (
 Key.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+};
+
+const useSearch = ({ searchTerm, filters }) => {
+  const queryClient = useQueryClient();
+  const { isLoading, data = {}, isSuccess, fetchNextPage } = useInfiniteQuery(
+    'swiftype',
+    ({ pageParam = 1 }) => search({ searchTerm, filters, page: pageParam }),
+    {
+      enabled: false,
+      getNextPageParam: (lastPage) => {
+        if (!lastPage) {
+          return;
+        }
+
+        const { page } = lastPage.info;
+        const nextPage = page.current_page + 1;
+
+        return nextPage < page.num_pages ? nextPage : undefined;
+      },
+    }
+  );
+
+  const refetch = useCallback(() => {
+    queryClient.setQueryData('swiftype', () => ({
+      pages: [],
+      pageParam: 1,
+    }));
+
+    fetchNextPage({ pageParam: 1 });
+  }, [queryClient, fetchNextPage]);
+
+  useDebounce(
+    () => {
+      if (searchTerm) {
+        refetch();
+      }
+    },
+    200,
+    [searchTerm, refetch]
+  );
+
+  useEffect(() => refetch(), [refetch]);
+
+  const { pages } = data;
+  const results = pages?.flatMap((page) => page.records.page) ?? [];
+
+  return { isLoading, isSuccess, results, fetchNextPage };
 };
 
 const ScrollContainer = ({ children, onIntersection }) => {
