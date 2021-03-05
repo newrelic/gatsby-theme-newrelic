@@ -5,6 +5,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const { data, errors } = await graphql(`
     query {
+      allLocale {
+        nodes {
+          locale
+          localizedPath
+          isDefault
+        }
+      }
       allMdx(filter: { fileAbsolutePath: { regex: "/src/content/" } }) {
         nodes {
           slug
@@ -21,7 +28,13 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
-  data.allMdx.nodes.forEach((node) => {
+  const { allMdx, allLocale } = data;
+
+  const additionalLocales = allLocale.nodes.filter(
+    ({ isDefault }) => !isDefault
+  );
+
+  allMdx.nodes.forEach((node) => {
     const {
       slug,
       fields: { fileRelativePath },
@@ -34,6 +47,17 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         slug,
         fileRelativePath,
       },
+    });
+
+    additionalLocales.forEach(({ localizedPath }) => {
+      createPage({
+        path: path.join(`/${localizedPath}`, slug),
+        component: path.resolve('src/templates/basic.js'),
+        context: {
+          slug,
+          fileRelativePath,
+        },
+      });
     });
   });
 };
