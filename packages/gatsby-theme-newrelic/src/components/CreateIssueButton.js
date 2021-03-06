@@ -27,7 +27,7 @@ your environment (operating system, application framework, etc.).
 `;
 
 const CreateIssueButton = ({
-  labels = ['feedback', 'feedback-issue', 'bug'],
+  labels = ['bug'],
   instrumentation,
   pageTitle,
   onClick,
