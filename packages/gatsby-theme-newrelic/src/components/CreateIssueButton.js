@@ -27,6 +27,7 @@ your environment (operating system, application framework, etc.).
 `;
 
 const CreateIssueButton = ({
+  labels = ['bug'],
   instrumentation,
   pageTitle,
   onClick,
@@ -43,7 +44,7 @@ const CreateIssueButton = ({
       {...props}
       issueTitle={pageTitle && `Issue: ${pageTitle}`}
       issueBody={ISSUE_BODY}
-      labels={['bug']}
+      labels={labels}
       onClick={handleClick}
     >
       <Icon
@@ -63,6 +64,7 @@ CreateIssueButton.propTypes = {
   }).isRequired,
   pageTitle: PropTypes.string,
   onClick: PropTypes.func,
+  labels: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default CreateIssueButton;
