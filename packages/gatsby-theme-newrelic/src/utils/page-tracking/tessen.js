@@ -82,8 +82,6 @@ const initializeTessenTracking = ({ config, env, location }) => (
       },
     });
 
-    window.Tessen.debugLevel(2);
-
     window.Tessen.identify({});
 
     options.trackPageView && trackPageView({ config, env, location });
