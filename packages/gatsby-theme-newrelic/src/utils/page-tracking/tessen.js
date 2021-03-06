@@ -2,6 +2,7 @@ import createTessen from '../createTessen';
 import warning from 'warning';
 import { getResolvedEnv, getTessenConfig } from '../config';
 import { canTrack } from '../tracking';
+import { once } from 'lodash';
 
 const warnAboutNoop = (pageView) => {
   warning(
@@ -26,11 +27,17 @@ const trackViaTessen = ({ location }, themeOptions) => {
     return;
   }
 
-  window.initializeTessenTracking = initializeTessenTracking({
-    config: tessenConfig,
-    env,
-    location,
-  });
+  window.initializeTessenTracking = once(
+    initializeTessenTracking({
+      config: tessenConfig,
+      env,
+      location,
+    })
+  );
+
+  if (!canTrack()) {
+    return;
+  }
 
   window.initializeTessenTracking();
 
@@ -63,22 +70,21 @@ const trackPageView = ({ config, env, location }) => {
   });
 };
 
-const initializeTessenTracking = ({ config, env, location }) => (
-  options = {}
-) => {
-  if (canTrack()) {
-    const { segmentWriteKey } = config;
-    window.Tessen.load(['Segment', 'NewRelic'], {
-      Segment: {
-        identifiable: true,
-        writeKey: segmentWriteKey,
-      },
-    });
+const initializeTessenTracking = ({ config, env, location }) =>
+  once((options = {}) => {
+    if (canTrack()) {
+      const { segmentWriteKey } = config;
+      window.Tessen.load(['Segment', 'NewRelic'], {
+        Segment: {
+          identifiable: true,
+          writeKey: segmentWriteKey,
+        },
+      });
 
-    window.Tessen.identify({});
+      window.Tessen.identify({});
 
-    options.trackPageView && trackPageView({ config, env, location });
-  }
-};
+      options.trackPageView && trackPageView({ config, env, location });
+    }
+  });
 
 export default trackViaTessen;
