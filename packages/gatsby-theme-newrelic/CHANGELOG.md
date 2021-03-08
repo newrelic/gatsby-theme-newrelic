@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.35.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.35.1...v1.35.2) (2021-03-08)
+
+
+### Bug Fixes
+
+* **ContributingGuidelines:** Add an issueLabels prop to forward to CreateIssueButton ([4352335](https://github.com/newrelic/gatsby-theme-newrelic/commit/43523353894f45d4ad4fc67a8c15c85ac02b5187))
+* **Link:** Ensure links to locations with extensions do not add trailing slash ([225540f](https://github.com/newrelic/gatsby-theme-newrelic/commit/225540fb306f49a7f326e74ffc2a8657cc2cb70a))
+
+
+
+
+
 ## [1.35.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.35.0...v1.35.1) (2021-03-08)
 
 
