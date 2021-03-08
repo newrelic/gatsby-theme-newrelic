@@ -368,11 +368,16 @@ Key.propTypes = {
 
 const useSearch = ({ searchTerm, filters }) => {
   const queryClient = useQueryClient();
+
+  // prevents fetching unless there is a search term
+  if (searchTerm === '') {
+    queryClient.clear();
+  }
+
   const { isLoading, data = {}, isSuccess, fetchNextPage } = useInfiniteQuery(
     'swiftype',
     ({ pageParam = 1 }) => search({ searchTerm, filters, page: pageParam }),
     {
-      enabled: false,
       getNextPageParam: (lastPage) => {
         if (!lastPage) {
           return;
