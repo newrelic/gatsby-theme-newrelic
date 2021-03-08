@@ -9,7 +9,12 @@ import CreateIssueButton from './CreateIssueButton';
 import EditPageButton from './EditPageButton';
 import Trans from './Trans';
 
-const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
+const ContributingGuidelines = ({
+  className,
+  fileRelativePath,
+  issueLabels,
+  pageTitle,
+}) => {
   const {
     site: {
       siteMetadata: { contributingUrl },
@@ -51,6 +56,7 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
           variant={Button.VARIANT.OUTLINE}
           size={Button.SIZE.SMALL}
           instrumentation={{ component: 'ContributingGuidelines' }}
+          labels={issueLabels}
         />
 
         {fileRelativePath && (
@@ -82,6 +88,7 @@ const ContributingGuidelines = ({ className, fileRelativePath, pageTitle }) => {
 ContributingGuidelines.propTypes = {
   className: PropTypes.string,
   fileRelativePath: PropTypes.string,
+  issueLabels: CreateIssueButton.propTypes.labels,
   pageTitle: PropTypes.string,
 };
 
