@@ -8,7 +8,7 @@ export const addTrailingSlash = (path) => {
   const dummyOrigin = 'https://example.com';
   const url = new URL(path, dummyOrigin);
 
-  if (!url.pathname.endsWith('/')) {
+  if (!url.pathname.endsWith('/') && !url.pathname.match(/\.[a-zA-Z]+$/)) {
     url.pathname = `${url.pathname}/`;
   }
 
