@@ -298,4 +298,21 @@ describe('when forceTrailingSlashes is enabled', () => {
     expect(link2).toHaveAttribute('href', '/test/path/#example');
     expect(link3).toHaveAttribute('href', '/test/path/?test=true');
   });
+
+  test('does not append trailing slash to links with extension', () => {
+    useStaticData({
+      newRelicThemeConfig: {
+        forceTrailingSlashes: true,
+      },
+    });
+
+    renderWithProviders(<Link to="/test/path.xml">XML</Link>);
+    renderWithProviders(<Link to="/test/path.json">JSON</Link>);
+
+    const xmlLink = screen.getByText('XML');
+    const jsonLink = screen.getByText('JSON');
+
+    expect(xmlLink).toHaveAttribute('href', '/test/path.xml');
+    expect(jsonLink).toHaveAttribute('href', '/test/path.json');
+  });
 });
