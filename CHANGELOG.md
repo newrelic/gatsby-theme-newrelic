@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.35.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.35.0...v1.35.1) (2021-03-08)
+
+
+### Bug Fixes
+
+* now tracks all tessen page views ([366c408](https://github.com/newrelic/gatsby-theme-newrelic/commit/366c40888f290cb4529082f552caed5c17e9ca74))
+* use initialization variable ([2ff63de](https://github.com/newrelic/gatsby-theme-newrelic/commit/2ff63de576e93247ec48bcf37566f2a01e4bd52c))
+
+
+
+
+
 # [1.35.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.34.0...v1.35.0) (2021-03-05)
 
 
