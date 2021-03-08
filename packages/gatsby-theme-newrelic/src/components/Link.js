@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React, { forwardRef } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
@@ -48,7 +48,7 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   }
 
   if (isHash(to)) {
-    return <a ref={ref} href={to} {...props} />;
+    return <a href={to} {...props} />;
   }
 
   if (isSignup(to)) {
