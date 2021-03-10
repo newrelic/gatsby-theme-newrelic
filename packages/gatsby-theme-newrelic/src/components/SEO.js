@@ -67,7 +67,11 @@ const SEO = ({ title, location, children }) => {
         );
       })}
       {getSwiftypeSiteType() && (
-        <meta class="swiftype" name="type" content={getSwiftypeSiteType()} />
+        <meta
+          className="swiftype"
+          name="type"
+          content={getSwiftypeSiteType()}
+        />
       )}
       {children}
     </Helmet>
@@ -78,6 +82,7 @@ SEO.propTypes = {
   title: PropTypes.string,
   location: PropTypes.shape({
     pathname: PropTypes.string,
+    hostname: PropTypes.string,
   }).isRequired,
   children: PropTypes.node,
 };
