@@ -41,7 +41,7 @@ const SEO = ({ title, location, children }) => {
   const getSwiftypeSiteType = () => {
     const nrSubDomain = /.*\.newrelic\.com/.test(location.hostname)
       ? location.hostname.split('.')[0]
-      : 'demo';
+      : null;
     const localeString = locale.isDefault ? '' : `-${locale.locale}`;
     return nrSubDomain ? nrSubDomain.concat(localeString) : null;
   };
