@@ -42,7 +42,7 @@ const SEO = ({ title, location, children }) => {
     const nrSubDomain = /.*\.newrelic\.com/.test(location.hostname)
       ? location.hostname.split('.')[0]
       : 'demo';
-    const localeString = !locale.isDefault ? `-${locale.locale}` : '';
+    const localeString = locale.isDefault ? '' : `-${locale.locale}`;
     return nrSubDomain ? nrSubDomain.concat(localeString) : null;
   };
 
