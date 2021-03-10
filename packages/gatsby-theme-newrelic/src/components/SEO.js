@@ -38,6 +38,14 @@ const SEO = ({ title, location, children }) => {
       ? location.pathname
       : location.pathname.replace(new RegExp(`^\\/${locale.locale}`), '/');
 
+  const getSwiftypeSiteType = () => {
+    const nrSubDomain = /.*\.newrelic\.com/.test(location.hostname)
+      ? location.hostname.split('.')[0]
+      : null;
+    const localeString = !locale.isDefault ? `-${locale.locale}` : '';
+    return nrSubDomain ? nrSubDomain.concat(localeString) : null;
+  };
+
   return (
     <Helmet titleTemplate={template}>
       <html lang={locale.hrefLang} />
@@ -58,6 +66,9 @@ const SEO = ({ title, location, children }) => {
           />
         );
       })}
+      {getSwiftypeSiteType() && (
+        <meta class="swiftype" name="type" content={getSwiftypeSiteType()} />
+      )}
       {children}
     </Helmet>
   );
