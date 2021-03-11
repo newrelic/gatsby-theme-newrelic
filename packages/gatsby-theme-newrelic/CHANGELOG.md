@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.36.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.35.2...v1.36.0) (2021-03-11)
+
+
+### Bug Fixes
+
+* **SEO:** fix linting errors ([bd54295](https://github.com/newrelic/gatsby-theme-newrelic/commit/bd542957609e1b31f11af9fec5b7277c2b8818d0))
+
+
+### Features
+
+* **SEO:** add swiftype type field for nr subdomain sites and their locales ([3285f88](https://github.com/newrelic/gatsby-theme-newrelic/commit/3285f88916927fe8bab44c12dca83c1b913a9020))
+
+
+
+
+
 ## [1.35.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.35.1...v1.35.2) (2021-03-08)
 
 
