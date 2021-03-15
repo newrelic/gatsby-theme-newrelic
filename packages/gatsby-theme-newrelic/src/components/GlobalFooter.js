@@ -16,12 +16,7 @@ import Link from './Link';
 // the footer
 const copyrightSymbol = String.fromCharCode(169);
 
-const GlobalFooter = ({
-  fileRelativePath,
-  className,
-  pageTitle,
-  issueLabels,
-}) => {
+const GlobalFooter = ({ fileRelativePath, className, pageTitle }) => {
   const { t } = useThemeTranslation();
   const { site, sitePage } = useStaticQuery(graphql`
     query FooterQuery {
@@ -92,7 +87,6 @@ const GlobalFooter = ({
               pageTitle={pageTitle}
               variant={Button.VARIANT.OUTLINE}
               size={Button.SIZE.SMALL}
-              labels={issueLabels}
               instrumentation={{ component: 'GlobalFooter' }}
               css={css`
                 margin-right: 0.5rem;
@@ -202,7 +196,6 @@ GlobalFooter.propTypes = {
   fileRelativePath: PropTypes.string,
   className: PropTypes.string,
   pageTitle: PropTypes.string,
-  issueLabels: CreateIssueButton.propTypes.labels,
 };
 
 export default GlobalFooter;
