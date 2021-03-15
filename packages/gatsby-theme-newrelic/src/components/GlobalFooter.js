@@ -92,6 +92,7 @@ const GlobalFooter = ({
               pageTitle={pageTitle}
               variant={Button.VARIANT.OUTLINE}
               size={Button.SIZE.SMALL}
+              labels={issueLabels}
               instrumentation={{ component: 'GlobalFooter' }}
               css={css`
                 margin-right: 0.5rem;
@@ -104,7 +105,6 @@ const GlobalFooter = ({
               fileRelativePath={fileRelativePath}
               variant={Button.VARIANT.OUTLINE}
               size={Button.SIZE.SMALL}
-              labels={issueLabels}
               instrumentation={{ component: 'GlobalFooter' }}
             />
           )}
@@ -202,6 +202,7 @@ GlobalFooter.propTypes = {
   fileRelativePath: PropTypes.string,
   className: PropTypes.string,
   pageTitle: PropTypes.string,
+  issueLabels: CreateIssueButton.propTypes.labels,
 };
 
 export default GlobalFooter;
