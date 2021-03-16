@@ -48,12 +48,12 @@ const configOptions = {
     filters: [
       {
         field: 'type',
-        values: ['docs', 'developer', 'opensource'],
+        values: ['docs', 'docs-jp', 'developer', 'opensource'],
         type: 'any',
       },
       {
         field: 'document_type',
-        values: ['!views_page_menu'],
+        values: ['!views_page_menu', '!views_page_content'],
         type: 'any',
       },
     ],
