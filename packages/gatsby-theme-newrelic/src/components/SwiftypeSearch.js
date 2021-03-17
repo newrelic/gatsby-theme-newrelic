@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SiteSearchAPIConnector from '@elastic/search-ui-site-search-connector';
 import {
   SearchProvider,
@@ -48,7 +48,7 @@ const configOptions = {
     filters: [
       {
         field: 'type',
-        values: ['docs', 'docs-jp', 'developer', 'opensource'],
+        values: ['docs', 'developer', 'opensource'],
         type: 'any',
       },
       {
@@ -63,13 +63,60 @@ const configOptions = {
   },
 };
 
-const SwiftypeSearch = ({ className }) => {
+const getSwiftypeConfig = (locale) => {
+  const typeValues = locale.isDefault
+    ? ['docs', 'developer', 'opensource']
+    : [
+        `docs-${locale.locale}`,
+        `developer-${locale.locale}`,
+        `opensource-${locale.locale}`,
+      ];
+  return {
+    apiConnector: connector,
+    searchQuery: {
+      result_fields: {
+        title: {
+          snippet: {
+            size: 100,
+            fallback: true,
+          },
+        },
+        body: {
+          snippet: {
+            size: 400,
+            fallback: true,
+          },
+        },
+        url: {
+          raw: {},
+        },
+      },
+      filters: [
+        {
+          field: 'type',
+          values: typeValues,
+          type: 'any',
+        },
+        {
+          field: 'document_type',
+          values: ['!views_page_menu', '!views_page_content'],
+          type: 'any',
+        },
+      ],
+    },
+    initialState: {
+      resultsPerPage: 10,
+    },
+  };
+};
+
+const SwiftypeSearch = ({ className, locale }) => {
   const { setQueryParam } = useQueryParams();
   const { t } = useThemeTranslation();
 
   return (
     <div css={styles} className={className}>
-      <SearchProvider config={configOptions}>
+      <SearchProvider config={getSwiftypeConfig(locale)}>
         <WithSearch
           mapContextToProps={({
             isLoading,
@@ -176,6 +223,7 @@ const InputView = ({ getAutocomplete, getInputProps }) => {
 
 SwiftypeSearch.propTypes = {
   className: PropTypes.string,
+  locale: PropTypes.object,
 };
 
 InputView.propTypes = {
