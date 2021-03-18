@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
+import Link from './Link';
 import { animated, useSpring } from 'react-spring';
 import { usePrevious, useIsomorphicLayoutEffect } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
@@ -113,18 +114,44 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
                 color: var(--color-dark-600);
               }
             }
+
+            .anchor svg {
+              opacity: 1;
+            }
           }
         `}
       >
         <h5
           id={id}
           css={css`
+            display: flex;
+            align-items: center;
+            flex: 1;
+            position: relative;
             font-size: 1rem;
             margin-top: 0;
             margin-bottom: 0;
+            text-align: left;
           `}
         >
-          {title}
+          <span>{title}</span>
+          {id && (
+            <Link
+              to={`#${id}`}
+              className="anchor"
+              css={css`
+                margin-left: 0.5rem;
+              `}
+            >
+              <Icon
+                name="fe-link-2"
+                css={css`
+                  display: block;
+                  color: inherit !important;
+                `}
+              />
+            </Link>
+          )}
         </h5>
         <Icon
           name="fe-chevron-down"
