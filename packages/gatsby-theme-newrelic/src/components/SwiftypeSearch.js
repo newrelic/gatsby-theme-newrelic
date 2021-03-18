@@ -19,13 +19,14 @@ import useQueryParams from '../hooks/useQueryParams';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useInstrumentedData from '../hooks/useInstrumentedData';
 import usePrevious from '../hooks/usePrevious';
+import useLocale from '../hooks/useLocale';
 
 const connector = new SiteSearchAPIConnector({
   documentType: 'page',
   engineKey: 'Ad9HfGjDw4GRkcmJjUut',
 });
 
-const configOptions = {
+const swiftypeConfig = {
   apiConnector: connector,
   searchQuery: {
     result_fields: {
@@ -48,7 +49,7 @@ const configOptions = {
     filters: [
       {
         field: 'type',
-        values: ['docs', 'developer', 'opensource'],
+        values: defaultSwiftypeFilters,
         type: 'any',
       },
       {
@@ -63,60 +64,48 @@ const configOptions = {
   },
 };
 
-const getSwiftypeConfig = (locale) => {
-  const typeValues = locale.isDefault
-    ? ['docs', 'developer', 'opensource']
-    : [
+const defaultSwiftypeFilters = [
+  {
+    field: 'type',
+    values: ['docs', 'developer', 'opensource'],
+    type: 'any',
+  },
+  {
+    field: 'document_type',
+    values: ['!views_page_menu', '!views_page_content'],
+    type: 'any',
+  },
+];
+
+const SwiftypeSearch = ({ className }) => {
+  const { setQueryParam } = useQueryParams();
+  const { t } = useThemeTranslation();
+  const locale = useLocale();
+  const localizedSwiftypeFilters = [
+    {
+      field: 'type',
+      values: [
         `docs-${locale.locale}`,
         `developer-${locale.locale}`,
         `opensource-${locale.locale}`,
-      ];
-  return {
-    apiConnector: connector,
-    searchQuery: {
-      result_fields: {
-        title: {
-          snippet: {
-            size: 100,
-            fallback: true,
-          },
-        },
-        body: {
-          snippet: {
-            size: 400,
-            fallback: true,
-          },
-        },
-        url: {
-          raw: {},
-        },
-      },
-      filters: [
-        {
-          field: 'type',
-          values: typeValues,
-          type: 'any',
-        },
-        {
-          field: 'document_type',
-          values: ['!views_page_menu', '!views_page_content'],
-          type: 'any',
-        },
       ],
+      type: 'any',
     },
-    initialState: {
-      resultsPerPage: 10,
+    {
+      field: 'document_type',
+      values: ['!views_page_menu', '!views_page_content'],
+      type: 'any',
     },
-  };
-};
-
-const SwiftypeSearch = ({ className, locale }) => {
-  const { setQueryParam } = useQueryParams();
-  const { t } = useThemeTranslation();
+  ];
+  useEffect(() => {
+    swiftypeConfig.searchQuery.filters = locale.isDefault
+      ? defaultSwiftypeFilters
+      : localizedSwiftypeFilters;
+  });
 
   return (
     <div css={styles} className={className}>
-      <SearchProvider config={getSwiftypeConfig(locale)}>
+      <SearchProvider config={swiftypeConfig}>
         <WithSearch
           mapContextToProps={({
             isLoading,
@@ -223,7 +212,6 @@ const InputView = ({ getAutocomplete, getInputProps }) => {
 
 SwiftypeSearch.propTypes = {
   className: PropTypes.string,
-  locale: PropTypes.object,
 };
 
 InputView.propTypes = {

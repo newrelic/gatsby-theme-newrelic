@@ -82,8 +82,6 @@ const GlobalHeader = ({ className }) => {
 
   const locale = useLocale();
 
-  console.log(locale.locale);
-
   return (
     <>
       <AnnouncementBanner />
@@ -127,7 +125,6 @@ const GlobalHeader = ({ className }) => {
                 margin: 3rem auto;
                 height: calc(100vh - 6rem);
               `}
-              locale={locale}
             />
           </Overlay>
           <nav
