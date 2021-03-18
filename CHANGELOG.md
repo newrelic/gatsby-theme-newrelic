@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.36.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.36.0...v1.36.1) (2021-03-18)
+
+
+### Bug Fixes
+
+* **Collapser:** Show a link icon to make it easier to deep link to the collapser ([650fc0e](https://github.com/newrelic/gatsby-theme-newrelic/commit/650fc0e0ac073c9120272ba1c56eef05071c213e))
+* Add fe-link-2 icon ([9b0a4a6](https://github.com/newrelic/gatsby-theme-newrelic/commit/9b0a4a62ae8cb253a4e7962cbef529b9d3a2348f))
+* Add optional issueLabels prop to global footer ([faaf00d](https://github.com/newrelic/gatsby-theme-newrelic/commit/faaf00dc06f7819fd0aaae226a05fdf7411df2cb))
+
+
+
+
+
 # [1.36.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.35.2...v1.36.0) (2021-03-11)
 
 
