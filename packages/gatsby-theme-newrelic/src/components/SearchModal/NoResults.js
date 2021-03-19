@@ -6,7 +6,6 @@ const NoResults = () => (
   <div
     css={css`
       display: flex;
-      border-top: 1px solid var(--border-color);
       padding: 1rem var(--horizontal-spacing);
       background: var(--color-neutrals-100);
       grid-column: span 2;
