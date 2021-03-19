@@ -16,6 +16,7 @@ import { rgba } from 'polished';
 import Link from './Link';
 import usePrevious from '../hooks/usePrevious';
 import search from './SearchModal/search';
+import { useStaticQuery, graphql } from 'gatsby';
 
 const defaultFilters = [
   { name: 'docs', isSelected: false },
@@ -34,6 +35,7 @@ const SearchModal = ({ onClose, isOpen }) => {
     searchTerm,
     filters,
   });
+  const selectedRef = useRef();
 
   const transitions = useTransition(isOpen, null, {
     config: { tension: 220, friction: 22 },
@@ -44,6 +46,20 @@ const SearchModal = ({ onClose, isOpen }) => {
     enter: { opacity: 1, transform: 'scale(1)' },
     leave: { opacity: 0, transform: 'scale(0.96)' },
   });
+
+  const {
+    site: {
+      siteMetadata: { siteUrl },
+    },
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
+    }
+  `);
 
   useScrollFreeze(isOpen);
   useKeyPress('Escape', onClose, { ignoreTextInput: false });
@@ -57,6 +73,19 @@ const SearchModal = ({ onClose, isOpen }) => {
 
       if (e.key === 'ArrowDown' && selectedIndex < results.length - 1) {
         setSelectedIndex(selectedIndex + 1);
+      }
+    },
+    { ignoreTextInput: false }
+  );
+
+  useKeyPress(
+    'Enter',
+    () => {
+      if (selectedRef.current) {
+        selectedRef.current.click();
+        if (results[selectedIndex].url.startsWith(siteUrl)) {
+          onClose();
+        }
       }
     },
     { ignoreTextInput: false }
@@ -222,6 +251,9 @@ const SearchModal = ({ onClose, isOpen }) => {
                         return (
                           <Result
                             selected={resultIndex === selectedIndex}
+                            ref={
+                              resultIndex === selectedIndex ? selectedRef : null
+                            }
                             key={result.id}
                             result={result}
                             onSelect={() => setSelectedIndex(resultIndex)}

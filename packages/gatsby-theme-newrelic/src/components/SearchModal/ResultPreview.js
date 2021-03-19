@@ -68,9 +68,10 @@ const ResultPreview = ({ result }) => {
                 On This Page
               </h5>
               <div>
-                {result.sections.map((section) => {
+                {result.sections.map((section, index) => {
                   return (
                     <p
+                      key={index}
                       css={css`
                         font-size: 0.75rem;
                         &:not(:last-child) {

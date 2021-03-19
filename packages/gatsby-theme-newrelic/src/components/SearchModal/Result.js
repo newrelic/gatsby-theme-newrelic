@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from '../Icon';
 import Link from '../Link';
+import Tag from '../Tag';
 
-const Result = ({ result, selected, onSelect }) => {
+const Result = forwardRef(({ result, selected, onSelect }, ref) => {
   return (
     <Link
       to={result.url}
+      ref={ref}
       role="option"
       aria-selected={selected}
       tabIndex={-1}
@@ -52,14 +54,24 @@ const Result = ({ result, selected, onSelect }) => {
           `}
           dangerouslySetInnerHTML={{ __html: result.highlight.title }}
         />
-        <p
+        <Tag
           css={css`
-            color: var(--accent-text-color);
-            font-size: 0.75rem;
+            font-size: 0.625rem;
           `}
+          uppercase
         >
-          {result.breadcrumb}
-        </p>
+          {result.type}
+        </Tag>
+        {result.breadcrumb && (
+          <p
+            css={css`
+              color: var(--accent-text-color);
+              font-size: 0.75rem;
+            `}
+          >
+            {result.breadcrumb}
+          </p>
+        )}
       </div>
       <Icon
         name="fe-corner-down-left"
@@ -72,7 +84,7 @@ const Result = ({ result, selected, onSelect }) => {
       />
     </Link>
   );
-};
+});
 
 Result.propTypes = {
   result: PropTypes.object.isRequired,
