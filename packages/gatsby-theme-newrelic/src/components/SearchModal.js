@@ -3,18 +3,19 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import Icon from './Icon';
 import Input from './SearchModal/Input';
+import Key from './SearchModal/Key';
 import Portal from './Portal';
 import Result from './SearchModal/Result';
 import ResultPreview from './SearchModal/ResultPreview';
+import ScrollContainer from './SearchModal/ScrollContainer';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import { useQueryClient } from 'react-query';
-import { useDebounce, useIntersection } from 'react-use';
+import { useDebounce } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import { animated, useTransition } from 'react-spring';
 import { rgba } from 'polished';
 import Link from './Link';
-import usePrevious from '../hooks/usePrevious';
 import useSearch from './SearchModal/useSearch';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -372,69 +373,6 @@ const SearchModal = ({ onClose, isOpen }) => {
         </Portal>
       )
   );
-};
-
-const Key = ({ className, children }) => (
-  <span
-    className={className}
-    css={css`
-      display: inline-flex;
-      border-radius: 0.25rem;
-      padding: 0.25rem;
-      margin-right: 0.5rem;
-      background: var(--color-neutrals-300);
-
-      .dark-mode & {
-        background: var(--color-dark-400);
-      }
-    `}
-  >
-    {children}
-  </span>
-);
-
-Key.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-};
-
-const ScrollContainer = ({ children, onIntersection }) => {
-  const intersectionRef = useRef();
-  const root = useRef();
-  const intersection = useIntersection(intersectionRef, {
-    root: root.current,
-    rootMargin: '0px 0px 200px 0px',
-    threshold: 1,
-  });
-
-  const isIntersecting = intersection?.isIntersecting;
-  const wasIntersecting = usePrevious(isIntersecting);
-
-  useEffect(() => {
-    if (isIntersecting && !wasIntersecting) {
-      onIntersection();
-    }
-  }, [wasIntersecting, isIntersecting, onIntersection]);
-
-  return (
-    <div
-      ref={root}
-      css={css`
-        border-right: 1px solid var(--border-color);
-        height: calc(100vh - 6 * var(--site-content-padding));
-        max-width: 512px;
-        overflow: scroll;
-      `}
-    >
-      {children}
-      <div ref={intersectionRef} />
-    </div>
-  );
-};
-
-ScrollContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-  onIntersection: PropTypes.func.isRequired,
 };
 
 SearchModal.propTypes = {
