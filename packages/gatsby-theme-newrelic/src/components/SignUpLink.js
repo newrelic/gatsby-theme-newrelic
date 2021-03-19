@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import useTessen from '../hooks/useTessen';
 import useLocale from '../hooks/useLocale';
@@ -21,45 +21,48 @@ const formatHref = (href, { utmSource, locale }) => {
   return url.href;
 };
 
-const SignUpLink = ({ href, onClick, instrumentation, ...props }) => {
-  const tessen = useTessen();
-  const location = useLocation();
-  const locale = useLocale();
+const SignUpLink = forwardRef(
+  ({ href, onClick, instrumentation, ...props }, ref) => {
+    const tessen = useTessen();
+    const location = useLocation();
+    const locale = useLocale();
 
-  const {
-    site: {
-      siteMetadata: { utmSource },
-    },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          utmSource
+    const {
+      site: {
+        siteMetadata: { utmSource },
+      },
+    } = useStaticQuery(graphql`
+      query {
+        site {
+          siteMetadata {
+            utmSource
+          }
         }
       }
-    }
-  `);
+    `);
 
-  return (
-    <a
-      {...props}
-      href={formatHref(href, { utmSource, locale })}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={(e) => {
-        if (onClick) {
-          onClick(e);
-        }
+    return (
+      <a
+        {...props}
+        ref={ref}
+        href={formatHref(href, { utmSource, locale })}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={(e) => {
+          if (onClick) {
+            onClick(e);
+          }
 
-        tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
-          href,
-          path: location.pathname,
-          component: instrumentation?.component,
-        });
-      }}
-    />
-  );
-};
+          tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
+            href,
+            path: location.pathname,
+            component: instrumentation?.component,
+          });
+        }}
+      />
+    );
+  }
+);
 
 SignUpLink.propTypes = {
   href: PropTypes.string.isRequired,
