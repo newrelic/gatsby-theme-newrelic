@@ -7,7 +7,7 @@ import Portal from './Portal';
 import Result from './SearchModal/Result';
 import ResultPreview from './SearchModal/ResultPreview';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import { useInfiniteQuery, useQueryClient } from 'react-query';
+import { useQueryClient } from 'react-query';
 import { useDebounce, useIntersection } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useScrollFreeze from '../hooks/useScrollFreeze';
@@ -15,7 +15,7 @@ import { animated, useTransition } from 'react-spring';
 import { rgba } from 'polished';
 import Link from './Link';
 import usePrevious from '../hooks/usePrevious';
-import search from './SearchModal/search';
+import useSearch from './SearchModal/useSearch';
 import { useStaticQuery, graphql } from 'gatsby';
 
 const defaultFilters = [
@@ -396,58 +396,6 @@ const Key = ({ className, children }) => (
 Key.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-};
-
-const useSearch = ({ searchTerm, filters }) => {
-  const queryClient = useQueryClient();
-
-  // prevents fetching unless there is a search term
-  if (searchTerm === '') {
-    queryClient.clear();
-  }
-
-  const { isLoading, data = {}, isSuccess, fetchNextPage } = useInfiniteQuery(
-    'swiftype',
-    ({ pageParam = 1 }) => search({ searchTerm, filters, page: pageParam }),
-    {
-      getNextPageParam: (lastPage) => {
-        if (!lastPage) {
-          return;
-        }
-
-        const { page } = lastPage.info;
-        const nextPage = page.current_page + 1;
-
-        return nextPage < page.num_pages ? nextPage : undefined;
-      },
-    }
-  );
-
-  const refetch = useCallback(() => {
-    queryClient.setQueryData('swiftype', () => ({
-      pages: [],
-      pageParam: 1,
-    }));
-
-    fetchNextPage({ pageParam: 1 });
-  }, [queryClient, fetchNextPage]);
-
-  useDebounce(
-    () => {
-      if (searchTerm) {
-        refetch();
-      }
-    },
-    200,
-    [searchTerm, refetch]
-  );
-
-  useEffect(() => refetch(), [refetch]);
-
-  const { pages } = data;
-  const results = pages?.flatMap((page) => page.records.page) ?? [];
-
-  return { isLoading, isSuccess, results, fetchNextPage };
 };
 
 const ScrollContainer = ({ children, onIntersection }) => {
