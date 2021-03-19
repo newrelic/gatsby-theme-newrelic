@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SiteSearchAPIConnector from '@elastic/search-ui-site-search-connector';
 import {
   SearchProvider,
@@ -52,10 +52,11 @@ const swiftypeConfig = {
   },
 };
 
-const SwiftypeSearch = ({ className, locales }) => {
+const SwiftypeSearch = ({ className }) => {
   const { setQueryParam } = useQueryParams();
   const { t } = useThemeTranslation();
   const locale = useLocale();
+
   const setFilters = (state, locale) => {
     const typeValues = locale.isDefault
       ? ['docs', 'developer', 'opensource']
