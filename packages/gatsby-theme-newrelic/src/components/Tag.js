@@ -36,14 +36,22 @@ const Tag = styled.span`
         }
       }
     `}
+  ${(props) =>
+    props.uppercase &&
+    css`
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    `}
 `;
 
 Tag.propTypes = {
   interactive: PropTypes.bool,
+  uppercase: PropTypes.bool,
 };
 
 Tag.defaultProps = {
   interactive: false,
+  uppercase: false,
 };
 
 export default Tag;
