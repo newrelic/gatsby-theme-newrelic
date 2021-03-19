@@ -1,4 +1,4 @@
-import getLocale from '../src/utils/getLocale';
+import getLocale from './utils/getLocale';
 
 const onClientEntry = (_, themeOptions) => {
   if (window.newrelic) {

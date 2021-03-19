@@ -68,7 +68,7 @@ const GlobalHeader = ({ className }) => {
       allLocale(sort: { fields: [isDefault, locale], order: [DESC, ASC] }) {
         nodes {
           locale
-          name
+          localName
           isDefault
         }
       }
@@ -216,28 +216,16 @@ const GlobalHeader = ({ className }) => {
                 <Icon name="logo-newrelic" size="1.125rem" />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.MenuItem
-                  key={locale}
-                  href="https://docs.newrelic.com/"
-                >
+                <Dropdown.MenuItem href="https://docs.newrelic.com/">
                   Docs
                 </Dropdown.MenuItem>
-                <Dropdown.MenuItem
-                  key={locale}
-                  href="https://developer.newrelic.com/"
-                >
+                <Dropdown.MenuItem href="https://developer.newrelic.com/">
                   Developer
                 </Dropdown.MenuItem>
-                <Dropdown.MenuItem
-                  key={locale}
-                  href="https://opensource.newrelic.com/"
-                >
+                <Dropdown.MenuItem href="https://opensource.newrelic.com/">
                   Open Source
                 </Dropdown.MenuItem>
-                <Dropdown.MenuItem
-                  key={locale}
-                  href="https://discuss.newrelic.com/"
-                >
+                <Dropdown.MenuItem href="https://discuss.newrelic.com/">
                   Community
                 </Dropdown.MenuItem>
               </Dropdown.Menu>
@@ -366,20 +354,19 @@ const GlobalHeader = ({ className }) => {
                     size={Button.SIZE.EXTRA_SMALL}
                     variant={Button.VARIANT.LINK}
                   >
-                    {locale.name}
+                    {locale.localName}
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    {locales.map(({ locale, name, isDefault }) => (
+                    {locales.map(({ isDefault, locale, localName }) => (
                       <Dropdown.MenuItem
                         as={Link}
                         key={locale}
                         href={path.join(
-                          '/',
-                          isDefault ? '' : locale,
+                          isDefault ? '' : `/${locale}`,
                           location.pathname.replace(matchLocalePath, '')
                         )}
                       >
-                        {name}
+                        {localName}
                       </Dropdown.MenuItem>
                     ))}
                   </Dropdown.Menu>

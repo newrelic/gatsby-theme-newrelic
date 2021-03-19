@@ -169,7 +169,7 @@ module.exports = {
         },
         i18n: {
           translationsPath: `${__dirname}/src/i18n/translations`,
-          additionalLocales: [{ name: '日本語', locale: 'jp' }],
+          additionalLocales: ['jp'],
         }
         robots: {
           policy: [{ userAgent: '*', allow: '/' }],
@@ -387,9 +387,11 @@ const defaultResolveEnv = () =>
 
 Optional configuration for internationalization (i18n).
 
-- `additionalLocales`: Can be supplied to add support for languages other than English (the default language). Each locale needs a `name` (used for display in the UI) and a `locale` (used by Gatsby and display in the UI on smaller screens).
+- `additionalLocales`: Additional supported for languages other than English
+  (the default language). Currently supports `jp`.
 - `translationsPath`: The directory path where the translations will be stored.
-- `i18nextOptions`: Additional options to pass into [`i18next`](https://www.i18next.com/) that will override the defaults.
+- `i18nextOptions`: Additional options to pass into
+  [`i18next`](https://www.i18next.com/) that will override the defaults.
 
 These values are used to generate locale-specific pages and to populate a dropdown in the `<GlobalHeader />` component.
 
@@ -398,10 +400,7 @@ These values are used to generate locale-specific pages and to populate a dropdo
 ```js
 {
   i18n: {
-    additionalLocales: [
-      { name: '日本語', locale: 'jp' },
-      { name: 'Korean', locale: 'ko' },
-    ];
+    additionalLocales: ['jp'];
   }
 }
 ```

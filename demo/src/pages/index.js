@@ -143,7 +143,7 @@ const IndexPage = () => {
         <section>
           <h2>Collapsers</h2>
           <CollapserGroup>
-            <Collapser title="Check out this cool collapser">
+            <Collapser id="example-1" title="Check out this cool collapser">
               This is a pretty neat little utility. I can show all kinds of
               stuff in here.
             </Collapser>

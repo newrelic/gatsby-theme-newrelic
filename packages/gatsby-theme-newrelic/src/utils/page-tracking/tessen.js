@@ -3,6 +3,8 @@ import warning from 'warning';
 import { getResolvedEnv, getTessenConfig } from '../config';
 import { canTrack } from '../tracking';
 
+let initialized = false;
+
 const warnAboutNoop = (pageView) => {
   warning(
     pageView,
@@ -31,6 +33,10 @@ const trackViaTessen = ({ location }, themeOptions) => {
     env,
     location,
   });
+
+  if (!canTrack()) {
+    return;
+  }
 
   window.initializeTessenTracking();
 
@@ -66,7 +72,8 @@ const trackPageView = ({ config, env, location }) => {
 const initializeTessenTracking = ({ config, env, location }) => (
   options = {}
 ) => {
-  if (canTrack()) {
+  if (canTrack() && !initialized) {
+    initialized = true;
     const { segmentWriteKey } = config;
     window.Tessen.load(['Segment', 'NewRelic'], {
       Segment: {

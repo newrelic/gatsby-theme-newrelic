@@ -19,13 +19,14 @@ import useQueryParams from '../hooks/useQueryParams';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useInstrumentedData from '../hooks/useInstrumentedData';
 import usePrevious from '../hooks/usePrevious';
+import useLocale from '../hooks/useLocale';
 
 const connector = new SiteSearchAPIConnector({
   documentType: 'page',
   engineKey: 'Ad9HfGjDw4GRkcmJjUut',
 });
 
-const configOptions = {
+const swiftypeConfig = {
   apiConnector: connector,
   searchQuery: {
     result_fields: {
@@ -45,18 +46,6 @@ const configOptions = {
         raw: {},
       },
     },
-    filters: [
-      {
-        field: 'type',
-        values: ['docs', 'developer', 'opensource'],
-        type: 'any',
-      },
-      {
-        field: 'document_type',
-        values: ['!views_page_menu'],
-        type: 'any',
-      },
-    ],
   },
   initialState: {
     resultsPerPage: 10,
@@ -66,10 +55,38 @@ const configOptions = {
 const SwiftypeSearch = ({ className }) => {
   const { setQueryParam } = useQueryParams();
   const { t } = useThemeTranslation();
+  const locale = useLocale();
+
+  const setFilters = (state, locale) => {
+    const typeValues = locale.isDefault
+      ? ['docs', 'developer', 'opensource']
+      : [
+          `docs-${locale.locale}`,
+          `developer-${locale.locale}`,
+          `opensource-${locale.locale}`,
+        ];
+    state.filters = [
+      {
+        field: 'type',
+        values: typeValues,
+        type: 'any',
+      },
+      {
+        field: 'document_type',
+        values: ['!views_page_menu', '!views_page_content'],
+        type: 'any',
+      },
+    ];
+    return state;
+  };
+  swiftypeConfig.onSearch = (state, queryConfig, next) => {
+    const updatedState = setFilters(state, locale);
+    return next(updatedState, queryConfig);
+  };
 
   return (
     <div css={styles} className={className}>
-      <SearchProvider config={configOptions}>
+      <SearchProvider config={swiftypeConfig}>
         <WithSearch
           mapContextToProps={({
             isLoading,

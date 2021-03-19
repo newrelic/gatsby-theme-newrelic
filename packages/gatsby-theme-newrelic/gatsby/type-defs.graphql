@@ -18,9 +18,11 @@ type SiteSiteMetadata {
   titleTemplate: String
 }
 
-type Locale implements Node {
+type Locale implements Node @dontInfer {
   name: String!
+  localName: String!
   locale: String!
+  hrefLang: String!
   isDefault: Boolean!
 }
 

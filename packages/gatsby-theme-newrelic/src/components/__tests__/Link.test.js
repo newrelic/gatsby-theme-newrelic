@@ -88,8 +88,8 @@ test('localizes the link when the current locale is not the default', () => {
   useStaticData({
     allLocale: {
       nodes: [
-        { locale: 'en', isDefault: true, localizedPath: '' },
-        { locale: 'jp', isDefault: false, localizedPath: 'jp' },
+        { locale: 'en', isDefault: true },
+        { locale: 'jp', isDefault: false },
       ],
     },
   });
@@ -149,8 +149,8 @@ test('localizes the sign up link', () => {
   useStaticData({
     allLocale: {
       nodes: [
-        { locale: 'en', isDefault: true, localizedPath: '' },
-        { locale: 'jp', isDefault: false, localizedPath: 'jp' },
+        { locale: 'en', isDefault: true },
+        { locale: 'jp', isDefault: false },
       ],
     },
     site: {
@@ -193,8 +193,8 @@ describe('when forceTrailingSlashes is enabled', () => {
     useStaticData({
       allLocale: {
         nodes: [
-          { locale: 'en', isDefault: true, localizedPath: '' },
-          { locale: 'jp', isDefault: false, localizedPath: 'jp' },
+          { locale: 'en', isDefault: true },
+          { locale: 'jp', isDefault: false },
         ],
       },
       newRelicThemeConfig: {
@@ -297,5 +297,22 @@ describe('when forceTrailingSlashes is enabled', () => {
     expect(link1).toHaveAttribute('href', '/test/path/');
     expect(link2).toHaveAttribute('href', '/test/path/#example');
     expect(link3).toHaveAttribute('href', '/test/path/?test=true');
+  });
+
+  test('does not append trailing slash to links with extension', () => {
+    useStaticData({
+      newRelicThemeConfig: {
+        forceTrailingSlashes: true,
+      },
+    });
+
+    renderWithProviders(<Link to="/test/path.xml">XML</Link>);
+    renderWithProviders(<Link to="/test/path.json">JSON</Link>);
+
+    const xmlLink = screen.getByText('XML');
+    const jsonLink = screen.getByText('JSON');
+
+    expect(xmlLink).toHaveAttribute('href', '/test/path.xml');
+    expect(jsonLink).toHaveAttribute('href', '/test/path.json');
   });
 });

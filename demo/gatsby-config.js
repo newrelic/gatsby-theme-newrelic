@@ -22,7 +22,7 @@ module.exports = {
         forceTrailingSlashes: true,
         i18n: {
           translationsPath: `${__dirname}/src/i18n/translations`,
-          additionalLocales: [{ name: '日本語', locale: 'jp' }],
+          additionalLocales: ['jp'],
         },
         layout: {
           component: require.resolve('./src/layouts'),

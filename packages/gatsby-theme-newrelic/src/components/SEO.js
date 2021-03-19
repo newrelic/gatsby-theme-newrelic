@@ -21,42 +21,60 @@ const SEO = ({ title, location, children }) => {
       allLocale {
         nodes {
           locale
-          localizedPath
+          hrefLang
           isDefault
         }
       }
     }
   `);
 
-  const currentLocale = useLocale();
-
+  const locale = useLocale();
   const defaultLocale = locales.find(({ isDefault }) => isDefault);
-
   const { defaultTitle, titleTemplate, siteUrl } = siteMetadata;
-
   const template = title ? titleTemplate : '%s';
 
   const subPath =
-    currentLocale.locale === defaultLocale.locale
+    locale.locale === defaultLocale.locale
       ? location.pathname
-      : location.pathname.replace(
-          new RegExp(`\\/${currentLocale.locale}`),
-          '/'
-        );
+      : location.pathname.replace(new RegExp(`^\\/${locale.locale}`), '/');
+
+  const getSwiftypeSiteType = () => {
+    const hostname = new URL(siteUrl).hostname;
+    const nrSubDomain = /.*\.newrelic\.com/.test(hostname)
+      ? hostname.split('.')[0]
+      : null;
+    const localeString = locale.isDefault ? '' : `-${locale.locale}`;
+    return nrSubDomain ? nrSubDomain.concat(localeString) : null;
+  };
 
   return (
     <Helmet titleTemplate={template}>
+      <html lang={locale.hrefLang} />
       <title>{title || defaultTitle}</title>
-      {locales.map(({ locale, localizedPath }, i) => {
+      <link rel="canonical" href={new URL(location.pathname, siteUrl).href} />
+      {locales.map(({ hrefLang, isDefault, locale }) => {
+        const url = new URL(
+          path.join(isDefault ? '/' : locale, subPath),
+          siteUrl
+        );
+
         return (
           <link
-            key={i}
+            key={locale}
             rel="alternate"
-            href={path.join(siteUrl, localizedPath, subPath)}
-            hrefLang={locale}
+            href={url.href}
+            hrefLang={hrefLang}
           />
         );
       })}
+      {getSwiftypeSiteType() && (
+        <meta
+          className="swiftype"
+          name="type"
+          data-type="enum"
+          content={getSwiftypeSiteType()}
+        />
+      )}
       {children}
     </Helmet>
   );
