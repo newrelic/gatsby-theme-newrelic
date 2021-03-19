@@ -1,9 +1,8 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import Icon from './Icon';
+import Footer from './SearchModal/Footer';
 import Input from './SearchModal/Input';
-import Key from './SearchModal/Key';
 import NoResults from './SearchModal/NoResults';
 import Portal from './Portal';
 import Result from './SearchModal/Result';
@@ -16,7 +15,6 @@ import useKeyPress from '../hooks/useKeyPress';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import { animated, useTransition } from 'react-spring';
 import { rgba } from 'polished';
-import Link from './Link';
 import useSearch from './SearchModal/useSearch';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -264,63 +262,7 @@ const SearchModal = ({ onClose, isOpen }) => {
                       })}
                     </ScrollContainer>
                     <ResultPreview result={selectedResult} />
-                    <div
-                      css={css`
-                        font-size: 0.75rem;
-                        display: flex;
-                        border-top: 1px solid var(--border-color);
-                        padding: 1rem var(--horizontal-spacing);
-                        background: var(--color-neutrals-100);
-                        grid-column: span 2;
-
-                        .dark-mode & {
-                          background: var(--color-dark-100);
-                          color: var(--color-dark-700);
-                        }
-                      `}
-                    >
-                      <div
-                        css={css`
-                          display: flex;
-                          align-items: center;
-                          margin-right: 1rem;
-                        `}
-                      >
-                        <Key>
-                          <Icon name="fe-corner-down-left" />
-                        </Key>
-                        Select
-                      </div>
-                      <div
-                        css={css`
-                          display: flex;
-                          align-items: center;
-                          margin-right: 1rem;
-                        `}
-                      >
-                        <Key>
-                          <Icon name="fe-arrow-up" />
-                          <Icon name="fe-arrow-down" />
-                        </Key>
-                        Navigate
-                      </div>
-                      <div
-                        css={css`
-                          display: flex;
-                          align-items: center;
-                        `}
-                      >
-                        <Key
-                          css={css`
-                            line-height: 1;
-                            font-family: var(--code-font);
-                          `}
-                        >
-                          esc
-                        </Key>
-                        Close
-                      </div>
-                    </div>
+                    <Footer />
                   </>
                 )}
                 {searchTerm && results.length === 0 && isSuccess && (
