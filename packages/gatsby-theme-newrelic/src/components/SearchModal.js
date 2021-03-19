@@ -224,51 +224,53 @@ const SearchModal = ({ onClose, isOpen }) => {
                 }
               />
 
-              <div
-                css={css`
-                  display: grid;
-                  grid-template-columns: 1fr 1fr;
-                  flex-grow: 1;
-                  background-color: white;
-                  border-bottom-left-radius: 0.25rem;
-                  border-bottom-right-radius: 0.25rem;
-                  box-shadow: var(--shadow-6);
-                  border: 1px solid var(--border-color);
-                  border-top: none;
-                  overflow: hidden;
+              {searchTerm && (
+                <div
+                  css={css`
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    flex-grow: 1;
+                    background-color: white;
+                    border-bottom-left-radius: 0.25rem;
+                    border-bottom-right-radius: 0.25rem;
+                    box-shadow: var(--shadow-6);
+                    border: 1px solid var(--border-color);
+                    border-top: none;
+                    overflow: hidden;
 
-                  .dark-mode & {
-                    background: var(--color-dark-050);
-                  }
-                `}
-              >
-                {searchTerm && Boolean(results?.length) && (
-                  <>
-                    <ScrollContainer onIntersection={onIntersection}>
-                      {results.map((result) => {
-                        const resultIndex = results.indexOf(result);
+                    .dark-mode & {
+                      background: var(--color-dark-050);
+                    }
+                  `}
+                >
+                  {Boolean(results?.length) && (
+                    <>
+                      <ScrollContainer onIntersection={onIntersection}>
+                        {results.map((result) => {
+                          const resultIndex = results.indexOf(result);
 
-                        return (
-                          <Result
-                            selected={resultIndex === selectedIndex}
-                            ref={
-                              resultIndex === selectedIndex ? selectedRef : null
-                            }
-                            key={result.id}
-                            result={result}
-                            onSelect={() => setSelectedIndex(resultIndex)}
-                          />
-                        );
-                      })}
-                    </ScrollContainer>
-                    <ResultPreview result={selectedResult} />
-                    <Footer />
-                  </>
-                )}
-                {searchTerm && results.length === 0 && isSuccess && (
-                  <NoResults />
-                )}
-              </div>
+                          return (
+                            <Result
+                              selected={resultIndex === selectedIndex}
+                              ref={
+                                resultIndex === selectedIndex
+                                  ? selectedRef
+                                  : null
+                              }
+                              key={result.id}
+                              result={result}
+                              onSelect={() => setSelectedIndex(resultIndex)}
+                            />
+                          );
+                        })}
+                      </ScrollContainer>
+                      <ResultPreview result={selectedResult} />
+                      <Footer />
+                    </>
+                  )}
+                  {results.length === 0 && isSuccess && <NoResults />}
+                </div>
+              )}
             </animated.div>
           </animated.div>
         </Portal>
