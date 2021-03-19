@@ -46,10 +46,28 @@ const swiftypeConfig = {
         raw: {},
       },
     },
-    filters: [
+  },
+  initialState: {
+    resultsPerPage: 10,
+  },
+};
+
+const SwiftypeSearch = ({ className, locales }) => {
+  const { setQueryParam } = useQueryParams();
+  const { t } = useThemeTranslation();
+  const locale = useLocale();
+  const setFilters = (state, locale) => {
+    const typeValues = locale.isDefault
+      ? ['docs', 'developer', 'opensource']
+      : [
+          `docs-${locale.locale}`,
+          `developer-${locale.locale}`,
+          `opensource-${locale.locale}`,
+        ];
+    state.filters = [
       {
         field: 'type',
-        values: defaultSwiftypeFilters,
+        values: typeValues,
         type: 'any',
       },
       {
@@ -57,51 +75,13 @@ const swiftypeConfig = {
         values: ['!views_page_menu', '!views_page_content'],
         type: 'any',
       },
-    ],
-  },
-  initialState: {
-    resultsPerPage: 10,
-  },
-};
-
-const defaultSwiftypeFilters = [
-  {
-    field: 'type',
-    values: ['docs', 'developer', 'opensource'],
-    type: 'any',
-  },
-  {
-    field: 'document_type',
-    values: ['!views_page_menu', '!views_page_content'],
-    type: 'any',
-  },
-];
-
-const SwiftypeSearch = ({ className }) => {
-  const { setQueryParam } = useQueryParams();
-  const { t } = useThemeTranslation();
-  const locale = useLocale();
-  const localizedSwiftypeFilters = [
-    {
-      field: 'type',
-      values: [
-        `docs-${locale.locale}`,
-        `developer-${locale.locale}`,
-        `opensource-${locale.locale}`,
-      ],
-      type: 'any',
-    },
-    {
-      field: 'document_type',
-      values: ['!views_page_menu', '!views_page_content'],
-      type: 'any',
-    },
-  ];
-  useEffect(() => {
-    swiftypeConfig.searchQuery.filters = locale.isDefault
-      ? defaultSwiftypeFilters
-      : localizedSwiftypeFilters;
-  });
+    ];
+    return state;
+  };
+  swiftypeConfig.onSearch = (state, queryConfig, next) => {
+    const updatedState = setFilters(state, locale);
+    return next(updatedState, queryConfig);
+  };
 
   return (
     <div css={styles} className={className}>
