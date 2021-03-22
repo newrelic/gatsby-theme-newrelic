@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.37.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.36.1...v1.37.0) (2021-03-22)
+
+
+### Features
+
+* **search:** only search for pages in current locale's language ([824b4ae](https://github.com/newrelic/gatsby-theme-newrelic/commit/824b4ae123f6c0ec1a41b059ddf0ca2ae3438a4d))
+* **search:** support searching docs jp content ([d975db6](https://github.com/newrelic/gatsby-theme-newrelic/commit/d975db6638147b9c0769efaf96545f66d7fc0722))
+
+
+
+
+
 ## [1.36.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.36.0...v1.36.1) (2021-03-18)
 
 
