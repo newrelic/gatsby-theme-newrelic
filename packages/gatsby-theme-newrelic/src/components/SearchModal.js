@@ -24,15 +24,14 @@ const defaultFilters = [
   { name: 'opensource', isSelected: false },
 ];
 
-const SearchModal = ({ onClose, isOpen }) => {
+const SearchModal = ({ onClose, isOpen, onChange, value }) => {
   const { t } = useThemeTranslation();
   const queryClient = useQueryClient();
   const searchInput = useRef();
-  const [searchTerm, setSearchTerm] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [filters, setFilters] = useState(defaultFilters);
   const { isLoading, results, isSuccess, fetchNextPage } = useSearch({
-    searchTerm,
+    searchTerm: value,
     filters,
   });
   const selectedRef = useRef();
@@ -97,7 +96,7 @@ const SearchModal = ({ onClose, isOpen }) => {
 
   useEffect(() => {
     setSelectedIndex(0);
-  }, [searchTerm]);
+  }, [value]);
 
   const onIntersection = useCallback(() => {
     fetchNextPage();
@@ -105,7 +104,7 @@ const SearchModal = ({ onClose, isOpen }) => {
 
   useDebounce(
     () => {
-      if (searchTerm) {
+      if (value) {
         queryClient.setQueryData('swiftype', () => ({
           pages: [],
           pageParam: 1,
@@ -115,7 +114,7 @@ const SearchModal = ({ onClose, isOpen }) => {
       }
     },
     200,
-    [searchTerm, fetchNextPage]
+    [value, fetchNextPage]
   );
 
   useEffect(() => {
@@ -205,16 +204,16 @@ const SearchModal = ({ onClose, isOpen }) => {
                 placeholder={t('searchInput.placeholder')}
                 ref={searchInput}
                 onChange={(e) => {
-                  setSearchTerm(e.target.value);
+                  onChange(e.target.value);
                 }}
                 onFilter={onFilter}
-                value={searchTerm}
-                onClear={() => setSearchTerm('')}
+                value={value}
+                onClear={() => onChange('')}
                 onCancel={onClose}
                 loading={isLoading}
                 filters={filters}
                 css={
-                  searchTerm &&
+                  value &&
                   css`
                     input {
                       border-bottom-left-radius: 0;
@@ -224,7 +223,7 @@ const SearchModal = ({ onClose, isOpen }) => {
                 }
               />
 
-              {searchTerm && (
+              {value && (
                 <div
                   css={css`
                     display: grid;
@@ -279,7 +278,9 @@ const SearchModal = ({ onClose, isOpen }) => {
 };
 
 SearchModal.propTypes = {
+  value: PropTypes.string,
   onClose: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { graphql, useStaticQuery, navigate, Link } from 'gatsby';
@@ -22,6 +22,7 @@ import path from 'path';
 import { rgba } from 'polished';
 import SearchModal from './SearchModal';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { useDebounce } from 'react-use';
 
 const action = css`
   color: var(--secondary-text-color);
@@ -48,11 +49,34 @@ const actionIcon = css`
 
 const queryClient = new QueryClient();
 
+const useSearchQuery = () => {
+  const { queryParams, setQueryParam } = useQueryParams();
+  const searchQueryParam = queryParams.get('q');
+  const [searchTerm, setSearchTerm] = useState(searchQueryParam);
+  const hasQParam = queryParams.has('q');
+
+  useDebounce(
+    () => {
+      if (hasQParam) {
+        setQueryParam('q', searchTerm);
+      }
+    },
+    200,
+    [searchTerm, setQueryParam, hasQParam]
+  );
+
+  useEffect(() => {
+    setSearchTerm(searchQueryParam);
+  }, [searchQueryParam]);
+
+  return [searchTerm, setSearchTerm];
+};
+
 const GlobalHeader = ({ className }) => {
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
   const [searchQuery, setSearchQuery] = useState('');
-  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useSearchQuery();
   const { t } = useThemeTranslation();
 
   const {
@@ -91,9 +115,10 @@ const GlobalHeader = ({ className }) => {
     <>
       <QueryClientProvider client={queryClient}>
         <SearchModal
+          value={searchTerm}
+          onChange={(searchTerm) => setSearchTerm(searchTerm)}
           onClose={() => {
             deleteQueryParam('q');
-            // setIsSearchModalOpen(false);
           }}
           isOpen={queryParams.has('q')}
         />
@@ -346,7 +371,7 @@ const GlobalHeader = ({ className }) => {
                   }
                 `}
                 onFocus={() => {
-                  setIsSearchModalOpen(true);
+                  setQueryParam('q', '');
                 }}
               />
             </li>
