@@ -50,7 +50,7 @@ const queryClient = new QueryClient();
 
 const GlobalHeader = ({ className }) => {
   const location = useLocation();
-  const { queryParams, setQueryParam } = useQueryParams();
+  const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const { t } = useThemeTranslation();
@@ -91,8 +91,11 @@ const GlobalHeader = ({ className }) => {
     <>
       <QueryClientProvider client={queryClient}>
         <SearchModal
-          onClose={() => setIsSearchModalOpen(false)}
-          isOpen={isSearchModalOpen}
+          onClose={() => {
+            deleteQueryParam('q');
+            // setIsSearchModalOpen(false);
+          }}
+          isOpen={queryParams.has('q')}
         />
       </QueryClientProvider>
       <AnnouncementBanner />
@@ -120,7 +123,7 @@ const GlobalHeader = ({ className }) => {
             padding: 0 var(--site-content-padding);
           `}
         >
-          <Overlay
+          {/* <Overlay
             isOpen={queryParams.has('q')}
             onCloseOverlay={() => {
               navigate(location.pathname);
@@ -137,7 +140,7 @@ const GlobalHeader = ({ className }) => {
                 height: calc(100vh - 6rem);
               `}
             />
-          </Overlay>
+          </Overlay>*/}
           <nav
             css={css`
               display: flex;
