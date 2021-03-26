@@ -6,6 +6,9 @@ import { getI18nConfig } from '../src/utils/config';
 import { I18nextProvider } from 'react-i18next';
 import LocaleProvider from '../src/components/LocaleProvider';
 import getLocale from './utils/getLocale';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 const wrapPageElement = ({ element, props }, themeOptions) => {
   const { layout } = themeOptions;
@@ -24,8 +27,10 @@ const wrapPageElement = ({ element, props }, themeOptions) => {
   return (
     <I18nextProvider i18n={i18n}>
       <LocaleProvider i18n={i18n}>
-        <GlobalStyles layout={layout} />
-        {element}
+        <QueryClientProvider client={queryClient}>
+          <GlobalStyles layout={layout} />
+          {element}
+        </QueryClientProvider>
       </LocaleProvider>
     </I18nextProvider>
   );

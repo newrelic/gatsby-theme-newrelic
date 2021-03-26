@@ -21,7 +21,6 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 import path from 'path';
 import { rgba } from 'polished';
 import SearchModal from './SearchModal';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { useDebounce } from 'react-use';
 
 const action = css`
@@ -46,8 +45,6 @@ const actionIcon = css`
   display: block;
   cursor: pointer;
 `;
-
-const queryClient = new QueryClient();
 
 const useSearchQuery = () => {
   const { queryParams, setQueryParam } = useQueryParams();
@@ -113,16 +110,14 @@ const GlobalHeader = ({ className }) => {
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <SearchModal
-          value={searchTerm}
-          onChange={(searchTerm) => setSearchTerm(searchTerm)}
-          onClose={() => {
-            deleteQueryParam('q');
-          }}
-          isOpen={queryParams.has('q')}
-        />
-      </QueryClientProvider>
+      <SearchModal
+        value={searchTerm}
+        onChange={(searchTerm) => setSearchTerm(searchTerm)}
+        onClose={() => {
+          deleteQueryParam('q');
+        }}
+        isOpen={queryParams.has('q')}
+      />
       <AnnouncementBanner />
       <div
         data-swiftype-index={false}
