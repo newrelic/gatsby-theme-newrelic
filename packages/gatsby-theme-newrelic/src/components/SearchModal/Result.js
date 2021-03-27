@@ -45,7 +45,7 @@ const Result = memo(
           }
         }`}
         `}
-        onMouseOver={onSelect}
+        onMouseOver={() => onSelect(result)}
       >
         <div>
           <h3

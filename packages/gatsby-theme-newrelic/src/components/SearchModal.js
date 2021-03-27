@@ -5,7 +5,7 @@ import Footer from './SearchModal/Footer';
 import Input from './SearchModal/Input';
 import NoResults from './SearchModal/NoResults';
 import Portal from './Portal';
-import Result from './SearchModal/Result';
+import ResultList from './SearchModal/ResultList';
 import ResultPreview from './SearchModal/ResultPreview';
 import ScrollContainer from './SearchModal/ScrollContainer';
 import useThemeTranslation from '../hooks/useThemeTranslation';
@@ -14,7 +14,8 @@ import useScrollFreeze from '../hooks/useScrollFreeze';
 import { animated, useTransition } from 'react-spring';
 import { rgba } from 'polished';
 import useSearch from './SearchModal/useSearch';
-import { useStaticQuery, graphql } from 'gatsby';
+import usePrevious from '../hooks/usePrevious';
+import { useLocation } from '@reach/router';
 
 const defaultFilters = [
   { name: 'docs', isSelected: false },
@@ -23,6 +24,9 @@ const defaultFilters = [
 ];
 
 const SearchModal = ({ onClose, isOpen, onChange, value }) => {
+  const { pathname } = useLocation();
+  const didChangeRoute =
+    pathname !== usePrevious(pathname, { initializeWithValue: true });
   const { t } = useThemeTranslation();
   const searchInput = useRef();
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -31,7 +35,6 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
     searchTerm: value,
     filters,
   });
-  const selectedRef = useRef();
 
   const transitions = useTransition(isOpen, null, {
     config: { tension: 220, friction: 22 },
@@ -43,49 +46,14 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
     leave: { opacity: 0, transform: 'scale(0.96)' },
   });
 
-  const {
-    site: {
-      siteMetadata: { siteUrl },
-    },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          siteUrl
-        }
-      }
-    }
-  `);
-
   useScrollFreeze(isOpen);
   useKeyPress('Escape', onClose, { ignoreTextInput: false });
 
-  useKeyPress(
-    ['ArrowUp', 'ArrowDown'],
-    (e) => {
-      if (e.key === 'ArrowUp' && selectedIndex > 0) {
-        setSelectedIndex(selectedIndex - 1);
-      }
-
-      if (e.key === 'ArrowDown' && selectedIndex < results.length - 1) {
-        setSelectedIndex(selectedIndex + 1);
-      }
-    },
-    { ignoreTextInput: false }
-  );
-
-  useKeyPress(
-    'Enter',
-    () => {
-      if (selectedRef.current) {
-        selectedRef.current.click();
-        if (results[selectedIndex].url.startsWith(siteUrl)) {
-          onClose();
-        }
-      }
-    },
-    { ignoreTextInput: false }
-  );
+  useEffect(() => {
+    if (isOpen && didChangeRoute) {
+      onClose();
+    }
+  }, [isOpen, didChangeRoute, onClose]);
 
   useEffect(() => {
     isOpen && searchInput.current.focus();
@@ -98,6 +66,10 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
   const onIntersection = useCallback(() => {
     fetchNextPage();
   }, [fetchNextPage]);
+
+  const handleSelectIndex = useCallback((idx) => {
+    setSelectedIndex(idx);
+  }, []);
 
   const selectedResult = results[selectedIndex];
 
@@ -218,23 +190,11 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                         onIntersection={onIntersection}
                         monitor={status === 'success'}
                       >
-                        {results.map((result) => {
-                          const resultIndex = results.indexOf(result);
-
-                          return (
-                            <Result
-                              selected={resultIndex === selectedIndex}
-                              ref={
-                                resultIndex === selectedIndex
-                                  ? selectedRef
-                                  : null
-                              }
-                              key={result.id}
-                              result={result}
-                              onSelect={() => setSelectedIndex(resultIndex)}
-                            />
-                          );
-                        })}
+                        <ResultList
+                          results={results}
+                          selectedIndex={selectedIndex}
+                          onSelectIndex={handleSelectIndex}
+                        />
                       </ScrollContainer>
                       <ResultPreview result={selectedResult} />
                       <Footer />
