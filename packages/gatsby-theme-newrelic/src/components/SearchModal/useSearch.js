@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer } from 'react';
+import { useCallback, useState, useEffect, useReducer, useMemo } from 'react';
 import { useDebounce } from 'react-use';
 import search from './search';
 import { useQuery } from 'react-query';
@@ -35,9 +35,15 @@ const reducer = (state, action) => {
 
 const useSearch = ({ searchTerm, filters }) => {
   const [{ page, results }, dispatch] = useReducer(reducer, initialState);
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
-  const { status, refetch } = useQuery(
-    ['searchResults', searchTerm, page, filters],
+  const queryKey = useMemo(
+    () => ['searchResults', debouncedSearchTerm, page, filters],
+    [debouncedSearchTerm, page, filters]
+  );
+
+  const { status } = useQuery(
+    queryKey,
     async ({ queryKey: [, searchTerm, page, filters] }) => {
       const { records } = await search({
         searchTerm,
@@ -49,33 +55,13 @@ const useSearch = ({ searchTerm, filters }) => {
       return records.page;
     },
     {
-      enabled: false,
+      enabled: Boolean(debouncedSearchTerm),
       onSuccess: (data) =>
         dispatch({ type: ACTIONS.RECEIVE_PAGE_DATA, payload: { page, data } }),
     }
   );
 
-  useDebounce(
-    () => {
-      if (searchTerm) {
-        refetch();
-      }
-    },
-    200,
-    [searchTerm, refetch]
-  );
-
-  useEffect(() => {
-    if (page > 1) {
-      refetch();
-    }
-  }, [page, refetch]);
-
-  useEffect(() => {
-    if (searchTerm) {
-      refetch();
-    }
-  }, [filters, searchTerm, refetch]);
+  useDebounce(() => setDebouncedSearchTerm(searchTerm), 200, [searchTerm]);
 
   useEffect(() => {
     dispatch({ type: ACTIONS.RESET });
