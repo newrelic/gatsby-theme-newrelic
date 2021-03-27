@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import { useIntersection } from 'react-use';
 import usePrevious from '../../hooks/usePrevious';
 
-const ScrollContainer = ({ children, onIntersection }) => {
+const ScrollContainer = ({ children, onIntersection, monitor = true }) => {
   const intersectionRef = useRef();
   const root = useRef();
   const intersection = useIntersection(intersectionRef, {
@@ -33,7 +33,7 @@ const ScrollContainer = ({ children, onIntersection }) => {
       `}
     >
       {children}
-      <div ref={intersectionRef} />
+      {monitor && <div ref={intersectionRef} />}
     </div>
   );
 };
@@ -41,6 +41,7 @@ const ScrollContainer = ({ children, onIntersection }) => {
 ScrollContainer.propTypes = {
   children: PropTypes.node.isRequired,
   onIntersection: PropTypes.func.isRequired,
+  monitor: PropTypes.bool,
 };
 
 export default ScrollContainer;

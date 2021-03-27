@@ -1,41 +1,56 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useReducer, useMemo } from 'react';
 import { useDebounce } from 'react-use';
 import search from './search';
-import { useInfiniteQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
+
+const ACTIONS = {
+  NEXT_PAGE: 'nextPage',
+  RECEIVE_PAGE_DATA: 'receivePageData',
+  RESET: 'reset',
+};
+
+const initialState = {
+  page: 1,
+  pageData: {},
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case ACTIONS.NEXT_PAGE:
+      return { ...state, page: state.page + 1 };
+    case ACTIONS.RECEIVE_PAGE_DATA:
+      return {
+        ...state,
+        pageData: {
+          ...state.pageData,
+          [action.payload.page]: action.payload.data,
+        },
+      };
+    case ACTIONS.RESET:
+      return initialState;
+    default:
+      return state;
+  }
+};
 
 const useSearch = ({ searchTerm, filters }) => {
-  const queryClient = useQueryClient();
+  const [{ page, pageData }, dispatch] = useReducer(reducer, initialState);
 
-  // prevents fetching unless there is a search term
-  if (searchTerm === '') {
-    queryClient.clear();
-  }
+  const { status, refetch } = useQuery(
+    ['searchResults', searchTerm, page, filters],
+    async ({ queryKey: [, searchTerm, page, filters] }) => {
+      const { records } = await search({ searchTerm, filters, page });
 
-  const { isLoading, data = {}, isSuccess, fetchNextPage } = useInfiniteQuery(
-    'swiftype',
-    ({ pageParam = 1 }) => search({ searchTerm, filters, page: pageParam }),
+      return records.page;
+    },
     {
-      getNextPageParam: (lastPage) => {
-        if (!lastPage) {
-          return;
-        }
-
-        const { page } = lastPage.info;
-        const nextPage = page.current_page + 1;
-
-        return nextPage < page.num_pages ? nextPage : undefined;
-      },
+      enabled: false,
+      onSuccess: (data) =>
+        dispatch({ type: ACTIONS.RECEIVE_PAGE_DATA, payload: { page, data } }),
     }
   );
 
-  const refetch = useCallback(() => {
-    queryClient.setQueryData('swiftype', () => ({
-      pages: [],
-      pageParam: 1,
-    }));
-
-    fetchNextPage({ pageParam: 1 });
-  }, [queryClient, fetchNextPage]);
+  const results = useMemo(() => Object.values(pageData).flat(), [pageData]);
 
   useDebounce(
     () => {
@@ -47,12 +62,21 @@ const useSearch = ({ searchTerm, filters }) => {
     [searchTerm, refetch]
   );
 
-  useEffect(() => refetch(), [refetch]);
+  useEffect(() => {
+    if (page > 1) {
+      refetch();
+    }
+  }, [page, refetch]);
 
-  const { pages } = data;
-  const results = pages?.flatMap((page) => page.records.page) ?? [];
+  useEffect(() => {
+    dispatch({ type: ACTIONS.RESET });
+  }, [searchTerm]);
 
-  return { isLoading, isSuccess, results, fetchNextPage };
+  return {
+    status,
+    results,
+    fetchNextPage: useCallback(() => dispatch({ type: ACTIONS.NEXT_PAGE }), []),
+  };
 };
 
 export default useSearch;

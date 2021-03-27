@@ -9,8 +9,6 @@ import Result from './SearchModal/Result';
 import ResultPreview from './SearchModal/ResultPreview';
 import ScrollContainer from './SearchModal/ScrollContainer';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import { useQueryClient } from 'react-query';
-import { useDebounce } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import { animated, useTransition } from 'react-spring';
@@ -26,11 +24,10 @@ const defaultFilters = [
 
 const SearchModal = ({ onClose, isOpen, onChange, value }) => {
   const { t } = useThemeTranslation();
-  const queryClient = useQueryClient();
   const searchInput = useRef();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [filters, setFilters] = useState(defaultFilters);
-  const { isLoading, results, isSuccess, fetchNextPage } = useSearch({
+  const { status, results, fetchNextPage } = useSearch({
     searchTerm: value,
     filters,
   });
@@ -101,30 +98,6 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
   const onIntersection = useCallback(() => {
     fetchNextPage();
   }, [fetchNextPage]);
-
-  useDebounce(
-    () => {
-      if (value) {
-        queryClient.setQueryData('swiftype', () => ({
-          pages: [],
-          pageParam: 1,
-        }));
-
-        fetchNextPage({ pageParam: 1 });
-      }
-    },
-    200,
-    [value, fetchNextPage]
-  );
-
-  useEffect(() => {
-    queryClient.setQueryData('swiftype', () => ({
-      pages: [],
-      pageParam: 1,
-    }));
-
-    fetchNextPage({ pageParam: 1 });
-  }, [filters, fetchNextPage, queryClient]);
 
   const selectedResult = results[selectedIndex];
 
@@ -210,7 +183,6 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                 value={value}
                 onClear={() => onChange('')}
                 onCancel={onClose}
-                loading={isLoading}
                 filters={filters}
                 css={
                   value &&
@@ -244,7 +216,10 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                 >
                   {Boolean(results?.length) && (
                     <>
-                      <ScrollContainer onIntersection={onIntersection}>
+                      <ScrollContainer
+                        onIntersection={onIntersection}
+                        monitor={status === 'success'}
+                      >
                         {results.map((result) => {
                           const resultIndex = results.indexOf(result);
 
@@ -267,7 +242,9 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                       <Footer />
                     </>
                   )}
-                  {results.length === 0 && isSuccess && <NoResults />}
+                  {results.length === 0 && status === 'success' && (
+                    <NoResults />
+                  )}
                 </div>
               )}
             </animated.div>
