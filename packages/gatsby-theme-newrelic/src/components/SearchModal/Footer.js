@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { css } from '@emotion/core';
 import Icon from '../Icon';
 import Key from './Key';
 
-const Footer = () => (
+const Footer = memo(() => (
   <footer
     css={css`
       font-size: 0.75rem;
@@ -61,6 +61,6 @@ const Footer = () => (
       Close
     </div>
   </footer>
-);
+));
 
 export default Footer;

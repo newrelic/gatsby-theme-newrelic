@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Tag from '../Tag';
 import { css } from '@emotion/core';
 
-const ResultPreview = ({ result }) => {
+const ResultPreview = memo(({ result }) => {
   return (
     <div
       css={css`
@@ -97,7 +97,7 @@ const ResultPreview = ({ result }) => {
       )}
     </div>
   );
-};
+});
 
 ResultPreview.propTypes = {
   result: PropTypes.object,
