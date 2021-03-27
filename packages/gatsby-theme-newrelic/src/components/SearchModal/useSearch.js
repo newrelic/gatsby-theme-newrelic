@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useMemo } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import { useDebounce } from 'react-use';
 import search from './search';
 import { useQuery } from 'react-query';
@@ -11,35 +11,40 @@ const ACTIONS = {
 
 const initialState = {
   page: 1,
-  pageData: {},
+  results: [],
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.NEXT_PAGE:
       return { ...state, page: state.page + 1 };
-    case ACTIONS.RECEIVE_PAGE_DATA:
+    case ACTIONS.RECEIVE_PAGE_DATA: {
+      const { page, data } = action.payload;
+
       return {
         ...state,
-        pageData: {
-          ...state.pageData,
-          [action.payload.page]: action.payload.data,
-        },
+        results: page === 1 ? data : state.results.concat(data),
       };
+    }
     case ACTIONS.RESET:
-      return { ...initialState, previousData: state.pageData };
+      return { ...state, page: 1 };
     default:
       return state;
   }
 };
 
 const useSearch = ({ searchTerm, filters }) => {
-  const [{ page, pageData }, dispatch] = useReducer(reducer, initialState);
+  const [{ page, results }, dispatch] = useReducer(reducer, initialState);
 
   const { status, refetch } = useQuery(
     ['searchResults', searchTerm, page, filters],
     async ({ queryKey: [, searchTerm, page, filters] }) => {
-      const { records } = await search({ searchTerm, filters, page });
+      const { records } = await search({
+        searchTerm,
+        filters,
+        page,
+        perPage: 20,
+      });
 
       return records.page;
     },
@@ -50,8 +55,6 @@ const useSearch = ({ searchTerm, filters }) => {
         dispatch({ type: ACTIONS.RECEIVE_PAGE_DATA, payload: { page, data } }),
     }
   );
-
-  const results = useMemo(() => Object.values(pageData).flat(), [pageData]);
 
   useDebounce(
     () => {
