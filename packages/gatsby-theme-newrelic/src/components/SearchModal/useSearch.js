@@ -50,7 +50,6 @@ const useSearch = ({ searchTerm, filters }) => {
     },
     {
       enabled: false,
-      keepPreviousData: true,
       onSuccess: (data) =>
         dispatch({ type: ACTIONS.RECEIVE_PAGE_DATA, payload: { page, data } }),
     }
