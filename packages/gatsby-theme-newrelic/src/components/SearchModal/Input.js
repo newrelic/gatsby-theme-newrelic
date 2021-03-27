@@ -231,7 +231,7 @@ const Input = forwardRef(
                                 : `opacity: 0;`}
                             `}
                           >
-                            <Icon size="0.625rem" name="fe-check"></Icon>
+                            <Icon size="0.625rem" name="fe-check" />
                           </div>
                         </div>
                       </Dropdown.MenuItem>
@@ -256,8 +256,11 @@ const Input = forwardRef(
 
 Input.propTypes = {
   className: PropTypes.string,
+  filters: PropTypes.arrayOf(PropTypes.object).isRequired,
   focusWithHotKey: PropTypes.string,
   onClear: PropTypes.func,
+  onCancel: PropTypes.func,
+  onFilter: PropTypes.func,
   onSubmit: PropTypes.func,
   value: PropTypes.string,
   width: PropTypes.string,
