@@ -27,7 +27,7 @@ const reducer = (state, action) => {
         },
       };
     case ACTIONS.RESET:
-      return initialState;
+      return { ...initialState, previousData: state.pageData };
     default:
       return state;
   }
@@ -45,6 +45,7 @@ const useSearch = ({ searchTerm, filters }) => {
     },
     {
       enabled: false,
+      keepPreviousData: true,
       onSuccess: (data) =>
         dispatch({ type: ACTIONS.RECEIVE_PAGE_DATA, payload: { page, data } }),
     }
@@ -69,8 +70,14 @@ const useSearch = ({ searchTerm, filters }) => {
   }, [page, refetch]);
 
   useEffect(() => {
+    if (searchTerm) {
+      refetch();
+    }
+  }, [filters, searchTerm, refetch]);
+
+  useEffect(() => {
     dispatch({ type: ACTIONS.RESET });
-  }, [searchTerm]);
+  }, [searchTerm, filters]);
 
   return {
     status,
