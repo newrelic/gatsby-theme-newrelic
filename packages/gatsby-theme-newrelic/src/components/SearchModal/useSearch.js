@@ -44,20 +44,13 @@ const useSearch = ({ searchTerm, filters }) => {
 
   const { status } = useQuery(
     queryKey,
-    async ({ queryKey: [, searchTerm, page, filters] }) => {
-      const { records } = await search({
-        searchTerm,
-        filters,
-        page,
-        perPage: 20,
-      });
-
-      return records.page;
-    },
+    ({ queryKey: [, searchTerm, page, filters] }) =>
+      search({ searchTerm, filters, page, perPage: 20 }),
     {
       enabled: Boolean(debouncedSearchTerm),
       onSuccess: (data) =>
         dispatch({ type: ACTIONS.RECEIVE_PAGE_DATA, payload: { page, data } }),
+      select: ({ records }) => records.page,
     }
   );
 
