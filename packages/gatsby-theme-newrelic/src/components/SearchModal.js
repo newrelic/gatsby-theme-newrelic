@@ -101,16 +101,6 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
 
   const selectedResult = results[selectedIndex];
 
-  const onFilter = (filterName) => {
-    const updatedFilters = filters.map(({ name, isSelected }) => {
-      if (name === filterName) {
-        return { name: name, isSelected: !isSelected };
-      }
-      return { name, isSelected };
-    });
-    setFilters(updatedFilters);
-  };
-
   return transitions.map(
     ({ item, key, props }) =>
       item && (
@@ -179,7 +169,15 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                 onChange={(e) => {
                   onChange(e.target.value);
                 }}
-                onFilter={onFilter}
+                onFilter={(filterName) => {
+                  setFilters((filters) => {
+                    return filters.map((filter) => {
+                      return filter.name === filterName
+                        ? { ...filter, isSelected: !filter.isSelected }
+                        : filter;
+                    });
+                  });
+                }}
                 value={value}
                 onClear={() => onChange('')}
                 onCancel={onClose}

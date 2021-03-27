@@ -37,7 +37,7 @@ const search = async ({ searchTerm, filters, perPage = 10, page = 1 }) => {
 };
 
 const getFilters = (filters) => {
-  const filteredTypes = filters.filter((filter) => filter.isSelected === true);
+  const filteredTypes = filters.filter((filter) => filter.isSelected);
 
   return filteredTypes.length !== 0 ? filteredTypes : filters;
 };
