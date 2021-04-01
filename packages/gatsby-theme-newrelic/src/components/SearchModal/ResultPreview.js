@@ -61,7 +61,7 @@ const ResultPreview = memo(({ result }) => {
               __html: result.highlight.body,
             }}
           />
-          {result.sections && (
+          {result.sections.length && (
             <div css={css``}>
               <h5
                 css={css`
