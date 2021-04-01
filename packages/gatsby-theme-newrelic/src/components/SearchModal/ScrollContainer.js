@@ -28,8 +28,11 @@ const ScrollContainer = ({ children, onIntersection, monitor = true }) => {
       css={css`
         border-right: 1px solid var(--border-color);
         height: calc(100vh - 6 * var(--site-content-padding));
-        max-width: 512px;
         overflow: auto;
+        @media screen and (max-width: 760px) {
+          border-right: none;
+          height: unset;
+        }
       `}
     >
       {children}

@@ -16,6 +16,10 @@ const ResultPreview = memo(({ result }) => {
         .dark-mode & {
           background: transparent;
         }
+
+        @media screen and (max-width: 760px) {
+          display: none;
+        }
       `}
     >
       {result && (

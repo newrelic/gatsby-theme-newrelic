@@ -17,6 +17,10 @@ const Footer = memo(() => (
         background: var(--color-dark-100);
         color: var(--color-dark-700);
       }
+
+      @media screen and (max-width: 760px) {
+        display: none;
+      }
     `}
   >
     <div

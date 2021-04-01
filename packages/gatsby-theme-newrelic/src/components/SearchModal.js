@@ -93,6 +93,10 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                 background: hsla(195, 20%, 20%, 0.5);
               }
 
+              @media screen and (max-width: 760px) {
+                padding: 0;
+              }
+
               em {
                 border-radius: 0.125rem;
                 padding: 0.125rem 0.25rem;
@@ -133,6 +137,11 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                 display: flex;
                 flex-direction: column;
                 position: relative;
+
+                @media screen and (max-width: 760px) {
+                  max-height: 100vh;
+                  height: 100vh;
+                }
               `}
             >
               <Input
@@ -182,6 +191,9 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                     .dark-mode & {
                       background: var(--color-dark-050);
                     }
+                    @media screen and (max-width: 760px) {
+                      grid-template-columns: 1fr;
+                    }
                   `}
                 >
                   {Boolean(results?.length) && (
@@ -196,7 +208,7 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                           onSelectIndex={handleSelectIndex}
                         />
                       </ScrollContainer>
-                      <ResultPreview result={selectedResult} />
+                      <ResultPreview css={css``} result={selectedResult} />
                       <Footer />
                     </>
                   )}
