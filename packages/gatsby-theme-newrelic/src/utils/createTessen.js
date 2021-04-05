@@ -39,13 +39,23 @@ const tessenAction = (action, config) => (name, category, properties = {}) => {
   }
 
   if (canTrack()) {
-    window.Tessen[action](name, {
-      ...properties,
-      category,
-      nr_product: config.product,
-      nr_subproduct: config.subproduct,
-      location: 'Public',
-    });
+    window.Tessen[action](
+      name,
+      {
+        ...properties,
+        category,
+        nr_product: config.product,
+        nr_subproduct: config.subproduct,
+        location: 'Public',
+      },
+      {
+        Segment: {
+          integrations: {
+            All: true,
+          },
+        },
+      }
+    );
   }
 };
 
