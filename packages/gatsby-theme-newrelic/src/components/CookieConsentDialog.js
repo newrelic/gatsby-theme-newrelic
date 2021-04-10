@@ -7,6 +7,7 @@ import Trans from './Trans';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useHasMounted from '../hooks/useHasMounted';
 import { TRACKING_COOKIE_NAME } from '../utils/constants';
+import { GA_PROPERTY_ID } from '../../gatsby/constants';
 
 const CookieConsentDialog = () => {
   const { t } = useThemeTranslation();
@@ -28,6 +29,16 @@ const CookieConsentDialog = () => {
 
     if (answer && window.initializeTessenTracking) {
       window.initializeTessenTracking({ trackPageView: true });
+    }
+    if (!answer && window.gtag) {
+      if (window.newrelic && typeof newrelic == 'object') {
+        window.newrelic.addPageAction('cookieConsent', { optOut: true });
+      }
+      window.gtag('event', 'opt_out', {
+        event_category: 'cookie_consent',
+      });
+
+      window.gtag('config', GA_PROPERTY_ID, { anonymize_ip: true });
     }
   };
 

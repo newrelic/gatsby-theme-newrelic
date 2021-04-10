@@ -1,6 +1,29 @@
 import React from 'react';
 import path from 'path';
-import { TESSEN_PATH } from './constants';
+import { TESSEN_PATH, GA_PROPERTY_ID, GTAG_SRC } from './constants';
+
+const gtagScript = (
+  <script async key="nr-gtag" src={`${GTAG_SRC}?id=${GA_PROPERTY_ID}`} />
+);
+
+const scriptStr = `
+var options = {
+  send_page_view: false,
+  anonymize_ip: true
+};
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('js', new Date());
+gtag('config', '${GA_PROPERTY_ID}', options);
+`;
+
+const trackScript = (
+  <script
+    key="nr-gtag-inline-script"
+    dangerouslySetInnerHTML={{ __html: scriptStr }}
+  />
+);
 
 const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
@@ -27,6 +50,8 @@ const onPreRenderHTML = (
           src={`/${path.basename(TESSEN_PATH)}`}
         />
       ),
+      gtagScript,
+      trackScript,
     ].filter(Boolean)
   );
 };
