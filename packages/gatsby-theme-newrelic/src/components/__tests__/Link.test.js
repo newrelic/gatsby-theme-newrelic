@@ -101,7 +101,6 @@ test('localizes the link when the current locale is not the default', () => {
   const link = screen.getByText('Link');
 
   expect(link).toHaveAttribute('href', '/jp/page');
-  expect(link).toHaveAttribute('rel', 'noopener noreferrer');
 });
 
 test('renders correct signup link', () => {
