@@ -3,17 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import useTessen from '../hooks/useTessen';
 import useLocale from '../hooks/useLocale';
-import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
 import { localizePath } from '../utils/localization';
 
-const formatHref = (href, { utmSource, locale }) => {
+const formatHref = (href, { locale }) => {
   const url = new URL(href);
   const queryParams = new URLSearchParams(url.search);
-
-  if (utmSource) {
-    queryParams.set('utm_source', utmSource);
-  }
 
   url.search = queryParams.toString();
   url.pathname = localizePath({ path: url.pathname, locale });
@@ -26,24 +21,10 @@ const SignUpLink = ({ href, onClick, instrumentation, ...props }) => {
   const location = useLocation();
   const locale = useLocale();
 
-  const {
-    site: {
-      siteMetadata: { utmSource },
-    },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          utmSource
-        }
-      }
-    }
-  `);
-
   return (
     <a
       {...props}
-      href={formatHref(href, { utmSource, locale })}
+      href={formatHref(href, { locale })}
       target="_blank"
       rel="noopener noreferrer"
       onClick={(e) => {
