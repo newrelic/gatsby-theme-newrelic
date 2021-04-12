@@ -9,6 +9,7 @@ const {
   getTrailingSlashesConfig,
   getResolvedEnv,
   getI18nConfig,
+  getGtmConfig,
 } = require('./src/utils/config');
 const pageTransforms = require('./gatsby/page-transforms');
 const { TESSEN_PATH } = require('./gatsby/constants');
@@ -126,6 +127,7 @@ exports.sourceNodes = (
   const { relatedResources } = withDefaults(themeOptions);
   const { createNode } = actions;
   const tessen = getTessenConfig(themeOptions);
+  const googleTagManager = getGtmConfig(themeOptions);
   const env = getResolvedEnv(themeOptions);
   const { forceTrailingSlashes } = getTrailingSlashesConfig(themeOptions);
 
@@ -155,6 +157,13 @@ exports.sourceNodes = (
     },
     tessen: tessen
       ? { product: tessen.product, subproduct: tessen.subproduct }
+      : null,
+    googleTagManager: googleTagManager
+      ? {
+          trackingId: googleTagManager.trackingId,
+          src: googleTagManager.src,
+          options: googleTagManager.options,
+        }
       : null,
   };
 

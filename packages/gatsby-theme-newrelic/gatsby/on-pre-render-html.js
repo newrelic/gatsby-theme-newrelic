@@ -18,7 +18,7 @@ gtag('js', new Date());
 gtag('config', '${GA_PROPERTY_ID}', options);
 `;
 
-const trackScript = (
+const googleTrackScript = (
   <script
     key="nr-gtag-inline-script"
     dangerouslySetInnerHTML={{ __html: scriptStr }}
@@ -50,8 +50,8 @@ const onPreRenderHTML = (
           src={`/${path.basename(TESSEN_PATH)}`}
         />
       ),
-      gtagScript,
-      trackScript,
+      themeOptions.googleTagManager && gtagScript,
+      themeOptions.googleTagManager && googleTrackScript,
     ].filter(Boolean)
   );
 };

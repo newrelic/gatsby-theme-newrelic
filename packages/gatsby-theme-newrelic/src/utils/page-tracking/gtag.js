@@ -1,15 +1,21 @@
 import { canTrack } from '../tracking';
-import { GA_PROPERTY_ID } from '../../../gatsby/constants';
+import { getGtmConfig } from '../config';
 
-const trackViaGoogle = () => {
+const trackViaGoogle = (themeOptions) => {
   if (canTrack()) {
     return;
   }
+  const googleTagManager = getGtmConfig(themeOptions);
 
+  // TODO: add options from config
   // wrap inside a timeout to make sure react-helmet is done with its changes (https://github.com/gatsbyjs/gatsby/issues/11592)
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      window.gtag('config', GA_PROPERTY_ID, { anonymize_ip: true });
+      window.gtag(
+        'config',
+        googleTagManager.trackingId,
+        googleTagManager.options
+      );
     });
   });
 };
