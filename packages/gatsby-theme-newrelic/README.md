@@ -637,11 +637,11 @@ import { Callout } from '@newrelic/gatsby-theme-newrelic'`
 
 **Props**
 
-| Prop        | Type   | Required | Default | Description                                                                                                                         |
-| ----------- | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `className` | string | no       |         | Adds a `className` to the callout. Useful if you need to position the callout within its parent element.                            |
-| `variant`   | enum   | yes      |         | Configures the variant of the callout. Must be one of `Callout.VARIANT.CAUTION`, `Callout.VARIANT.IMPORTANT`, `Callout.VARIANT.TIP` |
-| `title`     | enum   | no       |         | Set the title text. Defaults to variant name. You may hide the title by passing `null` as the value.                                |
+| Prop        | Type   | Required | Default | Description                                                                                                                                                   |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `className` | string | no       |         | Adds a `className` to the callout. Useful if you need to position the callout within its parent element.                                                      |
+| `variant`   | enum   | yes      |         | Configures the variant of the callout. Must be one of `Callout.VARIANT.CAUTION`, `Callout.VARIANT.IMPORTANT`, `Callout.VARIANT.TIP`, `Callout.VARIANT.COURSE` |
+| `title`     | enum   | no       |         | Set the title text. Defaults to variant name. You may hide the title by passing `null` as the value.                                                          |
 
 **Examples**
 

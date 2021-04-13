@@ -23,6 +23,7 @@ export default css`
     --callout-caution-background-color: #fce9e935;
     --callout-important-background-color: #fff9cc30;
     --callout-tip-background-color: #d1f7d925;
+    --callout-course-background-color: #00b3c310;
 
     input::placeholder {
       color: var(--color-neutrals-500);
