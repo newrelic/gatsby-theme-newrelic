@@ -10,7 +10,6 @@ module.exports = {
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
     siteUrl: 'https://developer.newrelic.com',
     titleTemplate: '%s | Gatsby Theme Demo Site',
-    utmSource: 'demo-site',
     branch: 'develop',
   },
   plugins: [
