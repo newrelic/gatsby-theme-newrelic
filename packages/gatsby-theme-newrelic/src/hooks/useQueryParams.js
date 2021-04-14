@@ -1,9 +1,8 @@
 import { useCallback, useMemo } from 'react';
-import { useLocation, useNavigate } from '@reach/router';
+import { useLocation, navigate } from '@reach/router';
 
 const useQueryParams = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const queryParams = useMemo(() => new URLSearchParams(location.search), [
     location.search,
@@ -15,7 +14,7 @@ const useQueryParams = () => {
 
       navigate(`?${queryParams}`);
     },
-    [queryParams, navigate]
+    [queryParams]
   );
 
   return { queryParams, setQueryParam };
