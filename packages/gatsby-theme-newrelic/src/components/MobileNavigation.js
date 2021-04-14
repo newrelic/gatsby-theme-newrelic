@@ -14,7 +14,7 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
   const hasChangedPage = location.pathname !== previousLocation?.pathname;
 
   const transitions = useTransition(isOpen, {
-    config: { mass: 1, tension: 350, friction: 25, velocity: 10 },
+    config: { mass: 1, frequency: 0, bounce: 0, velocity: 10 },
     from: {
       position: 'fixed',
       opacity: 0,
