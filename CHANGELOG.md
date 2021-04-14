@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.38.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.37.1...v1.38.0) (2021-04-14)
+
+
+### Bug Fixes
+
+* removes utm source from theme ([38e661a](https://github.com/newrelic/gatsby-theme-newrelic/commit/38e661a808dda80a311d8febdd0ce01190a541b8))
+* upgrade @wry/equality from 0.3.4 to 0.4.0 ([c85809c](https://github.com/newrelic/gatsby-theme-newrelic/commit/c85809c5f0eafedb89d98d72cf1312ae6b0a827b))
+
+
+### Features
+
+* Add course to callout variants ([116c9ad](https://github.com/newrelic/gatsby-theme-newrelic/commit/116c9adaf6f71c04c53b83c9425c572f77578fa1))
+
+
+
+
+
 ## [1.37.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.37.0...v1.37.1) (2021-04-05)
 
 
