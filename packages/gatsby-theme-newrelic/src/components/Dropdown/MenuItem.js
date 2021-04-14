@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from '../Link';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 const MenuItem = ({ as, children, href, onClick }) => {
   const Component = as || (href ? Link : 'div');

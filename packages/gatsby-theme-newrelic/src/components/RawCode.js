@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { Link } from '@newrelic/gatsby-theme-newrelic';
 import parse, { domToReact, attributesToProps } from 'html-react-parser';
 

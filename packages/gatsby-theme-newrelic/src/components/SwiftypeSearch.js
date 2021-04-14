@@ -11,7 +11,7 @@ import {
 import ResultView from './ResultView';
 import PagingInfoView from './PagingInfoView';
 import SearchInput from './SearchInput';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import PropTypes from 'prop-types';
 import styles from '../styles/SwiftypeSearchStyles';
 import Spinner from './Spinner';

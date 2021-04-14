@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 export default css`
   --primary-font-family: 'Open Sans', sans-serif;

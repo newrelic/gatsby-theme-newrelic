@@ -13,7 +13,7 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
   const previousLocation = usePrevious(location);
   const hasChangedPage = location.pathname !== previousLocation?.pathname;
 
-  const transitions = useTransition(isOpen, null, {
+  const transitions = useTransition(isOpen, {
     config: { mass: 1, tension: 350, friction: 25, velocity: 10 },
     from: {
       position: 'fixed',
@@ -30,10 +30,10 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
     }
   }, [hasChangedPage, onClose]);
 
-  return transitions.map(
-    ({ item, key, props }) =>
+  return transitions(
+    (style, item) =>
       item && (
-        <MobileNavModal key={key} style={props} onClose={onClose}>
+        <MobileNavModal style={style} onClose={onClose}>
           {children}
         </MobileNavModal>
       )

@@ -1,6 +1,6 @@
 import React from 'react';
 import GlobalFooter from '../GlobalFooter';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 const Footer = (props) => (
   <GlobalFooter

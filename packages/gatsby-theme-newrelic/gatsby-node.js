@@ -328,6 +328,11 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
         ),
       }),
     ],
+    resolve: {
+      alias: {
+        path: require.resolve('path-browserify'),
+      },
+    },
   });
 };
 
