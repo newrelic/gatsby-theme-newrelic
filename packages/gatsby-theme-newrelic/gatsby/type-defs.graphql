@@ -11,7 +11,6 @@ type MdxFrontmatter @infer {
 
 type SiteSiteMetadata {
   repository: String
-  utmSource: String
   branch: String!
   contributingUrl: String
   title: String

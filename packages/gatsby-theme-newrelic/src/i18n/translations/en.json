@@ -13,7 +13,8 @@
   "callout": {
     "tip": "Tip",
     "caution": "Caution",
-    "important": "Important"
+    "important": "Important",
+    "course": "Course"
   },
   "github": {
     "createIssue": "Create issue",
