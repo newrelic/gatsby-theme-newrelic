@@ -7,34 +7,36 @@ const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
   themeOptions
 ) => {
-  const googleTagManager = getGtmConfig(themeOptions);
-  const gtagScript = (
-    <script
-      async
-      key="nr-gtag"
-      src={`${googleTagManager.src}?id=${googleTagManager.trackingId}`}
-    />
-  );
+  if (themeOptions.googleTagManager) {
+    const googleTagManager = getGtmConfig(themeOptions);
+    const gtagScript = (
+      <script
+        async
+        key="nr-gtag"
+        src={`${googleTagManager.src}?id=${googleTagManager.trackingId}`}
+      />
+    );
 
-  const scriptStr = `
-  var options = {
-    send_page_view: false,
-    anonymize_ip: true
-  };
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  window.gtag = gtag;
-  gtag('js', new Date());
-  gtag('config', '${googleTagManager.trackingId}', options);
-  gtag('consent', 'default', {'ad_storage': 'denied'});
-  `;
+    const scriptStr = `
+    var options = {
+      send_page_view: false,
+      anonymize_ip: true
+    };
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', '${googleTagManager.trackingId}', options);
+    gtag('consent', 'default', {'ad_storage': 'denied'});
+    `;
 
-  const googleTrackScript = (
-    <script
-      key="nr-gtag-inline-script"
-      dangerouslySetInnerHTML={{ __html: scriptStr }}
-    />
-  );
+    const googleTrackScript = (
+      <script
+        key="nr-gtag-inline-script"
+        dangerouslySetInnerHTML={{ __html: scriptStr }}
+      />
+    );
+  }
   replaceHeadComponents(
     [
       ...getHeadComponents(),
