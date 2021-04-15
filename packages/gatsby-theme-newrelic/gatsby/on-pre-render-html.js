@@ -7,9 +7,11 @@ const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
   themeOptions
 ) => {
+  const googleTagManager = getGtmConfig(themeOptions);
+  var gtagScript, googleTrackScript;
+
   if (themeOptions.googleTagManager) {
-    const googleTagManager = getGtmConfig(themeOptions);
-    const gtagScript = (
+    gtagScript = (
       <script
         async
         key="nr-gtag"
@@ -30,7 +32,7 @@ const onPreRenderHTML = (
     gtag('consent', 'default', {'ad_storage': 'denied'});
     `;
 
-    const googleTrackScript = (
+    googleTrackScript = (
       <script
         key="nr-gtag-inline-script"
         dangerouslySetInnerHTML={{ __html: scriptStr }}
