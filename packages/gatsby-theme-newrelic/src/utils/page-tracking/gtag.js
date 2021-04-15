@@ -10,11 +10,13 @@ const trackViaGoogle = (themeOptions) => {
   // wrap inside a timeout to make sure react-helmet is done with its changes (https://github.com/gatsbyjs/gatsby/issues/11592)
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      window.gtag(
-        'config',
-        googleTagManager.trackingId,
-        googleTagManager.options
-      );
+      if (window.gtag) {
+        window.gtag(
+          'config',
+          googleTagManager.trackingId,
+          googleTagManager.options
+        );
+      }
     });
   });
 };
