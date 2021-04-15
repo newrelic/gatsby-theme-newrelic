@@ -55,13 +55,6 @@ module.exports = {
             authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',
           },
         },
-        googleTagManager: {
-          trackingId: 'G-WYJSLJPDF6',
-          src: 'https://www.googletagmanager.com/gtag/js',
-          options: {
-            anonymize_ip: true,
-          },
-        },
       },
     },
     {
