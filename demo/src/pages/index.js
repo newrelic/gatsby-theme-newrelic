@@ -169,6 +169,9 @@ const IndexPage = () => {
           <Callout variant={Callout.VARIANT.TIP} title={null}>
             Here's a tip with no title
           </Callout>
+          <Callout variant={Callout.VARIANT.COURSE}>
+            This callout is for a guide that is part of a super cool course
+          </Callout>
         </section>
         <section>
           <h2>A code block</h2>

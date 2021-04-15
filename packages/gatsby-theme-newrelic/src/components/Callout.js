@@ -7,6 +7,7 @@ const VARIANTS = {
   CAUTION: 'caution',
   IMPORTANT: 'important',
   TIP: 'tip',
+  COURSE: 'course',
 };
 
 const styles = {
@@ -31,6 +32,13 @@ const styles = {
     [VARIANTS.TIP]: css`
       border-color: var(--color-green-400);
       background: var(--callout-tip-background-color);
+    `,
+    [`${VARIANTS.COURSE}-title`]: css`
+      color: var(--color-brand-400);
+    `,
+    [VARIANTS.COURSE]: css`
+      border-color: var(--color-brand-400);
+      background: var(--callout-course-background-color);
     `,
   },
 };
