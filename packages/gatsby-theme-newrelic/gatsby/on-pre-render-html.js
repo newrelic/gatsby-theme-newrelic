@@ -8,7 +8,8 @@ const onPreRenderHTML = (
   themeOptions
 ) => {
   const googleTagManager = getGtmConfig(themeOptions);
-  var gtagScript, googleTrackScript;
+  let gtagScript;
+  let googleTrackScript;
 
   if (themeOptions.googleTagManager) {
     gtagScript = (
