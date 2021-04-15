@@ -47,7 +47,7 @@ const CookieConsentDialog = () => {
     }
     if (!answer && window.gtag) {
       if (window.newrelic && typeof newrelic === 'object') {
-        window.newrelic.addPageAction('cookieConsent', { optOut: true });
+        window.newrelic.addPageAction('cookieConsent', { agree: false });
       }
       window.gtag('event', 'opt_out', {
         event_category: 'cookie_consent',
