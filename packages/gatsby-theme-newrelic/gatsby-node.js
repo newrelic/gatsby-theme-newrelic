@@ -174,12 +174,6 @@ exports.sourceNodes = (
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
   const { layout = {} } = themeOptions;
 
-  const defaultUtmSource = {
-    'https://developer.newrelic.com': 'developer-site',
-    'https://opensource.newrelic.com': 'opensource-site',
-    'https://docs.newrelic.com': 'docs-site',
-  };
-
   createResolvers({
     Site: {
       layout: {
@@ -188,10 +182,6 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       },
     },
     SiteSiteMetadata: {
-      utmSource: {
-        resolve: ({ siteUrl, utmSource }) =>
-          utmSource || defaultUtmSource[siteUrl],
-      },
       branch: {
         resolve: ({ branch }) => branch || DEFAULT_BRANCH,
       },

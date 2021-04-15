@@ -14,7 +14,8 @@
   "callout": {
     "tip": "ヒント",
     "caution": "注意",
-    "important": "重要"
+    "important": "重要",
+    "course": "コース"
   },
   "github": {
     "createIssue": "問題を作成する",
