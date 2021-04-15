@@ -4,7 +4,7 @@ import getLocale from './utils/getLocale';
 
 const onRouteUpdate = ({ location, prevLocation }, themeOptions) => {
   trackViaTessen({ location, prevLocation }, themeOptions);
-  trackViaGoogle(themeOptions);
+  trackViaGoogle({ location, prevLocation }, themeOptions);
 
   if (window.newrelic) {
     const locale = getLocale({ location }, themeOptions);
