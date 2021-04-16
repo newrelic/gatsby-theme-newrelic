@@ -52,23 +52,17 @@ const trackViaGoogle = ({ location }, themeOptions) => {
   switch (true) {
     case initialized && canTrack():
       initialized = false;
-      disableGtag(gtmConfig.trackingId);
-      return;
+      return disableGtag(gtmConfig.trackingId);
 
     case !initialized && !canTrack():
       initialized = true;
       enableGtag(gtmConfig.trackingId);
       window.gtag('js', new Date());
       window.gtag('consent', 'default', { ad_storage: 'denied' });
-      sendPageview({ location }, themeOptions);
-      return;
+      return sendPageview({ location }, themeOptions);
 
     case initialized && !canTrack():
-      sendPageview({ location }, themeOptions);
-      return;
-
-    default:
-      return;
+      return sendPageview({ location }, themeOptions);
   }
 };
 
