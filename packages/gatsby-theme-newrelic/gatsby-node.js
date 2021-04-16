@@ -331,6 +331,11 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
     resolve: {
       alias: {
         path: require.resolve('path-browserify'),
+        util: require.resolve('util'),
+        stream: require.resolve('stream-browserify'),
+      },
+      fallback: {
+        fs: false,
       },
     },
   });

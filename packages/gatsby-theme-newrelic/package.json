@@ -29,7 +29,7 @@
     "@mdx-js/react": "^1.6.16",
     "@splitsoftware/splitio-react": "^1.2.0",
     "gatsby": "^3.3.0",
-    "gatsby-plugin-mdx": "^1.2.52",
+    "gatsby-plugin-mdx": "^2.3.0",
     "prettier": "^2.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -81,11 +81,13 @@
     "react-spring": "^9.1.1",
     "react-typist": "^2.0.5",
     "react-use": "^17.2.3",
+    "stream-browserify": "^3.0.0",
     "terser": "^5.6.1",
     "ua-parser-js": "^0.7.28",
     "use-dark-mode": "^2.3.1",
     "use-media": "^1.4.0",
     "use-persisted-state": "^0.3.3",
+    "util": "^0.12.3",
     "warning": "^4.0.3",
     "xstate": "^4.17.1"
   }
