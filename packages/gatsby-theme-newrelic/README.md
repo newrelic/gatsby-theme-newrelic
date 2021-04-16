@@ -183,6 +183,13 @@ module.exports = {
           product: 'DEMO',
           subproduct: 'DEMO',
         },
+        googleTagManager: {
+          trackingId: 'ID_HERE',
+          src: 'https://www.googletagmanager.com/gtag/js',
+          options: {
+            anonymize_ip: true,
+          },
+        },
         relatedResources: {
           labels: {
             'https://my.website': 'my-website'
@@ -381,6 +388,26 @@ const defaultResolveEnv = () =>
   process.env.GATSBY_ACTIVE_ENV ||
   process.env.NODE_ENV ||
   'development';
+```
+
+#### `googleTagManager`
+
+Optional configuration for Google Tag Manager. If Tessen is also configured for the site, Google Tag Manager is only used if a user opts out of cookie usage (and thus Tessen is not used at all).
+
+- `trackingId` _(string)_ **required**: The Google Analytics measurement ID.
+- `src` _(string)_ **required**: The Google Tag Manager endpoint used to bring Google Tag Manger into the site.
+- `options` _(object)_: Additional config options to send along with `gtag` page views and events.
+
+**Example**
+
+```js
+googleTagManager: {
+  trackingId: 'ID_HERE',
+  src: 'https://www.googletagmanager.com/gtag/js',
+  options: {
+    anonymize_ip: true,
+  },
+},
 ```
 
 #### `i18n`
