@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.39.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.38.1...v1.39.0) (2021-04-19)
+
+
+### Bug Fixes
+
+* check for gtm config first before preparing scripts ([a8c3736](https://github.com/newrelic/gatsby-theme-newrelic/commit/a8c373695d884e154f397ec1a290c474e0c82ff1))
+* fix linting errors ([7008056](https://github.com/newrelic/gatsby-theme-newrelic/commit/7008056376cc3fb99dc04f6e694bfb1969450625))
+* move vars outside of if block so its reachable ([5827236](https://github.com/newrelic/gatsby-theme-newrelic/commit/5827236860adf47520316d67af053a4a788eec81))
+* update webpack config to include polyfills ([71c7f38](https://github.com/newrelic/gatsby-theme-newrelic/commit/71c7f38e8b0ce343074a7b8a4893d1f34fc5a51d))
+
+
+### Features
+
+* update gatsby and related deps ([3cb3ef4](https://github.com/newrelic/gatsby-theme-newrelic/commit/3cb3ef45d75760ac2f47f692cf90091444ac6418))
+* **analytics:** add google tracking manually if not using tessen ([66a4995](https://github.com/newrelic/gatsby-theme-newrelic/commit/66a49952aba173f8832f9858de4f16fcabfa1ca8))
+
+
+
+
+
 ## [1.38.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.38.0...v1.38.1) (2021-04-15)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
