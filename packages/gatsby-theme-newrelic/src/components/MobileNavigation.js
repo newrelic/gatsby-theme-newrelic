@@ -4,7 +4,7 @@ import MobileNavModal from './MobileNavModal';
 import usePrevious from '../hooks/usePrevious';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import { useLocation } from '@reach/router';
-import { useTransition } from 'react-spring';
+import { useTransition, config } from 'react-spring';
 
 const MobileNavigation = ({ isOpen, children, onClose }) => {
   useScrollFreeze(isOpen);
@@ -13,8 +13,8 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
   const previousLocation = usePrevious(location);
   const hasChangedPage = location.pathname !== previousLocation?.pathname;
 
-  const transitions = useTransition(isOpen, null, {
-    config: { mass: 1, tension: 350, friction: 25, velocity: 10 },
+  const transitions = useTransition(isOpen, {
+    config: config.default,
     from: {
       position: 'fixed',
       opacity: 0,
@@ -30,10 +30,10 @@ const MobileNavigation = ({ isOpen, children, onClose }) => {
     }
   }, [hasChangedPage, onClose]);
 
-  return transitions.map(
-    ({ item, key, props }) =>
+  return transitions(
+    (style, item) =>
       item && (
-        <MobileNavModal key={key} style={props} onClose={onClose}>
+        <MobileNavModal style={style} onClose={onClose}>
           {children}
         </MobileNavModal>
       )

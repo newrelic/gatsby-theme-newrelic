@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Button from './Button';
 import Icon from './Icon';
 import useThemeTranslation from '../hooks/useThemeTranslation';

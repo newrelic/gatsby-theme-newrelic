@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { rgba } from 'polished';
 

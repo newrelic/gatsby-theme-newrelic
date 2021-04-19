@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   Button,
   CodeBlock,

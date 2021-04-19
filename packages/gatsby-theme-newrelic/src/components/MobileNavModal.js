@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { animated } from 'react-spring';
 import { darken, rgba } from 'polished';
 import { useScroll } from 'react-use';

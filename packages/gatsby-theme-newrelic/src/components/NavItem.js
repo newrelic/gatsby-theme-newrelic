@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import NavLink from './NavLink';
 import TextHighlight from './TextHighlight';
 import { useLocation } from '@reach/router';
