@@ -7,20 +7,18 @@ const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
   themeOptions
 ) => {
-  const googleTagManager = getGtmConfig(themeOptions);
   let gtagScript;
-  let googleTrackScript;
+  const googleTagManager = getGtmConfig(themeOptions);
 
-  if (themeOptions.googleTagManager) {
-    gtagScript = (
-      <script
-        async
-        key="nr-gtag"
-        src={`${googleTagManager.src}?id=${googleTagManager.trackingId}`}
-      />
-    );
+  gtagScript = googleTagManager ? (
+    <script
+      async
+      key="nr-gtag"
+      src={`${googleTagManager.src}?id=${googleTagManager.trackingId}`}
+    />
+  ) : null;
 
-    const scriptStr = `
+  const scriptStr = `
     var options = {
       send_page_view: false,
       anonymize_ip: true
@@ -30,13 +28,13 @@ const onPreRenderHTML = (
     window.gtag = gtag;
     `;
 
-    googleTrackScript = (
-      <script
-        key="nr-gtag-inline-script"
-        dangerouslySetInnerHTML={{ __html: scriptStr }}
-      />
-    );
-  }
+  const googleTrackScript = (
+    <script
+      key="nr-gtag-inline-script"
+      dangerouslySetInnerHTML={{ __html: scriptStr }}
+    />
+  );
+
   replaceHeadComponents(
     [
       ...getHeadComponents(),
