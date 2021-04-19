@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Icon from './Icon';
 import Link from './Link';
 import { animated, useSpring } from 'react-spring';

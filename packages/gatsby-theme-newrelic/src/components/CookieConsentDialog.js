@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Cookies from 'js-cookie';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import ExternalLink from './ExternalLink';
 import Button from './Button';
 import Trans from './Trans';

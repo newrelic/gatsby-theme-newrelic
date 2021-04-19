@@ -1,7 +1,7 @@
 /* eslint-disable no-nested-ternary */
 import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { LiveError, LivePreview, LiveProvider } from 'react-live';
 import Button from './Button';
 import CodeEditor from './CodeEditor';

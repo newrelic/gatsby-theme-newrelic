@@ -11,4 +11,7 @@ module.exports = {
   ],
   setupFiles: ['<rootDir>/loadershim.js', 'jest-localstorage-mock'],
   setupFilesAfterEnv: ['<rootDir>/setup-test-env.js'],
+  moduleNameMapper: {
+    '^@reach/router(.*)': '<rootDir>/node_modules/@gatsbyjs/reach-router$1',
+  },
 };

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Icon from './Icon';
 import Portal from './Portal';
 import NewRelicLogo from './NewRelicLogo';

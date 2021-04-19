@@ -16,8 +16,8 @@
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^10.4.8",
-    "@testing-library/react-hooks": "^5.0.3",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/react-hooks": "^5.1.1",
     "babel-jest": "^26.3.0",
     "babel-preset-gatsby": "^0.5.16",
     "eslint": "^7.4.0",

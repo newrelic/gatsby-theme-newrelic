@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { normalize } from 'polished';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 import colors from './colors';
 import typography from './typography';
 import themes from './themes';

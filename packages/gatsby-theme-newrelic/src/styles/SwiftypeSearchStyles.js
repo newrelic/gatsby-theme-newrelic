@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { rgba } from 'polished';
 
 const bullet = '2022';
@@ -91,7 +91,7 @@ export default css`
   .rc-pagination-jump-next:hover {
     background: var(--tertiary-background-color);
   }
-  
+
   .rc-pagination-jump-prev:hover {
     background: var(--tertiary-background-color);
   }
@@ -1015,5 +1015,4 @@ export default css`
   .sui-select__option:hover {
     background: var(--tertiary-background-color);
   }
-
 `;

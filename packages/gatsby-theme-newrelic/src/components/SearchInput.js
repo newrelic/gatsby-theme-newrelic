@@ -1,6 +1,6 @@
 import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Icon from './Icon';
 import composeHandlers from '../utils/composeHandlers';
 import useSyncedRef from '../hooks/useSyncedRef';

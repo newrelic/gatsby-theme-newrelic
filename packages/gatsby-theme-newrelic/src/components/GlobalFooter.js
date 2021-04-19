@@ -4,7 +4,7 @@ import Button from './Button';
 import Logo from './Logo';
 import ExternalLink from './ExternalLink';
 import { graphql, useStaticQuery } from 'gatsby';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import CreateIssueButton from './CreateIssueButton';
 import EditPageButton from './EditPageButton';
 import useThemeTranslation from '../hooks/useThemeTranslation';
