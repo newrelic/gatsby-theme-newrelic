@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 import Cookies from 'js-cookie';
 import { css } from '@emotion/core';
 import ExternalLink from './ExternalLink';
@@ -9,6 +10,21 @@ import useHasMounted from '../hooks/useHasMounted';
 import { TRACKING_COOKIE_NAME } from '../utils/constants';
 
 const CookieConsentDialog = () => {
+  const {
+    newRelicThemeConfig: { googleTagManager },
+  } = useStaticQuery(graphql`
+    query {
+      newRelicThemeConfig {
+        googleTagManager {
+          trackingId
+          src
+          options {
+            anonymize_ip
+          }
+        }
+      }
+    }
+  `);
   const { t } = useThemeTranslation();
   const hasMounted = useHasMounted();
   const [isCookieSet, setIsCookieSet] = useState(
@@ -28,6 +44,21 @@ const CookieConsentDialog = () => {
 
     if (answer && window.initializeTessenTracking) {
       window.initializeTessenTracking({ trackPageView: true });
+    }
+    if (!answer && window.gtag) {
+      if (window.newrelic && typeof newrelic === 'object') {
+        window.newrelic.addPageAction('cookieConsent', { agree: false });
+      }
+      window.gtag('event', 'opt_out', {
+        event_category: 'cookie_consent',
+        anonymize_ip: googleTagManager.options.anonymize_ip,
+      });
+
+      window.gtag(
+        'config',
+        googleTagManager.trackingId,
+        googleTagManager.options
+      );
     }
   };
 

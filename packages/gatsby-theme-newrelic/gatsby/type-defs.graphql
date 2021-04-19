@@ -35,6 +35,7 @@ type NewRelicThemeConfig implements Node {
   env: String!
   relatedResources: NewRelicThemeRelatedResourceConfig!
   tessen: NewRelicThemeTessenConfig
+  googleTagManager: GoogleTagManagerConfig
   forceTrailingSlashes: Boolean!
 }
 
@@ -50,4 +51,14 @@ type RelatedResourceLabel {
 type NewRelicThemeTessenConfig {
   product: String
   subproduct: String
+}
+
+type GoogleTagManagerConfig {
+  trackingId: String
+  src: String
+  options: GoogleTagManagerOptions
+}
+
+type GoogleTagManagerOptions {
+  anonymize_ip: Boolean
 }
