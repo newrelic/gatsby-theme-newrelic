@@ -65,7 +65,7 @@ const trackViaGoogle = ({ location }, themeOptions) => {
       return sendPageview({ location }, themeOptions);
 
     default:
-      return;
+    // do nothing
   }
 };
 

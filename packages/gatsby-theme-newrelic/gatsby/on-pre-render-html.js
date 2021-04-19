@@ -7,10 +7,9 @@ const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
   themeOptions
 ) => {
-  let gtagScript;
   const googleTagManager = getGtmConfig(themeOptions);
 
-  gtagScript = googleTagManager ? (
+  const gtagScript = googleTagManager ? (
     <script
       async
       key="nr-gtag"
