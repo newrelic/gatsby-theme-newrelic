@@ -63,6 +63,9 @@ const trackViaGoogle = ({ location }, themeOptions) => {
 
     case initialized && !canTrack():
       return sendPageview({ location }, themeOptions);
+
+    default:
+      return;
   }
 };
 
