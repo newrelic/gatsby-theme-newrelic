@@ -158,13 +158,7 @@ exports.sourceNodes = (
     tessen: tessen
       ? { product: tessen.product, subproduct: tessen.subproduct }
       : null,
-    googleTagManager: googleTagManager
-      ? {
-          trackingId: googleTagManager.trackingId,
-          src: googleTagManager.src,
-          options: googleTagManager.options,
-        }
-      : null,
+    googleTagManager: googleTagManager || null,
   };
 
   createNode({
