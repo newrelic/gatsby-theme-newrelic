@@ -25,7 +25,6 @@ yarn workspace demo develop
 Visit [http://localhost:8001](http://localhost:8001) in your browser to browse
 the demo site.
 
-
 ## Documentation
 
 To view documentation for a New Relic theme, visit that theme's README.
