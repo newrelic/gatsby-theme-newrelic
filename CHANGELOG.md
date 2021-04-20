@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.39.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.39.0...v1.39.1) (2021-04-20)
+
+
+### Features
+
+* Upgrade to Gatsby 3 ([df4fd2c](https://github.com/newrelic/gatsby-theme-newrelic/commit/df4fd2cffb9f332660caf8e954237d2a4f93c2c6))
+
+
+### BREAKING CHANGES
+
+* peer dependencies have all been updated to work with
+Gatsby 3.
+
+
+
+
+
 # [1.39.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.38.1...v1.39.0) (2021-04-19)
 
 
