@@ -8916,10 +8916,10 @@ gatsby-plugin-mdx@^2.3.0:
     unist-util-remove "^1.0.3"
     unist-util-visit "^1.4.1"
 
-gatsby-plugin-newrelic@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-newrelic/-/gatsby-plugin-newrelic-1.0.6.tgz#0f7e1855704e18a5af9c3ea551e68ffe8e8005c9"
-  integrity sha512-DqdDlE3g/Hm2rnv5a9kQSkAFi3c43n1S+fXiX4N6TqOMTViNBQanKnRPi8oxBx05eFbHsLpSJJBa7OHasLL3eg==
+gatsby-plugin-newrelic@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-newrelic/-/gatsby-plugin-newrelic-2.0.0.tgz#aa75db9dd4bb8beaa2b65dd70a97c257449dc1a5"
+  integrity sha512-8nicV8yEXqkQkFoyYyVfdsr0EBdnL8maFrMS9r7w6y43OhUp4z4NNLDAI1vcIFCUtNIT6l4bJHo3JAnYYmdrqg==
   dependencies:
     "@babel/runtime" "^7.11.2"
 
