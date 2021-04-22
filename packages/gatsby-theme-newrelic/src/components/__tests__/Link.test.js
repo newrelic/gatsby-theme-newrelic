@@ -112,7 +112,7 @@ test('renders correct signup link', () => {
 
   expect(link).toHaveAttribute('href', 'https://newrelic.com/signup');
   expect(link).toHaveAttribute('target', '_blank');
-  expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  expect(link).toHaveAttribute('rel', 'noopener');
 });
 
 test('localizes the sign up link', () => {
@@ -133,7 +133,7 @@ test('localizes the sign up link', () => {
 
   expect(link).toHaveAttribute('href', 'https://newrelic.com/jp/signup');
   expect(link).toHaveAttribute('target', '_blank');
-  expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  expect(link).toHaveAttribute('rel', 'noopener');
 });
 
 describe('when forceTrailingSlashes is enabled', () => {
