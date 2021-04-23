@@ -22,11 +22,12 @@ const SignUpLink = ({ href, onClick, instrumentation, ...props }) => {
   const locale = useLocale();
 
   return (
+    // eslint-disable-next-line react/jsx-no-target-blank
     <a
       {...props}
       href={formatHref(href, { locale })}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
       onClick={(e) => {
         if (onClick) {
           onClick(e);
