@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.0.0...v2.0.1) (2021-04-23)
+
+
+### Bug Fixes
+
+* referrer field not being sent on sign up ([6c5fca5](https://github.com/newrelic/gatsby-theme-newrelic/commit/6c5fca597507e10c2d8f50a71e3ddc513d069b7a))
+
+
+
+
+
 # [2.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v1.39.1...v2.0.0) (2021-04-21)
 
 
