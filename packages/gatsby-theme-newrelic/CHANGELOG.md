@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.0.1...v2.0.2) (2021-04-27)
+
+
+### Bug Fixes
+
+* Bump react-spring version ([193441b](https://github.com/newrelic/gatsby-theme-newrelic/commit/193441b7977b4492576a5e55b715b1f4a0998b9e))
+
+
+
+
+
 ## [2.0.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.0.0...v2.0.1) (2021-04-23)
 
 
