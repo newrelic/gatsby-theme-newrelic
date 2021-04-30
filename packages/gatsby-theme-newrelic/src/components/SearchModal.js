@@ -1,6 +1,6 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Footer from './SearchModal/Footer';
 import Input from './SearchModal/Input';
 import NoResults from './SearchModal/NoResults';

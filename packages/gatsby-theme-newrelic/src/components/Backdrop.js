@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { animated } from 'react-spring';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { darken, rgba } from 'polished';
 
 const Backdrop = ({ onClick, style }) => (

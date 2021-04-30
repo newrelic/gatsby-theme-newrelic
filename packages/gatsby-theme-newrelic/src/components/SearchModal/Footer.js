@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import Icon from '../Icon';
 import Key from './Key';
 

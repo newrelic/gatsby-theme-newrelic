@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import Tag from '../Tag';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 const ResultPreview = memo(({ result }) => {
   return (
