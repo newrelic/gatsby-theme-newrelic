@@ -1,20 +1,20 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
-import Footer from './SearchModal/Footer';
-import Input from './SearchModal/Input';
-import NoResults from './SearchModal/NoResults';
-import Portal from './Portal';
-import ResultList from './SearchModal/ResultList';
-import ResultPreview from './SearchModal/ResultPreview';
-import ScrollContainer from './SearchModal/ScrollContainer';
-import useThemeTranslation from '../hooks/useThemeTranslation';
-import useKeyPress from '../hooks/useKeyPress';
-import useScrollFreeze from '../hooks/useScrollFreeze';
+import Footer from './Footer';
+import Input from './Input';
+import NoResults from './NoResults';
+import Portal from '../Portal';
+import ResultList from './ResultList';
+import ResultPreview from './ResultPreview';
+import ScrollContainer from './ScrollContainer';
+import useThemeTranslation from '../../hooks/useThemeTranslation';
+import useKeyPress from '../../hooks/useKeyPress';
+import useScrollFreeze from '../../hooks/useScrollFreeze';
 import { animated, useTransition } from 'react-spring';
 import { rgba } from 'polished';
-import useSearch from './SearchModal/useSearch';
-import usePrevious from '../hooks/usePrevious';
+import useSearch from './useSearch';
+import usePrevious from '../../hooks/usePrevious';
 import { useLocation } from '@reach/router';
 
 const defaultFilters = [
