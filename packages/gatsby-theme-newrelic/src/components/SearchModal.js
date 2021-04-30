@@ -36,7 +36,7 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
     filters,
   });
 
-  const transitions = useTransition(isOpen, null, {
+  const transitions = useTransition(isOpen, {
     config: { tension: 220, friction: 22 },
     from: {
       opacity: 0,
