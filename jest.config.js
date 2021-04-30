@@ -6,9 +6,7 @@ module.exports = {
   globals: {
     __PATH_PREFIX__: '',
   },
-  transformIgnorePatterns: [
-    'node_modules/(?!(gatsby||@elastic/react-search-ui-views||gatsby-plugin-mdx)/)',
-  ],
+  transformIgnorePatterns: ['node_modules/(?!(gatsby||gatsby-plugin-mdx)/)'],
   setupFiles: ['<rootDir>/loadershim.js', 'jest-localstorage-mock'],
   setupFilesAfterEnv: ['<rootDir>/setup-test-env.js'],
   moduleNameMapper: {

@@ -52,9 +52,6 @@
   "searchInput": {
     "placeholder": "Docs.newrelic.com、Developer.newrelic.com、OpenSource.newrelic.comを検索"
   },
-  "search": {
-    "pagingInfo": "3つのサイトで<7>{{searchTerm}}</7>を検索した結果の<2>{{start}} - {{end}}</2> ／<5>{{totalResults}}</5>を表示中"
-  },
   "tableOfContents": {
     "title": "このページの目次"
   }
