@@ -103,46 +103,16 @@ test('localizes the link when the current locale is not the default', () => {
   expect(link).toHaveAttribute('href', '/jp/page');
 });
 
-test('adds the utm_source to signup links', () => {
-  useStaticData({
-    site: {
-      siteMetadata: {
-        utmSource: 'test-site',
-      },
-    },
-  });
+test('renders correct signup link', () => {
+  useStaticData({});
 
   renderWithProviders(<Link to="https://newrelic.com/signup">Link</Link>);
 
   const link = screen.getByText('Link');
 
-  expect(link).toHaveAttribute(
-    'href',
-    'https://newrelic.com/signup?utm_source=test-site'
-  );
-  expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  expect(link).toHaveAttribute('href', 'https://newrelic.com/signup');
   expect(link).toHaveAttribute('target', '_blank');
-});
-
-test('switches the utm_source to the configured value if set', () => {
-  useStaticData({
-    site: {
-      siteMetadata: {
-        utmSource: 'test-site',
-      },
-    },
-  });
-
-  renderWithProviders(
-    <Link to="https://newrelic.com/signup?utm_source=invalid">Link</Link>
-  );
-
-  const link = screen.getByText('Link');
-
-  expect(link).toHaveAttribute(
-    'href',
-    'https://newrelic.com/signup?utm_source=test-site'
-  );
+  expect(link).toHaveAttribute('rel', 'noopener');
 });
 
 test('localizes the sign up link', () => {
@@ -153,11 +123,6 @@ test('localizes the sign up link', () => {
         { locale: 'jp', isDefault: false },
       ],
     },
-    site: {
-      siteMetadata: {
-        utmSource: 'test-site',
-      },
-    },
   });
 
   renderWithProviders(<Link to="https://newrelic.com/signup">Link</Link>, {
@@ -166,12 +131,9 @@ test('localizes the sign up link', () => {
 
   const link = screen.getByText('Link');
 
-  expect(link).toHaveAttribute(
-    'href',
-    'https://newrelic.com/jp/signup?utm_source=test-site'
-  );
-  expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  expect(link).toHaveAttribute('href', 'https://newrelic.com/jp/signup');
   expect(link).toHaveAttribute('target', '_blank');
+  expect(link).toHaveAttribute('rel', 'noopener');
 });
 
 describe('when forceTrailingSlashes is enabled', () => {

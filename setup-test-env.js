@@ -1,6 +1,6 @@
 /* global expect */
 import { createSerializer, matchers } from 'jest-emotion';
-import * as emotion from '@emotion/core';
+import * as emotion from '@emotion/react';
 import '@testing-library/jest-dom';
 
 expect.extend(matchers);

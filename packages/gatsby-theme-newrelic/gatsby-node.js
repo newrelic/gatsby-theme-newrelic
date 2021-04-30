@@ -1,5 +1,5 @@
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 const { createFilePath } = require('gatsby-source-filesystem');
 const { withDefaults } = require('./src/utils/defaultOptions');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
@@ -9,6 +9,7 @@ const {
   getTrailingSlashesConfig,
   getResolvedEnv,
   getI18nConfig,
+  getGtmConfig,
 } = require('./src/utils/config');
 const pageTransforms = require('./gatsby/page-transforms');
 const { TESSEN_PATH } = require('./gatsby/constants');
@@ -126,6 +127,7 @@ exports.sourceNodes = (
   const { relatedResources } = withDefaults(themeOptions);
   const { createNode } = actions;
   const tessen = getTessenConfig(themeOptions);
+  const googleTagManager = getGtmConfig(themeOptions);
   const env = getResolvedEnv(themeOptions);
   const { forceTrailingSlashes } = getTrailingSlashesConfig(themeOptions);
 
@@ -156,6 +158,7 @@ exports.sourceNodes = (
     tessen: tessen
       ? { product: tessen.product, subproduct: tessen.subproduct }
       : null,
+    googleTagManager: googleTagManager || null,
   };
 
   createNode({
@@ -174,12 +177,6 @@ exports.sourceNodes = (
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
   const { layout = {} } = themeOptions;
 
-  const defaultUtmSource = {
-    'https://developer.newrelic.com': 'developer-site',
-    'https://opensource.newrelic.com': 'opensource-site',
-    'https://docs.newrelic.com': 'docs-site',
-  };
-
   createResolvers({
     Site: {
       layout: {
@@ -188,10 +185,6 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       },
     },
     SiteSiteMetadata: {
-      utmSource: {
-        resolve: ({ siteUrl, utmSource }) =>
-          utmSource || defaultUtmSource[siteUrl],
-      },
       branch: {
         resolve: ({ branch }) => branch || DEFAULT_BRANCH,
       },
@@ -328,6 +321,16 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
         ),
       }),
     ],
+    resolve: {
+      alias: {
+        path: require.resolve('path-browserify'),
+        util: require.resolve('util'),
+        stream: require.resolve('stream-browserify'),
+      },
+      fallback: {
+        fs: false,
+      },
+    },
   });
 };
 

@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 export default css`
   --shadow-0: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;

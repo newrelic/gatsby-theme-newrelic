@@ -1,12 +1,11 @@
 import { useCallback, useMemo } from 'react';
-import { useLocation, useNavigate } from '@reach/router';
+import { useLocation, navigate } from '@reach/router';
 
 const toQueryString = (queryParams) =>
   Array.from(queryParams.keys()).length ? `?${queryParams}` : '';
 
 const useQueryParams = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const queryParams = useMemo(() => new URLSearchParams(location.search), [
     location.search,
@@ -18,7 +17,7 @@ const useQueryParams = () => {
 
       navigate(toQueryString(queryParams) || location.pathname);
     },
-    [queryParams, navigate, location.pathname]
+    [queryParams, location.pathname]
   );
 
   const deleteQueryParam = useCallback(
@@ -27,7 +26,7 @@ const useQueryParams = () => {
 
       navigate(toQueryString(queryParams) || location.pathname);
     },
-    [queryParams, navigate, location.pathname]
+    [queryParams, location.pathname]
   );
 
   return { queryParams, setQueryParam, deleteQueryParam };

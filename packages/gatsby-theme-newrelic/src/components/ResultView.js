@@ -6,7 +6,7 @@ import {
   getUrlSanitizer,
 } from '@elastic/react-search-ui-views/es/view-helpers';
 import { isFieldValueWrapper } from '@elastic/react-search-ui-views/es/types/FieldValueWrapper';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import ExternalLink from './ExternalLink';
 import Tag from './Tag';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';

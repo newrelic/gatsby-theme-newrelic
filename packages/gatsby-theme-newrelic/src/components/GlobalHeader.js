@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import AnnouncementBanner from './AnnouncementBanner';
 import DarkModeToggle from './DarkModeToggle';
@@ -75,14 +75,8 @@ const GlobalHeader = ({ className }) => {
 
   const {
     allLocale: { nodes: locales },
-    site,
   } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
-      site {
-        siteMetadata {
-          utmSource
-        }
-      }
       allLocale(sort: { fields: [isDefault, locale], order: [DESC, ASC] }) {
         nodes {
           locale
@@ -92,10 +86,6 @@ const GlobalHeader = ({ className }) => {
       }
     }
   `);
-
-  const {
-    siteMetadata: { utmSource },
-  } = site;
 
   const hideLogoText = useMedia({ maxWidth: '655px' });
 
@@ -417,9 +407,7 @@ const GlobalHeader = ({ className }) => {
             >
               <Button
                 as={ExternalLink}
-                href={`https://newrelic.com/signup${
-                  utmSource ? `?utm_source=${utmSource}` : ''
-                }`}
+                href="https://newrelic.com/signup"
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
                 instrumentation={{ component: 'GlobalHeader' }}

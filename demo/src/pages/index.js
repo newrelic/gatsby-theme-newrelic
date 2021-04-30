@@ -1,6 +1,6 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   Button,
   CodeBlock,
@@ -168,6 +168,9 @@ const IndexPage = () => {
           </Callout>
           <Callout variant={Callout.VARIANT.TIP} title={null}>
             Here's a tip with no title
+          </Callout>
+          <Callout variant={Callout.VARIANT.COURSE}>
+            This callout is for a guide that is part of a super cool course
           </Callout>
         </section>
         <section>

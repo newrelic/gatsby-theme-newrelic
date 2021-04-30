@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import CommandLine from './CommandLine';
 import ShellOutput from './ShellOutput';
 import theme from './theme';

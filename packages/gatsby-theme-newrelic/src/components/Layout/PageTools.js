@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import PageTools from '../PageTools';
 
 const LayoutPageTools = ({ className, children }) => {
