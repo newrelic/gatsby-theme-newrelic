@@ -26,6 +26,7 @@ const SignUpLink = forwardRef(
       // eslint-disable-next-line react/jsx-no-target-blank
       <a
         {...props}
+        ref={ref}
         href={formatHref(href, { locale })}
         target="_blank"
         rel="noopener"
@@ -40,7 +41,6 @@ const SignUpLink = forwardRef(
             component: instrumentation?.component,
           });
         }}
-        ref={ref}
       />
     );
   }
