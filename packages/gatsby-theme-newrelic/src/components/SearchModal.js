@@ -73,12 +73,12 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
 
   const selectedResult = results[selectedIndex];
 
-  return transitions.map(
-    ({ item, key, props }) =>
+  return transitions(
+    (style, item) =>
       item && (
-        <Portal key={key}>
+        <Portal>
           <animated.div
-            style={{ opacity: props.opacity }}
+            style={{ opacity: style.opacity }}
             css={css`
               position: fixed;
               top: 0;
@@ -124,7 +124,7 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
           >
             <animated.div
               onClick={(e) => e.stopPropagation()}
-              style={props}
+              style={style}
               css={css`
                 --horizontal-spacing: 1rem;
 
