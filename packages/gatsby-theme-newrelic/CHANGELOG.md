@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.0.2...v2.1.0) (2021-05-03)
+
+
+### Features
+
+* **SplitColorButton:** add split button to header ([f8ef271](https://github.com/newrelic/gatsby-theme-newrelic/commit/f8ef271fb69d85a073c46b50d1ab2828d985d565))
+
+
+
+
+
 ## [2.0.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.0.1...v2.0.2) (2021-04-27)
 
 
