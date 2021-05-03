@@ -75,6 +75,7 @@ websites](https://opensource.newrelic.com).
     - [`SEO`](#seo)
     - [`SimpleFeedback`](#simplefeedback)
     - [`Spinner`](#spinner)
+    - [`SplitColorButton`](#splitcolorbutton)
     - [`Surface`](#surface)
     - [`Table`](#table)
     - [`TableOfContents`](#tableofcontents)
@@ -2221,6 +2222,44 @@ import { Spinner } from '@newrelic/gatsby-theme-newrelic';
 const View = () => (
   return <Spinner />;
 );
+```
+
+### `SplitColorButton`
+
+A wrapper around the [`Button`](#button) for A/B testing. It takes in the name of a Split.io split and changes color based on the config.
+To connect this component to a split, pass the name of the split in as the value of the `treatmentName` prop. The name of the treatment does not matter, as the component only checks to see if it is `off`. The config value for each treatment, excluding `off`, must be JSON in the following form:
+```json
+{
+  "color": "<color>"
+}
+```
+
+Example treatment config:
+```json
+{
+  "color": "#000000"
+}
+```
+
+```js
+import { SplitColorButton } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+| Prop            | Type   | Required | Default | Description                                                                     |
+| ----------      | -----  | -------- | ------- | ------------------------------------------------------------------------------- |
+| `children`      | node   | no       |         | The content to display within the button. Usually a `<span>` with text content. |
+| `treatmentName` | string | yes      |         | The name of the treatment in Split.io.                                          |
+
+**Example**
+```js
+<SplitColorButton
+  treatmentName="TestFeature"
+  size={Button.SIZE.SMALL}
+  variant={Button.VARIANT.PRIMARY}
+>
+  <span>Click me!</span>
+</SplitColorButton>
 ```
 
 ### `Surface`
