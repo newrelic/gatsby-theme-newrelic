@@ -20,6 +20,8 @@ import path from 'path';
 import { rgba } from 'polished';
 import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
+import { SPLITS } from '../utils/constants';
+import SplitColorButton from './SplitColorButton';
 
 const action = css`
   color: var(--secondary-text-color);
@@ -405,15 +407,16 @@ const GlobalHeader = ({ className }) => {
                 display: flex;
               `}
             >
-              <Button
+              <SplitColorButton
                 as={ExternalLink}
                 href="https://newrelic.com/signup"
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.PRIMARY}
                 instrumentation={{ component: 'GlobalHeader' }}
+                treatmentName={SPLITS.FREE_ACCOUNT_BUTTON_COLOR}
               >
                 <span>{t('button.signUp')}</span>
-              </Button>
+              </SplitColorButton>
             </li>
           </ul>
         </div>
