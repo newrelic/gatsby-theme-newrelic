@@ -44,6 +44,9 @@ const CookieConsentDialog = () => {
 
     if (answer && window.initializeTessenTracking) {
       window.initializeTessenTracking({ trackPageView: true });
+      if (window.newrelic && typeof newrelic === 'object') {
+        window.newrelic.addPageAction('cookieConsent', { agree: true });
+      }
     }
     if (!answer && window.gtag) {
       if (window.newrelic && typeof newrelic === 'object') {
