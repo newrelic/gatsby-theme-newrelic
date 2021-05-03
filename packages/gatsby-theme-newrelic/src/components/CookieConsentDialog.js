@@ -42,12 +42,15 @@ const CookieConsentDialog = () => {
     Cookies.set(TRACKING_COOKIE_NAME, String(answer), options);
     setIsCookieSet(true);
 
-    if (answer && window.initializeTessenTracking) {
-      window.initializeTessenTracking({ trackPageView: true });
+    if (answer) {
       if (window.newrelic && typeof newrelic === 'object') {
         window.newrelic.addPageAction('cookieConsent', { agree: true });
       }
+      if (window.initializeTessenTracking) {
+        window.initializeTessenTracking({ trackPageView: true });
+      }
     }
+
     if (!answer && window.gtag) {
       if (window.newrelic && typeof newrelic === 'object') {
         window.newrelic.addPageAction('cookieConsent', { agree: false });
