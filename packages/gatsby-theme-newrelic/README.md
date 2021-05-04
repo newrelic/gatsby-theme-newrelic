@@ -2227,7 +2227,7 @@ const View = () => (
 ### `SplitColorButton`
 
 A wrapper around the [`Button`](#button) for A/B testing. It takes in the name of a Split.io split and changes color based on the config.
-To connect this component to a split, pass the name of the split in as the value of the `treatmentName` prop. The name of the treatment does not matter, as the component only checks to see if it is `off`. The config value for each treatment, excluding `off`, must be JSON in the following form:
+To connect this component to a split and track metrics, pass the name of the split in as the value of the `treatmentName` prop and the click event name as the `eventName` prop. The name of the treatment does not matter, as the component only checks to see if it is `off`. The config value for each treatment, excluding `off`, must be JSON in the following form:
 ```json
 {
   "color": "<color>"
@@ -2250,6 +2250,7 @@ import { SplitColorButton } from '@newrelic/gatsby-theme-newrelic';
 | ----------      | -----  | -------- | ------- | ------------------------------------------------------------------------------- |
 | `children`      | node   | no       |         | The content to display within the button. Usually a `<span>` with text content. |
 | `treatmentName` | string | yes      |         | The name of the treatment in Split.io.                                          |
+| `eventName`     | string | yes      |         | The name of the event in Split.io.                                              |
 
 **Example**
 ```js
