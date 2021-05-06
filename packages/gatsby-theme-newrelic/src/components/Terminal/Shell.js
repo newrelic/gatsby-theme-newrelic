@@ -12,6 +12,9 @@ import MenuBar from './MenuBar';
 import { useIntersection } from 'react-use';
 import useClipboard from '../../hooks/useClipboard';
 
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
 const Shell = ({ animate, className, copyable, highlight, code }) => {
   const { tokens, getTokenProps } = highlight;
   const lines = translateLines(tokens, code);
@@ -36,7 +39,7 @@ const Shell = ({ animate, className, copyable, highlight, code }) => {
     }
   }, [animate, intersection, send]);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const { height } = shellRef.current.getBoundingClientRect();
     setHeight(height);
 
