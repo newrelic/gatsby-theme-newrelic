@@ -42,6 +42,7 @@ exports[`renders button with color defined in split 1`] = `
 
 <button
   className="emotion-0 emotion-1"
+  onClick={[Function]}
   size="extraSmall"
 >
   <span>
@@ -92,6 +93,7 @@ exports[`renders children 1`] = `
 
 <button
   className="emotion-0 emotion-1"
+  onClick={[Function]}
   size="extraSmall"
 >
   <span>
@@ -141,6 +143,7 @@ exports[`renders default button with no split 1`] = `
 
 <button
   className="emotion-0 emotion-1"
+  onClick={[Function]}
   size="extraSmall"
 >
   <span>

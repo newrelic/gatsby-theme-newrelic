@@ -20,7 +20,7 @@ import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import path from 'path';
 import { rgba } from 'polished';
-import { SPLITS } from '../utils/constants';
+import { SPLITS, SPLIT_TRACKING_EVENTS } from '../utils/constants';
 import SplitColorButton from './SplitColorButton';
 
 const action = css`
@@ -404,6 +404,9 @@ const GlobalHeader = ({ className }) => {
                 variant={Button.VARIANT.PRIMARY}
                 instrumentation={{ component: 'GlobalHeader' }}
                 treatmentName={SPLITS.FREE_ACCOUNT_BUTTON_COLOR}
+                eventName={
+                  SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_FREE_ACCOUNT_CLICK
+                }
               >
                 <span>{t('button.signUp')}</span>
               </SplitColorButton>
