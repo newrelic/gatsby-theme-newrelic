@@ -24,8 +24,8 @@ const MainLayout = (props) => {
       <SEO location={location} />
       <GlobalHeader />
       <MobileHeader>
-        {nav.map((page) => (
-          <NavItem key={page.url} page={page} />
+        {nav.map((page, index) => (
+          <NavItem key={`mobile${index}${page}`} page={page} />
         ))}
       </MobileHeader>
       <Layout>
@@ -44,8 +44,8 @@ const MainLayout = (props) => {
             `}
           />
           <Navigation searchTerm={searchTerm}>
-            {nav.map((page) => (
-              <NavItem key={page.url} page={page} />
+            {nav.map((page, index) => (
+              <NavItem key={`nav${index}${page}`} page={page} />
             ))}
           </Navigation>
         </Layout.Sidebar>
