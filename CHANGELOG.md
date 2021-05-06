@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.1.0...v2.2.0) (2021-05-06)
+
+
+### Bug Fixes
+
+* add proper split.io tracking ([ff25f48](https://github.com/newrelic/gatsby-theme-newrelic/commit/ff25f48b53cf98c81425108c4065c378f616c4fe))
+
+
+### Features
+
+* **analytics:** track when users agree to cookie usage ([ea27927](https://github.com/newrelic/gatsby-theme-newrelic/commit/ea27927d38a6139b1271d249126ff03af7b3e04e))
+* **tessen:** add customer id via segment cookie with all tessen calls ([f38cd08](https://github.com/newrelic/gatsby-theme-newrelic/commit/f38cd08b120aae832dbf7f39180ef333fbd5d9de))
+
+
+
+
+
 # [2.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.0.2...v2.1.0) (2021-05-03)
 
 
