@@ -48,7 +48,7 @@ const SimpleFeedback = ({ pageTitle, labels = [] }) => {
         gap: 1rem;
 
         @supports not (gap: 1rem) {
-          > :first-child {
+          > :first-of-type {
             margin-right: 1rem;
           }
         }
