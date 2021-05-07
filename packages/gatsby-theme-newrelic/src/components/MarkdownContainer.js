@@ -15,7 +15,7 @@ const MarkdownContainer = ({
         --block-element-spacing: 1.5rem;
         --text-spacing: var(--paragraph-spacing);
 
-        > *:first-of-type {
+        > *:first-child {
           margin-top: 0;
         }
 
@@ -39,13 +39,13 @@ const MarkdownContainer = ({
           margin-bottom: var(--text-spacing);
         }
 
-        h2:not(:first-of-type) {
+        h2:not(:first-child) {
           margin-top: 2rem;
         }
 
         h3,
         h4 {
-          &:not(:first-of-type) {
+          &:not(:first-child) {
             margin-top: 1.5rem;
           }
         }

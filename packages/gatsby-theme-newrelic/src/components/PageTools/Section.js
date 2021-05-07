@@ -9,7 +9,7 @@ const Section = ({ children, className }) => (
     css={css`
       padding: 1rem;
 
-      &:first-of-type {
+      &:first-child {
         ${borderRadius('top', '0.25rem')};
       }
 

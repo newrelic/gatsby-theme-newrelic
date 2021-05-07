@@ -28,7 +28,7 @@ const Table = ({ className, children }) => (
           border: 1px solid transparent;
         }
 
-        thead + tbody tr:first-of-type {
+        thead + tbody tr:first-child {
           border-top: 3px solid var(--color-brand-600);
         }
 
