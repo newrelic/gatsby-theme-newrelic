@@ -50,12 +50,7 @@ const trackViaTessen = ({ location }, themeOptions) => {
 
 const trackPageView = ({ config, env, location }) => {
   const { pageView } = config;
-  const {
-    name,
-    category,
-    getProperties = () => ({}),
-    ...properties
-  } = pageView;
+  const { name, category, ...properties } = pageView;
 
   const tessen = createTessen(config);
 
@@ -64,8 +59,9 @@ const trackPageView = ({ config, env, location }) => {
   }
 
   tessen.page(name, category, {
+    env: env === 'production' ? 'prod' : env,
+    location: location.pathname,
     ...properties,
-    ...getProperties({ location, env }),
   });
 };
 

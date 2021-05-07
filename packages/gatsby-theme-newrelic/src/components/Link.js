@@ -13,6 +13,19 @@ const isExternal = (to) => to.startsWith('http');
 const isNewRelic = (to) => to.startsWith('https://newrelic.com');
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
+const ATTRIBUTES = [
+  'download',
+  'href',
+  'hreflang',
+  'ping',
+  'rel',
+  'target',
+  'type',
+  'children',
+  'role',
+];
+
 const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
   const locale = useLocale();
 
@@ -47,14 +60,18 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
     to = to || '/';
   }
 
+  const normalizedProps = Object.entries(props)
+    .filter(([attribute]) => ATTRIBUTES.includes(attribute))
+    .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
+
   if (isHash(to)) {
-    return <a href={to} {...props} />;
+    return <a href={to} {...normalizedProps} />;
   }
 
   if (isSignup(to)) {
     return (
       <SignUpLink
-        {...props}
+        {...normalizedProps}
         href={to}
         onClick={handleExternalLinkClick}
         instrumentation={instrumentation}
@@ -69,7 +86,7 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
 
     return (
       <a
-        {...props}
+        {...normalizedProps}
         href={link}
         onClick={handleExternalLinkClick}
         target="_blank"
@@ -84,7 +101,7 @@ const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
         path: forceTrailingSlashes ? addTrailingSlash(to) : to,
         locale,
       })}
-      {...props}
+      {...normalizedProps}
     />
   );
 };
