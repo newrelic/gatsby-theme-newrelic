@@ -25,7 +25,7 @@ const MainLayout = (props) => {
       <GlobalHeader />
       <MobileHeader>
         {nav.map((page, index) => (
-          <NavItem key={`mobile${index}${page}`} page={page} />
+          <NavItem key={`mobile${index}${page.url}`} page={page} />
         ))}
       </MobileHeader>
       <Layout>
@@ -45,7 +45,7 @@ const MainLayout = (props) => {
           />
           <Navigation searchTerm={searchTerm}>
             {nav.map((page, index) => (
-              <NavItem key={`nav${index}${page}`} page={page} />
+              <NavItem key={`nav${index}${page.url}`} page={page} />
             ))}
           </Navigation>
         </Layout.Sidebar>
