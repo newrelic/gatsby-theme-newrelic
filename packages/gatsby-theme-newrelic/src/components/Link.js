@@ -23,6 +23,7 @@ const ATTRIBUTES = [
   'target',
   'type',
   'children',
+  'role',
 ];
 
 const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
