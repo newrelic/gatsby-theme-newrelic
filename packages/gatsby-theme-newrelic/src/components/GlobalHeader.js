@@ -209,6 +209,9 @@ const GlobalHeader = ({ className }) => {
                 <Dropdown.MenuItem href="https://discuss.newrelic.com/">
                   Community
                 </Dropdown.MenuItem>
+                <Dropdown.MenuItem href="https://learn.newrelic.com/">
+                  Learn
+                </Dropdown.MenuItem>
               </Dropdown.Menu>
             </Dropdown>
 
@@ -253,6 +256,11 @@ const GlobalHeader = ({ className }) => {
               <li>
                 <GlobalNavLink href="https://discuss.newrelic.com/">
                   Community
+                </GlobalNavLink>
+              </li>
+              <li>
+                <GlobalNavLink href="https://learn.newrelic.com/">
+                  Learn
                 </GlobalNavLink>
               </li>
             </ul>
