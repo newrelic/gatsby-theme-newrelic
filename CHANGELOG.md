@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.2.0...v2.2.1) (2021-05-07)
+
+
+### Bug Fixes
+
+* add 'env' to tessen call ([ea338e6](https://github.com/newrelic/gatsby-theme-newrelic/commit/ea338e628917daf6dcf3ad9c2c0963d4dc6fbd62))
+* added `role` to the acceptable attributes for a link ([265c718](https://github.com/newrelic/gatsby-theme-newrelic/commit/265c718ba0334d35f1b73f7d670f74bbb8c9ae79))
+* ensuring that link text is present ([b80f1a4](https://github.com/newrelic/gatsby-theme-newrelic/commit/b80f1a466482ccc21e21b42879c203fa05b12f5d))
+* only adding valid props to anchor tags ([ff0ca14](https://github.com/newrelic/gatsby-theme-newrelic/commit/ff0ca143c49a3a4a4cadcdded2ee4811a4accf06))
+* **sitemap:** update sitemap plugin version and explicitly set output path ([5882f6c](https://github.com/newrelic/gatsby-theme-newrelic/commit/5882f6ca3fed8bacf4353c3f8f15b051367f08a4))
+
+
+### Reverts
+
+* Revert "chore: using `first-of-type` to suppress warnings" ([9b19caa](https://github.com/newrelic/gatsby-theme-newrelic/commit/9b19caa701dbf4e169de5701a77d1d2e3e290d2c))
+
+
+
+
+
 # [2.2.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.1.0...v2.2.0) (2021-05-06)
 
 
