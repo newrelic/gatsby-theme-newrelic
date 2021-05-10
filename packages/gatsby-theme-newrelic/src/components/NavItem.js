@@ -10,6 +10,9 @@ import useNavigation from '../hooks/useNavigation';
 import { graphql, useStaticQuery } from 'gatsby';
 import { stripTrailingSlash } from '../utils/location';
 
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
 const NavItem = ({ page, __parent: parent, __depth: depth = 0 }) => {
   const locale = useLocale();
   const location = useLocation();
@@ -57,7 +60,7 @@ const NavItem = ({ page, __parent: parent, __depth: depth = 0 }) => {
     }
   }, [matchesSearch, shouldExpand, searchTerm]);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!searchTerm) {
       setIsExpanded(shouldExpand);
     }

@@ -9,6 +9,7 @@ import {
   CollapserGroup,
   ContributingGuidelines,
   Layout,
+  Link,
   PageTools,
   SearchInput,
   SimpleFeedback,
@@ -355,6 +356,26 @@ nr1 create --type nerdpack --name pageviews-app
               `}
             >
               Interactive
+            </Surface>
+          </div>
+          <h2>Surfaces as other elements</h2>
+          <div
+            css={css`
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+              grid-gap: 2rem;
+              padding: 1rem;
+            `}
+          >
+            <Surface
+              base={Surface.BASE.PRIMARY}
+              to="foobar"
+              as={Link}
+              css={css`
+                padding: 2rem;
+              `}
+            >
+              I'm a link!
             </Surface>
           </div>
         </section>

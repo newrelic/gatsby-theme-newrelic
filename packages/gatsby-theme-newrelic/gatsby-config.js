@@ -3,7 +3,12 @@ module.exports = ({ layout, newrelic, robots = {}, sitemap = true }) => {
     plugins: [
       'gatsby-plugin-emotion',
       'gatsby-plugin-react-helmet',
-      sitemap && 'gatsby-plugin-sitemap',
+      sitemap && {
+        resolve: 'gatsby-plugin-sitemap',
+        options: {
+          output: '/',
+        },
+      },
       'gatsby-plugin-use-dark-mode',
       'gatsby-transformer-sharp',
       'gatsby-plugin-sharp',

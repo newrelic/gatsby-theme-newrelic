@@ -20,7 +20,7 @@ import path from 'path';
 import { rgba } from 'polished';
 import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
-import { SPLITS } from '../utils/constants';
+import { SPLITS, SPLIT_TRACKING_EVENTS } from '../utils/constants';
 import SplitColorButton from './SplitColorButton';
 
 const action = css`
@@ -222,6 +222,9 @@ const GlobalHeader = ({ className }) => {
                 <Dropdown.MenuItem href="https://discuss.newrelic.com/">
                   Community
                 </Dropdown.MenuItem>
+                <Dropdown.MenuItem href="https://learn.newrelic.com/">
+                  Learn
+                </Dropdown.MenuItem>
               </Dropdown.Menu>
             </Dropdown>
 
@@ -266,6 +269,11 @@ const GlobalHeader = ({ className }) => {
               <li>
                 <GlobalNavLink href="https://discuss.newrelic.com/">
                   Community
+                </GlobalNavLink>
+              </li>
+              <li>
+                <GlobalNavLink href="https://learn.newrelic.com/">
+                  Learn
                 </GlobalNavLink>
               </li>
             </ul>
@@ -414,6 +422,9 @@ const GlobalHeader = ({ className }) => {
                 variant={Button.VARIANT.PRIMARY}
                 instrumentation={{ component: 'GlobalHeader' }}
                 treatmentName={SPLITS.FREE_ACCOUNT_BUTTON_COLOR}
+                eventName={
+                  SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_FREE_ACCOUNT_CLICK
+                }
               >
                 <span>{t('button.signUp')}</span>
               </SplitColorButton>

@@ -7,6 +7,7 @@ export const SPLITS = {
 
 export const SPLIT_TRACKING_EVENTS = {
   GLOBAL_HEADER_CLICK_ACTION: 'global_header.action_clicked',
+  GLOBAL_HEADER_FREE_ACCOUNT_CLICK: 'global_header.free_account_button_click',
 };
 
 export const STORAGE_KEYS = {
