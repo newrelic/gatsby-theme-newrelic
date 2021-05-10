@@ -1,4 +1,3 @@
-export { default as Backdrop } from './src/components/Backdrop';
 export { default as Banner } from './src/components/Banner';
 export { default as Button } from './src/components/Button';
 export { default as Callout } from './src/components/Callout';
