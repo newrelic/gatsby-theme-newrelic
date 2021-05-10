@@ -144,6 +144,7 @@ const GlobalStyles = ({ layout }) => (
         padding: 0.2em 0.4em;
         border-radius: 3px;
         font-size: 85%;
+        word-break: break-word;
       }
 
       blockquote {
