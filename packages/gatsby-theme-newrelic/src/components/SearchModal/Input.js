@@ -147,7 +147,7 @@ const Input = forwardRef(
             {filters && (
               <Dropdown align="right" closeOnClick={false}>
                 <Dropdown.Toggle
-                  style={css`
+                  css={css`
                     color: var(--accent-text-color);
                     border: green;
                     background: transparent;
