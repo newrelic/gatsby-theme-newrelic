@@ -22,6 +22,7 @@ import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
 import { SPLITS, SPLIT_TRACKING_EVENTS } from '../utils/constants';
 import SplitColorButton from './SplitColorButton';
+import useHasMounted from '../hooks/useHasMounted';
 
 const action = css`
   color: var(--secondary-text-color);
@@ -70,6 +71,7 @@ const useSearchQuery = () => {
 };
 
 const GlobalHeader = ({ className }) => {
+  const hasMounted = useHasMounted();
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
   const [searchTerm, setSearchTerm] = useSearchQuery();
@@ -105,7 +107,7 @@ const GlobalHeader = ({ className }) => {
         onClose={() => {
           deleteQueryParam('q');
         }}
-        isOpen={queryParams.has('q')}
+        isOpen={hasMounted && queryParams.has('q')}
       />
       <AnnouncementBanner />
       <div
