@@ -15,6 +15,7 @@ const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
 const ATTRIBUTES = [
+  'className',
   'download',
   'href',
   'hreflang',
