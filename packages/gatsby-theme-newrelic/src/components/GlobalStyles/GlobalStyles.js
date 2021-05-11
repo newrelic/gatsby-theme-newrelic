@@ -136,6 +136,7 @@ const GlobalStyles = ({ layout }) => (
       code,
       var {
         font-family: var(--code-font);
+        white-space: pre-wrap;
       }
 
       *:not(pre) > code,
@@ -144,6 +145,7 @@ const GlobalStyles = ({ layout }) => (
         padding: 0.2em 0.4em;
         border-radius: 3px;
         font-size: 85%;
+        word-break: break-word;
       }
 
       blockquote {
