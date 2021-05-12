@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.2.2...v2.2.3) (2021-05-12)
+
+
+### Bug Fixes
+
+* updating links to allow for dangerouslySetInnerHTML ([3e95145](https://github.com/newrelic/gatsby-theme-newrelic/commit/3e95145a72bac9f6770d2cf7d45fda8a8bbdb5da))
+
+
+
+
+
 ## [2.2.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.2.1...v2.2.2) (2021-05-11)
 
 
