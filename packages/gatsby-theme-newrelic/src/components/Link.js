@@ -25,6 +25,7 @@ const ATTRIBUTES = [
   'type',
   'children',
   'role',
+  'dangerouslySetInnerHTML',
 ];
 
 const Link = ({ to, onClick, instrumentation = {}, ...props }) => {
