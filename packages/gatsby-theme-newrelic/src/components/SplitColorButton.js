@@ -1,13 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
-import {
-  useTreatments,
-  SplitContext,
-  useTrack,
-} from '@splitsoftware/splitio-react';
+import { useTreatments, useTrack } from '@splitsoftware/splitio-react';
 import Button from './Button';
-import Spinner from './Spinner';
 
 const renderButton = (treatmentWithConfig, children, clickCallback, props) => {
   const { treatment, config } = treatmentWithConfig;
@@ -35,15 +30,15 @@ const renderButton = (treatmentWithConfig, children, clickCallback, props) => {
 };
 
 const SplitColorButton = ({ children, treatmentName, eventName, ...props }) => {
-  const { isReady } = React.useContext(SplitContext);
   const treatments = useTreatments([treatmentName]);
   const track = useTrack();
   const clickCallback = () => track(eventName);
 
-  return isReady ? (
-    renderButton(treatments[treatmentName], children, clickCallback, props)
-  ) : (
-    <Spinner />
+  return renderButton(
+    treatments[treatmentName],
+    children,
+    clickCallback,
+    props
   );
 };
 
