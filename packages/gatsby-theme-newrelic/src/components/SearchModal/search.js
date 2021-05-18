@@ -30,7 +30,7 @@ const search = async ({ searchTerm, filters, perPage = 10, page = 1 }) => {
       filters: {
         page: {
           type: getFilters(filters).map((filter) => filter.name),
-          document_type: ['!views_page_menu'],
+          document_type: ['!views_page_menu', '!views_page_content'],
         },
       },
     }),
