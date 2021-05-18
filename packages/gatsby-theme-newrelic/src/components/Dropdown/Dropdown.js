@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import DropdownContext from './Context';
@@ -18,17 +18,16 @@ const Dropdown = ({ align, children, className, closeOnClick = true }) => {
     () => ({ align, open, toggle: () => setOpen((open) => !open) }),
     [align, open]
   );
-  const hide = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
-    if (closeOnClick) {
-      if (open) {
-        document.addEventListener('click', hide);
-      }
+    const hide = () => setOpen(false);
 
-      return () => document.removeEventListener('click', hide);
+    if (closeOnClick && open) {
+      document.addEventListener('click', hide);
     }
-  }, [hide, open, closeOnClick]);
+
+    return () => document.removeEventListener('click', hide);
+  }, [open, closeOnClick]);
 
   return (
     <DropdownContext.Provider value={value}>
