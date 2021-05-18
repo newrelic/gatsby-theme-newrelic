@@ -136,6 +136,7 @@ const GlobalStyles = ({ layout }) => (
       code,
       var {
         font-family: var(--code-font);
+        white-space: pre-wrap;
       }
 
       *:not(pre) > code,
