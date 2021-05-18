@@ -1,7 +1,7 @@
 const ENDPOINT =
   'https://search-api.swiftype.com/api/v1/public/engines/search.json';
 
-const search = async ({ searchTerm, filters, perPage = 10, page = 1 }) => {
+const search = async ({ searchTerm, filters = {}, perPage = 10, page = 1 }) => {
   const res = await fetch(ENDPOINT, {
     method: 'POST',
     headers: {
@@ -28,8 +28,9 @@ const search = async ({ searchTerm, filters, perPage = 10, page = 1 }) => {
         page: ['title^2', '*'],
       },
       filters: {
+        ...filters,
         page: {
-          type: getFilters(filters).map((filter) => filter.name),
+          ...filters.page,
           document_type: ['!views_page_menu', '!views_page_content'],
         },
       },
@@ -37,12 +38,6 @@ const search = async ({ searchTerm, filters, perPage = 10, page = 1 }) => {
   });
 
   return res.json();
-};
-
-const getFilters = (filters) => {
-  const filteredTypes = filters.filter((filter) => filter.isSelected);
-
-  return filteredTypes.length !== 0 ? filteredTypes : filters;
 };
 
 export default search;

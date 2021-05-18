@@ -2,6 +2,7 @@ import { useCallback, useState, useEffect, useReducer, useMemo } from 'react';
 import { useDebounce } from 'react-use';
 import search from './search';
 import { useQuery } from 'react-query';
+import useLocale from '../../hooks/useLocale';
 
 const ACTIONS = {
   NEXT_PAGE: 'nextPage',
@@ -34,18 +35,33 @@ const reducer = (state, action) => {
 };
 
 const useSearch = ({ searchTerm, filters }) => {
+  const locale = useLocale();
   const [{ page, results }, dispatch] = useReducer(reducer, initialState);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
+  const swiftypeFilters = useMemo(() => {
+    const selectedFilters = filters.filter((filter) => filter.isSelected);
+    const allFilters = selectedFilters.length === 0 ? filters : selectedFilters;
+
+    return allFilters.map((filter) =>
+      locale.isDefault ? filter.name : `${filter.name}-${locale.locale}`
+    );
+  }, [filters, locale]);
+
   const queryKey = useMemo(
-    () => ['searchResults', debouncedSearchTerm, page, filters],
-    [debouncedSearchTerm, page, filters]
+    () => ['searchResults', debouncedSearchTerm, page, swiftypeFilters],
+    [debouncedSearchTerm, page, swiftypeFilters]
   );
 
   const { status } = useQuery(
     queryKey,
     ({ queryKey: [, searchTerm, page, filters] }) =>
-      search({ searchTerm, filters, page, perPage: 20 }),
+      search({
+        searchTerm,
+        filters: { page: { type: filters } },
+        page,
+        perPage: 20,
+      }),
     {
       enabled: Boolean(debouncedSearchTerm),
       onSuccess: (data) =>
