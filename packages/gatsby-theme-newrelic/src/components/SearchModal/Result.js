@@ -4,9 +4,12 @@ import { css } from '@emotion/react';
 import Icon from '../Icon';
 import Link from '../Link';
 import Tag from '../Tag';
+import useLocale from '../../hooks/useLocale';
 
 const Result = memo(
   forwardRef(({ result, selected, onSelect }, ref) => {
+    const locale = useLocale();
+
     return (
       <Link
         to={result.url}
@@ -61,7 +64,7 @@ const Result = memo(
             `}
             uppercase
           >
-            {result.type}
+            {result.type?.replace(`-${locale.locale}`, '')}
           </Tag>
           {result.breadcrumb && (
             <p
