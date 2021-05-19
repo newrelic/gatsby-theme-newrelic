@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
-import { graphql, useStaticQuery, navigate, Link } from 'gatsby';
+import { graphql, useStaticQuery, Link } from 'gatsby';
 import AnnouncementBanner from './AnnouncementBanner';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
@@ -9,8 +9,6 @@ import Button from './Button';
 import Dropdown from './Dropdown';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
-import SwiftypeSearch from './SwiftypeSearch';
-import Overlay from './Overlay';
 import GlobalNavLink from './GlobalNavLink';
 import SearchInput from './SearchInput';
 import useMedia from 'use-media';
@@ -20,8 +18,11 @@ import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import path from 'path';
 import { rgba } from 'polished';
+import SearchModal from './SearchModal';
+import { useDebounce } from 'react-use';
 import { SPLITS, SPLIT_TRACKING_EVENTS } from '../utils/constants';
 import SplitColorButton from './SplitColorButton';
+import useHasMounted from '../hooks/useHasMounted';
 
 const action = css`
   color: var(--secondary-text-color);
@@ -46,10 +47,34 @@ const actionIcon = css`
   cursor: pointer;
 `;
 
-const GlobalHeader = ({ className }) => {
-  const location = useLocation();
+const useSearchQuery = () => {
   const { queryParams, setQueryParam } = useQueryParams();
-  const [searchQuery, setSearchQuery] = useState('');
+  const searchQueryParam = queryParams.get('q');
+  const [searchTerm, setSearchTerm] = useState(searchQueryParam);
+  const hasQParam = queryParams.has('q');
+
+  useDebounce(
+    () => {
+      if (hasQParam) {
+        setQueryParam('q', searchTerm);
+      }
+    },
+    200,
+    [searchTerm, setQueryParam, hasQParam]
+  );
+
+  useEffect(() => {
+    setSearchTerm(searchQueryParam);
+  }, [searchQueryParam]);
+
+  return [searchTerm, setSearchTerm];
+};
+
+const GlobalHeader = ({ className }) => {
+  const hasMounted = useHasMounted();
+  const location = useLocation();
+  const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
+  const [searchTerm, setSearchTerm] = useSearchQuery();
   const { t } = useThemeTranslation();
 
   const {
@@ -76,6 +101,14 @@ const GlobalHeader = ({ className }) => {
 
   return (
     <>
+      <SearchModal
+        value={searchTerm}
+        onChange={(searchTerm) => setSearchTerm(searchTerm)}
+        onClose={() => {
+          deleteQueryParam('q');
+        }}
+        isOpen={hasMounted && queryParams.has('q')}
+      />
       <AnnouncementBanner />
       <div
         data-swiftype-index={false}
@@ -101,24 +134,6 @@ const GlobalHeader = ({ className }) => {
             padding: 0 var(--site-content-padding);
           `}
         >
-          <Overlay
-            isOpen={queryParams.has('q')}
-            onCloseOverlay={() => {
-              navigate(location.pathname);
-              setSearchQuery('');
-            }}
-          >
-            <SwiftypeSearch
-              key={queryParams.get('q')}
-              css={css`
-                display: flex;
-                flex-direction: column;
-                max-width: 950px;
-                margin: 3rem auto;
-                height: calc(100vh - 6rem);
-              `}
-            />
-          </Overlay>
           <nav
             css={css`
               display: flex;
@@ -316,12 +331,6 @@ const GlobalHeader = ({ className }) => {
               <SearchInput
                 placeholder={t('searchInput.placeholder')}
                 size={SearchInput.SIZE.SMALL}
-                onClear={() => setSearchQuery('')}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onSubmit={(value) => {
-                  setQueryParam('q', value);
-                }}
-                value={searchQuery}
                 focusWithHotKey="/"
                 css={css`
                   min-width: 150px;
@@ -331,6 +340,9 @@ const GlobalHeader = ({ className }) => {
                     display: none;
                   }
                 `}
+                onFocus={() => {
+                  setQueryParam('q', '');
+                }}
               />
             </li>
             {locales.length > 1 && (

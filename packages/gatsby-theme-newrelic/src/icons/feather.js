@@ -1,18 +1,43 @@
 import React from 'react';
 
 export default {
+  'arrow-down': (
+    <>
+      <line x1="12" y1="5" x2="12" y2="19" />
+      <polyline points="19 12 12 19 5 12" />
+    </>
+  ),
   'arrow-left': (
     <>
       <line x1="19" y1="12" x2="5" y2="12" />
       <polyline points="12 19 5 12 12 5" />
     </>
   ),
+  'arrow-right': (
+    <>
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </>
+  ),
+  'arrow-up': (
+    <>
+      <line x1="12" y1="19" x2="12" y2="5" />
+      <polyline points="5 12 12 5 19 12" />
+    </>
+  ),
   'chevron-down': <polyline points="6 9 12 15 18 9" />,
+  check: <polyline points="20 6 9 17 4 12" />,
   cloud: <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" />,
   copy: (
     <>
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </>
+  ),
+  'corner-down-left': (
+    <>
+      <polyline points="9 10 4 15 9 20" />
+      <path d="M20 4v7a4 4 0 0 1-4 4H4" />
     </>
   ),
   edit: (

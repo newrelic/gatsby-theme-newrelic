@@ -1,5 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`fe-arrow-down icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <line
+    x1="12"
+    x2="12"
+    y1="5"
+    y2="19"
+  />
+  <polyline
+    points="19 12 12 19 5 12"
+  />
+</svg>
+`;
+
 exports[`fe-arrow-left icon matches its snapshot 1`] = `
 .emotion-0 {
   width: 1em;
@@ -24,6 +52,84 @@ exports[`fe-arrow-left icon matches its snapshot 1`] = `
   />
   <polyline
     points="12 19 5 12 12 5"
+  />
+</svg>
+`;
+
+exports[`fe-arrow-right icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <line
+    x1="5"
+    x2="19"
+    y1="12"
+    y2="12"
+  />
+  <polyline
+    points="12 5 19 12 12 19"
+  />
+</svg>
+`;
+
+exports[`fe-arrow-up icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <line
+    x1="12"
+    x2="12"
+    y1="19"
+    y2="5"
+  />
+  <polyline
+    points="5 12 12 5 19 12"
+  />
+</svg>
+`;
+
+exports[`fe-check icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <polyline
+    points="20 6 9 17 4 12"
   />
 </svg>
 `;
@@ -98,6 +204,31 @@ exports[`fe-copy icon matches its snapshot 1`] = `
   />
   <path
     d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+  />
+</svg>
+`;
+
+exports[`fe-corner-down-left icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <polyline
+    points="9 10 4 15 9 20"
+  />
+  <path
+    d="M20 4v7a4 4 0 0 1-4 4H4"
   />
 </svg>
 `;

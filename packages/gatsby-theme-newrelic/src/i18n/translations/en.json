@@ -52,9 +52,6 @@
   "searchInput": {
     "placeholder": "Search Docs, Developer, Open Source"
   },
-  "search": {
-    "pagingInfo": "Showing <2>{{start}} - {{end}}</2> out of <5>{{totalResults}}</5> for <7>{{searchTerm}}</7> across 3 sites"
-  },
   "tableOfContents": {
     "title": "On this page"
   }
