@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import Link from '../Link';
 import { css } from '@emotion/react';
 
-const MenuItem = ({ as, children, href, onClick }) => {
+const MenuItem = ({ as, children, href, className, onClick }) => {
   const Component = as || (href ? Link : 'div');
 
   return (
     <Component
       onClick={onClick}
+      className={className}
       to={href}
       css={css`
         display: block;
@@ -40,6 +41,7 @@ MenuItem.propTypes = {
   children: PropTypes.node.isRequired,
   href: PropTypes.string,
   onClick: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default MenuItem;
