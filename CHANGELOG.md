@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.2.3...v2.3.0) (2021-05-19)
+
+
+### Bug Fixes
+
+* Only open the search modal if mounted to prevent weird layout issues for SSR rendering ([c59097d](https://github.com/newrelic/gatsby-theme-newrelic/commit/c59097d63a0ee06d8941ccffecf7be8a6d21e8ce))
+* **usePrevious:** Add option to initialize with the value ([c45271d](https://github.com/newrelic/gatsby-theme-newrelic/commit/c45271d08fe63e4282819c5a6e5b5f263dd5108f))
+* **useQueryParams:** add deleteQueryParam helper ([d1c6b44](https://github.com/newrelic/gatsby-theme-newrelic/commit/d1c6b4448e07f1dd4b020abb8a2a97159c2f3f03))
+* accepts a ref that gets forwarded to underlying link component ([9a11d95](https://github.com/newrelic/gatsby-theme-newrelic/commit/9a11d95d86cfd88b3faebe97d28098a1c93d4a67))
+* add a uppercase as a prop to style tag ([b908cd3](https://github.com/newrelic/gatsby-theme-newrelic/commit/b908cd3b1476cbf3b034d334ad9c9a028aaf0e32))
+* Add arrow-down, arrow-up, and arrow-right icons ([3239b22](https://github.com/newrelic/gatsby-theme-newrelic/commit/3239b2240ded1cf009ac1b2045d6645e7c8a42fb))
+* **Link:** Forward ref to the underlying link component ([d28b3de](https://github.com/newrelic/gatsby-theme-newrelic/commit/d28b3dea70fdda0f51191f05c1a3aa7284928eec))
+* add fe-corner-down-left icon ([8fc5135](https://github.com/newrelic/gatsby-theme-newrelic/commit/8fc51359a3ff262b20de1a67795bc54d57f4a334))
+* global header renders search modal on focus ([2ad63e5](https://github.com/newrelic/gatsby-theme-newrelic/commit/2ad63e552d06c341be56f648cd8597d165984e54))
+
+
+### Features
+
+* add SearchModal component ([048811d](https://github.com/newrelic/gatsby-theme-newrelic/commit/048811da781d5c9de56b873ae4062fc6b0dfb449))
+* added Backdrop component ([9667fc0](https://github.com/newrelic/gatsby-theme-newrelic/commit/9667fc0e13538ef2895a7b532b28832438723cbe))
+* calls to swiftype with usequery ([e72867d](https://github.com/newrelic/gatsby-theme-newrelic/commit/e72867db088a8c58a4473dc93ff52c657130604b))
+* can navigate between results ([891cc11](https://github.com/newrelic/gatsby-theme-newrelic/commit/891cc111f14b6e9d6af550aea83ac5203e5cfc85))
+* filtering available with search and no results message ([81da39a](https://github.com/newrelic/gatsby-theme-newrelic/commit/81da39a8359876717c1bab4e72c160e8e8e3d793))
+* renders content from swiftype ([ab042bf](https://github.com/newrelic/gatsby-theme-newrelic/commit/ab042bf3ab05d5f5819629b2b38ec7acbf0b8a14))
+* renders content on the right side ([9a539db](https://github.com/newrelic/gatsby-theme-newrelic/commit/9a539db4348f148c3142d0afa6b37e895758042e))
+* shows on this page in the result preview ([d478b4a](https://github.com/newrelic/gatsby-theme-newrelic/commit/d478b4a35452e93ae30b2f91b03d3135ae010531))
+
+
+### Performance Improvements
+
+* extract result list into own component and wrap in memo to help typing performance ([c538a72](https://github.com/newrelic/gatsby-theme-newrelic/commit/c538a72c221935a332a16e6242d4170e6bbb3475))
+
+
+
+
+
 ## [2.2.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.2.2...v2.2.3) (2021-05-12)
 
 
