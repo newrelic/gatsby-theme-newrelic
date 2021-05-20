@@ -12,9 +12,10 @@ const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
 const isNewRelic = (to) => to.startsWith('https://newrelic.com');
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
+const isImageLink = (className) => className === 'gatsby-resp-image-link';
 
 const Link = forwardRef(
-  ({ to, onClick, instrumentation = {}, className, ...props }, ref) => {
+  ({ to, onClick, instrumentation = {}, ...props }, ref) => {
     const locale = useLocale();
 
     const {
@@ -49,7 +50,7 @@ const Link = forwardRef(
     }
 
     if (isHash(to)) {
-      return <a ref={ref} href={to} className={className} {...props} />;
+      return <a ref={ref} href={to} {...props} />;
     }
 
     if (isSignup(to)) {
@@ -59,7 +60,6 @@ const Link = forwardRef(
           href={to}
           onClick={handleExternalLinkClick}
           instrumentation={instrumentation}
-          className={className}
           ref={ref}
         />
       );
@@ -73,7 +73,6 @@ const Link = forwardRef(
       return (
         <a
           {...props}
-          className={className}
           href={link}
           onClick={handleExternalLinkClick}
           target="_blank"
@@ -83,8 +82,8 @@ const Link = forwardRef(
       );
     }
 
-    if (className === 'gatsby-resp-image-link') {
-      return <a {...props} className={className} href={to} />;
+    if (isImageLink(props.className)) {
+      return <a {...props} href={to} />;
     }
 
     return (
@@ -94,7 +93,6 @@ const Link = forwardRef(
           locale,
         })}
         ref={ref}
-        className={className}
         {...props}
       />
     );
