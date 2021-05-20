@@ -14,7 +14,7 @@ const isNewRelic = (to) => to.startsWith('https://newrelic.com');
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 
 const Link = forwardRef(
-  ({ to, onClick, instrumentation = {}, ...props }, ref) => {
+  ({ to, onClick, instrumentation = {}, className, ...props }, ref) => {
     const locale = useLocale();
 
     const {
@@ -49,7 +49,7 @@ const Link = forwardRef(
     }
 
     if (isHash(to)) {
-      return <a ref={ref} href={to} {...props} />;
+      return <a ref={ref} href={to} className={className} {...props} />;
     }
 
     if (isSignup(to)) {
@@ -59,6 +59,7 @@ const Link = forwardRef(
           href={to}
           onClick={handleExternalLinkClick}
           instrumentation={instrumentation}
+          className={className}
           ref={ref}
         />
       );
@@ -72,6 +73,7 @@ const Link = forwardRef(
       return (
         <a
           {...props}
+          className={className}
           href={link}
           onClick={handleExternalLinkClick}
           target="_blank"
@@ -81,8 +83,8 @@ const Link = forwardRef(
       );
     }
 
-    if (props.className === 'gatsby-resp-image-link') {
-      return <a {...normalizedProps} href={to} />;
+    if (className === 'gatsby-resp-image-link') {
+      return <a {...props} className={className} href={to} />;
     }
 
     return (
@@ -92,6 +94,7 @@ const Link = forwardRef(
           locale,
         })}
         ref={ref}
+        className={className}
         {...props}
       />
     );
@@ -102,6 +105,7 @@ Link.propTypes = {
   onClick: PropTypes.func,
   to: PropTypes.string.isRequired,
   instrumentation: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export default Link;
