@@ -86,7 +86,7 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
               bottom: 0;
               left: 0;
               padding: var(--site-content-padding);
-              z-index: 100;
+              z-index: 900;
               background: ${rgba('#d5d7d7', 0.5)};
 
               .dark-mode & {
