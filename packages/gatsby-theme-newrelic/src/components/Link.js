@@ -81,6 +81,10 @@ const Link = forwardRef(
       );
     }
 
+    if (props.className === 'gatsby-resp-image-link') {
+      return <a {...normalizedProps} href={to} />;
+    }
+
     return (
       <GatsbyLink
         to={localizePath({
