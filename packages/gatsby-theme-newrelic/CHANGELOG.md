@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.3.0...v2.4.0) (2021-05-20)
+
+
+### Bug Fixes
+
+* crank z-index up higher ([8d3594e](https://github.com/newrelic/gatsby-theme-newrelic/commit/8d3594e46e30881ac7c9ac02b05e66f5562413ed))
+* if link to original image, use straight up a tag and not gatsby link ([b212974](https://github.com/newrelic/gatsby-theme-newrelic/commit/b212974cee9830b89d5cfdb17d4eb581678b093e))
+
+
+### Features
+
+* Update feedback component functionality and tracking ([6f9b862](https://github.com/newrelic/gatsby-theme-newrelic/commit/6f9b8625f84c3558f5154354cea4fb234be11b1e))
+
+
+
+
+
 # [2.3.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.2.3...v2.3.0) (2021-05-19)
 
 
