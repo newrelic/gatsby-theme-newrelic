@@ -12,6 +12,7 @@ const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
 const isNewRelic = (to) => to.startsWith('https://newrelic.com');
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
+const isImageLink = (className) => className === 'gatsby-resp-image-link';
 
 const Link = forwardRef(
   ({ to, onClick, instrumentation = {}, ...props }, ref) => {
@@ -81,6 +82,10 @@ const Link = forwardRef(
       );
     }
 
+    if (isImageLink(props.className)) {
+      return <a {...props} href={to} />;
+    }
+
     return (
       <GatsbyLink
         to={localizePath({
@@ -98,6 +103,7 @@ Link.propTypes = {
   onClick: PropTypes.func,
   to: PropTypes.string.isRequired,
   instrumentation: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export default Link;
