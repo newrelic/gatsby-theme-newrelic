@@ -54,7 +54,7 @@ For this example we will show how to add some content to a page and see the rend
 
 You should see something like the following (possibly less wine coloured):
 
-<img src="packages/gatsby-theme-newrelic/src/images/example-mdx.png" alt="drawing" width="75%"/>
+<img src="images/example-mdx.png" alt="drawing" width="75%"/>
 
 
 1. **Frontmatter** - This is `key/value` metadata you can provide for Gatsby which we won't go into now, but you can read more about [here](https://www.gatsbyjs.com/docs/mdx/writing-pages/#using-frontmatter-in-mdx)
@@ -85,13 +85,13 @@ Next we'll add a **Button** component that links to a site when you click it:
 
 Your code should now look something like this...
 
-<img src="packages/gatsby-theme-newrelic/src/images/example-mdx-code.png" alt="drawing" width="50%">
+<img src="images/example-mdx-code.png" alt="drawing" width="50%">
 
 
 ...and as long as your **develop** server is still running the page should automatically reload with the new content...
 
 
-<img src="packages/gatsby-theme-newrelic/src/images/example-mdx-render.png" alt="drawing" width="50%"/>
+<img src="images/example-mdx-render.png" alt="drawing" width="50%"/>
 
 Because we've added a Header, `My First Edit` should now be included in the `On this page` section on the right.  Fresh! :D
 
