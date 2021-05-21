@@ -21,7 +21,7 @@ test('sets the generated user ID in local storage for persistence', () => {
 
   const { result } = renderHook(() => useUserId());
 
-  expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+  expect(localStorage.setItem).toHaveBeenCalledTimes(2);
   expect(localStorage.setItem).toHaveBeenLastCalledWith(
     STORAGE_KEYS.USER_ID,
     JSON.stringify(result.current)

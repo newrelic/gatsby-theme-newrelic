@@ -3,9 +3,23 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import Icon from './Icon';
 import useDarkMode from 'use-dark-mode';
+import isLocalStorageAvailable from '../utils/isLocalStorageAvailable';
+
+const localStorageMock = () => {
+  const store = {};
+  return {
+    getItem: (key) => store[key],
+    setItem: (key, val) => {
+      store[key] = val;
+    },
+  };
+};
 
 const DarkModeToggle = ({ className, size, onClick }) => {
-  const darkMode = useDarkMode();
+  const darkModeOptions = isLocalStorageAvailable()
+    ? {}
+    : { storageProvider: localStorageMock() };
+  const darkMode = useDarkMode(false, darkModeOptions);
 
   return (
     <Icon
