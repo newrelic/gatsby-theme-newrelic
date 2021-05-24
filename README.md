@@ -2,10 +2,15 @@
 
 # Gatsby New Relic Themes
 
-This repo contains Gatsby themes used by New Relic Gatsby sites, including the
-[developer](https://developer.newrelic.com) and [open source websites](https://opensource.newrelic.com).
+This repo contains Gatsby themes used by New Relic Gatsby sites, including:
+
+ - [docs.newrelic.com](https://docs.newrelic.com) - [GitHub repository]()
+ - [developer.newrelic.com](https://developer.newrelic.com) - [GitHub repository]()
+ - [opensource.newrelic.com](https://opensource.newrelic.com) - [GitHub repository]()
 
 ## Installation
+
+In your terminal:
 
 ```sh
 git clone git@github.com:newrelic/gatsby-theme-newrelic.git
@@ -15,24 +20,90 @@ yarn
 
 ## Getting started
 
-You can use the demo site to test out changes to the theme. To run the demo
-site, use the following command:
+You can use the `Demo Site` included to test out changes to the theme. It's a much smaller package to build and serve than our other sites, so it's ideal for testing out changes to plugin behaviour, styling and our component library.
+
+To run the `Demo Site`, simply use either of the following commands:
+
+```sh
+yarn start
+```
+
+...or...
 
 ```sh
 yarn workspace demo develop
 ```
 
-Visit [http://localhost:8001](http://localhost:8001) in your browser to browse
-the demo site.
+It should only take `~30 seconds` to build and you should see...
+
+```sh
+success Building development bundle
+```
+
+...in the terminal, then you can visit [http://localhost:8001](http://localhost:8001) in your browser :)
+
+## Editing Content
+
+We use MDX files for content which lets you seamlessly write JSX in your Markdown documents. This means you can write content in regular Markdown format as well as including React componenets in the same file. Gatsby will then do all the heavy-lifting to convert these to HTML to serve in the browser.
+
+### Example
+
+For this example we will show how to add some content to a page and see the render results in the browser. We will use the `build-hello-world-app` document for testing, so with the **develop** server still running, navigate to and open the following in your favourite code editor:
+
+ - `demo/src/content/build-apps/build-hello-world-app.mdx`
+
+You should see something like the following (possibly less wine coloured):
+
+<img src="images/example-mdx.png" alt="drawing" width="75%"/>
 
 
-## Documentation
+1. **Frontmatter** - This is `key/value` metadata you can provide for Gatsby which we won't go into now, but you can read more about [here](https://www.gatsbyjs.com/docs/mdx/writing-pages/#using-frontmatter-in-mdx)
+2. **Markdown** - This is regular Markdown language, and we'll include [a guide on writing Markdown](https://www.markdownguide.org/) as well as a great [resource for practicing online](https://stackedit.io/app#)
+3. **JSX/Components** - These are the React components to super-charge your content, you can see the full list of components included in the theme [here](packages/gatsby-theme-newrelic#components)
 
-To view documentation for a New Relic theme, visit that theme's README.
+#### Add some Markdown and JSX
 
-Available themes:
+Firstly we'll add some standard Markdown to the page, including a Header, bulleted list and link. Feel free to edit the examples:
 
-- [`gatsby-theme-newrelic`](packages/gatsby-theme-newrelic)
+```md
+## My First Edit
+
+Look at me ma i'm creating content for
+
+ - New Relic
+ - Gatsby Theme 
+ - [My inspiration](https://newrelic.com/)
+```
+
+Next we'll add a **Button** component that links to a site when you click it:
+
+```md
+<Button variant="primary" to="https://newrelic.com/">
+  Call Friends
+</Button>
+```
+
+Your code should now look something like this...
+
+<img src="images/example-mdx-code.png" alt="drawing" width="50%">
+
+
+...and as long as your **develop** server is still running the page should automatically reload with the new content...
+
+
+<img src="images/example-mdx-render.png" alt="drawing" width="50%"/>
+
+Because we've added a Header, `My First Edit` should now be included in the `On this page` section on the right.  Fresh! :D
+
+### Further Editing
+
+With your new found confidence, check out the full documentation for the theme where you'll find more examples for:
+
+ - [Configuration](packages/gatsby-theme-newrelic#configuration)
+ - [Components](packages/gatsby-theme-newrelic#components)
+ - [MDX Component variants](packages/gatsby-theme-newrelic#mdx-component-variants)
+ - [Hooks](packages/gatsby-theme-newrelic#hooks)
+
 
 ## Testing
 
