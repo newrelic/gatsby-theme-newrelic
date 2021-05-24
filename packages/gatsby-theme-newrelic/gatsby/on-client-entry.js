@@ -1,4 +1,5 @@
 import getLocale from './utils/getLocale';
+import isLocalStorageAvailable from '../src/utils/isLocalStorageAvailable';
 
 const onClientEntry = (_, themeOptions) => {
   if (window.newrelic) {
@@ -11,10 +12,12 @@ const onClientEntry = (_, themeOptions) => {
 };
 
 const isDarkMode = () => {
-  const localStorageTheme = localStorage.getItem('darkMode');
+  if (isLocalStorageAvailable()) {
+    const localStorageTheme = localStorage.getItem('darkMode');
 
-  if (localStorageTheme) {
-    return JSON.parse(localStorageTheme);
+    if (localStorageTheme) {
+      return JSON.parse(localStorageTheme);
+    }
   }
 
   return document.body.classList.contains('dark-mode');
