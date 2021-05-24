@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.4.0...v2.4.1) (2021-05-24)
+
+
+### Bug Fixes
+
+* handle lack of access to local storage ([c1987e8](https://github.com/newrelic/gatsby-theme-newrelic/commit/c1987e8b59140cb3c5a6f00aa08f0a94bcd81b88))
+
+
+
+
+
 # [2.4.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.3.0...v2.4.0) (2021-05-20)
 
 
