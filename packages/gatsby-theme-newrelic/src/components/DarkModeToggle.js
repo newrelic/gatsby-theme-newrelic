@@ -5,21 +5,14 @@ import Icon from './Icon';
 import useDarkMode from 'use-dark-mode';
 import isLocalStorageAvailable from '../utils/isLocalStorageAvailable';
 
-const localStorageMock = () => {
-  const store = {};
-  return {
-    getItem: (key) => store[key],
-    setItem: (key, val) => {
-      store[key] = val;
-    },
-  };
-};
-
 const DarkModeToggle = ({ className, size, onClick }) => {
+  const isDarkDefault = false;
+
+  // If localStorage is not available, tell useDarkMode to just use an in-memory store
   const darkModeOptions = isLocalStorageAvailable()
     ? {}
-    : { storageProvider: localStorageMock() };
-  const darkMode = useDarkMode(false, darkModeOptions);
+    : { storageProvider: false };
+  const darkMode = useDarkMode(isDarkDefault, darkModeOptions);
 
   return (
     <Icon
