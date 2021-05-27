@@ -24,9 +24,6 @@ const search = async ({ searchTerm, filters = {}, perPage = 10, page = 1 }) => {
           },
         },
       },
-      search_fields: {
-        page: ['title^2', '*'],
-      },
       filters: {
         ...filters,
         page: {
