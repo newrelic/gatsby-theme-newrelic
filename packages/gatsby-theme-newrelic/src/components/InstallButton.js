@@ -7,7 +7,7 @@ import { css } from '@emotion/react';
 
 const sampleItems = new Array(10).fill().map((_, i) => i + 1);
 
-const createMenuItems = (items) => {
+const createMenuItems = (children, guid, items) => {
   const menuItems = [];
   for (const item of items) {
     menuItems.push(<Dropdown.MenuItem>{item}</Dropdown.MenuItem>);
@@ -15,7 +15,11 @@ const createMenuItems = (items) => {
   return menuItems;
 };
 
-const InstallButton = ({ children, guid, title, ...props }) => {
+const createInstallLink = (guid) => {
+  return "https://one.newrelic.com"
+}
+
+const InstallButton = ({ children, ,guid, title, ...props }) => {
   return (
     <div
       css={css`
@@ -25,8 +29,9 @@ const InstallButton = ({ children, guid, title, ...props }) => {
       `}
     >
       <Button
+        {...props}
         as={Link}
-        to="https://one.newrelic.com"
+        to={createInstallLink(guid)}
         variant={Button.VARIANT.PRIMARY}
         css={css`
           border-bottom-right-radius: 0px;
@@ -45,7 +50,7 @@ const InstallButton = ({ children, guid, title, ...props }) => {
             padding: 5px;
           `}
         />
-        <Dropdown.Menu>{createMenuItems(sampleItems)}</Dropdown.Menu>
+        <Dropdown.Menu>{createMenuItems(children, sampleItems)}</Dropdown.Menu>
       </Dropdown>
     </div>
   );
@@ -54,6 +59,7 @@ const InstallButton = ({ children, guid, title, ...props }) => {
 InstallButton.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string,
+  guid: PropTypes.string,
 };
 
 export default InstallButton;
