@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.4.1...v2.4.2) (2021-06-01)
+
+
+### Bug Fixes
+
+* remove mocked storage and use built in option ([e45579a](https://github.com/newrelic/gatsby-theme-newrelic/commit/e45579a594c922db89cd15036bfc7af3ae75dc05))
+* remove weighting on fields and use defaults set in swiftype UI ([4e9ae7d](https://github.com/newrelic/gatsby-theme-newrelic/commit/4e9ae7da1577d44ec95ab8973b5a180567ae2468))
+* removespecific search fields altogether and use defaults ([9c67f8e](https://github.com/newrelic/gatsby-theme-newrelic/commit/9c67f8e0281bddc0957d478fc730acda0f6fcd3f))
+
+
+
+
+
 ## [2.4.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.4.0...v2.4.1) (2021-05-24)
 
 
