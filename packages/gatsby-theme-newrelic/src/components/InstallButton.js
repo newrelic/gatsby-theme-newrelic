@@ -7,7 +7,7 @@ import { css } from '@emotion/react';
 
 const sampleItems = new Array(10).fill().map((_, i) => i + 1);
 
-const createMenuItems = (children, guid, items) => {
+const createMenuItems = (children, items) => {
   const menuItems = [];
   for (const item of items) {
     menuItems.push(<Dropdown.MenuItem>{item}</Dropdown.MenuItem>);
