@@ -15,11 +15,11 @@ const createMenuItems = (children, items) => {
   return menuItems;
 };
 
-const createInstallLink = (guid) => {
-  return `https://one.newrelic.com/launcher/nr1-core.explorer?guid=${guid}`;
+const createInstallLink = () => {
+  return `https://one.newrelic.com/launcher/nr1-core.explorer`;
 };
 
-const InstallButton = ({ children, guid, title, ...props }) => {
+const InstallButton = ({ children, title, ...props }) => {
   return (
     <div
       css={css`
@@ -31,7 +31,7 @@ const InstallButton = ({ children, guid, title, ...props }) => {
       <Button
         {...props}
         as={Link}
-        to={createInstallLink(guid)}
+        to={createInstallLink()}
         variant={Button.VARIANT.PRIMARY}
         css={css`
           border-bottom-right-radius: 0px;
