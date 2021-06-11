@@ -57,6 +57,11 @@ const useSearchQuery = () => {
     () => {
       if (hasQParam) {
         setQueryParam('q', searchTerm);
+        if (typeof window !== 'undefined' && window.newrelic && searchTerm) {
+          window.newrelic.addPageAction('swiftypeSearch_input', {
+            searchTerm,
+          });
+        }
       }
     },
     200,
