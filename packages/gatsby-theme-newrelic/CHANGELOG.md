@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.4.4...v2.4.5) (2021-06-29)
+
+
+### Bug Fixes
+
+* remove margin pushing caret to the right ([cb22d99](https://github.com/newrelic/gatsby-theme-newrelic/commit/cb22d99cbbbe929c64acf8db441e0472edc68567))
+
+
+
+
+
 ## [2.4.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.4.3...v2.4.4) (2021-06-11)
 
 
