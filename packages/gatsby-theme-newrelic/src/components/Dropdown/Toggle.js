@@ -20,7 +20,6 @@ const Toggle = ({ children, className, variant, size, chevron = true }) => {
         <Icon
           name="fe-chevron-down"
           css={css`
-            margin-left: 0.25rem;
             transform: rotate(${open ? '180deg' : '0'});
           `}
         />
