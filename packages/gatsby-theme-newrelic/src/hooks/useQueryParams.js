@@ -7,9 +7,10 @@ const toQueryString = (queryParams) =>
 const useQueryParams = () => {
   const location = useLocation();
 
-  const queryParams = useMemo(() => new URLSearchParams(location.search), [
-    location.search,
-  ]);
+  const queryParams = useMemo(
+    () => new URLSearchParams(location.search),
+    [location.search]
+  );
 
   const setQueryParam = useCallback(
     (key, value) => {

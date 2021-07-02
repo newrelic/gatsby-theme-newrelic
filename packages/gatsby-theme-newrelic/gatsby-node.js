@@ -66,12 +66,8 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   });
 
   if (themeOptions.i18n) {
-    const {
-      locales,
-      i18nextOptions,
-      translationsPath,
-      themeNamespace,
-    } = getI18nConfig(themeOptions);
+    const { locales, i18nextOptions, translationsPath, themeNamespace } =
+      getI18nConfig(themeOptions);
 
     locales.forEach(({ locale }) => {
       i18nextOptions.ns

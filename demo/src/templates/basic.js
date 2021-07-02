@@ -90,7 +90,7 @@ BasicTemplate.propTypes = {
 };
 
 export const pageQuery = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     mdx(slug: { eq: $slug }) {
       body
       mdxAST
