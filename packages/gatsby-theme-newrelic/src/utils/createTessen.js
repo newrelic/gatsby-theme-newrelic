@@ -27,41 +27,43 @@ const warnAboutNoop = ({ config, action, name, category }) => {
 const canSendAction = ({ config, name, category }) =>
   name && category && config && config.product && config.subproduct;
 
-const tessenAction = (action, config) => (name, category, properties = {}) => {
-  if (!canSendAction({ config, name, category })) {
-    return warnAboutNoop({ config, action, name, category });
-  }
+const tessenAction =
+  (action, config) =>
+  (name, category, properties = {}) => {
+    if (!canSendAction({ config, name, category })) {
+      return warnAboutNoop({ config, action, name, category });
+    }
 
-  if (!window.Tessen) {
-    return warning(
-      false,
-      `tessen.${name}: You are attempting to use a Tessen action, but Tessen is not available on 'window'. Calls to '${name}' will result in a noop.`
-    );
-  }
+    if (!window.Tessen) {
+      return warning(
+        false,
+        `tessen.${name}: You are attempting to use a Tessen action, but Tessen is not available on 'window'. Calls to '${name}' will result in a noop.`
+      );
+    }
 
-  const customerId = Cookies.get('ajs_user_id') || '';
+    const customerId = Cookies.get('ajs_user_id') || '';
 
-  if (canTrack()) {
-    window.Tessen[action](
-      name,
-      {
-        ...properties,
-        category,
-        nr_product: config.product,
-        nr_subproduct: config.subproduct,
-        location: 'Public',
-        customer_user_id: customerId,
-      },
-      {
-        Segment: {
-          integrations: {
-            All: true,
-          },
+    if (canTrack()) {
+      window.Tessen[action](
+        name,
+        {
+          ...properties,
+          category,
+          nr_product: config.product,
+          nr_subproduct: config.subproduct,
+          location: 'Public',
+          customer_user_id: customerId,
         },
-      }
-    );
-  }
-};
+        {
+          Segment: {
+            integrations: {
+              All: true,
+            },
+          },
+        }
+      );
+    }
+  };
 
 const createTessen = (config) => ({
   page: tessenAction('page', config),

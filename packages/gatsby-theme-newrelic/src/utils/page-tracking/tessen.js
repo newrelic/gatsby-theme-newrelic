@@ -65,23 +65,23 @@ const trackPageView = ({ config, env, location }) => {
   });
 };
 
-const initializeTessenTracking = ({ config, env, location }) => (
-  options = {}
-) => {
-  if (canTrack() && !initialized) {
-    initialized = true;
-    const { segmentWriteKey } = config;
-    window.Tessen.load(['Segment', 'NewRelic'], {
-      Segment: {
-        identifiable: true,
-        writeKey: segmentWriteKey,
-      },
-    });
+const initializeTessenTracking =
+  ({ config, env, location }) =>
+  (options = {}) => {
+    if (canTrack() && !initialized) {
+      initialized = true;
+      const { segmentWriteKey } = config;
+      window.Tessen.load(['Segment', 'NewRelic'], {
+        Segment: {
+          identifiable: true,
+          writeKey: segmentWriteKey,
+        },
+      });
 
-    window.Tessen.identify({});
+      window.Tessen.identify({});
 
-    options.trackPageView && trackPageView({ config, env, location });
-  }
-};
+      options.trackPageView && trackPageView({ config, env, location });
+    }
+  };
 
 export default trackViaTessen;
