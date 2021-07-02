@@ -24,10 +24,10 @@ const NavItem = ({ page, __parent: parent, __depth: depth = 0 }) => {
     new RegExp(`\\/${locale.locale}(?=\\/)`),
     ''
   );
-  const containsCurrentPage = useMemo(() => containsPage(page, pathname), [
-    page,
-    pathname,
-  ]);
+  const containsCurrentPage = useMemo(
+    () => containsPage(page, pathname),
+    [page, pathname]
+  );
   const isCurrentPage = page.url === pathname;
   const shouldExpand = isCurrentPage || containsCurrentPage;
   const hasChangedPage = pathname !== usePrevious(pathname);
