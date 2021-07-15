@@ -26,7 +26,7 @@ export default css`
     --callout-course-background-color: #00b3c310;
 
     input::placeholder {
-      color: var(--color-neutrals-500);
+      color: var(--color-neutrals-600);
     }
 
     *:not(pre) > code,
@@ -59,7 +59,7 @@ export default css`
     --callout-tip-background-color: #02120020;
 
     input::placeholder {
-      color: var(--color-dark-400);
+      color: var(--color-neutrals-600);
     }
 
     *:not(pre) > code,

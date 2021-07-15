@@ -15,9 +15,8 @@ const withPrefix = (prefix, icons) =>
 // with the changes to the `Icon` component, while allowing the old
 // implementation to be used simultaneously. These new changes allow the Icon
 // component to use multiple icon sources instead of just feather icons.
-const wrapFeatherIcon = (icon) => (props) => (
-  <FeatherSVG {...props}>{icon}</FeatherSVG>
-);
+const wrapFeatherIcon = (icon) => (props) =>
+  <FeatherSVG {...props}>{icon}</FeatherSVG>;
 
 const wrapFeatherIcons = (icons) =>
   Object.fromEntries(

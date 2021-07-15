@@ -63,10 +63,8 @@ const AnnouncementBanner = () => {
   const announcement = findCurrentAnnouncement(allMdx.nodes);
   const announcementId = announcement ? createContentHash(announcement) : null;
 
-  const [
-    lastAnnouncementDismissed,
-    setLastAnnouncementDismissed,
-  ] = useLastAnnouncementDismissed(null);
+  const [lastAnnouncementDismissed, setLastAnnouncementDismissed] =
+    useLastAnnouncementDismissed(null);
 
   const [visible, setVisible] = useState(
     lastAnnouncementDismissed !== announcementId

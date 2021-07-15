@@ -20,7 +20,7 @@ const warnAboutNoop = (pageView) => {
 const canSendPageView = (pageView) =>
   pageView && pageView.name && pageView.category;
 
-const trackViaTessen = ({ location }, themeOptions) => {
+const trackViaTessen = ({ location, prevLocation }, themeOptions) => {
   const env = getResolvedEnv(themeOptions);
   const tessenConfig = getTessenConfig(themeOptions);
 
@@ -32,6 +32,7 @@ const trackViaTessen = ({ location }, themeOptions) => {
     config: tessenConfig,
     env,
     location,
+    prevLocation,
   });
 
   if (!canTrack()) {
@@ -43,12 +44,12 @@ const trackViaTessen = ({ location }, themeOptions) => {
   // wrap inside a timeout to make sure react-helmet is done with its changes (https://github.com/gatsbyjs/gatsby/issues/11592)
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      trackPageView({ config: tessenConfig, env, location });
+      trackPageView({ config: tessenConfig, env, location, prevLocation });
     });
   });
 };
 
-const trackPageView = ({ config, env, location }) => {
+const trackPageView = ({ config, env, prevLocation }) => {
   const { pageView } = config;
   const { name, category, ...properties } = pageView;
 
@@ -60,28 +61,29 @@ const trackPageView = ({ config, env, location }) => {
 
   tessen.page(name, category, {
     env: env === 'production' ? 'prod' : env,
-    location: location.pathname,
+    referrer: prevLocation?.pathname,
     ...properties,
   });
 };
 
-const initializeTessenTracking = ({ config, env, location }) => (
-  options = {}
-) => {
-  if (canTrack() && !initialized) {
-    initialized = true;
-    const { segmentWriteKey } = config;
-    window.Tessen.load(['Segment', 'NewRelic'], {
-      Segment: {
-        identifiable: true,
-        writeKey: segmentWriteKey,
-      },
-    });
+const initializeTessenTracking =
+  ({ config, env, location, prevLocation }) =>
+  (options = {}) => {
+    if (canTrack() && !initialized) {
+      initialized = true;
+      const { segmentWriteKey } = config;
+      window.Tessen.load(['Segment', 'NewRelic'], {
+        Segment: {
+          identifiable: true,
+          writeKey: segmentWriteKey,
+        },
+      });
 
-    window.Tessen.identify({});
+      window.Tessen.identify({});
 
-    options.trackPageView && trackPageView({ config, env, location });
-  }
-};
+      options.trackPageView &&
+        trackPageView({ config, env, location, prevLocation });
+    }
+  };
 
 export default trackViaTessen;
