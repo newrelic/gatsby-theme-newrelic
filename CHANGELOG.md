@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.4.5...v2.5.0) (2021-07-15)
+
+
+### Features
+
+* explicitly track previous route as referrer in tessen ([1423aeb](https://github.com/newrelic/gatsby-theme-newrelic/commit/1423aebe7e880e92d89a25a6034f65ca8a321cbc))
+
+
+
+
+
 ## [2.4.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.4.4...v2.4.5) (2021-06-29)
 
 
