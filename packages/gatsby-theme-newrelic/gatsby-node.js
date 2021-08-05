@@ -288,7 +288,7 @@ exports.onCreatePage = (helpers, themeOptions) => {
       ) {
         createPage({
           ...transformedPage,
-          path: path.join(
+          path: path.posix.join(
             `/${locale}`,
             transformedPage.path,
             forceTrailingSlashes ? '/' : ''
