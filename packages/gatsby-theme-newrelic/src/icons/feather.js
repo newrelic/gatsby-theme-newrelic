@@ -92,9 +92,7 @@ export default {
     </>
   ),
   plus: (
-    <svg viewBox="0 0 16 16">
-      <polygon points="14,7 8,7 8,1 7,1 7,7 1,7 1,8 7,8 7,14 8,14 8,8 14,8 "/>
-    </svg>
+    <polygon points="14,7 8,7 8,1 7,1 7,7 1,7 1,8 7,8 7,14 8,14 8,8 14,8 " />
   ),
   search: (
     <>
