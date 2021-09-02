@@ -5,8 +5,8 @@ import SVG from './SVG';
 
 const FeatherSVG = ({ children, ...props }) => (
   <SVG
-    {...props}
     viewBox="0 0 24 24"
+    {...props}
     css={css`
       fill: none;
       stroke: currentColor;
