@@ -212,7 +212,7 @@ const Input = forwardRef(
                               font-size: 0.625rem;
                             `}
                           >
-                            {filter.name}
+                            {filter.name.replace('_', ' ')}
                           </div>
                           <div
                             css={css`

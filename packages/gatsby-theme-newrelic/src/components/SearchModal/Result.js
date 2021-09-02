@@ -64,7 +64,7 @@ const Result = memo(
             `}
             uppercase
           >
-            {result.type?.replace(`-${locale.locale}`, '')}
+            {result.type?.replace(`-${locale.locale}`, '').replace('_', ' ')}
           </Tag>
           {result.breadcrumb && (
             <p
