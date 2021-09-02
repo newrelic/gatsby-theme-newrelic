@@ -91,6 +91,9 @@ export default {
       <circle cx="11" cy="11" r="2" />
     </>
   ),
+  plus: (
+    <polygon points="14,7 8,7 8,1 7,1 7,7 1,7 1,8 7,8 7,14 8,14 8,8 14,8 " />
+  ),
   search: (
     <>
       <circle cx="11" cy="11" r="8" />
