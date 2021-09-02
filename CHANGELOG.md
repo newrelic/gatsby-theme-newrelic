@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.5.2...v2.6.0) (2021-09-02)
+
+
+### Features
+
+* add plus icon for IO ([fd79f03](https://github.com/newrelic/gatsby-theme-newrelic/commit/fd79f039802e6cc2e2000853a18dfadb339411a8))
+
+
+
+
+
 ## [2.5.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.5.1...v2.5.2) (2021-08-27)
 
 **Note:** Version bump only for package gatsby-theme-newrelic
