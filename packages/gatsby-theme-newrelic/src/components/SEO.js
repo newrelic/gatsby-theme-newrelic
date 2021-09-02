@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 import path from 'path';
 
-const SEO = ({ title, location, children }) => {
+const SEO = ({ title, location, type, children }) => {
   const {
     site: { siteMetadata },
     allLocale: { nodes: locales },
@@ -39,6 +39,9 @@ const SEO = ({ title, location, children }) => {
       : location.pathname.replace(new RegExp(`^\\/${locale.locale}`), '/');
 
   const getSwiftypeSiteType = () => {
+    if (type) {
+      return type;
+    }
     const hostname = new URL(siteUrl).hostname;
     const nrSubDomain = /.*\.newrelic\.com/.test(hostname)
       ? hostname.split('.')[0]
@@ -85,6 +88,7 @@ SEO.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }).isRequired,
+  type: PropTypes.string,
   children: PropTypes.node,
 };
 
