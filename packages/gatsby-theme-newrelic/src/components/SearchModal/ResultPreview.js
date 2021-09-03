@@ -32,7 +32,7 @@ const ResultPreview = memo(({ result }) => {
               letter-spacing: 1px;
             `}
           >
-            {result.type}
+            {result.type.replace('_', ' ')}
           </Tag>
           <div
             css={css`
