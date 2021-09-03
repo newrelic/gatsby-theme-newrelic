@@ -232,6 +232,9 @@ const GlobalHeader = ({ className }) => {
                 <Dropdown.MenuItem href="https://learn.newrelic.com/">
                   Learn
                 </Dropdown.MenuItem>
+                <Dropdown.MenuItem href="https://observabilitypacks.gatsbyjs.io/instant-observability/">
+                  Instant Observability
+                </Dropdown.MenuItem>
               </Dropdown.Menu>
             </Dropdown>
 
@@ -281,6 +284,11 @@ const GlobalHeader = ({ className }) => {
               <li>
                 <GlobalNavLink href="https://learn.newrelic.com/">
                   Learn
+                </GlobalNavLink>
+              </li>
+              <li>
+                <GlobalNavLink href="https://observabilitypacks.gatsbyjs.io/instant-observability/">
+                  Instant Observability
                 </GlobalNavLink>
               </li>
             </ul>

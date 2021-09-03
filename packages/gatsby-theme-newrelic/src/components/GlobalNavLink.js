@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import ExternalLink from './ExternalLink';
+import { useLocation } from '@reach/router';
 
 const GlobalNavLink = ({ children, href }) => {
   const {
@@ -19,7 +20,12 @@ const GlobalNavLink = ({ children, href }) => {
     }
   `);
 
-  const isCurrentSite = href.startsWith(siteUrl);
+  const location = useLocation();
+  let isCurrentSite = href.startsWith(siteUrl);
+
+  if (location.pathname.includes('/instant-observability/')) {
+    isCurrentSite = href.includes('/instant-observability/');
+  }
 
   const Component = isCurrentSite ? Link : ExternalLink;
   const props = isCurrentSite ? { to: '/' } : { href };
