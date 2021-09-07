@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.6.0...v2.7.0) (2021-09-07)
+
+
+### Bug Fixes
+
+* Pass className to Overlay ([264f46d](https://github.com/newrelic/gatsby-theme-newrelic/commit/264f46dafa4aaca8707e34749f3a336fa5090fcf))
+
+
+### Features
+
+* add quick_starts to SwiftType filtering in SearchModal ([12185b6](https://github.com/newrelic/gatsby-theme-newrelic/commit/12185b6e5f34a479f55242799ac9c791fa406496))
+
+
+
+
+
 # [2.6.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.5.2...v2.6.0) (2021-09-02)
 
 
