@@ -33,6 +33,36 @@ const action = css`
   }
 `;
 
+export const NR_SITES = {
+  DOCS: 'DOCS',
+  DEVELOPER: 'DEVELOPER',
+  OSS: 'OSS',
+  COMMUNITY: 'COMMUNITY',
+  LEARN: 'LEARN',
+  IO: 'IO',
+};
+
+export const HEADER_LINKS = {
+  [NR_SITES.DOCS]: { text: 'Docs', href: 'https://developer.newrelic.com/' },
+  [NR_SITES.DEVELOPER]: {
+    text: 'Developer',
+    href: 'https://developer.newrelic.com/',
+  },
+  [NR_SITES.OSS]: {
+    text: 'Open Source',
+    href: 'https://opensource.newrelic.com/',
+  },
+  [NR_SITES.COMMUNITY]: {
+    text: 'Community',
+    href: 'https://discuss.newrelic.com/',
+  },
+  [NR_SITES.LEARN]: { text: 'Learn', href: 'https://learn.newrelic.com/' },
+  [NR_SITES.IO]: {
+    text: 'Instant Observability',
+    href: 'https://developer.newrelic.com/instant-observability',
+  },
+};
+
 const CONDENSED_BREAKPOINT = '760px';
 
 const actionLink = css`
@@ -217,21 +247,11 @@ const GlobalHeader = ({ className }) => {
                 <Icon name="logo-newrelic" size="1.125rem" />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.MenuItem href="https://docs.newrelic.com/">
-                  Docs
-                </Dropdown.MenuItem>
-                <Dropdown.MenuItem href="https://developer.newrelic.com/">
-                  Developer
-                </Dropdown.MenuItem>
-                <Dropdown.MenuItem href="https://opensource.newrelic.com/">
-                  Open Source
-                </Dropdown.MenuItem>
-                <Dropdown.MenuItem href="https://discuss.newrelic.com/">
-                  Community
-                </Dropdown.MenuItem>
-                <Dropdown.MenuItem href="https://learn.newrelic.com/">
-                  Learn
-                </Dropdown.MenuItem>
+                {HEADER_LINKS.map(({ text, href }) => (
+                  <Dropdown.MenuItem key={href} href={href}>
+                    {text}
+                  </Dropdown.MenuItem>
+                ))}
               </Dropdown.Menu>
             </Dropdown>
 
@@ -258,31 +278,16 @@ const GlobalHeader = ({ className }) => {
                 }
               `}
             >
-              <li>
-                <GlobalNavLink href="https://docs.newrelic.com/">
-                  Docs
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://developer.newrelic.com/">
-                  Developers
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://opensource.newrelic.com/">
-                  Open Source
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://discuss.newrelic.com/">
-                  Community
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://learn.newrelic.com/">
-                  Learn
-                </GlobalNavLink>
-              </li>
+              {HEADER_LINKS.map(({ text, href }) => (
+                <li key={href}>
+                  <GlobalNavLink
+                    href={href}
+                    activeSite={activeSite && HEADER_LINKS[activeSite]}
+                  >
+                    {text}
+                  </GlobalNavLink>
+                </li>
+              ))}
             </ul>
           </nav>
 
