@@ -105,7 +105,7 @@ const useSearchQuery = () => {
   return [searchTerm, setSearchTerm];
 };
 
-const GlobalHeader = ({ className }) => {
+const GlobalHeader = ({ className, activeSite }) => {
   const hasMounted = useHasMounted();
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
@@ -450,6 +450,7 @@ const GlobalHeader = ({ className }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
+  activeSite: PropTypes.oneOf(Object.values(NR_SITES)),
 };
 
 export default GlobalHeader;

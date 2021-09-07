@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import ExternalLink from './ExternalLink';
 
-const GlobalNavLink = ({ children, href }) => {
+const GlobalNavLink = ({ children, href, activeSite }) => {
   const {
     site: {
       siteMetadata: { siteUrl },
@@ -19,7 +19,11 @@ const GlobalNavLink = ({ children, href }) => {
     }
   `);
 
-  const isCurrentSite = href.startsWith(siteUrl);
+  // Does the href start with this URL (and we don't have a site manually set)
+  // OR do we have a site manually set and the href matches.
+  const isCurrentSite =
+    (href.startsWith(siteUrl) && !activeSite) ||
+    (activeSite && activeSite.href === href);
 
   const Component = isCurrentSite ? Link : ExternalLink;
   const props = isCurrentSite ? { to: '/' } : { href };
@@ -57,6 +61,10 @@ const GlobalNavLink = ({ children, href }) => {
 GlobalNavLink.propTypes = {
   children: PropTypes.node,
   href: PropTypes.string.isRequired,
+  activeSite: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    href: PropTypes.string.isRequired,
+  }),
 };
 
 export default GlobalNavLink;
