@@ -1270,63 +1270,20 @@ import { GlobalHeader } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 | Prop | Type | Required | Default | Description |
-| --------- | ------ | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `editUrl` | string | no | | Used by the edit page link in the global header to link to a GitHub URL where a user can edit the page's source. If omitted, the edit page link will be excluded. |
+| - | - | - | - | - |
+| `activeSite` | enum | no | | The New Relic site that we should present as "active". This should come from `NR_SITES`, which is exported. |
 
-**Gatsby configuration**
-
-The `GlobalHeader` component consumes configuration defined for the theme. In
-order to make the most of the `GlobalHeader` component, it is recommended that
-you configure the following values in `gatsby-config.js`:
-
-```js
-// gatsby-config.js
-
-module.exports = {
-  siteMetadata: {
-    // Used to set the link that matches the current site as active
-    siteUrl: 'https://developer.newrelic.com',
-    // Used to create a link to the issues page from the global header
-    repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
-  },
-  plugins: [
-    {
-      resolve: '@newrelic/gatsby-theme-newrelic',
-      options: {
-        // Define the layout properties to ensure the global header aligns
-        // nicely with the rest of the content
-        layout: {
-          maxWidth: '',
-          contentPadding: '',
-        },
-      },
-    },
-  ],
-};
-```
 
 **Examples**
 
 ```js
-import { graphql, useStaticQuery } from 'gatsby';
+import { GlobalHeader } from '@newrelic/gatsby-theme-newrelic';
 
-const Layout = () => {
-  const { data } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          repository
-        }
-      }
-    }
-  `);
+// Normal use
+return <GlobalHeader />;
 
-  return (
-    <GlobalHeader
-      editUrl={`${data.site.siteMetadata.repository}/src/components/layout.js`}
-    />
-  );
-};
+// With a custom-set active page
+return <GlobalHeader activeSite={GlobalHeader.NR_SITES.IO} />;
 ```
 
 ### `HamburgerMenu`
