@@ -8,7 +8,7 @@ import NewRelicLogo from './NewRelicLogo';
 import useKeyPress from '../hooks/useKeyPress';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
-const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
+const Overlay = ({ children, onCloseOverlay, isOpen = false, className }) => {
   const { t } = useThemeTranslation();
 
   useEffect(() => {
@@ -40,6 +40,7 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false }) => {
           transition: 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
           visibility: ${isOpen ? 'visible' : 'hidden'};
         `}
+        className={className}
       >
         <div
           role="button"
@@ -111,6 +112,7 @@ Overlay.propTypes = {
   children: PropTypes.node.isRequired,
   onCloseOverlay: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  className: PropTypes.string,
 };
 
 export default Overlay;
