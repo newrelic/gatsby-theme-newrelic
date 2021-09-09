@@ -42,25 +42,59 @@ export const NR_SITES = {
   IO: 'IO',
 };
 
-export const HEADER_LINKS = {
-  [NR_SITES.DOCS]: { text: 'Docs', href: 'https://developer.newrelic.com/' },
-  [NR_SITES.DEVELOPER]: {
+const HEADER_LINKS = new Map();
+
+HEADER_LINKS.set(NR_SITES.DOCS, {
+  text: 'Docs',
+  href: 'https://docs.newrelic.com/',
+})
+  .set(NR_SITES.DEVELOPER, {
     text: 'Developer',
     href: 'https://developer.newrelic.com/',
-  },
-  [NR_SITES.OSS]: {
+  })
+  .set(NR_SITES.OSS, {
     text: 'Open Source',
     href: 'https://opensource.newrelic.com/',
-  },
-  [NR_SITES.COMMUNITY]: {
+  })
+  .set(NR_SITES.COMMUNITY, {
     text: 'Community',
     href: 'https://discuss.newrelic.com/',
-  },
-  [NR_SITES.LEARN]: { text: 'Learn', href: 'https://learn.newrelic.com/' },
-  [NR_SITES.IO]: {
+  })
+  .set(NR_SITES.LEARN, {
+    text: 'Learn',
+    href: 'https://learn.newrelic.com/',
+  })
+  .set(NR_SITES.IO, {
     text: 'Instant Observability',
     href: 'https://developer.newrelic.com/instant-observability',
-  },
+  });
+
+const createNavList = (listType, activeSite = null) => {
+  const navList = [];
+  HEADER_LINKS.forEach(({ text, href }) => {
+    switch (listType) {
+      case 'main':
+        navList.push(
+          <li key={href}>
+            <GlobalNavLink
+              href={href}
+              activeSite={activeSite && HEADER_LINKS.get(activeSite)}
+            >
+              {text}
+            </GlobalNavLink>
+          </li>
+        );
+        break;
+      case 'dropdown':
+        navList.push(
+          <Dropdown.MenuItem key={href} href={href}>
+            {text}
+          </Dropdown.MenuItem>
+        );
+        break;
+    }
+  });
+  return navList;
 };
 
 const CONDENSED_BREAKPOINT = '760px';
@@ -247,11 +281,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 <Icon name="logo-newrelic" size="1.125rem" />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                {HEADER_LINKS.map(({ text, href }) => (
-                  <Dropdown.MenuItem key={href} href={href}>
-                    {text}
-                  </Dropdown.MenuItem>
-                ))}
+                {createNavList('dropdown', activeSite)}
               </Dropdown.Menu>
             </Dropdown>
 
@@ -278,16 +308,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 }
               `}
             >
-              {HEADER_LINKS.map(({ text, href }) => (
-                <li key={href}>
-                  <GlobalNavLink
-                    href={href}
-                    activeSite={activeSite && HEADER_LINKS[activeSite]}
-                  >
-                    {text}
-                  </GlobalNavLink>
-                </li>
-              ))}
+              {createNavList('main', activeSite)}
             </ul>
           </nav>
 
