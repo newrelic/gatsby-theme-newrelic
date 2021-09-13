@@ -34,7 +34,7 @@ const NoResults = () => (
       `}
     >
       Try searching for different keywords or start a conversation on our{' '}
-      <Link to="https://discuss.newrelic.com/">Explorers Hub</Link>!
+      <Link to="https://discuss.newrelic.com/">Explorers Hub</Link>.
     </p>
   </div>
 );
