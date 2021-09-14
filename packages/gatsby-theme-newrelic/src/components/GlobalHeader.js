@@ -33,6 +33,70 @@ const action = css`
   }
 `;
 
+export const NR_SITES = {
+  DOCS: 'DOCS',
+  DEVELOPER: 'DEVELOPER',
+  OSS: 'OSS',
+  COMMUNITY: 'COMMUNITY',
+  LEARN: 'LEARN',
+  IO: 'IO',
+};
+
+const HEADER_LINKS = new Map();
+
+HEADER_LINKS.set(NR_SITES.DOCS, {
+  text: 'Docs',
+  href: 'https://docs.newrelic.com/',
+})
+  .set(NR_SITES.DEVELOPER, {
+    text: 'Developer',
+    href: 'https://developer.newrelic.com/',
+  })
+  .set(NR_SITES.OSS, {
+    text: 'Open Source',
+    href: 'https://opensource.newrelic.com/',
+  })
+  .set(NR_SITES.COMMUNITY, {
+    text: 'Community',
+    href: 'https://discuss.newrelic.com/',
+  })
+  .set(NR_SITES.LEARN, {
+    text: 'Learn',
+    href: 'https://learn.newrelic.com/',
+  })
+  .set(NR_SITES.IO, {
+    text: 'Instant Observability',
+    href: 'https://developer.newrelic.com/instant-observability',
+  });
+
+const createNavList = (listType, activeSite = null) => {
+  const navList = [];
+  HEADER_LINKS.forEach(({ text, href }) => {
+    switch (listType) {
+      case 'main':
+        navList.push(
+          <li key={href}>
+            <GlobalNavLink
+              href={href}
+              activeSite={activeSite && HEADER_LINKS.get(activeSite)}
+            >
+              {text}
+            </GlobalNavLink>
+          </li>
+        );
+        break;
+      case 'dropdown':
+        navList.push(
+          <Dropdown.MenuItem key={href} href={href}>
+            {text}
+          </Dropdown.MenuItem>
+        );
+        break;
+    }
+  });
+  return navList;
+};
+
 const CONDENSED_BREAKPOINT = '760px';
 
 const actionLink = css`
@@ -75,7 +139,7 @@ const useSearchQuery = () => {
   return [searchTerm, setSearchTerm];
 };
 
-const GlobalHeader = ({ className }) => {
+const GlobalHeader = ({ className, activeSite }) => {
   const hasMounted = useHasMounted();
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
@@ -217,21 +281,7 @@ const GlobalHeader = ({ className }) => {
                 <Icon name="logo-newrelic" size="1.125rem" />
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.MenuItem href="https://docs.newrelic.com/">
-                  Docs
-                </Dropdown.MenuItem>
-                <Dropdown.MenuItem href="https://developer.newrelic.com/">
-                  Developer
-                </Dropdown.MenuItem>
-                <Dropdown.MenuItem href="https://opensource.newrelic.com/">
-                  Open Source
-                </Dropdown.MenuItem>
-                <Dropdown.MenuItem href="https://discuss.newrelic.com/">
-                  Community
-                </Dropdown.MenuItem>
-                <Dropdown.MenuItem href="https://learn.newrelic.com/">
-                  Learn
-                </Dropdown.MenuItem>
+                {createNavList('dropdown', activeSite)}
               </Dropdown.Menu>
             </Dropdown>
 
@@ -258,31 +308,7 @@ const GlobalHeader = ({ className }) => {
                 }
               `}
             >
-              <li>
-                <GlobalNavLink href="https://docs.newrelic.com/">
-                  Docs
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://developer.newrelic.com/">
-                  Developers
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://opensource.newrelic.com/">
-                  Open Source
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://discuss.newrelic.com/">
-                  Community
-                </GlobalNavLink>
-              </li>
-              <li>
-                <GlobalNavLink href="https://learn.newrelic.com/">
-                  Learn
-                </GlobalNavLink>
-              </li>
+              {createNavList('main', activeSite)}
             </ul>
           </nav>
 
@@ -445,6 +471,7 @@ const GlobalHeader = ({ className }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
+  activeSite: PropTypes.oneOf(Object.values(NR_SITES)),
 };
 
 export default GlobalHeader;
