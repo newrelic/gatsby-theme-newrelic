@@ -21,10 +21,9 @@ const NoResults = () => (
     <h5
       css={css`
         font-size: 0.875rem;
-        text-transform: uppercase;
       `}
     >
-      No Results Found
+      We didn't find any results
     </h5>
     <p
       css={css`
@@ -34,12 +33,8 @@ const NoResults = () => (
         text-align: center;
       `}
     >
-      Make a{' '}
-      <Link to="https://github.com/newrelic/docs-website/issues/new?assignees=&labels=content&template=content-issue.md&title=Summarize+your+docs+request">
-        request
-      </Link>{' '}
-      for new documentation or start a conversation on our{' '}
-      <Link to="https://discuss.newrelic.com/">Explorer's Hub</Link>!
+      Try searching for different keywords or start a conversation on our{' '}
+      <Link to="https://discuss.newrelic.com/">Explorers Hub</Link>.
     </p>
   </div>
 );
