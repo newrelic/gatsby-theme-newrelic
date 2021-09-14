@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.7.0...v2.8.0) (2021-09-14)
+
+
+### Features
+
+* adding the ability to set the currently active site ([c9e80a6](https://github.com/newrelic/gatsby-theme-newrelic/commit/c9e80a638c388a9fdaa5e47a5fb2073648aa28a2))
+
+
+
+
+
 # [2.7.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.6.0...v2.7.0) (2021-09-07)
 
 
