@@ -11,6 +11,8 @@ import { addTrailingSlash } from '../utils/location';
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
 const isNewRelic = (to) => to.startsWith('https://newrelic.com');
+const isNewRelicDomain = (to) =>
+  to.endsWith('newrelic.com') || to.includes('newrelic.com/');
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 const isImageLink = (className) => className === 'gatsby-resp-image-link';
 
@@ -66,17 +68,19 @@ const Link = forwardRef(
     }
 
     if (isExternal(to)) {
+      const rel = isNewRelicDomain(to) ? 'noopener' : 'noopener noreferrer';
       const link = isNewRelic(to)
         ? localizeExternalLink({ link: to, locale })
         : to;
 
       return (
+        // eslint-disable-next-line react/jsx-no-target-blank
         <a
           {...props}
           href={link}
           onClick={handleExternalLinkClick}
           target="_blank"
-          rel="noopener noreferrer"
+          rel={rel}
           ref={ref}
         />
       );
