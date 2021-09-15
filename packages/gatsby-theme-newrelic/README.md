@@ -139,6 +139,7 @@ module.exports = {
     repository: 'https://github.com/newrelic/gatsby-theme-newrelic',
     branch: 'main',
     utmSource: 'developer-site',
+    oneTrustID: 'foobar123',
   },
   plugins: [
     {
@@ -218,6 +219,8 @@ are optional, they are highly recommended.
   in the repo and branch specified in the `siteMetadata`. If the `repository` is
   not specified, this will return `null`. Set this value to `null` to disable
   the default behavior.
+- `oneTrustID`: The _OneTrust_ ID to be used when adding the cookie consent snippet.
+  This is optional and, if not set, the snippet will not be included in the `<head>`.
 
 ### Options
 
@@ -2111,7 +2114,7 @@ const Search = () => (
 
 ### `SEO`
 
-A component that injects meta-tags, links, and other relevant tags for search engine optimization.
+A component that injects meta-tags, links, and other relevant tags for search engine optimization. If `siteMetadata.oneTrustID` is set, then this will include the _OneTrust_ cookie consent snippet.
 
 ```js
 import { SEO } from '@newrelic/gatsby-theme-newrelic';
