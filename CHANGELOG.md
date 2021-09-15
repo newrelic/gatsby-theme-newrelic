@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.8.0...v2.8.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* Optionally remove noreferrer from links to NR domain ([3461267](https://github.com/newrelic/gatsby-theme-newrelic/commit/3461267ea3cdd67c56cb76b61dd4931c8d19ec9b))
+
+
+
+
+
 # [2.8.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.7.0...v2.8.0) (2021-09-14)
 
 
