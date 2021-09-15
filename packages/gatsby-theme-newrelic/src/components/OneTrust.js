@@ -2,7 +2,11 @@ import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 const OneTrust = () => {
-  const data = useStaticQuery(graphql`
+  const {
+    site: {
+      siteMetadata: { oneTrustID },
+    },
+  } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
@@ -11,7 +15,6 @@ const OneTrust = () => {
       }
     }
   `);
-  const { oneTrustID } = data.site.siteMetadata;
 
   // This needs to be set for the OneTrust snippet.
   if (window !== undefined) {
