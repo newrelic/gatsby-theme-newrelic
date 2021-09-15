@@ -35,6 +35,7 @@ export { default as MobileNavigation } from './src/components/MobileNavigation';
 export { default as Navigation } from './src/components/Navigation';
 export { default as NavItem } from './src/components/NavItem';
 export { default as NewRelicLogo } from './src/components/NewRelicLogo';
+export { default as OneTrust } from './src/components/OneTrust';
 export { default as Overlay } from './src/components/Overlay';
 export { default as PageTools } from './src/components/PageTools';
 export { default as Portal } from './src/components/Portal';

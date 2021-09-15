@@ -2,6 +2,7 @@ import React from 'react';
 import path from 'path';
 import { getGtmConfig, getTessenConfig } from '../src/utils/config';
 import { getTessenPath } from './constants';
+import OneTrust from '../src/components/OneTrust';
 
 const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
@@ -41,6 +42,7 @@ const onPreRenderHTML = (
 
   replaceHeadComponents(
     [
+      <OneTrust />,
       ...getHeadComponents(),
       <link
         key="open-sans"
