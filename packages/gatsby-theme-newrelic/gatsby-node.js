@@ -171,7 +171,7 @@ exports.sourceNodes = (
 };
 
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
-  const { layout = {} } = themeOptions;
+  const { layout = {}, oneTrustID = null } = themeOptions;
 
   createResolvers({
     Site: {
@@ -181,6 +181,10 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       },
     },
     SiteSiteMetadata: {
+      oneTrustID: {
+        type: 'String',
+        resolve: () => oneTrustID,
+      },
       branch: {
         resolve: ({ branch }) => branch || DEFAULT_BRANCH,
       },
