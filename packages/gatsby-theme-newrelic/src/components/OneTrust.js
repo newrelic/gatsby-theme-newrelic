@@ -13,8 +13,15 @@ const OneTrust = () => {
   `);
   const { oneTrustID } = data.site.siteMetadata;
 
+  // This needs to be set for the OneTrust snippet.
   if (window !== undefined) {
     window.OptanonWrapper = () => {};
+  }
+
+  // If the site does not have a oneTrustID specified in the siteMetadata,
+  // don't add the snippet.
+  if (!oneTrustID) {
+    return null;
   }
 
   return (
