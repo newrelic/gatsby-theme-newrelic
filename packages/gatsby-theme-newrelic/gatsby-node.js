@@ -43,14 +43,6 @@ exports.onPreInit = (_, themeOptions) => {
 
 exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   const { program } = store.getState();
-  const {
-    tessen: { tessenVersion },
-  } = themeOptions;
-  const tessenLibrary = path.join(
-    program.directory,
-    'static',
-    path.basename(getTessenPath(tessenVersion))
-  );
 
   const imagePath = path.join(program.directory, 'src/images');
   const announcementsPath = path.join(
@@ -98,10 +90,18 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
     );
   }
 
+  const version = tessen ? tessen.tessenVersion : null;
+
+  const tessenLibrary = path.join(
+    program.directory,
+    'static',
+    path.basename(getTessenPath(version))
+  );
+
   if (tessen && !fs.existsSync(tessenLibrary)) {
     createDirectory(path.dirname(tessenLibrary));
 
-    fs.copyFileSync(getTessenPath(tessenVersion), tessenLibrary);
+    fs.copyFileSync(getTessenPath(version), tessenLibrary);
 
     reporter.info(
       '[@newrelic/gatsby-theme-newrelic] adding Tessen library. Please commit this file.'

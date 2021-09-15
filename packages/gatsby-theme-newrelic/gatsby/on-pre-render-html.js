@@ -1,6 +1,6 @@
 import React from 'react';
 import path from 'path';
-import { getGtmConfig } from '../src/utils/config';
+import { getGtmConfig, getTessenConfig } from '../src/utils/config';
 import { getTessenPath } from './constants';
 
 const onPreRenderHTML = (
@@ -8,6 +8,7 @@ const onPreRenderHTML = (
   themeOptions
 ) => {
   const googleTagManager = getGtmConfig(themeOptions);
+  const tessen = getTessenConfig(themeOptions);
 
   const gtagScript = googleTagManager ? (
     <script
@@ -34,11 +35,9 @@ const onPreRenderHTML = (
     />
   );
 
-  const {
-    tessen: { tessenVersion },
-  } = themeOptions;
+  const version = tessen ? tessen.tessenVersion : null;
 
-  const tessenPath = `/${path.basename(getTessenPath(tessenVersion))}`;
+  const tessenPath = `/${path.basename(getTessenPath(version))}`;
 
   replaceHeadComponents(
     [
