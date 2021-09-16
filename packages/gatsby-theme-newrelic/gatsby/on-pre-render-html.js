@@ -42,7 +42,7 @@ const onPreRenderHTML = (
 
   replaceHeadComponents(
     [
-      <OneTrust key="one-trust" />,
+      <OneTrust key="one-trust" id={themeOptions.oneTrustID} />,
       ...getHeadComponents(),
       <link
         key="open-sans"
