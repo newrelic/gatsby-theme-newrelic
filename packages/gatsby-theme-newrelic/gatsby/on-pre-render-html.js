@@ -37,7 +37,7 @@ const onPreRenderHTML = (
 
   replaceHeadComponents(
     [
-      <OneTrust />,
+      <OneTrust key="one-trust" />,
       ...getHeadComponents(),
       <link
         key="open-sans"
