@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.8.1-io.1...v2.9.0) (2021-09-16)
+
+
+### Features
+
+* added the _One Trust_ cookie consent snippet ([8024995](https://github.com/newrelic/gatsby-theme-newrelic/commit/80249951cc037f6e6efd9913a4778e4cf444c26d))
+
+
+
+
+
 # 2.0.0 (2021-09-16)
 
 
