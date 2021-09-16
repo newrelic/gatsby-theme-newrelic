@@ -1,5 +1,7 @@
 import React from 'react';
 import path from 'path';
+import OneTrust from '../src/components/OneTrust';
+import { getGtmConfig } from '../src/utils/config';
 import { getGtmConfig, getTessenConfig } from '../src/utils/config';
 import { getTessenPath } from './constants';
 
@@ -41,6 +43,7 @@ const onPreRenderHTML = (
 
   replaceHeadComponents(
     [
+      <OneTrust key="one-trust" />,
       ...getHeadComponents(),
       <link
         key="open-sans"
