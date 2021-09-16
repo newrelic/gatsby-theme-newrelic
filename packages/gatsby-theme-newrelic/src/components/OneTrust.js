@@ -1,30 +1,16 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import PropTypes from 'prop-types'
 
-const OneTrust = () => {
-  const {
-    site: {
-      siteMetadata: { oneTrustID },
-    },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          oneTrustID
-        }
-      }
-    }
-  `);
+const OneTrust = ({ id }) => {
+  // If the site does not have a oneTrustID specified in the siteMetadata,
+  // don't add the snippet.
+  if (!id) {
+    return null;
+  }
 
   // This needs to be set for the OneTrust snippet.
   if (typeof window !== 'undefined') {
     window.OptanonWrapper = () => {};
-  }
-
-  // If the site does not have a oneTrustID specified in the siteMetadata,
-  // don't add the snippet.
-  if (!oneTrustID) {
-    return null;
   }
 
   return (
@@ -32,9 +18,13 @@ const OneTrust = () => {
       src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js"
       type="text/javascript"
       charset="UTF-8"
-      data-domain-script={oneTrustID}
+      data-domain-script={id}
     />
   );
+};
+
+OneTrust.propTypes = {
+  id: PropTypes.string,
 };
 
 export default OneTrust;
