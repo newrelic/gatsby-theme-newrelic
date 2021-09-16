@@ -1,13 +1,14 @@
 import React from 'react';
 import path from 'path';
-import { getGtmConfig } from '../src/utils/config';
-import { TESSEN_PATH } from './constants';
+import { getGtmConfig, getTessenConfig } from '../src/utils/config';
+import { getTessenPath } from './constants';
 
 const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
   themeOptions
 ) => {
   const googleTagManager = getGtmConfig(themeOptions);
+  const tessen = getTessenConfig(themeOptions);
 
   const gtagScript = googleTagManager ? (
     <script
@@ -34,6 +35,10 @@ const onPreRenderHTML = (
     />
   );
 
+  const version = tessen ? tessen.tessenVersion : null;
+
+  const tessenPath = `/${path.basename(getTessenPath(version))}`;
+
   replaceHeadComponents(
     [
       ...getHeadComponents(),
@@ -43,11 +48,7 @@ const onPreRenderHTML = (
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
       />,
       themeOptions.tessen && (
-        <script
-          key="tessen"
-          type="text/javascript"
-          src={`/${path.basename(TESSEN_PATH)}`}
-        />
+        <script key="tessen" type="text/javascript" src={tessenPath} />
       ),
       themeOptions.googleTagManager && gtagScript,
       themeOptions.googleTagManager && googleTrackScript,
