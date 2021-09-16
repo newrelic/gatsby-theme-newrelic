@@ -19,6 +19,7 @@ jobs:
           # Ensure lerna can do the proper version bump
           # https://github.com/lerna/lerna/issues/2542
           fetch-depth: 0
+          ref: feature/newrelic-io
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
