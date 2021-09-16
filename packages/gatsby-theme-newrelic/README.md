@@ -150,6 +150,7 @@ module.exports = {
           contentPadding: '2rem',
           maxWidth: '1600px',
         },
+        oneTrustID: 'your-one-trust-id',
         newrelic: {
           configs: {
             staging: {
