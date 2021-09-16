@@ -10,6 +10,7 @@ const onPreRenderHTML = (
 ) => {
   const googleTagManager = getGtmConfig(themeOptions);
   const tessen = getTessenConfig(themeOptions);
+  const { oneTrustID } = themeOptions;
 
   const gtagScript = googleTagManager ? (
     <script
@@ -42,7 +43,7 @@ const onPreRenderHTML = (
 
   replaceHeadComponents(
     [
-      <OneTrust key="one-trust" id={themeOptions.oneTrustID} />,
+      <OneTrust key="one-trust" id={oneTrustID} />,
       ...getHeadComponents(),
       <link
         key="open-sans"
