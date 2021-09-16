@@ -12,7 +12,7 @@ const {
   getGtmConfig,
 } = require('./src/utils/config');
 const pageTransforms = require('./gatsby/page-transforms');
-const { TESSEN_PATH } = require('./gatsby/constants');
+const { getTessenPath } = require('./gatsby/constants');
 const { getFileRelativePath } = require('./gatsby/utils/fs');
 const getLocale = require('./gatsby/utils/getLocale');
 
@@ -43,11 +43,7 @@ exports.onPreInit = (_, themeOptions) => {
 
 exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   const { program } = store.getState();
-  const tessenLibrary = path.join(
-    program.directory,
-    'static',
-    path.basename(TESSEN_PATH)
-  );
+
   const imagePath = path.join(program.directory, 'src/images');
   const announcementsPath = path.join(
     program.directory,
@@ -94,10 +90,18 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
     );
   }
 
+  const version = tessen ? tessen.tessenVersion : null;
+
+  const tessenLibrary = path.join(
+    program.directory,
+    'static',
+    path.basename(getTessenPath(version))
+  );
+
   if (tessen && !fs.existsSync(tessenLibrary)) {
     createDirectory(path.dirname(tessenLibrary));
 
-    fs.copyFileSync(TESSEN_PATH, tessenLibrary);
+    fs.copyFileSync(getTessenPath(version), tessenLibrary);
 
     reporter.info(
       '[@newrelic/gatsby-theme-newrelic] adding Tessen library. Please commit this file.'
