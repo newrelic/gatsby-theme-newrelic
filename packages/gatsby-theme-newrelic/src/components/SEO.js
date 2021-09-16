@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import path from 'path';
 import { graphql, useStaticQuery } from 'gatsby';
-import OneTrust from './OneTrust';
 import useLocale from '../hooks/useLocale';
+import path from 'path';
 
 const SEO = ({ title, location, type, children }) => {
   const {
@@ -56,7 +55,6 @@ const SEO = ({ title, location, type, children }) => {
       <html lang={locale.hrefLang} />
       <title>{title || defaultTitle}</title>
       <link rel="canonical" href={new URL(location.pathname, siteUrl).href} />
-      <OneTrust />
       {locales.map(({ hrefLang, isDefault, locale }) => {
         const url = new URL(
           path.join(isDefault ? '/' : locale, subPath),

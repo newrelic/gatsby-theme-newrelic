@@ -17,7 +17,7 @@ const OneTrust = () => {
   `);
 
   // This needs to be set for the OneTrust snippet.
-  if (window !== undefined) {
+  if (typeof window !== 'undefined') {
     window.OptanonWrapper = () => {};
   }
 
