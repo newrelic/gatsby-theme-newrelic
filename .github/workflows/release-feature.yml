@@ -64,4 +64,4 @@ jobs:
           GIT_COMMITTER_NAME: ${{ env.BOT_NAME }}
           GIT_COMMITTER_EMAIL: ${{ env.BOT_EMAIL }}
           GH_TOKEN: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
-        run: yarn release --tag-version-prefix='newrelic-io-'
+        run: yarn release --dist-tag io
