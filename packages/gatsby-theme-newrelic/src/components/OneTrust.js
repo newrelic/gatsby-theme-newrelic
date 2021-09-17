@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const OneTrust = ({ id }) => {
   // If the site does not have a oneTrustID specified in the siteMetadata,
