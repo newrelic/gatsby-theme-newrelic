@@ -2,6 +2,7 @@ import React from 'react';
 import path from 'path';
 import { getGtmConfig, getTessenConfig } from '../src/utils/config';
 import { getTessenPath } from './constants';
+import OneTrust from '../src/components/OneTrust';
 
 const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
@@ -9,6 +10,7 @@ const onPreRenderHTML = (
 ) => {
   const googleTagManager = getGtmConfig(themeOptions);
   const tessen = getTessenConfig(themeOptions);
+  const { oneTrustID } = themeOptions;
 
   const gtagScript = googleTagManager ? (
     <script
@@ -41,6 +43,7 @@ const onPreRenderHTML = (
 
   replaceHeadComponents(
     [
+      <OneTrust key="one-trust" id={oneTrustID} />,
       ...getHeadComponents(),
       <link
         key="open-sans"

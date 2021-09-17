@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import {
-  CookieConsentDialog,
   GlobalHeader,
   Layout,
   Link,
@@ -51,7 +50,6 @@ const MainLayout = (props) => {
         </Layout.Sidebar>
         {children}
         <Layout.Footer fileRelativePath={pageContext.fileRelativePath} />
-        <CookieConsentDialog />
       </Layout>
     </>
   );
