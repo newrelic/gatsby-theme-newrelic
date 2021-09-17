@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.8.1...v2.10.0) (2021-09-17)
+
+
+### Bug Fixes
+
+* passing the OneTrust ID in via props ([9cb3462](https://github.com/newrelic/gatsby-theme-newrelic/commit/9cb3462377953ac315e751e4a36146e4072badcc))
+* update checks for tessen before trying to get version ([3d616ce](https://github.com/newrelic/gatsby-theme-newrelic/commit/3d616ce1859d4e8af7ea632bab787b940f5c9159))
+
+
+### Features
+
+* add OneTrust snippet only if set ([f5b7a31](https://github.com/newrelic/gatsby-theme-newrelic/commit/f5b7a3127edd4eaa4acdd28e1daf716bff1ccc42))
+* added the _One Trust_ cookie consent snippet ([080cdca](https://github.com/newrelic/gatsby-theme-newrelic/commit/080cdcac6586a8056e14092918b2071f9e13bc64))
+* **tessen:** enable sites to optionally update to latest tessen ([85f9d2d](https://github.com/newrelic/gatsby-theme-newrelic/commit/85f9d2dcff32be7fd2ac769ea7185ec90bcf984f))
+
+
+
+
+
 ## [2.8.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.8.0...v2.8.1) (2021-09-15)
 
 
