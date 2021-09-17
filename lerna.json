@@ -11,7 +11,8 @@
   "command": {
     "version": {
       "allowBranch": [
-        "main"
+        "main",
+        "feature/newrelic-io"
       ],
       "message": "chore(release): publish %s"
     },
