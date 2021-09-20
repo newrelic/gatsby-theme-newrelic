@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.10.0...v2.10.1) (2021-09-20)
+
+
+### Bug Fixes
+
+* add amplitude setting when loading tessen ([f55857d](https://github.com/newrelic/gatsby-theme-newrelic/commit/f55857d1f0f462e3c7260e60ada72ce1025d53ee))
+
+
+
+
+
 # [2.10.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.8.1...v2.10.0) (2021-09-17)
 
 
