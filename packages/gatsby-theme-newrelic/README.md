@@ -325,6 +325,7 @@ In short, the order of priority for populating content is driven by:
 
 Optional configuration for Tessen tracking.
 
+- `tessenVersion` _(string)_: Version of tessen to select. Available versions are: `['1.3.0', '1.14.0']`. Defaults to `'1.3.0'` if not specified.
 - `product` _(string)_ **required**: The 4-character product set as `nr_product`
 - `subproduct` _(string)_ **required**: The 4-character subproduct set as `nr_subproduct`
 - `segmentWriteKey` _(string)_ **required**: The write key used for Segment
@@ -359,6 +360,7 @@ Optional configuration for Tessen tracking.
 ```js
 const config = {
   tessen: {
+    tessenVersion: '1.3.0',
     product: 'DEMO',
     subproduct: 'DEMO',
     trackPageViews: true,
