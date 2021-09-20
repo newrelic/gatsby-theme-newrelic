@@ -76,6 +76,7 @@ const initializeTessenTracking =
         Segment: {
           identifiable: true,
           writeKey: segmentWriteKey,
+          useAmplitudeSessions: true,
         },
       });
 
