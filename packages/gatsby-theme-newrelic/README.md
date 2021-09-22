@@ -35,7 +35,6 @@ websites](https://opensource.newrelic.com).
     - [`Collapser`](#collapser)
     - [`CollapserGroup`](#collapsergroup)
     - [`ContributingGuidelines`](#contributingguidelines)
-    - [`CookieConsentDialog`](#cookieconsentdialog)
     - [`CreateIssueButton`](#createissuebutton)
     - [`Dropdown`](#dropdown)
       - [`Dropdown.Toggle`](#dropdowntoggle)
@@ -186,13 +185,6 @@ module.exports = {
         tessen: {
           product: 'DEMO',
           subproduct: 'DEMO',
-        },
-        googleTagManager: {
-          trackingId: 'ID_HERE',
-          src: 'https://www.googletagmanager.com/gtag/js',
-          options: {
-            anonymize_ip: true,
-          },
         },
         relatedResources: {
           labels: {
@@ -393,26 +385,6 @@ const defaultResolveEnv = () =>
   process.env.GATSBY_ACTIVE_ENV ||
   process.env.NODE_ENV ||
   'development';
-```
-
-#### `googleTagManager`
-
-Optional configuration for Google Tag Manager. If Tessen is also configured for the site, Google Tag Manager is only used if a user opts out of cookie usage (and thus Tessen is not used at all).
-
-- `trackingId` _(string)_ **required**: The Google Analytics measurement ID.
-- `src` _(string)_ **required**: The Google Tag Manager endpoint used to bring Google Tag Manger into the site.
-- `options` _(object)_: Additional config options to send along with `gtag` page views and events.
-
-**Example**
-
-```js
-googleTagManager: {
-  trackingId: 'ID_HERE',
-  src: 'https://www.googletagmanager.com/gtag/js',
-  options: {
-    anonymize_ip: true,
-  },
-},
 ```
 
 #### `i18n`
@@ -975,28 +947,6 @@ import { ContributingGuidelines } from '@newrelic/gatsby-theme-newrelic'`
 </PageTools>
 ```
 
-### `CookieConsentDialog`
-
-**NOTE: this component is in the process of being depricated. Please consider setting the `oneTrustID` instead.**
-
-A dialog box that pops up asking for cookie consent. This component renders at the bottom of the screen and provides options for accepting or denying cookies.
-
-```js
-import { CookieConsentDialog } from '@newrelic/gatsby-theme-newrelic';
-```
-
-**Example**
-
-```js
-const MyLayout = () => (
-  <>
-    <GlobalHeader />
-    <GlobalFooter />
-    <CookieConsentDialog />
-  </>
-);
-```
-
 ### `CreateIssueButton`
 
 Pre-defined [`GitHubIssueButton`](#githubissuebutton) used specifically for the
@@ -1282,7 +1232,6 @@ import { GlobalHeader } from '@newrelic/gatsby-theme-newrelic';
 | Prop | Type | Required | Default | Description |
 | - | - | - | - | - |
 | `activeSite` | enum | no | | The New Relic site that we should present as "active". This should come from `NR_SITES`, which is exported. |
-
 
 **Examples**
 
@@ -1816,6 +1765,7 @@ this component.
 
 ````md
 ```js
+
 ```
 ````
 
@@ -1835,6 +1785,7 @@ this component.
 
 ````md
 ```js copyable=false
+
 ```
 ````
 
@@ -1843,6 +1794,7 @@ this component.
 
 ````md
 ```js lineHighlight=1,5,7-9
+
 ```
 ````
 
@@ -1851,6 +1803,7 @@ this component.
 
 ````md
 ```js lineNumbers=true
+
 ```
 ````
 
@@ -1859,6 +1812,7 @@ this component.
 
 ````md
 ```js live=true
+
 ```
 ````
 
@@ -1867,6 +1821,7 @@ this component.
 
 ````md
 ```js preview=true
+
 ```
 ````
 
@@ -2195,6 +2150,7 @@ const View = () => (
 
 A wrapper around the [`Button`](#button) for A/B testing. It takes in the name of a Split.io split and changes color based on the config.
 To connect this component to a split and track metrics, pass the name of the split in as the value of the `treatmentName` prop and the click event name as the `eventName` prop. The name of the treatment does not matter, as the component only checks to see if it is `off`. The config value for each treatment, excluding `off`, must be JSON in the following form:
+
 ```json
 {
   "color": "<color>"
@@ -2202,6 +2158,7 @@ To connect this component to a split and track metrics, pass the name of the spl
 ```
 
 Example treatment config:
+
 ```json
 {
   "color": "#000000"
@@ -2213,13 +2170,14 @@ import { SplitColorButton } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 **Props**
-| Prop            | Type   | Required | Default | Description                                                                     |
-| ----------      | -----  | -------- | ------- | ------------------------------------------------------------------------------- |
-| `children`      | node   | no       |         | The content to display within the button. Usually a `<span>` with text content. |
-| `treatmentName` | string | yes      |         | The name of the treatment in Split.io.                                          |
-| `eventName`     | string | yes      |         | The name of the event in Split.io.                                              |
+| Prop | Type | Required | Default | Description |
+| ---------- | ----- | -------- | ------- | ------------------------------------------------------------------------------- |
+| `children` | node | no | | The content to display within the button. Usually a `<span>` with text content. |
+| `treatmentName` | string | yes | | The name of the treatment in Split.io. |
+| `eventName` | string | yes | | The name of the event in Split.io. |
 
 **Example**
+
 ```js
 <SplitColorButton
   treatmentName="TestFeature"
