@@ -1,7 +1,6 @@
 import createTessen from '../createTessen';
 import warning from 'warning';
 import { getResolvedEnv, getTessenConfig } from '../config';
-import { canTrack } from '../tracking';
 
 let initialized = false;
 
@@ -35,10 +34,6 @@ const trackViaTessen = ({ location, prevLocation }, themeOptions) => {
     prevLocation,
   });
 
-  if (!canTrack()) {
-    return;
-  }
-
   window.initializeTessenTracking();
 
   // wrap inside a timeout to make sure react-helmet is done with its changes (https://github.com/gatsbyjs/gatsby/issues/11592)
@@ -69,7 +64,7 @@ const trackPageView = ({ config, env, prevLocation }) => {
 const initializeTessenTracking =
   ({ config, env, location, prevLocation }) =>
   (options = {}) => {
-    if (canTrack() && !initialized) {
+    if (!initialized) {
       initialized = true;
       const { segmentWriteKey } = config;
       window.Tessen.load(['Segment', 'NewRelic'], {

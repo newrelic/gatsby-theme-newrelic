@@ -127,7 +127,6 @@ exports.sourceNodes = (
   const { relatedResources } = withDefaults(themeOptions);
   const { createNode } = actions;
   const tessen = getTessenConfig(themeOptions);
-  const googleTagManager = getGtmConfig(themeOptions);
   const env = getResolvedEnv(themeOptions);
   const { forceTrailingSlashes } = getTrailingSlashesConfig(themeOptions);
 
@@ -158,7 +157,6 @@ exports.sourceNodes = (
     tessen: tessen
       ? { product: tessen.product, subproduct: tessen.subproduct }
       : null,
-    googleTagManager: googleTagManager || null,
   };
 
   createNode({
