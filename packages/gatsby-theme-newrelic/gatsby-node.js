@@ -9,7 +9,6 @@ const {
   getTrailingSlashesConfig,
   getResolvedEnv,
   getI18nConfig,
-  getGtmConfig,
 } = require('./src/utils/config');
 const pageTransforms = require('./gatsby/page-transforms');
 const { getTessenPath } = require('./gatsby/constants');
