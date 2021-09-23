@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.10.1...v3.0.0) (2021-09-23)
+
+
+### Features
+
+* **cookies:** deprecate cookie mgmt tooling ([83327a0](https://github.com/newrelic/gatsby-theme-newrelic/commit/83327a0a96a575cd3b9b639773e55433b514d1b1))
+
+
+### BREAKING CHANGES
+
+* **cookies:** removes `CookieConsentDialog` from exports and requires oneTrustID in site config for new cookie mgmt
+
+
+
+
+
 ## [2.10.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.10.0...v2.10.1) (2021-09-20)
 
 
