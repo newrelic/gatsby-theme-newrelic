@@ -1,6 +1,6 @@
 import React from 'react';
 import path from 'path';
-import { getGtmConfig, getTessenConfig } from '../src/utils/config';
+import { getTessenConfig } from '../src/utils/config';
 import { getTessenPath } from './constants';
 import OneTrust from '../src/components/OneTrust';
 
@@ -8,34 +8,8 @@ const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
   themeOptions
 ) => {
-  const googleTagManager = getGtmConfig(themeOptions);
   const tessen = getTessenConfig(themeOptions);
   const { oneTrustID } = themeOptions;
-
-  const gtagScript = googleTagManager ? (
-    <script
-      async
-      key="nr-gtag"
-      src={`${googleTagManager.src}?id=${googleTagManager.trackingId}`}
-    />
-  ) : null;
-
-  const scriptStr = `
-    var options = {
-      send_page_view: false,
-      anonymize_ip: true
-    };
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    window.gtag = gtag;
-    `;
-
-  const googleTrackScript = (
-    <script
-      key="nr-gtag-inline-script"
-      dangerouslySetInnerHTML={{ __html: scriptStr }}
-    />
-  );
 
   const version = tessen ? tessen.tessenVersion : null;
 
@@ -53,8 +27,6 @@ const onPreRenderHTML = (
       themeOptions.tessen && (
         <script key="tessen" type="text/javascript" src={tessenPath} />
       ),
-      themeOptions.googleTagManager && gtagScript,
-      themeOptions.googleTagManager && googleTrackScript,
     ].filter(Boolean)
   );
 };

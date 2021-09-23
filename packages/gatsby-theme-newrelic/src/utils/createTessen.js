@@ -1,5 +1,4 @@
 import warning from 'warning';
-import { canTrack } from './tracking';
 import Cookies from 'js-cookie';
 
 const warnAboutNoop = ({ config, action, name, category }) => {
@@ -43,26 +42,24 @@ const tessenAction =
 
     const customerId = Cookies.get('ajs_user_id') || '';
 
-    if (canTrack()) {
-      window.Tessen[action](
-        name,
-        {
-          ...properties,
-          category,
-          nr_product: config.product,
-          nr_subproduct: config.subproduct,
-          location: 'Public',
-          customer_user_id: customerId,
-        },
-        {
-          Segment: {
-            integrations: {
-              All: true,
-            },
+    window.Tessen[action](
+      name,
+      {
+        ...properties,
+        category,
+        nr_product: config.product,
+        nr_subproduct: config.subproduct,
+        location: 'Public',
+        customer_user_id: customerId,
+      },
+      {
+        Segment: {
+          integrations: {
+            All: true,
           },
-        }
-      );
-    }
+        },
+      }
+    );
   };
 
 const createTessen = (config) => ({

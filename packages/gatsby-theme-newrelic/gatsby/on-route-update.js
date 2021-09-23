@@ -1,10 +1,8 @@
 import trackViaTessen from '../src/utils/page-tracking/tessen';
-import trackViaGoogle from '../src/utils/page-tracking/gtag';
 import getLocale from './utils/getLocale';
 
 const onRouteUpdate = ({ location, prevLocation }, themeOptions) => {
   trackViaTessen({ location, prevLocation }, themeOptions);
-  trackViaGoogle({ location, prevLocation }, themeOptions);
 
   if (window.newrelic) {
     const locale = getLocale({ location }, themeOptions);
