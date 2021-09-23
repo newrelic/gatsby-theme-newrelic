@@ -22,6 +22,7 @@ jest.mock('gatsby', () => ({
 describe('SimpleFeedback Component', () => {
   beforeEach(() => {
     window.Tessen = jest.fn();
+    window.Tessen.track = jest.fn();
     jest.clearAllMocks();
   });
 
