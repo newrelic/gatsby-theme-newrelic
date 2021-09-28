@@ -39,6 +39,7 @@ export const NR_SITES = {
   OSS: 'OSS',
   COMMUNITY: 'COMMUNITY',
   LEARN: 'LEARN',
+  IO: 'IO',
 };
 
 const HEADER_LINKS = new Map();
@@ -62,6 +63,10 @@ HEADER_LINKS.set(NR_SITES.DOCS, {
   .set(NR_SITES.LEARN, {
     text: 'Learn',
     href: 'https://learn.newrelic.com/',
+  })
+  .set(NR_SITES.IO, {
+    text: 'Instant Observability',
+    href: 'https://developer.newrelic.com/instant-observability',
   });
 
 const createNavList = (listType, activeSite = null) => {
