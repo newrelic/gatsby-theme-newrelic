@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.0.0...v3.1.0) (2021-09-28)
+
+
+### Features
+
+* **header:** add IO to nav menu ([5c770c4](https://github.com/newrelic/gatsby-theme-newrelic/commit/5c770c4946e3459b24991980bca88f493e2f3e0c))
+
+
+
+
+
 # [3.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v2.10.1...v3.0.0) (2021-09-23)
 
 
