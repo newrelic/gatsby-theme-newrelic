@@ -21,7 +21,7 @@ const defaultFilters = [
   { name: 'docs', isSelected: false },
   { name: 'developer', isSelected: false },
   { name: 'opensource', isSelected: false },
-  { name: 'quick_starts', isSelected: false },
+  { name: 'quickstarts', isSelected: false },
 ];
 
 const SearchModal = ({ onClose, isOpen, onChange, value }) => {
