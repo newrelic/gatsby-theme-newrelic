@@ -56,7 +56,7 @@ const trackPageView = ({ config, env, prevLocation }) => {
 
   tessen.page(name, category, {
     env: env === 'production' ? 'prod' : env,
-    referrer: prevLocation?.pathname,
+    referrer: prevLocation?.href,
     ...properties,
   });
 };
