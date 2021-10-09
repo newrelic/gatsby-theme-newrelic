@@ -1,6 +1,7 @@
 import createTessen from '../createTessen';
 import warning from 'warning';
 import { getResolvedEnv, getTessenConfig } from '../config';
+import { DEV_SEGMENT_WRITE_KEY } from '../constants';
 
 let initialized = false;
 
@@ -70,7 +71,8 @@ const initializeTessenTracking =
       window.Tessen.load(['Segment', 'NewRelic'], {
         Segment: {
           identifiable: true,
-          writeKey: segmentWriteKey,
+          writeKey:
+            env === 'development' ? DEV_SEGMENT_WRITE_KEY : segmentWriteKey,
           useAmplitudeSessions: true,
         },
       });
