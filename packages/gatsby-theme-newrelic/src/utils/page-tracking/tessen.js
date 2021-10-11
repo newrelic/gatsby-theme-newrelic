@@ -72,7 +72,9 @@ const initializeTessenTracking =
         Segment: {
           identifiable: true,
           writeKey:
-            env === 'development' ? DEV_SEGMENT_WRITE_KEY : segmentWriteKey,
+            env === 'production' || env === 'prod'
+              ? segmentWriteKey
+              : DEV_SEGMENT_WRITE_KEY,
           useAmplitudeSessions: true,
         },
       });
