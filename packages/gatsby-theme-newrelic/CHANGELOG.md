@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.1.2...v3.1.3) (2021-10-11)
+
+
+### Bug Fixes
+
+* Conditionally use the dev segment key when projects run locally ([0312813](https://github.com/newrelic/gatsby-theme-newrelic/commit/0312813e76bfb169db352d802cc5517509c229cf))
+
+
+
+
+
 ## [3.1.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.1.1...v3.1.2) (2021-10-05)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
