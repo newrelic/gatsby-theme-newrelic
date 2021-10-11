@@ -7,23 +7,15 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 const ISSUE_BODY = `
-<!-- Thanks for filing an issue on our docs! Your feedback helps us improve our
-docs for every New Relic user. -->
+<!-- Thanks for filing an issue on our docs! -->
 
-<!-- **THIS REPO IS PUBLIC. Anything you share here is visible to the world,
-so be careful with screenshots and sensitive data.** -->
+<!-- This repo is public. Anything you share here is visible to the world. -->
 
-### Tell us what you need
+## How can we make our docs better?
 
-* If you've found something inaccurate, what is it?
-* If something is hard to read, confusing, or missing information, let us know.
-* If you're having trouble completing a task or are uncertain what to do next,
-  tell us what you're trying to do so we can provide more useful information.
-
-### Anything else you'd like to share?
-
-Add other context like screenshots, links to other docs, and information about
-your environment (operating system, application framework, etc.).
+* Is something confusing?
+* Is something inaccurate or missing?
+* Were you unable to complete a task? (What task?)
 `;
 
 const CreateIssueButton = ({
