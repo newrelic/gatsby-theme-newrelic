@@ -16,3 +16,5 @@ export const STORAGE_KEYS = {
 };
 
 export const TRACKING_COOKIE_NAME = 'newrelic-gdpr-consent';
+
+export const DEV_SEGMENT_WRITE_KEY = 'oMdv2YZCnzuC1iTVi9iCnFn6F9ycYb5v';
