@@ -13,7 +13,12 @@ import { stripTrailingSlash } from '../utils/location';
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-const NavItem = ({ page, __parent: parent, __depth: depth = 0 }) => {
+const NavItem = ({
+  page,
+  __parent: parent,
+  __depth: depth = 0,
+  __root: root,
+}) => {
   const locale = useLocale();
   const location = useLocation();
   const { searchTerm } = useNavigation();
@@ -72,7 +77,6 @@ const NavItem = ({ page, __parent: parent, __depth: depth = 0 }) => {
         --icon-size: 1.5rem;
         --icon-spacing: 0.5rem;
         --nav-link-padding: 1rem;
-
         display: ${matchesSearch || !searchTerm ? 'block' : 'none'};
         padding-left: ${parent == null ? '0' : 'var(--nav-link-padding)'};
 
@@ -96,7 +100,7 @@ const NavItem = ({ page, __parent: parent, __depth: depth = 0 }) => {
         onToggle={() => setIsExpanded(toggle)}
         mobileBreakpoint={mobileBreakpoint}
         css={css`
-          padding-left: ${parent?.icon
+          padding-left: ${root?.icon
             ? 'calc(var(--icon-size) + var(--icon-spacing))'
             : 'var(--nav-link-padding)'};
 
@@ -124,6 +128,7 @@ const NavItem = ({ page, __parent: parent, __depth: depth = 0 }) => {
             page={child}
             __parent={page}
             __depth={depth + 1}
+            __root={depth === 0 ? page : root}
           />
         ))}
     </div>
@@ -141,6 +146,7 @@ NavItem.propTypes = {
   __parent: page,
   __depth: PropTypes.number,
   page: page.isRequired,
+  __root: page,
 };
 
 const getMobilePadding = ({ parent, depth }) => {
