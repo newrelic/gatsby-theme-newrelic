@@ -385,7 +385,12 @@ nr1 create --type nerdpack --name pageviews-app
           <h2>YouTube video</h2>
           <Video id="ZagZfNQYJEU" type={Video.TYPE.YOUTUBE} width="500px" />
         </section>
-
+        <section>
+          <h2>Internal Link</h2>
+          <Link to="https://newrelic.com/signup">I'm Internal</Link>
+          <h2>External Link</h2>
+          <Link to="https://newrelic.com">I'm External</Link>
+        </section>
         <section>
           <h2>Tables</h2>
           <Table>

@@ -6,6 +6,7 @@ import useLocale from '../hooks/useLocale';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { localizeExternalLink, localizePath } from '../utils/localization';
 import SignUpLink from './SignUpLink';
+import Icon from './Icon';
 import { addTrailingSlash } from '../utils/location';
 
 const isHash = (to) => to.startsWith('#');
@@ -74,15 +75,18 @@ const Link = forwardRef(
         : to;
 
       return (
-        // eslint-disable-next-line react/jsx-no-target-blank
-        <a
-          {...props}
-          href={link}
-          onClick={handleExternalLinkClick}
-          target="_blank"
-          rel={rel}
-          ref={ref}
-        />
+        <>
+          {/* eslint-disable-next-line react/jsx-no-target-blank */}
+          <a
+            {...props}
+            href={link}
+            onClick={handleExternalLinkClick}
+            target="_blank"
+            rel={rel}
+            ref={ref}
+          />{' '}
+          <Icon name="fe-external-link" size="1rem" />
+        </>
       );
     }
 
