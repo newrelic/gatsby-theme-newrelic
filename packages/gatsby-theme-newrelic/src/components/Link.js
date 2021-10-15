@@ -38,7 +38,7 @@ const Link = forwardRef(
         }
       }
     `);
-
+    console.log(ref)
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
       actionName: 'externalLink_click',
       href: to,
@@ -84,8 +84,9 @@ const Link = forwardRef(
             target="_blank"
             rel={rel}
             ref={ref}
-          />{' '}
-          <Icon name="fe-external-link" size="1rem" />
+          >
+            {props.children} <Icon name="fe-external-link" size="1rem" />
+          </a>
         </>
       );
     }

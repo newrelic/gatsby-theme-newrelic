@@ -387,8 +387,21 @@ nr1 create --type nerdpack --name pageviews-app
         </section>
         <section>
           <h2>Internal Link</h2>
-          <Link to="https://newrelic.com/signup">I'm Internal</Link>
+
           <h2>External Link</h2>
+          <Surface
+            base={Surface.BASE.PRIMARY}
+            to="https://newrelic.com"
+            as={Link}
+            css={css`
+              padding: 2rem;
+            `}
+          >
+            I'm a link!
+          </Surface>
+          <Button as={Link} to="https://newrelic.com">
+            I'm a button
+          </Button>
           <Link to="https://newrelic.com">I'm External</Link>
         </section>
         <section>
