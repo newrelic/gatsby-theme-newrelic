@@ -38,7 +38,7 @@ const Link = forwardRef(
         }
       }
     `);
-    console.log(ref)
+
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
       actionName: 'externalLink_click',
       href: to,
@@ -113,6 +113,7 @@ Link.propTypes = {
   to: PropTypes.string.isRequired,
   instrumentation: PropTypes.object,
   className: PropTypes.string,
+  children: PropTypes.string,
 };
 
 export default Link;
