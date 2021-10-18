@@ -441,12 +441,6 @@ const GlobalHeader = ({ className, activeSite }) => {
                 />
               </Button>
             </li>
-            <li
-              css={css`
-                display: flex;
-              `}
-            >
-            </li>
           </ul>
         </div>
       </div>
