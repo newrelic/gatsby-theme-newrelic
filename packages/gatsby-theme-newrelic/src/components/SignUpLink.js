@@ -5,6 +5,7 @@ import useLocale from '../hooks/useLocale';
 import { useLocation } from '@reach/router';
 import { localizePath } from '../utils/localization';
 import Icon from './Icon';
+import { css } from '@emotion/react';
 
 const formatHref = (href, { locale }) => {
   const url = new URL(href);
@@ -46,7 +47,11 @@ const SignUpLink = forwardRef(
         {props.externalIcon && (
           <Icon
             name="fe-external-link"
-            style={{ marginLeft: '0.3em' }}
+            css={css`
+              margin-left: 0.25rem;
+              position: relative;
+              top: -1px;
+            `}
             size="1em"
           />
         )}

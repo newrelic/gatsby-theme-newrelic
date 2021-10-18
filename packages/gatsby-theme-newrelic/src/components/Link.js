@@ -89,7 +89,11 @@ const Link = forwardRef(
             {props.externalIcon && (
               <Icon
                 name="fe-external-link"
-                style={{ marginLeft: '0.3em' }}
+                css={css`
+                  margin-left: 0.25rem;
+                  position: relative;
+                  top: -1px;
+                `}
                 size="1em"
               />
             )}
