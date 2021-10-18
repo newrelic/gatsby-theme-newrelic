@@ -441,6 +441,21 @@ const GlobalHeader = ({ className, activeSite }) => {
                 />
               </Button>
             </li>
+            <li
+              css={css`
+                display: flex;
+              `}
+            >
+              <Button
+                as={ExternalLink}
+                href="https://newrelic.com/signup"
+                size={Button.SIZE.EXTRA_SMALL}
+                variant={Button.VARIANT.PRIMARY}
+                instrumentation={{ component: 'GlobalHeader' }}
+              >
+                <span>{t('button.signUp')}</span>
+              </Button>
+            </li>
           </ul>
         </div>
       </div>
