@@ -85,7 +85,14 @@ const Link = forwardRef(
             rel={rel}
             ref={ref}
           >
-            {props.children} <Icon name="fe-external-link" size="1rem" />
+            {props.children}
+            {props.externalIcon && (
+              <Icon
+                name="fe-external-link"
+                style={{ marginLeft: '0.3em' }}
+                size="1em"
+              />
+            )}
           </a>
         </>
       );
@@ -113,7 +120,8 @@ Link.propTypes = {
   to: PropTypes.string.isRequired,
   instrumentation: PropTypes.object,
   className: PropTypes.string,
-  children: PropTypes.string,
+  children: PropTypes.node,
+  externalIcon: PropTypes.bool,
 };
 
 export default Link;

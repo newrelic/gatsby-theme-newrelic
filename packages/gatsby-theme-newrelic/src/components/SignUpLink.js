@@ -1,10 +1,10 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import useTessen from '../hooks/useTessen';
 import useLocale from '../hooks/useLocale';
 import { useLocation } from '@reach/router';
 import { localizePath } from '../utils/localization';
+import Icon from './Icon';
 
 const formatHref = (href, { locale }) => {
   const url = new URL(href);
@@ -41,7 +41,16 @@ const SignUpLink = forwardRef(
             component: instrumentation?.component,
           });
         }}
-      />
+      >
+        {props.children}
+        {props.externalIcon && (
+          <Icon
+            name="fe-external-link"
+            style={{ marginLeft: '0.3em' }}
+            size="1em"
+          />
+        )}
+      </a>
     );
   }
 );
@@ -52,6 +61,8 @@ SignUpLink.propTypes = {
   instrumentation: PropTypes.shape({
     component: PropTypes.string,
   }),
+  children: PropTypes.node,
+  externalIcon: PropTypes.bool,
 };
 
 export default SignUpLink;
