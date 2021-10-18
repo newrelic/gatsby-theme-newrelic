@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { navigate } from 'gatsby-link';
@@ -26,21 +26,24 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
 
   const pageLocale = getLocale({ location }, themeOptions);
 
-  const searchTermFilter = (term) => {
-    const termsToIgnore = ['docs', pageLocale];
+  const searchTermFilter = useCallback(
+    (term) => {
+      const termsToIgnore = ['docs', pageLocale];
 
-    if (!term || termsToIgnore.includes(term)) {
-      return false;
-    }
+      if (!term || termsToIgnore.includes(term)) {
+        return false;
+      }
 
-    return true;
-  };
+      return true;
+    },
+    [pageLocale]
+  );
 
-  const localePostFix = () => {
-    return pageLocale === 'en' ? '' : `-${pageLocale}`;
-  };
+  const getSearchResults = useCallback(async () => {
+    const localePostFix = () => {
+      return pageLocale === 'en' ? '' : `-${pageLocale}`;
+    };
 
-  const getSearchResults = async () => {
     if (searchTerm !== null) {
       const results = await search(
         location.origin,
@@ -75,7 +78,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
 
       setSearchResult(trimmedResults);
     }
-  };
+  }, [pageLocale, searchTerm, location.origin, engineKey]);
 
   const displaySearchResults = () => {
     if (searchResult) {
@@ -91,7 +94,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
     }
 
     return (
-      <div id='search-results'>
+      <div id="search-results">
         Or try one of the following links to find the information you're looking
         for:
         <ul
@@ -103,9 +106,9 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
             margin-top: 1rem;
           `}
         >
-          {searchResult.map((result) => {
+          {searchResult.map((result, index) => {
             return (
-              <li>
+              <li key={`result-${index}`}>
                 <Link
                   to={result.url}
                   css={css`
@@ -131,22 +134,19 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
 
   useEffect(() => {
     setSearchTerm(
-      location.pathname
-        .split('/')
-        .filter(searchTermFilter)
-        .join(' ')
+      location.pathname.split('/').filter(searchTermFilter).join(' ')
     );
-  }, [location.pathname]);
+  }, [searchTermFilter, location.pathname]);
 
   useEffect(() => {
     getSearchResults();
-  }, [JSON.stringify(searchTerm)]);
+  }, [getSearchResults, searchTerm]);
 
   useEffect(() => {
     tessen.track('requestedUrl', `404Redirect`, {
       requestedUrl: location.href,
     });
-  }, [location.pathname]);
+  }, [tessen, location.href, location.pathname]);
 
   return (
     <>
@@ -187,7 +187,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
             </h1>
             {translate('404.errorMessage')}
             <div
-              id='search-section'
+              id="search-section"
               css={css`
                 margin-top: 2rem;
                 margin-bottom: 2rem;
@@ -223,6 +223,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
 
 NotFoundPage.propTypes = {
   location: PropTypes.shape({
+    href: PropTypes.string.isRequired,
     origin: PropTypes.string.isRequired,
     pathname: PropTypes.string.isRequired,
   }).isRequired,
