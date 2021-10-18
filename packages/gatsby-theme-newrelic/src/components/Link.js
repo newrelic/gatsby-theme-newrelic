@@ -8,6 +8,7 @@ import { localizeExternalLink, localizePath } from '../utils/localization';
 import SignUpLink from './SignUpLink';
 import Icon from './Icon';
 import { addTrailingSlash } from '../utils/location';
+import { css } from '@emotion/react';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
