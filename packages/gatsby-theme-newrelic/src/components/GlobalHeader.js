@@ -20,8 +20,6 @@ import path from 'path';
 import { rgba } from 'polished';
 import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
-import { SPLITS, SPLIT_TRACKING_EVENTS } from '../utils/constants';
-import SplitColorButton from './SplitColorButton';
 import useHasMounted from '../hooks/useHasMounted';
 
 const action = css`
@@ -448,19 +446,6 @@ const GlobalHeader = ({ className, activeSite }) => {
                 display: flex;
               `}
             >
-              <SplitColorButton
-                as={ExternalLink}
-                href="https://newrelic.com/signup"
-                size={Button.SIZE.EXTRA_SMALL}
-                variant={Button.VARIANT.PRIMARY}
-                instrumentation={{ component: 'GlobalHeader' }}
-                treatmentName={SPLITS.FREE_ACCOUNT_BUTTON_COLOR}
-                eventName={
-                  SPLIT_TRACKING_EVENTS.GLOBAL_HEADER_FREE_ACCOUNT_CLICK
-                }
-              >
-                <span>{t('button.signUp')}</span>
-              </SplitColorButton>
             </li>
           </ul>
         </div>
