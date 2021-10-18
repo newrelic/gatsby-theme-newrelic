@@ -302,6 +302,18 @@ exports.onCreatePage = (helpers, themeOptions) => {
       }
     });
   }
+
+  if (page.path.match(/404/) && !page.context.layout) {
+    deletePage(page);
+    createPage({
+      ...page,
+      context: {
+        ...page.context,
+        layout: 'basic',
+        themeOptions,
+      },
+    });
+  }
 };
 
 exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
