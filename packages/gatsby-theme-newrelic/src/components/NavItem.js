@@ -96,6 +96,12 @@ const NavItem = ({
         expandable={page.pages?.length > 0}
         onClick={() => {
           setIsExpanded(isCurrentPage || !page.url ? toggle : true);
+          if (typeof window !== 'undefined' && window.newrelic) {
+            window.newrelic.addPageAction('navInteraction', {
+              interactionType: 'LeftNavLinkClick',
+              href: page.url || '',
+            });
+          }
         }}
         onToggle={() => setIsExpanded(toggle)}
         mobileBreakpoint={mobileBreakpoint}

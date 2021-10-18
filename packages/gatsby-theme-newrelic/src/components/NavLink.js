@@ -25,6 +25,9 @@ const NavLink = ({
     <Element
       to={to}
       onClick={onClick}
+      instrumentation={{
+        navInteractionType: 'leftNavLinkClick',
+      }}
       className={className}
       css={css`
         display: flex;
@@ -98,6 +101,13 @@ const NavLink = ({
             e.preventDefault();
             e.stopPropagation();
             onToggle && onToggle();
+            if (typeof window !== 'undefined' && window.newrelic) {
+              window.newrelic.addPageAction('navInteraction', {
+                navInteractionType: 'leftNavMenuToggle',
+                to,
+                isExpanded,
+              });
+            }
           }}
           css={css`
             font-size: 1rem;
