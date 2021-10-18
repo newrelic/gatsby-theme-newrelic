@@ -388,14 +388,11 @@ nr1 create --type nerdpack --name pageviews-app
         <section>
           <h2>Internal Link</h2>
 
-          <h2>External Link</h2>
+          <h2>External Links</h2>
           <Surface
             base={Surface.BASE.PRIMARY}
             to="https://newrelic.com"
             as={Link}
-            css={css`
-              padding: 2rem;
-            `}
             externalIcon
           >
             I'm a link!
