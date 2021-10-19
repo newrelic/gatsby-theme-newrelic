@@ -6,7 +6,9 @@ import useLocale from '../hooks/useLocale';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { localizeExternalLink, localizePath } from '../utils/localization';
 import SignUpLink from './SignUpLink';
+import Icon from './Icon';
 import { addTrailingSlash } from '../utils/location';
+import { css } from '@emotion/react';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
@@ -44,6 +46,12 @@ const Link = forwardRef(
       ...instrumentation,
     });
 
+    const handleInternalLinkClick = useInstrumentedHandler(onClick, {
+      actionName: 'internalLink_click',
+      href: to,
+      ...instrumentation,
+    });
+
     if (to.startsWith(siteUrl)) {
       to = to.replace(siteUrl, '');
 
@@ -74,15 +82,30 @@ const Link = forwardRef(
         : to;
 
       return (
-        // eslint-disable-next-line react/jsx-no-target-blank
-        <a
-          {...props}
-          href={link}
-          onClick={handleExternalLinkClick}
-          target="_blank"
-          rel={rel}
-          ref={ref}
-        />
+        <>
+          {/* eslint-disable-next-line react/jsx-no-target-blank */}
+          <a
+            {...props}
+            href={link}
+            onClick={handleExternalLinkClick}
+            target="_blank"
+            rel={rel}
+            ref={ref}
+          >
+            {props.children}
+            {props.displayExternalIcon && (
+              <Icon
+                name="fe-external-link"
+                css={css`
+                  margin-left: 0.25rem;
+                  position: relative;
+                  top: -1px;
+                `}
+                size="1em"
+              />
+            )}
+          </a>
+        </>
       );
     }
 
@@ -97,6 +120,7 @@ const Link = forwardRef(
           locale,
         })}
         ref={ref}
+        onClick={handleInternalLinkClick}
         {...props}
       />
     );
@@ -108,6 +132,8 @@ Link.propTypes = {
   to: PropTypes.string.isRequired,
   instrumentation: PropTypes.object,
   className: PropTypes.string,
+  children: PropTypes.node,
+  displayExternalIcon: PropTypes.bool,
 };
 
 export default Link;
