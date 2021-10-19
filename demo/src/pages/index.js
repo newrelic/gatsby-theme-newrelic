@@ -399,14 +399,14 @@ nr1 create --type nerdpack --name pageviews-app
             css={css`
               padding: 5px;
             `}
-            externalIcon
+            displayExternalIcon
           >
             Surface
           </Surface>
-          <Button as={Link} externalIcon to="https://newrelic.com">
+          <Button as={Link} displayExternalIcon to="https://newrelic.com">
             Button
           </Button>
-          <ExternalLink to="https://newrelic.com" externalIcon>
+          <ExternalLink to="https://newrelic.com" displayExternalIcon>
             External Link
           </ExternalLink>
         </section>

@@ -44,7 +44,7 @@ const SignUpLink = forwardRef(
         }}
       >
         {props.children}
-        {props.externalIcon && (
+        {props.displayExternalIcon && (
           <Icon
             name="fe-external-link"
             css={css`
@@ -67,7 +67,7 @@ SignUpLink.propTypes = {
     component: PropTypes.string,
   }),
   children: PropTypes.node,
-  externalIcon: PropTypes.bool,
+  displayExternalIcon: PropTypes.bool,
 };
 
 export default SignUpLink;
