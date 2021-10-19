@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.1.3...v3.2.0) (2021-10-19)
+
+
+### Bug Fixes
+
+* icon breaking nav padding ([abec3e1](https://github.com/newrelic/gatsby-theme-newrelic/commit/abec3e184e932e707c1667269487b4514803b855))
+
+
+### Features
+
+* **analytics:** add tracking for nav related interactions ([e3fdffc](https://github.com/newrelic/gatsby-theme-newrelic/commit/e3fdffc6ac1f7a0d78cabc45d344e89db28e3349))
+* add externalIcon boolean to add icon to links ([6e37723](https://github.com/newrelic/gatsby-theme-newrelic/commit/6e377234232e77f0cede271287ceb48a58df1452))
+* add icon to external links ([15483fb](https://github.com/newrelic/gatsby-theme-newrelic/commit/15483fbb275a7ec78f463de3ee1bb58615478e74))
+
+
+
+
+
 ## [3.1.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.1.2...v3.1.3) (2021-10-11)
 
 
