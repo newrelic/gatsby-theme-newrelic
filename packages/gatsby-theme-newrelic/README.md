@@ -25,8 +25,8 @@ websites](https://opensource.newrelic.com).
       - [`layout`](#layout)
       - [`prism`](#prism)
       - [`splitio`](#splitio)
-        - [Environment-specific configuration](#environment-specific-configuration)
       - [`oneTrustID`](#onetrustid)
+        - [Environment-specific configuration](#environment-specific-configuration)
   - [Components](#components)
     - [`Banner`](#banner)
     - [`Button`](#button)
@@ -103,7 +103,6 @@ websites](https://opensource.newrelic.com).
   - [Utils](#utils)
     - [`formatCode`](#formatcode)
   - [Testing](#testing)
-    - [Changes to Jest config](#changes-to-jest-config)
     - [Mocking `ReactDOM.createPortal` for snapshot testing](#mocking-reactdomcreateportal-for-snapshot-testing)
 
 <!-- /TOC -->
@@ -1573,6 +1572,7 @@ import { Link } from '@newrelic/gatsby-theme-newrelic'`
 | Prop | Type   | Required | Default | Description                                                                                                                                          |
 | ---- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `to` | string | yes      |         | The URL to link to. If this is a relative path, it will use the Gatsby `Link` component. If it is an external URL, it will use a regular anchor tag. |
+| `displayExternalIcon` | bool | no      |   false      | If the `to` is external to the current site, and you want the element to include an icon showing this leads to an external site, set this to `true` |
 
 All additional props are forwarded to either the
 [`Link`](https://www.gatsbyjs.com/docs/gatsby-link/) component or the anchor tag
