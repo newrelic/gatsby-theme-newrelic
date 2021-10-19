@@ -44,6 +44,12 @@ const Link = forwardRef(
       ...instrumentation,
     });
 
+    const handleInternalLinkClick = useInstrumentedHandler(onClick, {
+      actionName: 'internalLink_click',
+      href: to,
+      ...instrumentation,
+    });
+
     if (to.startsWith(siteUrl)) {
       to = to.replace(siteUrl, '');
 
@@ -97,6 +103,7 @@ const Link = forwardRef(
           locale,
         })}
         ref={ref}
+        onClick={handleInternalLinkClick}
         {...props}
       />
     );
