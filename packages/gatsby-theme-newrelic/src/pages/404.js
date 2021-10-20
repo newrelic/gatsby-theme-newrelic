@@ -13,17 +13,15 @@ import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useTessen from '../hooks/useTessen';
 
-const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
+const NotFoundPage = ({
+  location,
+  pageContext: { themeOptions },
+  swiftypeEngineKey,
+}) => {
   const { t: translate } = useThemeTranslation();
   const [searchTerm, setSearchTerm] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
   const tessen = useTessen();
-
-  const {
-    relatedResources: {
-      swiftype: { engineKey },
-    },
-  } = themeOptions;
 
   const pageLocale = getLocale({ location }, themeOptions);
 
@@ -67,7 +65,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
           },
         },
         {
-          engineKey: engineKey,
+          engineKey: swiftypeEngineKey,
           limit: 5,
           excludedUrls: [],
         }
@@ -79,7 +77,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
 
       setSearchResult(trimmedResults);
     }
-  }, [pageLocale, searchTerm, location.origin, engineKey]);
+  }, [pageLocale, searchTerm, location.origin, swiftypeEngineKey]);
 
   const displaySearchResults = (locale) => {
     if (searchResult) {

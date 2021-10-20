@@ -14,6 +14,7 @@ const pageTransforms = require('./gatsby/page-transforms');
 const { getTessenPath } = require('./gatsby/constants');
 const { getFileRelativePath } = require('./gatsby/utils/fs');
 const getLocale = require('./gatsby/utils/getLocale');
+const { SWIFTYPE_ENGINE_KEY } = require('./src/utils/constants');
 
 let writeableRelatedResourceData = {};
 
@@ -311,6 +312,7 @@ exports.onCreatePage = (helpers, themeOptions) => {
         ...page.context,
         layout: 'basic',
         themeOptions,
+        swiftypeEngineKey: SWIFTYPE_ENGINE_KEY,
       },
     });
   }

@@ -75,11 +75,6 @@ module.exports = {
           },
           debug: false,
         },
-        relatedResources: {
-          swiftype: {
-            engineKey: 'Ad9HfGjDw4GRkcmJjUut',
-          },
-        },
       },
     },
     {
