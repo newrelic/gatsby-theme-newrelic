@@ -8,6 +8,7 @@ import GlobalFooter from '../components/GlobalFooter';
 import Link from '../components/Link';
 import SearchInput from '../components/SearchInput';
 import search from '../utils/related-resources/search';
+import Tag from '../components/Tag';
 import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useTessen from '../hooks/useTessen';
@@ -73,14 +74,14 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
       );
 
       const trimmedResults = results.map((r) => {
-        return { url: r.url, title: r.title };
+        return { url: r.url, title: r.title, type: r.type };
       });
 
       setSearchResult(trimmedResults);
     }
   }, [pageLocale, searchTerm, location.origin, engineKey]);
 
-  const displaySearchResults = () => {
+  const displaySearchResults = (locale) => {
     if (searchResult) {
       tessen.track('searchResultCount', '404Redirect', {
         resultCount: searchResult.length,
@@ -95,8 +96,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
 
     return (
       <div id="search-results">
-        Or try one of the following links to find the information you're looking
-        for:
+        {translate('404.searchResultMessage')}
         <ul
           css={css`
             list-style-type: none;
@@ -109,21 +109,32 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
           {searchResult.map((result, index) => {
             return (
               <li key={`result-${index}`}>
-                <Link
-                  to={result.url}
+                <div>
+                  <Link
+                    to={result.url}
+                    css={css`
+                      text-decoration: none;
+                    `}
+                    onClick={() =>
+                      tessen.track('resultClick', '404Redirect', {
+                        url: result.url,
+                        title: result.title,
+                        searchTerm,
+                      })
+                    }
+                  >
+                    {result.title}
+                  </Link>
+                </div>
+                <Tag
                   css={css`
-                    text-decoration: none;
+                    font-size: 0.625rem;
+                    margin-right: 0.5em;
                   `}
-                  onClick={() =>
-                    tessen.track('resultClick', '404Redirect', {
-                      url: result.url,
-                      title: result.title,
-                      searchTerm,
-                    })
-                  }
+                  uppercase
                 >
-                  {result.title}
-                </Link>
+                  {result.type?.replace(`-${locale}`, '').replace('_', ' ')}
+                </Tag>
               </li>
             );
           })}
@@ -183,7 +194,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
                 line-height: 1;
               `}
             >
-              Error 404: Page not Found
+              {translate('404.headingText')}
             </h1>
             {translate('404.errorMessage')}
             <div
@@ -193,7 +204,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
                 margin-bottom: 2rem;
               `}
             >
-              You may wish to try again by doing a search:
+              {translate('404.searchInputLabel')}
               <SearchInput
                 placeholder={searchTerm}
                 onFocus={() =>
@@ -207,7 +218,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
                 `}
               />
             </div>
-            {displaySearchResults()}
+            {displaySearchResults(pageLocale)}
           </div>
         </div>
         <GlobalFooter
