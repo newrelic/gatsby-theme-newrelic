@@ -87,6 +87,9 @@ const RelatedResources = ({ className, resources, title }) => {
                     display: block;
                     margin-bottom: 0.25rem;
                   `}
+                  instrumentation={{
+                    navInteractionType: 'relatedResourcesLinkClick',
+                  }}
                 >
                   <span
                     css={css`

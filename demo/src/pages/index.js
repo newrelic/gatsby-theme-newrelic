@@ -20,6 +20,7 @@ import {
   Terminal,
   Video,
   useTranslation,
+  ExternalLink,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const codeSample = `
@@ -385,7 +386,30 @@ nr1 create --type nerdpack --name pageviews-app
           <h2>YouTube video</h2>
           <Video id="ZagZfNQYJEU" type={Video.TYPE.YOUTUBE} width="500px" />
         </section>
-
+        <section>
+          <h2>Internal Links</h2>
+          <Link to="/">Internal Link</Link>
+        </section>
+        <section>
+          <h2>External Links</h2>
+          <Surface
+            base={Surface.BASE.PRIMARY}
+            to="https://newrelic.com"
+            as={Link}
+            css={css`
+              padding: 5px;
+            `}
+            displayExternalIcon
+          >
+            Surface
+          </Surface>
+          <Button as={Link} displayExternalIcon to="https://newrelic.com">
+            Button
+          </Button>
+          <ExternalLink to="https://newrelic.com" displayExternalIcon>
+            External Link
+          </ExternalLink>
+        </section>
         <section>
           <h2>Tables</h2>
           <Table>
