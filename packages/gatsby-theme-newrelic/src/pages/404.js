@@ -11,17 +11,22 @@ import search from '../utils/related-resources/search';
 import Tag from '../components/Tag';
 import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import useTessen from '../hooks/useTessen';
+
+const track = (actionName, attributes = {}) => {
+  if (typeof window !== 'undefined' && window.newrelic && actionName) {
+    window.newrelic.addPageAction(actionName, {
+      ...attributes,
+    });
+  }
+};
 
 const NotFoundPage = ({
   location,
-  pageContext: { themeOptions },
-  swiftypeEngineKey,
+  pageContext: { themeOptions, swiftypeEngineKey },
 }) => {
   const { t: translate } = useThemeTranslation();
   const [searchTerm, setSearchTerm] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
-  const tessen = useTessen();
 
   const pageLocale = getLocale({ location }, themeOptions);
 
@@ -80,14 +85,6 @@ const NotFoundPage = ({
   }, [pageLocale, searchTerm, location.origin, swiftypeEngineKey]);
 
   const displaySearchResults = (locale) => {
-    if (searchResult) {
-      tessen.track('searchResultCount', '404Redirect', {
-        resultCount: searchResult.length,
-        searchTerm,
-        searchResult,
-      });
-    }
-
     if (!searchResult || searchResult.length === 0) {
       return null;
     }
@@ -113,13 +110,11 @@ const NotFoundPage = ({
                     css={css`
                       text-decoration: none;
                     `}
-                    onClick={() =>
-                      tessen.track('resultClick', '404Redirect', {
-                        url: result.url,
-                        title: result.title,
-                        searchTerm,
-                      })
-                    }
+                    instrumentation={{
+                      component: '404SuggestedLink',
+                      href: result.url,
+                      searchTerm,
+                    }}
                   >
                     {result.title}
                   </Link>
@@ -152,15 +147,14 @@ const NotFoundPage = ({
   }, [getSearchResults, searchTerm]);
 
   useEffect(() => {
-    tessen.track('requestedUrl', `404Redirect`, {
-      requestedUrl: location.href,
-    });
-  }, [tessen, location.href, location.pathname]);
-
-  useInstrumentedData({
-    actionName: '404_redirect',
-    path: location.pathname,
-  });
+    if (searchResult) {
+      track('404_redirect', {
+        path: location.pathname,
+        resultCount: searchResult.length,
+        searchTerm,
+      });
+    }
+  }, [location.pathname, searchResult, searchTerm]);
 
   return (
     <>
@@ -243,6 +237,7 @@ NotFoundPage.propTypes = {
   }).isRequired,
   pageContext: PropTypes.shape({
     themeOptions: PropTypes.object.isRequired,
+    swiftypeEngineKey: PropTypes.string.isRequired,
   }).isRequired,
 };
 
