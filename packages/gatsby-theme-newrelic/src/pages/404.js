@@ -157,6 +157,11 @@ const NotFoundPage = ({
     });
   }, [tessen, location.href, location.pathname]);
 
+  useInstrumentedData({
+    actionName: '404_redirect',
+    path: location.pathname,
+  });
+
   return (
     <>
       <GlobalHeader />
