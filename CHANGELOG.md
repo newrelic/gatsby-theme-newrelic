@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.2.0...v3.3.0) (2021-10-21)
+
+
+### Features
+
+* new 404 page with search functionality ([b40706d](https://github.com/newrelic/gatsby-theme-newrelic/commit/b40706dc716586860ce3b718e750691de1f7e554))
+
+
+
+
+
 # [3.2.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.1.3...v3.2.0) (2021-10-19)
 
 
