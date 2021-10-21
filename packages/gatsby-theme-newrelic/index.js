@@ -70,4 +70,6 @@ export { default as usePrevious } from './src/hooks/usePrevious';
 export { default as useScrollFreeze } from './src/hooks/useScrollFreeze';
 export { default as useWarning } from './src/hooks/useWarning';
 
+export { SWIFTYPE_ENGINE_KEY } from './src/utils/constants';
+
 export * from 'react-i18next';
