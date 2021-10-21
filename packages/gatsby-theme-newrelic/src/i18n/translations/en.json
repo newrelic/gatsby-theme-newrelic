@@ -1,7 +1,10 @@
 {
   "404": {
     "statusCode": "404",
-    "errorMessage": "The URL you entered may be broken, or the page has been removed. <2>Go back to the home page</2>"
+    "headingText": "Error 404: Page not Found",
+    "errorMessage": "The URL you entered may be broken, or the page has been removed.",
+    "searchInputLabel": "You can try again by doing a search:",
+    "searchResultMessage": "Here are some links to other content we found based on the page you requested:"
   },
   "button": {
     "close": "Close",
