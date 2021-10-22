@@ -52,6 +52,9 @@ const GlobalNavLink = ({ children, href, activeSite }) => {
           }
         }
       `}
+      instrumentation={{
+        navInteractionType: 'globalNavLinkClick',
+      }}
     >
       {children}
     </Component>
