@@ -18,7 +18,7 @@ const isNewRelicDomain = (to) =>
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 const isImageLink = (className) => className === 'gatsby-resp-image-link';
 
-const Link = forwardRef(({ to, instrumentation = {}, ...props }, ref) => {
+const Link = forwardRef(({ to, instrumentation = {}, displayExternalIcon, ...props }, ref) => {
   const locale = useLocale();
   const tessen = useTessen();
 
@@ -97,7 +97,7 @@ const Link = forwardRef(({ to, instrumentation = {}, ...props }, ref) => {
           ref={ref}
         >
           {props.children}
-          {props.displayExternalIcon && (
+          {displayExternalIcon && (
             <Icon
               name="fe-external-link"
               css={css`
