@@ -124,6 +124,7 @@ const NotFoundPage = ({
                       href: result.url,
                       searchTerm,
                     }}
+                    displayExternalIcon
                   >
                     {result.title}
                   </Link>

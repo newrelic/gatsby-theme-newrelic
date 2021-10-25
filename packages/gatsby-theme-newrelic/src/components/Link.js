@@ -18,117 +18,119 @@ const isNewRelicDomain = (to) =>
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 const isImageLink = (className) => className === 'gatsby-resp-image-link';
 
-const Link = forwardRef(({ to, instrumentation = {}, ...props }, ref) => {
-  const locale = useLocale();
-  const tessen = useTessen();
+const Link = forwardRef(
+  ({ to, instrumentation = {}, displayExternalIcon, ...props }, ref) => {
+    const locale = useLocale();
+    const tessen = useTessen();
 
-  const {
-    newRelicThemeConfig: { forceTrailingSlashes },
-    site: {
-      siteMetadata: { siteUrl },
-    },
-  } = useStaticQuery(graphql`
-    query {
-      newRelicThemeConfig {
-        forceTrailingSlashes
-      }
-      site {
-        siteMetadata {
-          siteUrl
+    const {
+      newRelicThemeConfig: { forceTrailingSlashes },
+      site: {
+        siteMetadata: { siteUrl },
+      },
+    } = useStaticQuery(graphql`
+      query {
+        newRelicThemeConfig {
+          forceTrailingSlashes
+        }
+        site {
+          siteMetadata {
+            siteUrl
+          }
         }
       }
+    `);
+
+    const handleExternalLinkClick = () => {
+      tessen.track('gatsbyTheme', 'ExternalLinkClick', {
+        actionName: 'externalLink_click',
+        href: to,
+        ...instrumentation,
+      });
+    };
+
+    const handleInternalLinkClick = () => {
+      tessen.track('gatsbyTheme', 'InternalLinkClick', {
+        actionName: 'internalLink_click',
+        href: to,
+        ...instrumentation,
+      });
+    };
+
+    if (to.startsWith(siteUrl)) {
+      to = to.replace(siteUrl, '');
+
+      // absolute links to the home page without trailing slash
+      to = to || '/';
     }
-  `);
 
-  const handleExternalLinkClick = () => {
-    tessen.track('gatsbyTheme', 'ExternalLinkClick', {
-      actionName: 'externalLink_click',
-      href: to,
-      ...instrumentation,
-    });
-  };
+    if (isHash(to)) {
+      return <a ref={ref} href={to} {...props} />;
+    }
 
-  const handleInternalLinkClick = () => {
-    tessen.track('gatsbyTheme', 'InternalLinkClick', {
-      actionName: 'internalLink_click',
-      href: to,
-      ...instrumentation,
-    });
-  };
+    if (isSignup(to)) {
+      return (
+        <SignUpLink
+          {...props}
+          href={to}
+          onClick={handleExternalLinkClick}
+          instrumentation={instrumentation}
+          ref={ref}
+        />
+      );
+    }
 
-  if (to.startsWith(siteUrl)) {
-    to = to.replace(siteUrl, '');
+    if (isExternal(to)) {
+      const rel = isNewRelicDomain(to) ? 'noopener' : 'noopener noreferrer';
+      const link = isNewRelic(to)
+        ? localizeExternalLink({ link: to, locale })
+        : to;
 
-    // absolute links to the home page without trailing slash
-    to = to || '/';
-  }
+      return (
+        <>
+          {/* eslint-disable-next-line react/jsx-no-target-blank */}
+          <a
+            {...props}
+            href={link}
+            onClick={handleExternalLinkClick}
+            target="_blank"
+            rel={rel}
+            ref={ref}
+          >
+            {props.children}
+            {displayExternalIcon && (
+              <Icon
+                name="fe-external-link"
+                css={css`
+                  margin-left: 0.25rem;
+                  position: relative;
+                  top: -1px;
+                `}
+                size="1em"
+              />
+            )}
+          </a>
+        </>
+      );
+    }
 
-  if (isHash(to)) {
-    return <a ref={ref} href={to} {...props} />;
-  }
+    if (isImageLink(props.className)) {
+      return <a {...props} href={to} />;
+    }
 
-  if (isSignup(to)) {
     return (
-      <SignUpLink
-        {...props}
-        href={to}
-        onClick={handleExternalLinkClick}
-        instrumentation={instrumentation}
+      <GatsbyLink
+        to={localizePath({
+          path: forceTrailingSlashes ? addTrailingSlash(to) : to,
+          locale,
+        })}
         ref={ref}
+        onClick={handleInternalLinkClick}
+        {...props}
       />
     );
   }
-
-  if (isExternal(to)) {
-    const rel = isNewRelicDomain(to) ? 'noopener' : 'noopener noreferrer';
-    const link = isNewRelic(to)
-      ? localizeExternalLink({ link: to, locale })
-      : to;
-
-    return (
-      <>
-        {/* eslint-disable-next-line react/jsx-no-target-blank */}
-        <a
-          {...props}
-          href={link}
-          onClick={handleExternalLinkClick}
-          target="_blank"
-          rel={rel}
-          ref={ref}
-        >
-          {props.children}
-          {props.displayExternalIcon && (
-            <Icon
-              name="fe-external-link"
-              css={css`
-                margin-left: 0.25rem;
-                position: relative;
-                top: -1px;
-              `}
-              size="1em"
-            />
-          )}
-        </a>
-      </>
-    );
-  }
-
-  if (isImageLink(props.className)) {
-    return <a {...props} href={to} />;
-  }
-
-  return (
-    <GatsbyLink
-      to={localizePath({
-        path: forceTrailingSlashes ? addTrailingSlash(to) : to,
-        locale,
-      })}
-      ref={ref}
-      onClick={handleInternalLinkClick}
-      {...props}
-    />
-  );
-});
+);
 
 Link.propTypes = {
   to: PropTypes.string.isRequired,
