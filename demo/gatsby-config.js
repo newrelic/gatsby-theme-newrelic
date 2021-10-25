@@ -54,23 +54,19 @@ module.exports = {
           pageView: {
             name: 'pageView',
             category: 'ThemePageView',
-            getProperties: ({ location, env }) => ({
-              path: location.pathname,
-              env: env === 'production' ? 'prod' : env,
-            }),
           },
         },
-    splitio: {
-      // Mocked features only used when in localhost mode
-      // https://help.split.io/hc/en-us/articles/360020448791-JavaScript-SDK#localhost-mode
-      features: {},
-      core: {
-        authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',
+        splitio: {
+          // Mocked features only used when in localhost mode
+          // https://help.split.io/hc/en-us/articles/360020448791-JavaScript-SDK#localhost-mode
+          features: {},
+          core: {
+            authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',
+          },
+          debug: false,
+        },
       },
-      debug: false,
     },
-  },
-  },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
