@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react';
 import warning from 'warning';
+import useTessen from '../hooks/useTessen';
 
-const useInstrumentedHandler = (handler, attributes) => {
+const useInstrumentedHandler = (handler, agent = 'newrelic', attributes) => {
   const savedHandler = useRef();
+  const tessen = useTessen();
 
   useEffect(() => {
     savedHandler.current = handler;
@@ -10,10 +12,10 @@ const useInstrumentedHandler = (handler, attributes) => {
 
   return useCallback(
     (...args) => {
-      const { actionName, ...attrs } =
+      const { actionName, tessenEventName, tessenCategoryName, ...attrs } =
         typeof attributes === 'function' ? attributes(...args) : attributes;
 
-      if (window.newrelic) {
+      if (agent === 'newrelic' && window.newrelic) {
         warning(
           actionName,
           'You are attempting to instrument a handler, but the `actionName` property is not set. This will result in a no-op.'
@@ -22,11 +24,25 @@ const useInstrumentedHandler = (handler, attributes) => {
         actionName && window.newrelic.addPageAction(actionName, attrs);
       }
 
+      if (agent === 'tessen') {
+        warning(
+          tessenEventName,
+          'You are attempting to instrument a handler, but the `tessenEventName` property is not set. This will result in a no-op.'
+        );
+        warning(
+          tessenCategoryName,
+          'You are attempting to instrument a handler, but the `tessenCategoryName` property is not set. This will result in a no-op.'
+        );
+        tessenEventName &&
+          tessenCategoryName &&
+          tessen.track(tessenEventName, tessenCategoryName, attrs);
+      }
+
       if (savedHandler.current) {
         return savedHandler.current(...args);
       }
     },
-    [attributes]
+    [attributes, agent, tessen]
   );
 };
 
