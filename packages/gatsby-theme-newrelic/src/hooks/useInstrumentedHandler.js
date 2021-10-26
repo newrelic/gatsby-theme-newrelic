@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import warning from 'warning';
-import useTessen from '../hooks/useTessen';
+import useTessen from './hooks/useTessen';
 
 const useInstrumentedHandler = (handler, agent = 'newrelic', attributes) => {
   const savedHandler = useRef();
