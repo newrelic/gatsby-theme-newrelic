@@ -3,7 +3,7 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
-import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
+import useTessen from '../hooks/useTessen';
 import { localizeExternalLink, localizePath } from '../utils/localization';
 import SignUpLink from './SignUpLink';
 import Icon from './Icon';
@@ -19,8 +19,9 @@ const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 const isImageLink = (className) => className === 'gatsby-resp-image-link';
 
 const Link = forwardRef(
-  ({ to, onClick, instrumentation = {}, ...props }, ref) => {
+  ({ to, instrumentation = {}, displayExternalIcon, ...props }, ref) => {
     const locale = useLocale();
+    const tessen = useTessen();
 
     const {
       newRelicThemeConfig: { forceTrailingSlashes },
@@ -40,17 +41,21 @@ const Link = forwardRef(
       }
     `);
 
-    const handleExternalLinkClick = useInstrumentedHandler(onClick, {
-      actionName: 'externalLink_click',
-      href: to,
-      ...instrumentation,
-    });
+    const handleExternalLinkClick = () => {
+      tessen.track('gatsbyTheme', 'ExternalLinkClick', {
+        actionName: 'externalLink_click',
+        href: to,
+        ...instrumentation,
+      });
+    };
 
-    const handleInternalLinkClick = useInstrumentedHandler(onClick, {
-      actionName: 'internalLink_click',
-      href: to,
-      ...instrumentation,
-    });
+    const handleInternalLinkClick = () => {
+      tessen.track('gatsbyTheme', 'InternalLinkClick', {
+        actionName: 'internalLink_click',
+        href: to,
+        ...instrumentation,
+      });
+    };
 
     if (to.startsWith(siteUrl)) {
       to = to.replace(siteUrl, '');
@@ -93,7 +98,7 @@ const Link = forwardRef(
             ref={ref}
           >
             {props.children}
-            {props.displayExternalIcon && (
+            {displayExternalIcon && (
               <Icon
                 name="fe-external-link"
                 css={css`
@@ -128,7 +133,6 @@ const Link = forwardRef(
 );
 
 Link.propTypes = {
-  onClick: PropTypes.func,
   to: PropTypes.string.isRequired,
   instrumentation: PropTypes.object,
   className: PropTypes.string,
