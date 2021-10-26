@@ -20,6 +20,7 @@ export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';
 export { default as Layout } from './src/components/Layout';
 export { default as Link } from './src/components/Link';
+export { default as NavLink } from './src/components/NavLink';
 export { default as Logo } from './src/components/Logo';
 export { default as MarkdownContainer } from './src/components/MarkdownContainer';
 export { default as MDX } from './src/components/MDX';
@@ -67,8 +68,10 @@ export { default as useTimeout } from './src/hooks/useTimeout';
 export { default as useUserId } from './src/hooks/useUserId';
 export { default as useHasMounted } from './src/hooks/useHasMounted';
 export { default as usePrevious } from './src/hooks/usePrevious';
+export { default as useNavigation } from './src/hooks/useNavigation';
 export { default as useScrollFreeze } from './src/hooks/useScrollFreeze';
 export { default as useWarning } from './src/hooks/useWarning';
+export { stripTrailingSlash } from './src/utils/location';
 
 export { SWIFTYPE_ENGINE_KEY } from './src/utils/constants';
 
