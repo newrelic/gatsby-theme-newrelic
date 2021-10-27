@@ -46,6 +46,7 @@ const tessenAction =
       name,
       {
         ...properties,
+        env: config.env || '',
         category,
         nr_product: config.product,
         nr_subproduct: config.subproduct,
