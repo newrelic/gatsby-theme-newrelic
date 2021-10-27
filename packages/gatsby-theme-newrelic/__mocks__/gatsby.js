@@ -24,5 +24,19 @@ module.exports = {
         href: to,
       })
   ),
-  useStaticQuery: jest.fn(),
+  useStaticQuery: jest.fn().mockImplementation(() => ({
+    newRelicThemeConfig: {
+      tessen: {
+        tessenVersion: '1.14.0',
+        product: 'THEME',
+        subproduct: 'TTHEME',
+        segmentWriteKey: '123',
+        trackPageViews: true,
+        pageView: {
+          name: 'pageView',
+          category: 'ThemePageView',
+        },
+      },
+    },
+  })),
 };
