@@ -47,6 +47,7 @@ const trackViaTessen = ({ location, prevLocation }, themeOptions) => {
 
 const trackPageView = ({ config, env, location, prevLocation }) => {
   const { pageView } = config;
+  config.env = env;
   const { name, category, ...properties } = pageView;
 
   const tessen = createTessen(config);
@@ -56,7 +57,7 @@ const trackPageView = ({ config, env, location, prevLocation }) => {
   }
 
   tessen.page(name, category, {
-    env: env === 'production' ? 'prod' : env,
+    env: env || 'development',
     path: location.pathname,
     referrer: prevLocation?.href,
     ...properties,
