@@ -59,6 +59,7 @@ test('instruments tessen and calls original handler with all arguments', () => {
       nr_subproduct: 'TTHEME',
       location: 'Public',
       customer_user_id: '',
+      env: '',
     },
     {
       Segment: {
