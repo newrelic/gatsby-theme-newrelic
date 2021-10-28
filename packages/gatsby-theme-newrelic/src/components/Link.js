@@ -52,12 +52,16 @@ const Link = forwardRef(
       });
     };
 
-    const handleInternalLinkClick = useInstrumentedHandler(onClick, 'tessen', {
-      tessenEventName: 'gatsbyTheme',
-      tessenCategoryName: 'InternalLinkClick',
-      href: to,
-      ...instrumentation,
-    });
+    const handleInternalLinkClick = useInstrumentedHandler(
+      onClick,
+      {
+        tessenEventName: 'gatsbyTheme',
+        tessenCategoryName: 'InternalLinkClick',
+        href: to,
+        ...instrumentation,
+      },
+      'tessen'
+    );
 
     if (to.startsWith(siteUrl)) {
       to = to.replace(siteUrl, '');
