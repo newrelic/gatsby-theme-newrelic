@@ -17,6 +17,10 @@ const useInstrumentedHandler = (handler, attributes, agent = 'newrelic') => {
 
       if (agent === 'newrelic' && window.newrelic) {
         warning(
+          !tessenEventName && !tessenCategoryName,
+          'You added Tessen attributes but did not specify `tessen` as the agent. This will result in a no-op Tessen call.'
+        );
+        warning(
           actionName,
           'You are attempting to instrument a handler, but the `actionName` property is not set. This will result in a no-op.'
         );
