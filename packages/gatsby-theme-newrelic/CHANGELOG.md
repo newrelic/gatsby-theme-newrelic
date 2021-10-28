@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.2...v3.3.3) (2021-10-28)
+
+
+### Bug Fixes
+
+* add onClick back and update hook to also sent tessen events ([f296cee](https://github.com/newrelic/gatsby-theme-newrelic/commit/f296ceecc288e23a480c954ef3f0db552458bcb4))
+* move agent arg to last ([33c5ba8](https://github.com/newrelic/gatsby-theme-newrelic/commit/33c5ba8d38aa8303f2724ddc3310dff01ccc10be))
+* move agent arg to last to preserve backward compatibility, provide mock data for tests ([034d9b2](https://github.com/newrelic/gatsby-theme-newrelic/commit/034d9b2bcde9788b4d6818131d67888ef908a57b))
+* set correct sitemap url in robots.txt ([f987ec6](https://github.com/newrelic/gatsby-theme-newrelic/commit/f987ec61a5528ed91e6466137149e182aafb5a51))
+* update env production value and pass along to track events as well ([b206187](https://github.com/newrelic/gatsby-theme-newrelic/commit/b206187894ae05bd5dc6242741052fd2fbb5fa12))
+
+
+
+
+
 ## [3.3.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.1...v3.3.2) (2021-10-26)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
