@@ -29,6 +29,7 @@ module.exports = ({ layout, newrelic, robots = {}, sitemap = true }) => {
       {
         resolve: 'gatsby-plugin-robots-txt',
         options: {
+          sitemap: 'sitemap-index.xml',
           policy: [{ userAgent: '*', allow: '/' }],
           ...robots,
         },
