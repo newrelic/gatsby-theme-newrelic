@@ -8,6 +8,7 @@ import { localizeExternalLink, localizePath } from '../utils/localization';
 import SignUpLink from './SignUpLink';
 import Icon from './Icon';
 import { addTrailingSlash } from '../utils/location';
+import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { css } from '@emotion/react';
 
 const isHash = (to) => to.startsWith('#');
@@ -19,7 +20,10 @@ const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 const isImageLink = (className) => className === 'gatsby-resp-image-link';
 
 const Link = forwardRef(
-  ({ to, instrumentation = {}, displayExternalIcon, ...props }, ref) => {
+  (
+    { to, onClick, instrumentation = {}, displayExternalIcon, ...props },
+    ref
+  ) => {
     const locale = useLocale();
     const tessen = useTessen();
 
@@ -43,19 +47,21 @@ const Link = forwardRef(
 
     const handleExternalLinkClick = () => {
       tessen.track('gatsbyTheme', 'ExternalLinkClick', {
-        actionName: 'externalLink_click',
         href: to,
         ...instrumentation,
       });
     };
 
-    const handleInternalLinkClick = () => {
-      tessen.track('gatsbyTheme', 'InternalLinkClick', {
-        actionName: 'internalLink_click',
+    const handleInternalLinkClick = useInstrumentedHandler(
+      onClick,
+      {
+        tessenEventName: 'gatsbyTheme',
+        tessenCategoryName: 'InternalLinkClick',
         href: to,
         ...instrumentation,
-      });
-    };
+      },
+      'tessen'
+    );
 
     if (to.startsWith(siteUrl)) {
       to = to.replace(siteUrl, '');
@@ -134,6 +140,7 @@ const Link = forwardRef(
 
 Link.propTypes = {
   to: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   instrumentation: PropTypes.object,
   className: PropTypes.string,
   children: PropTypes.node,
