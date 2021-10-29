@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 import useTessen from '../hooks/useTessen';
-import { localizeExternalLink, localizePath } from '../utils/localization';
+import { localizePath } from '../utils/localization';
 import SignUpLink from './SignUpLink';
 import Icon from './Icon';
 import { addTrailingSlash } from '../utils/location';
@@ -13,7 +13,6 @@ import { css } from '@emotion/react';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
-const isNewRelic = (to) => to.startsWith('https://newrelic.com');
 const isNewRelicDomain = (to) =>
   to.endsWith('newrelic.com') || to.includes('newrelic.com/');
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
@@ -88,16 +87,13 @@ const Link = forwardRef(
 
     if (isExternal(to)) {
       const rel = isNewRelicDomain(to) ? 'noopener' : 'noopener noreferrer';
-      const link = isNewRelic(to)
-        ? localizeExternalLink({ link: to, locale })
-        : to;
 
       return (
         <>
           {/* eslint-disable-next-line react/jsx-no-target-blank */}
           <a
             {...props}
-            href={link}
+            href={to}
             onClick={handleExternalLinkClick}
             target="_blank"
             rel={rel}
