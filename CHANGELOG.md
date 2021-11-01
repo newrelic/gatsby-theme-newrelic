@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.3...v3.3.4) (2021-11-01)
+
+
+### Bug Fixes
+
+* Remove external link localization ([#535](https://github.com/newrelic/gatsby-theme-newrelic/issues/535)) ([0b6817d](https://github.com/newrelic/gatsby-theme-newrelic/commit/0b6817d3bcb30a17ffce440b4782aa02569cd586))
+
+
+
+
+
 ## [3.3.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.2...v3.3.3) (2021-10-28)
 
 
