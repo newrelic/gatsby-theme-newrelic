@@ -5,7 +5,7 @@ const Shortcuts = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   // Open the shorcuts legend
-  useKeyPress('SHIFT+/', () => {
+  useKeyPress('?', () => {
     setIsOpen(true);
   });
 
