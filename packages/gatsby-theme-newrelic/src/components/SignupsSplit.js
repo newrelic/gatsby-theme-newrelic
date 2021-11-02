@@ -20,10 +20,10 @@ const SignupsSplit = (treatmentWithConfig, props) => {
       <Button
         data-tessen="stitchedPathLinkClick"
         role="button"
-        to={guidedInstallLink}
+        to={props.guidedInstallLink}
         variant="primary"
       >
-        Install {agentName} agent
+        Install {props.agentName} agent
       </Button>
     </div>
   );
@@ -31,7 +31,7 @@ const SignupsSplit = (treatmentWithConfig, props) => {
   const links = (
     <div {...props}>
       <Link to="https://newrelic.com/signup">Get a New Relic account</Link> or{' '}
-      <Link to={guidedInstallLink}>start the guided install</Link>
+      <Link to={props.guidedInstallLink}>start the guided install</Link>
     </div>
   );
 
@@ -40,10 +40,6 @@ const SignupsSplit = (treatmentWithConfig, props) => {
   } else if (treatment === 'links' && isReady) {
     return { links };
   }
-};
-
-SignupsSplit.propTypes = {
-    treatmentName: PropTypes.string.isRequired
 };
 
 export default SignupsSplit;
