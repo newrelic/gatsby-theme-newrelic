@@ -47,7 +47,13 @@ const RelatedResources = ({ className, resources, title }) => {
     return null;
   }
 
-  const currentSiteLabel = findLabel(siteUrl, labels);
+  const currentSiteLabel = (url) => {
+    // this can be simplified once we have a subdomain for IO
+    if (url.startsWith('/instant-observability')) {
+      return 'quickstarts';
+    }
+    return findLabel(siteUrl, labels);
+  };
 
   return (
     <PageTools.Section className={className}>
@@ -66,7 +72,7 @@ const RelatedResources = ({ className, resources, title }) => {
             }
 
             const label = isRelative(url)
-              ? currentSiteLabel
+              ? currentSiteLabel(url)
               : findLabel(url, labels);
 
             return (
