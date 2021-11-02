@@ -216,6 +216,24 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
         },
       },
     },
+    Quickstarts: {
+      relatedResources: {
+        args: {
+          limit: {
+            type: 'Int',
+            defaultValue: 5,
+          },
+        },
+        type: ['RelatedResource!'],
+        resolve: (source, args, context) => {
+          const { limit } = args;
+
+          return context.nodeModel
+            .getNodesByIds({ ids: source.children })
+            .slice(0, Math.max(limit, 0));
+        },
+      },
+    },
   });
 };
 
@@ -401,8 +419,8 @@ const createRelatedResources = async (
   const { createNode, createParentChildLink } = actions;
 
   if (
-    node.internal.type !== 'Mdx' ||
-    node.fileAbsolutePath.includes(ANNOUNCEMENTS_DIRECTORY)
+    (node.internal.type !== 'Mdx' && node.internal.type !== 'Quickstarts') ||
+    node.fileAbsolutePath?.includes(ANNOUNCEMENTS_DIRECTORY)
   ) {
     return;
   }
