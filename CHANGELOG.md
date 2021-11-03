@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.4...v3.3.5) (2021-11-03)
+
+
+### Bug Fixes
+
+* Add quickstart label ([628e7ae](https://github.com/newrelic/gatsby-theme-newrelic/commit/628e7aeaf35f9d58c1dc066661fef6fe7e6fedc1))
+
+
+
+
+
 ## [3.3.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.3...v3.3.4) (2021-11-01)
 
 
