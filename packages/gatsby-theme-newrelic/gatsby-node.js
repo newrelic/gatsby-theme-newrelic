@@ -174,6 +174,22 @@ exports.sourceNodes = (
 
 exports.createResolvers = ({ createResolvers }, themeOptions) => {
   const { layout = {} } = themeOptions;
+  const relatedResources = {
+    args: {
+      limit: {
+        type: 'Int',
+        defaultValue: 5,
+      },
+    },
+    type: ['RelatedResource!'],
+    resolve: (source, args, context) => {
+      const { limit } = args;
+
+      return context.nodeModel
+        .getNodesByIds({ ids: source.children })
+        .slice(0, Math.max(limit, 0));
+    },
+  };
 
   createResolvers({
     Site: {
@@ -199,40 +215,10 @@ exports.createResolvers = ({ createResolvers }, themeOptions) => {
       },
     },
     Mdx: {
-      relatedResources: {
-        args: {
-          limit: {
-            type: 'Int',
-            defaultValue: 5,
-          },
-        },
-        type: ['RelatedResource!'],
-        resolve: (source, args, context) => {
-          const { limit } = args;
-
-          return context.nodeModel
-            .getNodesByIds({ ids: source.children })
-            .slice(0, Math.max(limit, 0));
-        },
-      },
+      relatedResources,
     },
     Quickstarts: {
-      relatedResources: {
-        args: {
-          limit: {
-            type: 'Int',
-            defaultValue: 5,
-          },
-        },
-        type: ['RelatedResource!'],
-        resolve: (source, args, context) => {
-          const { limit } = args;
-
-          return context.nodeModel
-            .getNodesByIds({ ids: source.children })
-            .slice(0, Math.max(limit, 0));
-        },
-      },
+      relatedResources,
     },
   });
 };
@@ -419,7 +405,7 @@ const createRelatedResources = async (
   const { createNode, createParentChildLink } = actions;
 
   if (
-    (node.internal.type !== 'Mdx' && node.internal.type !== 'Quickstarts') ||
+    !['Mdx', 'Quickstarts'].includes(node.internal.type) ||
     node.fileAbsolutePath?.includes(ANNOUNCEMENTS_DIRECTORY)
   ) {
     return;
