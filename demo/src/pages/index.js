@@ -12,6 +12,7 @@ import {
   Link,
   PageTools,
   SearchInput,
+  Shortcuts,
   SimpleFeedback,
   Surface,
   Table,
@@ -116,6 +117,7 @@ const IndexPage = () => {
       >
         <h1>{t('home.welcome')}</h1>
         <p>{t('home.intro')}</p>
+        <Shortcuts />
         <section>
           <h2>Search inputs</h2>
           <SearchInput
