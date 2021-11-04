@@ -125,7 +125,6 @@ const useSearchQuery = () => {
           searchTerm &&
           searchTerm.length > 2
         ) {
-          console.log('search term:', searchTerm);
           window.newrelic.addPageAction('swiftypeSearch_input', {
             searchTerm,
           });
