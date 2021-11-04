@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.5...v3.3.6) (2021-11-04)
+
+
+### Bug Fixes
+
+* update handleExternalLinkClick to pass onClick parameter ([#544](https://github.com/newrelic/gatsby-theme-newrelic/issues/544)) ([46e1211](https://github.com/newrelic/gatsby-theme-newrelic/commit/46e121116da79e26bcca5a2a6100a2353028acdd))
+
+
+
+
+
 ## [3.3.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.4...v3.3.5) (2021-11-03)
 
 
