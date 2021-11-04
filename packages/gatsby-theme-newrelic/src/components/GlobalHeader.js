@@ -119,14 +119,20 @@ const useSearchQuery = () => {
     () => {
       if (hasQParam) {
         setQueryParam('q', searchTerm);
-        if (typeof window !== 'undefined' && window.newrelic && searchTerm) {
+        if (
+          typeof window !== 'undefined' &&
+          window.newrelic &&
+          searchTerm &&
+          searchTerm.length > 2
+        ) {
+          console.log('search term:', searchTerm);
           window.newrelic.addPageAction('swiftypeSearch_input', {
             searchTerm,
           });
         }
       }
     },
-    200,
+    400,
     [searchTerm, setQueryParam, hasQParam]
   );
 
