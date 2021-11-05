@@ -60,7 +60,7 @@ module.exports = {
           // Mocked features only used when in localhost mode
           // https://help.split.io/hc/en-us/articles/360020448791-JavaScript-SDK#localhost-mode
           features: {
-            gatsby_theme_signup_button: {
+            deven_signupbutton_text: {
               treatment: 'start_now',
               config: '{ "text": "Start now" }',
             },
