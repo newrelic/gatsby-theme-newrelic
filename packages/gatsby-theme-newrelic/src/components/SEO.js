@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 import path from 'path';
-import { SITE_LINKS_SCRIPTS } from '../constants';
+import { SITE_LINKS_SCRIPTS } from '../utils/constants';
 
 const siteLinkScript = (location, title) => {
   const { pathname } = location;
