@@ -4,6 +4,17 @@ import Helmet from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 import path from 'path';
+import { SITE_LINKS_SCRIPTS } from '../constants';
+
+const siteLinkScript = (location, title) => {
+  const { pathname } = location;
+  const homepage = '/';
+  if (pathname === homepage && SITE_LINKS_SCRIPTS[title]) {
+    return (
+      <script type="application/ld+json">{SITE_LINKS_SCRIPTS[title]}</script>
+    );
+  }
+};
 
 const SEO = ({ title, location, type, children }) => {
   const {
@@ -78,6 +89,7 @@ const SEO = ({ title, location, type, children }) => {
           content={getSwiftypeSiteType()}
         />
       )}
+      {siteLinkScript(location, title)}
       {children}
     </Helmet>
   );
