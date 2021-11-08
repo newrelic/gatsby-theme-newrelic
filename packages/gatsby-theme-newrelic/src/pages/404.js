@@ -8,8 +8,11 @@ import GlobalFooter from '../components/GlobalFooter';
 import Link from '../components/Link';
 import SearchInput from '../components/SearchInput';
 import Tag from '../components/Tag';
+import CreateIssueButton from '../components/CreateIssueButton';
+import Button from '../components/Button';
 import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import Trans from '../components/Trans';
 
 const track = (actionName, attributes = {}) => {
   if (typeof window !== 'undefined' && window.newrelic && actionName) {
@@ -203,7 +206,7 @@ const NotFoundPage = ({
             >
               {translate('404.headingText')}
             </h1>
-            {translate('404.errorMessage')}
+
             <div
               id="search-section"
               css={css`
@@ -226,6 +229,31 @@ const NotFoundPage = ({
               />
             </div>
             {displaySearchResults(pageLocale)}
+
+            <div
+              css={css`
+                > * {
+                  margin: 3em 0;
+                }
+              `}
+            >
+              <Trans i18nKey="404.docsHomeMessage" parent="p">
+                Go back to <Link to="/">docs home</Link>.
+              </Trans>
+              <p>
+                {translate('404.fileIssueMessage')}{' '}
+                <CreateIssueButton
+                  pageTitle="404"
+                  variant={Button.VARIANT.OUTLINE}
+                  size={Button.SIZE.SMALL}
+                  labels={['bug', '404']}
+                  instrumentation={{ component: '404Page' }}
+                  css={css`
+                    margin-left: 1em;
+                  `}
+                />
+              </p>
+            </div>
           </div>
         </div>
         <GlobalFooter
