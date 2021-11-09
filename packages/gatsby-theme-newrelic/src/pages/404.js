@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { navigate } from 'gatsby-link';
+import { graphql, useStaticQuery } from 'gatsby';
 
 import GlobalHeader from '../components/GlobalHeader';
 import GlobalFooter from '../components/GlobalFooter';
@@ -26,11 +27,29 @@ const NotFoundPage = ({
   location,
   pageContext: { themeOptions, swiftypeEngineKey },
 }) => {
+  const {
+    site: {
+      siteMetadata: { siteUrl },
+    },
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
+    }
+  `);
   const { t: translate } = useThemeTranslation();
   const [searchTerm, setSearchTerm] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
 
   const pageLocale = getLocale({ location }, themeOptions);
+
+  const hostname = new URL(siteUrl).hostname;
+  const nrSubDomain = /.*\.newrelic\.com/.test(hostname)
+    ? hostname.split('.')[0]
+    : null;
 
   const searchTermFilter = useCallback(
     (term) => {
@@ -237,8 +256,12 @@ const NotFoundPage = ({
                 }
               `}
             >
+              {/* <p>
+                {translate('404.docsHomeMessage')}{' '}
+                <Link to="/">{{nrSubDomain}} home</Link>.
+              </p> */}
               <Trans i18nKey="404.docsHomeMessage" parent="p">
-                Go back to <Link to="/">docs home</Link>.
+                Go back to <Link to="/">{{ nrSubDomain }} home</Link>.
               </Trans>
               <p>
                 {translate('404.fileIssueMessage')}{' '}

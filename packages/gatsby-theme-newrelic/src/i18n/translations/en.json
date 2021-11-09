@@ -3,7 +3,7 @@
     "headingText": "Hmm... We can't find this",
     "searchInputLabel": "Try refining your search.",
     "searchResultMessage": "Were you looking for any of these?",
-    "docsHomeMessage": "Go back to <1>docs home</1>.",
+    "docsHomeMessage": "Go back to <1>{{nrSubDomain}} home</1>.",
     "fileIssueMessage": "Still can't find what you're looking for?"
   },
   "button": {
