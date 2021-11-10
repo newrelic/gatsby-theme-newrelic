@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.6...v3.4.0) (2021-11-10)
+
+
+### Bug Fixes
+
+* Make structured data dynamic ([33b76d0](https://github.com/newrelic/gatsby-theme-newrelic/commit/33b76d0f534484214927f0a907102122a1f0871b))
+* use site subdomain as dynamic value in copy ([de1439b](https://github.com/newrelic/gatsby-theme-newrelic/commit/de1439beaacbd3bd0e0601490509193d8d2d401e))
+
+
+### Features
+
+* add sitelink script for docs home page ([b32fb7d](https://github.com/newrelic/gatsby-theme-newrelic/commit/b32fb7da38897ddc5b8ef15b688ef8ca26c7d466))
+
+
+
+
+
 ## [3.3.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.5...v3.3.6) (2021-11-04)
 
 
