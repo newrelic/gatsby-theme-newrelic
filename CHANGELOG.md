@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.4.0...v3.4.1) (2021-11-10)
+
+
+### Bug Fixes
+
+* update the syntax of the sitelink script ([3cb8c1b](https://github.com/newrelic/gatsby-theme-newrelic/commit/3cb8c1b7a9cd234781a5f3d8317eb43d02dec6ea))
+
+
+
+
+
 # [3.4.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.3.6...v3.4.0) (2021-11-10)
 
 
