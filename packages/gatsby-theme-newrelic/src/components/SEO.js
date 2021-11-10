@@ -4,17 +4,6 @@ import Helmet from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 import path from 'path';
-import { SITE_LINKS_SCRIPTS } from '../utils/constants';
-
-const siteLinkScript = (location, title) => {
-  const { pathname } = location;
-  const homepage = '/';
-  if (pathname === homepage && SITE_LINKS_SCRIPTS[title]) {
-    return (
-      <script type="application/ld+json">{SITE_LINKS_SCRIPTS[title]}</script>
-    );
-  }
-};
 
 const SEO = ({ title, location, type, children }) => {
   const {
@@ -61,6 +50,30 @@ const SEO = ({ title, location, type, children }) => {
     return nrSubDomain ? nrSubDomain.concat(localeString) : null;
   };
 
+  const siteLinkScript = () => {
+    const { pathname } = location;
+    const homepage = '/';
+    if (pathname === homepage && siteUrl) {
+      return (
+        <script type="application/ld+json">
+          {`{
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "${siteUrl}",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "${siteUrl}/?q={search_term_string}",
+              },
+              "query-input": "required name=search_term_string",
+            },
+          }`}
+        </script>
+      );
+    }
+  };
+
   return (
     <Helmet titleTemplate={template}>
       <html lang={locale.hrefLang} />
@@ -89,7 +102,7 @@ const SEO = ({ title, location, type, children }) => {
           content={getSwiftypeSiteType()}
         />
       )}
-      {siteLinkScript(location, title)}
+      {siteLinkScript()}
       {children}
     </Helmet>
   );
