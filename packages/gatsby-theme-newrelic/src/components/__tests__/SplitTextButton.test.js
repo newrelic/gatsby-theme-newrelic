@@ -5,33 +5,33 @@ import { renderWithProviders } from '../../test-utils/renderHelpers';
 import { screen } from '@testing-library/react';
 
 jest.mock('gatsby', () => ({
- __esModule: true,
- graphql: () => {},
- Link: ({ to, ...props }) => <a href={to} {...props} />,
- useStaticQuery: () => ({
-   allLocale: {
-     nodes: [
-       {
-         name: 'English',
-         locale: 'en',
-         localizedPath: '/en',
-         isDefault: true,
-       },
-     ],
-   },
-   site: {
-     siteMetadata: {
-       siteUrl: 'https://github.com/foo/bar',
-       repository: 'https://foobar.net',
-     },
-   },
-   newRelicThemeConfig: {
-     tessen: {
-       product: 'foo',
-       subproduct: 'foobar',
-     },
-   },
- }),
+  __esModule: true,
+  graphql: () => {},
+  Link: ({ to, ...props }) => <a href={to} {...props} />,
+  useStaticQuery: () => ({
+    allLocale: {
+      nodes: [
+        {
+          name: 'English',
+          locale: 'en',
+          localizedPath: '/en',
+          isDefault: true,
+        },
+      ],
+    },
+    site: {
+      siteMetadata: {
+        siteUrl: 'https://github.com/foo/bar',
+        repository: 'https://foobar.net',
+      },
+    },
+    newRelicThemeConfig: {
+      tessen: {
+        product: 'foo',
+        subproduct: 'foobar',
+      },
+    },
+  }),
 }));
 
 test('renders default button text with no split', async () => {
@@ -84,8 +84,7 @@ test('renders if no features are returned from Split.io', async () => {
       offlineRefreshRate: 15,
     },
     debug: false,
-
-  }
+  };
   renderWithProviders(
     <SplitFactory config={config} updateOnSdkTimedout={true}>
       <SplitTextButton />
@@ -99,9 +98,10 @@ test('renders if no features are returned from Split.io', async () => {
 const createSplitConfig = (text) => {
   let treatment = {};
   if (text) {
-    treatment = (text === 'start_now')
-      ? { treatment: 'start_now', config: '{ "text": "Start now" }' }
-      : { treatment: 'free_account', config: '{ "text": "Free account" }' };
+    treatment =
+      text === 'start_now'
+        ? { treatment: 'start_now', config: '{ "text": "Start now" }' }
+        : { treatment: 'free_account', config: '{ "text": "Free account" }' };
   }
 
   return {
@@ -110,7 +110,7 @@ const createSplitConfig = (text) => {
       key: 'user',
     },
     features: {
-      deven_signupbutton_text: treatment
+      deven_signupbutton_text: treatment,
     },
     scheduler: {
       offlineRefreshRate: 15,
