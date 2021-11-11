@@ -58,6 +58,7 @@ const trackPageView = ({ config, env, location, prevLocation }) => {
 
   tessen.page(name, category, {
     env: env || 'development',
+    nonInteraction: 1,
     path: location.pathname,
     referrer: prevLocation?.href,
     ...properties,
