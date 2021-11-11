@@ -41,7 +41,7 @@ const SplitTextButton = () => {
       href="https://newrelic.com/signup"
       size={Button.SIZE.EXTRA_SMALL}
       variant={Button.VARIANT.PRIMARY}
-      instrumentation={{ component: 'GlobalHeader' }}
+      instrumentation={{ component: 'SplitTextButton' }}
     >
       <span>{t('button.signUp')}</span>
     </Button>
