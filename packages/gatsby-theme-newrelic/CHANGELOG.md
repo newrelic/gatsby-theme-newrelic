@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.4.1...v3.4.2) (2021-11-11)
+
+
+### Bug Fixes
+
+* **tessen:** add property to page call for google analytics bounce rate ([282e5e0](https://github.com/newrelic/gatsby-theme-newrelic/commit/282e5e0217eaf061934a6382851b20eca265784c))
+
+
+
+
+
 ## [3.4.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.4.0...v3.4.1) (2021-11-10)
 
 
