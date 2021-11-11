@@ -57,18 +57,18 @@ const SEO = ({ title, location, type, children }) => {
       return (
         <script type="application/ld+json">
           {`{
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "url": "${siteUrl}",
-            "potentialAction": [{
-              "@type": "SearchAction",
-              "target": {
-                "@type": "EntryPoint",
-                "urlTemplate": "${siteUrl}/?q={search_term_string}",
-              },
-              "query-input": "required name=search_term_string",
-            }],
-          }`}
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "${siteUrl}",
+              "potentialAction": [{
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "${siteUrl}/?q={search_term_string}"
+                },
+                "query-input": "required name=search_term_string"
+              }]
+            }`}
         </script>
       );
     }
