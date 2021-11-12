@@ -2997,7 +2997,7 @@ import { useScrollFreeze } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-- `isOpen` ( boolean )
+- `isFrozen` _(boolean)_: denotes whether the scroll lock feature has been toggled
 
 **Returns**
 
