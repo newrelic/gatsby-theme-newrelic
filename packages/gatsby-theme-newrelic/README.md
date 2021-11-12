@@ -3013,7 +3013,7 @@ useScrollFreeze(isOpen);
 
 ### `useSyncedRef`
 
-A hook, paired with React's `forwardRef`, used to keep a parent and child's elements in sync with one another.
+A hook, paired with React's `forwardRef`, used to keep a parent and child elements' ref in sync with one another.
 
 ```js
 import { useSyncedRef } from '@newrelic/gatsby-theme-newrelic';
