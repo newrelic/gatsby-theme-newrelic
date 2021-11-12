@@ -60,14 +60,14 @@ const SEO = ({ title, location, type, children }) => {
               "@context": "https://schema.org",
               "@type": "WebSite",
               "url": "${siteUrl}",
-              "potentialAction": [{
+              "potentialAction": {
                 "@type": "SearchAction",
                 "target": {
                   "@type": "EntryPoint",
                   "urlTemplate": "${siteUrl}/?q={search_term_string}"
                 },
                 "query-input": "required name=search_term_string"
-              }]
+              }
             }`}
         </script>
       );
