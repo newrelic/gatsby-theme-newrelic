@@ -95,7 +95,7 @@ websites](https://opensource.newrelic.com).
     - [`useKeyPress`](#usekeypress)
     - [`useLayout`](#uselayout)
     - [`useLocale`](#uselocale)
-    - [`useNavigation](#usenavigation)
+    - [`useNavigation`](#usenavigation)
     - [`usePrevious`](#useprevious)
     - [`useQueryParams`](#usequeryparams)
     - [`useScrollFreeze`](#usescrollfreeze)
