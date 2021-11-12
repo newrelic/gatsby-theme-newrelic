@@ -2669,6 +2669,10 @@ A hook that determines if a particular component has been loaded in the DOM.
 import { useHasMounted } from '@newrelic/gatsby-theme-newrelic';
 ```
 
+**Arguments**
+
+none
+
 **Returns**
 
 `boolean` depending on whether the component has been loading in the DOM
@@ -2861,7 +2865,7 @@ import { useLayout } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-n/a
+none
 
 **Returns**
 
@@ -2897,7 +2901,7 @@ import { useLocale } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-n/a
+none
 
 **Returns**
 
@@ -2933,7 +2937,7 @@ import { useNavigation } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-n/a
+none
 
 **Returns**
 
@@ -3001,7 +3005,7 @@ import { useScrollFreeze } from '@newrelic/gatsby-theme-newrelic';
 
 **Returns**
 
-n/a
+none
 
 **Examples**
 
@@ -3250,7 +3254,7 @@ import { useWarning } from '@newrelic/gatsby-theme-newrelic';
 
 **Returns**
 
-n/a
+none
 
 **Examples**
 
