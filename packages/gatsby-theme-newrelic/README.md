@@ -2671,7 +2671,7 @@ import { useHasMounted } from '@newrelic/gatsby-theme-newrelic';
 
 **Returns**
 
-`True` or `False` depending on whether the component has been loading in the DOM
+`booelan` depending on whether the component has been loading in the DOM
 
 **Examples**
 
