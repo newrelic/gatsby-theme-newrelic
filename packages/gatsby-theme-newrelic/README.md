@@ -89,15 +89,23 @@ websites](https://opensource.newrelic.com).
     - [`useActiveHash`](#useactivehash)
     - [`useClipboard`](#useclipboard)
     - [`useFormattedCode`](#useformattedcode)
+    - [`useHasMounted`](#usehasmounted)
     - [`useInstrumentedData`](#useinstrumenteddata)
     - [`useInstrumentedHandler`](#useinstrumentedhandler)
     - [`useKeyPress`](#usekeypress)
     - [`useLayout`](#uselayout)
+    - [`useLocale`](#uselocale)
+    - [`useNavigation](#usenavigation)
+    - [`usePrevious`](#useprevious)
     - [`useQueryParams`](#usequeryparams)
+    - [`useScrollFreeze`](#usescrollfreeze)
+    - [`useSyncedRef`](#usesyncedref)
     - [`useTessen`](#usetessen)
+    - [`useThemeTranslation`](#usethemetranslation)
     - [`useTimeout`](#usetimeout)
     - [`useUserId`](#useuserid)
     - [`usePrevious`](#useprevious)
+    - [`useWarning`](#usewarning)
   - [I18n](#i18n-1)
   - [Announcements](#announcements)
   - [Utils](#utils)
@@ -1569,10 +1577,10 @@ import { Link } from '@newrelic/gatsby-theme-newrelic'`
 
 **Props**
 
-| Prop | Type   | Required | Default | Description                                                                                                                                          |
-| ---- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `to` | string | yes      |         | The URL to link to. If this is a relative path, it will use the Gatsby `Link` component. If it is an external URL, it will use a regular anchor tag. |
-| `displayExternalIcon` | bool | no      |   false      | If the `to` is external to the current site, and you want the element to include an icon showing this leads to an external site, set this to `true` |
+| Prop                  | Type   | Required | Default | Description                                                                                                                                          |
+| --------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `to`                  | string | yes      |         | The URL to link to. If this is a relative path, it will use the Gatsby `Link` component. If it is an external URL, it will use a regular anchor tag. |
+| `displayExternalIcon` | bool   | no       | false   | If the `to` is external to the current site, and you want the element to include an icon showing this leads to an external site, set this to `true`  |
 
 All additional props are forwarded to either the
 [`Link`](https://www.gatsbyjs.com/docs/gatsby-link/) component or the anchor tag
@@ -2653,6 +2661,30 @@ With formatting options:
 const formattedCode = useFormattedCode(code, { printWidth: 100 });
 ```
 
+### `useHasMounted`
+
+A hook that determines if a particular component has been loaded in the DOM.
+
+```js
+import { useHasMounted } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Returns**
+
+`True` or `False` depending on whether the component has been loading in the DOM
+
+**Examples**
+
+```js
+const hasMounted = useHasMounted();
+
+if (!hasMounted) {
+  return null;
+};
+
+return <Component>
+```
+
 ### `useInstrumentedData`
 
 A hook that instruments raw data with New Relic Browser.
@@ -2855,6 +2887,68 @@ const MyComponent = () => {
 };
 ```
 
+### `useLocale`
+
+A hook that will get an object of information regarding the local language used within a component.
+
+```js
+import { useLocale } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+n/a
+
+**Returns**
+
+`Object`
+
+example:
+
+```js
+{
+  name: 'English',
+  localName: 'English',
+  locale: 'en',
+  hrefLang: 'en',
+  isDefault: true,
+}
+```
+
+**Examples**
+
+```js
+const locale = useLocale();
+
+const currentLanguage = locale.locale === 'en' ? 'English' : 'Japanese';
+```
+
+### `useNavigation`
+
+A hook that returns an object containing the searchTerm in the left Navigation panel.
+
+```js
+import { useNavigation } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+n/a
+
+**Returns**
+
+Object with the left Nav search term
+
+**Examples**
+
+```js
+const { searchTerm } = useNavigation();
+
+const showLink = link === searchterm;
+
+return showLink && <Link>;
+```
+
 ### `useQueryParams`
 
 A hook that gets the URL's query params and allows you to set them.
@@ -2891,6 +2985,61 @@ const SearchInput = () => {
     />
   );
 };
+```
+
+### `useScrollFreeze`
+
+A hook that sets `document.body.styles.overflow` to `hidden` so that no page scrolling is possible while `true` has been passed to this hook.
+
+```js
+import { useScrollFreeze } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `isOpen` ( boolean )
+
+**Returns**
+
+n/a
+
+**Examples**
+
+```js
+// Mobile Navigation
+const [isOpen, setIsOpen] = useState(false);
+useScrollFreeze(isOpen);
+```
+
+### `useSyncedRef`
+
+A hook, paired with React's `forwardRef`, used to keep a parent and child's elements in sync with one another.
+
+```js
+import { useSyncedRef } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- A `ref` _(object | callback)_
+
+**Returns**
+
+- An object `ref`
+
+**Examples**
+
+```js
+const Button = forwardRef((props, ref) => {
+  // keep ref in sync with buttonRef
+  const buttonRef = useSyncedRef(ref);
+
+  useEffect(() => {
+    buttonRef.current.focus();
+  }, []);
+
+  return <button ref={buttonRef} {...props} />;
+});
 ```
 
 ### `useTessen`
@@ -2937,6 +3086,31 @@ const MyComponent = () => {
     </button>
   );
 };
+```
+
+### `useThemeTranslation`
+
+A hook that returns a translation function or `i18n` instance based on the `newrelic-gatsby-theme` namespace.
+
+```js
+import { useThemeTranslation } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+none
+
+**Returns**
+
+- `t` _(function)_: can be used to translate strings based on this repo's theme's namespace
+- `i18n` _(object)_: set of resources used to help with translations
+
+**Examples**
+
+```js
+const { t } = useThemeTranslation();
+
+console.log(t('this is a translation'));
 ```
 
 ### `useTimeout`
@@ -3058,6 +3232,36 @@ const MyComponent = () => {
     </div>
   )
 }
+```
+
+### `useWarning`
+
+A hook that will take a test parameter that, if false, will trigger a warning in the console.
+
+```js
+import { useWarning } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `test` _(any)_ : Determines if the message is shown in the console
+- `message` _(string)_: Text to be displayed in the console
+- `once` _(boolean)_: **not required**, defaults to true, determines if the warning is shown each time `test` is false, or just once
+
+**Returns**
+
+n/a
+
+**Examples**
+
+```js
+const { mobileBreakpoint } = layout;
+
+useWarning(
+    mobileBreakpoint,
+    'MobileHeader: The mobile breakpoint is missing. Please set the `layout.mobileBreakpoint` option in `gatsby-config.js`',
+    {once = false}
+  );
 ```
 
 ## I18n
