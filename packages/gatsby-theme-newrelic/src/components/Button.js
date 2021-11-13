@@ -45,6 +45,14 @@ const styles = {
         color: var(--link-hover-color);
       }
     `,
+    [VARIANTS.LOCALE]: css`
+      color: var(--color-neutrals-100);
+      background: transparent;
+
+      &:hover {
+        color: var(--color-neutrals-700);
+      }
+    `,
     [VARIANTS.NORMAL]: css`
       color: var(--color-neutrals-700);
       background-color: var(--color-neutrals-100);

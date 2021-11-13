@@ -181,14 +181,10 @@ const GlobalHeader = ({ className, activeSite }) => {
         data-swiftype-index={false}
         className={className}
         css={css`
-          background-color: var(--color-neutrals-100);
+          background-color: var(--color-neutrals-800);
           position: sticky;
           top: 0;
           z-index: 80;
-
-          .dark-mode & {
-            background-color: var(--color-dark-100);
-          }
         `}
       >
         <div
@@ -220,7 +216,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                   background: linear-gradient(
                     to right,
                     ${rgba('#f4f5f5', 0)},
-                    var(--color-neutrals-100)
+                    var(--color-neutrals-800)
                   );
 
                   .dark-mode & {
@@ -297,7 +293,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 -ms-overflow-style: -ms-autohiding-scrollbar;
 
                 > li {
-                  margin: 0;
+                  margin: 1;
                   flex: 0 0 auto;
                 }
 
@@ -355,15 +351,15 @@ const GlobalHeader = ({ className, activeSite }) => {
                   }
                 `}
               >
-                <Icon css={actionIcon} name="fe-search" size="0.875rem" />
+                <Icon css={actionIcon} name="fe-search" size="1.5rem" />
               </Link>
               <SearchInput
                 placeholder={t('searchInput.placeholder')}
-                size={SearchInput.SIZE.SMALL}
+                size={SearchInput.SIZE.MEDIUM}
                 focusWithHotKey="/"
                 css={css`
                   min-width: 150px;
-                  max-width: 350px;
+                  max-width: 280px;
 
                   @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
                     display: none;
@@ -378,8 +374,8 @@ const GlobalHeader = ({ className, activeSite }) => {
               <li>
                 <Dropdown align="right">
                   <Dropdown.Toggle
-                    size={Button.SIZE.EXTRA_SMALL}
-                    variant={Button.VARIANT.LINK}
+                    size={Button.SIZE.SMALL}
+                    variant={Button.VARIANT.LOCALE}
                   >
                     {locale.localName}
                   </Dropdown.Toggle>
@@ -401,7 +397,7 @@ const GlobalHeader = ({ className, activeSite }) => {
               </li>
             )}
             <li>
-              <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
+              <DarkModeToggle css={[actionIcon, action]} size="1.5rem" />
             </li>
             <li
               css={css`
@@ -411,12 +407,16 @@ const GlobalHeader = ({ className, activeSite }) => {
             >
               <Button
                 as={ExternalLink}
-                size={Button.SIZE.EXTRA_SMALL}
+                size={Button.SIZE.SMALL}
                 variant={Button.VARIANT.LINK}
                 href="https://one.newrelic.com"
                 css={css`
+                  margin: 0 10px;
                   font-weight: 600;
+                  font-size: 0.875rem;
                   white-space: nowrap;
+                  border: 1px solid var(--color-brand-400);
+                  border-radius: 4px;
                 `}
               >
                 <span
@@ -449,7 +449,7 @@ const GlobalHeader = ({ className, activeSite }) => {
               <Button
                 as={ExternalLink}
                 href="https://newrelic.com/signup"
-                size={Button.SIZE.EXTRA_SMALL}
+                size={Button.SIZE.SMALL}
                 variant={Button.VARIANT.PRIMARY}
                 instrumentation={{ component: 'GlobalHeader' }}
               >

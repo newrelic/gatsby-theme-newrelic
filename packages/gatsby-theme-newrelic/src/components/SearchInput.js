@@ -19,7 +19,7 @@ const ICONS = {
 
 const HORIZONTAL_SPACING = {
   [SIZES.SMALL]: '0.5rem',
-  [SIZES.MEDIUM]: '1rem',
+  [SIZES.MEDIUM]: '0.75rem',
   [SIZES.LARGE]: '1rem',
 };
 
@@ -68,6 +68,7 @@ const SearchInput = forwardRef(
           css={css`
             position: absolute;
             left: var(--horizontal-spacing);
+
             top: 50%;
             transform: translateY(-50%);
           `}
@@ -97,18 +98,18 @@ const SearchInput = forwardRef(
           }}
           css={css`
             width: 100%;
-            border: 1px solid var(--border-color);
+            border: 0px solid var(--border-color);
             border-radius: 4px;
-            background: var(--primary-background-color);
+            background: var(--color-neutrals-700);
             color: var(--primary-text-color);
             transition: 0.15s ease-out;
-            line-height: 1;
+            line-height: 1.5rem;
 
             padding-left: calc(
-              var(--horizontal-spacing) + 0.5rem + var(--icon-size)
+              var(--horizontal-spacing) + 0.825rem + var(--icon-size)
             );
             padding-right: calc(
-              var(--horizontal-spacing) + 0.5rem + var(--icon-size)
+              var(--horizontal-spacing) + 0.825rem + var(--icon-size)
             );
 
             ${size && styles.size[size].input}
@@ -117,6 +118,11 @@ const SearchInput = forwardRef(
               outline: none;
               border: 1px solid rgba(0, 126, 138, 0.6);
               box-shadow: 0 0 0 4px rgba(0, 126, 138, 0.1);
+            }
+
+            &:hover {
+              border: 1px solid var(--border-color);
+              transition: border-color 5s linear;
             }
           `}
         />
@@ -232,7 +238,7 @@ const styles = {
         font-size: 0.875rem;
         padding: 0.125rem 0.375rem;
       `,
-      icon: '0.875rem',
+      icon: '1.5rem',
     },
     [SIZES.LARGE]: {
       input: css`
