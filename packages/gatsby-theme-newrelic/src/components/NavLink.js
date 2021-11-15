@@ -101,8 +101,11 @@ const NavLink = ({
             e.preventDefault();
             e.stopPropagation();
             onToggle && onToggle();
-            if (typeof window !== 'undefined' && window.newrelic) {
-              window.newrelic.addPageAction('navInteraction', {
+            if (typeof window !== 'undefined' && window.Tessen) {
+              window.Tessen.track({
+                tessenEventName: 'navLinkInteraction',
+                tessenCategoryName: 'NavLink',
+                name: 'navLinkClick',
                 navInteractionType: 'leftNavMenuToggle',
                 to,
                 isExpanded,

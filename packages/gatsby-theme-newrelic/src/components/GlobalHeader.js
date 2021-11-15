@@ -121,11 +121,14 @@ const useSearchQuery = () => {
         setQueryParam('q', searchTerm);
         if (
           typeof window !== 'undefined' &&
-          window.newrelic &&
+          window.Tessen &&
           searchTerm &&
           searchTerm.length > 2
         ) {
-          window.newrelic.addPageAction('swiftypeSearch_input', {
+          window.Tessen.track({
+            tessenEventName: 'swiftypeSearchInput',
+            tessenCategoryName: 'GlobalSearch',
+            name: 'searchInput',
             searchTerm,
           });
         }

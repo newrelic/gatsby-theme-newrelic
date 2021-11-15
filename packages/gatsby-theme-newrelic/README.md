@@ -89,7 +89,6 @@ websites](https://opensource.newrelic.com).
     - [`useActiveHash`](#useactivehash)
     - [`useClipboard`](#useclipboard)
     - [`useFormattedCode`](#useformattedcode)
-    - [`useInstrumentedData`](#useinstrumenteddata)
     - [`useInstrumentedHandler`](#useinstrumentedhandler)
     - [`useKeyPress`](#usekeypress)
     - [`useLayout`](#uselayout)
@@ -1569,10 +1568,10 @@ import { Link } from '@newrelic/gatsby-theme-newrelic'`
 
 **Props**
 
-| Prop | Type   | Required | Default | Description                                                                                                                                          |
-| ---- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `to` | string | yes      |         | The URL to link to. If this is a relative path, it will use the Gatsby `Link` component. If it is an external URL, it will use a regular anchor tag. |
-| `displayExternalIcon` | bool | no      |   false      | If the `to` is external to the current site, and you want the element to include an icon showing this leads to an external site, set this to `true` |
+| Prop                  | Type   | Required | Default | Description                                                                                                                                          |
+| --------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `to`                  | string | yes      |         | The URL to link to. If this is a relative path, it will use the Gatsby `Link` component. If it is an external URL, it will use a regular anchor tag. |
+| `displayExternalIcon` | bool   | no       | false   | If the `to` is external to the current site, and you want the element to include an icon showing this leads to an external site, set this to `true`  |
 
 All additional props are forwarded to either the
 [`Link`](https://www.gatsbyjs.com/docs/gatsby-link/) component or the anchor tag
@@ -2653,46 +2652,9 @@ With formatting options:
 const formattedCode = useFormattedCode(code, { printWidth: 100 });
 ```
 
-### `useInstrumentedData`
-
-A hook that instruments raw data with New Relic Browser.
-
-```js
-import { useInstrumentedData } from '@newrelic/gatsby-theme-newrelic';
-```
-
-**Arguments**
-
-- `attributes` _(object)_: Data passed to the
-  [`newrelic.addPageAction`](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/add-page-action)
-  API when called. These attributes **MUST** contain an `actionName` property,
-  otherwise the data will not be instrumented. All other attributes will be
-  attached to the `attributes` property of the page action.
-- `options` _(object)_: Options for the hook
-  - `enabled` _(boolean)_: Determines whether the data should be instrumented
-    via `newrelic.addPageAction`. Set to `false` to disable instrumentation.
-    **DEFAULT**: `true`
-
-**Returns**
-
-`Void`
-
-**Examples**
-
-```js
-const MyComponent = ({ searchTerm, onChange }) => {
-  useInstrumentedData(
-    { actionName: 'search', searchTerm },
-    { enabled: Boolean(searchTerm) }
-  );
-
-  return <input value={searchTerm} onChange={onChange} />;
-};
-```
-
 ### `useInstrumentedHandler`
 
-A hook that wraps a function handler with New Relic Browser instrumentation.
+A hook that wraps a function handler with Tessen instrumentation.
 
 ```js
 import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
@@ -2700,27 +2662,28 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-- `handler` _(function)_: The function hander that should be augmented with New
-  Relic Browser instrumentation. This can be `null` or `undefined`.
-- `attributes` _(object | function)_: Data passed to the
-  [`newrelic.addPageAction`](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/add-page-action)
-  API when called. The attributes **MUST** contain an `actionName` property,
-  otherwise the handler will not be instrumented. All other attributes will be
-  attached to the `attributes` property of the page action. You can pass a
-  function to instrument dynamic data. If this is a function, the function will
-  be called with the same arguments passed to the handler.
+- `handler` _(function)_: The function hander that should be augmented with Tessen instrumentation. 
+  This can be `null` or `undefined`.
+- `attributes` _(object | function)_: Data passed to the `Tessen.track` API when called. 
+  The attributes **MUST** contain...
+
+  - `tessenEventName` - Needs to be in [Camel Case](https://en.wikipedia.org/wiki/Camel_case)
+  - `tessenCategoryName` - Needs to be in [Title Case](https://en.wikipedia.org/wiki/Title_case)
+  - `name`
+...otherwise the handler will not be instrumented. All other attributes will be attached to the `attributes` property of the page action. You can pass a function to instrument dynamic data. If this is a function, the function will be called with the same arguments passed to the handler.
 
 **Returns**
 
-`function` - The wrapped function handler to be instrumented with New Relic
-Browser.
+`function` - The wrapped function handler to be instrumented with Tessen.
 
 **Examples**
 
 ```js
 const MyComponent = () => {
   const handleClick = useInstrumentedHandler(() => console.log('clicked'), {
-    actionName: 'click',
+    tessenEventName: 'buttonClick',
+    tessenCategoryName: 'ClickMeButton',
+    name: 'click',
   });
 
   return (
@@ -2738,7 +2701,9 @@ const MyComponent = () => {
   const handler = useInstrumentedHandler(
     (a, b) => add(a, b),
     (a, b) => ({
-      actionName: 'add',
+      tessenEventName: 'counterClick',
+      tessenCategoryName: 'CounterButton',
+      name: 'click',
       sum: a + b,
     })
   );

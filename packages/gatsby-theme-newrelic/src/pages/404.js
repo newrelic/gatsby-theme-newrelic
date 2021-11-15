@@ -15,9 +15,12 @@ import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from '../components/Trans';
 
-const track = (actionName, attributes = {}) => {
-  if (typeof window !== 'undefined' && window.newrelic && actionName) {
-    window.newrelic.addPageAction(actionName, {
+const track = (trackName, attributes = {}) => {
+  if (typeof window !== 'undefined' && window.Tessen && trackName) {
+    window.Tessen.track({
+      tessenEventName: 'error404',
+      tessenCategoryName: 'ErrorPage',
+      name: trackName,
       ...attributes,
     });
   }

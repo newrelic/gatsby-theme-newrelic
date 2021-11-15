@@ -1,5 +1,7 @@
 import warning from 'warning';
 import Cookies from 'js-cookie';
+import { CAMEL_CASE, TITLE_CASE } from './constants';
+import { convertToCamelCase, convertToTitleCase } from './changeCase';
 
 const warnAboutNoop = ({ config, action, name, category }) => {
   warning(
@@ -31,6 +33,24 @@ const tessenAction =
   (name, category, properties = {}) => {
     if (!canSendAction({ config, name, category })) {
       return warnAboutNoop({ config, action, name, category });
+    }
+
+    if (!CAMEL_CASE.test(name)) {
+      return warning(
+        false,
+        `tessen.${action}: The 'name' argument needs to be in camelCase. This has resulted in a noop. Please change '${name}' to something like '${convertToCamelCase(
+          name
+        )}'.`
+      );
+    }
+
+    if (!TITLE_CASE.test(category)) {
+      return warning(
+        TITLE_CASE.test(category),
+        `tessen.${action}: The 'category' argument needs to be in TitleCase. This has resulted in a noop. Please change '${category}' to something like '${convertToTitleCase(
+          category
+        )}'.`
+      );
     }
 
     if (!window.Tessen) {

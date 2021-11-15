@@ -16,7 +16,8 @@ const EditPageButton = ({
 }) => {
   const { t } = useThemeTranslation();
   const handleClick = useInstrumentedHandler(onClick, {
-    actionName: 'editThisPage_click',
+    tessenEventName: 'editThisPageClick',
+    tessenCategoryName: 'EditPage',
     component: instrumentation?.component,
   });
 

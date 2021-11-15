@@ -17,7 +17,6 @@ const useTessen = () => {
   `);
 
   const tessen = useMemo(() => createTessen(config), [config]);
-
   return tessen;
 };
 

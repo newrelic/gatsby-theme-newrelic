@@ -7,9 +7,9 @@
     "access": "public"
   },
   "scripts": {
-    "build": "gatsby build",
+    "build": "GATSBY_NEWRELIC_ENV=production gatsby build",
     "clean": "gatsby clean",
-    "develop": "gatsby develop",
+    "develop": "GATSBY_NEWRELIC_ENV=production gatsby develop",
     "extract-i18n": "i18next",
     "lint": "eslint gatsby-*.js gatsby/ src/"
   },
