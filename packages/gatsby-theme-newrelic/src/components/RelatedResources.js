@@ -7,6 +7,7 @@ import Tag from './Tag';
 import Icon from './Icon';
 import Link from './Link';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import { useLocation } from '@reach/router';
 
 const isRelative = (url) => url.startsWith('/');
 
@@ -18,6 +19,7 @@ const findLabel = (url, labels) => {
 
 const RelatedResources = ({ className, resources, title }) => {
   const { t } = useThemeTranslation();
+  const location = useLocation();
   const {
     site: {
       siteMetadata: { siteUrl },
@@ -95,6 +97,7 @@ const RelatedResources = ({ className, resources, title }) => {
                   `}
                   instrumentation={{
                     navInteractionType: 'relatedResourcesLinkClick',
+                    referrer: location.pathname,
                   }}
                 >
                   <span
