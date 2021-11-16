@@ -14,8 +14,8 @@ const TableOfContents = ({ headings }) => {
   const headingIds = useDeepMemo(() => headings.map(prop('id')), [headings]);
   const activeHash = useActiveHash(headingIds);
   const handleClick = useInstrumentedHandler(null, ({ id, text }) => ({
-    tessenEventName: 'tableOfContentsClick',
-    tessenCategoryName: 'TableOfContents',
+    eventName: 'tableOfContentsClick',
+    category: 'TableOfContents',
     heading: text,
     headingId: id,
   }));

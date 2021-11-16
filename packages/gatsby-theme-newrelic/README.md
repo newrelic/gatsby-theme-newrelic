@@ -2667,8 +2667,8 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
 - `attributes` _(object | function)_: Data passed to the `Tessen.track` API when called. 
   The attributes **MUST** contain...
 
-  - `tessenEventName` - Needs to be in [Camel Case](https://en.wikipedia.org/wiki/Camel_case)
-  - `tessenCategoryName` - Needs to be in [Title Case](https://en.wikipedia.org/wiki/Title_case)
+  - `eventName` - Needs to be in [Camel Case](https://en.wikipedia.org/wiki/Camel_case)
+  - `category` - Needs to be in [Title Case](https://en.wikipedia.org/wiki/Title_case)
   - `name`
 ...otherwise the handler will not be instrumented. All other attributes will be attached to the `attributes` property of the page action. You can pass a function to instrument dynamic data. If this is a function, the function will be called with the same arguments passed to the handler.
 
@@ -2681,8 +2681,8 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
 ```js
 const MyComponent = () => {
   const handleClick = useInstrumentedHandler(() => console.log('clicked'), {
-    tessenEventName: 'buttonClick',
-    tessenCategoryName: 'ClickMeButton',
+    eventName: 'buttonClick',
+    category: 'ClickMeButton',
     name: 'click',
   });
 
@@ -2701,8 +2701,8 @@ const MyComponent = () => {
   const handler = useInstrumentedHandler(
     (a, b) => add(a, b),
     (a, b) => ({
-      tessenEventName: 'counterClick',
-      tessenCategoryName: 'CounterButton',
+      eventName: 'counterClick',
+      category: 'CounterButton',
       name: 'click',
       sum: a + b,
     })

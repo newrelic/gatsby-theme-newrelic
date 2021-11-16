@@ -43,40 +43,40 @@ const NavLink = ({
         border-radius: 0.25rem;
 
         ${mobileBreakpoint &&
-        css`
-          @media screen and (max-width: ${mobileBreakpoint}) {
-            border-radius: 0;
-            border-left: var(--border-width) solid transparent;
+          css`
+            @media screen and (max-width: ${mobileBreakpoint}) {
+              border-radius: 0;
+              border-left: var(--border-width) solid transparent;
 
-            ${active &&
-            css`
-              border-left-color: var(--color-neutrals-400);
+              ${active &&
+                css`
+                  border-left-color: var(--color-neutrals-400);
 
-              .dark-mode & {
-                border-left-color: var(--color-dark-400);
-              }
-            `}
-          }
-        `}
+                  .dark-mode & {
+                    border-left-color: var(--color-dark-400);
+                  }
+                `}
+            }
+          `}
 
         &:hover {
           color: var(--primary-text-hover-color);
         }
 
         ${active &&
-        css`
-          background: var(--color-neutrals-100);
+          css`
+            background: var(--color-neutrals-100);
 
-          .dark-mode & {
-            background: var(--color-dark-100);
-          }
-        `}
+            .dark-mode & {
+              background: var(--color-dark-100);
+            }
+          `}
       `}
     >
       {icon && (
         <Icon
           name={icon}
-          size="var(--icon-size)"
+          size='var(--icon-size)'
           css={css`
             margin-right: var(--icon-spacing);
           `}
@@ -92,7 +92,7 @@ const NavLink = ({
       </span>
 
       {isExternalLink ? (
-        <Icon name="fe-external-link" size="1rem" />
+        <Icon name='fe-external-link' size='1rem' />
       ) : expandable ? (
         <Button
           size={Button.SIZE.EXTRA_SMALL}
@@ -103,8 +103,8 @@ const NavLink = ({
             onToggle && onToggle();
             if (typeof window !== 'undefined' && window.Tessen) {
               window.Tessen.track({
-                tessenEventName: 'navLinkInteraction',
-                tessenCategoryName: 'NavLink',
+                eventName: 'navLinkInteraction',
+                category: 'NavLink',
                 name: 'navLinkClick',
                 navInteractionType: 'leftNavMenuToggle',
                 to,
@@ -119,7 +119,7 @@ const NavLink = ({
           `}
         >
           <Icon
-            name="fe-chevron-down"
+            name='fe-chevron-down'
             css={css`
               transform: rotate(${isExpanded ? 0 : -90}deg);
               transition: 0.2s ease-out;

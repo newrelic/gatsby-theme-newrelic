@@ -88,8 +88,8 @@ const CodeBlock = ({
   const handleCopyClick = useInstrumentedHandler(
     () => copy(containsEmbeddedHTML ? normalizedCode : code),
     {
-      tessenEventName: 'copyCodeBlockClick',
-      tessenCategoryName: 'CodeBlock',
+      eventName: 'copyCodeBlockClick',
+      category: 'CodeBlock',
       modified,
     }
   );
@@ -123,10 +123,10 @@ const CodeBlock = ({
             }
 
             ${preview &&
-            css`
-              border-top-left-radius: 0;
-              border-top-right-radius: 0;
-            `};
+              css`
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+              `};
           `}
         >
           <div
@@ -188,7 +188,7 @@ const CodeBlock = ({
                 )}
               </div>
               <Button
-                type="button"
+                type='button'
                 variant={Button.VARIANT.LINK}
                 onClick={handleCopyClick}
                 size={Button.SIZE.SMALL}
@@ -197,7 +197,7 @@ const CodeBlock = ({
                 `}
               >
                 <Icon
-                  name="fe-copy"
+                  name='fe-copy'
                   css={css`
                     margin-right: 0.5rem;
                   `}

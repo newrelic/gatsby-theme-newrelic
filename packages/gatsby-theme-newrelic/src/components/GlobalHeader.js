@@ -128,8 +128,8 @@ const useSearchQuery = () => {
           searchTerm.length > 2
         ) {
           window.Tessen.track({
-            tessenEventName: 'swiftypeSearchInput',
-            tessenCategoryName: 'GlobalSearch',
+            eventName: 'swiftypeSearchInput',
+            category: 'GlobalSearch',
             name: 'searchInput',
             searchTerm,
           });
@@ -254,7 +254,7 @@ const GlobalHeader = ({ className, activeSite }) => {
             `}
           >
             <ExternalLink
-              href="https://newrelic.com/"
+              href='https://newrelic.com/'
               css={css`
                 display: flex;
                 align-items: center;
@@ -286,7 +286,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                   padding-right: 0;
                 `}
               >
-                <Icon name="logo-newrelic" size="1.125rem" />
+                <Icon name='logo-newrelic' size='1.125rem' />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 {createNavList('dropdown', activeSite)}
@@ -354,7 +354,7 @@ const GlobalHeader = ({ className, activeSite }) => {
               `}
             >
               <Link
-                to="?q="
+                to='?q='
                 css={css`
                   ${actionLink}
 
@@ -365,12 +365,12 @@ const GlobalHeader = ({ className, activeSite }) => {
                   }
                 `}
               >
-                <Icon css={actionIcon} name="fe-search" size="0.875rem" />
+                <Icon css={actionIcon} name='fe-search' size='0.875rem' />
               </Link>
               <SearchInput
                 placeholder={t('searchInput.placeholder')}
                 size={SearchInput.SIZE.SMALL}
-                focusWithHotKey="/"
+                focusWithHotKey='/'
                 css={css`
                   min-width: 150px;
                   max-width: 350px;
@@ -386,7 +386,7 @@ const GlobalHeader = ({ className, activeSite }) => {
             </li>
             {locales.length > 1 && (
               <li>
-                <Dropdown align="right">
+                <Dropdown align='right'>
                   <Dropdown.Toggle
                     size={Button.SIZE.EXTRA_SMALL}
                     variant={Button.VARIANT.LINK}
@@ -411,7 +411,7 @@ const GlobalHeader = ({ className, activeSite }) => {
               </li>
             )}
             <li>
-              <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
+              <DarkModeToggle css={[actionIcon, action]} size='0.875rem' />
             </li>
             <li
               css={css`
@@ -423,7 +423,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 as={ExternalLink}
                 size={Button.SIZE.EXTRA_SMALL}
                 variant={Button.VARIANT.LINK}
-                href="https://one.newrelic.com"
+                href='https://one.newrelic.com'
                 css={css`
                   font-weight: 600;
                   white-space: nowrap;
@@ -439,7 +439,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                   {t('button.login')}
                 </span>
                 <Icon
-                  name="fe-log-in"
+                  name='fe-log-in'
                   css={css`
                     display: none;
 
@@ -447,7 +447,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                       display: block;
                     }
                   `}
-                  size="0.875rem"
+                  size='0.875rem'
                 />
               </Button>
             </li>

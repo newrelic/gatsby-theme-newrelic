@@ -18,8 +18,8 @@ import Trans from '../components/Trans';
 const track = (trackName, attributes = {}) => {
   if (typeof window !== 'undefined' && window.Tessen && trackName) {
     window.Tessen.track({
-      tessenEventName: 'error404',
-      tessenCategoryName: 'ErrorPage',
+      eventName: 'error404',
+      category: 'ErrorPage',
       name: trackName,
       ...attributes,
     });
@@ -124,7 +124,7 @@ const NotFoundPage = ({
     }
 
     return (
-      <div id="search-results">
+      <div id='search-results'>
         {translate('404.searchResultMessage')}
         <ul
           css={css`
@@ -173,7 +173,10 @@ const NotFoundPage = ({
 
   useEffect(() => {
     setSearchTerm(
-      location.pathname.split('/').filter(searchTermFilter).join(' ')
+      location.pathname
+        .split('/')
+        .filter(searchTermFilter)
+        .join(' ')
     );
   }, [searchTermFilter, location.pathname]);
 
@@ -230,7 +233,7 @@ const NotFoundPage = ({
             </h1>
 
             <div
-              id="search-section"
+              id='search-section'
               css={css`
                 margin-top: 2rem;
                 margin-bottom: 2rem;
@@ -263,13 +266,13 @@ const NotFoundPage = ({
                 {translate('404.docsHomeMessage')}{' '}
                 <Link to="/">{{nrSubDomain}} home</Link>.
               </p> */}
-              <Trans i18nKey="404.docsHomeMessage" parent="p">
-                Go back to <Link to="/">{{ nrSubDomain }} home</Link>.
+              <Trans i18nKey='404.docsHomeMessage' parent='p'>
+                Go back to <Link to='/'>{{ nrSubDomain }} home</Link>.
               </Trans>
               <p>
                 {translate('404.fileIssueMessage')}{' '}
                 <CreateIssueButton
-                  pageTitle="404"
+                  pageTitle='404'
                   variant={Button.VARIANT.OUTLINE}
                   size={Button.SIZE.SMALL}
                   labels={['bug', '404']}

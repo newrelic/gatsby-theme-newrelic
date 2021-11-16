@@ -43,15 +43,15 @@ const Link = forwardRef(
     `);
 
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
-      tessenEventName: 'gatsbyTheme',
-      tessenCategoryName: 'ExternalLinkClick',
+      eventName: 'gatsbyTheme',
+      category: 'ExternalLinkClick',
       href: to,
       ...instrumentation,
     });
 
     const handleInternalLinkClick = useInstrumentedHandler(onClick, {
-      tessenEventName: 'gatsbyTheme',
-      tessenCategoryName: 'InternalLinkClick',
+      eventName: 'gatsbyTheme',
+      category: 'InternalLinkClick',
       href: to,
       ...instrumentation,
     });
@@ -89,20 +89,20 @@ const Link = forwardRef(
             {...props}
             href={to}
             onClick={handleExternalLinkClick}
-            target="_blank"
+            target='_blank'
             rel={rel}
             ref={ref}
           >
             {props.children}
             {displayExternalIcon && (
               <Icon
-                name="fe-external-link"
+                name='fe-external-link'
                 css={css`
                   margin-left: 0.25rem;
                   position: relative;
                   top: -1px;
                 `}
-                size="1em"
+                size='1em'
               />
             )}
           </a>

@@ -16,8 +16,8 @@ const EditPageButton = ({
 }) => {
   const { t } = useThemeTranslation();
   const handleClick = useInstrumentedHandler(onClick, {
-    tessenEventName: 'editThisPageClick',
-    tessenCategoryName: 'EditPage',
+    eventName: 'editThisPageClick',
+    category: 'EditPage',
     component: instrumentation?.component,
   });
 
@@ -44,7 +44,7 @@ const EditPageButton = ({
       onClick={handleClick}
     >
       <Icon
-        name="fe-edit"
+        name='fe-edit'
         css={css`
           margin-right: 0.5rem;
         `}

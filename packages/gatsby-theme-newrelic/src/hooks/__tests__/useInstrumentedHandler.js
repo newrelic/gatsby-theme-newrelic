@@ -34,8 +34,8 @@ test('instruments tessen and calls original handler with all arguments', () => {
   const originalHandler = jest.fn();
   const { result } = renderHook(() =>
     useInstrumentedHandler(originalHandler, {
-      tessenEventName: 'eventName',
-      tessenCategoryName: 'CategoryName',
+      eventName: 'eventName',
+      category: 'CategoryName',
       name: 'click',
     })
   );
@@ -55,8 +55,8 @@ test('instruments tessen and calls original handler with all arguments', () => {
 test('attaches any additional fields in config as attributes', () => {
   const { result } = renderHook(() =>
     useInstrumentedHandler(jest.fn(), {
-      tessenEventName: 'eventName',
-      tessenCategoryName: 'CategoryName',
+      eventName: 'eventName',
+      category: 'CategoryName',
       name: 'click',
       darkMode: true,
     })
@@ -74,8 +74,8 @@ test('attaches any additional fields in config as attributes', () => {
 test('allows config argument to be a function called with the handler arguments', () => {
   const { result } = renderHook(() =>
     useInstrumentedHandler(jest.fn(), (a, b) => ({
-      tessenEventName: 'eventName',
-      tessenCategoryName: 'CategoryName',
+      eventName: 'eventName',
+      category: 'CategoryName',
       name: 'click',
       sum: a + b,
     }))
@@ -92,8 +92,8 @@ test('original return value is maintained', () => {
   const originalHandler = () => 'tacos';
   const { result } = renderHook(() =>
     useInstrumentedHandler(originalHandler, {
-      tessenEventName: 'eventName',
-      tessenCategoryName: 'CategoryName',
+      eventName: 'eventName',
+      category: 'CategoryName',
       name: 'click',
       darkMode: true,
     })
@@ -104,12 +104,12 @@ test('original return value is maintained', () => {
   expect(returnValue).toEqual('tacos');
 });
 
-test('warns if tessenEventName is not set', () => {
+test('warns if eventName is not set', () => {
   console.error = jest.fn();
 
   const { result } = renderHook(() =>
     useInstrumentedHandler(jest.fn(), {
-      tessenCategoryName: 'CategoryName',
+      category: 'CategoryName',
       name: 'click',
     })
   );
@@ -118,17 +118,17 @@ test('warns if tessenEventName is not set', () => {
 
   expect(console.error).toHaveBeenCalledWith(
     expect.stringContaining(
-      'You are attempting to instrument a handler, but the `tessenEventName` property is not set. This will result in a no-op.'
+      'You are attempting to instrument a handler, but the `eventName` property is not set. This will result in a no-op.'
     )
   );
 });
 
-test('warns if tessenCategoryName is not set', () => {
+test('warns if category is not set', () => {
   console.error = jest.fn();
 
   const { result } = renderHook(() =>
     useInstrumentedHandler(jest.fn(), {
-      tessenEventName: 'eventName',
+      eventName: 'eventName',
       name: 'click',
     })
   );
@@ -137,18 +137,18 @@ test('warns if tessenCategoryName is not set', () => {
 
   expect(console.error).toHaveBeenCalledWith(
     expect.stringContaining(
-      'You are attempting to instrument a handler, but the `tessenCategoryName` property is not set. This will result in a no-op.'
+      'You are attempting to instrument a handler, but the `category` property is not set. This will result in a no-op.'
     )
   );
 });
 
-test('warns if tessenCategoryName is not in Title Case', () => {
+test('warns if category is not in Title Case', () => {
   console.error = jest.fn();
 
   const { result } = renderHook(() =>
     useInstrumentedHandler(jest.fn(), {
-      tessenEventName: 'eventName',
-      tessenCategoryName: 'category name',
+      eventName: 'eventName',
+      category: 'category name',
       name: 'click',
     })
   );
@@ -157,18 +157,18 @@ test('warns if tessenCategoryName is not in Title Case', () => {
 
   expect(console.error).toHaveBeenCalledWith(
     expect.stringContaining(
-      "You are attempting to instrument a handler, but the 'tessenCategoryName' is not in TitleCase. This will result in a no-op. Please change 'category name' to something like 'CategoryName'."
+      "You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op. Please change 'category name' to something like 'CategoryName'."
     )
   );
 });
 
-test('warns if tessenEventName is not in Camel Case', () => {
+test('warns if eventName is not in Camel Case', () => {
   console.error = jest.fn();
 
   const { result } = renderHook(() =>
     useInstrumentedHandler(jest.fn(), {
-      tessenEventName: 'Event_name',
-      tessenCategoryName: 'CategoryName',
+      eventName: 'Event_name',
+      category: 'CategoryName',
       name: 'click',
     })
   );
@@ -177,7 +177,7 @@ test('warns if tessenEventName is not in Camel Case', () => {
 
   expect(console.error).toHaveBeenCalledWith(
     expect.stringContaining(
-      "You are attempting to instrument a handler, but the 'tessenEventName' property is not in camelCase. This will result in a no-op. Please change 'Event_name' to something like 'eventName'."
+      "You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op. Please change 'Event_name' to something like 'eventName'."
     )
   );
 });
@@ -188,8 +188,8 @@ test('does not instrument the request if Tessen is not installed', () => {
   const originalHandler = jest.fn();
   const { result } = renderHook(() =>
     useInstrumentedHandler(originalHandler, {
-      tessenEventName: 'Event_name',
-      tessenCategoryName: 'CategoryName',
+      eventName: 'Event_name',
+      category: 'CategoryName',
       name: 'click',
     })
   );

@@ -14,39 +14,37 @@ const useInstrumentedHandler = (handler, attributes) => {
   // console.log({ attributes });
   return useCallback(
     (...args) => {
-      const { tessenEventName, tessenCategoryName, ...attrs } =
+      const { eventName, category, ...attrs } =
         typeof attributes === 'function' ? attributes(...args) : attributes;
 
       if (window.Tessen) {
         warning(
-          tessenEventName,
-          'You are attempting to instrument a handler, but the `tessenEventName` property is not set. This will result in a no-op.'
+          eventName,
+          'You are attempting to instrument a handler, but the `eventName` property is not set. This will result in a no-op.'
         );
 
-        tessenEventName &&
+        eventName &&
           warning(
-            CAMEL_CASE.test(tessenEventName),
-            `You are attempting to instrument a handler, but the 'tessenEventName' property is not in camelCase. This will result in a no-op. Please change '${tessenEventName}' to something like '${convertToCamelCase(
-              tessenEventName
+            CAMEL_CASE.test(eventName),
+            `You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op. Please change '${eventName}' to something like '${convertToCamelCase(
+              eventName
             )}'.`
           );
 
         warning(
-          tessenCategoryName,
-          'You are attempting to instrument a handler, but the `tessenCategoryName` property is not set. This will result in a no-op.'
+          category,
+          'You are attempting to instrument a handler, but the `category` property is not set. This will result in a no-op.'
         );
 
-        tessenCategoryName &&
+        category &&
           warning(
-            TITLE_CASE.test(tessenCategoryName),
-            `You are attempting to instrument a handler, but the 'tessenCategoryName' is not in TitleCase. This will result in a no-op. Please change '${tessenCategoryName}' to something like '${convertToTitleCase(
-              tessenCategoryName
+            TITLE_CASE.test(category),
+            `You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op. Please change '${category}' to something like '${convertToTitleCase(
+              category
             )}'.`
           );
 
-        tessenEventName &&
-          tessenCategoryName &&
-          tessen.track(tessenEventName, tessenCategoryName, attrs);
+        eventName && category && tessen.track(eventName, category, attrs);
       }
 
       if (savedHandler.current) {

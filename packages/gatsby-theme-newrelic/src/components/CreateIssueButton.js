@@ -27,8 +27,8 @@ const CreateIssueButton = ({
 }) => {
   const { t } = useThemeTranslation();
   const handleClick = useInstrumentedHandler(onClick, {
-    tessenEventName: 'createAnIssueClick',
-    tessenCategoryName: 'CreateIssue',
+    eventName: 'createAnIssueClick',
+    category: 'CreateIssue',
     component: instrumentation?.component,
   });
 
@@ -41,7 +41,7 @@ const CreateIssueButton = ({
       onClick={handleClick}
     >
       <Icon
-        name="fe-github"
+        name='fe-github'
         css={css`
           margin-right: 0.5rem;
         `}
