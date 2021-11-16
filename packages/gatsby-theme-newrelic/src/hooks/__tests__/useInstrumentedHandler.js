@@ -157,7 +157,7 @@ test('warns if category is not in Title Case', () => {
 
   expect(console.error).toHaveBeenCalledWith(
     expect.stringContaining(
-      "You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op. Please change 'category name' to something like 'CategoryName'."
+      "You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op."
     )
   );
 });
@@ -177,7 +177,7 @@ test('warns if eventName is not in Camel Case', () => {
 
   expect(console.error).toHaveBeenCalledWith(
     expect.stringContaining(
-      "You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op. Please change 'Event_name' to something like 'eventName'."
+      "You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op."
     )
   );
 });
