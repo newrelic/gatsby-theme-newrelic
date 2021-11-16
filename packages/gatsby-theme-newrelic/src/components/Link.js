@@ -3,7 +3,6 @@ import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
-import useTessen from '../hooks/useTessen';
 import { localizePath } from '../utils/localization';
 import SignUpLink from './SignUpLink';
 import Icon from './Icon';
@@ -24,7 +23,6 @@ const Link = forwardRef(
     ref
   ) => {
     const locale = useLocale();
-    const tessen = useTessen();
 
     const {
       newRelicThemeConfig: { forceTrailingSlashes },
@@ -44,12 +42,16 @@ const Link = forwardRef(
       }
     `);
 
-    const handleExternalLinkClick = () => {
-      tessen.track('gatsbyTheme', 'ExternalLinkClick', {
+    const handleExternalLinkClick = useInstrumentedHandler(
+      onClick,
+      {
+        tessenEventName: 'gatsbyTheme',
+        tessenCategoryName: 'ExternalLinkClick',
         href: to,
         ...instrumentation,
-      });
-    };
+      },
+      'tessen'
+    );
 
     const handleInternalLinkClick = useInstrumentedHandler(
       onClick,

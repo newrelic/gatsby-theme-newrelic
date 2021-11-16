@@ -2,14 +2,18 @@ import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { navigate } from 'gatsby-link';
+import { graphql, useStaticQuery } from 'gatsby';
 
 import GlobalHeader from '../components/GlobalHeader';
 import GlobalFooter from '../components/GlobalFooter';
 import Link from '../components/Link';
 import SearchInput from '../components/SearchInput';
 import Tag from '../components/Tag';
+import CreateIssueButton from '../components/CreateIssueButton';
+import Button from '../components/Button';
 import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import Trans from '../components/Trans';
 
 const track = (actionName, attributes = {}) => {
   if (typeof window !== 'undefined' && window.newrelic && actionName) {
@@ -23,11 +27,29 @@ const NotFoundPage = ({
   location,
   pageContext: { themeOptions, swiftypeEngineKey },
 }) => {
+  const {
+    site: {
+      siteMetadata: { siteUrl },
+    },
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
+    }
+  `);
   const { t: translate } = useThemeTranslation();
   const [searchTerm, setSearchTerm] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
 
   const pageLocale = getLocale({ location }, themeOptions);
+
+  const hostname = new URL(siteUrl).hostname;
+  const nrSubDomain = /.*\.newrelic\.com/.test(hostname)
+    ? hostname.split('.')[0]
+    : null;
 
   const searchTermFilter = useCallback(
     (term) => {
@@ -203,7 +225,7 @@ const NotFoundPage = ({
             >
               {translate('404.headingText')}
             </h1>
-            {translate('404.errorMessage')}
+
             <div
               id="search-section"
               css={css`
@@ -226,6 +248,35 @@ const NotFoundPage = ({
               />
             </div>
             {displaySearchResults(pageLocale)}
+
+            <div
+              css={css`
+                > * {
+                  margin: 3em 0;
+                }
+              `}
+            >
+              {/* <p>
+                {translate('404.docsHomeMessage')}{' '}
+                <Link to="/">{{nrSubDomain}} home</Link>.
+              </p> */}
+              <Trans i18nKey="404.docsHomeMessage" parent="p">
+                Go back to <Link to="/">{{ nrSubDomain }} home</Link>.
+              </Trans>
+              <p>
+                {translate('404.fileIssueMessage')}{' '}
+                <CreateIssueButton
+                  pageTitle="404"
+                  variant={Button.VARIANT.OUTLINE}
+                  size={Button.SIZE.SMALL}
+                  labels={['bug', '404']}
+                  instrumentation={{ component: '404Page' }}
+                  css={css`
+                    margin-left: 1em;
+                  `}
+                />
+              </p>
+            </div>
           </div>
         </div>
         <GlobalFooter

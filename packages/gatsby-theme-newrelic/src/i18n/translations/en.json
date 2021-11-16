@@ -1,17 +1,18 @@
 {
   "404": {
-    "statusCode": "404",
-    "headingText": "Error 404: Page not Found",
-    "errorMessage": "The URL you entered may be broken, or the page has been removed.",
-    "searchInputLabel": "You can try again by doing a search:",
-    "searchResultMessage": "Here are some links to other content we found based on the page you requested:"
+    "headingText": "Hmm... We can't find this",
+    "searchInputLabel": "Try refining your search.",
+    "searchResultMessage": "Were you looking for any of these?",
+    "docsHomeMessage": "Go back to <1>{{nrSubDomain}} home</1>.",
+    "fileIssueMessage": "Still can't find what you're looking for?"
   },
   "button": {
     "close": "Close",
     "copied": "Copied",
     "copy": "Copy",
     "login": "Log in",
-    "signUp": "Free account"
+    "signUp": "Free account",
+    "startNow": "Start now"
   },
   "callout": {
     "tip": "Tip",

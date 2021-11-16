@@ -40,7 +40,8 @@ const tessenAction =
       );
     }
 
-    const customerId = Cookies.get('ajs_user_id') || '';
+    const customerId = JSON.parse(Cookies.get('ajs_user_id') || 'null');
+    const anonymousId = JSON.parse(Cookies.get('ajs_anonymous_id') || 'null');
 
     window.Tessen[action](
       name,
@@ -52,6 +53,7 @@ const tessenAction =
         nr_subproduct: config.subproduct,
         location: 'Public',
         customer_user_id: customerId,
+        anonymousId,
       },
       {
         Segment: {
