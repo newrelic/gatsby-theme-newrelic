@@ -13,6 +13,13 @@ const SWIFTYPE_ENGINE_KEY = 'Ad9HfGjDw4GRkcmJjUut';
 
 const CAMEL_CASE = /^[a-z]+([A-Z][a-z]*|[0-9]+)*$/;
 const TITLE_CASE = /^((^| )[A-Z\d][\w-]+)+$/;
+const SPLITS = {
+  SIGNUP_BUTTON_TEXT: 'deven_signupbutton_text',
+};
+
+const SPLIT_TRACKING_EVENTS = {
+  SIGNUP_BUTTON_CLICK: 'DEVEN_signuptext_click',
+};
 
 module.exports = {
   STORAGE_KEYS,
@@ -21,4 +28,6 @@ module.exports = {
   SWIFTYPE_ENGINE_KEY,
   CAMEL_CASE,
   TITLE_CASE,
+  SPLITS,
+  SPLIT_TRACKING_EVENTS,
 };

@@ -22,6 +22,8 @@ import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
 import useHasMounted from '../hooks/useHasMounted';
 
+import SplitTextButton from './SplitTextButton';
+
 const action = css`
   color: var(--secondary-text-color);
   transition: all 0.2s ease-out;
@@ -454,15 +456,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 display: flex;
               `}
             >
-              <Button
-                as={ExternalLink}
-                href="https://newrelic.com/signup"
-                size={Button.SIZE.EXTRA_SMALL}
-                variant={Button.VARIANT.PRIMARY}
-                instrumentation={{ component: 'GlobalHeader' }}
-              >
-                <span>{t('button.signUp')}</span>
-              </Button>
+              <SplitTextButton />
             </li>
           </ul>
         </div>
