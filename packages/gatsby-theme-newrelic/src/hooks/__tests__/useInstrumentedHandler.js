@@ -8,7 +8,8 @@ const TESSEN_OBJECT = {
   nr_product: 'THEME',
   nr_subproduct: 'TTHEME',
   location: 'Public',
-  customer_user_id: '',
+  customer_user_id: null,
+  anonymousId: null,
   env: '',
 };
 
