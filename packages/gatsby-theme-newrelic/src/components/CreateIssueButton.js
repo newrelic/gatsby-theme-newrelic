@@ -41,7 +41,7 @@ const CreateIssueButton = ({
       onClick={handleClick}
     >
       <Icon
-        name='fe-github'
+        name="fe-github"
         css={css`
           margin-right: 0.5rem;
         `}
