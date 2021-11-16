@@ -97,7 +97,7 @@ const createNavList = (listType, activeSite = null) => {
   return navList;
 };
 
-const CONDENSED_BREAKPOINT = '760px';
+const CONDENSED_BREAKPOINT = '815px';
 
 const actionLink = css`
   ${action};
@@ -165,7 +165,7 @@ const GlobalHeader = ({ className, activeSite }) => {
     }
   `);
 
-  const hideLogoText = useMedia({ maxWidth: '400px' });
+  const hideLogoText = useMedia({ maxWidth: '370px' });
 
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
