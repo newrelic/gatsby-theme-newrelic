@@ -1,7 +1,6 @@
 import warning from 'warning';
 import Cookies from 'js-cookie';
 import { CAMEL_CASE, TITLE_CASE } from './constants';
-import { convertToCamelCase, convertToTitleCase } from './changeCase';
 
 const warnAboutNoop = ({ config, action, name, category }) => {
   warning(
@@ -28,62 +27,56 @@ const warnAboutNoop = ({ config, action, name, category }) => {
 const canSendAction = ({ config, name, category }) =>
   name && category && config && config.product && config.subproduct;
 
-const tessenAction =
-  (action, config) =>
-  (name, category, properties = {}) => {
-    if (!canSendAction({ config, name, category })) {
-      return warnAboutNoop({ config, action, name, category });
-    }
+const tessenAction = (action, config) => (name, category, properties = {}) => {
+  if (!canSendAction({ config, name, category })) {
+    return warnAboutNoop({ config, action, name, category });
+  }
 
-    if (!CAMEL_CASE.test(name)) {
-      return warning(
-        false,
-        `tessen.${action}: The 'name' argument needs to be in camelCase. This has resulted in a noop. Please change '${name}' to something like '${convertToCamelCase(
-          name
-        )}'.`
-      );
-    }
-
-    if (!TITLE_CASE.test(category)) {
-      return warning(
-        TITLE_CASE.test(category),
-        `tessen.${action}: The 'category' argument needs to be in TitleCase. This has resulted in a noop. Please change '${category}' to something like '${convertToTitleCase(
-          category
-        )}'.`
-      );
-    }
-
-    if (!window.Tessen) {
-      return warning(
-        false,
-        `tessen.${name}: You are attempting to use a Tessen action, but Tessen is not available on 'window'. Calls to '${name}' will result in a noop.`
-      );
-    }
-
-    const customerId = JSON.parse(Cookies.get('ajs_user_id') || 'null');
-    const anonymousId = JSON.parse(Cookies.get('ajs_anonymous_id') || 'null');
-
-    window.Tessen[action](
-      name,
-      {
-        ...properties,
-        env: config.env || '',
-        category,
-        nr_product: config.product,
-        nr_subproduct: config.subproduct,
-        location: 'Public',
-        customer_user_id: customerId,
-        anonymousId,
-      },
-      {
-        Segment: {
-          integrations: {
-            All: true,
-          },
-        },
-      }
+  if (!CAMEL_CASE.test(name)) {
+    return warning(
+      false,
+      `tessen.${action}: The 'name' argument needs to be in camelCase. This has resulted in a noop.`
     );
-  };
+  }
+
+  if (!TITLE_CASE.test(category)) {
+    return warning(
+      TITLE_CASE.test(category),
+      `tessen.${action}: The 'category' argument needs to be in TitleCase. This has resulted in a noop.`
+    );
+  }
+
+  if (!window.Tessen) {
+    return warning(
+      false,
+      `tessen.${name}: You are attempting to use a Tessen action, but Tessen is not available on 'window'. Calls to '${name}' will result in a noop.`
+    );
+  }
+
+  const customerId = JSON.parse(Cookies.get('ajs_user_id') || 'null');
+  const anonymousId = JSON.parse(Cookies.get('ajs_anonymous_id') || 'null');
+
+  window.Tessen[action](
+    name,
+    {
+      ...properties,
+      env: config.env || '',
+      category,
+      nr_product: config.product,
+      nr_subproduct: config.subproduct,
+      location: 'Public',
+      customer_user_id: customerId,
+      anonymousId,
+    },
+    {
+      Segment: {
+        integrations: {
+          All: true,
+        },
+      },
+    }
+  );
+};
 
 const createTessen = (config) => ({
   page: tessenAction('page', config),

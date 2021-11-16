@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef } from 'react';
 import warning from 'warning';
 import useTessen from './useTessen';
 import { CAMEL_CASE, TITLE_CASE } from '../utils/constants';
-import { convertToCamelCase, convertToTitleCase } from '../utils/changeCase';
 
 const useInstrumentedHandler = (handler, attributes) => {
   const savedHandler = useRef();
@@ -26,9 +25,7 @@ const useInstrumentedHandler = (handler, attributes) => {
         eventName &&
           warning(
             CAMEL_CASE.test(eventName),
-            `You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op. Please change '${eventName}' to something like '${convertToCamelCase(
-              eventName
-            )}'.`
+            `You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op.`
           );
 
         warning(
@@ -39,9 +36,7 @@ const useInstrumentedHandler = (handler, attributes) => {
         category &&
           warning(
             TITLE_CASE.test(category),
-            `You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op. Please change '${category}' to something like '${convertToTitleCase(
-              category
-            )}'.`
+            `You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op.`
           );
 
         eventName && category && tessen.track(eventName, category, attrs);
