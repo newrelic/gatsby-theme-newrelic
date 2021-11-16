@@ -11,7 +11,7 @@ const useInstrumentedHandler = (handler, attributes) => {
   useEffect(() => {
     savedHandler.current = handler;
   }, [handler]);
-  // console.log({ attributes });
+
   return useCallback(
     (...args) => {
       const { eventName, category, ...attrs } =
