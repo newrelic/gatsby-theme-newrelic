@@ -35,7 +35,7 @@ const GlobalNavLink = ({ children, href, activeSite }) => {
         display: flex;
         align-items: center;
         height: 100%;
-        padding: 0.25rem 9px;
+        padding: 4px 9px;
         color: var(--color-neutrals-100);
         font-size: 0.75rem;
         line-height: 1.125rem;
@@ -47,11 +47,6 @@ const GlobalNavLink = ({ children, href, activeSite }) => {
 
         &:active {
           background-color: var(--color-neutrals-900);
-
-          .dark-mode & {
-            background-color: var(--color-dark-300);
-            color: var(--color-dark-700);
-          }
         }
 
         :hover {

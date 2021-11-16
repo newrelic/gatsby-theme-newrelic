@@ -30,11 +30,15 @@ const styles = {
   variant: {
     [VARIANTS.PRIMARY]: css`
       color: var(--color-white);
-      background-color: var(--color-brand-600);
+      background-color: var(--color-brand-500);
 
       &:hover {
         color: var(--color-white);
         background-color: var(--color-brand-500);
+      }
+      .dark-mode & {
+        color: var(--color-brand-600);
+        background-color: var(--color-teal-100);
       }
     `,
     [VARIANTS.LINK]: css`

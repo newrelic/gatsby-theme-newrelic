@@ -158,7 +158,7 @@ const GlobalHeader = ({ className, activeSite }) => {
     }
   `);
 
-  const hideLogoText = useMedia({ maxWidth: '655px' });
+  const hideLogoText = useMedia({ maxWidth: '400px' });
 
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
@@ -182,9 +182,14 @@ const GlobalHeader = ({ className, activeSite }) => {
         className={className}
         css={css`
           background-color: var(--color-neutrals-800);
+          box-shadow: var(--shadow-2);
           position: sticky;
           top: 0;
           z-index: 80;
+
+          .dark-mode & {
+            background-color: var(--color-dark-100);
+          }
         `}
       >
         <div
@@ -272,7 +277,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                   padding-right: 0;
                 `}
               >
-                <Icon name="logo-newrelic" size="1.125rem" />
+                <NewRelicLogo omitText={hideLogoText} size="104px" />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 {createNavList('dropdown', activeSite)}
@@ -333,6 +338,7 @@ const GlobalHeader = ({ className, activeSite }) => {
             <li
               css={css`
                 flex: 1;
+                padding: 0px 16px;
 
                 @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
                   flex: unset;
@@ -371,7 +377,13 @@ const GlobalHeader = ({ className, activeSite }) => {
               />
             </li>
             {locales.length > 1 && (
-              <li>
+              <li
+                css={css`
+                  @media screen and (max-width: 545px) {
+                    display: none;
+                  }
+                `}
+              >
                 <Dropdown align="right">
                   <Dropdown.Toggle
                     size={Button.SIZE.SMALL}
@@ -417,6 +429,10 @@ const GlobalHeader = ({ className, activeSite }) => {
                   white-space: nowrap;
                   border: 1px solid var(--color-brand-400);
                   border-radius: 4px;
+
+                  @media screen and (max-width: 545px) {
+                    display: none;
+                  }
                 `}
               >
                 <span

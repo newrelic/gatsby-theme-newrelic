@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 const Letter = styled.path`
-  fill: var(--color-white);
+  fill: var(--color-neutrals-050);
 `;
 
 const NewRelicLogo = ({ className, size, omitText }) => (

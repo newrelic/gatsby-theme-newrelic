@@ -124,6 +124,9 @@ const SearchInput = forwardRef(
               border: 1px solid var(--border-color);
               transition: border-color 5s linear;
             }
+            .dark-mode & {
+              background: var(--color-dark-050);
+            }
           `}
         />
         {value && onClear && (
@@ -167,15 +170,16 @@ const SearchInput = forwardRef(
               right: var(--horizontal-spacing);
               top: 50%;
               transform: translateY(-50%);
-              border: 1px solid var(--border-color);
+              border: 1px solid var(--color-neutrals-600);
+              border-radius: 0.25rem;
               line-height: 1;
               text-align: center;
-              background: var(--color-neutrals-100);
+              background: var(--color-neutrals-700);
 
               ${styles.size[size].hotkey}
 
               .dark-mode & {
-                background: var(--color-dark-200);
+                background: var(--color-dark-700);
               }
             `}
           >

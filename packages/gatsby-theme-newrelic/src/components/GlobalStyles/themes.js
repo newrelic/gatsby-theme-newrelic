@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 export default css`
   .light-mode {
-    --primary-background-color: var(--color-white);
+    --primary-background-color: var(--color-neutrals-100);
     --primary-text-color: var(--color-neutrals-700);
     --primary-text-hover-color: var(--color-neutrals-600);
 
@@ -36,7 +36,7 @@ export default css`
   }
 
   .dark-mode {
-    --primary-background-color: #1c2a2f;
+    --primary-background-color: var(--color-dark-100);
     --primary-text-color: var(--color-dark-700);
     --primary-text-hover-color: var(--color-dark-900);
 
