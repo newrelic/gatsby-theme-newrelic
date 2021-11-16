@@ -15,12 +15,11 @@ import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from '../components/Trans';
 
-const track = (trackName, attributes = {}) => {
-  if (typeof window !== 'undefined' && window.Tessen && trackName) {
+const track = (attributes = {}) => {
+  if (typeof window !== 'undefined' && window.Tessen) {
     window.Tessen.track({
       eventName: 'error404',
       category: 'ErrorPage',
-      name: trackName,
       ...attributes,
     });
   }
@@ -186,7 +185,7 @@ const NotFoundPage = ({
 
   useEffect(() => {
     if (searchResult) {
-      track('404_redirect', {
+      track({
         path: location.pathname,
         resultCount: searchResult.length,
         searchTerm,
