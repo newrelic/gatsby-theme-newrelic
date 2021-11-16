@@ -1,21 +1,18 @@
 const { execSync } = require("child_process");
 var pjson = require("../package.json");
 const currentVersion = pjson.version;
-const EXCLUDE_BRANCHES = ["master", "develop", "main"];
-const REQUIRED_NODE_VERSION = 16;
-
 
 /**
  * Check that the NPM_TOKEN environment variable is set
  * @returns {String} Either the latest version or ''
  */
 const checkNpmToken = () => {
-  const npmToken = process.env.NPM_TOKEN;
+  const npmToken = process.env.NPM_AUTH_TOKEN;
   if (!npmToken) {
-    console.error(`❌ NPM_TOKEN is not set ❌`);
+    console.error(`❌ NPM_AUTH_TOKEN environment variable is not set ❌`);
     process.exit(1);
   }
-  console.log(`✅ NPM token environment variable is set ✅`);
+  console.log(`✅ NPM_AUTH_TOKEN environment variable is set ✅`);
 };
 
 /**
@@ -32,7 +29,7 @@ const getBranchName = () => {
  * @returns {String} Either the latest version or ''
  */
 const checkBranchTagExists = (tag) => {
-  return executeCommand(`npm view ruairi-test dist-tags.${tag}`);
+  return executeCommand(`npm view @newrelic/gatsby-theme-newrelic dist-tags.${tag}`);
 };
 
 /**
@@ -54,7 +51,7 @@ const executeCommand = (cmd) => {
 /**
  * Removes a redirect if the slug is in the redirects array
  * @param {String} branchName The current working branch name
- * @param {String} branchTagVersion The latest version from the branch tag 
+ * @param {String} branchTagVersion The latest version from the branch tag
  * @returns {String} The next branch version
  */
 const getNextBranchVersion = (branchName, branchTagVersion) => {
@@ -70,43 +67,14 @@ const getNextBranchVersion = (branchName, branchTagVersion) => {
     console.log({ baseVersion, dotVersion });
     return `${baseVersion}.${dotVersion + 1}`;
   } else {
+    console.log({ currentVersion });
+    const baseVersion = currentVersion.indexOf("-") !== -1
+      ? currentVersion.substring(0, currentVersion.indexOf("-"))
+      : currentVersion;
+    console.log({ baseVersion });
     console.log(`ℹ️ Branch tag '${branchName}' does not exist yet ℹ️`);
-    console.log(`Next Version: ${currentVersion}-${branchName}.1`);
-    return `${currentVersion}-${branchName}.1`;
-  }
-};
-
-/**
- * Checks the node version you are using is correct
- */
-const checkNodeVersion = () => {
-  const nodeVersion = process.version;
-  const nodeVersionParts = nodeVersion.split(".");
-  const majorVersion = parseInt(nodeVersionParts[0].replace("v", ""));
-  if (majorVersion !== REQUIRED_NODE_VERSION) {
-    console.error(
-      `❌ Currently using ${nodeVersion}, please run 'nvm use 16' to switch to Node 16 ❌`
-    );
-    process.exit(1);
-  } else {
-    console.log(`✅ Node version ${nodeVersion} is OK ✅`);
-  }
-};
-
-/**
- * Checks for discrepancies between the yarn.lock and package.json
- */
-const yarnInstall = () => {
-  try {
-    console.log("📦 Checking dependencies are up to date... 📦");
-    execSync(`yarn install --frozen-lockfile`);
-    console.log(`✅ yarn.lock is up to date ✅`);
-  } catch (err) {
-    console.log(`❌ Error: ${err} ❌`);
-    console.error(
-      `❌ yarn.lock is out of sync. Please run 'yarn install' to update! ❌`
-    );
-    process.exit(1);
+    console.log(`Next Version: ${baseVersion}-${branchName}.1`);
+    return `${baseVersion}-${branchName}.1`;
   }
 };
 
@@ -135,23 +103,24 @@ const publishYarnVersion = (tag) => {
 const main = async () => {
   checkNpmToken();
   const branchName = getBranchName();
-  if (EXCLUDE_BRANCHES.includes(branchName)) {
-    console.log(`ℹ️ Branch ${branchName} is excluded ℹ️`);
-    process.exit(0);
-  }
-  const formattedBranchName = branchName.replace("/", "-");
-  console.log({ formattedBranchName });
-  const branchTagLatest = checkBranchTagExists(formattedBranchName);
+  const formattedBranchName = branchName.replace(/\W/g, "-");
+
+  const newBranchName = formattedBranchName.endsWith("-")
+    ? formattedBranchName.replace(/-$/, "")
+    : formattedBranchName;
+  console.log({ newBranchName });
+
+  const branchTagLatest = checkBranchTagExists(newBranchName);
   console.log({ branchTagLatest });
+
   const nextBranchVersion = getNextBranchVersion(
-    formattedBranchName,
+    newBranchName,
     branchTagLatest
   );
+
   console.log({ nextBranchVersion });
-  checkNodeVersion();
-  yarnInstall();
   setYarnVersion(nextBranchVersion);
-  publishYarnVersion(formattedBranchName);
+  publishYarnVersion(newBranchName);
 };
 
 main();
