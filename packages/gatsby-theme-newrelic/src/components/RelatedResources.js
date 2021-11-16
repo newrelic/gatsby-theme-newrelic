@@ -97,7 +97,7 @@ const RelatedResources = ({ className, resources, title }) => {
                   `}
                   instrumentation={{
                     navInteractionType: 'relatedResourcesLinkClick',
-                    referrer: location.pathname,
+                    currentUrl: location.pathname,
                   }}
                 >
                   <span
