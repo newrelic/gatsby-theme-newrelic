@@ -1,5 +1,5 @@
 const { execSync } = require("child_process");
-var pjson = require("../package.json");
+var pjson = require("../packages/gatsby-theme-newrelic/package.json");
 const currentVersion = pjson.version;
 
 /**

@@ -1,14 +1,10 @@
-name: Release Feature Branch
+name: Release Working Branch Lerna
 
 on:
   push:
     branches-ignore:
       - main
       - develop
-
-env:
-  BOT_NAME: nr-opensource-bot
-  BOT_EMAIL: opensource+bot@newrelic.com
 
 jobs:
   generate-release:
@@ -52,17 +48,5 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > .npmrc
 
-      - name: Test Build
-        run: yarn workspace demo build --log-pages
-        env:
-          GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES: true
-          CI: true
-
       - name: Lerna Publish
-        env:
-          GIT_AUTHOR_NAME: ${{ env.BOT_NAME }}
-          GIT_AUTHOR_EMAIL: ${{ env.BOT_EMAIL }}
-          GIT_COMMITTER_NAME: ${{ env.BOT_NAME }}
-          GIT_COMMITTER_EMAIL: ${{ env.BOT_EMAIL }}
-          GH_TOKEN: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
         run: yarn release --canary minor

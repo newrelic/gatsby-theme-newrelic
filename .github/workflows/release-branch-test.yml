@@ -1,4 +1,4 @@
-name: Release Working Branch
+name: Release Working Branch Script
 
 on: workflow_dispatch
 
