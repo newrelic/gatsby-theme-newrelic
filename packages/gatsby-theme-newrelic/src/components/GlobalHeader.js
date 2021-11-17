@@ -21,6 +21,7 @@ import { rgba } from 'polished';
 import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
 import useHasMounted from '../hooks/useHasMounted';
+import useTessen from '../hooks/useTessen';
 
 import SplitTextButton from './SplitTextButton';
 
@@ -116,20 +117,14 @@ const useSearchQuery = () => {
   const searchQueryParam = queryParams.get('q');
   const [searchTerm, setSearchTerm] = useState(searchQueryParam);
   const hasQParam = queryParams.has('q');
+  const tessen = useTessen();
 
   useDebounce(
     () => {
       if (hasQParam) {
         setQueryParam('q', searchTerm);
-        if (
-          typeof window !== 'undefined' &&
-          window.Tessen &&
-          searchTerm &&
-          searchTerm.length > 2
-        ) {
-          window.Tessen.track({
-            eventName: 'swiftypeSearchInput',
-            category: 'GlobalSearch',
+        if (searchTerm && searchTerm.length > 2) {
+          tessen.track('swiftypeSearchInput', 'GlobalSearch', {
             name: 'searchInput',
             searchTerm,
           });
