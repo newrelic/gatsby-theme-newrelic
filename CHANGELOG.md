@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.4.2...v3.5.0) (2021-11-17)
+
+
+* feat!: tessen updates, breaking changes ([0083118](https://github.com/newrelic/gatsby-theme-newrelic/commit/00831186ada3725acdb92ee3889049b2891a7173))
+
+
+### Bug Fixes
+
+* get mocks working for unit tests ([b06b51a](https://github.com/newrelic/gatsby-theme-newrelic/commit/b06b51a7aae8652721d981370ac930f37c284da8))
+* missed closing quote ([a875031](https://github.com/newrelic/gatsby-theme-newrelic/commit/a875031fc2a4c9d1d5259887f58d93196fd268ec))
+* tests require anonymousId and customer_user_id ([8da7e85](https://github.com/newrelic/gatsby-theme-newrelic/commit/8da7e853700007c79375bb6b7ec37a757fcc39cd))
+* typo ([e7bc050](https://github.com/newrelic/gatsby-theme-newrelic/commit/e7bc0500bd85973352e6ee4761b9900e21f7976d))
+* update all "n/a" to "none" for consistency ([b1a0406](https://github.com/newrelic/gatsby-theme-newrelic/commit/b1a040627b16307df759175fec007354659c007a))
+* update verbiage of documentation ([4f7dc5b](https://github.com/newrelic/gatsby-theme-newrelic/commit/4f7dc5bdb810d84b6c5ef26f8a480d9645983b80))
+* update verbiage on useScrollFreeze hook ([90954fb](https://github.com/newrelic/gatsby-theme-newrelic/commit/90954fbba18b52b6269a7ba030fe7b24dbeb837c))
+* update verbiage on useSyncedRef docs ([04d5a8c](https://github.com/newrelic/gatsby-theme-newrelic/commit/04d5a8ce1983c8e25c9c8da797d0ede926d7a6a5))
+
+
+### Features
+
+* **tessen:** add segment anonymous id to tessen calls ([11cdeb4](https://github.com/newrelic/gatsby-theme-newrelic/commit/11cdeb48c0ece1a13b332fb336dbdd45fb71a591))
+* replacing pageAction with Tessen ([beef149](https://github.com/newrelic/gatsby-theme-newrelic/commit/beef149004fe636e06fb68d590607d1603f98232))
+
+
+### BREAKING CHANGES
+
+* with the function signature changes we made to tessen, code changes will be required in order to use (tessen in) subsequent versions of the theme.
+
+
+
+
+
 ## [3.4.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.4.1...v3.4.2) (2021-11-11)
 
 
