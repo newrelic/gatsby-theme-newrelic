@@ -1,10 +1,6 @@
 name: Release Working Branch
 
-on:
-  push:
-    branches-ignore:
-      - main
-      - develop
+on: workflow_dispatch
 
 env:
   BOT_NAME: nr-opensource-bot
