@@ -41,4 +41,6 @@ jobs:
       - name: Publish
         env:
             NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-        run: yarn branch-release
+        run: |
+          
+          yarn branch-release

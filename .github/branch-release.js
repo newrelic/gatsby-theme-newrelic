@@ -1,7 +1,7 @@
 const { execSync } = require("child_process");
 var pjson = require("../packages/gatsby-theme-newrelic/package.json");
 const currentVersion = pjson.version;
-
+const PACKAGE_PATH = './packages/gatsby-theme-newrelic';
 /**
  * Check that the NPM_TOKEN environment variable is set
  * @returns {String} Either the latest version or ''
@@ -84,7 +84,7 @@ const getNextBranchVersion = (branchName, branchTagVersion) => {
  */
 const setYarnVersion = (version) => {
   const yarnVersion = executeCommand(
-    `yarn version --new-version "${version}" --no-git-tag-version`
+    `yarn --cwd ${PACKAGE_PATH} version --new-version "${version}" --no-git-tag-version`
   );
   console.log(`✅ Yarn version set ✅`);
   console.log(yarnVersion);
@@ -95,7 +95,7 @@ const setYarnVersion = (version) => {
  * @param {String} tag The tag to publish to
  */
 const publishYarnVersion = (tag) => {
-  const published = executeCommand(`yarn publish --access public --tag ${tag}`);
+  const published = executeCommand(`yarn --cwd ${PACKAGE_PATH} publish --access public --tag ${tag}`);
   console.log(`✅ Yarn version set ✅`);
   console.log(published);
 };
