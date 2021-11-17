@@ -3,14 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.5.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.5.0...v3.5.1) (2021-11-17)
-
-**Note:** Version bump only for package demo
-
-
-
-
-
 ## 1.1.10 (2020-07-21)
 
 **Note:** Version bump only for package demo
