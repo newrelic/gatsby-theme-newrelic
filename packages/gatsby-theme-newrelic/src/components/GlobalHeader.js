@@ -124,7 +124,9 @@ const useSearchQuery = () => {
       if (hasQParam) {
         setQueryParam('q', searchTerm);
         if (searchTerm && searchTerm.length > 2) {
-          tessen.track('swiftypeSearchInput', 'GlobalSearch', {
+          tessen.track({
+            eventName: 'swiftypeSearchInput',
+            category: 'GlobalSearch',
             name: 'searchInput',
             searchTerm,
           });

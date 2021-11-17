@@ -29,12 +29,12 @@ const canSendAction = ({ config, name, category }) =>
 
 const tessenAction =
   (action, config) =>
-  (name, category, properties = {}) => {
-    if (!canSendAction({ config, name, category })) {
-      return warnAboutNoop({ config, action, name, category });
+  ({ eventName, category, ...properties }) => {
+    if (!canSendAction({ config, name: eventName, category })) {
+      return warnAboutNoop({ config, action, name: eventName, category });
     }
 
-    if (!CAMEL_CASE.test(name)) {
+    if (!CAMEL_CASE.test(eventName)) {
       return warning(
         false,
         `tessen.${action}: The 'name' argument needs to be in camelCase. This has resulted in a noop.`
@@ -51,7 +51,7 @@ const tessenAction =
     if (!window.Tessen) {
       return warning(
         false,
-        `tessen.${name}: You are attempting to use a Tessen action, but Tessen is not available on 'window'. Calls to '${name}' will result in a noop.`
+        `tessen.${eventName}: You are attempting to use a Tessen action, but Tessen is not available on 'window'. Calls to '${eventName}' will result in a noop.`
       );
     }
 
@@ -59,7 +59,7 @@ const tessenAction =
     const anonymousId = JSON.parse(Cookies.get('ajs_anonymous_id') || 'null');
 
     window.Tessen[action](
-      name,
+      eventName,
       {
         ...properties,
         env: config.env || '',

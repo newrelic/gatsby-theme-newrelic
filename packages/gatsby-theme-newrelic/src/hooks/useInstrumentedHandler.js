@@ -39,7 +39,9 @@ const useInstrumentedHandler = (handler, attributes) => {
             `You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op.`
           );
 
-        eventName && category && tessen.track(eventName, category, attrs);
+        eventName &&
+          category &&
+          tessen.track({ eventName, category, ...attrs });
       }
 
       if (savedHandler.current) {

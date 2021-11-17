@@ -104,7 +104,9 @@ const NavLink = ({
             e.preventDefault();
             e.stopPropagation();
             onToggle && onToggle();
-            tessen.track('navLinkInteraction', 'NavLink', {
+            tessen.track({
+              eventName: 'navLinkInteraction',
+              category: 'NavLink',
               name: 'navLinkClick',
               navInteractionType: 'leftNavMenuToggle',
               to,

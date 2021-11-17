@@ -36,7 +36,9 @@ const SignUpLink = forwardRef(
             onClick(e);
           }
 
-          tessen.track('stitchedPathLinkClick', 'DocPageLinkClick', {
+          tessen.track({
+            eventName: 'stitchedPathLinkClick',
+            category: 'DocPageLinkClick',
             href,
             path: location.pathname,
             component: instrumentation?.component,

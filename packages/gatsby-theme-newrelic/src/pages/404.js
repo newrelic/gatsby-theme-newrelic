@@ -16,16 +16,6 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from '../components/Trans';
 import useTessen from '../hooks/useTessen';
 
-const track = (attributes = {}) => {
-  if (typeof window !== 'undefined' && window.Tessen) {
-    window.Tessen.track({
-      eventName: 'error404',
-      category: 'ErrorPage',
-      ...attributes,
-    });
-  }
-};
-
 const NotFoundPage = ({
   location,
   pageContext: { themeOptions, swiftypeEngineKey },
@@ -184,7 +174,9 @@ const NotFoundPage = ({
 
   useEffect(() => {
     if (searchResult) {
-      tessen.track('error404', 'ErrorPage', {
+      tessen.track({
+        eventName: 'error404',
+        category: 'ErrorPage',
         path: location.pathname,
         resultCount: searchResult.length,
         searchTerm,
