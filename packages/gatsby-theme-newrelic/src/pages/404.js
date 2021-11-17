@@ -14,14 +14,7 @@ import Button from '../components/Button';
 import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from '../components/Trans';
-
-const track = (actionName, attributes = {}) => {
-  if (typeof window !== 'undefined' && window.newrelic && actionName) {
-    window.newrelic.addPageAction(actionName, {
-      ...attributes,
-    });
-  }
-};
+import useTessen from '../hooks/useTessen';
 
 const NotFoundPage = ({
   location,
@@ -43,6 +36,7 @@ const NotFoundPage = ({
   const { t: translate } = useThemeTranslation();
   const [searchTerm, setSearchTerm] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
+  const tessen = useTessen();
 
   const pageLocale = getLocale({ location }, themeOptions);
 
@@ -180,7 +174,9 @@ const NotFoundPage = ({
 
   useEffect(() => {
     if (searchResult) {
-      track('404_redirect', {
+      tessen.track({
+        eventName: 'error404',
+        category: 'ErrorPage',
         path: location.pathname,
         resultCount: searchResult.length,
         searchTerm,

@@ -42,27 +42,19 @@ const Link = forwardRef(
       }
     `);
 
-    const handleExternalLinkClick = useInstrumentedHandler(
-      onClick,
-      {
-        tessenEventName: 'gatsbyTheme',
-        tessenCategoryName: 'ExternalLinkClick',
-        href: to,
-        ...instrumentation,
-      },
-      'tessen'
-    );
+    const handleExternalLinkClick = useInstrumentedHandler(onClick, {
+      eventName: 'gatsbyTheme',
+      category: 'ExternalLinkClick',
+      href: to,
+      ...instrumentation,
+    });
 
-    const handleInternalLinkClick = useInstrumentedHandler(
-      onClick,
-      {
-        tessenEventName: 'gatsbyTheme',
-        tessenCategoryName: 'InternalLinkClick',
-        href: to,
-        ...instrumentation,
-      },
-      'tessen'
-    );
+    const handleInternalLinkClick = useInstrumentedHandler(onClick, {
+      eventName: 'gatsbyTheme',
+      category: 'InternalLinkClick',
+      href: to,
+      ...instrumentation,
+    });
 
     if (to.startsWith(siteUrl)) {
       to = to.replace(siteUrl, '');

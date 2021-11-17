@@ -21,6 +21,9 @@ import { rgba } from 'polished';
 import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
 import useHasMounted from '../hooks/useHasMounted';
+import useTessen from '../hooks/useTessen';
+
+import SplitTextButton from './SplitTextButton';
 
 const action = css`
   color: var(--secondary-text-color);
@@ -114,18 +117,17 @@ const useSearchQuery = () => {
   const searchQueryParam = queryParams.get('q');
   const [searchTerm, setSearchTerm] = useState(searchQueryParam);
   const hasQParam = queryParams.has('q');
+  const tessen = useTessen();
 
   useDebounce(
     () => {
       if (hasQParam) {
         setQueryParam('q', searchTerm);
-        if (
-          typeof window !== 'undefined' &&
-          window.newrelic &&
-          searchTerm &&
-          searchTerm.length > 2
-        ) {
-          window.newrelic.addPageAction('swiftypeSearch_input', {
+        if (searchTerm && searchTerm.length > 2) {
+          tessen.track({
+            eventName: 'swiftypeSearchInput',
+            category: 'GlobalSearch',
+            name: 'searchInput',
             searchTerm,
           });
         }
@@ -451,15 +453,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 display: flex;
               `}
             >
-              <Button
-                as={ExternalLink}
-                href="https://newrelic.com/signup"
-                size={Button.SIZE.EXTRA_SMALL}
-                variant={Button.VARIANT.PRIMARY}
-                instrumentation={{ component: 'GlobalHeader' }}
-              >
-                <span>{t('button.signUp')}</span>
-              </Button>
+              <SplitTextButton />
             </li>
           </ul>
         </div>

@@ -2,9 +2,23 @@ import useInstrumentedHandler from '../useInstrumentedHandler';
 import { renderHook } from '@testing-library/react-hooks';
 
 const originalError = console.error;
+const TESSEN_OBJECT = {
+  name: 'click',
+  category: 'CategoryName',
+  nr_product: 'THEME',
+  nr_subproduct: 'TTHEME',
+  location: 'Public',
+  customer_user_id: null,
+  anonymousId: null,
+  env: '',
+};
 
-global.newrelic = {
-  addPageAction: jest.fn(),
+const SEGMENT_OBJECT = {
+  Segment: {
+    integrations: {
+      All: true,
+    },
+  },
 };
 
 global.Tessen = {
@@ -13,36 +27,17 @@ global.Tessen = {
 
 afterEach(() => {
   console.error = originalError;
-  global.newrelic.addPageAction.mockClear();
   global.Tessen.track.mockClear();
-});
-
-test('instruments page action and calls original handler with all arguments', () => {
-  const originalHandler = jest.fn();
-  const { result } = renderHook(() =>
-    useInstrumentedHandler(originalHandler, { actionName: 'click' })
-  );
-
-  result.current(1, 2);
-
-  expect(originalHandler).toHaveBeenCalledTimes(1);
-  expect(originalHandler).toHaveBeenCalledWith(1, 2);
-  expect(global.newrelic.addPageAction).toHaveBeenCalledTimes(1);
-  expect(global.newrelic.addPageAction).toHaveBeenCalledWith('click', {});
 });
 
 test('instruments tessen and calls original handler with all arguments', () => {
   const originalHandler = jest.fn();
   const { result } = renderHook(() =>
-    useInstrumentedHandler(
-      originalHandler,
-      {
-        tessenEventName: 'eventName',
-        tessenCategoryName: 'CategoryName',
-        name: 'click',
-      },
-      'tessen'
-    )
+    useInstrumentedHandler(originalHandler, {
+      eventName: 'eventName',
+      category: 'CategoryName',
+      name: 'click',
+    })
   );
 
   result.current(1, 2);
@@ -52,41 +47,56 @@ test('instruments tessen and calls original handler with all arguments', () => {
   expect(global.Tessen.track).toHaveBeenCalledTimes(1);
   expect(global.Tessen.track).toHaveBeenCalledWith(
     'eventName',
-    {
-      name: 'click',
-      category: 'CategoryName',
-      nr_product: 'THEME',
-      nr_subproduct: 'TTHEME',
-      location: 'Public',
-      customer_user_id: '',
-      env: '',
-    },
-    {
-      Segment: {
-        integrations: {
-          All: true,
-        },
-      },
-    }
+    TESSEN_OBJECT,
+    SEGMENT_OBJECT
   );
 });
 
 test('attaches any additional fields in config as attributes', () => {
   const { result } = renderHook(() =>
-    useInstrumentedHandler(jest.fn(), { actionName: 'click', darkMode: true })
+    useInstrumentedHandler(jest.fn(), {
+      eventName: 'eventName',
+      category: 'CategoryName',
+      name: 'click',
+      darkMode: true,
+    })
   );
 
   result.current();
 
-  expect(global.newrelic.addPageAction).toHaveBeenCalledWith('click', {
-    darkMode: true,
-  });
+  expect(global.Tessen.track).toHaveBeenCalledWith(
+    'eventName',
+    { ...TESSEN_OBJECT, darkMode: true },
+    SEGMENT_OBJECT
+  );
+});
+
+test('allows config argument to be a function called with the handler arguments', () => {
+  const { result } = renderHook(() =>
+    useInstrumentedHandler(jest.fn(), (a, b) => ({
+      eventName: 'eventName',
+      category: 'CategoryName',
+      name: 'click',
+      sum: a + b,
+    }))
+  );
+  result.current(2, 2);
+  expect(global.Tessen.track).toHaveBeenCalledWith(
+    'eventName',
+    { ...TESSEN_OBJECT, sum: 4 },
+    SEGMENT_OBJECT
+  );
 });
 
 test('original return value is maintained', () => {
   const originalHandler = () => 'tacos';
   const { result } = renderHook(() =>
-    useInstrumentedHandler(originalHandler, { actionName: 'click' })
+    useInstrumentedHandler(originalHandler, {
+      eventName: 'eventName',
+      category: 'CategoryName',
+      name: 'click',
+      darkMode: true,
+    })
   );
 
   const returnValue = result.current();
@@ -94,99 +104,12 @@ test('original return value is maintained', () => {
   expect(returnValue).toEqual('tacos');
 });
 
-test('successfully instruments call if original handler is not set', () => {
-  const { result } = renderHook(() =>
-    useInstrumentedHandler(null, { actionName: 'click' })
-  );
-
-  result.current('clicked!');
-
-  expect(global.newrelic.addPageAction).toHaveBeenCalledWith('click', {});
-});
-
-test('allows config argument to be a function called with the handler arguments', () => {
-  const { result } = renderHook(() =>
-    useInstrumentedHandler(jest.fn(), (a, b) => ({
-      actionName: 'add',
-      sum: a + b,
-    }))
-  );
-
-  result.current(2, 2);
-
-  expect(global.newrelic.addPageAction).toHaveBeenCalledWith('add', { sum: 4 });
-});
-
-test('does not instrument the request if newrelic is not installed', () => {
-  const originalNewRelic = global.newrelic;
-  global.newrelic = null;
-
-  const originalHandler = jest.fn();
-  const { result } = renderHook(() =>
-    useInstrumentedHandler(originalHandler, { actionName: 'not called' })
-  );
-
-  expect(() => result.current()).not.toThrow();
-  expect(originalHandler).toHaveBeenCalled();
-
-  global.newrelic = originalNewRelic;
-});
-
-test('warns if actionName is not set', () => {
-  console.error = jest.fn();
-
-  const { result } = renderHook(() =>
-    useInstrumentedHandler(jest.fn(), { name: 'click' })
-  );
-
-  result.current();
-
-  expect(console.error).toHaveBeenCalledWith(
-    expect.stringContaining(
-      'You are attempting to instrument a handler, but the `actionName` property is not set. This will result in a no-op.'
-    )
-  );
-});
-
-test('warns if tessenEventName is not set', () => {
-  console.error = jest.fn();
-
-  const { result } = renderHook(() =>
-    useInstrumentedHandler(jest.fn(), { name: 'click' }, 'tessen')
-  );
-
-  result.current();
-
-  expect(console.error).toHaveBeenCalledWith(
-    expect.stringContaining(
-      'You are attempting to instrument a handler, but the `tessenEventName` property is not set. This will result in a no-op.'
-    )
-  );
-});
-
-test('warns if tessenCategoryName is not set', () => {
-  console.error = jest.fn();
-
-  const { result } = renderHook(() =>
-    useInstrumentedHandler(jest.fn(), { name: 'click' }, 'tessen')
-  );
-
-  result.current();
-
-  expect(console.error).toHaveBeenCalledWith(
-    expect.stringContaining(
-      'You are attempting to instrument a handler, but the `tessenCategoryName` property is not set. This will result in a no-op.'
-    )
-  );
-});
-
-test('warns if Tessen attributes used but tessen agent is not specified', () => {
+test('warns if eventName is not set', () => {
   console.error = jest.fn();
 
   const { result } = renderHook(() =>
     useInstrumentedHandler(jest.fn(), {
-      tessenEventName: 'eventName',
-      tessenCategoryName: 'CategoryName',
+      category: 'CategoryName',
       name: 'click',
     })
   );
@@ -195,24 +118,82 @@ test('warns if Tessen attributes used but tessen agent is not specified', () => 
 
   expect(console.error).toHaveBeenCalledWith(
     expect.stringContaining(
-      'You added Tessen attributes but did not specify `tessen` as the agent. This will result in a no-op Tessen call.'
+      'You are attempting to instrument a handler, but the `eventName` property is not set. This will result in a no-op.'
     )
   );
 });
 
-test('does not warn if newrelic is not installed', () => {
-  const originalNewRelic = global.newrelic;
-
-  global.newrelic = null;
+test('warns if category is not set', () => {
   console.error = jest.fn();
 
   const { result } = renderHook(() =>
-    useInstrumentedHandler(jest.fn(), { name: 'click' })
+    useInstrumentedHandler(jest.fn(), {
+      eventName: 'eventName',
+      name: 'click',
+    })
   );
 
   result.current();
 
-  expect(console.error).not.toHaveBeenCalled();
+  expect(console.error).toHaveBeenCalledWith(
+    expect.stringContaining(
+      'You are attempting to instrument a handler, but the `category` property is not set. This will result in a no-op.'
+    )
+  );
+});
 
-  global.newrelic = originalNewRelic;
+test('warns if category is not in Title Case', () => {
+  console.error = jest.fn();
+
+  const { result } = renderHook(() =>
+    useInstrumentedHandler(jest.fn(), {
+      eventName: 'eventName',
+      category: 'category name',
+      name: 'click',
+    })
+  );
+
+  result.current();
+
+  expect(console.error).toHaveBeenCalledWith(
+    expect.stringContaining(
+      "You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op."
+    )
+  );
+});
+
+test('warns if eventName is not in Camel Case', () => {
+  console.error = jest.fn();
+
+  const { result } = renderHook(() =>
+    useInstrumentedHandler(jest.fn(), {
+      eventName: 'Event_name',
+      category: 'CategoryName',
+      name: 'click',
+    })
+  );
+
+  result.current();
+
+  expect(console.error).toHaveBeenCalledWith(
+    expect.stringContaining(
+      "You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op."
+    )
+  );
+});
+
+test('does not instrument the request if Tessen is not installed', () => {
+  const originalTessen = global.Tessen;
+  global.Tessen = null;
+  const originalHandler = jest.fn();
+  const { result } = renderHook(() =>
+    useInstrumentedHandler(originalHandler, {
+      eventName: 'Event_name',
+      category: 'CategoryName',
+      name: 'click',
+    })
+  );
+  expect(() => result.current()).not.toThrow();
+  expect(originalHandler).toHaveBeenCalled();
+  global.Tessen = originalTessen;
 });
