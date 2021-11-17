@@ -88,8 +88,7 @@ const CodeBlock = ({
   const handleCopyClick = useInstrumentedHandler(
     () => copy(containsEmbeddedHTML ? normalizedCode : code),
     {
-      eventName: 'copyCodeBlockClick',
-      category: 'CodeBlock',
+      actionName: 'copyCodeBlock_click',
       modified,
     }
   );

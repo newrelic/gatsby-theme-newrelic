@@ -27,8 +27,7 @@ const CreateIssueButton = ({
 }) => {
   const { t } = useThemeTranslation();
   const handleClick = useInstrumentedHandler(onClick, {
-    eventName: 'createAnIssueClick',
-    category: 'CreateIssue',
+    actionName: 'createAnIssue_click',
     component: instrumentation?.component,
   });
 

@@ -5,7 +5,6 @@ import { css } from '@emotion/react';
 import Link from './Link';
 import Icon from './Icon';
 import Button from './Button';
-import useTessen from '../hooks/useTessen';
 
 const NavLink = ({
   active,
@@ -19,8 +18,6 @@ const NavLink = ({
   onToggle,
   mobileBreakpoint,
 }) => {
-  const tessen = useTessen();
-
   const isExternalLink = to && !to.startsWith('/');
   const Element = to ? Link : 'div';
 
@@ -104,14 +101,13 @@ const NavLink = ({
             e.preventDefault();
             e.stopPropagation();
             onToggle && onToggle();
-            tessen.track({
-              eventName: 'navLinkInteraction',
-              category: 'NavLink',
-              name: 'navLinkClick',
-              navInteractionType: 'leftNavMenuToggle',
-              to,
-              isExpanded,
-            });
+            if (typeof window !== 'undefined' && window.newrelic) {
+              window.newrelic.addPageAction('navInteraction', {
+                navInteractionType: 'leftNavMenuToggle',
+                to,
+                isExpanded,
+              });
+            }
           }}
           css={css`
             font-size: 1rem;

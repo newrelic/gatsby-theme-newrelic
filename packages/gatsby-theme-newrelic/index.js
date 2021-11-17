@@ -57,6 +57,7 @@ export { default as formatCode } from './src/utils/formatCode';
 export { default as useActiveHash } from './src/hooks/useActiveHash';
 export { default as useClipboard } from './src/hooks/useClipboard';
 export { default as useFormattedCode } from './src/hooks/useFormattedCode';
+export { default as useInstrumentedData } from './src/hooks/useInstrumentedData';
 export { default as useInstrumentedHandler } from './src/hooks/useInstrumentedHandler';
 export { default as useKeyPress } from './src/hooks/useKeyPress';
 export { default as useLayout } from './src/hooks/useLayout';

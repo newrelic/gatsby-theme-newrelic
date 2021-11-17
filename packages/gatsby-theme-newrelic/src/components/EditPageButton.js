@@ -16,8 +16,7 @@ const EditPageButton = ({
 }) => {
   const { t } = useThemeTranslation();
   const handleClick = useInstrumentedHandler(onClick, {
-    eventName: 'editThisPageClick',
-    category: 'EditPage',
+    actionName: 'editThisPage_click',
     component: instrumentation?.component,
   });
 

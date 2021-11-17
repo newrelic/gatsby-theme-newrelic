@@ -14,9 +14,7 @@ const SimpleFeedback = () => {
 
   const handleClick = (feedbackType) => {
     setClicked(true);
-    tessen.track({
-      eventName: 'feedbackThumbClick',
-      category: `${feedbackType}FeedbackClick`,
+    tessen.track('feedbackThumbClick', `${feedbackType}FeedbackClick`, {
       path: location.pathname,
     });
   };

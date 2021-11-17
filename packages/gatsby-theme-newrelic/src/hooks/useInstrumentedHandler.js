@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useRef } from 'react';
 import warning from 'warning';
 import useTessen from './useTessen';
-import { CAMEL_CASE, TITLE_CASE } from '../utils/constants';
 
-const useInstrumentedHandler = (handler, attributes) => {
+const useInstrumentedHandler = (handler, attributes, agent = 'newrelic') => {
   const savedHandler = useRef();
   const tessen = useTessen();
 
@@ -13,42 +12,41 @@ const useInstrumentedHandler = (handler, attributes) => {
 
   return useCallback(
     (...args) => {
-      const { eventName, category, ...attrs } =
+      const { actionName, tessenEventName, tessenCategoryName, ...attrs } =
         typeof attributes === 'function' ? attributes(...args) : attributes;
 
-      if (window.Tessen) {
+      if (agent === 'newrelic' && window.newrelic) {
         warning(
-          eventName,
-          'You are attempting to instrument a handler, but the `eventName` property is not set. This will result in a no-op.'
+          !tessenEventName && !tessenCategoryName,
+          'You added Tessen attributes but did not specify `tessen` as the agent. This will result in a no-op Tessen call.'
+        );
+        warning(
+          actionName,
+          'You are attempting to instrument a handler, but the `actionName` property is not set. This will result in a no-op.'
         );
 
-        eventName &&
-          warning(
-            CAMEL_CASE.test(eventName),
-            `You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op.`
-          );
+        actionName && window.newrelic.addPageAction(actionName, attrs);
+      }
 
+      if (agent === 'tessen') {
         warning(
-          category,
-          'You are attempting to instrument a handler, but the `category` property is not set. This will result in a no-op.'
+          tessenEventName,
+          'You are attempting to instrument a handler, but the `tessenEventName` property is not set. This will result in a no-op.'
         );
-
-        category &&
-          warning(
-            TITLE_CASE.test(category),
-            `You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op.`
-          );
-
-        eventName &&
-          category &&
-          tessen.track({ eventName, category, ...attrs });
+        warning(
+          tessenCategoryName,
+          'You are attempting to instrument a handler, but the `tessenCategoryName` property is not set. This will result in a no-op.'
+        );
+        tessenEventName &&
+          tessenCategoryName &&
+          tessen.track(tessenEventName, tessenCategoryName, attrs);
       }
 
       if (savedHandler.current) {
         return savedHandler.current(...args);
       }
     },
-    [attributes, tessen]
+    [attributes, agent, tessen]
   );
 };
 

@@ -1,6 +1,5 @@
 import warning from 'warning';
 import Cookies from 'js-cookie';
-import { CAMEL_CASE, TITLE_CASE } from './constants';
 
 const warnAboutNoop = ({ config, action, name, category }) => {
   warning(
@@ -29,29 +28,15 @@ const canSendAction = ({ config, name, category }) =>
 
 const tessenAction =
   (action, config) =>
-  ({ eventName, category, ...properties }) => {
-    if (!canSendAction({ config, name: eventName, category })) {
-      return warnAboutNoop({ config, action, name: eventName, category });
-    }
-
-    if (!CAMEL_CASE.test(eventName)) {
-      return warning(
-        false,
-        `tessen.${action}: The 'name' argument needs to be in camelCase. This has resulted in a noop.`
-      );
-    }
-
-    if (!TITLE_CASE.test(category)) {
-      return warning(
-        TITLE_CASE.test(category),
-        `tessen.${action}: The 'category' argument needs to be in TitleCase. This has resulted in a noop.`
-      );
+  (name, category, properties = {}) => {
+    if (!canSendAction({ config, name, category })) {
+      return warnAboutNoop({ config, action, name, category });
     }
 
     if (!window.Tessen) {
       return warning(
         false,
-        `tessen.${eventName}: You are attempting to use a Tessen action, but Tessen is not available on 'window'. Calls to '${eventName}' will result in a noop.`
+        `tessen.${name}: You are attempting to use a Tessen action, but Tessen is not available on 'window'. Calls to '${name}' will result in a noop.`
       );
     }
 
@@ -59,7 +44,7 @@ const tessenAction =
     const anonymousId = JSON.parse(Cookies.get('ajs_anonymous_id') || 'null');
 
     window.Tessen[action](
-      eventName,
+      name,
       {
         ...properties,
         env: config.env || '',

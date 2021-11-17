@@ -21,7 +21,6 @@ import { rgba } from 'polished';
 import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
 import useHasMounted from '../hooks/useHasMounted';
-import useTessen from '../hooks/useTessen';
 
 import SplitTextButton from './SplitTextButton';
 
@@ -117,17 +116,18 @@ const useSearchQuery = () => {
   const searchQueryParam = queryParams.get('q');
   const [searchTerm, setSearchTerm] = useState(searchQueryParam);
   const hasQParam = queryParams.has('q');
-  const tessen = useTessen();
 
   useDebounce(
     () => {
       if (hasQParam) {
         setQueryParam('q', searchTerm);
-        if (searchTerm && searchTerm.length > 2) {
-          tessen.track({
-            eventName: 'swiftypeSearchInput',
-            category: 'GlobalSearch',
-            name: 'searchInput',
+        if (
+          typeof window !== 'undefined' &&
+          window.newrelic &&
+          searchTerm &&
+          searchTerm.length > 2
+        ) {
+          window.newrelic.addPageAction('swiftypeSearch_input', {
             searchTerm,
           });
         }
