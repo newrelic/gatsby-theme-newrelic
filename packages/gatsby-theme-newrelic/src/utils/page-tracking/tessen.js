@@ -12,8 +12,8 @@ const warnAboutNoop = (pageView) => {
   );
 
   warning(
-    pageView.name && pageView.category,
-    "You have enabled page view tracking, but page view tracking is misconfigured. This route change has not been tracked. Please configure the 'tessen.pageView.name' and 'tessen.pageView.category' options in gatsby-config.js"
+    pageView.eventName && pageView.category,
+    "You have enabled page view tracking, but page view tracking is misconfigured. This route change has not been tracked. Please configure the 'tessen.pageView.eventName' and 'tessen.pageView.category' options in gatsby-config.js"
   );
 };
 
