@@ -18,7 +18,7 @@ const warnAboutNoop = (pageView) => {
 };
 
 const canSendPageView = (pageView) =>
-  pageView && pageView.name && pageView.category;
+  pageView && pageView.eventName && pageView.category;
 
 const trackViaTessen = ({ location, prevLocation }, themeOptions) => {
   const env = getResolvedEnv(themeOptions);
@@ -48,7 +48,7 @@ const trackViaTessen = ({ location, prevLocation }, themeOptions) => {
 const trackPageView = ({ config, env, location, prevLocation }) => {
   const { pageView } = config;
   config.env = env;
-  const { name, category, ...properties } = pageView;
+  const { eventName, category, ...properties } = pageView;
 
   const tessen = createTessen(config);
 
@@ -56,7 +56,9 @@ const trackPageView = ({ config, env, location, prevLocation }) => {
     return warnAboutNoop(pageView);
   }
 
-  tessen.page(name, category, {
+  tessen.page({
+    eventName,
+    category,
     env: env || 'development',
     nonInteraction: 1,
     path: location.pathname,
