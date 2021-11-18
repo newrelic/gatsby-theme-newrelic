@@ -7,7 +7,7 @@ const TESSEN_OBJECT = {
   category: 'CategoryName',
   nr_product: 'THEME',
   nr_subproduct: 'TTHEME',
-  location: 'Public',
+  location: 'public',
   customer_user_id: null,
   anonymousId: null,
   env: '',
