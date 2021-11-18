@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.5.0...v4.0.0) (2021-11-18)
+
+
+* fix!: issues with Tessen page ([81cce11](https://github.com/newrelic/gatsby-theme-newrelic/commit/81cce11730469fa4dc0be578300af4910672767e))
+
+
+### Reverts
+
+* Revert "feat!: test" ([710b741](https://github.com/newrelic/gatsby-theme-newrelic/commit/710b741cd2e8257639abf2ada7f85665411387a1))
+* Revert "chore(release): publish v3.5.1" ([d7102c6](https://github.com/newrelic/gatsby-theme-newrelic/commit/d7102c655650c04535db29efc870602fde323150))
+
+
+### BREAKING CHANGES
+
+* with the function signature changes we made to tessen, code changes will be required in order to use (tessen in) subsequent versions of the theme.
+
+
+
+
+
 # [3.5.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.4.2...v3.5.0) (2021-11-17)
 
 
