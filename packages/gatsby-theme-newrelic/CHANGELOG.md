@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.0.0...v4.0.1) (2021-11-18)
+
+
+### Bug Fixes
+
+* fixup warning ([8eff702](https://github.com/newrelic/gatsby-theme-newrelic/commit/8eff702b2c6cc094112fcd90e478873455bc32a3))
+
+
+
+
+
 # [4.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v3.5.0...v4.0.0) (2021-11-18)
 
 
