@@ -89,15 +89,22 @@ websites](https://opensource.newrelic.com).
     - [`useActiveHash`](#useactivehash)
     - [`useClipboard`](#useclipboard)
     - [`useFormattedCode`](#useformattedcode)
-    - [`useInstrumentedData`](#useinstrumenteddata)
+    - [`useHasMounted`](#usehasmounted)
     - [`useInstrumentedHandler`](#useinstrumentedhandler)
     - [`useKeyPress`](#usekeypress)
     - [`useLayout`](#uselayout)
+    - [`useLocale`](#uselocale)
+    - [`useNavigation`](#usenavigation)
+    - [`usePrevious`](#useprevious)
     - [`useQueryParams`](#usequeryparams)
+    - [`useScrollFreeze`](#usescrollfreeze)
+    - [`useSyncedRef`](#usesyncedref)
     - [`useTessen`](#usetessen)
+    - [`useThemeTranslation`](#usethemetranslation)
     - [`useTimeout`](#usetimeout)
     - [`useUserId`](#useuserid)
     - [`usePrevious`](#useprevious)
+    - [`useWarning`](#usewarning)
   - [I18n](#i18n-1)
   - [Announcements](#announcements)
   - [Utils](#utils)
@@ -1569,10 +1576,10 @@ import { Link } from '@newrelic/gatsby-theme-newrelic'`
 
 **Props**
 
-| Prop | Type   | Required | Default | Description                                                                                                                                          |
-| ---- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `to` | string | yes      |         | The URL to link to. If this is a relative path, it will use the Gatsby `Link` component. If it is an external URL, it will use a regular anchor tag. |
-| `displayExternalIcon` | bool | no      |   false      | If the `to` is external to the current site, and you want the element to include an icon showing this leads to an external site, set this to `true` |
+| Prop                  | Type   | Required | Default | Description                                                                                                                                          |
+| --------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `to`                  | string | yes      |         | The URL to link to. If this is a relative path, it will use the Gatsby `Link` component. If it is an external URL, it will use a regular anchor tag. |
+| `displayExternalIcon` | bool   | no       | false   | If the `to` is external to the current site, and you want the element to include an icon showing this leads to an external site, set this to `true`  |
 
 All additional props are forwarded to either the
 [`Link`](https://www.gatsbyjs.com/docs/gatsby-link/) component or the anchor tag
@@ -2654,46 +2661,37 @@ With formatting options:
 const formattedCode = useFormattedCode(code, { printWidth: 100 });
 ```
 
-### `useInstrumentedData`
+### `useHasMounted`
 
-A hook that instruments raw data with New Relic Browser.
+A hook that determines if a particular component has been loaded in the DOM.
 
 ```js
-import { useInstrumentedData } from '@newrelic/gatsby-theme-newrelic';
+import { useHasMounted } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 **Arguments**
 
-- `attributes` _(object)_: Data passed to the
-  [`newrelic.addPageAction`](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/add-page-action)
-  API when called. These attributes **MUST** contain an `actionName` property,
-  otherwise the data will not be instrumented. All other attributes will be
-  attached to the `attributes` property of the page action.
-- `options` _(object)_: Options for the hook
-  - `enabled` _(boolean)_: Determines whether the data should be instrumented
-    via `newrelic.addPageAction`. Set to `false` to disable instrumentation.
-    **DEFAULT**: `true`
+none
 
 **Returns**
 
-`Void`
+`boolean` depending on whether the component has been loading in the DOM
 
 **Examples**
 
 ```js
-const MyComponent = ({ searchTerm, onChange }) => {
-  useInstrumentedData(
-    { actionName: 'search', searchTerm },
-    { enabled: Boolean(searchTerm) }
-  );
+const hasMounted = useHasMounted();
 
-  return <input value={searchTerm} onChange={onChange} />;
+if (!hasMounted) {
+  return null;
 };
+
+return <Component>
 ```
 
 ### `useInstrumentedHandler`
 
-A hook that wraps a function handler with New Relic Browser instrumentation.
+A hook that wraps a function handler with Tessen instrumentation.
 
 ```js
 import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
@@ -2701,27 +2699,28 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-- `handler` _(function)_: The function hander that should be augmented with New
-  Relic Browser instrumentation. This can be `null` or `undefined`.
-- `attributes` _(object | function)_: Data passed to the
-  [`newrelic.addPageAction`](https://docs.newrelic.com/docs/browser/new-relic-browser/browser-agent-spa-api/add-page-action)
-  API when called. The attributes **MUST** contain an `actionName` property,
-  otherwise the handler will not be instrumented. All other attributes will be
-  attached to the `attributes` property of the page action. You can pass a
-  function to instrument dynamic data. If this is a function, the function will
-  be called with the same arguments passed to the handler.
+- `handler` _(function)_: The function hander that should be augmented with Tessen instrumentation. 
+  This can be `null` or `undefined`.
+- `attributes` _(object | function)_: Data passed to the `Tessen.track` API when called. 
+  The attributes **MUST** contain...
+
+  - `eventName` - Needs to be in [Camel Case](https://en.wikipedia.org/wiki/Camel_case)
+  - `category` - Needs to be in [Title Case](https://en.wikipedia.org/wiki/Title_case)
+  - `name`
+...otherwise the handler will not be instrumented. All other attributes will be attached to the `attributes` property of the page action. You can pass a function to instrument dynamic data. If this is a function, the function will be called with the same arguments passed to the handler.
 
 **Returns**
 
-`function` - The wrapped function handler to be instrumented with New Relic
-Browser.
+`function` - The wrapped function handler to be instrumented with Tessen.
 
 **Examples**
 
 ```js
 const MyComponent = () => {
   const handleClick = useInstrumentedHandler(() => console.log('clicked'), {
-    actionName: 'click',
+    eventName: 'buttonClick',
+    category: 'ClickMeButton',
+    name: 'click',
   });
 
   return (
@@ -2739,7 +2738,9 @@ const MyComponent = () => {
   const handler = useInstrumentedHandler(
     (a, b) => add(a, b),
     (a, b) => ({
-      actionName: 'add',
+      eventName: 'counterClick',
+      category: 'CounterButton',
+      name: 'click',
       sum: a + b,
     })
   );
@@ -2830,7 +2831,7 @@ import { useLayout } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-n/a
+none
 
 **Returns**
 
@@ -2854,6 +2855,68 @@ const MyComponent = () => {
     </Sidebar>
   );
 };
+```
+
+### `useLocale`
+
+A hook that will get an object of information regarding the local language used within a component.
+
+```js
+import { useLocale } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+none
+
+**Returns**
+
+`Object`
+
+example:
+
+```js
+{
+  name: 'English',
+  localName: 'English',
+  locale: 'en',
+  hrefLang: 'en',
+  isDefault: true,
+}
+```
+
+**Examples**
+
+```js
+const locale = useLocale();
+
+const currentLanguage = locale.locale === 'en' ? 'English' : 'Japanese';
+```
+
+### `useNavigation`
+
+A hook that returns an object containing the searchTerm in the left Navigation panel.
+
+```js
+import { useNavigation } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+none
+
+**Returns**
+
+Object with the left Nav search term
+
+**Examples**
+
+```js
+const { searchTerm } = useNavigation();
+
+const showLink = link === searchterm;
+
+return showLink && <Link>;
 ```
 
 ### `useQueryParams`
@@ -2892,6 +2955,61 @@ const SearchInput = () => {
     />
   );
 };
+```
+
+### `useScrollFreeze`
+
+A hook that sets `document.body.styles.overflow` to `hidden` so that no page scrolling is possible while `true` has been passed to this hook.
+
+```js
+import { useScrollFreeze } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `isFrozen` _(boolean)_: denotes whether the scroll lock feature has been toggled
+
+**Returns**
+
+none
+
+**Examples**
+
+```js
+// Mobile Navigation
+const [isOpen, setIsOpen] = useState(false);
+useScrollFreeze(isOpen);
+```
+
+### `useSyncedRef`
+
+A hook, paired with React's `forwardRef`, used to keep a parent and child elements' ref in sync with one another.
+
+```js
+import { useSyncedRef } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- A `ref` _(object | callback)_
+
+**Returns**
+
+- An object `ref`
+
+**Examples**
+
+```js
+const Button = forwardRef((props, ref) => {
+  // keep ref in sync with buttonRef
+  const buttonRef = useSyncedRef(ref);
+
+  useEffect(() => {
+    buttonRef.current.focus();
+  }, []);
+
+  return <button ref={buttonRef} {...props} />;
+});
 ```
 
 ### `useTessen`
@@ -2938,6 +3056,31 @@ const MyComponent = () => {
     </button>
   );
 };
+```
+
+### `useThemeTranslation`
+
+A hook that returns a translation function or `i18n` instance based on the `newrelic-gatsby-theme` namespace.
+
+```js
+import { useThemeTranslation } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+none
+
+**Returns**
+
+- `t` _(function)_: can be used to translate strings based on this repo's theme's namespace
+- `i18n` _(object)_: set of resources used to help with translations
+
+**Examples**
+
+```js
+const { t } = useThemeTranslation();
+
+console.log(t('this is a translation'));
 ```
 
 ### `useTimeout`
@@ -3059,6 +3202,36 @@ const MyComponent = () => {
     </div>
   )
 }
+```
+
+### `useWarning`
+
+A hook that will take a test parameter that, if false, will trigger a warning in the console.
+
+```js
+import { useWarning } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Arguments**
+
+- `test` _(any)_ : Determines if the message is shown in the console
+- `message` _(string)_: Text to be displayed in the console
+- `once` _(boolean)_: **not required**, defaults to true, determines if the warning is shown each time `test` is false, or just once
+
+**Returns**
+
+none
+
+**Examples**
+
+```js
+const { mobileBreakpoint } = layout;
+
+useWarning(
+    mobileBreakpoint,
+    'MobileHeader: The mobile breakpoint is missing. Please set the `layout.mobileBreakpoint` option in `gatsby-config.js`',
+    {once = false}
+  );
 ```
 
 ## I18n

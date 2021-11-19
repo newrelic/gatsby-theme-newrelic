@@ -11,6 +11,7 @@ import {
   Layout,
   Link,
   PageTools,
+  RelatedResources,
   SearchInput,
   SimpleFeedback,
   Surface,
@@ -301,6 +302,16 @@ nr1 create --type nerdpack --name pageviews-app
               Extra small
             </Button>
           </div>
+        </section>
+        <section>
+          <RelatedResources
+            resources={[
+              {
+                url: 'https://developer.newrelic.com/instant-observability/',
+                title: 'developer',
+              },
+            ]}
+          />
         </section>
         <section>
           <h2>Primary surfaces</h2>

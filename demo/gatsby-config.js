@@ -52,7 +52,7 @@ module.exports = {
           segmentWriteKey: 'oMdv2YZCnzuC1iTVi9iCnFn6F9ycYb5v',
           trackPageViews: true,
           pageView: {
-            name: 'pageView',
+            eventName: 'pageView',
             category: 'ThemePageView',
           },
         },
