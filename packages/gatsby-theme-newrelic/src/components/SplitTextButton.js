@@ -11,7 +11,7 @@ import Button from './Button';
 import ExternalLink from './ExternalLink';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
-const SplitTextButton = ({ style }) => {
+const SplitTextButton = ({ style = {} }) => {
   const { t } = useThemeTranslation();
   const { deven_signupbutton_text } = useTreatments([
     SPLITS.SIGNUP_BUTTON_TEXT,
@@ -47,6 +47,9 @@ const SplitTextButton = ({ style }) => {
       size={(style && style.size) || Button.SIZE.EXTRA_SMALL}
       variant={Button.VARIANT.PRIMARY}
       instrumentation={{ component: 'SplitTextButton' }}
+      css={css`
+        ${style && style.button}
+      `}
     >
       <span>{t('button.signUp')}</span>
     </Button>
