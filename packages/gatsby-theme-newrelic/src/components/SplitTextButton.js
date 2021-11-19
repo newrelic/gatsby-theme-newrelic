@@ -28,7 +28,7 @@ const SplitTextButton = ({ style }) => {
     <Button
       as={ExternalLink}
       href="https://newrelic.com/signup"
-      size={style.size || Button.SIZE.EXTRA_SMALL}
+      size={(style && style.size) || Button.SIZE.EXTRA_SMALL}
       variant={Button.VARIANT.PRIMARY}
       instrumentation={{ component: 'SplitTextButton' }}
       onClick={clickCallback}
@@ -44,7 +44,7 @@ const SplitTextButton = ({ style }) => {
     <Button
       as={ExternalLink}
       href="https://newrelic.com/signup"
-      size={style.size || Button.SIZE.EXTRA_SMALL}
+      size={(style && style.size) || Button.SIZE.EXTRA_SMALL}
       variant={Button.VARIANT.PRIMARY}
       instrumentation={{ component: 'SplitTextButton' }}
     >
