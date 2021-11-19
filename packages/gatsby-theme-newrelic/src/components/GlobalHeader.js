@@ -22,8 +22,6 @@ import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
 import useHasMounted from '../hooks/useHasMounted';
 import useTessen from '../hooks/useTessen';
-
-
 import SplitTextButton from './SplitTextButton';
 
 const action = css`
