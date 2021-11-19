@@ -22,6 +22,7 @@ import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
 import useHasMounted from '../hooks/useHasMounted';
 
+
 import SplitTextButton from './SplitTextButton';
 
 const action = css`
@@ -195,7 +196,7 @@ const GlobalHeader = ({ className, activeSite }) => {
           z-index: 80;
 
           .dark-mode & {
-            background-color: var(--color-dark-100);
+            background-color: var(--color-dark-300);
           }
         `}
       >
@@ -217,7 +218,7 @@ const GlobalHeader = ({ className, activeSite }) => {
               overflow: hidden;
               position: relative;
 
-              @media screen and (max-width: 800px) {
+              @media screen and (max-width: 1235px) {
                 &::after {
                   content: '';
                   position: absolute;
@@ -263,7 +264,11 @@ const GlobalHeader = ({ className, activeSite }) => {
                 }
               `}
             >
-              <NewRelicLogo omitText={hideLogoText} />
+              <NewRelicLogo
+                omitText={hideLogoText}
+                size="104px"
+                textColor="var(--color-neutrals-050)"
+              />
             </ExternalLink>
 
             <Dropdown
@@ -284,7 +289,11 @@ const GlobalHeader = ({ className, activeSite }) => {
                   padding-right: 0;
                 `}
               >
-                <NewRelicLogo omitText={hideLogoText} size="104px" />
+                <NewRelicLogo
+                  omitText={hideLogoText}
+                  size="104px"
+                  textColor="var(--color-neutrals-050)"
+                />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 {createNavList('dropdown', activeSite)}
@@ -305,7 +314,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 -ms-overflow-style: -ms-autohiding-scrollbar;
 
                 > li {
-                  margin: 1;
+                  margin: 0;
                   flex: 0 0 auto;
                 }
 
@@ -345,7 +354,7 @@ const GlobalHeader = ({ className, activeSite }) => {
             <li
               css={css`
                 flex: 1;
-                padding: 0px 16px;
+                padding: 0rem 1rem;
 
                 @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
                   flex: unset;
@@ -370,9 +379,46 @@ const GlobalHeader = ({ className, activeSite }) => {
                 placeholder={t('searchInput.placeholder')}
                 size={SearchInput.SIZE.MEDIUM}
                 focusWithHotKey="/"
+                style={{
+                  input: css`
+                    --icon-color: red;
+                    --hover-border-color: var(--color-neutrals-600);
+                    --background-color: var(--color-neutrals-700);
+                    background: var(--background-color);
+                    border: 1px solid trasparent;
+                    border-style: none;
+                    height: 40px;
+
+                    .dark-mode & {
+                      --background-color: var(--color-dark-500);
+                    }
+
+                    &:hover {
+                      --hover-border-color: var(--color-neutrals-600);
+                      border-style: solid;
+                      border-color: --hover-border-color;
+                    }
+                  `,
+                  hotkey: css`
+                    background: var(--color-neutrals-700);
+                    border-color: var(--color-neutrals-600);
+                    border-radius: 0.125rem;
+                    font-size: 0.875rem;
+                    padding: 0.125rem 0.375rem;
+
+                    .dark-mode & {
+                      background: var(--color-dark-500);
+                    }
+                  `,
+                  icon: '1.5rem',
+                  iconColor: 'color: var(--color-neutrals-500);',
+                  container: css`
+                    --icon-size: 1.5rem;
+                  `,
+                }}
                 css={css`
                   min-width: 150px;
-                  max-width: 280px;
+                  max-width: 350px;
 
                   @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
                     display: none;
@@ -394,7 +440,25 @@ const GlobalHeader = ({ className, activeSite }) => {
                 <Dropdown align="right">
                   <Dropdown.Toggle
                     size={Button.SIZE.SMALL}
-                    variant={Button.VARIANT.LOCALE}
+                    variant={Button.VARIANT.LINK}
+                    css={css`
+                      --active-color: none;
+                      margin: 0;
+                      height: 72px;
+                      border-radius: 0px;
+                      font-size: 0.75rem;
+                      color: var(--color-neutrals-100);
+                      background: transparent;
+
+                      .dark-mode & {
+                        --active-color: var(--color-dark-100);
+                      }
+
+                      &:hover {
+                        color: var(--color-neutrals-600);
+                        background-color: var(--active-color);
+                      }
+                    `}
                   >
                     {locale.localName}
                   </Dropdown.Toggle>
@@ -416,12 +480,21 @@ const GlobalHeader = ({ className, activeSite }) => {
               </li>
             )}
             <li>
-              <DarkModeToggle css={[actionIcon, action]} size="1.5rem" />
+              <DarkModeToggle
+                css={[
+                  actionIcon,
+                  action,
+                  css`
+                    margin: 24px;
+                  `,
+                ]}
+                size="1.5rem"
+              />
             </li>
             <li
               css={css`
                 display: flex;
-                align-items: center;
+                align-items: right;
               `}
             >
               <Button
@@ -430,10 +503,11 @@ const GlobalHeader = ({ className, activeSite }) => {
                 variant={Button.VARIANT.LINK}
                 href="https://one.newrelic.com"
                 css={css`
-                  margin: 0 10px;
+                  margin: 0 0.625rem;
                   font-weight: 600;
                   font-size: 0.875rem;
                   white-space: nowrap;
+                  color: var(--color-brand-400);
                   border: 1px solid var(--color-brand-400);
                   border-radius: 4px;
 
@@ -469,7 +543,16 @@ const GlobalHeader = ({ className, activeSite }) => {
                 display: flex;
               `}
             >
-              <SplitTextButton />
+              <SplitTextButton
+                style={{
+                  button: css`
+                    background: var(color-brand-500);
+                    border: 1px solid var(color-brand-500);
+                    border-radius: 4px;
+                  `,
+                  size: Button.SIZE.SMALL,
+                }}
+              />
             </li>
           </ul>
         </div>

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { css } from '@emotion/react';
 import {
   useTreatments,
   SplitContext,
@@ -9,7 +11,7 @@ import Button from './Button';
 import ExternalLink from './ExternalLink';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
-const SplitTextButton = () => {
+const SplitTextButton = ({ style }) => {
   const { t } = useThemeTranslation();
   const { deven_signupbutton_text } = useTreatments([
     SPLITS.SIGNUP_BUTTON_TEXT,
@@ -26,10 +28,13 @@ const SplitTextButton = () => {
     <Button
       as={ExternalLink}
       href="https://newrelic.com/signup"
-      size={Button.SIZE.SMALL}
+      size={style.size || Button.SIZE.EXTRA_SMALL}
       variant={Button.VARIANT.PRIMARY}
       instrumentation={{ component: 'SplitTextButton' }}
       onClick={clickCallback}
+      css={css`
+        ${style && style.button}
+      `}
     >
       <span>
         {t(splitText === 'start_now' ? 'button.startNow' : 'button.signUp')}
@@ -39,13 +44,16 @@ const SplitTextButton = () => {
     <Button
       as={ExternalLink}
       href="https://newrelic.com/signup"
-      size={Button.SIZE.EXTRA_SMALL}
+      size={style.size || Button.SIZE.EXTRA_SMALL}
       variant={Button.VARIANT.PRIMARY}
       instrumentation={{ component: 'SplitTextButton' }}
     >
       <span>{t('button.signUp')}</span>
     </Button>
   );
+};
+SplitTextButton.propTypes = {
+  style: PropTypes.object,
 };
 
 export default SplitTextButton;

@@ -4,15 +4,21 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 const Letter = styled.path`
-  fill: var(--color-neutrals-050);
+  fill: var(--text-color);
 `;
 
-const NewRelicLogo = ({ className, size, omitText }) => (
+const NewRelicLogo = ({
+  className,
+  size,
+  omitText,
+  textColor = 'var(--heading-text-color)',
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox={`0 0 ${omitText ? '18' : '79'} 15`}
     className={className}
     css={css`
+      --text-color: ${textColor};
       fill: none;
       width: ${size || (omitText ? '18px' : '79px')};
     `}
@@ -49,6 +55,7 @@ NewRelicLogo.propTypes = {
   className: PropTypes.string,
   omitText: PropTypes.bool,
   size: PropTypes.string,
+  textColor: PropTypes.string,
 };
 
 NewRelicLogo.defaultProps = {

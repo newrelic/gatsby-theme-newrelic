@@ -19,7 +19,7 @@ const ICONS = {
 
 const HORIZONTAL_SPACING = {
   [SIZES.SMALL]: '0.5rem',
-  [SIZES.MEDIUM]: '0.75rem',
+  [SIZES.MEDIUM]: '1rem',
   [SIZES.LARGE]: '1rem',
 };
 
@@ -61,19 +61,20 @@ const SearchInput = forwardRef(
           position: relative;
           width: ${width || '100%'};
           box-shadow: var(--shadow-1);
-          ${size && styles.size[size].container}
+          ${(style && style.container) || (size && styles.size[size].container)}
         `}
       >
         <Icon
           css={css`
             position: absolute;
             left: var(--horizontal-spacing);
-
             top: 50%;
             transform: translateY(-50%);
+
+            ${style && style.iconColor};
           `}
           name={iconName}
-          size={styles.size[size].icon}
+          size={(style && style.icon) || styles.size[size].icon}
         />
         <input
           ref={inputRef}
@@ -98,18 +99,20 @@ const SearchInput = forwardRef(
           }}
           css={css`
             width: 100%;
-            border: 0px solid var(--border-color);
+            ${(style && style.input) ||
+            'border: 1px solid var(--border-color);'}
             border-radius: 4px;
-            background: var(--color-neutrals-700);
+            background: ${'var(--background-color)' ||
+            'var(--primary-background-color)'};
             color: var(--primary-text-color);
             transition: 0.15s ease-out;
-            line-height: 1.5rem;
+            line-height: 1;
 
             padding-left: calc(
-              var(--horizontal-spacing) + 0.825rem + var(--icon-size)
+              var(--horizontal-spacing) + 0.5rem + var(--icon-size)
             );
             padding-right: calc(
-              var(--horizontal-spacing) + 0.825rem + var(--icon-size)
+              var(--horizontal-spacing) + 0.5rem + var(--icon-size)
             );
 
             ${size && styles.size[size].input}
@@ -118,14 +121,6 @@ const SearchInput = forwardRef(
               outline: none;
               border: 1px solid rgba(0, 126, 138, 0.6);
               box-shadow: 0 0 0 4px rgba(0, 126, 138, 0.1);
-            }
-
-            &:hover {
-              border: 1px solid var(--border-color);
-              transition: border-color 5s linear;
-            }
-            .dark-mode & {
-              background: var(--color-dark-050);
             }
           `}
         />
@@ -170,17 +165,15 @@ const SearchInput = forwardRef(
               right: var(--horizontal-spacing);
               top: 50%;
               transform: translateY(-50%);
-              border: 1px solid var(--color-neutrals-600);
-              border-radius: 0.25rem;
-              line-height: 1;
+              border: 1px solid var(--border-color);
+              line-height: 1rem;
               text-align: center;
-              background: var(--color-neutrals-700);
-
-              ${styles.size[size].hotkey}
+              background: var(--color-neutrals-100);
 
               .dark-mode & {
-                background: var(--color-dark-700);
+                background: var(--color-dark-200);
               }
+              ${(style && style.hotkey) || styles.size[size].hotkey}
             `}
           >
             {focusWithHotKey}
@@ -242,7 +235,7 @@ const styles = {
         font-size: 0.875rem;
         padding: 0.125rem 0.375rem;
       `,
-      icon: '1.5rem',
+      icon: '0.875rem',
     },
     [SIZES.LARGE]: {
       input: css`

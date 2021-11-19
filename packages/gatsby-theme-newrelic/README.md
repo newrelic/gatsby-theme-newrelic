@@ -1916,6 +1916,7 @@ import { NewRelicLogo } from '@newrelic/gatsby-theme-newrelic';
 | `className` | string  | no       |         | Additional `className` for the component                                                                                                          |
 | `omitText`  | boolean | no       | `true`  | Determines whether to only render the logo without the text. Useful for responsible layouts where the logo may only be displayed.                 |
 | `size`      | string  | no       |         | Size of the logo. Accepts any CSS sizing value (e.g. `100px`). Defaults to `18px` when `omitText` is `true` and `79px` when `omitText` is `false` |
+| `textColor` | string | no         |        | Color of the text for the logo. Defaults to global theme.
 
 **Examples**
 
@@ -2049,7 +2050,7 @@ import { SearchInput } from '@newrelic/gatsby-theme-newrelic';
 | `className`       | string   | no       |         | Additional `className` for the component.                                                                                                 |
 | `onClear`         | function | yes      |         | Handler called when the user interacts with the clear button. This handler should be responsible for resetting the `value` of the input.  |
 | `size`            | enum     | no       |         | Size of the input. Must be one of `SearchInput.SIZE.MEDIUM` or `SearchInput.SIZE.LARGE`                                                   |
-| `style`           | object   | no       |         | Inline styles for the search input                                                                                                        |
+| `style`           | object   | no       |         | Styling options for related elements. `key` defines element to style and `value` is applied to element.
 | `value`           | string   | no       |         | Value of the search input.                                                                                                                |
 | `width`           | string   | no       |         | Width of the input. Accepts any CSS sizing value (e.g. `100px`)                                                                           |
 | `iconName`        | enum     | no       |         | Specify icon to use. Must be one of `SearchInput.ICONS.SEARCH` or `SearchInput.ICONS.FILTER` Defaults to search magnifying glass.         |
