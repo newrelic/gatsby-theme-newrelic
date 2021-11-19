@@ -44,7 +44,8 @@ const Link = forwardRef(
 
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
       eventName: 'externalLinkClick',
-      category: 'GatsbyTheme',
+      category: 'LinkClick',
+      origin: 'gatsbyTheme'
       href: to,
       ...instrumentation,
     });
