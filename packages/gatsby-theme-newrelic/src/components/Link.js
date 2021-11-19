@@ -45,14 +45,15 @@ const Link = forwardRef(
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
       eventName: 'externalLinkClick',
       category: 'LinkClick',
-      origin: 'gatsbyTheme'
+      origin: 'gatsbyTheme',
       href: to,
       ...instrumentation,
     });
 
     const handleInternalLinkClick = useInstrumentedHandler(onClick, {
       eventName: 'internalLinkClick',
-      category: 'GatsbyTheme',
+      category: 'LinkClick',
+      origin: 'gatsbyTheme',
       href: to,
       ...instrumentation,
     });
