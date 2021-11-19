@@ -43,15 +43,15 @@ const Link = forwardRef(
     `);
 
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
-      eventName: 'gatsbyTheme',
-      category: 'ExternalLinkClick',
+      eventName: 'externalLinkClick',
+      category: 'GatsbyTheme',
       href: to,
       ...instrumentation,
     });
 
     const handleInternalLinkClick = useInstrumentedHandler(onClick, {
-      eventName: 'gatsbyTheme',
-      category: 'InternalLinkClick',
+      eventName: 'internalLinkClick',
+      category: 'GatsbyTheme',
       href: to,
       ...instrumentation,
     });
