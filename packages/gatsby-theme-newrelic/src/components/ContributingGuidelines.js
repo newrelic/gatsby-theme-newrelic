@@ -8,6 +8,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import CreateIssueButton from './CreateIssueButton';
 import EditPageButton from './EditPageButton';
 import Trans from './Trans';
+import useLocale from '../hooks/useLocale';
 
 const ContributingGuidelines = ({
   className,
@@ -28,6 +29,7 @@ const ContributingGuidelines = ({
       }
     }
   `);
+  const { locale } = useLocale();
 
   return (
     <PageTools.Section
@@ -59,7 +61,7 @@ const ContributingGuidelines = ({
           labels={issueLabels}
         />
 
-        {fileRelativePath && (
+        {fileRelativePath && locale === 'en' && (
           <EditPageButton
             fileRelativePath={fileRelativePath}
             variant={Button.VARIANT.OUTLINE}
