@@ -98,6 +98,7 @@ const createNavList = (listType, activeSite = null) => {
 };
 
 const CONDENSED_BREAKPOINT = '815px';
+const MOBILE_BREAKPOINT = '700px';
 
 const actionLink = css`
   ${action};
@@ -163,8 +164,6 @@ const GlobalHeader = ({ className, activeSite }) => {
       }
     }
   `);
-
-  const hideLogoText = useMedia({ maxWidth: '370px' });
 
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
@@ -240,7 +239,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 }
               }
 
-              @media screen and (max-width: 675px) {
+              @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
                 overflow: visible;
 
                 &::after {
@@ -257,13 +256,12 @@ const GlobalHeader = ({ className, activeSite }) => {
                 align-items: center;
                 margin-right: 1rem;
 
-                @media screen and (max-width: 700px) {
+                @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
                   display: none;
                 }
               `}
             >
               <NewRelicLogo
-                omitText={hideLogoText}
                 size="104px"
                 textColor="var(--color-neutrals-050)"
               />
@@ -273,7 +271,7 @@ const GlobalHeader = ({ className, activeSite }) => {
               css={css`
                 display: none;
 
-                @media screen and (max-width: 700px) {
+                @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
                   display: block;
                 }
               `}
@@ -288,7 +286,6 @@ const GlobalHeader = ({ className, activeSite }) => {
                 `}
               >
                 <NewRelicLogo
-                  omitText={hideLogoText}
                   size="104px"
                   textColor="var(--color-neutrals-050)"
                 />
