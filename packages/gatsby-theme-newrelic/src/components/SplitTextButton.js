@@ -42,6 +42,7 @@ const SplitTextButton = () => {
       size={Button.SIZE.EXTRA_SMALL}
       variant={Button.VARIANT.PRIMARY}
       instrumentation={{ component: 'SplitTextButton' }}
+      onClick={clickCallback}
     >
       <span>{t('button.signUp')}</span>
     </Button>
