@@ -377,14 +377,22 @@ const GlobalHeader = ({ className, activeSite }) => {
                 placeholder={t('searchInput.placeholder')}
                 size={SearchInput.SIZE.MEDIUM}
                 focusWithHotKey="/"
-                style={{
-                  input: css`
-                    --icon-color: red;
+                css={css`
+                  --icon-size: 1.5rem;
+                  min-width: 150px;
+                  max-width: 350px;
+
+                  svg {
+                    color: var(--color-neutrals-500);
+                    width: 1.5rem;
+                    height: 1.5rem;
+                  }
+
+                  input {
                     --hover-border-color: var(--color-neutrals-600);
                     --background-color: var(--color-neutrals-700);
                     background: var(--background-color);
-                    border: 1px solid trasparent;
-                    border-style: none;
+                    border: none;
                     height: 40px;
 
                     .dark-mode & {
@@ -392,12 +400,11 @@ const GlobalHeader = ({ className, activeSite }) => {
                     }
 
                     &:hover {
-                      --hover-border-color: var(--color-neutrals-600);
-                      border-style: solid;
-                      border-color: --hover-border-color;
+                      box-shadow: 0 0 0 1px var(--color-neutrals-600);
                     }
-                  `,
-                  hotkey: css`
+                  }
+
+                  .search-hotkey {
                     background: var(--color-neutrals-700);
                     border-color: var(--color-neutrals-600);
                     border-radius: 0.125rem;
@@ -407,16 +414,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                     .dark-mode & {
                       background: var(--color-dark-500);
                     }
-                  `,
-                  icon: '1.5rem',
-                  iconColor: 'color: var(--color-neutrals-500);',
-                  container: css`
-                    --icon-size: 1.5rem;
-                  `,
-                }}
-                css={css`
-                  min-width: 150px;
-                  max-width: 350px;
+                  }
 
                   @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
                     display: none;
