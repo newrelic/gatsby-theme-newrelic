@@ -36,6 +36,7 @@ websites](https://opensource.newrelic.com).
     - [`CollapserGroup`](#collapsergroup)
     - [`ContributingGuidelines`](#contributingguidelines)
     - [`CreateIssueButton`](#createissuebutton)
+    - [`DarkModeToggle`](#darkmodetoggle)
     - [`Dropdown`](#dropdown)
       - [`Dropdown.Toggle`](#dropdowntoggle)
       - [`Dropdown.Menu`](#dropdownmenu)
@@ -67,13 +68,17 @@ websites](https://opensource.newrelic.com).
     - [`NavItem`](#navitem)
       - [`Page`](#page)
     - [`NewRelicLogo`](#newreliclogo)
+    - [`Overlay`](#overlay)
     - [`PageTools`](#pagetools)
       - [`PageTools.Section`](#pagetoolssection)
       - [`PageTools.Title`](#pagetoolstitle)
+      - [`Portal](#portal)
     - [`RelatedResources`](#relatedresources-1)
     - [`SearchInput`](#searchinput)
+    - [`SkewedContainer`](#skewedcontainer)
     - [`SEO`](#seo)
     - [`SimpleFeedback`](#simplefeedback)
+    - [`SignUpLink`](#link)
     - [`Spinner`](#spinner)
     - [`SplitColorButton`](#splitcolorbutton)
     - [`Surface`](#surface)
@@ -983,6 +988,38 @@ import { Button, CreateIssueButton } from '@newrelic/gatsby-theme-newrelic';
 />;
 ```
 
+### `DarkModeToggle`
+
+Used in combination with [`use-dark-mode`](https://www.npmjs.com/package/use-dark-mode), is an icon
+which sets a users' webpage to display either the light or dark theme
+
+```js
+import { DarkModeToggle } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop        | Type     | Required | Default | Description                                                       |
+| ----------- | -------- | -------- | ------- | ----------------------------------------------------------------- |
+| `className` | string   | no       |         | Optional className that can be added to the component             |
+| `onClick`   | function | no       |         | Addional functionality that can be added to the toggle if desired |
+| `size`      | string   | no       |         | Size of the icon, must denote unit (e.g., `px`, `rem`, `etc`)     |
+
+**Example**
+
+```js
+// Fake tracking function just for an example
+const trackUsage = (event) => {
+  track(event);
+};
+
+<DarkModeToggle
+  className="dark-mode-toggle"
+  onClick={trackUsage}
+  size="0.875rem"
+/>;
+```
+
 ### `Dropdown`
 
 Used in combination with [`Dropdown.Toggle`](#dropdowntoggle), [`Dropdown.Menu`](#dropdownmenu), and [`Dropdown.MenuItem`](#dropdownmenuitem) to create a dropdown.
@@ -1563,6 +1600,12 @@ between a [Gatsby `Link`](https://www.gatsbyjs.com/docs/gatsby-link/) and an
 external link. This component will pick between a regular anchor tag and a
 Gatsby link depending on whether the URL is a relative or external url.
 
+This component also makes use of the `SignUpLink` component when users are being directed
+to sign up for New Relic. The `SignUpLink` is rendered when the `to` prop passed to
+the `Link` components starts with `https://newrelic.com/signup` (this can be updated in the
+`Link` component). `SignUpLink` will then determine the users locale and format a corresponding
+href for that user. This, along with additional instrumentation, comprises the `SignUpLink` use case.
+
 This component will automatically convert absolute URLs that link to pages
 within the same site to relative links. This ensures a smooth user experience
 for all linked pages on the site.
@@ -1930,6 +1973,33 @@ import { NewRelicLogo } from '@newrelic/gatsby-theme-newrelic';
 <NewRelicLogo />
 ```
 
+### Overlay
+
+Used as a container to display a any component passed as children on top of a page while stopping scrolling on the page itself.
+
+```js
+import { Overlay } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop             | Type     | Required | Default | Description                                                                  |
+| ---------------- | -------- | -------- | ------- | ---------------------------------------------------------------------------- |
+| `className`      | string   | yes      |         | Additional `className` for the component.                                    |
+| `children`       | node     | yes      |         | Content to be displayed in the `Overlay` component                           |
+| `onCloseOverlay` | function | yes      |         | Additional function that can be run as an onClick when closing the `Overlay` |
+| `isOpen`         | boolean  | no       | false   | Boolean to determine if the `Overlay` is displayed                           |
+
+**Example**
+
+```js
+[isOpen, setIsOpen] = useState(false);
+
+<Overlay className={'main-overlay'} isOpen={isOpen}>
+  <p>This is an Overlay!</p>
+</Overlay>;
+```
+
 ### `PageTools`
 
 Used as a "right rail" container to display content related to the current page.
@@ -2009,13 +2079,40 @@ section of content inside of `PageTools`. Render this inside of a
 | `className` | string | no       |         | Additional `className` for the component.                |
 | `children`  | node   | no       |         | Title to be displayed in the `PageTools.Title` component |
 
+### Portal
+
+Paired with `createPortal` from [`react-dom`](https://reactjs.org/docs/react-dom.html#createportal), this component can be used to append a set of children elements to the `body` element in the DOM.
+
+```js
+import { Portal } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type | Required | Default | Description                             |
+| ---------- | ---- | -------- | ------- | --------------------------------------- |
+| `children` | node | no       |         | Content to be displayed in the `Portal` |
+
+**Examples**
+
+```js
+[showPortal, setShowPortal] = useState(false);
+
+showPortal &&
+  <Portal>
+    <p>
+      Warning: Please select at least one option.
+    <p>
+  </Portal>
+```
+
 ### `RelatedResources`
 
 Used to display related resources for the current page. This is meant to be used
 as a section inside of the [`PageTools`](#pagetools) component.
 
 ```js
-import { RelatedResources } from '@newrelic/gatsby-theme-newrelic'`
+import { RelatedResources } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 **Props**
@@ -2079,6 +2176,27 @@ const Search = () => (
     />
   );
 );
+```
+
+### `SkewedContainer`
+
+Used to display a set of components at a slight skew (~ 2 degrees) relative to the page.
+
+```js
+import { SkewedContainer } from '@newrelic/gatsby-theme-newrelic';
+```
+
+| Prop        | Type   | Required | Default | Description                                       |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------- |
+| `children`  | node   | no       |         | Content to be displayed in the container          |
+| `className` | string | no       |         | Additional classname to be added to the component |
+
+**Examples**
+
+```js
+<SkewedContainer>
+  <p>404 - this page does not exist</p>
+</SkewedContainer>
 ```
 
 ### `SEO`
