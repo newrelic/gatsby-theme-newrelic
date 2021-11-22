@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.0.1...v4.0.2) (2021-11-22)
+
+
+### Bug Fixes
+
+* swap eventName & category arguments in link ([0318c34](https://github.com/newrelic/gatsby-theme-newrelic/commit/0318c3497aa679310bc01c0eb3264c6729d3db06))
+
+
+
+
+
 ## [4.0.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.0.0...v4.0.1) (2021-11-18)
 
 
