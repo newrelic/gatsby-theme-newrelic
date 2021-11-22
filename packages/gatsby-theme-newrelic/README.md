@@ -996,7 +996,7 @@ import { DarkModeToggle } from '@newrelic/gatsby-theme-newrelic';
 | ----------- | -------- | -------- | ------- | ----------------------------------------------------------------- |
 | `className` | string   | no       |         | Optional className that can be added to the component             |
 | `onClick`   | function | no       |         | Addional functionality that can be added to the toggle if desired |
-| `size`      | string   | yes      |         | Size of the icon, must denote unit (e.g., `px`, `rem`, `etc`)     |
+| `size`      | string   | no       |         | Size of the icon, must denote unit (e.g., `px`, `rem`, `etc`)     |
 
 **Example**
 
@@ -1978,9 +1978,9 @@ import { Overlay } from '@newrelic/gatsby-theme-newrelic';
 
 | Prop             | Type     | Required | Default | Description                                                                  |
 | ---------------- | -------- | -------- | ------- | ---------------------------------------------------------------------------- |
-| `className`      | string   | no       |         | Additional `className` for the component.                                    |
-| `children`       | node     | no       |         | Content to be displayed in the `Overlay` component                           |
-| `onCloseOverlay` | function | no       |         | Additional function that can be run as an onClick when closing the `Overlay` |
+| `className`      | string   | yes      |         | Additional `className` for the component.                                    |
+| `children`       | node     | yes      |         | Content to be displayed in the `Overlay` component                           |
+| `onCloseOverlay` | function | yes      |         | Additional function that can be run as an onClick when closing the `Overlay` |
 | `isOpen`         | boolean  | no       | false   | Boolean to determine if the `Overlay` is displayed                           |
 
 **Example**
@@ -2179,9 +2179,10 @@ Used to display a set of components at a slight skew (~ 2 degrees) relative to t
 import { SkewedContainer } from '@newrelic/gatsby-theme-newrelic';
 ```
 
-| Prop       | Type | Required | Default | Description                              |
-| ---------- | ---- | -------- | ------- | ---------------------------------------- |
-| `children` | node | no       |         | Content to be displayed in the container |
+| Prop        | Type   | Required | Default | Description                                       |
+| ----------- | ------ | -------- | ------- | ------------------------------------------------- |
+| `children`  | node   | no       |         | Content to be displayed in the container          |
+| `className` | string | no       |         | Additional classname to be added to the component |
 
 **Examples**
 
