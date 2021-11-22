@@ -240,7 +240,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 }
               }
 
-              @media screen and (max-width: 545px) {
+              @media screen and (max-width: 675px) {
                 overflow: visible;
 
                 &::after {
@@ -257,7 +257,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 align-items: center;
                 margin-right: 1rem;
 
-                @media screen and (max-width: 545px) {
+                @media screen and (max-width: 700px) {
                   display: none;
                 }
               `}
@@ -273,7 +273,7 @@ const GlobalHeader = ({ className, activeSite }) => {
               css={css`
                 display: none;
 
-                @media screen and (max-width: 545px) {
+                @media screen and (max-width: 700px) {
                   display: block;
                 }
               `}
@@ -316,7 +316,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                   flex: 0 0 auto;
                 }
 
-                @media screen and (max-width: 545px) {
+                @media screen and (max-width: 700px) {
                   display: none;
                 }
               `}
