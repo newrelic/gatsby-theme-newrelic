@@ -95,7 +95,6 @@ websites](https://opensource.newrelic.com).
     - [`useLayout`](#uselayout)
     - [`useLocale`](#uselocale)
     - [`useNavigation`](#usenavigation)
-    - [`usePrevious`](#useprevious)
     - [`useQueryParams`](#usequeryparams)
     - [`useScrollFreeze`](#usescrollfreeze)
     - [`useSyncedRef`](#usesyncedref)
@@ -1923,7 +1922,6 @@ import { NewRelicLogo } from '@newrelic/gatsby-theme-newrelic';
 | `className` | string  | no       |         | Additional `className` for the component                                                                                                          |
 | `omitText`  | boolean | no       | `true`  | Determines whether to only render the logo without the text. Useful for responsible layouts where the logo may only be displayed.                 |
 | `size`      | string  | no       |         | Size of the logo. Accepts any CSS sizing value (e.g. `100px`). Defaults to `18px` when `omitText` is `true` and `79px` when `omitText` is `false` |
-| `textColor` | string | no         |        | Color of the text for the logo. Defaults to global theme.
 
 **Examples**
 
@@ -2698,9 +2696,9 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-- `handler` _(function)_: The function hander that should be augmented with Tessen instrumentation. 
+- `handler` _(function)_: The function hander that should be augmented with Tessen instrumentation.
   This can be `null` or `undefined`.
-- `attributes` _(object | function)_: Data passed to the `Tessen.track` API when called. 
+- `attributes` _(object | function)_: Data passed to the `Tessen.track` API when called.
   The attributes **MUST** contain...
 
   - `eventName` - Needs to be in [Camel Case](https://en.wikipedia.org/wiki/Camel_case)

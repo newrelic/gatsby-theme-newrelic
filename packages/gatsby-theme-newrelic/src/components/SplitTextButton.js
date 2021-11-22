@@ -11,7 +11,7 @@ import Button from './Button';
 import ExternalLink from './ExternalLink';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
-const SplitTextButton = ({ style = {} }) => {
+const SplitTextButton = ({ className }) => {
   const { t } = useThemeTranslation();
   const { deven_signupbutton_text } = useTreatments([
     SPLITS.SIGNUP_BUTTON_TEXT,
@@ -27,14 +27,12 @@ const SplitTextButton = ({ style = {} }) => {
   return isReady ? (
     <Button
       as={ExternalLink}
+      className={className}
       href="https://newrelic.com/signup"
-      size={(style && style.size) || Button.SIZE.EXTRA_SMALL}
+      size={Button.SIZE.SMALL}
       variant={Button.VARIANT.PRIMARY}
       instrumentation={{ component: 'SplitTextButton' }}
       onClick={clickCallback}
-      css={css`
-        ${style && style.button}
-      `}
     >
       <span>
         {t(splitText === 'start_now' ? 'button.startNow' : 'button.signUp')}
@@ -43,20 +41,18 @@ const SplitTextButton = ({ style = {} }) => {
   ) : (
     <Button
       as={ExternalLink}
+      className={className}
       href="https://newrelic.com/signup"
-      size={(style && style.size) || Button.SIZE.EXTRA_SMALL}
+      size={Button.SIZE.SMALL}
       variant={Button.VARIANT.PRIMARY}
       instrumentation={{ component: 'SplitTextButton' }}
-      css={css`
-        ${style && style.button}
-      `}
     >
       <span>{t('button.signUp')}</span>
     </Button>
   );
 };
 SplitTextButton.propTypes = {
-  style: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export default SplitTextButton;

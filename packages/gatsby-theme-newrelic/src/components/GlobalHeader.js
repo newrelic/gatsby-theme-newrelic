@@ -97,7 +97,8 @@ const createNavList = (listType, activeSite = null) => {
 };
 
 const CONDENSED_BREAKPOINT = '815px';
-const MOBILE_BREAKPOINT = '700px';
+const NAV_BREAKPOINT = '700px';
+const MOBILE_BREAKPOINT = '545px';
 
 const actionLink = css`
   ${action};
@@ -238,7 +239,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 }
               }
 
-              @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
+              @media screen and (max-width: ${NAV_BREAKPOINT}) {
                 overflow: visible;
 
                 &::after {
@@ -255,14 +256,18 @@ const GlobalHeader = ({ className, activeSite }) => {
                 align-items: center;
                 margin-right: 1rem;
 
-                @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
+                @media screen and (max-width: ${NAV_BREAKPOINT}) {
                   display: none;
                 }
               `}
             >
               <NewRelicLogo
                 size="104px"
-                textColor="var(--color-neutrals-050)"
+                css={css`
+                  .logo-text {
+                    fill: var(--color-neutrals-050);
+                  }
+                `}
               />
             </ExternalLink>
 
@@ -270,7 +275,7 @@ const GlobalHeader = ({ className, activeSite }) => {
               css={css`
                 display: none;
 
-                @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
+                @media screen and (max-width: ${NAV_BREAKPOINT}) {
                   display: block;
                 }
               `}
@@ -286,7 +291,11 @@ const GlobalHeader = ({ className, activeSite }) => {
               >
                 <NewRelicLogo
                   size="104px"
-                  textColor="var(--color-neutrals-050)"
+                  css={css`
+                    .logo-text {
+                      fill: var(--color-neutrals-050);
+                    }
+                  `}
                 />
               </Dropdown.Toggle>
               <Dropdown.Menu>
@@ -312,7 +321,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                   flex: 0 0 auto;
                 }
 
-                @media screen and (max-width: 700px) {
+                @media screen and (max-width: ${NAV_BREAKPOINT}) {
                   display: none;
                 }
               `}
@@ -424,7 +433,7 @@ const GlobalHeader = ({ className, activeSite }) => {
             {locales.length > 1 && (
               <li
                 css={css`
-                  @media screen and (max-width: 545px) {
+                  @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
                     display: none;
                   }
                 `}
@@ -503,31 +512,12 @@ const GlobalHeader = ({ className, activeSite }) => {
                   border: 1px solid var(--color-brand-400);
                   border-radius: 4px;
 
-                  @media screen and (max-width: 545px) {
+                  @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
                     display: none;
                   }
                 `}
               >
-                <span
-                  css={css`
-                    @media screen and (max-width: 545px) {
-                      display: none;
-                    }
-                  `}
-                >
-                  {t('button.login')}
-                </span>
-                <Icon
-                  name="fe-log-in"
-                  css={css`
-                    display: none;
-
-                    @media screen and (max-width: 545px) {
-                      display: block;
-                    }
-                  `}
-                  size="0.875rem"
-                />
+                <span>{t('button.login')}</span>
               </Button>
             </li>
             <li
@@ -536,14 +526,13 @@ const GlobalHeader = ({ className, activeSite }) => {
               `}
             >
               <SplitTextButton
-                style={{
-                  button: css`
+                css={css`
+                  button {
                     background: var(color-brand-500);
                     border: 1px solid var(color-brand-500);
                     border-radius: 4px;
-                  `,
-                  size: Button.SIZE.SMALL,
-                }}
+                  }
+                `}
               />
             </li>
           </ul>
