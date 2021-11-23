@@ -11,7 +11,6 @@ import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import GlobalNavLink from './GlobalNavLink';
 import SearchInput from './SearchInput';
-import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useLocale from '../hooks/useLocale';
@@ -22,7 +21,6 @@ import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
 import useHasMounted from '../hooks/useHasMounted';
 import useTessen from '../hooks/useTessen';
-
 import SplitTextButton from './SplitTextButton';
 
 const action = css`
@@ -98,7 +96,9 @@ const createNavList = (listType, activeSite = null) => {
   return navList;
 };
 
-const CONDENSED_BREAKPOINT = '760px';
+const CONDENSED_BREAKPOINT = '815px';
+const NAV_BREAKPOINT = '700px';
+const MOBILE_BREAKPOINT = '545px';
 
 const actionLink = css`
   ${action};
@@ -165,8 +165,6 @@ const GlobalHeader = ({ className, activeSite }) => {
     }
   `);
 
-  const hideLogoText = useMedia({ maxWidth: '655px' });
-
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
   );
@@ -188,13 +186,14 @@ const GlobalHeader = ({ className, activeSite }) => {
         data-swiftype-index={false}
         className={className}
         css={css`
-          background-color: var(--color-neutrals-100);
+          background-color: var(--color-neutrals-800);
+          box-shadow: var(--shadow-2);
           position: sticky;
           top: 0;
           z-index: 80;
 
           .dark-mode & {
-            background-color: var(--color-dark-100);
+            background-color: var(--color-dark-300);
           }
         `}
       >
@@ -216,7 +215,7 @@ const GlobalHeader = ({ className, activeSite }) => {
               overflow: hidden;
               position: relative;
 
-              @media screen and (max-width: 800px) {
+              @media screen and (max-width: 1235px) {
                 &::after {
                   content: '';
                   position: absolute;
@@ -227,7 +226,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                   background: linear-gradient(
                     to right,
                     ${rgba('#f4f5f5', 0)},
-                    var(--color-neutrals-100)
+                    var(--color-neutrals-800)
                   );
 
                   .dark-mode & {
@@ -240,7 +239,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 }
               }
 
-              @media screen and (max-width: 545px) {
+              @media screen and (max-width: ${NAV_BREAKPOINT}) {
                 overflow: visible;
 
                 &::after {
@@ -257,19 +256,26 @@ const GlobalHeader = ({ className, activeSite }) => {
                 align-items: center;
                 margin-right: 1rem;
 
-                @media screen and (max-width: 545px) {
+                @media screen and (max-width: ${NAV_BREAKPOINT}) {
                   display: none;
                 }
               `}
             >
-              <NewRelicLogo omitText={hideLogoText} />
+              <NewRelicLogo
+                size="104px"
+                css={css`
+                  .logo-text {
+                    fill: var(--color-neutrals-050);
+                  }
+                `}
+              />
             </ExternalLink>
 
             <Dropdown
               css={css`
                 display: none;
 
-                @media screen and (max-width: 545px) {
+                @media screen and (max-width: ${NAV_BREAKPOINT}) {
                   display: block;
                 }
               `}
@@ -283,7 +289,14 @@ const GlobalHeader = ({ className, activeSite }) => {
                   padding-right: 0;
                 `}
               >
-                <Icon name="logo-newrelic" size="1.125rem" />
+                <NewRelicLogo
+                  size="104px"
+                  css={css`
+                    .logo-text {
+                      fill: var(--color-neutrals-050);
+                    }
+                  `}
+                />
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 {createNavList('dropdown', activeSite)}
@@ -308,7 +321,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                   flex: 0 0 auto;
                 }
 
-                @media screen and (max-width: 545px) {
+                @media screen and (max-width: ${NAV_BREAKPOINT}) {
                   display: none;
                 }
               `}
@@ -344,6 +357,7 @@ const GlobalHeader = ({ className, activeSite }) => {
             <li
               css={css`
                 flex: 1;
+                padding: 0rem 1rem;
 
                 @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
                   flex: unset;
@@ -362,15 +376,50 @@ const GlobalHeader = ({ className, activeSite }) => {
                   }
                 `}
               >
-                <Icon css={actionIcon} name="fe-search" size="0.875rem" />
+                <Icon css={actionIcon} name="fe-search" size="1.5rem" />
               </Link>
               <SearchInput
                 placeholder={t('searchInput.placeholder')}
-                size={SearchInput.SIZE.SMALL}
+                size={SearchInput.SIZE.MEDIUM}
                 focusWithHotKey="/"
                 css={css`
+                  --icon-size: 1.5rem;
                   min-width: 150px;
                   max-width: 350px;
+
+                  svg {
+                    color: var(--color-neutrals-500);
+                    width: 1.5rem;
+                    height: 1.5rem;
+                  }
+
+                  input {
+                    --hover-border-color: var(--color-neutrals-600);
+                    --background-color: var(--color-neutrals-700);
+                    background: var(--background-color);
+                    border: none;
+                    height: 40px;
+
+                    .dark-mode & {
+                      --background-color: var(--color-dark-500);
+                    }
+
+                    &:hover {
+                      box-shadow: 0 0 0 1px var(--color-neutrals-600);
+                    }
+                  }
+
+                  .search-hotkey {
+                    background: var(--color-neutrals-700);
+                    border-color: var(--color-neutrals-600);
+                    border-radius: 0.125rem;
+                    font-size: 0.875rem;
+                    padding: 0.125rem 0.375rem;
+
+                    .dark-mode & {
+                      background: var(--color-dark-500);
+                    }
+                  }
 
                   @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
                     display: none;
@@ -382,11 +431,35 @@ const GlobalHeader = ({ className, activeSite }) => {
               />
             </li>
             {locales.length > 1 && (
-              <li>
+              <li
+                css={css`
+                  @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
+                    display: none;
+                  }
+                `}
+              >
                 <Dropdown align="right">
                   <Dropdown.Toggle
-                    size={Button.SIZE.EXTRA_SMALL}
+                    size={Button.SIZE.SMALL}
                     variant={Button.VARIANT.LINK}
+                    css={css`
+                      --active-color: none;
+                      margin: 0;
+                      height: 72px;
+                      border-radius: 0px;
+                      font-size: 0.75rem;
+                      color: var(--color-neutrals-100);
+                      background: transparent;
+
+                      .dark-mode & {
+                        --active-color: var(--color-dark-100);
+                      }
+
+                      &:hover {
+                        color: var(--color-neutrals-600);
+                        background-color: var(--active-color);
+                      }
+                    `}
                   >
                     {locale.localName}
                   </Dropdown.Toggle>
@@ -408,44 +481,43 @@ const GlobalHeader = ({ className, activeSite }) => {
               </li>
             )}
             <li>
-              <DarkModeToggle css={[actionIcon, action]} size="0.875rem" />
+              <DarkModeToggle
+                css={[
+                  actionIcon,
+                  action,
+                  css`
+                    margin: 24px;
+                  `,
+                ]}
+                size="1.5rem"
+              />
             </li>
             <li
               css={css`
                 display: flex;
-                align-items: center;
+                align-items: right;
               `}
             >
               <Button
                 as={ExternalLink}
-                size={Button.SIZE.EXTRA_SMALL}
+                size={Button.SIZE.SMALL}
                 variant={Button.VARIANT.LINK}
                 href="https://one.newrelic.com"
                 css={css`
+                  margin: 0 0.625rem;
                   font-weight: 600;
+                  font-size: 0.875rem;
                   white-space: nowrap;
+                  color: var(--color-brand-400);
+                  border: 1px solid var(--color-brand-400);
+                  border-radius: 4px;
+
+                  @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
+                    display: none;
+                  }
                 `}
               >
-                <span
-                  css={css`
-                    @media screen and (max-width: 545px) {
-                      display: none;
-                    }
-                  `}
-                >
-                  {t('button.login')}
-                </span>
-                <Icon
-                  name="fe-log-in"
-                  css={css`
-                    display: none;
-
-                    @media screen and (max-width: 545px) {
-                      display: block;
-                    }
-                  `}
-                  size="0.875rem"
-                />
+                <span>{t('button.login')}</span>
               </Button>
             </li>
             <li
@@ -453,7 +525,15 @@ const GlobalHeader = ({ className, activeSite }) => {
                 display: flex;
               `}
             >
-              <SplitTextButton />
+              <SplitTextButton
+                css={css`
+                  button {
+                    background: var(color-brand-500);
+                    border: 1px solid var(color-brand-500);
+                    border-radius: 4px;
+                  }
+                `}
+              />
             </li>
           </ul>
         </div>

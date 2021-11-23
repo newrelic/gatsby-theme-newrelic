@@ -100,7 +100,6 @@ websites](https://opensource.newrelic.com).
     - [`useLayout`](#uselayout)
     - [`useLocale`](#uselocale)
     - [`useNavigation`](#usenavigation)
-    - [`usePrevious`](#useprevious)
     - [`useQueryParams`](#usequeryparams)
     - [`useScrollFreeze`](#usescrollfreeze)
     - [`useSyncedRef`](#usesyncedref)
@@ -2153,7 +2152,6 @@ import { SearchInput } from '@newrelic/gatsby-theme-newrelic';
 | `className`       | string   | no       |         | Additional `className` for the component.                                                                                                 |
 | `onClear`         | function | yes      |         | Handler called when the user interacts with the clear button. This handler should be responsible for resetting the `value` of the input.  |
 | `size`            | enum     | no       |         | Size of the input. Must be one of `SearchInput.SIZE.MEDIUM` or `SearchInput.SIZE.LARGE`                                                   |
-| `style`           | object   | no       |         | Inline styles for the search input                                                                                                        |
 | `value`           | string   | no       |         | Value of the search input.                                                                                                                |
 | `width`           | string   | no       |         | Width of the input. Accepts any CSS sizing value (e.g. `100px`)                                                                           |
 | `iconName`        | enum     | no       |         | Specify icon to use. Must be one of `SearchInput.ICONS.SEARCH` or `SearchInput.ICONS.FILTER` Defaults to search magnifying glass.         |
@@ -2816,9 +2814,9 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-- `handler` _(function)_: The function hander that should be augmented with Tessen instrumentation. 
+- `handler` _(function)_: The function hander that should be augmented with Tessen instrumentation.
   This can be `null` or `undefined`.
-- `attributes` _(object | function)_: Data passed to the `Tessen.track` API when called. 
+- `attributes` _(object | function)_: Data passed to the `Tessen.track` API when called.
   The attributes **MUST** contain...
 
   - `eventName` - Needs to be in [Camel Case](https://en.wikipedia.org/wiki/Camel_case)

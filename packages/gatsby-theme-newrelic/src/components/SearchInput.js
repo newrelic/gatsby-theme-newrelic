@@ -33,7 +33,6 @@ const SearchInput = forwardRef(
       width,
       size = 'medium',
       className,
-      style,
       iconName = 'fe-search',
       onBlur,
       onFocus,
@@ -54,7 +53,6 @@ const SearchInput = forwardRef(
       <div
         width={width}
         className={className}
-        style={style}
         css={css`
           --horizontal-spacing: ${HORIZONTAL_SPACING[size]};
 
@@ -99,7 +97,8 @@ const SearchInput = forwardRef(
             width: 100%;
             border: 1px solid var(--border-color);
             border-radius: 4px;
-            background: var(--primary-background-color);
+            background: ${'var(--background-color)' ||
+            'var(--primary-background-color)'};
             color: var(--primary-text-color);
             transition: 0.15s ease-out;
             line-height: 1;
@@ -156,21 +155,21 @@ const SearchInput = forwardRef(
         )}
         {showHotKey && (
           <span
+            className="search-hotkey"
             css={css`
               position: absolute;
               right: var(--horizontal-spacing);
               top: 50%;
               transform: translateY(-50%);
               border: 1px solid var(--border-color);
-              line-height: 1;
+              line-height: 1rem;
               text-align: center;
               background: var(--color-neutrals-100);
-
-              ${styles.size[size].hotkey}
 
               .dark-mode & {
                 background: var(--color-dark-200);
               }
+              ${styles.size[size].hotkey}
             `}
           >
             {focusWithHotKey}
@@ -189,7 +188,6 @@ SearchInput.propTypes = {
   value: PropTypes.string,
   width: PropTypes.string,
   size: PropTypes.oneOf(Object.values(SIZES)),
-  style: PropTypes.object,
   iconName: PropTypes.oneOf(Object.values(ICONS)),
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,

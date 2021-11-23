@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   useTreatments,
   SplitContext,
@@ -9,7 +10,7 @@ import Button from './Button';
 import ExternalLink from './ExternalLink';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
-const SplitTextButton = () => {
+const SplitTextButton = ({ className }) => {
   const { t } = useThemeTranslation();
   const { deven_signupbutton_text } = useTreatments([
     SPLITS.SIGNUP_BUTTON_TEXT,
@@ -25,8 +26,9 @@ const SplitTextButton = () => {
   return isReady ? (
     <Button
       as={ExternalLink}
+      className={className}
       href="https://newrelic.com/signup"
-      size={Button.SIZE.EXTRA_SMALL}
+      size={Button.SIZE.SMALL}
       variant={Button.VARIANT.PRIMARY}
       instrumentation={{ component: 'SplitTextButton' }}
       onClick={clickCallback}
@@ -38,14 +40,18 @@ const SplitTextButton = () => {
   ) : (
     <Button
       as={ExternalLink}
+      className={className}
       href="https://newrelic.com/signup"
-      size={Button.SIZE.EXTRA_SMALL}
+      size={Button.SIZE.SMALL}
       variant={Button.VARIANT.PRIMARY}
       instrumentation={{ component: 'SplitTextButton' }}
     >
       <span>{t('button.signUp')}</span>
     </Button>
   );
+};
+SplitTextButton.propTypes = {
+  className: PropTypes.string,
 };
 
 export default SplitTextButton;
