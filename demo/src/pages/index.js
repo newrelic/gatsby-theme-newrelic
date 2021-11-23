@@ -243,6 +243,7 @@ nr1 create --type nerdpack --name pageviews-app
           <div
             css={css`
               display: flex;
+              flex-wrap: wrap;
               gap: 1rem;
               margin-bottom: 2rem;
               align-items: start;

@@ -96,8 +96,13 @@ const createNavList = (listType, activeSite = null) => {
   return navList;
 };
 
+// hides searchbar
 const CONDENSED_BREAKPOINT = '815px';
+
+// swaps out logo into collapsable nav
 const NAV_BREAKPOINT = '700px';
+
+// changes layout for mobile view
 const MOBILE_BREAKPOINT = '545px';
 
 const actionLink = css`
@@ -357,7 +362,7 @@ const GlobalHeader = ({ className, activeSite }) => {
             <li
               css={css`
                 flex: 1;
-                padding: 0rem 1rem;
+                margin: 0rem 1rem;
 
                 @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
                   flex: unset;
@@ -486,7 +491,11 @@ const GlobalHeader = ({ className, activeSite }) => {
                   actionIcon,
                   action,
                   css`
-                    margin: 24px;
+                    margin: 0 24px;
+
+                    @media screen and (max-width: 450px) {
+                      margin: 0;
+                    }
                   `,
                 ]}
                 size="1.5rem"
