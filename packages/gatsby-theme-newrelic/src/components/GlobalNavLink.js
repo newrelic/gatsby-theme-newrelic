@@ -32,24 +32,33 @@ const GlobalNavLink = ({ children, href, activeSite }) => {
     <Component
       {...props}
       css={css`
+        --active-color: var(--color-neutrals-900);
+        --hover-color: none;
         display: flex;
         align-items: center;
         height: 100%;
-        padding: 0.25rem 9px;
-        color: var(--secondary-text-color);
-        font-size: 0.6875rem;
+        padding: 0.25rem 0.5625rem;
+        color: var(--color-neutrals-100);
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+
         transition: 0.2s;
         text-decoration: none;
 
         ${isCurrentSite && '&,'}
-        &:hover {
-          background-color: var(--color-neutrals-300);
-          color: var(--color-neutrals-700);
 
-          .dark-mode & {
-            background-color: var(--color-dark-300);
-            color: var(--color-dark-700);
-          }
+        &:active {
+          background-color: var(--active-color);
+        }
+
+        &:hover {
+          color: var(--color-neutrals-600);
+          background-color: var(--active-color);
+        }
+
+        .dark-mode & {
+          --active-color: var(--color-dark-100);
+          --hover-color: var(--color-neutrals-600);
         }
       `}
       instrumentation={{
