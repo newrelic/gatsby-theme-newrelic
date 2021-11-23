@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.0.2...v4.0.3) (2021-11-23)
+
+
+### Bug Fixes
+
+* add split event for default state ([9ec0cdd](https://github.com/newrelic/gatsby-theme-newrelic/commit/9ec0cdd4cf19c4b967f257cffbd14ae3d92b1e50))
+* lint errors ([95aec5b](https://github.com/newrelic/gatsby-theme-newrelic/commit/95aec5b71ef6effe0f398c478785f6cdfe87b78c))
+* update some of the documentation to better reflect how to use specific components ([2ed1800](https://github.com/newrelic/gatsby-theme-newrelic/commit/2ed1800813482a4f35097a73e3bcbb321cd7de46))
+
+
+
+
+
 ## [4.0.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.0.1...v4.0.2) (2021-11-22)
 
 
