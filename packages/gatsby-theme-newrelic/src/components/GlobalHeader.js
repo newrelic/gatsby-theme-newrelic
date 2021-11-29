@@ -11,6 +11,7 @@ import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import GlobalNavLink from './GlobalNavLink';
 import SearchInput from './SearchInput';
+import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useLocale from '../hooks/useLocale';
@@ -96,9 +97,14 @@ const createNavList = (listType, activeSite = null) => {
   return navList;
 };
 
+// hides searchbar
 const CONDENSED_BREAKPOINT = '815px';
-const NAV_BREAKPOINT = '700px';
-const MOBILE_BREAKPOINT = '545px';
+
+// swaps out logo into collapsable nav
+const NAV_BREAKPOINT = '770px';
+
+// changes layout for mobile view
+const MOBILE_BREAKPOINT = '600px';
 
 const actionLink = css`
   ${action};
@@ -164,6 +170,8 @@ const GlobalHeader = ({ className, activeSite }) => {
       }
     }
   `);
+
+  const hideLogoText = useMedia({ maxWidth: '350px' });
 
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
@@ -290,12 +298,13 @@ const GlobalHeader = ({ className, activeSite }) => {
                 `}
               >
                 <NewRelicLogo
-                  size="104px"
+                  size={hideLogoText ? '24px' : '104px'}
                   css={css`
                     .logo-text {
                       fill: var(--color-neutrals-050);
                     }
                   `}
+                  omitText={hideLogoText}
                 />
               </Dropdown.Toggle>
               <Dropdown.Menu>
@@ -357,7 +366,7 @@ const GlobalHeader = ({ className, activeSite }) => {
             <li
               css={css`
                 flex: 1;
-                padding: 0rem 1rem;
+                margin: 0rem 1rem;
 
                 @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
                   flex: unset;
@@ -486,7 +495,11 @@ const GlobalHeader = ({ className, activeSite }) => {
                   actionIcon,
                   action,
                   css`
-                    margin: 24px;
+                    margin: 0 24px;
+
+                    @media screen and (max-width: 450px) {
+                      margin: 0;
+                    }
                   `,
                 ]}
                 size="1.5rem"
