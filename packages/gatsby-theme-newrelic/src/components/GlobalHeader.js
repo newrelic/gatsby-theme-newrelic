@@ -11,6 +11,7 @@ import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import GlobalNavLink from './GlobalNavLink';
 import SearchInput from './SearchInput';
+import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
 import useLocale from '../hooks/useLocale';
@@ -100,10 +101,10 @@ const createNavList = (listType, activeSite = null) => {
 const CONDENSED_BREAKPOINT = '815px';
 
 // swaps out logo into collapsable nav
-const NAV_BREAKPOINT = '700px';
+const NAV_BREAKPOINT = '770px';
 
 // changes layout for mobile view
-const MOBILE_BREAKPOINT = '545px';
+const MOBILE_BREAKPOINT = '600px';
 
 const actionLink = css`
   ${action};
@@ -169,6 +170,8 @@ const GlobalHeader = ({ className, activeSite }) => {
       }
     }
   `);
+
+  const hideLogoText = useMedia({ maxWidth: '350px' });
 
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
@@ -295,12 +298,13 @@ const GlobalHeader = ({ className, activeSite }) => {
                 `}
               >
                 <NewRelicLogo
-                  size="104px"
+                  size={hideLogoText ? '24px' : '104px'}
                   css={css`
                     .logo-text {
                       fill: var(--color-neutrals-050);
                     }
                   `}
+                  omitText={hideLogoText}
                 />
               </Dropdown.Toggle>
               <Dropdown.Menu>
