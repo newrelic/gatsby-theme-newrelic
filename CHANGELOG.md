@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.0.3...v4.0.4) (2021-11-29)
+
+
+### Bug Fixes
+
+* adjust header buttons in mobile ([592b326](https://github.com/newrelic/gatsby-theme-newrelic/commit/592b3265a1b9a68f861f8549df237b2233e1f407))
+
+
+
+
+
 ## [4.0.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.0.2...v4.0.3) (2021-11-23)
 
 
