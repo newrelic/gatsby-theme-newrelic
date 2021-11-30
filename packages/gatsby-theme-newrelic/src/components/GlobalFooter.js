@@ -10,6 +10,7 @@ import EditPageButton from './EditPageButton';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 import Link from './Link';
+import useLocale from '../hooks/useLocale';
 
 // We need to use this as a JS value otherwise the HTML entity gets saved in the
 // string and escaped by React, therefore rendering the literal &copy; text in
@@ -36,6 +37,7 @@ const GlobalFooter = ({
       }
     }
   `);
+  const { locale } = useLocale();
 
   const { siteMetadata } = site;
   const { repository } = siteMetadata;
@@ -100,7 +102,7 @@ const GlobalFooter = ({
             />
           )}
 
-          {repository && fileRelativePath && (
+          {repository && fileRelativePath && locale === 'en' && (
             <EditPageButton
               fileRelativePath={fileRelativePath}
               variant={Button.VARIANT.OUTLINE}
