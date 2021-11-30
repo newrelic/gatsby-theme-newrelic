@@ -23,6 +23,7 @@ import { useDebounce } from 'react-use';
 import useHasMounted from '../hooks/useHasMounted';
 import useTessen from '../hooks/useTessen';
 import SplitTextButton from './SplitTextButton';
+import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 const action = css`
   color: var(--secondary-text-color);
@@ -79,6 +80,7 @@ const createNavList = (listType, activeSite = null) => {
             <GlobalNavLink
               href={href}
               activeSite={activeSite && HEADER_LINKS.get(activeSite)}
+              instrumentation={{ component: 'globalHeader' }}
             >
               {text}
             </GlobalNavLink>
@@ -178,6 +180,13 @@ const GlobalHeader = ({ className, activeSite }) => {
   );
 
   const locale = useLocale();
+
+  const handleLocaleClick = useInstrumentedHandler(null, ({ locale }) => ({
+    eventName: 'localeDropDownClick',
+    category: 'LocaleDropDown',
+    origin: 'gatsbyTheme',
+    locale,
+  }));
 
   return (
     <>
@@ -481,6 +490,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                           isDefault ? '' : `/${locale}`,
                           location.pathname.replace(matchLocalePath, '')
                         )}
+                        onClick={() => handleLocaleClick({ locale })}
                       >
                         {localName}
                       </Dropdown.MenuItem>
@@ -529,6 +539,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                     display: none;
                   }
                 `}
+                instrumentation={{ component: 'headerLogInButton' }}
               >
                 <span>{t('button.login')}</span>
               </Button>

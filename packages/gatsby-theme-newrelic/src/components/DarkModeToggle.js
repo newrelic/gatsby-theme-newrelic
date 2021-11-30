@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import Icon from './Icon';
 import useDarkMode from 'use-dark-mode';
 import isLocalStorageAvailable from '../utils/isLocalStorageAvailable';
+import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 const DarkModeToggle = ({ className, size, onClick }) => {
   const isDarkDefault = false;
@@ -14,6 +15,16 @@ const DarkModeToggle = ({ className, size, onClick }) => {
     : { storageProvider: false };
   const darkMode = useDarkMode(isDarkDefault, darkModeOptions);
 
+  const handleDarkModeClick = useInstrumentedHandler(
+    null,
+    ({ darkModeValue }) => ({
+      eventName: 'darkModeToggleClick',
+      category: 'DarkModeToggle',
+      origin: 'gatsbyTheme',
+      mode: darkModeValue,
+    })
+  );
+
   return (
     <Icon
       name={darkMode.value ? 'fe-sun' : 'fe-moon'}
@@ -21,6 +32,10 @@ const DarkModeToggle = ({ className, size, onClick }) => {
       size={size}
       onClick={(e) => {
         darkMode.toggle();
+
+        handleDarkModeClick({
+          darkModeValue: darkMode.value ? 'dark' : 'light',
+        });
 
         if (window.newrelic) {
           window.newrelic.setCustomAttribute(
