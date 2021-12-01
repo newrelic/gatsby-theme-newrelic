@@ -6,7 +6,7 @@ const NoTranslate = ({ children, htmlElement: HtmlElement }) => (
 );
 
 NoTranslate.propTypes = {
-  childred: PropTypes.node,
+  children: PropTypes.node,
   htmlElement: PropTypes.string,
 };
 
