@@ -13,6 +13,7 @@ import MDXCollapserGroup from './MDXCollapserGroup';
 import MDXLink from './MDXLink';
 import MDXTable from './MDXTable';
 import MDXVideo from './MDXVideo';
+import NoTranslate from './NoTranslate';
 
 const defaultComponents = {
   a: MDXLink,
@@ -26,6 +27,7 @@ const defaultComponents = {
   Icon,
   InlineCode,
   Link,
+  NoTranslate,
   table: MDXTable,
   Video: MDXVideo,
 };

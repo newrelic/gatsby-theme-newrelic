@@ -68,6 +68,7 @@ websites](https://opensource.newrelic.com).
     - [`NavItem`](#navitem)
       - [`Page`](#page)
     - [`NewRelicLogo`](#newreliclogo)
+    - [`NoTranslate`](#notranslate)
     - [`Overlay`](#overlay)
     - [`PageTools`](#pagetools)
       - [`PageTools.Section`](#pagetoolssection)
@@ -1972,6 +1973,31 @@ import { NewRelicLogo } from '@newrelic/gatsby-theme-newrelic';
 <NewRelicLogo />
 ```
 
+### `NoTranslate`
+
+Used to denote parts of documents that are not meant to be translated via Machine Translation by placing a 'notranslate' class around the elements. Should only be used in `.mdx` files.
+
+```js
+import { NoTranslate } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop          | Type   | Required | Default | Description                                        |
+| ------------- | ------ | -------- | ------- | -------------------------------------------------- |
+| `children`    | node   | yes      |         | Content to be displayed in the `Overlay` component |
+| `htmlElement` | string | yes      |         | Denotes the type of block to make the MDX element  |
+
+**Examples**
+
+```js
+<NoTranslate htmlElement="p">This paragraph won't be captured for translation</NoTranslate>
+
+You have<NoTranslate htmlElement="span">5</NoTranslate>items in cart.
+
+<NoTranslate htmlElement="h2">Welcome to New Relic!</NoTranslate>
+```
+
 ### Overlay
 
 Used as a container to display a any component passed as children on top of a page while stopping scrolling on the page itself.
@@ -2822,7 +2848,7 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
   - `eventName` - Needs to be in [Camel Case](https://en.wikipedia.org/wiki/Camel_case)
   - `category` - Needs to be in [Title Case](https://en.wikipedia.org/wiki/Title_case)
   - `name`
-...otherwise the handler will not be instrumented. All other attributes will be attached to the `attributes` property of the page action. You can pass a function to instrument dynamic data. If this is a function, the function will be called with the same arguments passed to the handler.
+    ...otherwise the handler will not be instrumented. All other attributes will be attached to the `attributes` property of the page action. You can pass a function to instrument dynamic data. If this is a function, the function will be called with the same arguments passed to the handler.
 
 **Returns**
 
