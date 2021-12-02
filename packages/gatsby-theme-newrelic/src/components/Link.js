@@ -19,7 +19,14 @@ const isImageLink = (className) => className === 'gatsby-resp-image-link';
 
 const Link = forwardRef(
   (
-    { to, onClick, instrumentation = {}, displayExternalIcon, ...props },
+    {
+      to,
+      onClick,
+      instrumentation = {},
+      displayExternalIcon,
+      shouldAutoLocalize = true,
+      ...props
+    },
     ref
   ) => {
     const locale = useLocale();
@@ -118,10 +125,14 @@ const Link = forwardRef(
 
     return (
       <GatsbyLink
-        to={localizePath({
-          path: forceTrailingSlashes ? addTrailingSlash(to) : to,
-          locale,
-        })}
+        to={
+          shouldAutoLocalize
+            ? localizePath({
+                path: forceTrailingSlashes ? addTrailingSlash(to) : to,
+                locale,
+              })
+            : addTrailingSlash(to)
+        }
         ref={ref}
         onClick={handleInternalLinkClick}
         {...props}
@@ -136,6 +147,7 @@ Link.propTypes = {
   instrumentation: PropTypes.object,
   className: PropTypes.string,
   children: PropTypes.node,
+  shouldAutoLocalize: PropTypes.bool,
   displayExternalIcon: PropTypes.bool,
 };
 
