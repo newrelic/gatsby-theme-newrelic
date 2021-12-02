@@ -1632,17 +1632,17 @@ depending on whether it is a relative or absolute URL.
 
 ```js
 // Can be used as a relative link to other pages in the site
-<Link to="/page-2">
+<Link to="/page-2">Page 2</Link>
 
 // Link to other pages in the site without auto localizing the URL
-<Link to="/page-2" shouldAutoLocalize={false}>
+<Link to="/page-2" shouldAutoLocalize={false}>Page 2 (not localized)</Link>
 
 // Can also be used to link to external URLs
-<Link to="https://gatsbyjs.com">
+<Link to="https://gatsbyjs.com">GatsbyJS</Link>
 
 // If the link is absolute, but the origin matches the `siteMetadata.siteUrl`,
 // it will smartly convert this to a relative path.
-<Link to="https://developer.newrelic.com/page-2">
+<Link to="https://developer.newrelic.com/page-2">developer page 2</Link>
 ```
 
 ### `MarkdownContainer`
