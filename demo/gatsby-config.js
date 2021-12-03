@@ -64,6 +64,10 @@ module.exports = {
               treatment: 'start_now',
               config: '{ "text": "Start now" }',
             },
+            SplitComponentTest: {
+              treatment: 'green',
+              config: { text: 'Start now' },
+            },
           },
           core: {
             authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',

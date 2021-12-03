@@ -22,6 +22,7 @@ import {
   Video,
   useTranslation,
   ExternalLink,
+  SplitTester,
 } from '@newrelic/gatsby-theme-newrelic';
 
 const codeSample = `
@@ -118,6 +119,29 @@ const IndexPage = () => {
         <h1>{t('home.welcome')}</h1>
         <p>{t('home.intro')}</p>
         <section>
+          <h2>Split Test</h2>
+          <SplitTester splitEventName="SplitComponentTest">
+                <SplitTester.Treatment treatmentName="red" as={Link}>
+                  <ExternalLink to="https://newrelic.com/signup">
+                    Start now
+                  </ExternalLink>
+                </SplitTester.Treatment>
+                <SplitTester.Treatment treatmentName="green">
+                  <ExternalLink to="https://newrelic.com/signup">
+                    Join us
+                  </ExternalLink>
+                </SplitTester.Treatment>
+                <SplitTester.Default treatmentName="default">
+                  <Button
+                    as={ExternalLink}
+                    size={Button.SIZE.SMALL}
+                    variant={Button.VARIANT.PRIMARY}
+                    href="https://newrelic.com/signup"
+                  >
+                    Sign up
+                  </Button>
+                </SplitTester.Default>
+              </SplitTester>
           <h2>Search inputs</h2>
           <SearchInput
             style={{ margin: '1rem 0', maxWidth: '500px' }}
