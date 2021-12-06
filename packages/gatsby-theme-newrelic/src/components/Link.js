@@ -123,15 +123,17 @@ const Link = forwardRef(
       return <a {...props} href={to} />;
     }
 
+    const finalPath = forceTrailingSlashes ? addTrailingSlash(to) : to;
+
     return (
       <GatsbyLink
         to={
           shouldAutoLocalize
             ? localizePath({
-                path: forceTrailingSlashes ? addTrailingSlash(to) : to,
+                path: finalPath,
                 locale,
               })
-            : addTrailingSlash(to)
+            : finalPath
         }
         ref={ref}
         onClick={handleInternalLinkClick}
