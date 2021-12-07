@@ -400,7 +400,17 @@ nr1 create --type nerdpack --name pageviews-app
         </section>
         <section>
           <h2>Internal Links</h2>
-          <Link to="/">Internal Link</Link>
+          <p>
+            This <Link to="/build-apps">Internal Link</Link> automatically uses
+            localized path if on translated site.
+          </p>
+          <p>
+            This{' '}
+            <Link to="/build-apps" shouldAutoLocalize={false}>
+              Internal Link
+            </Link>{' '}
+            does not automatically use localized path if on translated site.
+          </p>
         </section>
         <section>
           <h2>External Links</h2>
