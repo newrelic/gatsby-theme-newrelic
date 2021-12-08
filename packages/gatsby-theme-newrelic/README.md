@@ -1622,6 +1622,7 @@ import { Link } from '@newrelic/gatsby-theme-newrelic'`
 | --------------------- | ------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `to`                  | string | yes      |         | The URL to link to. If this is a relative path, it will use the Gatsby `Link` component. If it is an external URL, it will use a regular anchor tag. |
 | `displayExternalIcon` | bool   | no       | false   | If the `to` is external to the current site, and you want the element to include an icon showing this leads to an external site, set this to `true`  |
+| `shouldAutoLocalize`  | bool   | no       | `true`  | Optionally specify if an internal link's URL path should be auto localized when on a translated version of the site.                                 |
 
 All additional props are forwarded to either the
 [`Link`](https://www.gatsbyjs.com/docs/gatsby-link/) component or the anchor tag
@@ -1631,14 +1632,17 @@ depending on whether it is a relative or absolute URL.
 
 ```js
 // Can be used as a relative link to other pages in the site
-<Link to="/page-2">
+<Link to="/page-2">Page 2</Link>
+
+// Link to other pages in the site without auto localizing the URL
+<Link to="/page-2" shouldAutoLocalize={false}>Page 2 (not localized)</Link>
 
 // Can also be used to link to external URLs
-<Link to="https://gatsbyjs.com">
+<Link to="https://gatsbyjs.com">GatsbyJS</Link>
 
 // If the link is absolute, but the origin matches the `siteMetadata.siteUrl`,
 // it will smartly convert this to a relative path.
-<Link to="https://developer.newrelic.com/page-2">
+<Link to="https://developer.newrelic.com/page-2">developer page 2</Link>
 ```
 
 ### `MarkdownContainer`
@@ -2822,7 +2826,7 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
   - `eventName` - Needs to be in [Camel Case](https://en.wikipedia.org/wiki/Camel_case)
   - `category` - Needs to be in [Title Case](https://en.wikipedia.org/wiki/Title_case)
   - `name`
-...otherwise the handler will not be instrumented. All other attributes will be attached to the `attributes` property of the page action. You can pass a function to instrument dynamic data. If this is a function, the function will be called with the same arguments passed to the handler.
+    ...otherwise the handler will not be instrumented. All other attributes will be attached to the `attributes` property of the page action. You can pass a function to instrument dynamic data. If this is a function, the function will be called with the same arguments passed to the handler.
 
 **Returns**
 
