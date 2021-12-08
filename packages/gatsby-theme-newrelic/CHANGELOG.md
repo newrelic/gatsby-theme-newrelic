@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.1.0...v4.1.1) (2021-12-08)
+
+
+### Bug Fixes
+
+* can't exit search modal on mobile ([1d9c23c](https://github.com/newrelic/gatsby-theme-newrelic/commit/1d9c23c4b3cb036a92f3e23dc628cf5db410d6df))
+
+
+
+
+
 # [4.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.0.5...v4.1.0) (2021-12-08)
 
 
