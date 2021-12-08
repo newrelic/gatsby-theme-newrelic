@@ -80,7 +80,10 @@ const createNavList = (listType, activeSite = null) => {
             <GlobalNavLink
               href={href}
               activeSite={activeSite && HEADER_LINKS.get(activeSite)}
-              instrumentation={{ component: 'globalHeader' }}
+              instrumentation={{
+                component: 'globalHeader',
+                layoutElement: 'globalHeader',
+              }}
             >
               {text}
             </GlobalNavLink>
@@ -136,6 +139,7 @@ const useSearchQuery = () => {
             eventName: 'swiftypeSearchInput',
             category: 'GlobalSearch',
             name: 'searchInput',
+            layoutElement: 'globalHeader',
             searchTerm,
           });
         }
@@ -185,6 +189,7 @@ const GlobalHeader = ({ className, activeSite }) => {
     eventName: 'localeDropDownClick',
     category: 'LocaleDropDown',
     origin: 'gatsbyTheme',
+    layoutElement: 'globalHeader',
     locale,
   }));
 
@@ -277,6 +282,10 @@ const GlobalHeader = ({ className, activeSite }) => {
                   display: none;
                 }
               `}
+              instrumentation={{
+                component: 'globalHeaderLogo',
+                layoutElement: 'globalHeader',
+              }}
             >
               <NewRelicLogo
                 size="104px"
@@ -539,7 +548,10 @@ const GlobalHeader = ({ className, activeSite }) => {
                     display: none;
                   }
                 `}
-                instrumentation={{ component: 'headerLogInButton' }}
+                instrumentation={{
+                  component: 'headerLogInButton',
+                  layoutElement: 'globalHeader',
+                }}
               >
                 <span>{t('button.login')}</span>
               </Button>
