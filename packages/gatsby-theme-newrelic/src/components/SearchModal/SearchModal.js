@@ -138,11 +138,6 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                 display: flex;
                 flex-direction: column;
                 position: relative;
-
-                @media screen and (max-width: 760px) {
-                  max-height: 100vh;
-                  height: 100vh;
-                }
               `}
             >
               <Input
