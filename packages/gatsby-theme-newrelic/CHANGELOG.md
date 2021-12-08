@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.1.4...v4.1.5) (2021-12-08)
+
+
+### Bug Fixes
+
+* trivial change to trigger patch version when re-releasing ([3fa5e94](https://github.com/newrelic/gatsby-theme-newrelic/commit/3fa5e940dd7e15c9365e35551a9df6961cc6ef31))
+
+
+
+
+
 ## [4.1.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.1.3...v4.1.4) (2021-12-08)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
