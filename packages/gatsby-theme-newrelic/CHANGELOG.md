@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.0.5...v4.1.0) (2021-12-08)
+
+
+### Features
+
+* **link:** add option to disable auto localization of internal links ([faa15be](https://github.com/newrelic/gatsby-theme-newrelic/commit/faa15be5010ab7dbf4341ec9de86435d42c67034))
+
+
+
+
+
 ## [4.0.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.0.4...v4.0.5) (2021-12-01)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
