@@ -21,6 +21,7 @@ const DarkModeToggle = ({ className, size, onClick }) => {
       eventName: 'darkModeToggleClick',
       category: 'DarkModeToggle',
       origin: 'gatsbyTheme',
+      layoutElement: 'globalHeader',
       mode: darkModeValue,
     })
   );
