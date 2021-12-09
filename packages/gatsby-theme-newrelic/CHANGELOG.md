@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.1.5...v4.1.6) (2021-12-09)
+
+
+### Bug Fixes
+
+* reorder import to trigger release ([a189fbf](https://github.com/newrelic/gatsby-theme-newrelic/commit/a189fbff76c935148ab37c5d8e6cc08147785d44))
+
+
+
+
+
 ## [4.1.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.1.4...v4.1.5) (2021-12-08)
 
 
