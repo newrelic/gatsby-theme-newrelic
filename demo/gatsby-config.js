@@ -1,5 +1,3 @@
-const { InLocalStorage } = require('@splitsoftware/splitio-browserjs');
-
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -71,9 +69,6 @@ module.exports = {
             authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',
           },
           debug: false,
-          storage: InLocalStorage({
-            prefix: 'THEME_DEMO_SITE',
-          }),
         },
       },
     },
