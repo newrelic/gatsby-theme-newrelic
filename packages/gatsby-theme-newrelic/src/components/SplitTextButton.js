@@ -21,9 +21,9 @@ const SplitTextButton = ({ className }) => {
   };
   const splitText = deven_signupbutton_text?.treatment;
 
-  const { isReady } = React.useContext(SplitContext);
+  const { /* isReady, */ isReadyFromCache } = React.useContext(SplitContext);
 
-  return isReady ? (
+  return isReadyFromCache ? (
     <Button
       as={ExternalLink}
       className={className}
