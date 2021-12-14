@@ -1,4 +1,4 @@
-import { InLocalStorage } from '@splitsoftware/splitio-browserjs';
+const { InLocalStorage } = require('@splitsoftware/splitio-browserjs');
 
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
