@@ -68,6 +68,10 @@ module.exports = {
           core: {
             authorizationKey: process.env.SPLITIO_AUTH_KEY || 'localhost',
           },
+          storage: {
+            type: 'LOCALSTORAGE',
+            prefix: 'MYPREFIX',
+          },
           debug: false,
         },
       },
