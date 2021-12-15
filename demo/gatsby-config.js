@@ -70,7 +70,7 @@ module.exports = {
           },
           storage: {
             type: 'LOCALSTORAGE',
-            prefix: 'MYPREFIX',
+            prefix: 'THEME_DEMO',
           },
           debug: false,
         },
