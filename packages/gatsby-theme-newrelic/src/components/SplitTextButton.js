@@ -21,9 +21,11 @@ const SplitTextButton = ({ className }) => {
   };
   const splitText = deven_signupbutton_text?.treatment;
 
-  const { /* isReady, */ isReadyFromCache } = React.useContext(SplitContext);
+  const cntxt = React.useContext(SplitContext);
 
-  return isReadyFromCache ? (
+  console.log(cntxt);
+
+  return cntxt.isReady ? (
     <Button
       as={ExternalLink}
       className={className}
@@ -37,21 +39,7 @@ const SplitTextButton = ({ className }) => {
         {t(splitText === 'start_now' ? 'button.startNow' : 'button.signUp')}
       </span>
     </Button>
-  ) : (
-    <Button
-      as={ExternalLink}
-      className={className}
-      href="https://newrelic.com/signup"
-      size={Button.SIZE.SMALL}
-      variant={Button.VARIANT.PRIMARY}
-      instrumentation={{
-        component: 'SplitTextButton',
-        layoutElement: 'globalHeader',
-      }}
-    >
-      <span>{t('button.signUp')}</span>
-    </Button>
-  );
+  ) : null; /* <Spinner /> */
 };
 SplitTextButton.propTypes = {
   className: PropTypes.string,
