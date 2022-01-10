@@ -1,9 +1,7 @@
 const path = require('path');
 const fs = require('fs');
-const { createFilePath } = require('gatsby-source-filesystem');
 const { withDefaults } = require('./src/utils/defaultOptions');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
-const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
 const {
   getTessenConfig,
   getTrailingSlashesConfig,
@@ -24,16 +22,12 @@ const ANNOUNCEMENTS_DIRECTORY = 'src/announcements';
 const DEFAULT_BRANCH = 'main';
 
 exports.onPreInit = (_, themeOptions) => {
-  const { i18n, relatedResources = {}, tessen } = themeOptions;
+  const { i18n, tessen } = themeOptions;
 
   if (i18n && !i18n.translationsPath) {
     throw new Error(
       "[@newrelic/gatsby-theme-newrelic] Please define an 'i18n.translationsPath' option"
     );
-  }
-
-  if (relatedResources.swiftype) {
-    validateSwiftypeOptions(relatedResources.swiftype);
   }
 
   if (tessen) {
@@ -389,19 +383,12 @@ const createFile = (filepath, data, { reporter, message } = {}) => {
   fs.writeFileSync(filepath, data, 'utf-8');
 };
 
-const createRelatedResources = async (
-  {
-    node,
-    actions,
-    createContentDigest,
-    getNodesByType,
-    getNode,
-    createNodeId,
-    reporter,
-  },
-  options
-) => {
-  const { swiftype } = options;
+const createRelatedResources = async ({
+  node,
+  actions,
+  createContentDigest,
+  createNodeId,
+}) => {
   const { createNode, createParentChildLink } = actions;
 
   if (
@@ -426,57 +413,6 @@ const createRelatedResources = async (
 
     createParentChildLink({ parent: node, child: child });
   });
-
-  const { getSlug, filter = () => true } = swiftype || {};
-
-  const slug = getSlug
-    ? getSlug({ node })
-    : createFilePath({ node, getNode, trailingSlash: false });
-
-  if (!swiftype || !filter({ node, slug })) {
-    return;
-  }
-
-  const [
-    {
-      siteMetadata: { siteUrl },
-    },
-  ] = getNodesByType('Site');
-
-  const swiftypeResources = await getRelatedResources(
-    { node, slug, siteUrl, reporter },
-    swiftype
-  );
-
-  writeableRelatedResourceData[slug] = swiftypeResources;
-
-  swiftypeResources.forEach((resource) => {
-    const child = createRelatedResourceNode({
-      parent: node.id,
-      resource,
-      createContentDigest,
-      createNode,
-      createNodeId,
-    });
-
-    createParentChildLink({ parent: node, child: child });
-  });
-};
-
-const validateSwiftypeOptions = (swiftypeOptions) => {
-  const { resultsPath, engineKey } = swiftypeOptions;
-
-  if (!resultsPath) {
-    throw new Error(
-      "You have enabled swiftype searches, but the 'resultsPath' is not defined. Please define a 'relatedResources.swiftype.resultsPath' option"
-    );
-  }
-
-  if (!engineKey) {
-    throw new Error(
-      "You have enabled swiftype searches, but the 'engineKey' is missing. Please define a 'relatedResources.swiftype.engineKey' option"
-    );
-  }
 };
 
 const validateTessenOptions = (tessenOptions) => {
