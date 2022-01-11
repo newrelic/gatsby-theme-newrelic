@@ -13,20 +13,12 @@ const DEFAULT_SITE_LABELS = {
   'https://learn.newrelic.com': 'learn',
 };
 
-const withDefaults = (themeOptions) => {
-  const { relatedResources = {} } = themeOptions;
-
+const withDefaults = () => {
   return {
-    ...themeOptions,
     relatedResources: {
-      ...relatedResources,
       labels: {
         ...DEFAULT_SITE_LABELS,
-        ...(relatedResources.labels || {}),
       },
-      swiftype: relatedResources.swiftype
-        ? { limit: 5, refetch: false, ...relatedResources.swiftype }
-        : false,
     },
   };
 };

@@ -33,18 +33,8 @@ type RelatedResource implements Node {
 
 type NewRelicThemeConfig implements Node {
   env: String!
-  relatedResources: NewRelicThemeRelatedResourceConfig!
   tessen: NewRelicThemeTessenConfig
   forceTrailingSlashes: Boolean!
-}
-
-type NewRelicThemeRelatedResourceConfig {
-  labels: [RelatedResourceLabel!]!
-}
-
-type RelatedResourceLabel {
-  baseUrl: String!
-  label: String!
 }
 
 type NewRelicThemeTessenConfig {

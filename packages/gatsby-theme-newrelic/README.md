@@ -18,7 +18,6 @@ websites](https://opensource.newrelic.com).
       - [`newrelic`](#newrelic)
       - [`robots`](#robots)
       - [`forceTrailingSlashes`](#forcetrailingslashes)
-      - [`relatedResources`](#relatedresources)
       - [`tessen`](#tessen)
       - [`resolveEnv`](#resolveenv)
       - [`i18n`](#i18n)
@@ -68,17 +67,16 @@ websites](https://opensource.newrelic.com).
     - [`NavItem`](#navitem)
       - [`Page`](#page)
     - [`NewRelicLogo`](#newreliclogo)
-    - [`Overlay`](#overlay)
+    - [Overlay](#overlay)
     - [`PageTools`](#pagetools)
       - [`PageTools.Section`](#pagetoolssection)
       - [`PageTools.Title`](#pagetoolstitle)
-      - [`Portal](#portal)
-    - [`RelatedResources`](#relatedresources-1)
+    - [Portal](#portal)
+    - [`RelatedResources`](#relatedresources)
     - [`SearchInput`](#searchinput)
     - [`SkewedContainer`](#skewedcontainer)
     - [`SEO`](#seo)
     - [`SimpleFeedback`](#simplefeedback)
-    - [`SignUpLink`](#link)
     - [`Spinner`](#spinner)
     - [`SplitColorButton`](#splitcolorbutton)
     - [`Surface`](#surface)
@@ -195,11 +193,6 @@ module.exports = {
         tessen: {
           product: 'DEMO',
           subproduct: 'DEMO',
-        },
-        relatedResources: {
-          labels: {
-            'https://my.website': 'my-website'
-          },
         }
       },
     },
@@ -256,72 +249,6 @@ documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 Determines whether created pages should include a trailing slash or not. When enabled,
 this setting also ensures all links that use the `Link` component will append
 the trailing slash.
-
-#### `relatedResources`
-
-Optional configuration for related resources used in the right rail. Currently
-only `Mdx` nodes are supported.
-
-The related resources component is controlled by specific front matter slugs
-that are defined on a page by setting the front matter for `resources`. If no
-resources are available in the page front matter, the component will backfill
-use the related resource items using Swiftype. See the `swiftype` options below
-for more information on customizing the search behavior.
-
-In short, the order of priority for populating content is driven by:
-
-1. Resources defined via the `resources` front matter item.
-2. Resources defined from executing a Swiftype search for the page.
-
-**Options:**
-
-- `labels` _(object)_: Map of URLs to their label. This is used to match
-  results displayed in the right rail with the label in the tag displayed
-  underneath the link. Use this to add additional labels not covered by the
-  default set of labels.
-
-- `swiftype` _(object | false)_: Configuration used for fetching results from
-  Swiftype for an `Mdx` node. Set this to `false` (the default) to disable
-  fetching related resources through Swiftype. If this is disabled, related
-  resources can only be sourced via front matter. If enabled, this takes the
-  following configuration:
-
-  - `resultsPath` _(string)_ **required**: Path to the file where Swiftype
-    results will be stored. If the `refetch` option is set to `false` (the
-    default), this file will be used to read related resource values for each
-    `Mdx` node. This file is only written to when `refetch` is set to `true`.
-
-  - `refetch` _(boolean)_: Determines whether to refetch results from Swiftype
-    for every `Mdx` node during a build. It's a good idea to only set this on a
-    special build (e.g. a build that happens on a cron job) so that Swiftype is
-    not searched on development or every build on the site.
-
-    - **Default**: `false`
-
-  - `engineKey` _(string)_ **required**: Swiftype's engine key used to fetch
-    results from a Swiftype search engine.
-
-  - `getSlug` _(function)_: Function to get the slug for an `Mdx` node.
-    Useful if the slug is set from something other than the filesystem. By
-    default, this will use the `createFilePath` helper to generate the slug for
-    the `Mdx` node. This function should accept an object as its only argument
-    with a key of `node` (i.e. `getSlug: ({ node }) => { /* do something */ }`)
-
-  - `filter` _(function)_: Function to determine whether Swfitype should be
-    queried for the `Mdx` node. Useful if you only need to get related resources
-    for a subset of nodes on the site. By default, all `Mdx` nodes are fetched.
-    This function should accept an object as its only argument with a key of
-    `node` and a key of `slug` (i.e. `filter: ({ node, slug }) => { /* do something */ }`).
-
-  - `getParams` _(function)_: Function that allows you to specify additional
-    params passed to Swiftype when running a search query. Useful if you want to
-    provide additional filters or field boosts. This function should accept an
-    object as its only argument with a key of `node` and a key of `slug`.
-
-  - `limit` _(integer)_: The limit of related resources that should be fetched
-    from Swiftype.
-
-    - **Default**: `5`
 
 #### `tessen`
 

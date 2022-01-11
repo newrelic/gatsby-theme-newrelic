@@ -14,8 +14,6 @@ const { getFileRelativePath } = require('./gatsby/utils/fs');
 const getLocale = require('./gatsby/utils/getLocale');
 const { SWIFTYPE_ENGINE_KEY } = require('./src/utils/constants');
 
-let writeableRelatedResourceData = {};
-
 const uniq = (arr) => [...new Set(arr)];
 
 const ANNOUNCEMENTS_DIRECTORY = 'src/announcements';
@@ -43,7 +41,7 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
     program.directory,
     ANNOUNCEMENTS_DIRECTORY
   );
-  const { relatedResources = {}, tessen } = themeOptions;
+  const { tessen } = themeOptions;
 
   createDirectory(imagePath, {
     reporter,
@@ -69,19 +67,6 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
           });
         });
     });
-  }
-
-  if (relatedResources.swiftype) {
-    const { resultsPath } = relatedResources.swiftype;
-
-    createFile(resultsPath, '{}', {
-      reporter,
-      message: 'creating an empty related resources file',
-    });
-
-    writeableRelatedResourceData = JSON.parse(
-      fs.readFileSync(resultsPath, { encoding: 'utf-8' })
-    );
   }
 
   const version = tessen ? tessen.tessenVersion : null;
@@ -118,7 +103,7 @@ exports.sourceNodes = (
   themeOptions
 ) => {
   const i18n = getI18nConfig(themeOptions);
-  const { relatedResources } = withDefaults(themeOptions);
+  const { relatedResources } = withDefaults();
   const { createNode } = actions;
   const tessen = getTessenConfig(themeOptions);
   const env = getResolvedEnv(themeOptions);
@@ -341,21 +326,6 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
       },
     },
   });
-};
-
-exports.onPostBootstrap = (_, themeOptions) => {
-  const {
-    relatedResources: {
-      swiftype: { refetch, resultsPath },
-    },
-  } = withDefaults(themeOptions);
-
-  if (refetch && resultsPath) {
-    fs.writeFileSync(
-      resultsPath,
-      JSON.stringify(writeableRelatedResourceData, null, 2)
-    );
-  }
 };
 
 const createDirectory = (directory, { reporter, message } = {}) => {
