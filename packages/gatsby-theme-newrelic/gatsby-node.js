@@ -6,7 +6,6 @@ const createRelatedResourceNode = require('./src/utils/related-resources/createR
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
 const {
   getTessenConfig,
-  getTrailingSlashesConfig,
   getResolvedEnv,
   getI18nConfig,
 } = require('./src/utils/config');
@@ -128,7 +127,6 @@ exports.sourceNodes = (
   const { createNode } = actions;
   const tessen = getTessenConfig(themeOptions);
   const env = getResolvedEnv(themeOptions);
-  const { forceTrailingSlashes } = getTrailingSlashesConfig(themeOptions);
 
   i18n.locales.forEach((locale) => {
     createNode({
@@ -145,7 +143,6 @@ exports.sourceNodes = (
 
   const config = {
     env,
-    forceTrailingSlashes,
     relatedResources: {
       labels: Object.entries(relatedResources.labels).map(
         ([baseUrl, label]) => ({
@@ -270,7 +267,6 @@ exports.onCreatePage = (helpers, themeOptions) => {
   const { page, actions } = helpers;
   const { createPage, deletePage } = actions;
   const { locales } = getI18nConfig(themeOptions);
-  const { forceTrailingSlashes } = getTrailingSlashesConfig(themeOptions);
   const additionalLocales = locales.filter((locale) => !locale.isDefault);
 
   const transformedPage = pageTransforms.reduce(
@@ -294,11 +290,7 @@ exports.onCreatePage = (helpers, themeOptions) => {
       ) {
         createPage({
           ...transformedPage,
-          path: path.posix.join(
-            `/${locale}`,
-            transformedPage.path,
-            forceTrailingSlashes ? '/' : ''
-          ),
+          path: path.posix.join(`/${locale}`, transformedPage.path),
           context: {
             ...transformedPage.context,
             locale,
@@ -429,9 +421,7 @@ const createRelatedResources = async (
 
   const { getSlug, filter = () => true } = swiftype || {};
 
-  const slug = getSlug
-    ? getSlug({ node })
-    : createFilePath({ node, getNode, trailingSlash: false });
+  const slug = getSlug ? getSlug({ node }) : createFilePath({ node, getNode });
 
   if (!swiftype || !filter({ node, slug })) {
     return;

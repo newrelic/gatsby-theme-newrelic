@@ -1,7 +1,4 @@
-const {
-  getTrailingSlashesConfig,
-  getI18nConfig,
-} = require('../src/utils/config');
+const { getI18nConfig } = require('../src/utils/config');
 const { getFileRelativePath } = require('./utils/fs');
 const getLocale = require('./utils/getLocale');
 
@@ -44,21 +41,4 @@ const addFileRelativePath = ({ page, store }) => {
   };
 };
 
-const addTrailingSlash = ({ page }, themeOptions) => {
-  const { forceTrailingSlashes } = getTrailingSlashesConfig(themeOptions);
-
-  if (
-    page.path.endsWith('/') ||
-    page.path.match(/404/) ||
-    !forceTrailingSlashes
-  ) {
-    return page;
-  }
-
-  return {
-    ...page,
-    path: `${page.path}/`,
-  };
-};
-
-module.exports = [addLocale, addFileRelativePath, addTrailingSlash];
+module.exports = [addLocale, addFileRelativePath];

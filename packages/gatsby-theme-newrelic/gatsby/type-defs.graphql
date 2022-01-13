@@ -35,7 +35,6 @@ type NewRelicThemeConfig implements Node {
   env: String!
   relatedResources: NewRelicThemeRelatedResourceConfig!
   tessen: NewRelicThemeTessenConfig
-  forceTrailingSlashes: Boolean!
 }
 
 type NewRelicThemeRelatedResourceConfig {

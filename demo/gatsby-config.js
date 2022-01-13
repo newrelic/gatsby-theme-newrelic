@@ -18,7 +18,6 @@ module.exports = {
     {
       resolve: '@newrelic/gatsby-theme-newrelic',
       options: {
-        forceTrailingSlashes: true,
         i18n: {
           translationsPath: `${__dirname}/src/i18n/translations`,
           additionalLocales: ['jp'],
