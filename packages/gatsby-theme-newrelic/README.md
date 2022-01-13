@@ -17,7 +17,6 @@ websites](https://opensource.newrelic.com).
       - [`sitemap`](#sitemap)
       - [`newrelic`](#newrelic)
       - [`robots`](#robots)
-      - [`forceTrailingSlashes`](#forcetrailingslashes)
       - [`relatedResources`](#relatedresources)
       - [`tessen`](#tessen)
       - [`resolveEnv`](#resolveenv)
@@ -68,17 +67,16 @@ websites](https://opensource.newrelic.com).
     - [`NavItem`](#navitem)
       - [`Page`](#page)
     - [`NewRelicLogo`](#newreliclogo)
-    - [`Overlay`](#overlay)
+    - [Overlay](#overlay)
     - [`PageTools`](#pagetools)
       - [`PageTools.Section`](#pagetoolssection)
       - [`PageTools.Title`](#pagetoolstitle)
-      - [`Portal](#portal)
+    - [Portal](#portal)
     - [`RelatedResources`](#relatedresources-1)
     - [`SearchInput`](#searchinput)
     - [`SkewedContainer`](#skewedcontainer)
     - [`SEO`](#seo)
     - [`SimpleFeedback`](#simplefeedback)
-    - [`SignUpLink`](#link)
     - [`Spinner`](#spinner)
     - [`SplitColorButton`](#splitcolorbutton)
     - [`Surface`](#surface)
@@ -250,12 +248,6 @@ the available configuration options, visit [the
 documentation.](https://www.gatsbyjs.org/packages/gatsby-plugin-robots-txt/)
 
 **Default**: `{ policy: [{ userAgent: '*', allow: '/' }] }`
-
-#### `forceTrailingSlashes`
-
-Determines whether created pages should include a trailing slash or not. When enabled,
-this setting also ensures all links that use the `Link` component will append
-the trailing slash.
 
 #### `relatedResources`
 

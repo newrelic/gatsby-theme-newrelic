@@ -6,7 +6,6 @@ import useLocale from '../hooks/useLocale';
 import { localizePath } from '../utils/localization';
 import SignUpLink from './SignUpLink';
 import Icon from './Icon';
-import { addTrailingSlash } from '../utils/location';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { css } from '@emotion/react';
 
@@ -32,15 +31,11 @@ const Link = forwardRef(
     const locale = useLocale();
 
     const {
-      newRelicThemeConfig: { forceTrailingSlashes },
       site: {
         siteMetadata: { siteUrl },
       },
     } = useStaticQuery(graphql`
       query {
-        newRelicThemeConfig {
-          forceTrailingSlashes
-        }
         site {
           siteMetadata {
             siteUrl
@@ -123,17 +118,15 @@ const Link = forwardRef(
       return <a {...props} href={to} />;
     }
 
-    const finalPath = forceTrailingSlashes ? addTrailingSlash(to) : to;
-
     return (
       <GatsbyLink
         to={
           shouldAutoLocalize
             ? localizePath({
-                path: finalPath,
+                path: to,
                 locale,
               })
-            : finalPath
+            : to
         }
         ref={ref}
         onClick={handleInternalLinkClick}
