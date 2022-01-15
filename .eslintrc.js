@@ -3,11 +3,12 @@ module.exports = {
   extends: [
     'plugin:@newrelic/eslint-plugin-newrelic/react',
     'plugin:@newrelic/eslint-plugin-newrelic/prettier',
+    'plugin:@typescript-eslint/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:react-hooks/recommended',
   ],
   // https://github.com/yannickcr/eslint-plugin-react#configuration
-  plugins: ['react', 'jsx-a11y'],
+  plugins: ['react', 'jsx-a11y', '@typescript-eslint'],
   settings: {
     react: {
       version: 'detect',
@@ -19,6 +20,7 @@ module.exports = {
     },
     ecmaVersion: 2018,
     sourceType: 'module',
+    project: ['./tsconfig.json'],
   },
   globals: {
     jest: 'readonly',
@@ -39,5 +41,6 @@ module.exports = {
         ignoreRestSiblings: false,
       },
     ],
+    '@typescript-eslint/no-var-requires': 'off',
   },
 };
