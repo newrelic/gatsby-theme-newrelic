@@ -36,7 +36,7 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  ignorePatterns: ['**/__tests__/**/*'],
+  ignorePatterns: ['**/__tests__/**/*', '**/__mocks__/**/*'],
   rules: {
     'no-unused-vars': [
       'error',
