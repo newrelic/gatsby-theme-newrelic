@@ -5,6 +5,6 @@
         "jsx": "react",
         "target": "es5",
     },
-    "include": ["packages/gatsby-theme-newrelic/src/**/*"],
-    "exclude": ["packages/gatsby-theme-newrelic/node_modules/", "**/__mocks__/**/*"]
+    "include": ["./packages/gatsby-theme-newrelic/src/**/*"],
+    "exclude": ["./packages/gatsby-theme-newrelic/node_modules/", "**/__mocks__/**/*"]
 }
