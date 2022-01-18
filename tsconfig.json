@@ -1,8 +1,10 @@
 {
     "compilerOptions": {
+        "outDir": "./built",
         "allowJs": true,
         "jsx": "react",
         "target": "es5",
     },
-    "include": ["./**/*"],
+    "include": ["packages/gatsby-theme-newrelic/src/**/*"],
+    "exclude": ["packages/gatsby-theme-newrelic/node_modules/", "**/__mocks__/**/*"]
 }
