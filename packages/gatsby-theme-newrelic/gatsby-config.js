@@ -1,6 +1,7 @@
 module.exports = ({ layout, newrelic, robots = {}, sitemap = true }) => {
   return {
     plugins: [
+      `gatsby-plugin-typegen`,
       'gatsby-plugin-emotion',
       'gatsby-plugin-react-helmet',
       sitemap && {
