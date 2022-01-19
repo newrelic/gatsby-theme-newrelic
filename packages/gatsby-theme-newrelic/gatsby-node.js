@@ -15,7 +15,7 @@ const { getTessenPath } = require('./gatsby/constants');
 const { getFileRelativePath } = require('./gatsby/utils/fs');
 const getLocale = require('./gatsby/utils/getLocale');
 const { SWIFTYPE_ENGINE_KEY } = require('./src/utils/constants');
-const SCHEMA_CUSTOMIZATION_TYPES = require('./gatsby/type-defs');
+const { SCHEMA_CUSTOMIZATION_TYPES } = require('./gatsby/type-defs');
 
 let writeableRelatedResourceData = {};
 
