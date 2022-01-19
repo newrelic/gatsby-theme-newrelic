@@ -39,7 +39,7 @@
     "negative": "No"
   },
   "footer": {
-    "copyright": "Copyright {{copyrightSymbol}} 2021 New Relic Inc.",
+    "copyright": "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
     "careers": "Careers",
     "terms": "Terms of Service",
     "dcmaPolicy": "DCMA Policy",
