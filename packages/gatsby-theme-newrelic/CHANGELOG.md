@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.1.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.1.7...v4.1.8) (2022-01-19)
+
+
+### Bug Fixes
+
+* Make year dynamic in global footer ([0f5fe44](https://github.com/newrelic/gatsby-theme-newrelic/commit/0f5fe44068df233fc23a1d82c5f2e65d112a9dd6))
+
+
+
+
+
 ## [4.1.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.1.6...v4.1.7) (2022-01-13)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
