@@ -41,7 +41,7 @@
     "title": "フィードバック"
   },
   "footer": {
-    "copyright": "Copyright {{copyrightSymbol}} 2020 New Relic Inc.",
+    "copyright": "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
     "careers": "採用情報",
     "terms": "サービス利用規約",
     "dcmaPolicy": "DCMAポリシー",

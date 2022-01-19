@@ -16,6 +16,7 @@ import useLocale from '../hooks/useLocale';
 // string and escaped by React, therefore rendering the literal &copy; text in
 // the footer
 const copyrightSymbol = String.fromCharCode(169);
+const year = new Date().getFullYear();
 
 const GlobalFooter = ({
   fileRelativePath,
@@ -155,7 +156,7 @@ const GlobalFooter = ({
               letter-spacing: 0.1rem;
             `}
           >
-            Copyright {{ copyrightSymbol }} 2021 New Relic Inc.
+            Copyright {{ copyrightSymbol }} {{ year }} New Relic Inc.
           </Trans>
           <div
             css={css`
