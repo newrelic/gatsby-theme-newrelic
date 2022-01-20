@@ -8,6 +8,7 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "allowSyntheticDefaultImports": true,
+        "noImplicitAny": true,
     },
     "include": ["./packages/gatsby-theme-newrelic/src/**/*"],
     "exclude": ["./packages/gatsby-theme-newrelic/node_modules/"]

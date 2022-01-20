@@ -22,12 +22,14 @@ module.exports = {
       },
     },
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 2018,
     sourceType: 'module',
+    project: ['./tsconfig.json'],
   },
   globals: {
     jest: 'readonly',
@@ -50,5 +52,9 @@ module.exports = {
     ],
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/explicit-function-return-type': 1,
+    '@typescript-eslint/no-unsafe-argument': 1,
+    '@typescript-eslint/explicit-module-boundary-types': 1,
+    '@typescript-eslint/no-explicit-any': 1,
   },
 };
