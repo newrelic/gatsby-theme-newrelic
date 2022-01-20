@@ -2,8 +2,12 @@
     "compilerOptions": {
         "outDir": "./built",
         "allowJs": true,
-        "jsx": "react",
-        "target": "es5",
+        "jsx": "react-jsx",
+        "jsxImportSource": "@emotion/react",
+        "target": "es6",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true,
     },
     "include": ["./packages/gatsby-theme-newrelic/src/**/*"],
     "exclude": ["./packages/gatsby-theme-newrelic/node_modules/"]
