@@ -17,19 +17,20 @@ module.exports = {
   overrides: [
     {
       files: ['**/*.{ts,tsx}'],
+      parser: '@typescript-eslint/parser',
       parserOptions: {
         project: ['./tsconfig.json'],
       },
     },
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 2018,
     sourceType: 'module',
-    project: ['./tsconfig.json'],
+    tsconfigRootDir: __dirname, // tsconfig.json lies outside of the package
+    project: 'tsconfig.json',
   },
   globals: {
     jest: 'readonly',
@@ -38,7 +39,12 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  ignorePatterns: ['**/__tests__/**/*', '**/__mocks__/**/*'],
+  ignorePatterns: [
+    '**/__tests__/**/*',
+    '**/__mocks__/**/*',
+    '.eslintrc.js',
+    'node_modules',
+  ],
   rules: {
     'no-unused-vars': [
       'error',

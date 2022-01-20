@@ -10,6 +10,6 @@
         "allowSyntheticDefaultImports": true,
         "noImplicitAny": true,
     },
-    "include": ["./packages/gatsby-theme-newrelic/src/**/*"],
+    "include": ["./packages/gatsby-theme-newrelic/**/*"],
     "exclude": ["./packages/gatsby-theme-newrelic/node_modules/"]
 }
