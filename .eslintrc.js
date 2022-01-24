@@ -42,6 +42,7 @@ module.exports = {
   ignorePatterns: [
     '**/__tests__/**/*',
     '**/__mocks__/**/*',
+    '**/demo/**/*',
     '.eslintrc.js',
     'node_modules',
   ],
