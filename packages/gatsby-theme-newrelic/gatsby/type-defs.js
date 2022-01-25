@@ -1,6 +1,4 @@
-const { graphql } = require('gatsby');
-
-const SCHEMA_CUSTOMIZATION_TYPES = graphql`
+const SCHEMA_CUSTOMIZATION_TYPES = `
   type SiteLayout @dontInfer {
     contentPadding: String
     maxWidth: String
