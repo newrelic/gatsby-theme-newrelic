@@ -60,3 +60,15 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     });
   });
 };
+
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      fallback: {
+        http: false,
+        https: false,
+        zlib: false,
+      },
+    },
+  });
+};
