@@ -333,9 +333,6 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
       },
       fallback: {
         fs: false,
-        http: false,
-        https: false,
-        zlib: false,
       },
     },
   });
