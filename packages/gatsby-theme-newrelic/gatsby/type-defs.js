@@ -1,56 +1,58 @@
-const SCHEMA_CUSTOMIZATION_TYPES = ` gql
-type SiteLayout @dontInfer {
-  contentPadding: String
-  maxWidth: String
-  mobileBreakpoint: String
-}
+const { graphql } = require('gatsby');
 
-type MdxFrontmatter @infer {
-  startDate: Date @dateformat(formatString: "YYYY-MM-DD")
-  endDate: Date @dateformat(formatString: "YYYY-MM-DD")
-}
+const SCHEMA_CUSTOMIZATION_TYPES = graphql`
+  type SiteLayout @dontInfer {
+    contentPadding: String
+    maxWidth: String
+    mobileBreakpoint: String
+  }
 
-type SiteSiteMetadata {
-  repository: String
-  branch: String!
-  contributingUrl: String
-  title: String
-  titleTemplate: String
-}
+  type MdxFrontmatter @infer {
+    startDate: Date @dateformat(formatString: "YYYY-MM-DD")
+    endDate: Date @dateformat(formatString: "YYYY-MM-DD")
+  }
 
-type Locale implements Node @dontInfer {
-  name: String!
-  localName: String!
-  locale: String!
-  hrefLang: String!
-  isDefault: Boolean!
-}
+  type SiteSiteMetadata {
+    repository: String
+    branch: String!
+    contributingUrl: String
+    title: String
+    titleTemplate: String
+  }
 
-type RelatedResource implements Node {
-  id: ID!
-  title: String!
-  url: String!
-}
+  type Locale implements Node @dontInfer {
+    name: String!
+    localName: String!
+    locale: String!
+    hrefLang: String!
+    isDefault: Boolean!
+  }
 
-type NewRelicThemeConfig implements Node {
-  env: String!
-  relatedResources: NewRelicThemeRelatedResourceConfig!
-  tessen: NewRelicThemeTessenConfig
-}
+  type RelatedResource implements Node {
+    id: ID!
+    title: String!
+    url: String!
+  }
 
-type NewRelicThemeRelatedResourceConfig {
-  labels: [RelatedResourceLabel!]!
-}
+  type NewRelicThemeConfig implements Node {
+    env: String!
+    relatedResources: NewRelicThemeRelatedResourceConfig!
+    tessen: NewRelicThemeTessenConfig
+  }
 
-type RelatedResourceLabel {
-  baseUrl: String!
-  label: String!
-}
+  type NewRelicThemeRelatedResourceConfig {
+    labels: [RelatedResourceLabel!]!
+  }
 
-type NewRelicThemeTessenConfig {
-  product: String
-  subproduct: String
-}
+  type RelatedResourceLabel {
+    baseUrl: String!
+    label: String!
+  }
+
+  type NewRelicThemeTessenConfig {
+    product: String
+    subproduct: String
+  }
 `;
 
 module.exports = { SCHEMA_CUSTOMIZATION_TYPES };
