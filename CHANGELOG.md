@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [5.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.1.8...v5.0.0) (2022-01-26)
+
+
+* feat!: Gatsby version 4 upgrade ([0e96867](https://github.com/newrelic/gatsby-theme-newrelic/commit/0e96867bebdfa0f90c80b6960d00eb2c982e07d6))
+
+
+### Bug Fixes
+
+* linting error from default import for react-helmet ([4b41b53](https://github.com/newrelic/gatsby-theme-newrelic/commit/4b41b534e7858a125d54f5b54f31865c2c9e3617))
+* Refactored createSchemaCustomization to require type-defs on load ([f4ebc6d](https://github.com/newrelic/gatsby-theme-newrelic/commit/f4ebc6d729097ea35831371b9bd98c0d70d773e6))
+
+
+### BREAKING CHANGES
+
+* Removal of `fs` inside lifecycle APIs
+and bumping gatsby version 3.x -> 4.5.x
+
+
+
+
+
 ## [4.1.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.1.7...v4.1.8) (2022-01-19)
 
 
