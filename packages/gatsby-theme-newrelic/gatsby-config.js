@@ -11,7 +11,13 @@ module.exports = ({ layout, newrelic, robots = {}, sitemap = true }) => {
       },
       'gatsby-plugin-use-dark-mode',
       'gatsby-transformer-sharp',
-      'gatsby-plugin-sharp',
+      {
+        resolve: `gatsby-plugin-sharp`,
+        options: {
+          defaults: {},
+        },
+      },
+
       layout &&
         layout.component && {
           resolve: `gatsby-plugin-layout`,

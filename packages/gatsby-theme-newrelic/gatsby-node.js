@@ -13,6 +13,7 @@ const pageTransforms = require('./gatsby/page-transforms');
 const { getTessenPath } = require('./gatsby/constants');
 const { getFileRelativePath } = require('./gatsby/utils/fs');
 const getLocale = require('./gatsby/utils/getLocale');
+const { SCHEMA_CUSTOMIZATION_TYPES } = require('./gatsby/type-defs');
 const { SWIFTYPE_ENGINE_KEY } = require('./src/utils/constants');
 
 let writeableRelatedResourceData = {};
@@ -111,11 +112,7 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
 
-  createTypes(
-    fs.readFileSync(path.resolve(__dirname, './gatsby/type-defs.graphql'), {
-      encoding: 'utf-8',
-    })
-  );
+  createTypes(SCHEMA_CUSTOMIZATION_TYPES);
 };
 
 exports.sourceNodes = (
@@ -336,6 +333,9 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
       },
       fallback: {
         fs: false,
+        http: false,
+        https: false,
+        zlib: false,
       },
     },
   });
