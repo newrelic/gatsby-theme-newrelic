@@ -308,7 +308,7 @@ nr1 create --type nerdpack --name pageviews-app
           <RelatedResources
             resources={[
               {
-                url: 'https://developer.newrelic.com/instant-observability/',
+                url: 'https://newrelic.com/instant-observability/',
                 title: 'developer',
               },
             ]}
