@@ -19,16 +19,28 @@ const LOCALE_CONFIGS = {
   },
 };
 
-const uniq = (arr) => [...new Set(arr)];
+const uniq = <T>(arr: T[]): T[] => [...new Set(arr)];
 
-const getI18nConfig = (themeOptions) => {
+type Locales = keyof typeof LOCALE_CONFIGS;
+
+interface i18nThemeOptions {
+  additionalLocales?: Locales[];
+  i18nextOptions?: any; // FIXME
+}
+
+// TODO: add remaining theme options and move to separate file?
+interface ThemeOptions {
+  i18n: i18nThemeOptions;
+}
+
+const getI18nConfig = (themeOptions: ThemeOptions) => {
   const { i18n = {} } = themeOptions;
   const { additionalLocales = [], i18nextOptions = {} } = i18n;
 
   const defaultLocale = LOCALE_CONFIGS.en;
   const locales = ['en']
     .concat(additionalLocales)
-    .map((locale) => LOCALE_CONFIGS[locale])
+    .map((locale: Locales) => LOCALE_CONFIGS[locale])
     .filter(Boolean);
 
   return {
