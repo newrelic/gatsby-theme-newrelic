@@ -17,6 +17,9 @@
             }
           ]
     },
-    "include": ["./packages/gatsby-/**/*", "./scripts/**/*"],
-    "exclude": ["./node_modules/"]
+    "include": [
+      "packages/gatsby-theme-newrelic/src/**/*",
+      "packages/gatsby-theme-newrelic/gatsby/**/*",
+    ],
+    "exclude": ["node_modules", "packages/gatsby-theme-newrelic/gatsby-*.js"]
 }
