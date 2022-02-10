@@ -47,7 +47,6 @@ const Video = ({ id, type, title, className, width }: VideoProps) => (
   </div>
 );
 
-// TODO: transformKeys needs typing
 Video.TYPE = transformKeys(videoPlatforms, constantize);
 
 export default Video;
