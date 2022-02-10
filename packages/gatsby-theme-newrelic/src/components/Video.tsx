@@ -1,15 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import transformKeys from '../utils/transformKeys';
 import constantize from '../utils/constantize';
 
 const videoPlatforms = {
-  youtube: (id) => `//www.youtube.com/embed/${id}?modestbranding=1`,
-  wistia: (id) => `//fast.wistia.net/embed/iframe/${id}`,
+  youtube: (id: string) => `//www.youtube.com/embed/${id}?modestbranding=1`,
+  wistia: (id: string) => `//fast.wistia.net/embed/iframe/${id}`,
 };
 
-const Video = ({ id, type, title, className, width }) => (
+interface VideoProps {
+  id: string;
+  type: keyof typeof videoPlatforms;
+  title?: string;
+  className?: string;
+  width?: string;
+}
+
+const Video = ({ id, type, title, className, width }: VideoProps) => (
   <div
     className={className}
     css={css`
@@ -41,14 +47,7 @@ const Video = ({ id, type, title, className, width }) => (
   </div>
 );
 
-Video.propTypes = {
-  id: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(Object.keys(videoPlatforms)).isRequired,
-  title: PropTypes.string,
-  className: PropTypes.string,
-  width: PropTypes.string,
-};
-
+// TODO: transformKeys needs typing
 Video.TYPE = transformKeys(videoPlatforms, constantize);
 
 export default Video;
