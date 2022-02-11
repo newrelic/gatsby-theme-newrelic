@@ -39,6 +39,9 @@ jspm_packages/
 # Typescript v1 declaration files
 typings/
 
+# typescript generated files
+__generated__/
+
 # Optional npm cache directory
 .npm
 
