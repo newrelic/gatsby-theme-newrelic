@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.0...v5.0.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* branch from develop instead of main ([b94d47d](https://github.com/newrelic/gatsby-theme-newrelic/commit/b94d47de04944b1eb9ccb4acdd7333470d3a4b7c))
+
+
+
+
+
 # [5.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v4.1.8...v5.0.0) (2022-01-26)
 
 
