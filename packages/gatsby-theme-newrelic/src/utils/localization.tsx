@@ -1,6 +1,12 @@
 import { addLeadingSlash } from './location';
 
-export const localizePath = ({ path, locale }) => {
+export const localizePath = ({
+  path,
+  locale,
+}: {
+  path: string;
+  locale: { isDefault: boolean; locale: string };
+}): string => {
   if (locale.isDefault) {
     return path;
   }
@@ -9,10 +15,16 @@ export const localizePath = ({ path, locale }) => {
 
   return base === locale.locale
     ? path
-    : `/${locale.locale}${addLeadingSlash(path)}`;
+    : `/${locale.locale}${addLeadingSlash(path) as string}`;
 };
 
-export const localizeExternalLink = ({ link, locale }) => {
+export const localizeExternalLink = ({
+  link,
+  locale,
+}: {
+  link: string;
+  locale: { isDefault: boolean; locale: string };
+}): string => {
   if (locale.isDefault) {
     return link;
   }
