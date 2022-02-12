@@ -1,6 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 import { localizePath } from '../utils/localization';
@@ -8,13 +6,32 @@ import SignUpLink from './SignUpLink';
 import Icon from './Icon';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { css } from '@emotion/react';
+import { forwardRef } from 'react';
 
-const isHash = (to) => to.startsWith('#');
-const isExternal = (to) => to.startsWith('http');
-const isNewRelicDomain = (to) =>
+interface LinkProps extends React.HTMLProps<HTMLAnchorElement>{
+  to: string;
+  onClick?: () => void;
+  instrumentation?: Record<string, string>;
+  className?: string;
+  children?: Node;
+  shouldAutoLocalize?: boolean;
+  displayExternalIcon?: boolean;
+}
+
+interface QueryResults {
+  site: {
+    siteMetadata: { siteUrl: string };
+  };
+}
+
+const isHash = (to: string): boolean => to.startsWith('#');
+const isExternal = (to: string): boolean => to.startsWith('http');
+const isNewRelicDomain = (to: string): boolean =>
   to.endsWith('newrelic.com') || to.includes('newrelic.com/');
-const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
-const isImageLink = (className) => className === 'gatsby-resp-image-link';
+const isSignup = (to: string): boolean =>
+  to.startsWith('https://newrelic.com/signup');
+const isImageLink = (className: string): boolean =>
+  className === 'gatsby-resp-image-link';
 
 const Link = forwardRef(
   (
@@ -25,16 +42,12 @@ const Link = forwardRef(
       displayExternalIcon,
       shouldAutoLocalize = true,
       ...props
-    },
+    }: LinkProps,
     ref
   ) => {
     const locale = useLocale();
 
-    const {
-      site: {
-        siteMetadata: { siteUrl },
-      },
-    } = useStaticQuery(graphql`
+    const data: QueryResults = useStaticQuery(graphql`
       query {
         site {
           siteMetadata {
@@ -43,6 +56,12 @@ const Link = forwardRef(
         }
       }
     `);
+
+    const {
+      site: {
+        siteMetadata: { siteUrl },
+      },
+    } = data;
 
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
       eventName: 'externalLinkClick',
@@ -135,15 +154,5 @@ const Link = forwardRef(
     );
   }
 );
-
-Link.propTypes = {
-  to: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-  instrumentation: PropTypes.object,
-  className: PropTypes.string,
-  children: PropTypes.node,
-  shouldAutoLocalize: PropTypes.bool,
-  displayExternalIcon: PropTypes.bool,
-};
 
 export default Link;
