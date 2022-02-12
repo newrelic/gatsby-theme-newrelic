@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
+import React, { forwardRef } from 'react';
 import { useStaticQuery, graphql, Link as GatsbyLink } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 import { localizePath } from '../utils/localization';
@@ -6,7 +7,6 @@ import SignUpLink from './SignUpLink';
 import Icon from './Icon';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { css } from '@emotion/react';
-import { forwardRef } from 'react';
 
 interface LinkProps extends React.HTMLProps<HTMLAnchorElement>{
   to: string;

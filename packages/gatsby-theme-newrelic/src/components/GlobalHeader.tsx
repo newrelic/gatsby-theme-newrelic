@@ -1,3 +1,4 @@
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import AnnouncementBanner from './AnnouncementBanner';
@@ -22,7 +23,6 @@ import useHasMounted from '../hooks/useHasMounted';
 import useTessen from '../hooks/useTessen';
 import SplitTextButton from './SplitTextButton';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 export const NR_SITES = {
   DOCS: 'DOCS',
