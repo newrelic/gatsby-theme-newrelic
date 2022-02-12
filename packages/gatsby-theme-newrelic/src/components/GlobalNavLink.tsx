@@ -1,15 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
-import ExternalLink from './ExternalLink';
+import ExternalLink, { ExternalLinkProps } from './ExternalLink';
 
-const GlobalNavLink = ({ children, href, activeSite, instrumentation }) => {
-  const {
-    site: {
-      siteMetadata: { siteUrl },
-    },
-  } = useStaticQuery(graphql`
+interface GlobalNavLinkProps {
+  href: string;
+  activeSite: {
+    text: string;
+    href: string;
+  };
+  children?: Node | string;
+  instrumentation?: Record<string, string>;
+}
+
+interface GlobalNavLinkQueryResults {
+  site: {
+    siteMetadata: { siteUrl: string };
+  };
+}
+
+const GlobalNavLink = ({
+  children,
+  href,
+  activeSite,
+  instrumentation,
+}: GlobalNavLinkProps): JSX.Element => {
+  const data: GlobalNavLinkQueryResults = useStaticQuery(graphql`
     query GlobalNavLinkQuery {
       site {
         siteMetadata {
@@ -19,13 +34,23 @@ const GlobalNavLink = ({ children, href, activeSite, instrumentation }) => {
     }
   `);
 
+  const {
+    site: {
+      siteMetadata: { siteUrl },
+    },
+  } = data;
   // Does the href start with this URL (and we don't have a site manually set)
   // OR do we have a site manually set and the href matches.
-  const isCurrentSite =
+  const isCurrentSite: boolean =
     (href.startsWith(siteUrl) && !activeSite) ||
     (activeSite && activeSite.href === href);
 
-  const Component = isCurrentSite ? Link : ExternalLink;
+  type ComponentType =
+    | typeof Link
+    | (({ href, ...props }: ExternalLinkProps) => JSX.Element)
+    | { instrumentation: Record<string, string>; navInteactionType: string };
+
+  const Component: ComponentType = isCurrentSite ? Link : ExternalLink;
   const props = isCurrentSite ? { to: '/' } : { href };
 
   return (
@@ -69,16 +94,6 @@ const GlobalNavLink = ({ children, href, activeSite, instrumentation }) => {
       {children}
     </Component>
   );
-};
-
-GlobalNavLink.propTypes = {
-  children: PropTypes.node,
-  href: PropTypes.string.isRequired,
-  activeSite: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    href: PropTypes.string.isRequired,
-  }),
-  instrumentation: PropTypes.object,
 };
 
 export default GlobalNavLink;
