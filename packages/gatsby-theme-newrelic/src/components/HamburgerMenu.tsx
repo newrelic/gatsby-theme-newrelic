@@ -1,6 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+
+interface HamburgerMenuProps {
+  onToggle: () => void;
+  isOpen?: boolean;
+  className?: string;
+}
 
 const menuLine = css`
   width: 100%;
@@ -15,7 +19,11 @@ const menuLine = css`
   }
 `;
 
-const HamburgerMenu = ({ onToggle, isOpen, className }) => (
+const HamburgerMenu = ({
+  onToggle,
+  isOpen = false,
+  className,
+}: HamburgerMenuProps): JSX.Element => (
   <button
     aria-expanded={isOpen}
     aria-label="Mobile Menu"
@@ -44,22 +52,12 @@ const HamburgerMenu = ({ onToggle, isOpen, className }) => (
       }
     `}
     className={className}
-    onClick={() => onToggle()}
+    onClick={(): void => onToggle()}
   >
     <div css={menuLine} />
     <div css={menuLine} />
     <div css={menuLine} />
   </button>
 );
-
-HamburgerMenu.propTypes = {
-  onToggle: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool,
-  className: PropTypes.string,
-};
-
-HamburgerMenu.defaultProps = {
-  isOpen: false,
-};
 
 export default HamburgerMenu;
