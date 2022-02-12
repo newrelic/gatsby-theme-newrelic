@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import AnnouncementBanner from './AnnouncementBanner';
@@ -24,6 +22,27 @@ import useHasMounted from '../hooks/useHasMounted';
 import useTessen from '../hooks/useTessen';
 import SplitTextButton from './SplitTextButton';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+
+export const NR_SITES = {
+  DOCS: 'DOCS',
+  DEVELOPER: 'DEVELOPER',
+  OSS: 'OSS',
+  COMMUNITY: 'COMMUNITY',
+  LEARN: 'LEARN',
+  IO: 'IO',
+} as const;
+
+type nrSitesKeys = keyof typeof NR_SITES;
+
+type nrSitesValues = typeof NR_SITES[nrSitesKeys];
+
+interface GlobalHeaderProps {
+  className?: string;
+  activeSite?: nrSitesValues;
+}
+
+type MapObject = { href: string; text: string };
 
 const action = css`
   color: var(--secondary-text-color);
@@ -34,16 +53,7 @@ const action = css`
   }
 `;
 
-export const NR_SITES = {
-  DOCS: 'DOCS',
-  DEVELOPER: 'DEVELOPER',
-  OSS: 'OSS',
-  COMMUNITY: 'COMMUNITY',
-  LEARN: 'LEARN',
-  IO: 'IO',
-};
-
-const HEADER_LINKS = new Map();
+const HEADER_LINKS = new Map<string, MapObject>();
 
 HEADER_LINKS.set(NR_SITES.DOCS, {
   text: 'Docs',
@@ -70,8 +80,11 @@ HEADER_LINKS.set(NR_SITES.DOCS, {
     href: 'https://developer.newrelic.com/instant-observability',
   });
 
-const createNavList = (listType, activeSite = null) => {
-  const navList = [];
+const createNavList = (
+  listType: string,
+  activeSite: nrSitesValues = null
+): Array<JSX.Element> => {
+  const navList: Array<JSX.Element> = [];
   HEADER_LINKS.forEach(({ text, href }) => {
     switch (listType) {
       case 'main':
@@ -123,10 +136,16 @@ const actionIcon = css`
   cursor: pointer;
 `;
 
-const useSearchQuery = () => {
-  const { queryParams, setQueryParam } = useQueryParams();
-  const searchQueryParam = queryParams.get('q');
-  const [searchTerm, setSearchTerm] = useState(searchQueryParam);
+// This might be a confusing name
+interface QueryParams {
+  queryParams: URLSearchParams;
+  setQueryParam: (key: unknown, value: unknown) => void;
+}
+
+const useSearchQuery = (): (string | Dispatch<SetStateAction<string>>)[] => {
+  const { queryParams, setQueryParam }: QueryParams = useQueryParams();
+  const searchQueryParam: string = queryParams.get('q');
+  const [searchTerm, setSearchTerm] = useState<string>(searchQueryParam);
   const hasQParam = queryParams.has('q');
   const tessen = useTessen();
 
@@ -149,14 +168,17 @@ const useSearchQuery = () => {
     [searchTerm, setQueryParam, hasQParam]
   );
 
-  useEffect(() => {
+  useEffect((): void => {
     setSearchTerm(searchQueryParam);
   }, [searchQueryParam]);
 
   return [searchTerm, setSearchTerm];
 };
 
-const GlobalHeader = ({ className, activeSite }) => {
+const GlobalHeader = ({
+  className,
+  activeSite,
+}: GlobalHeaderProps): JSX.Element => {
   const hasMounted = useHasMounted();
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
@@ -576,11 +598,6 @@ const GlobalHeader = ({ className, activeSite }) => {
       </div>
     </>
   );
-};
-
-GlobalHeader.propTypes = {
-  className: PropTypes.string,
-  activeSite: PropTypes.oneOf(Object.values(NR_SITES)),
 };
 
 export default GlobalHeader;
