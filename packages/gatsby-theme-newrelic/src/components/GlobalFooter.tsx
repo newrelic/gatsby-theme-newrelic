@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Button from './Button';
 import Logo from './Logo';
 import ExternalLink from './ExternalLink';
@@ -12,20 +10,36 @@ import Trans from './Trans';
 import Link from './Link';
 import useLocale from '../hooks/useLocale';
 
+interface GlobalFooterProps {
+  fileRelativePath?: string;
+  className?: string;
+  pageTitle?: string;
+  issueLabels?: string[];
+}
+
+interface FooterQueryResults {
+  site: {
+    siteMetadata: {
+      repository: string;
+    };
+  };
+  sitePage: string;
+}
+
 // We need to use this as a JS value otherwise the HTML entity gets saved in the
 // string and escaped by React, therefore rendering the literal &copy; text in
 // the footer
-const copyrightSymbol = String.fromCharCode(169);
-const year = new Date().getFullYear();
+const copyrightSymbol: string = String.fromCharCode(169);
+const year: number = new Date().getFullYear();
 
 const GlobalFooter = ({
   fileRelativePath,
   className,
   pageTitle,
   issueLabels,
-}) => {
+}: GlobalFooterProps): JSX.Element => {
   const { t } = useThemeTranslation();
-  const { site, sitePage } = useStaticQuery(graphql`
+  const data: FooterQueryResults = useStaticQuery(graphql`
     query FooterQuery {
       site {
         siteMetadata {
@@ -38,10 +52,15 @@ const GlobalFooter = ({
       }
     }
   `);
-  const { locale } = useLocale();
 
-  const { siteMetadata } = site;
-  const { repository } = siteMetadata;
+  const {
+    site: {
+      siteMetadata: { repository },
+    },
+    sitePage,
+  }: FooterQueryResults = data;
+
+  const { locale } = useLocale();
 
   return (
     <footer
@@ -199,13 +218,6 @@ const GlobalFooter = ({
       </div>
     </footer>
   );
-};
-
-GlobalFooter.propTypes = {
-  fileRelativePath: PropTypes.string,
-  className: PropTypes.string,
-  pageTitle: PropTypes.string,
-  issueLabels: CreateIssueButton.propTypes.labels,
 };
 
 export default GlobalFooter;
