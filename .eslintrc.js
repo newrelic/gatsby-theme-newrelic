@@ -33,7 +33,6 @@ module.exports = {
         '@typescript-eslint/no-unsafe-argument': 2,
         '@typescript-eslint/no-use-before-define': 2,
         '@typescript-eslint/no-explicit-any': 2,
-        '@typescript-eslint/camelcase': 2,
       },
     },
   ],
@@ -64,5 +63,6 @@ module.exports = {
         ignoreRestSiblings: false,
       },
     ],
+    'react/react-in-jsx-scope': 'off',
   },
 };
