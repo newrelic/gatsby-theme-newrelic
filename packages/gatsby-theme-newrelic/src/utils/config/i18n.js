@@ -17,6 +17,13 @@ const LOCALE_CONFIGS = {
     hrefLang: 'ja',
     isDefault: false,
   },
+  kr: {
+    name: 'Korean',
+    localName: '한국어',
+    locale: 'kr',
+    hrefLang: 'ko',
+    isDefault: false,
+  },
 };
 
 const uniq = (arr) => [...new Set(arr)];
