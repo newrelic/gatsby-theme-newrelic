@@ -1,0 +1,62 @@
+{
+  "404": {
+    "headingText": "결과를 찾을 수 없습니다.",
+    "searchInputLabel": "검색 범위를 좁혀서 다시 시도해보세요.",
+    "searchResultMessage": "다음을 찾고 계셨나요?",
+    "docsHomeMessage": "<1>{{nrSubDomain}} 홈</1>으로 돌아가기",
+    "fileIssueMessage": "찾으시는 정보가 없습니까?"
+  },
+  "button": {
+    "close": "닫기",
+    "copied": "복사됨",
+    "copy": "카피",
+    "login": "로그인",
+    "signUp": "무료 계정",
+    "startNow": "지금 시작하세요"
+  },
+  "callout": {
+    "tip": "팁",
+    "caution": "주의",
+    "important": "중요",
+    "course": "코스"
+  },
+  "github": {
+    "createIssue": "문제 신고",
+    "editPage": "페이지 수정"
+  },
+  "contributing": {
+    "guide": "변경 제안 및 <1>기여</1> 방법"
+  },
+  "cookieConsent": {
+    "title": "이 웹사이트는 쿠키를 사용합니다.",
+    "statement": "뉴렐릭은 귀하의 경험을 향상하고 관련된 콘텐츠를 제공하기 위해 당사 웹사이트와 서비스에서 쿠키 및 기타 유사한 기술(이하 ‘쿠키’)을 사용합니다. 사이트를 계속 이용하시면 쿠키 사용을 허락하는 것으로 간주합니다. <2>여기</2>에서 보다 자세한 내용을 확인하실 수 있습니다. 쿠키에 동의하시면, <4>예</4>를 클릭하십시오.",
+    "agree": "예",
+    "disagree": "아니요"
+  },
+  "feedback": {
+    "question": "이 페이지가 도움이 되었습니까?",
+    "positive": "예",
+    "negative": "아니요"
+  },
+  "footer": {
+    "copyright": "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
+    "careers": "채용정보",
+    "terms": "서비스 이용약관",
+    "dcmaPolicy": "DCMA 정책",
+    "privacyNotice": "개인정보 고지",
+    "cookiePolicy": "쿠키 정책",
+    "ukSlaveryAct": "영국 현대판 노예법"
+  },
+  "mobileNav": {
+    "header": "페이지"
+  },
+  "relatedResources": {
+    "title": "관련 리소스"
+  },
+  "searchInput": {
+    "placeholder": "검색"
+  },
+  "tableOfContents": {
+    "title": "이 페이지"
+  }
+}

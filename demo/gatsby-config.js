@@ -20,7 +20,7 @@ module.exports = {
       options: {
         i18n: {
           translationsPath: `${__dirname}/src/i18n/translations`,
-          additionalLocales: ['jp'],
+          additionalLocales: ['jp', 'kr'],
         },
         layout: {
           component: require.resolve('./src/layouts'),
