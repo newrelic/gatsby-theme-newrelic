@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.1...v5.0.2) (2022-02-24)
+
+
+### Bug Fixes
+
+* **i18n:** add kr to supported locales to fully turn it on ([16da9e4](https://github.com/newrelic/gatsby-theme-newrelic/commit/16da9e48c2bdb8ed3807f8ea07040fbc8a3843ba))
+
+
+
+
+
 ## [5.0.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.0...v5.0.1) (2022-02-11)
 
 
