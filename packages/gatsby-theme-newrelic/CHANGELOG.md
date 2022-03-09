@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.2...v5.0.3) (2022-03-09)
+
+
+### Bug Fixes
+
+* Check if an existing page has a locale other than en ([c256342](https://github.com/newrelic/gatsby-theme-newrelic/commit/c2563428995d1ba6ae5ec4691f2133cecf18740b))
+
+
+
+
+
 ## [5.0.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.1...v5.0.2) (2022-02-24)
 
 
