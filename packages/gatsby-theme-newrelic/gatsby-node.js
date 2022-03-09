@@ -280,10 +280,14 @@ exports.onCreatePage = (helpers, themeOptions) => {
     !transformedPage.path.match(/404/) &&
     transformedPage.context.fileRelativePath.includes('src/pages/')
   ) {
+    const additionalLocalesStrings = additionalLocales.map(
+      (localeObj) => localeObj.locale
+    );
     additionalLocales.forEach(({ locale }) => {
       if (
         locale !==
-        getLocale({ location: { pathname: page.path } }, themeOptions)
+          getLocale({ location: { pathname: page.path } }, themeOptions) &&
+        !additionalLocalesStrings.includes(transformedPage.context.locale)
       ) {
         createPage({
           ...transformedPage,
