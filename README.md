@@ -4,9 +4,10 @@
 
 This repo contains Gatsby themes used by New Relic Gatsby sites, including:
 
- - [docs.newrelic.com](https://docs.newrelic.com) - [GitHub repository]()
- - [developer.newrelic.com](https://developer.newrelic.com) - [GitHub repository]()
- - [opensource.newrelic.com](https://opensource.newrelic.com) - [GitHub repository]()
+- [docs.newrelic.com](https://docs.newrelic.com) - [GitHub repository](https://github.com/newrelic/docs-website)
+- [newrelic.com/instant-observability](https://newrelic.com/instant-observability) - [GitHub repository](https://github.com/newrelic/instant-observability-website)
+- [developer.newrelic.com](https://developer.newrelic.com) - [GitHub repository](https://github.com/newrelic/developer-website)
+- [opensource.newrelic.com](https://opensource.newrelic.com) - [GitHub repository](https://github.com/newrelic/opensource-website)
 
 ## Installation
 
@@ -50,12 +51,11 @@ We use MDX files for content which lets you seamlessly write JSX in your Markdow
 
 For this example we will show how to add some content to a page and see the render results in the browser. We will use the `build-hello-world-app` document for testing, so with the **develop** server still running, navigate to and open the following in your favourite code editor:
 
- - `demo/src/content/build-apps/build-hello-world-app.mdx`
+- `demo/src/content/build-apps/build-hello-world-app.mdx`
 
 You should see something like the following (possibly less wine coloured):
 
 <img src="images/example-mdx.png" alt="drawing" width="75%"/>
-
 
 1. **Frontmatter** - This is `key/value` metadata you can provide for Gatsby which we won't go into now, but you can read more about [here](https://www.gatsbyjs.com/docs/mdx/writing-pages/#using-frontmatter-in-mdx)
 2. **Markdown** - This is regular Markdown language, and we'll include [a guide on writing Markdown](https://www.markdownguide.org/) as well as a great [resource for practicing online](https://stackedit.io/app#)
@@ -71,7 +71,7 @@ Firstly we'll add some standard Markdown to the page, including a Header, bullet
 Look at me ma i'm creating content for
 
  - New Relic
- - Gatsby Theme 
+ - Gatsby Theme
  - [My inspiration](https://newrelic.com/)
 ```
 
