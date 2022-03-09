@@ -12,7 +12,6 @@ const {
 const pageTransforms = require('./gatsby/page-transforms');
 const { getTessenPath } = require('./gatsby/constants');
 const { getFileRelativePath } = require('./gatsby/utils/fs');
-const getLocale = require('./gatsby/utils/getLocale');
 const { SCHEMA_CUSTOMIZATION_TYPES } = require('./gatsby/type-defs');
 const { SWIFTYPE_ENGINE_KEY } = require('./src/utils/constants');
 
@@ -278,26 +277,18 @@ exports.onCreatePage = (helpers, themeOptions) => {
 
   if (
     !transformedPage.path.match(/404/) &&
-    transformedPage.context.fileRelativePath.includes('src/pages/')
+    transformedPage.context.fileRelativePath.includes('src/pages/') &&
+    transformedPage.context.locale === 'en'
   ) {
-    const additionalLocalesStrings = additionalLocales.map(
-      (localeObj) => localeObj.locale
-    );
     additionalLocales.forEach(({ locale }) => {
-      if (
-        locale !==
-          getLocale({ location: { pathname: page.path } }, themeOptions) &&
-        !additionalLocalesStrings.includes(transformedPage.context.locale)
-      ) {
-        createPage({
-          ...transformedPage,
-          path: path.posix.join(`/${locale}`, transformedPage.path),
-          context: {
-            ...transformedPage.context,
-            locale,
-          },
-        });
-      }
+      createPage({
+        ...transformedPage,
+        path: path.posix.join(`/${locale}`, transformedPage.path),
+        context: {
+          ...transformedPage.context,
+          locale,
+        },
+      });
     });
   }
 
