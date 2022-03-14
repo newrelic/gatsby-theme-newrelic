@@ -164,7 +164,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * Add arrow-down, arrow-up, and arrow-right icons ([3239b22](https://github.com/newrelic/gatsby-theme-newrelic/commit/3239b2240ded1cf009ac1b2045d6645e7c8a42fb))
 * **Link:** Forward ref to the underlying link component ([d28b3de](https://github.com/newrelic/gatsby-theme-newrelic/commit/d28b3dea70fdda0f51191f05c1a3aa7284928eec))
 * add fe-corner-down-left icon ([8fc5135](https://github.com/newrelic/gatsby-theme-newrelic/commit/8fc51359a3ff262b20de1a67795bc54d57f4a334))
-* bal header renders search modal on focus ([2ad63e5](https://github.com/newrelic/gatsby-theme-newrelic/commit/2ad63e552d06c341be56f648cd8597d165984e54))
+* global header renders search modal on focus ([2ad63e5](https://github.com/newrelic/gatsby-theme-newrelic/commit/2ad63e552d06c341be56f648cd8597d165984e54))
 
 
 ### Features
