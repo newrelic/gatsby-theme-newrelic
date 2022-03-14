@@ -14,7 +14,6 @@ import Button from '../components/Button';
 import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from '../components/Trans';
-import useTessen from '../hooks/useTessen';
 
 const NotFoundPage = ({
   location,
