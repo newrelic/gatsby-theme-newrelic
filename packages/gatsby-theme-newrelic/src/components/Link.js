@@ -8,14 +8,12 @@ import SignUpLink from './SignUpLink';
 import Icon from './Icon';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { css } from '@emotion/react';
-
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
 const isNewRelicDomain = (to) =>
   to.endsWith('newrelic.com') || to.includes('newrelic.com/');
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 const isImageLink = (className) => className === 'gatsby-resp-image-link';
-
 const Link = forwardRef(
   (
     {
@@ -24,12 +22,12 @@ const Link = forwardRef(
       instrumentation = {},
       displayExternalIcon,
       shouldAutoLocalize = true,
+      targetTab,
       ...props
     },
     ref
   ) => {
     const locale = useLocale();
-
     const {
       site: {
         siteMetadata: { siteUrl },
@@ -43,7 +41,6 @@ const Link = forwardRef(
         }
       }
     `);
-
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
       eventName: 'externalLinkClick',
       category: 'LinkClick',
@@ -51,7 +48,6 @@ const Link = forwardRef(
       href: to,
       ...instrumentation,
     });
-
     const handleInternalLinkClick = useInstrumentedHandler(onClick, {
       eventName: 'internalLinkClick',
       category: 'LinkClick',
@@ -59,18 +55,14 @@ const Link = forwardRef(
       href: to,
       ...instrumentation,
     });
-
     if (to.startsWith(siteUrl)) {
       to = to.replace(siteUrl, '');
-
       // absolute links to the home page without trailing slash
       to = to || '/';
     }
-
     if (isHash(to)) {
       return <a ref={ref} href={to} {...props} />;
     }
-
     if (isSignup(to)) {
       return (
         <SignUpLink
@@ -82,10 +74,8 @@ const Link = forwardRef(
         />
       );
     }
-
     if (isExternal(to)) {
       const rel = isNewRelicDomain(to) ? 'noopener' : 'noopener noreferrer';
-
       return (
         <>
           {/* eslint-disable-next-line react/jsx-no-target-blank */}
@@ -93,7 +83,7 @@ const Link = forwardRef(
             {...props}
             href={to}
             onClick={handleExternalLinkClick}
-            target="_blank"
+            target={targetTab}
             rel={rel}
             ref={ref}
           >
@@ -113,11 +103,9 @@ const Link = forwardRef(
         </>
       );
     }
-
     if (isImageLink(props.className)) {
       return <a {...props} href={to} />;
     }
-
     return (
       <GatsbyLink
         to={
@@ -135,7 +123,9 @@ const Link = forwardRef(
     );
   }
 );
-
+Link.defaultProps = {
+  targetTab: '_blank',
+};
 Link.propTypes = {
   to: PropTypes.string.isRequired,
   onClick: PropTypes.func,
@@ -144,6 +134,6 @@ Link.propTypes = {
   children: PropTypes.node,
   shouldAutoLocalize: PropTypes.bool,
   displayExternalIcon: PropTypes.bool,
+  targetTab: PropTypes.string,
 };
-
 export default Link;
