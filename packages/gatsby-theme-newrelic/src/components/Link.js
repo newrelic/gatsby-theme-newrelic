@@ -8,6 +8,7 @@ import SignUpLink from './SignUpLink';
 import Icon from './Icon';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { css } from '@emotion/react';
+
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
 const isNewRelicDomain = (to) =>
