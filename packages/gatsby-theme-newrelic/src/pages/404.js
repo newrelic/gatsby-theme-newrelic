@@ -14,6 +14,7 @@ import Button from '../components/Button';
 import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from '../components/Trans';
+import useTessen from '../hooks/useTessen';
 
 const NotFoundPage = ({
   location,
@@ -179,6 +180,7 @@ const NotFoundPage = ({
         path: location.pathname,
         resultCount: searchResult.length,
         searchTerm,
+        tessen,
       });
     }
   }, [location.pathname, searchResult, searchTerm]);
