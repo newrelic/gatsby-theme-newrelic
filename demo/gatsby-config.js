@@ -32,12 +32,12 @@ module.exports = {
           configs: {
             development: {
               instrumentationType: 'proAndSPA',
-              accountId: '10175106',
+              accountId: '10956800',
               trustKey: '1',
-              agentID: '29802175',
-              licenseKey: '23448da482',
+              agentID: '35094665',
+              licenseKey: 'NRJS-649173eb1a7b28cd6ab',
               // New Relic Gatsby Theme - Demo Site
-              applicationID: '29802175',
+              applicationID: '35094665',
               beacon: 'staging-bam.nr-data.net',
               errorBeacon: 'staging-bam.nr-data.net',
             },
