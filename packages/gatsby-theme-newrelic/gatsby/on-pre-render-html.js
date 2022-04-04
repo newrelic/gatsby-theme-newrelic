@@ -1,5 +1,6 @@
 import React from 'react';
 import path from 'path';
+import { withPrefix } from 'gatsby';
 import { getTessenConfig } from '../src/utils/config';
 import { getTessenPath } from './constants';
 import OneTrust from '../src/components/OneTrust';
@@ -13,7 +14,7 @@ const onPreRenderHTML = (
 
   const version = tessen ? tessen.tessenVersion : null;
 
-  const tessenPath = `/${path.basename(getTessenPath(version))}`;
+  const tessenPath = withPrefix(path.basename(getTessenPath(version)));
 
   replaceHeadComponents(
     [
