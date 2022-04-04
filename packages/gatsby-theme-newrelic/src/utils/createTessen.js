@@ -58,26 +58,28 @@ const tessenAction =
     const customerId = JSON.parse(Cookies.get('ajs_user_id') || 'null');
     const anonymousId = JSON.parse(Cookies.get('ajs_anonymous_id') || 'null');
 
-    window.Tessen[action](
-      eventName,
-      {
-        ...properties,
-        env: config.env || '',
-        category,
-        nr_product: config.product,
-        nr_subproduct: config.subproduct,
-        location: 'Public',
-        customer_user_id: customerId,
-        anonymousId,
-      },
-      {
-        Segment: {
-          integrations: {
-            All: true,
-          },
+    if (window.Tessen) {
+      window.Tessen[action](
+        eventName,
+        {
+          ...properties,
+          env: config.env || '',
+          category,
+          nr_product: config.product,
+          nr_subproduct: config.subproduct,
+          location: 'Public',
+          customer_user_id: customerId,
+          anonymousId,
         },
-      }
-    );
+        {
+          Segment: {
+            integrations: {
+              All: true,
+            },
+          },
+        }
+      );
+    }
   };
 
 const createTessen = (config) => ({

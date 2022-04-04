@@ -71,23 +71,25 @@ const initializeTessenTracking =
   ({ config, env, location, prevLocation }) =>
   (options = {}) => {
     if (!initialized) {
-      initialized = true;
-      const { segmentWriteKey } = config;
-      window.Tessen.load(['Segment', 'NewRelic'], {
-        Segment: {
-          identifiable: true,
-          writeKey:
-            env === 'production' || env === 'prod'
-              ? segmentWriteKey
-              : DEV_SEGMENT_WRITE_KEY,
-          useAmplitudeSessions: true,
-        },
-      });
+      if (window.Tessen) {
+        initialized = true;
+        const { segmentWriteKey } = config;
+        window.Tessen.load(['Segment', 'NewRelic'], {
+          Segment: {
+            identifiable: true,
+            writeKey:
+              env === 'production' || env === 'prod'
+                ? segmentWriteKey
+                : DEV_SEGMENT_WRITE_KEY,
+            useAmplitudeSessions: true,
+          },
+        });
 
-      window.Tessen.identify({});
+        window.Tessen.identify({});
 
-      options.trackPageView &&
-        trackPageView({ config, env, location, prevLocation });
+        options.trackPageView &&
+          trackPageView({ config, env, location, prevLocation });
+      }
     }
   };
 
