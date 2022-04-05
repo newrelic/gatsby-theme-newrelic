@@ -70,7 +70,7 @@ const trackPageView = ({ config, env, location, prevLocation }) => {
 const initializeTessenTracking =
   ({ config, env, location, prevLocation }) =>
   (options = {}) => {
-    if (!initialized) {
+    if (window.Tessen && !initialized) {
       initialized = true;
       const { segmentWriteKey } = config;
       window.Tessen.load(['Segment', 'NewRelic'], {
