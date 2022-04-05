@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.3...v5.0.4) (2022-04-05)
+
+
+### Bug Fixes
+
+* prevent tessen calls when window.Tessen does not exist ([938d6b7](https://github.com/newrelic/gatsby-theme-newrelic/commit/938d6b70c878d0ebb2cee5393d710e02610a0e5f))
+* update tessen path to incorporate gatsby withPrefix ([ac08410](https://github.com/newrelic/gatsby-theme-newrelic/commit/ac08410bbdd77f4f0b9365fd6c3e625086c7c136))
+
+
+
+
+
 ## [5.0.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.2...v5.0.3) (2022-03-09)
 
 
