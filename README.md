@@ -70,9 +70,9 @@ Firstly we'll add some standard Markdown to the page, including a Header, bullet
 
 Look at me ma i'm creating content for
 
- - New Relic
- - Gatsby Theme
- - [My inspiration](https://newrelic.com/)
+- New Relic
+- Gatsby Theme
+- [My inspiration](https://newrelic.com/)
 ```
 
 Next we'll add a **Button** component that links to a site when you click it:
@@ -87,23 +87,20 @@ Your code should now look something like this...
 
 <img src="images/example-mdx-code.png" alt="drawing" width="50%">
 
-
 ...and as long as your **develop** server is still running the page should automatically reload with the new content...
-
 
 <img src="images/example-mdx-render.png" alt="drawing" width="50%"/>
 
-Because we've added a Header, `My First Edit` should now be included in the `On this page` section on the right.  Fresh! :D
+Because we've added a Header, `My First Edit` should now be included in the `On this page` section on the right. Fresh! :D :D
 
 ### Further Editing
 
 With your new found confidence, check out the full documentation for the theme where you'll find more examples for:
 
- - [Configuration](packages/gatsby-theme-newrelic#configuration)
- - [Components](packages/gatsby-theme-newrelic#components)
- - [MDX Component variants](packages/gatsby-theme-newrelic#mdx-component-variants)
- - [Hooks](packages/gatsby-theme-newrelic#hooks)
-
+- [Configuration](packages/gatsby-theme-newrelic#configuration)
+- [Components](packages/gatsby-theme-newrelic#components)
+- [MDX Component variants](packages/gatsby-theme-newrelic#mdx-component-variants)
+- [Hooks](packages/gatsby-theme-newrelic#hooks)
 
 ## Testing
 
