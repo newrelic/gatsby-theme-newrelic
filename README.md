@@ -43,6 +43,41 @@ success Building development bundle
 
 ...in the terminal, then you can visit [http://localhost:8001](http://localhost:8001) in your browser :)
 
+## Locally developing with another gatsby site
+
+In the case that you would like to develop locally and test out your changes with another gatsby site, for example docs-website, you can symlink your local version of `@newrelic/gatsby-theme-newrelic`. In your local version of this repository, you can run:
+
+```sh
+cd gatsby-theme-newrelic
+cd packages/gatsby-theme-newrelic
+yarn
+yarn link
+```
+
+Then, within the the repository you would like to see the changes, you can link to this version. For example, if you would like to see the changes in your local version of newrelic/docs-website.
+
+```sh
+cd docs-website
+yarn link "@newrelic/gatsby-theme-newrelic"
+yarn
+yarn start
+```
+
+If you would like to stop using your local version and instead use the published version, you can remove the symlink from the package.
+
+```sh
+cd gatsby-theme-newrelic
+cd packages/gatsby-theme-newrelic
+yarn unlink
+```
+
+Lastly, you can unlink the package from the repository in which you are testing your changes.
+
+```sh
+cd docs-website
+yarn unlink "@newrelic/gatsby-theme-newrelic"
+```
+
 ## Editing Content
 
 We use MDX files for content which lets you seamlessly write JSX in your Markdown documents. This means you can write content in regular Markdown format as well as including React componenets in the same file. Gatsby will then do all the heavy-lifting to convert these to HTML to serve in the browser.
@@ -70,9 +105,9 @@ Firstly we'll add some standard Markdown to the page, including a Header, bullet
 
 Look at me ma i'm creating content for
 
- - New Relic
- - Gatsby Theme
- - [My inspiration](https://newrelic.com/)
+- New Relic
+- Gatsby Theme
+- [My inspiration](https://newrelic.com/)
 ```
 
 Next we'll add a **Button** component that links to a site when you click it:
@@ -87,23 +122,20 @@ Your code should now look something like this...
 
 <img src="images/example-mdx-code.png" alt="drawing" width="50%">
 
-
 ...and as long as your **develop** server is still running the page should automatically reload with the new content...
-
 
 <img src="images/example-mdx-render.png" alt="drawing" width="50%"/>
 
-Because we've added a Header, `My First Edit` should now be included in the `On this page` section on the right.  Fresh! :D
+Because we've added a Header, `My First Edit` should now be included in the `On this page` section on the right. Fresh! :D
 
 ### Further Editing
 
 With your new found confidence, check out the full documentation for the theme where you'll find more examples for:
 
- - [Configuration](packages/gatsby-theme-newrelic#configuration)
- - [Components](packages/gatsby-theme-newrelic#components)
- - [MDX Component variants](packages/gatsby-theme-newrelic#mdx-component-variants)
- - [Hooks](packages/gatsby-theme-newrelic#hooks)
-
+- [Configuration](packages/gatsby-theme-newrelic#configuration)
+- [Components](packages/gatsby-theme-newrelic#components)
+- [MDX Component variants](packages/gatsby-theme-newrelic#mdx-component-variants)
+- [Hooks](packages/gatsby-theme-newrelic#hooks)
 
 ## Testing
 
