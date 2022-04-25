@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import NavigationContext from './NavigationContext';
 
 const sanitizeSearchTerm = (searchTerm) =>
-  searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').trim();
+  searchTerm?.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').trim();
 
 const Navigation = ({ className, children, searchTerm }) => {
   const value = useMemo(
