@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 
-const Table = ({ className, children }) => (
+const Table = ({ className, children, ...props }) => (
   <div
+    {...props}
     className={className}
     css={css`
       width: 100%;
