@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.5...v5.0.6) (2022-04-27)
+
+
+### Bug Fixes
+
+* Pass all props to table component ([4b4bd97](https://github.com/newrelic/gatsby-theme-newrelic/commit/4b4bd976fa2b2f9a3680627ab879344e8e3e71be))
+
+
+
+
+
 ## [5.0.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.4...v5.0.5) (2022-04-26)
 
 
