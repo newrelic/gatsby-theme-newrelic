@@ -11,5 +11,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/setup-test-env.js'],
   moduleNameMapper: {
     '^@reach/router(.*)': '<rootDir>/node_modules/@gatsbyjs/reach-router$1',
+    '^gatsby-page-utils/(.*)$': `gatsby-page-utils/dist/$1`,
   },
 };
