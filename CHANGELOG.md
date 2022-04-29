@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.6...v5.0.7) (2022-04-29)
+
+
+### Bug Fixes
+
+* Update sharp plugins ([69c8164](https://github.com/newrelic/gatsby-theme-newrelic/commit/69c816437ec41639de9ddb98dfe09e4f1f7f9ae6))
+
+
+
+
+
 ## [5.0.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.5...v5.0.6) (2022-04-27)
 
 
