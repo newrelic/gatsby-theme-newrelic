@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [5.0.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.7...v5.0.8) (2022-05-05)
+
+
+### Bug Fixes
+
+* downgrade gatsby plugins due to docs site deployment issues ([8b4c411](https://github.com/newrelic/gatsby-theme-newrelic/commit/8b4c411a58a155d7fb34f94a2072e251858f538b))
+
+
+
+
+
 ## [5.0.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.6...v5.0.7) (2022-04-29)
 
 
