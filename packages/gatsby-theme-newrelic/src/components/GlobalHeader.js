@@ -193,6 +193,16 @@ const GlobalHeader = ({ className, activeSite }) => {
     locale,
   }));
 
+  //window.location.hostname to know where we're at: docs, developer, opensource
+  const subdomain = window.location.hostname.split('.')[0];
+  
+  let placeholderText = t('searchInput.placeholder.default');
+
+  // Ensures a search placeholder for the domains we support
+  if (Boolean(subdomain) && (subdomain === 'docs' || subdomain === 'develop' || subdomain === 'opensource')) {
+    placeholderText = t(`searchInput.placeholder.${subdomain}`)
+  }
+
   return (
     <>
       <SearchModal
@@ -406,7 +416,7 @@ const GlobalHeader = ({ className, activeSite }) => {
                 <Icon css={actionIcon} name="fe-search" size="1.5rem" />
               </Link>
               <SearchInput
-                placeholder={t('searchInput.placeholder')}
+                placeholder={placeholderText} 
                 size={SearchInput.SIZE.MEDIUM}
                 focusWithHotKey="/"
                 css={css`

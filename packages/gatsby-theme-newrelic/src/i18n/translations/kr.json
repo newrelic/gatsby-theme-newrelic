@@ -54,7 +54,12 @@
     "title": "관련 리소스"
   },
   "searchInput": {
-    "placeholder": "검색"
+    "placeholder": {
+      "docs": "검색 docs",
+      "develop": "검색 develop",
+      "opensource": "검색 open source",
+      "default": "검색"
+    }
   },
   "tableOfContents": {
     "title": "이 페이지"
