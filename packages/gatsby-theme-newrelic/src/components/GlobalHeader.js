@@ -193,14 +193,14 @@ const GlobalHeader = ({ className, activeSite }) => {
     locale,
   }));
 
-  //window.location.hostname to know where we're at: docs, developer, opensource
+  // window.location.hostname to know where we're at: docs, developer, opensource
   const subdomain = window.location.hostname.split('.')[0];
   
   let placeholderText = t('searchInput.placeholder.default');
 
   // Ensures a search placeholder for the domains we support
   if (Boolean(subdomain) && (subdomain === 'docs' || subdomain === 'develop' || subdomain === 'opensource')) {
-    placeholderText = t(`searchInput.placeholder.${subdomain}`)
+    placeholderText = t(`searchInput.placeholder.${subdomain}`);
   }
 
   return (
