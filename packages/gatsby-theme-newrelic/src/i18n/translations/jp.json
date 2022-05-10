@@ -50,12 +50,7 @@
     "ukSlaveryAct": "英国現代奴隷法"
   },
   "searchInput": {
-    "placeholder": {
-      "docs": "を検索 docs",
-      "develop": "を検索 develop",
-      "opensource": "を検索 open source",
-      "default": "を検索"
-    }
+    "placeholder": "を検索"
   },
   "tableOfContents": {
     "title": "このページの目次"

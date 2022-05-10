@@ -54,12 +54,7 @@
     "title": "Related resources"
   },
   "searchInput": {
-    "placeholder": {
-      "docs": "Search our docs",
-      "develop": "Search our develop docs",
-      "opensource": "Search our open source docs",
-      "default": "Search"
-    }
+    "placeholder": "Search docs"
   },
   "tableOfContents": {
     "title": "On this page"
