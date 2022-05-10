@@ -194,7 +194,7 @@ const GlobalHeader = ({ className, activeSite }) => {
   }));
 
   if (typeof window === 'undefined') {
-    throw new Error();
+    throw Error();
   }
   // window.location.hostname to know where we're at: docs, developer, opensource
   const subdomain = window.location.hostname.split('.')[0];
