@@ -193,11 +193,12 @@ const GlobalHeader = ({ className, activeSite }) => {
     locale,
   }));
 
-  if (typeof window === 'undefined') {
-    throw Error();
+  let subdomain = '';
+
+  if (typeof window !== 'undefined') {
+    // window.location.hostname to know where we're at: docs, developer, opensource
+    subdomain = window.location.hostname.split('.')[0];
   }
-  // window.location.hostname to know where we're at: docs, developer, opensource
-  const subdomain = window.location.hostname.split('.')[0];
 
   let placeholderText = t('searchInput.placeholder.default');
 
