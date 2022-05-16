@@ -40,7 +40,6 @@ const GlobalStyles = ({ layout }) => (
       a {
         cursor: pointer;
         color: var(--link-color);
-        transition: 0.2s ease-out;
 
         &:hover {
           color: var(--link-hover-color);
@@ -126,10 +125,9 @@ const GlobalStyles = ({ layout }) => (
       }
 
       ul > li::marker {
-        color: var(--color-neutrals-500);
-
+        color: var(--system-text-secondary-inverted-light);
         .dark-mode & {
-          color: var(--color-dark-500);
+          color: var(--system-background-selected-low-contrast-dark);
         }
       }
 
@@ -149,14 +147,11 @@ const GlobalStyles = ({ layout }) => (
       }
 
       blockquote {
-        border-left: 0.25rem solid var(--color-neutrals-700);
+        border-left: 0.25rem solid var(--secondary-text-color);
+        color: var(--secondary-text-color);
         padding: 0.25rem 1rem;
         margin: 0;
         font-style: italic;
-
-        .dark-mode & {
-          border-left-color: var(--color-dark-700);
-        }
       }
 
       pre {
@@ -179,16 +174,7 @@ const GlobalStyles = ({ layout }) => (
       }
 
       mark {
-        background: var(--color-yellow-100);
-        color: var(--color-neutrals-900);
-
-        a {
-          color: var(--color-brand-600);
-
-          &:hover {
-            color: var(--color-brand-300);
-          }
-        }
+        background: var(--code-console-text-highlight);
       }
 
       figcaption {

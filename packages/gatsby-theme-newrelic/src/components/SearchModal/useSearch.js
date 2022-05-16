@@ -40,12 +40,23 @@ const useSearch = ({ searchTerm, filters }) => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
   const swiftypeFilters = useMemo(() => {
-    const selectedFilters = filters.filter((filter) => filter.isSelected);
+    const selectedFilters = filters.map(({ defaultFilters, type }) => {
+      const updatedDefaultFilters = defaultFilters?.filter(
+        (filter) => filter.isSelected
+      );
+      return { defaultFilters: updatedDefaultFilters, type };
+    });
     const allFilters = selectedFilters.length === 0 ? filters : selectedFilters;
 
-    return allFilters.map((filter) =>
-      locale.isDefault ? filter.name : `${filter.name}-${locale.locale}`
-    );
+    return allFilters.map(({ defaultFilters, type }) => {
+      if (type === 'source') {
+        const filters = defaultFilters.map((filter) =>
+          locale.isDefault ? filter.name : `${filter.name}-${locale.locale}`
+        );
+        return { defaultFilters: filters, type };
+      }
+      return { defaultFilters, type };
+    });
   }, [filters, locale]);
 
   const queryKey = useMemo(
@@ -58,7 +69,7 @@ const useSearch = ({ searchTerm, filters }) => {
     ({ queryKey: [, searchTerm, page, filters] }) =>
       search({
         searchTerm,
-        filters: { page: { type: filters } },
+        filters,
         page,
         perPage: 20,
       }),

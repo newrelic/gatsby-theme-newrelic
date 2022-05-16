@@ -70,13 +70,14 @@ const TableOfContents = ({ headings }) => {
                     border-left: 4px solid transparent;
 
                     &.active {
-                      color: var(--heading-text-color);
-                      background: var(--color-neutrals-100);
-                      border-left-color: var(--color-neutrals-400);
-
+                      background: var(--primary-hover-color);
+                      border-left-color: var(
+                        --system-text-secondary-inverted-light
+                      );
                       .dark-mode & {
-                        background: var(--color-dark-200);
-                        border-left-color: var(--color-dark-400);
+                        border-left-color: var(
+                          --system-background-selected-low-contrast-dark
+                        );
                       }
                     }
                   `}

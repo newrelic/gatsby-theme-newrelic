@@ -78,13 +78,6 @@ const ResultPreview = memo(({ result }) => {
                       key={index}
                       css={css`
                         font-size: 0.75rem;
-                        &:not(:last-child) {
-                          border-bottom: 1px solid var(--color-neutrals-050);
-                          .dark-mode & {
-                            border-bottom: 1px solid var(--color-dark-100);
-                          }
-                        }
-
                         padding-bottom: 0.5rem;
                         padding-top: 0.5rem;
                         margin: 0;

@@ -58,7 +58,6 @@ const SearchInput = forwardRef(
 
           position: relative;
           width: ${width || '100%'};
-          box-shadow: var(--shadow-1);
           ${size && styles.size[size].container}
         `}
       >
@@ -95,13 +94,12 @@ const SearchInput = forwardRef(
           }}
           css={css`
             width: 100%;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--primary-text-color);
             border-radius: 4px;
-            background: ${'var(--background-color)' ||
-            'var(--primary-background-color)'};
-            color: var(--primary-text-color);
+            background: var(--secondary-background-color);
             transition: 0.15s ease-out;
             line-height: 1;
+            color: var(--primary-text-color);
 
             padding-left: calc(
               var(--horizontal-spacing) + 0.5rem + var(--icon-size)
@@ -164,11 +162,8 @@ const SearchInput = forwardRef(
               border: 1px solid var(--border-color);
               line-height: 1rem;
               text-align: center;
-              background: var(--color-neutrals-100);
+              background: var(--secondary-background-color);
 
-              .dark-mode & {
-                background: var(--color-dark-200);
-              }
               ${styles.size[size].hotkey}
             `}
           >

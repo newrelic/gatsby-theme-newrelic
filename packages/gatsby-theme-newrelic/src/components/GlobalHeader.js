@@ -14,10 +14,8 @@ import SearchInput from './SearchInput';
 import useMedia from 'use-media';
 import { useLocation } from '@reach/router';
 import useQueryParams from '../hooks/useQueryParams';
-import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import path from 'path';
-import { rgba } from 'polished';
 import SearchModal from './SearchModal';
 import { useDebounce } from 'react-use';
 import useHasMounted from '../hooks/useHasMounted';
@@ -25,22 +23,11 @@ import useTessen from '../hooks/useTessen';
 import SplitTextButton from './SplitTextButton';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
-const action = css`
-  color: var(--secondary-text-color);
-  transition: all 0.2s ease-out;
-
-  &:hover {
-    color: var(--secondary-text-hover-color);
-  }
-`;
-
 export const NR_SITES = {
   DOCS: 'DOCS',
   DEVELOPER: 'DEVELOPER',
-  OSS: 'OSS',
   COMMUNITY: 'COMMUNITY',
   LEARN: 'LEARN',
-  IO: 'IO',
 };
 
 const HEADER_LINKS = new Map();
@@ -53,10 +40,6 @@ HEADER_LINKS.set(NR_SITES.DOCS, {
     text: 'Developer',
     href: 'https://developer.newrelic.com/',
   })
-  .set(NR_SITES.OSS, {
-    text: 'Open Source',
-    href: 'https://opensource.newrelic.com/',
-  })
   .set(NR_SITES.COMMUNITY, {
     text: 'Community',
     href: 'https://discuss.newrelic.com/',
@@ -64,10 +47,6 @@ HEADER_LINKS.set(NR_SITES.DOCS, {
   .set(NR_SITES.LEARN, {
     text: 'Learn',
     href: 'https://learn.newrelic.com/',
-  })
-  .set(NR_SITES.IO, {
-    text: 'Instant Observability',
-    href: 'https://newrelic.com/instant-observability',
   });
 
 const createNavList = (listType, activeSite = null) => {
@@ -102,26 +81,9 @@ const createNavList = (listType, activeSite = null) => {
   return navList;
 };
 
-// hides searchbar
-const CONDENSED_BREAKPOINT = '815px';
-
+// removes the site nav from the header in favor of the search bar
 // swaps out logo into collapsable nav
-const NAV_BREAKPOINT = '770px';
-
-// changes layout for mobile view
-const MOBILE_BREAKPOINT = '600px';
-
-const actionLink = css`
-  ${action};
-
-  display: flex;
-  align-items: center;
-`;
-
-const actionIcon = css`
-  display: block;
-  cursor: pointer;
-`;
+const NAV_BREAKPOINT = '1070px';
 
 const useSearchQuery = () => {
   const { queryParams, setQueryParam } = useQueryParams();
@@ -156,7 +118,12 @@ const useSearchQuery = () => {
   return [searchTerm, setSearchTerm];
 };
 
-const GlobalHeader = ({ className, activeSite }) => {
+const GlobalHeader = ({
+  className,
+  activeSite,
+  hideSearch = false,
+  customStyles,
+}) => {
   const hasMounted = useHasMounted();
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
@@ -165,6 +132,9 @@ const GlobalHeader = ({ className, activeSite }) => {
 
   const {
     allLocale: { nodes: locales },
+    site: {
+      layout: { mobileBreakpoint },
+    },
   } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
       allLocale(sort: { fields: [isDefault, locale], order: [DESC, ASC] }) {
@@ -172,6 +142,11 @@ const GlobalHeader = ({ className, activeSite }) => {
           locale
           localName
           isDefault
+        }
+      }
+      site {
+        layout {
+          mobileBreakpoint
         }
       }
     }
@@ -182,8 +157,6 @@ const GlobalHeader = ({ className, activeSite }) => {
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
   );
-
-  const locale = useLocale();
 
   const handleLocaleClick = useInstrumentedHandler(null, ({ locale }) => ({
     eventName: 'localeDropDownClick',
@@ -208,15 +181,11 @@ const GlobalHeader = ({ className, activeSite }) => {
         data-swiftype-index={false}
         className={className}
         css={css`
-          background-color: var(--color-neutrals-800);
+          background-color: var(--system-text-primary-light);
           box-shadow: var(--shadow-2);
           position: sticky;
           top: 0;
           z-index: 80;
-
-          .dark-mode & {
-            background-color: var(--color-dark-300);
-          }
         `}
       >
         <div
@@ -236,39 +205,6 @@ const GlobalHeader = ({ className, activeSite }) => {
               height: 100%;
               overflow: hidden;
               position: relative;
-
-              @media screen and (max-width: 1235px) {
-                &::after {
-                  content: '';
-                  position: absolute;
-                  right: 0;
-                  height: 100%;
-                  width: 2rem;
-                  pointer-events: none;
-                  background: linear-gradient(
-                    to right,
-                    ${rgba('#f4f5f5', 0)},
-                    var(--color-neutrals-800)
-                  );
-
-                  .dark-mode & {
-                    background: linear-gradient(
-                      to right,
-                      ${rgba('#22353c', 0)},
-                      var(--color-dark-100)
-                    );
-                  }
-                }
-              }
-
-              @media screen and (max-width: ${NAV_BREAKPOINT}) {
-                overflow: visible;
-
-                &::after {
-                  background: none !important;
-                  width: 0 !important;
-                }
-              }
             `}
           >
             <ExternalLink
@@ -276,7 +212,6 @@ const GlobalHeader = ({ className, activeSite }) => {
               css={css`
                 display: flex;
                 align-items: center;
-                margin-right: 1rem;
 
                 @media screen and (max-width: ${NAV_BREAKPOINT}) {
                   display: none;
@@ -288,10 +223,10 @@ const GlobalHeader = ({ className, activeSite }) => {
               }}
             >
               <NewRelicLogo
-                size="104px"
+                size="150px"
                 css={css`
-                  .logo-text {
-                    fill: var(--color-neutrals-050);
+                  .text-color {
+                    fill: var(--color-white);
                   }
                 `}
               />
@@ -316,10 +251,10 @@ const GlobalHeader = ({ className, activeSite }) => {
                 `}
               >
                 <NewRelicLogo
-                  size={hideLogoText ? '24px' : '104px'}
+                  size={hideLogoText ? '24px' : '150px'}
                   css={css`
-                    .logo-text {
-                      fill: var(--color-neutrals-050);
+                    .text-color {
+                      fill: var(--color-white);
                     }
                   `}
                   omitText={hideLogoText}
@@ -338,14 +273,21 @@ const GlobalHeader = ({ className, activeSite }) => {
                 display: flex;
                 list-style-type: none;
                 white-space: nowrap;
-                overflow-x: auto;
                 position: relative;
-                -webkit-overflow-scrolling: touch;
-                -ms-overflow-style: -ms-autohiding-scrollbar;
+                margin-left: ${customStyles?.navLeftMargin || '120px'};
 
-                > li {
-                  margin: 0;
-                  flex: 0 0 auto;
+                li {
+                  > a {
+                    font-size: 18px;
+                  }
+                  &:first-child {
+                    > a {
+                      padding-left: 0px;
+                    }
+                  }
+                }
+                @media screen and (max-width: 1200px) {
+                  margin-left: 2rem;
                 }
 
                 @media screen and (max-width: ${NAV_BREAKPOINT}) {
@@ -365,130 +307,108 @@ const GlobalHeader = ({ className, activeSite }) => {
               display: flex;
               list-style-type: none;
               align-items: center;
+              justify-content: flex-end;
+              background: var(--system-text-primary-light);
               flex: 1;
 
               > li {
                 transition: all 0.2s ease-out;
-                color: var(--secondary-text-color);
 
-                &:not(:first-of-type) {
+                &:not(:first-of-type) &:not(:last-of-type) {
                   margin-left: 0.5rem;
                 }
-              }
-
-              @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
-                flex: unset;
               }
             `}
           >
             <li
               css={css`
-                flex: 1;
                 margin: 0rem 1rem;
+                width: 100%;
+                max-width: 320px;
+                margin-right: ${customStyles?.searchRightMargin || '1rem'};
 
-                @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
-                  flex: unset;
+                @media screen and (max-width: 930px) {
+                  margin-right: 1rem;
                 }
+                @media screen and (max-width: ${mobileBreakpoint}) {
+                  display: none;
+                }
+              `}
+            >
+              {!hideSearch && (
+                <>
+                  <SearchInput
+                    placeholder={t('searchInput.placeholder')}
+                    size={SearchInput.SIZE.MEDIUM}
+                    css={css`
+                      --icon-size: 1.5rem;
+                      min-width: 150px;
+                      max-width: 450px;
+                      svg {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                      }
+
+                      input {
+                        border: none;
+                        height: 40px;
+                      }
+                    `}
+                    onFocus={() => {
+                      setQueryParam('q', '');
+                    }}
+                  />
+                </>
+              )}
+            </li>
+            <li
+              css={css`
+                display: flex;
+                flex-direction: row;
               `}
             >
               <Link
                 to="?q="
                 css={css`
-                  ${actionLink}
-
+                  color: var(--system-text-primary-dark);
+                  transition: all 0.2s ease-out;
+                  align-self: center;
+                  padding-right: 1rem;
                   display: none;
 
-                  @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
+                  @media screen and (max-width: ${mobileBreakpoint}) {
                     display: block;
                   }
+                  @media screen and (max-width: ${mobileBreakpoint}) {
+                    padding-right: 0.25rem;
+                  }
                 `}
               >
-                <Icon css={actionIcon} name="fe-search" size="1.5rem" />
+                <Icon
+                  css={css`
+                    cursor: pointer;
+                    display: block;
+                  `}
+                  name="fe-search"
+                  size="1.5rem"
+                />
               </Link>
-              <SearchInput
-                placeholder={t('searchInput.placeholder')}
-                size={SearchInput.SIZE.MEDIUM}
-                focusWithHotKey="/"
-                css={css`
-                  --icon-size: 1.5rem;
-                  min-width: 150px;
-                  max-width: 350px;
-
-                  svg {
-                    color: var(--color-neutrals-500);
-                    width: 1.5rem;
-                    height: 1.5rem;
-                  }
-
-                  input {
-                    --hover-border-color: var(--color-neutrals-600);
-                    --background-color: var(--color-neutrals-700);
-                    background: var(--background-color);
-                    border: none;
-                    height: 40px;
-
-                    .dark-mode & {
-                      --background-color: var(--color-dark-500);
-                    }
-
-                    &:hover {
-                      box-shadow: 0 0 0 1px var(--color-neutrals-600);
-                    }
-                  }
-
-                  .search-hotkey {
-                    background: var(--color-neutrals-700);
-                    border-color: var(--color-neutrals-600);
-                    border-radius: 0.125rem;
-                    font-size: 0.875rem;
-                    padding: 0.125rem 0.375rem;
-
-                    .dark-mode & {
-                      background: var(--color-dark-500);
-                    }
-                  }
-
-                  @media screen and (max-width: ${CONDENSED_BREAKPOINT}) {
-                    display: none;
-                  }
-                `}
-                onFocus={() => {
-                  setQueryParam('q', '');
-                }}
-              />
-            </li>
-            {locales.length > 1 && (
-              <li
-                css={css`
-                  @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
-                    display: none;
-                  }
-                `}
-              >
+              {locales.length > 1 && (
                 <Dropdown align="right">
                   <Dropdown.Toggle
-                    size={Button.SIZE.SMALL}
+                    size={Button.SIZE.EXTRA_SMALL}
                     variant={Button.VARIANT.LINK}
+                    chevron={false}
                     css={css`
-                      --active-color: none;
                       margin: 0;
                       height: 72px;
                       border-radius: 0px;
                       font-size: 0.75rem;
-                      color: var(--color-neutrals-100);
+                      color: var(--system-text-primary-dark);
                       background: transparent;
-
-                      .dark-mode & {
-                        --active-color: var(--color-dark-100);
-                      }
-
-                      &:hover {
-                        color: var(--color-neutrals-600);
-                        background-color: var(--active-color);
-                      }
                     `}
                   >
-                    {locale.localName}
+                    <Icon name="nr-i18n" size="20px" />
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     {locales.map(({ isDefault, locale, localName }) => (
@@ -506,28 +426,24 @@ const GlobalHeader = ({ className, activeSite }) => {
                     ))}
                   </Dropdown.Menu>
                 </Dropdown>
-              </li>
-            )}
-            <li>
+              )}
               <DarkModeToggle
-                css={[
-                  actionIcon,
-                  action,
-                  css`
-                    margin: 0 24px;
-
-                    @media screen and (max-width: 450px) {
-                      margin: 0;
-                    }
-                  `,
-                ]}
-                size="1.5rem"
+                css={css`
+                  font-size: 0.75rem;
+                  @media screen and (max-width: ${mobileBreakpoint}) {
+                    margin: 0;
+                  }
+                  color: var(--system-text-primary-dark);
+                `}
+                size="27px"
               />
             </li>
+
             <li
               css={css`
                 display: flex;
                 align-items: right;
+                flex-direction: row;
               `}
             >
               <Button
@@ -536,15 +452,13 @@ const GlobalHeader = ({ className, activeSite }) => {
                 variant={Button.VARIANT.LINK}
                 href="https://one.newrelic.com"
                 css={css`
-                  margin: 0 0.625rem;
-                  font-weight: 600;
-                  font-size: 0.875rem;
                   white-space: nowrap;
-                  color: var(--color-brand-400);
-                  border: 1px solid var(--color-brand-400);
-                  border-radius: 4px;
+                  font-size: 18px;
+                  span {
+                    color: var(--system-text-primary-dark);
+                  }
 
-                  @media screen and (max-width: ${MOBILE_BREAKPOINT}) {
+                  @media screen and (max-width: ${mobileBreakpoint}) {
                     display: none;
                   }
                 `}
@@ -555,22 +469,24 @@ const GlobalHeader = ({ className, activeSite }) => {
               >
                 <span>{t('button.login')}</span>
               </Button>
+              <SplitTextButton
+                css={css`
+                  padding-right: 0;
+                  font-size: 18px;
+                  span {
+                    color: var(--brand-button-primary-accent);
+                  }
+                  @media screen and (max-width: ${mobileBreakpoint}) {
+                    /* padding-right: 1rem; */
+                  }
+                `}
+              />
             </li>
             <li
               css={css`
                 display: flex;
               `}
-            >
-              <SplitTextButton
-                css={css`
-                  button {
-                    background: var(color-brand-500);
-                    border: 1px solid var(color-brand-500);
-                    border-radius: 4px;
-                  }
-                `}
-              />
-            </li>
+            />
           </ul>
         </div>
       </div>
@@ -580,7 +496,12 @@ const GlobalHeader = ({ className, activeSite }) => {
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
+  customStyles: PropTypes.shape({
+    navLeftMargin: PropTypes.string,
+    searchRightMargin: PropTypes.string,
+  }),
   activeSite: PropTypes.oneOf(Object.values(NR_SITES)),
+  hideSearch: PropTypes.bool,
 };
 
 export default GlobalHeader;

@@ -16,7 +16,7 @@ const ARROW_ALIGNMENTS = {
   `,
 };
 
-const Menu = ({ children }) => {
+const Menu = ({ children, className }) => {
   const { align, open } = useDropdown();
 
   return (
@@ -24,22 +24,19 @@ const Menu = ({ children }) => {
       css={css`
         --arrow-size: 5px;
         --arrow-offset: 0.5rem;
-        --background-color: white;
-        --text-color: var(--color-neutrals-900);
-
-        .dark-mode & {
-          --text-color: var(--color-dark-900);
-          --background-color: var(--color-dark-050);
-        }
 
         position: absolute;
         top: calc(100% + var(--arrow-size));
         display: ${open ? 'block' : 'none'};
-        background: var(--background-color);
+        background: var(--secondary-background-color);
         border-radius: 0.25rem;
         z-index: 1000;
         padding: 0.5rem;
         box-shadow: 0 3px 8px 0 rgba(22, 38, 59, 0.2);
+
+        .dark-mode & {
+          background-color: var(--primary-hover-color);
+        }
 
         &::before {
           content: '';
@@ -56,6 +53,7 @@ const Menu = ({ children }) => {
           ${ARROW_ALIGNMENTS[align]};
         }
       `}
+      className={className}
     >
       <div
         css={css`
@@ -72,6 +70,7 @@ const Menu = ({ children }) => {
 
 Menu.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 export default Menu;

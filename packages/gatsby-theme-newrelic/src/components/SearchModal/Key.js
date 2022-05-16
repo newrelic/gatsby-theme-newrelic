@@ -10,10 +10,10 @@ const Key = ({ className, children }) => (
       border-radius: 0.25rem;
       padding: 0.25rem;
       margin-right: 0.5rem;
-      background: var(--color-neutrals-300);
+      background: var(--primary-hover-color);
 
       .dark-mode & {
-        background: var(--color-dark-400);
+        background: var(--system-border-regular-dark);
       }
     `}
   >
