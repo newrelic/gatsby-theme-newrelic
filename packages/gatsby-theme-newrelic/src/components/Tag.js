@@ -8,8 +8,7 @@ const isInteractive = ({ as, interactive }) =>
   interactive || as === 'a' || as === Link;
 
 const Tag = styled.span`
-  color: var(--color-neutrals-700);
-  background: var(--color-neutrals-100);
+  background: var(--system-background-muted-light);
   padding: 0.125rem 0.5rem;
   border-radius: 0.25rem;
   font-size: 0.75rem;
@@ -18,8 +17,7 @@ const Tag = styled.span`
   text-decoration: none;
 
   .dark-mode & {
-    color: var(--color-dark-700);
-    background: var(--color-dark-200);
+    background: var(--system-background-selected-low-contrast-dark);
   }
 
   ${(props) =>
@@ -27,13 +25,8 @@ const Tag = styled.span`
     css`
       &:hover {
         cursor: pointer;
-        color: var(--color-brand-600);
         background: ${rgba('#70ccd2', 0.17)};
         transform: translateY(-1px);
-
-        .dark-mode & {
-          color: var(--color-brand-200);
-        }
       }
     `}
   ${(props) =>

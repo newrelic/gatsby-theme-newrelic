@@ -105,28 +105,31 @@ const CodeBlock = ({
           css={css`
             padding: 2rem;
             background: var(--color-white);
-            border: 1px solid var(--color-neutrals-100);
+            border: 1px solid var(--primary-contrast-color);
             box-shadow: var(--boxshadow);
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
+
+            .dark-mode & {
+              background: var(--code-console-background-main);
+            }
           `}
         />
       )}
       <div className={className}>
         <div
           css={css`
-            background: var(--color-nord-0);
+            background: var(--code-console-background-main);
             border-radius: 4px;
-
-            .light-mode & {
-              background: var(--color-nord-6);
-            }
 
             ${preview &&
             css`
               border-top-left-radius: 0;
               border-top-right-radius: 0;
             `};
+            a {
+              color: var(--system-text-primary-dark);
+            }
           `}
         >
           <div
@@ -157,20 +160,15 @@ const CodeBlock = ({
           {(copyable || fileName) && (
             <div
               css={css`
-                color: var(--color-nord-6);
+                color: var(--color-comment);
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                background: var(--color-nord-1);
+                background: var(--color-background);
                 border-bottom-left-radius: 4px;
                 border-bottom-right-radius: 4px;
                 padding: 0 1rem;
                 font-size: 0.75rem;
-
-                .light-mode & {
-                  color: var(--color-nord-0);
-                  background: var(--color-nord-4);
-                }
               `}
             >
               <div
@@ -194,6 +192,7 @@ const CodeBlock = ({
                 size={Button.SIZE.SMALL}
                 css={css`
                   white-space: nowrap;
+                  color: var(--system-text-primary-dark);
                 `}
               >
                 <Icon
@@ -211,7 +210,7 @@ const CodeBlock = ({
           <LiveError
             css={css`
               color: white;
-              background: var(--color-red-400);
+              background: var(--attention-notification-critical);
               padding: 0.5rem 1rem;
               font-size: 0.75rem;
               overflow: auto;

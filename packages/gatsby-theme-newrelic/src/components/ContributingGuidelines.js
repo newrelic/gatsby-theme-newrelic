@@ -35,7 +35,7 @@ const ContributingGuidelines = ({
     <PageTools.Section
       className={className}
       css={css`
-        border-bottom: 1px solid var(--divider-color);
+        border-bottom: 1px solid var(--border-color);
       `}
     >
       <div
@@ -59,6 +59,11 @@ const ContributingGuidelines = ({
           size={Button.SIZE.SMALL}
           instrumentation={{ component: 'ContributingGuidelines' }}
           labels={issueLabels}
+          css={css`
+            &:hover {
+              color: var(--secondary-text-color);
+            }
+          `}
         />
 
         {fileRelativePath && locale === 'en' && (
@@ -67,6 +72,11 @@ const ContributingGuidelines = ({
             variant={Button.VARIANT.OUTLINE}
             size={Button.SIZE.SMALL}
             instrumentation={{ component: 'ContributingGuidelines' }}
+            css={css`
+              &:hover {
+                color: var(--secondary-text-color);
+              }
+            `}
           />
         )}
       </div>

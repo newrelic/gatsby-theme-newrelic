@@ -48,7 +48,6 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false, className }) => {
           css={css`
             &:hover {
               background-color: var(--secondary-background-color);
-              color: var(--tertiary-text-color);
             }
             color: var(--secondary-text-color);
             cursor: pointer;

@@ -4,7 +4,13 @@ import { css } from '@emotion/react';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import ExternalLink from './ExternalLink';
 
-const GlobalNavLink = ({ children, href, activeSite, instrumentation }) => {
+const GlobalNavLink = ({
+  children,
+  href,
+  activeSite,
+  instrumentation,
+  className,
+}) => {
   const {
     site: {
       siteMetadata: { siteUrl },
@@ -32,35 +38,23 @@ const GlobalNavLink = ({ children, href, activeSite, instrumentation }) => {
     <Component
       {...props}
       css={css`
-        --active-color: var(--color-neutrals-900);
-        --hover-color: none;
         display: flex;
         align-items: center;
         height: 100%;
         padding: 0.25rem 0.5625rem;
-        color: var(--color-neutrals-100);
+        color: var(--system-text-primary-dark);
         font-size: 0.75rem;
         line-height: 1.125rem;
+        font-weight: 400;
 
         transition: 0.2s;
         text-decoration: none;
 
-        ${isCurrentSite && '&,'}
-
-        &:active {
-          background-color: var(--active-color);
-        }
-
         &:hover {
-          color: var(--color-neutrals-600);
-          background-color: var(--active-color);
-        }
-
-        .dark-mode & {
-          --active-color: var(--color-dark-100);
-          --hover-color: var(--color-neutrals-600);
+          color: var(--system-text-secondary-dark);
         }
       `}
+      className={className}
       instrumentation={{
         ...instrumentation,
         navInteractionType: 'globalNavLinkClick',
@@ -73,6 +67,7 @@ const GlobalNavLink = ({ children, href, activeSite, instrumentation }) => {
 
 GlobalNavLink.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   href: PropTypes.string.isRequired,
   activeSite: PropTypes.shape({
     text: PropTypes.string.isRequired,

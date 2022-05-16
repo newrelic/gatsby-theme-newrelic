@@ -24,6 +24,16 @@ const defaultFilters = [
   { name: 'quickstarts', isSelected: false },
 ];
 
+const defaultSearchByFilters = [
+  { name: 'title', isSelected: false },
+  { name: 'body', isSelected: false },
+];
+
+const defaultFilterTypes = [
+  { type: 'source', defaultFilters: defaultFilters },
+  { type: 'searchBy', defaultFilters: defaultSearchByFilters },
+];
+
 const SearchModal = ({ onClose, isOpen, onChange, value }) => {
   const { pathname } = useLocation();
   const didChangeRoute =
@@ -31,7 +41,7 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
   const { t } = useThemeTranslation();
   const searchInput = useRef();
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [filters, setFilters] = useState(defaultFilters);
+  const [filters, setFilters] = useState(defaultFilterTypes);
   const { status, results, fetchNextPage } = useSearch({
     searchTerm: value,
     filters,
@@ -88,10 +98,10 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
               left: 0;
               padding: var(--site-content-padding);
               z-index: 900;
-              background: ${rgba('#d5d7d7', 0.5)};
+              background: ${rgba('#d5d7d7', 0.75)};
 
               .dark-mode & {
-                background: hsla(195, 20%, 20%, 0.5);
+                background: ${rgba('#3a444b', 0.75)};
               }
 
               @media screen and (max-width: 760px) {
@@ -101,15 +111,14 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
               em {
                 border-radius: 0.125rem;
                 padding: 0.125rem 0.25rem;
-                color: var(--color-neutrals-800);
-                background: var(--color-neutrals-200);
+                background: var(--system-text-secondary-inverted-light);
                 font-style: normal;
                 font-weight: bold;
                 font-size: 85%;
-
                 .dark-mode & {
-                  color: var(--color-brand-300);
-                  background: var(--color-dark-200);
+                  background: var(
+                    --system-background-selected-low-contrast-dark
+                  );
                 }
               }
 
@@ -148,11 +157,14 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                 }}
                 onFilter={(filterName) => {
                   setFilters((filters) => {
-                    return filters.map((filter) => {
-                      return filter.name === filterName
-                        ? { ...filter, isSelected: !filter.isSelected }
-                        : filter;
-                    });
+                    return filters.map(({ defaultFilters, type }) => ({
+                      defaultFilters: defaultFilters.map((filter) => {
+                        return filter.name === filterName
+                          ? { ...filter, isSelected: !filter.isSelected }
+                          : filter;
+                      }),
+                      type,
+                    }));
                   });
                 }}
                 value={value}
@@ -176,7 +188,7 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     flex-grow: 1;
-                    background-color: white;
+                    background-color: var(--modal-background-color);
                     border-bottom-left-radius: 0.25rem;
                     border-bottom-right-radius: 0.25rem;
                     box-shadow: var(--shadow-6);
@@ -184,9 +196,6 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                     border-top: none;
                     overflow: hidden;
 
-                    .dark-mode & {
-                      background: var(--color-dark-050);
-                    }
                     @media screen and (max-width: 760px) {
                       grid-template-columns: 1fr;
                     }

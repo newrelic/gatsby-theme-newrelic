@@ -50,12 +50,8 @@ const MobileNavModal = ({ children, style, onClose }) => {
           z-index: 100;
           transform-origin: top right;
           box-shadow: var(--shadow-6);
-          background-color: white;
+          background-color: var(--modal-background-color);
           padding-bottom: 1rem;
-
-          .dark-mode & {
-            background: var(--color-dark-050);
-          }
         `}
       >
         <header
@@ -68,12 +64,6 @@ const MobileNavModal = ({ children, style, onClose }) => {
             border-bottom-color: var(--divider-color);
             box-shadow: ${y > shadowPoint ? 'var(--shadow-3)' : 'none'};
             transition: 0.25s ease-out;
-
-            .dark-mode & {
-              border-bottom-color: ${y > shadowPoint
-                ? 'var(--color-dark-050)'
-                : rgba('#22353c', 0.4)};
-            }
           `}
         >
           <span
@@ -96,11 +86,7 @@ const MobileNavModal = ({ children, style, onClose }) => {
               border-radius: 0.25rem;
 
               &:active {
-                background: var(--color-neutrals-100);
-
-                .dark-mode & {
-                  background: var(--color-dark-100);
-                }
+                background: var(--primary-hover-color);
               }
             `}
           >

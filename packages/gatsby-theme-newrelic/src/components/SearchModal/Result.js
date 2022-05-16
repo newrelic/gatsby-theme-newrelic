@@ -37,10 +37,10 @@ const Result = memo(
           ${selected &&
           css`
           outline: none;
-          background: var(--color-neutrals-100);
+          background: var(--primary-hover-color);
 
           .dark-mode & {
-            background: var(--color-dark-100);
+            background: var(--system-background-hover-dark);
           }
 
           svg {

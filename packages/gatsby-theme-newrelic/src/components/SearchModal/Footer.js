@@ -8,16 +8,14 @@ const Footer = memo(() => (
     css={css`
       font-size: 0.75rem;
       display: flex;
+      justify-content: center;
       border-top: 1px solid var(--border-color);
       padding: 1rem var(--horizontal-spacing);
-      background: var(--color-neutrals-100);
       grid-column: span 2;
-
+      background: var(--primary-background-color);
       .dark-mode & {
-        background: var(--color-dark-100);
-        color: var(--color-dark-700);
+        background: var(--primary-contrast-color);
       }
-
       @media screen and (max-width: 760px) {
         display: none;
       }

@@ -47,12 +47,12 @@ const tokenize = (text) => {
 
 const OUTPUT_COLORS = {
   plain: 'currentColor',
-  green: 'var(--color-nord-14)',
-  red: 'var(--color-nord-11)',
-  muted: 'var(--color-nord-3)',
-  purple: 'var(--color-nord-15)',
-  blue: 'var(--color-nord-9)',
-  yellow: 'var(--color-nord-13)',
+  green: 'var(--code-console-text-success)',
+  red: 'var(--code-console-text-error)',
+  muted: 'var(--color-selection)',
+  purple: 'var(--code-query-syntax-keyword)',
+  blue: 'var(--code-console-text-highlight)',
+  yellow: 'var(--code-console-text-warning)',
 };
 
 OUTPUT_COLORS.error = OUTPUT_COLORS.red;
