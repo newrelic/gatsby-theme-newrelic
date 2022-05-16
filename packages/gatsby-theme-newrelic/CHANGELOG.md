@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.8...v6.0.0) (2022-05-16)
+
+
+### Features
+
+* Update typography and colors ([5d517a7](https://github.com/newrelic/gatsby-theme-newrelic/commit/5d517a7d986e93ad49d59eef49feeda57e7dfb1d))
+* **GlobalHeader:** changed copy ([8108cc6](https://github.com/newrelic/gatsby-theme-newrelic/commit/8108cc615e368d8a88800536500e7b9d55a5d496))
+* **GlobalHeader:** window not available at server ([e63dcbf](https://github.com/newrelic/gatsby-theme-newrelic/commit/e63dcbf62ed3fd7e3b6077d2b1b92b77f6bcc0f6))
+* **GlobalHeader:** window undefined ([a9adb2a](https://github.com/newrelic/gatsby-theme-newrelic/commit/a9adb2a4cca3e0b14ef9d59ad0d7a361cb8d764c))
+* **search:** conditional placeholder ([ce2a315](https://github.com/newrelic/gatsby-theme-newrelic/commit/ce2a31504fd650de8d05c5fa0f6137dcb23a55d0))
+
+
+### BREAKING CHANGES
+
+* New color theme, requires color var updates
+
+
+
+
+
 ## [5.0.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.7...v5.0.8) (2022-05-05)
 
 
