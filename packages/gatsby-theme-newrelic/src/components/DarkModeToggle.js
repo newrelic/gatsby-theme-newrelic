@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import Icon from './Icon';
+import Button from './Button';
 import useDarkMode from 'use-dark-mode';
 import isLocalStorageAvailable from '../utils/isLocalStorageAvailable';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
@@ -27,10 +28,9 @@ const DarkModeToggle = ({ className, size, onClick }) => {
   );
 
   return (
-    <Icon
-      name={darkMode.value ? 'fe-sun' : 'fe-moon'}
-      className={className}
-      size={size}
+    <Button
+      size={Button.SIZE.EXTRA_SMALL}
+      variant={Button.VARIANT.LINK}
       onClick={(e) => {
         darkMode.toggle();
 
@@ -50,9 +50,20 @@ const DarkModeToggle = ({ className, size, onClick }) => {
         }
       }}
       css={css`
-        cursor: pointer;
+        @media screen and (max-width: 450px) {
+          padding: 0;
+        }
       `}
-    />
+    >
+      <Icon
+        name={darkMode.value ? 'nr-dark-mode' : 'nr-light-mode'}
+        className={className}
+        size={size}
+        css={css`
+          cursor: pointer;
+        `}
+      />
+    </Button>
   );
 };
 

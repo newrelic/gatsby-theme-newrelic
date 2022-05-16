@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 const Prompt = ({ character }) => (
   <span
     css={css`
-      color: var(--color-nord-10);
+      color: var(--code-console-text-highlight);
       user-select: none;
     `}
   >

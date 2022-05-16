@@ -20,12 +20,10 @@ const TextHighlight = ({ text, match, caseSensitive = false }) => {
             css={css`
               border-radius: 0.125rem;
               padding: 0.125rem 0;
-              color: var(--color-neutrals-800);
-              background: var(--color-neutrals-200);
+              background: var(--primary-hover-color);
 
               .dark-mode & {
-                color: var(--color-dark-800);
-                background: var(--color-dark-200);
+                background: var(--system-background-selected-low-contrast-dark);
               }
             `}
           >

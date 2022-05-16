@@ -92,28 +92,8 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
 
           &:hover,
           &:focus {
-            background: var(--color-neutrals-100);
+            background: var(--primary-hover-color);
             outline: none;
-
-            .dark-mode & {
-              background: var(--color-dark-100);
-            }
-
-            code {
-              background: var(--color-neutrals-300);
-
-              .dark-mode & {
-                background: var(--color-dark-400);
-              }
-            }
-
-            svg {
-              color: var(--color-neutrals-600);
-
-              .dark-mode & {
-                color: var(--color-dark-600);
-              }
-            }
 
             .anchor svg {
               opacity: 1;
@@ -162,13 +142,9 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
               color var(--color-transition-duration)
                 var(--color-transition-easing);
 
-            color: var(--color-neutrals-500);
+            color: var(--secondary-text-color);
 
             ${isOpen && `transform: rotate(180deg);`}
-
-            .dark-mode & {
-              color: var(--color-dark-500);
-            }
           `}
         />
       </button>

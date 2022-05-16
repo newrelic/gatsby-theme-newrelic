@@ -2,23 +2,30 @@ import { css } from '@emotion/react';
 
 export default css`
   .light-mode {
-    --primary-background-color: var(--color-white);
-    --primary-text-color: var(--color-neutrals-700);
-    --primary-text-hover-color: var(--color-neutrals-600);
+    --primary-background-color: var(--system-background-app-light);
+    --primary-contrast-color: var(--system-text-primary-dark);
+    --primary-text-color: var(--system-text-primary-light);
+    --primary-hover-color: var(--system-background-selected-low-contrast-light);
 
-    --secondary-background-color: var(--color-neutrals-100);
-    --secondary-text-color: var(--color-neutrals-600);
-    --secondary-text-hover-color: var(--color-neutrals-700);
+    --secondary-background-color: var(--system-background-surface-1-light);
+    --secondary-text-color: var(--system-text-secondary-light);
+);
+    --secondary-text-color-inverted: var(
+      --system-text-secondary-inverted-light
+    );
 
-    --tertiary-background-color: var(--color-neutrals-200);
+    --modal-background-color: var(--secondary-background-color);
 
-    --accent-text-color: var(--color-neutrals-500);
-    --link-color: var(--color-brand-500);
-    --link-hover-color: var(--color-brand-300);
-    --border-color: var(--color-neutrals-400);
-    --border-hover-color: var(--color-neutrals-500);
-    --divider-color: var(--color-neutrals-100);
-    --heading-text-color: var(--color-neutrals-900);
+    --button-background-color: var(--primary-text-color);
+    --button-outline-color: var(--color-black);
+    --button-text-color: var(--color-white);
+
+    --accent-text-color: var(--secondary-text-color);
+    --link-color: var(--interactive-link-light);
+    --link-hover-color: #074382;
+    --border-color: var(--system-border-strong-light);
+    --divider-color: var(--system-background-selected-low-contrast-light);
+    --heading-text-color: var(--primary-text-color);
 
     --callout-caution-background-color: #fce9e935;
     --callout-important-background-color: #fff9cc30;
@@ -26,45 +33,49 @@ export default css`
     --callout-course-background-color: #00b3c310;
 
     input::placeholder {
-      color: var(--color-neutrals-600);
+      color: var(--primary-text-color);
     }
 
     *:not(pre) > code,
     var {
-      background: var(--color-neutrals-200);
+      background: var(--system-background-muted-light);
     }
   }
 
   .dark-mode {
-    --primary-background-color: #1c2a2f;
-    --primary-text-color: var(--color-dark-700);
-    --primary-text-hover-color: var(--color-dark-900);
+    --primary-background-color: var(--system-background-app-dark);
+    --primary-contrast-color: var(--system-text-primary-light);
+    --primary-text-color: var(--system-text-primary-dark);
+    --primary-hover-color: var(--system-background-hover-dark);
 
-    --secondary-background-color: var(--color-dark-050);
-    --secondary-text-color: var(--color-dark-600);
-    --secondary-text-hover-color: var(--color-dark-700);
+    --secondary-background-color: var(--system-background-surface-1-dark);
+    --secondary-text-color: var(--system-text-secondary-dark);
+    --secondary-text-color-inverted: var(--system-text-secondary-inverted-dark);
 
-    --tertiary-background-color: var(--color-dark-100);
+    --modal-background-color: var(--system-background-surface-1-dark);
 
-    --accent-text-color: var(--color-dark-600);
-    --link-color: var(--color-brand-300);
-    --link-hover-color: var(--color-brand-050);
-    --border-color: var(--color-dark-400);
-    --border-hover-color: var(--color-dark-500);
-    --divider-color: var(--color-dark-200);
-    --heading-text-color: var(--color-dark-900);
+    --button-background-color: var(--primary-text-color);
+    --button-text-color: var(--color-black);
+    --button-outline-color: var(--color-white);
+
+    --accent-text-color: var(--secondary-text-color);
+    --link-color: var(--interactive-link-dark);
+    --link-hover-color: var(--interactive-link-light);
+    --border-color: var(--system-border-regular-dark);
+    --divider-color: var(--primary-contrast-color);
+    --heading-text-color: var(--primary-text-color);
 
     --callout-caution-background-color: #1b000020;
     --callout-important-background-color: #14110020;
     --callout-tip-background-color: #02120020;
 
     input::placeholder {
-      color: var(--color-neutrals-600);
+      color: var(--primary-text-color);
     }
 
     *:not(pre) > code,
     var {
-      background: var(--color-dark-200);
+      background: var(--primary-contrast-color);
     }
   }
 `;

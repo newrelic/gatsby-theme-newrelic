@@ -949,6 +949,69 @@ exports[`nr-ai icon matches its snapshot 1`] = `
 </svg>
 `;
 
+exports[`nr-dark-mode icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+}
+
+.emotion-0 path {
+  fill: currentColor;
+}
+
+<svg
+  className="emotion-0"
+  fill="none"
+  viewBox="0 0 27 27"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M12.9999 20.0722C11.1242 20.0722 9.3254 19.3271 7.99912 18.0008C6.67283 16.6745 5.92773 14.8757 5.92773 13C5.92773 11.1244 6.67283 9.32553 7.99912 7.99924C9.3254 6.67296 11.1242 5.92786 12.9999 5.92786L12.9999 13L12.9999 20.0722Z"
+  />
+  <circle
+    cx="12.9999"
+    cy="13"
+    r="7.57215"
+  />
+  <line
+    strokeLinecap="round"
+    x1="13.1826"
+    x2="13.1826"
+    y1="0.5"
+    y2="2.76407"
+  />
+  <line
+    strokeLinecap="round"
+    x1="25.6125"
+    x2="23.3485"
+    y1="13.106"
+    y2="13.106"
+  />
+  <line
+    strokeLinecap="round"
+    x1="13.106"
+    x2="13.106"
+    y1="23.3485"
+    y2="25.6126"
+  />
+  <line
+    strokeLinecap="round"
+    x1="22.0242"
+    x2="20.4232"
+    y1="4.26704"
+    y2="5.86798"
+  />
+  <line
+    strokeLinecap="round"
+    x1="21.8998"
+    x2="20.2989"
+    y1="21.9701"
+    y2="20.3692"
+  />
+</svg>
+`;
+
 exports[`nr-fso icon matches its snapshot 1`] = `
 .emotion-0 {
   width: 1em;
@@ -1064,6 +1127,50 @@ exports[`nr-fso icon matches its snapshot 1`] = `
       strokeWidth="2.785"
     />
   </g>
+</svg>
+`;
+
+exports[`nr-i18n icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+}
+
+<svg
+  className="emotion-0"
+  fill="none"
+  viewBox="0 0 20 20"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <circle
+    cx="10.0001"
+    cy="10"
+    r="9.09091"
+    strokeWidth="1.5"
+  />
+  <path
+    d="M10.2842 18.512C7.84969 16.4278 6.30688 13.3321 6.30688 9.87611C6.30688 6.5488 7.73691 3.55549 10.0159 1.47726"
+    strokeWidth="1.5"
+  />
+  <path
+    d="M9.71609 18.512C12.1505 16.4278 13.6934 13.3321 13.6934 9.87611C13.6934 6.5488 12.2633 3.55549 9.98435 1.47726"
+    strokeWidth="1.5"
+  />
+  <line
+    strokeWidth="1.5"
+    x1="1.81812"
+    x2="18.1818"
+    y1="6.52274"
+    y2="6.52274"
+  />
+  <line
+    strokeWidth="1.5"
+    x1="0.90918"
+    x2="18.1819"
+    y1="12.8864"
+    y2="12.8864"
+  />
 </svg>
 `;
 

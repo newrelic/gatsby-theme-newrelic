@@ -57,7 +57,15 @@ const MobileHeader = ({ children }) => {
           `}
         />
       </Link>
-      <HamburgerMenu onToggle={toggle} isOpen={isOpen} />
+      <div
+        css={css`
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        `}
+      >
+        <HamburgerMenu onToggle={toggle} isOpen={isOpen} />
+      </div>
       <MobileNavigation isOpen={isOpen} onClose={() => toggle(false)}>
         {children}
       </MobileNavigation>

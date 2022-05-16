@@ -25,27 +25,19 @@ const Table = ({ className, children, ...props }) => (
           vertical-align: top;
         }
 
-        tr {
-          border: 1px solid transparent;
-        }
-
-        thead + tbody tr:first-child {
-          border-top: 3px solid var(--color-brand-600);
-        }
-
         tbody {
+          border-bottom: 1px solid var(--primary-text-color);
+          border-top: 1px solid var(--primary-text-color);
           tr {
-            border-color: var(--border-color);
-
             &:nth-child(even) {
               background: var(--primary-background-color);
             }
 
             &:nth-child(odd) {
-              background: var(--color-neutrals-100);
+              background: var(--primary-hover-color);
 
               .dark-mode & {
-                background: var(--color-dark-100);
+                background: var(--primary-contrast-color);
               }
             }
           }

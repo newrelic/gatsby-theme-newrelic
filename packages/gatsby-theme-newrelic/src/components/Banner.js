@@ -12,8 +12,8 @@ const Banner = ({ children, visible, onClose, ...props }) => {
     <div
       {...props}
       css={css`
-        color: var(--color-white);
-        background-color: var(--color-brand-600);
+        color: var(--system-text-primary-light);
+        background-color: var(--brand-button-primary-accent);
         min-height: 5.625rem;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
         z-index: 100;
@@ -25,11 +25,11 @@ const Banner = ({ children, visible, onClose, ...props }) => {
         h4,
         h5,
         h6 {
-          color: var(--color-white);
+          color: var(--system-text-primary-light);
         }
 
         a {
-          color: var(--color-white);
+          color: var(--system-text-primary-light);
           text-decoration: underline;
         }
       `}

@@ -15,17 +15,16 @@ const styles = {
     `,
 
     [BASES.SECONDARY]: css`
-      background: var(--color-white);
-
+      background: var(--primary-background-color);
       .dark-mode & {
-        background: var(--color-dark-100);
+        background: var(--primary-hover-color);
       }
     `,
   },
   interactive: {
     [BASES.PRIMARY]: css`
       &:hover {
-        border-color: var(--border-hover-color);
+        border-color: var(--border-color);
       }
     `,
   },

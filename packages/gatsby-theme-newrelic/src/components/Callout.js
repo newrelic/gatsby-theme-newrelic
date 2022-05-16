@@ -13,31 +13,31 @@ const VARIANTS = {
 const styles = {
   variant: {
     [`${VARIANTS.CAUTION}-title`]: css`
-      color: var(--color-red-400);
+      color: var(--attention-notification-critical);
     `,
     [VARIANTS.CAUTION]: css`
-      border-color: var(--color-red-400);
+      border-color: var(--attention-notification-critical);
       background: var(--callout-caution-background-color);
     `,
     [`${VARIANTS.IMPORTANT}-title`]: css`
-      color: var(--color-yellow-400);
+      color: var(--attention-notification-warning);
     `,
     [VARIANTS.IMPORTANT]: css`
-      border-color: var(--color-yellow-400);
+      border-color: var(--attention-notification-warning);
       background: var(--callout-important-background-color);
     `,
     [`${VARIANTS.TIP}-title`]: css`
-      color: var(--color-green-400);
+      color: var(--attention-notification-announcement);
     `,
     [VARIANTS.TIP]: css`
-      border-color: var(--color-green-400);
+      border-color: var(--attention-notification-announcement);
       background: var(--callout-tip-background-color);
     `,
     [`${VARIANTS.COURSE}-title`]: css`
-      color: var(--color-brand-400);
+      color: var(--attention-notification-info);
     `,
     [VARIANTS.COURSE]: css`
-      border-color: var(--color-brand-400);
+      border-color: var(--attention-notification-info);
       background: var(--callout-course-background-color);
     `,
   },

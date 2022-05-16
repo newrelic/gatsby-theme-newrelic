@@ -78,7 +78,7 @@ const Shell = ({ animate, className, copyable, highlight, code }) => {
           font-size: 0.75rem;
           border-bottom-left-radius: var(--border-radius);
           border-bottom-right-radius: var(--border-radius);
-          color: var(--color-nord-6);
+          color: var(--code-console-text-primary);
           display: block;
           overflow: auto;
           white-space: pre;

@@ -29,7 +29,7 @@ const SplitTextButton = ({ className }) => {
       className={className}
       href="https://newrelic.com/signup"
       size={Button.SIZE.SMALL}
-      variant={Button.VARIANT.PRIMARY}
+      variant={Button.VARIANT.LINK}
       instrumentation={{ component: 'SplitTextButton' }}
       onClick={clickCallback}
     >
@@ -43,7 +43,7 @@ const SplitTextButton = ({ className }) => {
       className={className}
       href="https://newrelic.com/signup"
       size={Button.SIZE.SMALL}
-      variant={Button.VARIANT.PRIMARY}
+      variant={Button.VARIANT.LINK}
       instrumentation={{
         component: 'SplitTextButton',
         layoutElement: 'globalHeader',

@@ -10,20 +10,20 @@ export default css`
     }
 
     &.comment {
-      color: var(--color-nord-3);
+      color: var(--color-selection);
     }
 
     &.punctuation,
     &.operator {
-      color: var(--color-nord-9);
+      color: var(--code-console-text-highlight);
     }
 
     &.constant {
-      color: var(--color-nord-15);
+      color: var(--code-query-syntax-keyword);
     }
 
     &.string {
-      color: var(--color-nord-14);
+      color: var(--code-query-syntax-string);
     }
   }
 `;

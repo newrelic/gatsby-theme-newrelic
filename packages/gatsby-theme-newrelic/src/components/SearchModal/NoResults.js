@@ -7,14 +7,13 @@ const NoResults = () => (
     css={css`
       display: flex;
       padding: 1rem var(--horizontal-spacing);
-      background: var(--color-neutrals-100);
+      background: var(--primary-background-color);
       grid-column: span 2;
       align-items: center;
       flex-direction: column;
 
       .dark-mode & {
-        background: var(--color-dark-100);
-        color: var(--color-dark-700);
+        background: var(--primary-contrast-color);
       }
     `}
   >
