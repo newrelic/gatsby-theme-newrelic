@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.0.0...v6.0.1) (2022-05-17)
+
+
+### Bug Fixes
+
+* update logo width on mobile ([95a1cf3](https://github.com/newrelic/gatsby-theme-newrelic/commit/95a1cf39522bb30429d45d5b54d0d791e8faf3c7))
+
+
+
+
+
 # [6.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v5.0.8...v6.0.0) (2022-05-16)
 
 
