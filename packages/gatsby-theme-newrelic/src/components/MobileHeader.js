@@ -51,7 +51,7 @@ const MobileHeader = ({ children }) => {
         `}
       >
         <Logo
-          width="150px"
+          width="100px"
           css={css`
             display: block;
           `}
