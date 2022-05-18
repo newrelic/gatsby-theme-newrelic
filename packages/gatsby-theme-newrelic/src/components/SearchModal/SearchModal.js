@@ -1,21 +1,22 @@
 import React, { useRef, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import { animated, useTransition } from 'react-spring';
+import { rgba } from 'polished';
+import { useLocation } from '@reach/router';
 import Footer from './Footer';
 import Input from './Input';
 import NoResults from './NoResults';
-import Portal from '../Portal';
+import useSearchQuery from './useSearchQuery';
 import ResultList from './ResultList';
 import ResultPreview from './ResultPreview';
 import ScrollContainer from './ScrollContainer';
+import useSearch from './useSearch';
+import Portal from '../Portal';
 import useThemeTranslation from '../../hooks/useThemeTranslation';
 import useKeyPress from '../../hooks/useKeyPress';
 import useScrollFreeze from '../../hooks/useScrollFreeze';
-import { animated, useTransition } from 'react-spring';
-import { rgba } from 'polished';
-import useSearch from './useSearch';
 import usePrevious from '../../hooks/usePrevious';
-import { useLocation } from '@reach/router';
 
 const defaultFilters = [
   { name: 'docs', isSelected: false },
@@ -29,21 +30,22 @@ const defaultSearchByFilters = [
   { name: 'body', isSelected: false },
 ];
 
-const defaultFilterTypes = [
+const DEFAULT_FILTER_TYPES = [
   { type: 'source', defaultFilters: defaultFilters },
   { type: 'searchBy', defaultFilters: defaultSearchByFilters },
 ];
 
-const SearchModal = ({ onClose, isOpen, onChange, value }) => {
+const SearchModal = ({ onClose, isOpen }) => {
   const { pathname } = useLocation();
   const didChangeRoute =
     pathname !== usePrevious(pathname, { initializeWithValue: true });
   const { t } = useThemeTranslation();
   const searchInput = useRef();
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [filters, setFilters] = useState(defaultFilterTypes);
+  const [filters, setFilters] = useState(DEFAULT_FILTER_TYPES);
+  const [searchTerm, setSearchTerm] = useSearchQuery(filters);
   const { status, results, fetchNextPage } = useSearch({
-    searchTerm: value,
+    searchTerm,
     filters,
   });
 
@@ -72,7 +74,7 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
 
   useEffect(() => {
     setSelectedIndex(0);
-  }, [value]);
+  }, [searchTerm]);
 
   const onIntersection = useCallback(() => {
     fetchNextPage();
@@ -83,6 +85,19 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
   }, []);
 
   const selectedResult = results[selectedIndex];
+
+  const updateFilters = (filterName) => {
+    setFilters((filters) => {
+      return filters.map(({ defaultFilters, type }) => ({
+        defaultFilters: defaultFilters.map((filter) => {
+          return filter.name === filterName
+            ? { ...filter, isSelected: !filter.isSelected }
+            : filter;
+        }),
+        type,
+      }));
+    });
+  };
 
   return transitions(
     (style, item) =>
@@ -153,26 +168,15 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                 placeholder={t('searchInput.placeholder')}
                 ref={searchInput}
                 onChange={(e) => {
-                  onChange(e.target.value);
+                  setSearchTerm(e.target.value);
                 }}
-                onFilter={(filterName) => {
-                  setFilters((filters) => {
-                    return filters.map(({ defaultFilters, type }) => ({
-                      defaultFilters: defaultFilters.map((filter) => {
-                        return filter.name === filterName
-                          ? { ...filter, isSelected: !filter.isSelected }
-                          : filter;
-                      }),
-                      type,
-                    }));
-                  });
-                }}
-                value={value}
-                onClear={() => onChange('')}
+                onFilter={(filterName) => updateFilters(filterName)}
+                value={searchTerm}
+                onClear={() => setSearchTerm('')}
                 onCancel={onClose}
                 filters={filters}
                 css={
-                  value &&
+                  searchTerm &&
                   css`
                     input {
                       border-bottom-left-radius: 0;
@@ -182,7 +186,7 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
                 }
               />
 
-              {value && (
+              {searchTerm && (
                 <div
                   css={css`
                     display: grid;
@@ -230,9 +234,7 @@ const SearchModal = ({ onClose, isOpen, onChange, value }) => {
 };
 
 SearchModal.propTypes = {
-  value: PropTypes.string,
   onClose: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
 
