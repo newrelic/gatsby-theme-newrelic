@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.0.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.0.1...v6.0.2) (2022-05-19)
+
+
+### Bug Fixes
+
+* Hide logo text at larger screen width ([8b0b34d](https://github.com/newrelic/gatsby-theme-newrelic/commit/8b0b34d369171765829fedf1337ea52962349108))
+* send filter information to tessen for search events ([72f9479](https://github.com/newrelic/gatsby-theme-newrelic/commit/72f9479e930a0e0044d741fb28ea4a1a33d66736))
+
+
+
+
+
 ## [6.0.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.0.0...v6.0.1) (2022-05-17)
 
 
