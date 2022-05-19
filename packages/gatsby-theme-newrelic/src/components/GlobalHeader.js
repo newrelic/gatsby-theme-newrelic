@@ -82,6 +82,7 @@ const createNavList = (listType, activeSite = null) => {
 // removes the site nav from the header in favor of the search bar
 // swaps out logo into collapsable nav
 const NAV_BREAKPOINT = '1070px';
+const LOGO_TEXT_BREAKPOINT = '460px';
 
 const GlobalHeader = ({
   customStyles,
@@ -116,7 +117,7 @@ const GlobalHeader = ({
     }
   `);
 
-  const hideLogoText = useMedia({ maxWidth: '350px' });
+  const hideLogoText = useMedia({ maxWidth: LOGO_TEXT_BREAKPOINT });
 
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
@@ -213,7 +214,7 @@ const GlobalHeader = ({
                 `}
               >
                 <NewRelicLogo
-                  size={hideLogoText ? '24px' : '150px'}
+                  size={hideLogoText ? '45px' : '150px'}
                   css={css`
                     .text-color {
                       fill: var(--color-white);
@@ -327,6 +328,10 @@ const GlobalHeader = ({
               css={css`
                 display: flex;
                 flex-direction: row;
+                @media screen and (max-width: ${LOGO_TEXT_BREAKPOINT}) {
+                  width: 100%;
+                  justify-content: space-evenly;
+                }
               `}
             >
               <Link
