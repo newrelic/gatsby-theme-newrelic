@@ -7,7 +7,7 @@ export default css`
   --system-text-primary-light: #293338;
   --system-text-secondary-light: #535e65;
   --system-text-secondary-inverted-light: #cdd3d5;
-  --system-text-bullet-points: #929da0;
+  --system-text-bullet-points: #767e80;
   --system-background-app-light: #f3f4f4;
   --system-background-surface-1-light: #ffffff;
   --system-background-muted-light: #dcdede;
@@ -17,7 +17,7 @@ export default css`
   --system-text-primary-dark: #e9ecec;
   --system-text-secondary-dark: #d0d6d7;
   --system-text-secondary-inverted-dark: #d0d6d7;
-  --system-text-bullet-points-dark: #5d6469;
+  --system-text-bullet-points-dark: #888d91;
   --system-background-app-dark: #0d1212;
   --system-background-surface-1-dark: #182125;
   --system-background-hover-dark: #2a363c;

@@ -131,6 +131,13 @@ const GlobalStyles = ({ layout }) => (
         }
       }
 
+      ul ul li::marker {
+        color: var(--color-black);
+        .dark-mode & {
+          color: var(--color-white);
+        }
+      }
+
       code,
       var {
         font-family: var(--code-font);

@@ -118,6 +118,7 @@ const IndexPage = () => {
         <h1>{t('home.welcome')}</h1>
         <p>{t('home.intro')}</p>
         <section>
+          <h2>Lists</h2>
           <ul>
             <li>List item one</li>
             <li>
