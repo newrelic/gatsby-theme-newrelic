@@ -153,7 +153,7 @@ const GlobalHeader = ({
     }
   `);
 
-  const hideLogoText = useMedia({ maxWidth: '460px' });
+  const hideLogoText = useMedia({ maxWidth: LOGO_TEXT_BREAKPOINT });
 
   const matchLocalePath = new RegExp(
     `^\\/(${locales.map(({ locale }) => locale).join('|')})`
