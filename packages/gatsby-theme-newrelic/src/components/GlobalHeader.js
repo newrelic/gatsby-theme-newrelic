@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import useMedia from 'use-media';
+import path from 'path';
 import { css } from '@emotion/react';
 import { graphql, useStaticQuery, Link } from 'gatsby';
+import { useLocation } from '@reach/router';
 import AnnouncementBanner from './AnnouncementBanner';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
@@ -11,16 +14,11 @@ import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import GlobalNavLink from './GlobalNavLink';
 import SearchInput from './SearchInput';
-import useMedia from 'use-media';
-import { useLocation } from '@reach/router';
+import SearchModal from './SearchModal';
+import SplitTextButton from './SplitTextButton';
 import useQueryParams from '../hooks/useQueryParams';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import path from 'path';
-import SearchModal from './SearchModal';
-import { useDebounce } from 'react-use';
 import useHasMounted from '../hooks/useHasMounted';
-import useTessen from '../hooks/useTessen';
-import SplitTextButton from './SplitTextButton';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 export const NR_SITES = {
@@ -85,49 +83,15 @@ const createNavList = (listType, activeSite = null) => {
 // swaps out logo into collapsable nav
 const NAV_BREAKPOINT = '1070px';
 
-const useSearchQuery = () => {
-  const { queryParams, setQueryParam } = useQueryParams();
-  const searchQueryParam = queryParams.get('q');
-  const [searchTerm, setSearchTerm] = useState(searchQueryParam);
-  const hasQParam = queryParams.has('q');
-  const tessen = useTessen();
-
-  useDebounce(
-    () => {
-      if (hasQParam) {
-        setQueryParam('q', searchTerm);
-        if (searchTerm && searchTerm.length > 2) {
-          tessen.track({
-            eventName: 'swiftypeSearchInput',
-            category: 'GlobalSearch',
-            name: 'searchInput',
-            layoutElement: 'globalHeader',
-            searchTerm,
-          });
-        }
-      }
-    },
-    400,
-    [searchTerm, setQueryParam, hasQParam]
-  );
-
-  useEffect(() => {
-    setSearchTerm(searchQueryParam);
-  }, [searchQueryParam]);
-
-  return [searchTerm, setSearchTerm];
-};
-
 const GlobalHeader = ({
+  customStyles,
   className,
   activeSite,
   hideSearch = false,
-  customStyles,
 }) => {
   const hasMounted = useHasMounted();
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
-  const [searchTerm, setSearchTerm] = useSearchQuery();
   const { t } = useThemeTranslation();
 
   const {
@@ -169,8 +133,6 @@ const GlobalHeader = ({
   return (
     <>
       <SearchModal
-        value={searchTerm}
-        onChange={(searchTerm) => setSearchTerm(searchTerm)}
         onClose={() => {
           deleteQueryParam('q');
         }}
