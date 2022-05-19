@@ -118,6 +118,17 @@ const IndexPage = () => {
         <h1>{t('home.welcome')}</h1>
         <p>{t('home.intro')}</p>
         <section>
+          <ul>
+            <li>List item one</li>
+            <li>
+              List item two with subitems:
+              <ul>
+                <li>Subitem 1</li>
+                <li>Subitem 2</li>
+              </ul>
+            </li>
+            <li>Final list item</li>
+          </ul>
           <h2>Search inputs</h2>
           <SearchInput
             style={{ margin: '1rem 0', maxWidth: '500px' }}

@@ -5,6 +5,7 @@ export default css`
     --primary-background-color: var(--system-background-app-light);
     --primary-contrast-color: var(--system-text-primary-dark);
     --primary-text-color: var(--system-text-primary-light);
+    --primary-bullet-points-color: var(--system-text-bullet-points);
     --primary-hover-color: var(--system-background-selected-low-contrast-light);
 
     --secondary-background-color: var(--system-background-surface-1-light);
@@ -46,6 +47,7 @@ export default css`
     --primary-background-color: var(--system-background-app-dark);
     --primary-contrast-color: var(--system-text-primary-light);
     --primary-text-color: var(--system-text-primary-dark);
+    --primary-bullet-points-color: var(--system-text-bullet-points-dark);
     --primary-hover-color: var(--system-background-hover-dark);
 
     --secondary-background-color: var(--system-background-surface-1-dark);

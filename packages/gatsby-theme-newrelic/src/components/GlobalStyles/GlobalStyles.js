@@ -125,9 +125,9 @@ const GlobalStyles = ({ layout }) => (
       }
 
       ul > li::marker {
-        color: var(--system-text-secondary-inverted-light);
+        color: var(--system-text-bullet-points);
         .dark-mode & {
-          color: var(--system-background-selected-low-contrast-dark);
+          color: var(--system-text-bullet-points-dark);
         }
       }
 
