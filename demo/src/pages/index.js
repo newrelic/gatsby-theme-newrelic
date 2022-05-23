@@ -132,7 +132,9 @@ const IndexPage = () => {
           </ul>
           <h2>Search inputs</h2>
           <SearchInput
-            style={{ margin: '1rem 0', maxWidth: '500px' }}
+            css={css`
+              margin-bottom: 1rem;
+            `}
             placeholder="Test out a small search"
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -140,19 +142,25 @@ const IndexPage = () => {
             size={SearchInput.SIZE.SMALL}
           />
           <SearchInput
-            style={{ margin: '1rem 0', maxWidth: '500px' }}
+            css={css`
+              margin-bottom: 1rem;
+            `}
             placeholder="Test out a medium search"
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
           />
           <SearchInput
-            style={{ marginBottom: '1rem', maxWidth: '500px' }}
+            css={css`
+              margin-bottom: 1rem;
+            `}
             placeholder="Test out a large search"
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
             size={SearchInput.SIZE.LARGE}
+            iconName={SearchInput.ICONS.SEARCH}
+            isIconClickable
           />
         </section>
         <section>
