@@ -18,6 +18,11 @@ const ICONS = {
   SEARCH: 'fe-search',
 };
 
+const ICON_ALIGNMENTS = {
+  LEFT: 'left',
+  RIGHT: 'right',
+};
+
 const HORIZONTAL_SPACING = {
   [SIZES.SMALL]: '0.5rem',
   [SIZES.MEDIUM]: '1rem',
@@ -35,6 +40,7 @@ const SearchInput = forwardRef(
       size = 'medium',
       className,
       iconName = 'fe-search',
+      alignIcon = 'left',
       isIconClickable = false,
       onBlur,
       onFocus,
@@ -76,7 +82,13 @@ const SearchInput = forwardRef(
             <Icon
               css={css`
                 position: absolute;
-                left: var(--horizontal-spacing);
+                ${alignIcon === 'right'
+                  ? css`
+                      right: var(--horizontal-spacing);
+                    `
+                  : css`
+                      left: var(--horizontal-spacing);
+                    `}
                 top: 50%;
                 transform: translateY(-50%);
               `}
@@ -88,7 +100,13 @@ const SearchInput = forwardRef(
           <Icon
             css={css`
               position: absolute;
-              left: var(--horizontal-spacing);
+              ${alignIcon === 'right'
+                ? css`
+                    right: var(--horizontal-spacing);
+                  `
+                : css`
+                    left: var(--horizontal-spacing);
+                  `}
               top: 50%;
               transform: translateY(-50%);
             `}
@@ -126,13 +144,19 @@ const SearchInput = forwardRef(
             transition: 0.15s ease-out;
             line-height: 1;
             color: var(--primary-text-color);
-
-            padding-left: calc(
-              var(--horizontal-spacing) + 0.5rem + var(--icon-size)
-            );
-            padding-right: calc(
-              var(--horizontal-spacing) + 0.5rem + var(--icon-size)
-            );
+            ${alignIcon === 'left'
+              ? css`
+                  padding-left: calc(
+                    var(--horizontal-spacing) + 0.5rem + var(--icon-size)
+                  );
+                  padding-right: var(--horizontal-spacing);
+                `
+              : css`
+                  padding-left: var(--horizontal-spacing);
+                  padding-right: calc(
+                    var(--horizontal-spacing) + 0.5rem + var(--icon-size)
+                  );
+                `}
 
             ${size && styles.size[size].input}
 
@@ -150,7 +174,9 @@ const SearchInput = forwardRef(
               onClear();
             }}
             css={css`
-              right: var(--horizontal-spacing);
+              right: ${alignIcon === 'right'
+                ? ' calc(var(--horizontal-spacing) + 0.5rem + var(--icon-size))'
+                : 'var(--horizontal-spacing)'};
               top: 50%;
               transform: translateY(-50%);
               &:hover {
@@ -210,6 +236,7 @@ SearchInput.propTypes = {
   width: PropTypes.string,
   size: PropTypes.oneOf(Object.values(SIZES)),
   iconName: PropTypes.oneOf(Object.values(ICONS)),
+  alignIcon: PropTypes.oneOf(Object.values(ICON_ALIGNMENTS)),
   isIconClickable: PropTypes.bool,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
@@ -217,6 +244,7 @@ SearchInput.propTypes = {
 
 SearchInput.SIZE = SIZES;
 SearchInput.ICONS = ICONS;
+SearchInput.ICON_ALIGNMENT = ICON_ALIGNMENTS;
 
 export default SearchInput;
 
