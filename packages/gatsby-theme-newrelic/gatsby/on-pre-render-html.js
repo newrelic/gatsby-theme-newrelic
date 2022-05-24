@@ -30,7 +30,10 @@ const onPreRenderHTML = (
       ),
       themeOptions.signup.reCaptchaToken && (
         <script
-          src={`https://www.google.com/recaptcha/api.js?render=${themeOptions.signup.recaptchaToken}`}
+          key="google-recaptcha"
+          async
+          defer
+          src={`https://www.google.com/recaptcha/api.js?render=${themeOptions.signup.reCaptchaToken}`}
         />
       ),
     ].filter(Boolean)

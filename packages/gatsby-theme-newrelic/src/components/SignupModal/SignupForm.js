@@ -50,6 +50,14 @@ const SignupForm = () => {
 
   const invalidInput = !input.email.isValid || !input.name.isValid;
 
+  if (loading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return <ErrorMessage />;
+  }
+
   return (
     <div
       css={css`
@@ -107,43 +115,39 @@ const SignupForm = () => {
         Have an account?{' '}
         <Link to="https://login.newrelic.com/login">Login.</Link>
       </p>
-      {!error && !loading && (
-        <div
+      <div
+        css={css`
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        `}
+      >
+        <TextInput
+          name="name"
+          label="Name"
+          placeholder="e.g. Katherine Johnson"
+          value={input.name.value}
+          onChange={(e) => handleChange('name', e.target.value)}
+        />
+        <TextInput
+          name="email"
+          label="Work email"
+          placeholder="name@company"
+          value={input.email.value}
+          onChange={(e) => handleChange('email', e.target.value)}
+        />
+        <Button
+          variant={Button.VARIANT.PRIMARY}
+          disabled={invalidInput}
+          onClick={onSubmit}
           css={css`
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            margin-top: 0.5rem;
+            padding: 1rem;
           `}
         >
-          <TextInput
-            name="name"
-            label="Name"
-            placeholder="e.g. Katherine Johnson"
-            value={input.name.value}
-            onChange={(e) => handleChange('name', e.target.value)}
-          />
-          <TextInput
-            name="email"
-            label="Work email"
-            placeholder="name@company"
-            value={input.email.value}
-            onChange={(e) => handleChange('email', e.target.value)}
-          />
-          <Button
-            variant={Button.VARIANT.PRIMARY}
-            disabled={invalidInput}
-            onClick={onSubmit}
-            css={css`
-              margin-top: 0.5rem;
-              padding: 1rem;
-            `}
-          >
-            Start Now
-          </Button>
-        </div>
-      )}
-      {loading && <Spinner />}
-      {!loading && error && <ErrorMessage />}
+          Start Now
+        </Button>
+      </div>
     </div>
   );
 };

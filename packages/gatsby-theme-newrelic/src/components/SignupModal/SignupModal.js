@@ -6,6 +6,7 @@ import SignupForm from './SignupForm';
 import Modal from '../Modal';
 import Surface from '../Surface';
 import ListItem from './ListItem';
+import RecaptchaFooter from './RecaptchaFooter';
 
 const SignupModal = ({ isOpen, onClose }) => {
   return (
@@ -56,6 +57,7 @@ const SignupModal = ({ isOpen, onClose }) => {
           </ul>
         </Surface>
       </div>
+      <RecaptchaFooter />
     </Modal>
   );
 };
