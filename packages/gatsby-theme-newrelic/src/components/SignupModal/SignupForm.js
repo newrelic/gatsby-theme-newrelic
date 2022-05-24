@@ -4,11 +4,13 @@ import { useMount } from 'react-use';
 
 import Button from '../Button';
 import Link from '../Link';
+import Spinner from '../Spinner';
 
 import TextInput from './TextInput';
 import { setUTMCookies } from './utmCookie';
 import { createAccountRequest } from './signup';
 import useTessen from '../../hooks/useTessen';
+import ErrorMessage from './ErrorMessage';
 
 const isValid = (value) => value !== undefined && value.length > 0;
 
@@ -19,6 +21,7 @@ const defaultValues = { email: defaultInputValues, name: defaultInputValues };
 const SignupForm = () => {
   const [input, setInput] = useState(defaultValues);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const tessen = useTessen();
 
   useMount(() => {
@@ -35,13 +38,13 @@ const SignupForm = () => {
   const onSubmit = async () => {
     setLoading(true);
     const organizationId = await createAccountRequest(input, tessen);
-    console.log(organizationId);
 
     setLoading(false);
     if (organizationId) {
-      console.log('this was successful', organizationId);
       const redirectUrl = `https://newrelic.com/thank-you?org=${organizationId}&standalone=${true}`;
       window.location.assign(redirectUrl);
+    } else {
+      setError(true);
     }
   };
 
@@ -104,40 +107,43 @@ const SignupForm = () => {
         Have an account?{' '}
         <Link to="https://login.newrelic.com/login">Login.</Link>
       </p>
-      <div
-        css={css`
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        `}
-      >
-        <TextInput
-          name="name"
-          label="Name"
-          placeholder="e.g. Katherine Johnson"
-          value={input.name.value}
-          onChange={(e) => handleChange('name', e.target.value)}
-        />
-        <TextInput
-          name="email"
-          label="Work email"
-          placeholder="name@company"
-          value={input.email.value}
-          onChange={(e) => handleChange('email', e.target.value)}
-        />
-        <Button
-          variant={Button.VARIANT.PRIMARY}
-          disabled={invalidInput}
-          onClick={onSubmit}
+      {!error && !loading && (
+        <div
           css={css`
-            margin-top: 0.5rem;
-            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
           `}
         >
-          Start Now
-        </Button>
-        {loading}
-      </div>
+          <TextInput
+            name="name"
+            label="Name"
+            placeholder="e.g. Katherine Johnson"
+            value={input.name.value}
+            onChange={(e) => handleChange('name', e.target.value)}
+          />
+          <TextInput
+            name="email"
+            label="Work email"
+            placeholder="name@company"
+            value={input.email.value}
+            onChange={(e) => handleChange('email', e.target.value)}
+          />
+          <Button
+            variant={Button.VARIANT.PRIMARY}
+            disabled={invalidInput}
+            onClick={onSubmit}
+            css={css`
+              margin-top: 0.5rem;
+              padding: 1rem;
+            `}
+          >
+            Start Now
+          </Button>
+        </div>
+      )}
+      {loading && <Spinner />}
+      {!loading && error && <ErrorMessage />}
     </div>
   );
 };

@@ -28,7 +28,7 @@ const onPreRenderHTML = (
       themeOptions.tessen && (
         <script key="tessen" type="text/javascript" src={tessenPath} />
       ),
-      themeOptions.signup.recaptchaToken && (
+      themeOptions.signup.reCaptchaToken && (
         <script
           src={`https://www.google.com/recaptcha/api.js?render=${themeOptions.signup.recaptchaToken}`}
         />

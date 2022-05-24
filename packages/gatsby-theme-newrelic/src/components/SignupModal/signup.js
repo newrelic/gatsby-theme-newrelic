@@ -57,6 +57,7 @@ const createAccountRequestInternal = (name, email, recaptcha) => {
 };
 
 const createAccountError = (attributes, tessen) => {
+  console.log(attributes);
   tessen.track({
     eventName: 'failedSignup',
     category: 'SignupForm',
