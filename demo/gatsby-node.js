@@ -7,8 +7,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     query {
       allLocale {
         nodes {
-          isDefault
           locale
+          isDefault
         }
       }
       allMdx(filter: { fileAbsolutePath: { regex: "/src/content/" } }) {
