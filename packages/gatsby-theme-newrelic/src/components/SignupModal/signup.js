@@ -56,7 +56,7 @@ const createAccountRequestInternal = (name, email, recaptcha) => {
   });
 };
 
-const createAccountError = (tessen, attributes) => {
+const createAccountError = (attributes, tessen) => {
   tessen.track({
     eventName: 'failedSignup',
     category: 'SignupForm',
@@ -77,7 +77,10 @@ const createAccountRequest = async (input, tessen) => {
     await recaptchaReady();
     recaptchaToken = await generateRecaptchaToken();
   } catch (err) {
-    createAccountError(name, email, err, 'recaptchaError');
+    createAccountError(
+      { name, email, error: err, type: 'recaptchaError' },
+      tessen
+    );
     return false;
   }
 
@@ -91,10 +94,13 @@ const createAccountRequest = async (input, tessen) => {
 
     if (!response.ok) {
       createAccountError(
-        name,
-        email,
-        new Error(`Non-2xx signUp result: ${response.statusText}`),
-        'signUpReceiverError'
+        {
+          name,
+          email,
+          error: new Error(`Non-2xx signUp result: ${response.statusText}`),
+          type: 'signUpReceiverError',
+        },
+        tessen
       );
       return false;
     }
@@ -107,7 +113,10 @@ const createAccountRequest = async (input, tessen) => {
     });
     return responseJson.organization_id;
   } catch (err) {
-    createAccountError(name, email, err, 'signUpReceiverError');
+    createAccountError(
+      { name, email, error: err, type: 'signUpReceiverError' },
+      tessen
+    );
   }
 
   return false;
