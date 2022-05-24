@@ -125,9 +125,16 @@ const GlobalStyles = ({ layout }) => (
       }
 
       ul > li::marker {
-        color: var(--system-text-secondary-inverted-light);
+        color: var(--system-text-secondary-light);
         .dark-mode & {
-          color: var(--system-background-selected-low-contrast-dark);
+          color: var(--system-text-secondary-dark);
+        }
+      }
+
+      ul ul li::marker {
+        color: var(--color-black);
+        .dark-mode & {
+          color: var(--color-white);
         }
       }
 
