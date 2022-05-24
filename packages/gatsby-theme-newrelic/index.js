@@ -43,6 +43,7 @@ export { default as RelatedResources } from './src/components/RelatedResources';
 export { default as SearchInput } from './src/components/SearchInput';
 export { default as SEO } from './src/components/SEO';
 export { default as SimpleFeedback } from './src/components/SimpleFeedback';
+export { default as SignupForm } from './src/components/SignupForm/SignupForm';
 export { default as Surface } from './src/components/Surface';
 export { default as Spinner } from './src/components/Spinner';
 export { default as Table } from './src/components/Table';
