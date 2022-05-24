@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.0.3...v6.1.0) (2022-05-24)
+
+
+### Bug Fixes
+
+* optionally align icon left or right via prop ([d415da2](https://github.com/newrelic/gatsby-theme-newrelic/commit/d415da21f3703313bdc66f72c68dec87148ac620))
+
+
+### Features
+
+* **SearchInput:** make search icon optionally clickable to perform search ([ad38d18](https://github.com/newrelic/gatsby-theme-newrelic/commit/ad38d18c3007243de57e6ef356cc5b99f4531870))
+
+
+
+
+
 ## [6.0.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.0.2...v6.0.3) (2022-05-19)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
