@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import SignupForm from './SignupForm';
 import Modal from '../Modal';
@@ -10,6 +11,23 @@ import Icon from '../Icon';
 import Button from '../Button';
 
 const SignupModal = ({ isOpen, onClose }) => {
+  const {
+    site: {
+      siteMetadata: { siteUrl },
+      layout: { mobileBreakpoint },
+    },
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+        layout {
+          mobileBreakpoint
+        }
+      }
+    }
+  `);
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <Button
@@ -38,13 +56,16 @@ const SignupModal = ({ isOpen, onClose }) => {
           align-items: center;
         `}
       >
-        <SignupForm />
+        <SignupForm siteUrl={siteUrl} />
         <Surface
           css={css`
             width: 100%;
             padding: 2rem;
             margin-top: 2rem;
             margin-bottom: 2rem;
+            @media screen and (max-width: ${mobileBreakpoint}) {
+              display: none;
+            }
           `}
           base={Surface.BASE.PRIMARY}
         >

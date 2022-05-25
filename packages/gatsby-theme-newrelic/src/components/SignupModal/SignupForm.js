@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useMount } from 'react-use';
 
 import { setUTMCookies } from './utmCookie';
 import { createAccountRequest } from './signup';
@@ -19,29 +20,15 @@ const defaultInputValues = { value: '', isValid: false };
 
 const defaultValues = { email: defaultInputValues, name: defaultInputValues };
 
-const SignupForm = () => {
+const SignupForm = ({ siteUrl }) => {
   const [input, setInput] = useState(defaultValues);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const tessen = useTessen();
 
-  const {
-    site: {
-      siteMetadata: { siteUrl },
-    },
-  } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          siteUrl
-        }
-      }
-    }
-  `);
-
-  useEffect(() => {
+  useMount(() => {
     setUTMCookies(siteUrl);
-  }, [siteUrl]);
+  });
 
   const handleChange = (parameter, value) => {
     const changedInput = { ...input };
@@ -170,6 +157,10 @@ const SignupForm = () => {
       </div>
     </div>
   );
+};
+
+SignupForm.propTypes = {
+  siteUrl: PropTypes.string,
 };
 
 export default SignupForm;
