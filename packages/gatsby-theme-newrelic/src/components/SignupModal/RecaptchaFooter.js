@@ -5,8 +5,8 @@ const RecaptchaFooter = () => {
   return (
     <p
       css={css`
-        font-size: 0.875rem;
-        margin-top: 1rem;
+        font-size: 0.625rem;
+        margin-top: 0.5rem;
       `}
     >
       This site is protected by reCAPTCHA and the Google{' '}

@@ -56,9 +56,10 @@ const Modal = ({ onClose, isOpen, children }) => {
                 display: flex;
                 flex-direction: column;
                 position: relative;
-                padding: 3rem;
+                padding: 2.5rem;
                 background-color: var(--modal-background-color);
                 border-radius: 1rem;
+                overflow: scroll;
               `}
             >
               {children}

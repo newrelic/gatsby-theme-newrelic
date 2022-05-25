@@ -9,7 +9,7 @@ const ListItem = ({ primaryText, secondaryText }) => {
         position: relative;
         padding-left: 3rem;
         margin-bottom: 1rem;
-        color: #6a6f74;
+
         &::before {
           content: '';
           position: absolute;
@@ -28,12 +28,18 @@ const ListItem = ({ primaryText, secondaryText }) => {
         css={css`
           display: block;
           margin-bottom: 0.5rem;
-          color: #1d252c;
+          color: var(--primary-text-color);
         `}
       >
         {primaryText}
       </span>
-      {secondaryText}
+      <span
+        css={css`
+          color: var(--secondary-text-color);
+        `}
+      >
+        {secondaryText}
+      </span>
     </li>
   );
 };

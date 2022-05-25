@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/react';
-import { useMount } from 'react-use';
+import { useStaticQuery, graphql } from 'gatsby';
+
+import { setUTMCookies } from './utmCookie';
+import { createAccountRequest } from './signup';
 
 import Button from '../Button';
 import Link from '../Link';
 import Spinner from '../Spinner';
-
 import TextInput from './TextInput';
-import { setUTMCookies } from './utmCookie';
-import { createAccountRequest } from './signup';
-import useTessen from '../../hooks/useTessen';
 import ErrorMessage from './ErrorMessage';
+
+import useTessen from '../../hooks/useTessen';
 
 const isValid = (value) => value !== undefined && value.length > 0;
 
@@ -24,9 +25,23 @@ const SignupForm = () => {
   const [error, setError] = useState(false);
   const tessen = useTessen();
 
-  useMount(() => {
-    setUTMCookies();
-  });
+  const {
+    site: {
+      siteMetadata: { siteUrl },
+    },
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
+    }
+  `);
+
+  useEffect(() => {
+    setUTMCookies(siteUrl);
+  }, [siteUrl]);
 
   const handleChange = (parameter, value) => {
     const changedInput = { ...input };
@@ -48,6 +63,10 @@ const SignupForm = () => {
     }
   };
 
+  const onClickBack = () => {
+    setError(false);
+  };
+
   const invalidInput = !input.email.isValid || !input.name.isValid;
 
   if (loading) {
@@ -55,13 +74,13 @@ const SignupForm = () => {
   }
 
   if (error) {
-    return <ErrorMessage />;
+    return <ErrorMessage onClickBack={onClickBack} />;
   }
 
   return (
     <div
       css={css`
-        max-width: 600px;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -69,7 +88,7 @@ const SignupForm = () => {
     >
       <h1
         css={css`
-          font-size: 3.5rem;
+          font-size: 3.25rem;
           font-weight: 500;
         `}
       >
@@ -97,9 +116,10 @@ const SignupForm = () => {
       </h1>
       <p
         css={css`
-          font-size: 1.5rem;
+          font-size: 1.25rem;
           font-weight: 400;
           letter-spacing: -0.005em;
+          margin-bottom: 0.5rem;
         `}
       >
         No credit card required.
@@ -109,7 +129,7 @@ const SignupForm = () => {
           margin-bottom: 1rem;
           font-size: 0.875rem;
           line-height: 1.5;
-          color: #6a6f74;
+          color: var(--secondary-text-color);
         `}
       >
         Have an account?{' '}

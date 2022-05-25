@@ -22,7 +22,7 @@ const TextInput = ({ name, label, placeholder, onChange, value }) => {
           appearance: none;
           padding: 1.1875rem 1.5rem;
           border-radius: 0.25rem;
-          border: 1px solid rgb(29 37 44);
+          border: 1px solid var(--border-color);
           outline: none;
           font-family: inherit;
           font-size: inherit;

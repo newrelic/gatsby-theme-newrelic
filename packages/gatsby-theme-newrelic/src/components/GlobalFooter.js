@@ -6,6 +6,7 @@ import { css } from '@emotion/react';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 import Link from './Link';
+import RecaptchaFooter from './SignupModal/RecaptchaFooter';
 
 // We need to use this as a JS value otherwise the HTML entity gets saved in the
 // string and escaped by React, therefore rendering the literal &copy; text in
@@ -77,39 +78,48 @@ const GlobalFooter = ({ className }) => {
           <div
             css={css`
               display: flex;
-              flex-wrap: wrap;
-              justify-content: center;
-              grid-area: legal;
-
-              a {
-                margin-left: 0.75rem;
-                white-space: nowrap;
-              }
+              flex-direction: column;
+              align-items: flex-end;
             `}
           >
-            <ExternalLink href="https://newrelic.com/about/careers">
-              {t('footer.careers', 'Careers')}
-            </ExternalLink>
-            {sitePage ? (
-              <Link to="/terms">{t('footer.terms', 'Terms of Service')}</Link>
-            ) : (
-              <ExternalLink href="https://newrelic.com/termsandconditions/terms">
-                {t('footer.terms', 'Terms of Service')}
-              </ExternalLink>
-            )}
+            <div
+              css={css`
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                grid-area: legal;
 
-            <ExternalLink href="https://newrelic.com/termsandconditions/dmca">
-              {t('footer.dcmaPolicy', 'DCMA Policy')}
-            </ExternalLink>
-            <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
-              {t('footer.privacyNotice', 'Privacy Notice')}
-            </ExternalLink>
-            <ExternalLink href="https://newrelic.com/termsandconditions/cookie-policy">
-              {t('footer.cookiePolicy', 'Cookie Policy')}
-            </ExternalLink>
-            <ExternalLink href="https://newrelic.com/termsandconditions/uk-slavery-act">
-              {t('footer.ukSlaveryAct', 'UK Slavery Act')}
-            </ExternalLink>
+                a {
+                  margin-left: 0.75rem;
+                  white-space: nowrap;
+                }
+              `}
+            >
+              <ExternalLink href="https://newrelic.com/about/careers">
+                {t('footer.careers', 'Careers')}
+              </ExternalLink>
+              {sitePage ? (
+                <Link to="/terms">{t('footer.terms', 'Terms of Service')}</Link>
+              ) : (
+                <ExternalLink href="https://newrelic.com/termsandconditions/terms">
+                  {t('footer.terms', 'Terms of Service')}
+                </ExternalLink>
+              )}
+
+              <ExternalLink href="https://newrelic.com/termsandconditions/dmca">
+                {t('footer.dcmaPolicy', 'DCMA Policy')}
+              </ExternalLink>
+              <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
+                {t('footer.privacyNotice', 'Privacy Notice')}
+              </ExternalLink>
+              <ExternalLink href="https://newrelic.com/termsandconditions/cookie-policy">
+                {t('footer.cookiePolicy', 'Cookie Policy')}
+              </ExternalLink>
+              <ExternalLink href="https://newrelic.com/termsandconditions/uk-slavery-act">
+                {t('footer.ukSlaveryAct', 'UK Slavery Act')}
+              </ExternalLink>
+            </div>
+            <RecaptchaFooter />
           </div>
         </div>
       </div>

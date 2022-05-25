@@ -6,16 +6,36 @@ import SignupForm from './SignupForm';
 import Modal from '../Modal';
 import Surface from '../Surface';
 import ListItem from './ListItem';
-import RecaptchaFooter from './RecaptchaFooter';
+import Icon from '../Icon';
+import Button from '../Button';
 
 const SignupModal = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
+      <Button
+        css={css`
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+        `}
+        variant={Button.VARIANT.PLAIN}
+        onClick={onClose}
+      >
+        <Icon
+          css={css`
+            :hover {
+              color: var(--link-hover-color);
+            }
+          `}
+          name="fe-x"
+        />
+      </Button>
       <div
         css={css`
           display: flex;
           flex-direction: row;
           gap: 2rem;
+          align-items: center;
         `}
       >
         <SignupForm />
@@ -23,6 +43,8 @@ const SignupModal = ({ isOpen, onClose }) => {
           css={css`
             width: 100%;
             padding: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
           `}
           base={Surface.BASE.PRIMARY}
         >
@@ -48,7 +70,6 @@ const SignupModal = ({ isOpen, onClose }) => {
             <ListItem
               primaryText="One data platform for all metrics, logs, events, and traces."
               secondaryText="Petabyte scale. Millisecond speed. Pennies per gigabyte (beyond free tier)."
-              checkmarkColor="#E7F6F6"
             />
             <ListItem
               primaryText="Easily visualize, analyze, and troubleshoot your entire stack."
@@ -57,7 +78,6 @@ const SignupModal = ({ isOpen, onClose }) => {
           </ul>
         </Surface>
       </div>
-      <RecaptchaFooter />
     </Modal>
   );
 };

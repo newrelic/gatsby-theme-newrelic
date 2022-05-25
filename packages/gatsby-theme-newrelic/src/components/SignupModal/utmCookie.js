@@ -48,7 +48,8 @@ const getUTMValues = () => {
   };
 };
 
-const setUTMCookies = () => {
+const setUTMCookies = (url) => {
+  const domain = url.split('https://')[1];
   if (window.location.search.length > 0) {
     utmNames.forEach((paramName) => {
       const urlValue = getUrlParameter(paramName);
@@ -56,22 +57,22 @@ const setUTMCookies = () => {
         const cookieName = paramName.replace('utm_', '');
         if (!Cookies.get(`${cookieName}_f`)) {
           Cookies.set(`${cookieName}_f`, urlValue, {
-            domain: 'newrelic.com',
+            domain,
           });
         }
         Cookies.set(`${cookieName}_l`, urlValue, {
-          domain: 'newrelic.com',
+          domain,
         });
       }
     });
     Cookies.set('ref_page_url', document.referrer, {
-      domain: 'newrelic.com',
+      domain,
     });
     Cookies.set('ref_page_cat', 'public', {
-      domain: 'newrelic.com',
+      domain,
     });
     Cookies.set('ref_page_sub_cat', 'signup', {
-      domain: 'newrelic.com',
+      domain,
     });
   }
 };
