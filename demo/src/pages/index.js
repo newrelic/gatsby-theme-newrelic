@@ -442,7 +442,7 @@ nr1 create --type nerdpack --name pageviews-app
           <h3>give it a click!</h3>
           <Lightbox>
             <img
-              alt="a cartoon cat"
+              alt="a code editor gif"
               css={css`
                 width: 50%;
               `}
