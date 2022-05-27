@@ -22,7 +22,9 @@ import {
   Video,
   useTranslation,
   ExternalLink,
+  Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
+import codestream from '../images/codestream.gif';
 
 const codeSample = `
 import React from 'react';
@@ -434,6 +436,19 @@ nr1 create --type nerdpack --name pageviews-app
             </Link>{' '}
             does not automatically use localized path if on translated site.
           </p>
+        </section>
+        <section>
+          <h2>An image wrapped in the lightbox component</h2>
+          <h3>give it a click!</h3>
+          <Lightbox>
+            <img
+              alt="a cartoon cat"
+              css={css`
+                width: 50%;
+              `}
+              src={codestream}
+            />
+          </Lightbox>
         </section>
         <section>
           <h2>External Links</h2>
