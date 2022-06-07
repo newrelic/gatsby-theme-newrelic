@@ -74,6 +74,10 @@ const DarkModeToggle = ({ className, size, onClick }) => {
             opacity: 0.8;
             transition: opacity 250ms;
 
+            line {
+              stroke-linecap: butt;
+            }
+
             path {
               transform: rotate(0.5turn) translate(3%, 3%);
               transform-origin: center;
