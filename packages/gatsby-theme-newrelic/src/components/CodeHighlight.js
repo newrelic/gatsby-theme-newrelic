@@ -126,7 +126,7 @@ const nordTheme = css`
     &.prolog,
     &.doctype,
     &.cdata {
-      color: var(--color-selection);
+      color: var(--color-comment);
     }
     &.tag,
     &.class-name {
