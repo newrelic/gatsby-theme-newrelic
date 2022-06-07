@@ -444,7 +444,7 @@ nr1 create --type nerdpack --name pageviews-app
             <img
               alt="a code editor gif"
               css={css`
-                width: 50%;
+                width: 100%;
               `}
               src={codestream}
             />
