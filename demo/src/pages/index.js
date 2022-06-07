@@ -24,7 +24,7 @@ import {
   ExternalLink,
   Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
-import codestream from '../images/codestream.gif';
+import apm from '../images/apm-intro-overview.png';
 
 const codeSample = `
 import React from 'react';
@@ -446,7 +446,7 @@ nr1 create --type nerdpack --name pageviews-app
               css={css`
                 width: 100%;
               `}
-              src={codestream}
+              src={apm}
             />
           </Lightbox>
         </section>
