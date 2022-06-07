@@ -9,6 +9,7 @@ import Surface from '../Surface';
 import ListItem from './ListItem';
 import Icon from '../Icon';
 import Button from '../Button';
+import useScrollFreeze from '../../hooks/useScrollFreeze';
 
 const SignupModal = ({ isOpen, onClose }) => {
   const {
@@ -28,6 +29,8 @@ const SignupModal = ({ isOpen, onClose }) => {
       }
     }
   `);
+
+  useScrollFreeze(isOpen);
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <Button
@@ -52,7 +55,7 @@ const SignupModal = ({ isOpen, onClose }) => {
         css={css`
           display: flex;
           flex-direction: row;
-          gap: 2rem;
+          gap: 4rem;
           align-items: center;
         `}
       >
@@ -60,27 +63,30 @@ const SignupModal = ({ isOpen, onClose }) => {
         <Surface
           css={css`
             width: 100%;
-            padding: 2rem;
+            padding: 2.5rem;
             margin-top: 2rem;
             margin-bottom: 2rem;
+            box-shadow: none;
             @media screen and (max-width: ${mobileBreakpoint}) {
               display: none;
             }
           `}
           base={Surface.BASE.PRIMARY}
         >
-          <h2>With your new account, you get:</h2>
+          <h2
+            css={css`
+              margin-bottom: 2rem;
+            `}
+          >
+            With your new account, you get:
+          </h2>
           <ul
             css={css`
               list-style-type: none;
-              li:nth-child(1):before {
-                background-color: #f9e3f2;
-              }
-              li:nth-child(2):before {
-                background-color: #e7f6f6;
-              }
-              li:nth-child(3):before {
-                background-color: #fdebb8;
+              padding: 0;
+
+              li:before {
+                background-color: var(--brand-button-primary-accent);
               }
             `}
           >

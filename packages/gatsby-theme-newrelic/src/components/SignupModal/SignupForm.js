@@ -79,12 +79,20 @@ const SignupForm = ({ siteUrl }) => {
           font-weight: 500;
         `}
       >
-        Free access to all of New Relic.{' '}
+        <span
+          css={css`
+            font-size: 3rem;
+          `}
+        >
+          Free access to all
+        </span>{' '}
+        <br />
+        of New Relic.{' '}
         <span
           css={css`
             position: relative;
             display: inline-block;
-            color: #0095a9;
+            color: var(--brand-button-primary-accent);
             &::after {
               content: '';
               position: absolute;
