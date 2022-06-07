@@ -56,7 +56,7 @@ const DarkModeToggle = ({ className, size, onClick }) => {
       `}
     >
       <Icon
-        name={'nr-light-mode'}
+        name="nr-light-mode"
         className={className}
         size={size}
         css={css`
