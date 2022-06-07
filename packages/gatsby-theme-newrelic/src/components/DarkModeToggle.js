@@ -62,17 +62,19 @@ const DarkModeToggle = ({ className, size, onClick }) => {
         css={css`
           cursor: pointer;
           transition: opacity 250ms;
+          transition-timing-function: ease-out;
 
           path {
             transition: transform 250ms;
             transform-origin: center;
-            transition-timing-function: ease-in;
+            transition-timing-function: ease-out;
           }
 
           ${darkMode.value === true &&
           css`
             opacity: 0.8;
             transition: opacity 250ms;
+            transition-timing-function: ease-out;
 
             line {
               stroke-linecap: butt;
@@ -82,7 +84,7 @@ const DarkModeToggle = ({ className, size, onClick }) => {
               transform: rotate(0.5turn) translate(3%, 3%);
               transform-origin: center;
               transition: transform 250ms;
-              transition-timing-function: ease-in;
+              transition-timing-function: ease-out;
             }
           `}
         `}
