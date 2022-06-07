@@ -32,6 +32,12 @@ const Lightbox = ({ children }) => {
           border: none;
           width: 100%;
           padding: 0;
+          background: none;
+          img {
+            cursor: -moz-zoom-in;
+            cursor: -webkit-zoom-in;
+            cursor: zoom-in;
+          }
         `}
       >
         {children}
