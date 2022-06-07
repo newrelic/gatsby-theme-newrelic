@@ -72,11 +72,12 @@ const DarkModeToggle = ({ className, size, onClick }) => {
           ${darkMode.value === true &&
           css`
             opacity: 0.8;
+            transition: opacity 250ms;
 
             path {
               transform: rotate(0.5turn) translate(3%, 3%);
               transform-origin: center;
-              transition: opacity 250ms transform 250ms;
+              transition: transform 250ms;
               transition-timing-function: ease-in;
             }
           `}
