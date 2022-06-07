@@ -26,7 +26,7 @@ const DarkModeToggle = ({ className, size, onClick }) => {
       mode: darkModeValue,
     })
   );
-
+  console.log(darkMode);
   return (
     <Button
       size={Button.SIZE.EXTRA_SMALL}
@@ -56,11 +56,30 @@ const DarkModeToggle = ({ className, size, onClick }) => {
       `}
     >
       <Icon
-        name={darkMode.value ? 'nr-dark-mode' : 'nr-light-mode'}
+        name={'nr-light-mode'}
         className={className}
         size={size}
         css={css`
           cursor: pointer;
+          transition: opacity 250ms;
+
+          path {
+            transition: transform 250ms;
+            transform-origin: center;
+            transition-timing-function: ease-in;
+          }
+
+          ${darkMode.value === true &&
+          css`
+            opacity: 0.8;
+
+            path {
+              transform: rotate(0.5turn) translate(3%, 3%);
+              transform-origin: center;
+              transition: opacity 250ms transform 250ms;
+              transition-timing-function: ease-in;
+            }
+          `}
         `}
       />
     </Button>
