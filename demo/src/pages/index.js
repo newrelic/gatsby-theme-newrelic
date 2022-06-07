@@ -32,6 +32,7 @@ const Button = ({ children, ...props }) => (
   <button type="button" className="button" {...props}>{children}</button>
 );
 
+// a comment
 Button.propTypes = {
   children: PropTypes.node
 };
@@ -204,7 +205,7 @@ const IndexPage = () => {
           <CodeBlock
             copyable
             lineNumbers
-            highlightedLines="5-7,11"
+            highlightedLines="5-7,12"
             fileName="src/components/Button.js"
             language="jsx"
             css={css`
