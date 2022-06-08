@@ -77,9 +77,9 @@ const Lightbox = ({ children }) => {
                         top: -1rem;
                         right: -1rem;
                         align-self: flex-end;
-                        background: var(--secondary-background-color);
-                        color: var(--primary-text-color);
-                        border: var(--border-color) solid 2px;
+                        background: var(--system-background-surface-1-dark);
+                        color: var(--system-text-primary-dark);
+                        border: var(--system-border-regular-dark) solid 1.5px;
                         border-radius: 50%;
                         padding: 0.25rem;
                         display: flex;
@@ -87,7 +87,7 @@ const Lightbox = ({ children }) => {
                       `}
                       onClick={() => setLightboxOpen(false)}
                     >
-                      <Icon name="fe-x" size="1.5rem" />
+                      <Icon name="fe-x" size="1rem" />
                     </Button>
                     {children}
                   </div>
