@@ -9,12 +9,13 @@ export default css`
 
     --secondary-background-color: var(--system-background-surface-1-light);
     --secondary-text-color: var(--system-text-secondary-light);
-);
+
     --secondary-text-color-inverted: var(
       --system-text-secondary-inverted-light
     );
 
     --modal-background-color: var(--secondary-background-color);
+    --modal-wrapper-color: var(--modal-wrapper-background-light);
 
     --button-background-color: var(--primary-text-color);
     --button-outline-color: var(--color-black);
@@ -53,6 +54,7 @@ export default css`
     --secondary-text-color-inverted: var(--system-text-secondary-inverted-dark);
 
     --modal-background-color: var(--system-background-surface-1-dark);
+    --modal-wrapper-color: var(--modal-wrapper-background-dark);
 
     --button-background-color: var(--primary-text-color);
     --button-text-color: var(--color-black);

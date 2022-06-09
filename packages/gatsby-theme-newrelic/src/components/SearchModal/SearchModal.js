@@ -2,7 +2,6 @@ import React, { useRef, useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { animated, useTransition } from 'react-spring';
-import { rgba } from 'polished';
 import { useLocation } from '@reach/router';
 import Footer from './Footer';
 import Input from './Input';
@@ -113,11 +112,7 @@ const SearchModal = ({ onClose, isOpen }) => {
               left: 0;
               padding: var(--site-content-padding);
               z-index: 900;
-              background: ${rgba('#d5d7d7', 0.75)};
-
-              .dark-mode & {
-                background: ${rgba('#3a444b', 0.75)};
-              }
+              background: var(--modal-wrapper-color);
 
               @media screen and (max-width: 760px) {
                 padding: 0;

@@ -22,7 +22,9 @@ import {
   Video,
   useTranslation,
   ExternalLink,
+  Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
+import apm from '../images/apm-intro-overview.png';
 
 const codeSample = `
 import React from 'react';
@@ -435,6 +437,19 @@ nr1 create --type nerdpack --name pageviews-app
             </Link>{' '}
             does not automatically use localized path if on translated site.
           </p>
+        </section>
+        <section>
+          <h2>An image wrapped in the lightbox component</h2>
+          <h3>give it a click!</h3>
+          <Lightbox>
+            <img
+              alt="a code editor gif"
+              css={css`
+                width: 100%;
+              `}
+              src={apm}
+            />
+          </Lightbox>
         </section>
         <section>
           <h2>External Links</h2>

@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { rgba } from 'polished';
 
 export default css`
   --color-white: #ffffff;
@@ -25,6 +26,9 @@ export default css`
 
   --interactive-link-light: #0c74df;
   --interactive-link-dark: #3d9dff;
+
+  --modal-wrapper-background-light: ${rgba('#d5d7d7', 0.75)};
+  --modal-wrapper-background-dark: ${rgba('#3a444b', 0.75)};
 
   --code-console-background-main: #182125;
   --code-console-text-highlight: #429fff;
