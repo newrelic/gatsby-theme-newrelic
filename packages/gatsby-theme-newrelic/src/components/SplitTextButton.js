@@ -1,4 +1,5 @@
 import React from 'react';
+import Skeleton from '@mui/material/Skeleton';
 import PropTypes from 'prop-types';
 import {
   useTreatments,
@@ -38,19 +39,7 @@ const SplitTextButton = ({ className }) => {
       </span>
     </Button>
   ) : (
-    <Button
-      as={ExternalLink}
-      className={className}
-      href="https://newrelic.com/signup"
-      size={Button.SIZE.SMALL}
-      variant={Button.VARIANT.LINK}
-      instrumentation={{
-        component: 'SplitTextButton',
-        layoutElement: 'globalHeader',
-      }}
-    >
-      <span>{t('button.signUp')}</span>
-    </Button>
+    <Skeleton variant="rectangular" width={160} height={65} />
   );
 };
 SplitTextButton.propTypes = {
