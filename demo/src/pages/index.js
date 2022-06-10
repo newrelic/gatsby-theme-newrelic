@@ -24,6 +24,7 @@ import {
   ExternalLink,
   Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
+import SplitTextButton from '../../../packages/gatsby-theme-newrelic/src/components/SplitTextButton';
 import apm from '../images/apm-intro-overview.png';
 
 const codeSample = `
@@ -118,6 +119,7 @@ const IndexPage = () => {
           }
         `}
       >
+        <SplitTextButton />
         <h1>{t('home.welcome')}</h1>
         <p>{t('home.intro')}</p>
         <section>
