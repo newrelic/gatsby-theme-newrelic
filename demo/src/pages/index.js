@@ -421,6 +421,13 @@ nr1 create --type nerdpack --name pageviews-app
           <Video id="inyshp3m7r" type={Video.TYPE.WISTIA} width="500px" />
           <h2>YouTube video</h2>
           <Video id="ZagZfNQYJEU" type={Video.TYPE.YOUTUBE} width="500px" />
+          <h2>Vertical video</h2>
+          <Video
+            type={Video.TYPE.WISTIA}
+            id="qyk74p7j56"
+            vertical
+            width="300px"
+          />
         </section>
         <section>
           <h2>Internal Links</h2>
