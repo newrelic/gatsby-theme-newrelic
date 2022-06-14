@@ -15,7 +15,6 @@ import Icon from './Icon';
 import GlobalNavLink from './GlobalNavLink';
 import SearchInput from './SearchInput';
 import SearchModal from './SearchModal';
-import SplitTextButton from './SplitTextButton';
 import useQueryParams from '../hooks/useQueryParams';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useHasMounted from '../hooks/useHasMounted';
@@ -436,18 +435,22 @@ const GlobalHeader = ({
               >
                 <span>{t('button.login')}</span>
               </Button>
-              <SplitTextButton
+              <Button
+                as={ExternalLink}
+                className={className}
+                href="https://newrelic.com/signup"
+                size={Button.SIZE.SMALL}
+                variant={Button.VARIANT.LINK}
                 css={css`
-                  padding-right: 0;
                   font-size: 18px;
+                  white-space: nowrap;
                   span {
                     color: var(--brand-button-primary-accent);
                   }
-                  @media screen and (max-width: ${mobileBreakpoint}) {
-                    /* padding-right: 1rem; */
-                  }
                 `}
-              />
+              >
+                <span>{t('button.startNow')}</span>
+              </Button>
             </li>
             <li
               css={css`
