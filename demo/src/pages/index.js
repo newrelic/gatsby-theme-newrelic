@@ -22,7 +22,9 @@ import {
   Video,
   useTranslation,
   ExternalLink,
+  Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
+import apm from '../images/apm-intro-overview.png';
 
 const codeSample = `
 import React from 'react';
@@ -32,6 +34,7 @@ const Button = ({ children, ...props }) => (
   <button type="button" className="button" {...props}>{children}</button>
 );
 
+// a comment
 Button.propTypes = {
   children: PropTypes.node
 };
@@ -204,7 +207,7 @@ const IndexPage = () => {
           <CodeBlock
             copyable
             lineNumbers
-            highlightedLines="5-7,11"
+            highlightedLines="5-7,12"
             fileName="src/components/Button.js"
             language="jsx"
             css={css`
@@ -420,6 +423,13 @@ nr1 create --type nerdpack --name pageviews-app
           <Video id="inyshp3m7r" type={Video.TYPE.WISTIA} width="500px" />
           <h2>YouTube video</h2>
           <Video id="ZagZfNQYJEU" type={Video.TYPE.YOUTUBE} width="500px" />
+          <h2>Vertical video</h2>
+          <Video
+            type={Video.TYPE.WISTIA}
+            id="qyk74p7j56"
+            vertical
+            width="300px"
+          />
         </section>
         <section>
           <h2>Internal Links</h2>
@@ -434,6 +444,19 @@ nr1 create --type nerdpack --name pageviews-app
             </Link>{' '}
             does not automatically use localized path if on translated site.
           </p>
+        </section>
+        <section>
+          <h2>An image wrapped in the lightbox component</h2>
+          <h3>give it a click!</h3>
+          <Lightbox>
+            <img
+              alt="a code editor gif"
+              css={css`
+                width: 100%;
+              `}
+              src={apm}
+            />
+          </Lightbox>
         </section>
         <section>
           <h2>External Links</h2>

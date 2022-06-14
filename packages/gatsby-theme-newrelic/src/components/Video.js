@@ -9,37 +9,41 @@ const videoPlatforms = {
   wistia: (id) => `//fast.wistia.net/embed/iframe/${id}`,
 };
 
-const Video = ({ id, type, title, className, width }) => (
-  <div
-    className={className}
-    css={css`
-      max-width: ${width};
-    `}
-  >
+const Video = ({ id, type, title, className, width, vertical }) => {
+  const aspectRatioMultiplier = vertical ? 2.1 : 0.5625; // vertical vs horizontal
+
+  return (
     <div
+      className={className}
       css={css`
-        position: relative;
-        padding-top: 56.25%; // 16:9
-        height: 0;
+        max-width: ${width};
       `}
     >
-      <iframe
-        src={videoPlatforms[type](id)}
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        title={title}
-        frameBorder="0"
-        allowFullScreen
+      <div
         css={css`
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
+          position: relative;
+          padding-top: ${`${aspectRatioMultiplier * 100}%`};
+          height: 0;
         `}
-      />
+      >
+        <iframe
+          src={videoPlatforms[type](id)}
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          title={title}
+          frameBorder="0"
+          allowFullScreen
+          css={css`
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          `}
+        />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 Video.propTypes = {
   id: PropTypes.string.isRequired,
@@ -47,6 +51,7 @@ Video.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   width: PropTypes.string,
+  vertical: PropTypes.bool,
 };
 
 Video.TYPE = transformKeys(videoPlatforms, constantize);
