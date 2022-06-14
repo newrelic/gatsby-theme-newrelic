@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.2.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.1.0...v6.2.0) (2022-06-14)
+
+
+### Bug Fixes
+
+* remove split test text 'Free Account' ([7e08eac](https://github.com/newrelic/gatsby-theme-newrelic/commit/7e08eacdedcc9d6fc3fd0627a165a6a6abcc4877))
+* remove SplitTextButton component and tests ([b808fa1](https://github.com/newrelic/gatsby-theme-newrelic/commit/b808fa107f9ffdd7969f8296a83572806d8912bf))
+
+
+### Features
+
+* Add lightbox component ([750b3e2](https://github.com/newrelic/gatsby-theme-newrelic/commit/750b3e2883ab6aee09fd348d542272de3fdcd98d))
+* Add orientation prop for videos ([ea7ee30](https://github.com/newrelic/gatsby-theme-newrelic/commit/ea7ee307bc2154a0adaa951a0b6a2c2ad8c89b31))
+
+
+
+
+
 # [6.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.0.3...v6.1.0) (2022-05-24)
 
 
