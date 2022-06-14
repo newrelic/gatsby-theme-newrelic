@@ -2597,13 +2597,14 @@ import { Video } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop        | Type   | Required | Default | Description                                                                                                                    |
-| ----------- | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `className` | string | no       |         | Additional `className` for the component.                                                                                      |
-| `id`        | string | yes      |         | The ID of the video from either Wistia or YouTube                                                                              |
-| `title`     | string | no       |         | `title` attribute placed on the containing `iframe`                                                                            |
-| `type`      | enum   | yes      |         | Determines the source of content. Must be one of `Video.TYPE.YOUTUBE` or `Video.TYPE.WISTIA`                                   |
-| `width`     | string | no       |         | The width of the video. Note the player will always render in a 16:9 aspect ratio. Accepts any CSS string value (e.g. `500px`) |
+| Prop        | Type    | Required | Default | Description                                                                                                                    |
+| ----------- | ------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `className` | string  | no       |         | Additional `className` for the component.                                                                                      |
+| `vertical`  | boolean | no       | false   | When true will change the aspect ratio to 9:16 which is good for most mobile videos                                            |
+| `id`        | string  | yes      |         | The ID of the video from either Wistia or YouTube                                                                              |
+| `title`     | string  | no       |         | `title` attribute placed on the containing `iframe`                                                                            |
+| `type`      | enum    | yes      |         | Determines the source of content. Must be one of `Video.TYPE.YOUTUBE` or `Video.TYPE.WISTIA`                                   |
+| `width`     | string  | no       |         | The width of the video. Note the player will always render in a 16:9 aspect ratio. Accepts any CSS string value (e.g. `500px`) |
 
 **Examples**
 
@@ -2617,6 +2618,12 @@ Wistia
 
 ```js
 <Video id="abcdefg" type={Video.TYPE.WISTIA} width="500px" />
+```
+
+Vertical orientation
+
+```js
+<Video id="abcdefg" type={Video.TYPE.WISTIA} width="500px" vertical />
 ```
 
 ## MDX Component variants
