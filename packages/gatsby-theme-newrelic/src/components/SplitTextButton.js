@@ -19,7 +19,6 @@ const SplitTextButton = ({ className }) => {
   const clickCallback = () => {
     track(SPLIT_TRACKING_EVENTS.SIGNUP_BUTTON_CLICK);
   };
-  const splitText = deven_signupbutton_text?.treatment;
 
   const { isReady } = React.useContext(SplitContext);
 
@@ -33,9 +32,7 @@ const SplitTextButton = ({ className }) => {
       instrumentation={{ component: 'SplitTextButton' }}
       onClick={clickCallback}
     >
-      <span>
-        {t(splitText === 'start_now' ? 'button.startNow' : 'button.signUp')}
-      </span>
+      <span>{t('button.startNow')}</span>
     </Button>
   ) : (
     <Button
