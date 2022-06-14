@@ -1,6 +1,6 @@
 const path = require('path');
-const fs = require('fs');
 const { createFilePath } = require('gatsby-source-filesystem');
+const fs = require('fs');
 const { withDefaults } = require('./src/utils/defaultOptions');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');

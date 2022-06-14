@@ -19,6 +19,7 @@ export { default as GitHubIssueButton } from './src/components/GitHubIssueButton
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';
 export { default as Layout } from './src/components/Layout';
+export { default as Lightbox } from './src/components/Lightbox';
 export { default as Link } from './src/components/Link';
 export { default as NavLink } from './src/components/NavLink';
 export { default as Logo } from './src/components/Logo';

@@ -2,6 +2,7 @@ import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import Icon from './Icon';
+import Link from './Link';
 import composeHandlers from '../utils/composeHandlers';
 import useSyncedRef from '../hooks/useSyncedRef';
 import useKeyPress from '../hooks/useKeyPress';
@@ -15,6 +16,11 @@ const SIZES = {
 const ICONS = {
   FILTER: 'fe-filter',
   SEARCH: 'fe-search',
+};
+
+const ICON_ALIGNMENTS = {
+  LEFT: 'left',
+  RIGHT: 'right',
 };
 
 const HORIZONTAL_SPACING = {
@@ -34,6 +40,8 @@ const SearchInput = forwardRef(
       size = 'medium',
       className,
       iconName = 'fe-search',
+      alignIcon = 'left',
+      isIconClickable = false,
       onBlur,
       onFocus,
       ...props
@@ -61,16 +69,52 @@ const SearchInput = forwardRef(
           ${size && styles.size[size].container}
         `}
       >
-        <Icon
-          css={css`
-            position: absolute;
-            left: var(--horizontal-spacing);
-            top: 50%;
-            transform: translateY(-50%);
-          `}
-          name={iconName}
-          size={styles.size[size].icon}
-        />
+        {isIconClickable ? (
+          <Link
+            to={`?q=${value}`}
+            css={css`
+              color: var(--brand-button-primary-accent);
+              &:hover {
+                color: var(--brand-button-primary-accent-hover);
+              }
+            `}
+          >
+            <Icon
+              css={css`
+                position: absolute;
+                ${alignIcon === 'right'
+                  ? css`
+                      right: var(--horizontal-spacing);
+                    `
+                  : css`
+                      left: var(--horizontal-spacing);
+                    `}
+                top: 50%;
+                transform: translateY(-50%);
+              `}
+              name={iconName}
+              size={styles.size[size].icon}
+            />
+          </Link>
+        ) : (
+          <Icon
+            css={css`
+              position: absolute;
+              ${alignIcon === 'right'
+                ? css`
+                    right: var(--horizontal-spacing);
+                  `
+                : css`
+                    left: var(--horizontal-spacing);
+                  `}
+              top: 50%;
+              transform: translateY(-50%);
+            `}
+            name={iconName}
+            size={styles.size[size].icon}
+          />
+        )}
+
         <input
           ref={inputRef}
           value={value}
@@ -100,13 +144,19 @@ const SearchInput = forwardRef(
             transition: 0.15s ease-out;
             line-height: 1;
             color: var(--primary-text-color);
-
-            padding-left: calc(
-              var(--horizontal-spacing) + 0.5rem + var(--icon-size)
-            );
-            padding-right: calc(
-              var(--horizontal-spacing) + 0.5rem + var(--icon-size)
-            );
+            ${alignIcon === 'left'
+              ? css`
+                  padding-left: calc(
+                    var(--horizontal-spacing) + 0.5rem + var(--icon-size)
+                  );
+                  padding-right: var(--horizontal-spacing);
+                `
+              : css`
+                  padding-left: var(--horizontal-spacing);
+                  padding-right: calc(
+                    var(--horizontal-spacing) + 0.5rem + var(--icon-size)
+                  );
+                `}
 
             ${size && styles.size[size].input}
 
@@ -124,7 +174,9 @@ const SearchInput = forwardRef(
               onClear();
             }}
             css={css`
-              right: var(--horizontal-spacing);
+              right: ${alignIcon === 'right'
+                ? ' calc(var(--horizontal-spacing) + 0.5rem + var(--icon-size))'
+                : 'var(--horizontal-spacing)'};
               top: 50%;
               transform: translateY(-50%);
               &:hover {
@@ -184,12 +236,15 @@ SearchInput.propTypes = {
   width: PropTypes.string,
   size: PropTypes.oneOf(Object.values(SIZES)),
   iconName: PropTypes.oneOf(Object.values(ICONS)),
+  alignIcon: PropTypes.oneOf(Object.values(ICON_ALIGNMENTS)),
+  isIconClickable: PropTypes.bool,
   onBlur: PropTypes.func,
   onFocus: PropTypes.func,
 };
 
 SearchInput.SIZE = SIZES;
 SearchInput.ICONS = ICONS;
+SearchInput.ICON_ALIGNMENT = ICON_ALIGNMENTS;
 
 export default SearchInput;
 

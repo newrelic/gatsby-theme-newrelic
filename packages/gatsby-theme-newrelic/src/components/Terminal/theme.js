@@ -10,7 +10,7 @@ export default css`
     }
 
     &.comment {
-      color: var(--color-selection);
+      color: var(--color-comment);
     }
 
     &.punctuation,

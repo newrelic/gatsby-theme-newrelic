@@ -23,7 +23,9 @@ import {
   useTranslation,
   ExternalLink,
   SignupModal,
+  Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
+import apm from '../images/apm-intro-overview.png';
 
 const codeSample = `
 import React from 'react';
@@ -33,6 +35,7 @@ const Button = ({ children, ...props }) => (
   <button type="button" className="button" {...props}>{children}</button>
 );
 
+// a comment
 Button.propTypes = {
   children: PropTypes.node
 };
@@ -134,27 +137,38 @@ const IndexPage = () => {
           </ul>
           <h2>Search inputs</h2>
           <SearchInput
-            style={{ margin: '1rem 0', maxWidth: '500px' }}
+            css={css`
+              margin-bottom: 1rem;
+            `}
             placeholder="Test out a small search"
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
             size={SearchInput.SIZE.SMALL}
+            iconName={SearchInput.ICONS.SEARCH}
           />
           <SearchInput
-            style={{ margin: '1rem 0', maxWidth: '500px' }}
+            css={css`
+              margin-bottom: 1rem;
+            `}
             placeholder="Test out a medium search"
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
+            iconName={SearchInput.ICONS.FILTER}
           />
           <SearchInput
-            style={{ marginBottom: '1rem', maxWidth: '500px' }}
+            css={css`
+              margin-bottom: 1rem;
+            `}
             placeholder="Test out a large search"
             onClear={() => setSearchTerm('')}
             onChange={(e) => setSearchTerm(e.target.value)}
             value={searchTerm}
             size={SearchInput.SIZE.LARGE}
+            iconName={SearchInput.ICONS.SEARCH}
+            alignIcon={SearchInput.ICON_ALIGNMENT.RIGHT}
+            isIconClickable
           />
         </section>
         <section>
@@ -208,7 +222,7 @@ const IndexPage = () => {
           <CodeBlock
             copyable
             lineNumbers
-            highlightedLines="5-7,11"
+            highlightedLines="5-7,12"
             fileName="src/components/Button.js"
             language="jsx"
             css={css`
@@ -438,6 +452,19 @@ nr1 create --type nerdpack --name pageviews-app
             </Link>{' '}
             does not automatically use localized path if on translated site.
           </p>
+        </section>
+        <section>
+          <h2>An image wrapped in the lightbox component</h2>
+          <h3>give it a click!</h3>
+          <Lightbox>
+            <img
+              alt="a code editor gif"
+              css={css`
+                width: 100%;
+              `}
+              src={apm}
+            />
+          </Lightbox>
         </section>
         <section>
           <h2>External Links</h2>
