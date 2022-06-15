@@ -27,6 +27,8 @@ const DarkModeToggle = ({ className, size, onClick }) => {
     })
   );
 
+  console.log('localStorage.darkMode', localStorage.darkMode, darkMode.value);
+
   return (
     <Button
       size={Button.SIZE.EXTRA_SMALL}
@@ -71,6 +73,7 @@ const DarkModeToggle = ({ className, size, onClick }) => {
           }
 
           ${darkMode.value === true &&
+          localStorage.darkMode === 'true' &&
           css`
             opacity: 0.8;
             transition: opacity 250ms;
