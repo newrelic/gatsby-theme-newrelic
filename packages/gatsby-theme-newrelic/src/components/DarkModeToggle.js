@@ -27,8 +27,6 @@ const DarkModeToggle = ({ className, size, onClick }) => {
     })
   );
 
-  console.log('localStorage.darkMode', localStorage.darkMode, darkMode.value);
-
   return (
     <Button
       size={Button.SIZE.EXTRA_SMALL}
@@ -58,7 +56,7 @@ const DarkModeToggle = ({ className, size, onClick }) => {
       `}
     >
       <Icon
-        name="nr-light-mode"
+        name="nr-dark-mode-toggle"
         className={className}
         size={size}
         css={css`

@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from '@emotion/react';
 import SVG from '../../components/SVG';
 
-const DarkModeIcon = (props) => (
+const DarkModeToggle = (props) => (
   <SVG
     {...props}
     viewBox="0 0 27 27"
@@ -15,13 +15,17 @@ const DarkModeIcon = (props) => (
       }
     `}
   >
-    <path d="M12.9999 20.0722C11.1242 20.0722 9.3254 19.3271 7.99912 18.0008C6.67283 16.6745 5.92773 14.8757 5.92773 13C5.92773 11.1244 6.67283 9.32553 7.99912 7.99924C9.3254 6.67296 11.1242 5.92786 12.9999 5.92786L12.9999 13L12.9999 20.0722Z" />
-    <circle cx="12.9999" cy="13" r="7.57215" />
+    <path
+      d="M13.0001 20.0722C14.8758 20.0722 16.6746 19.3271 18.0009 18.0008C19.3272 16.6745 20.0723 14.8757 20.0723 13C20.0723 11.1244 19.3272 9.32553 18.0009 7.99924C16.6746 6.67296 14.8758 5.92786 13.0001 5.92786V13L13.0001 20.0722Z"
+      fill="#F3F4F4"
+    />
+    <circle cx="12.9999" cy="13" r="7.57215" stroke="#F3F4F4" />
     <line
       x1="13.1826"
       y1="0.5"
       x2="13.1826"
       y2="2.76407"
+      stroke="#F3F4F4"
       strokeLinecap="round"
     />
     <line
@@ -29,6 +33,7 @@ const DarkModeIcon = (props) => (
       y1="13.106"
       x2="23.3485"
       y2="13.106"
+      stroke="#F3F4F4"
       strokeLinecap="round"
     />
     <line
@@ -36,6 +41,7 @@ const DarkModeIcon = (props) => (
       y1="23.3485"
       x2="13.106"
       y2="25.6126"
+      stroke="#F3F4F4"
       strokeLinecap="round"
     />
     <line
@@ -43,6 +49,7 @@ const DarkModeIcon = (props) => (
       y1="4.26704"
       x2="20.4232"
       y2="5.86798"
+      stroke="#F3F4F4"
       strokeLinecap="round"
     />
     <line
@@ -50,9 +57,10 @@ const DarkModeIcon = (props) => (
       y1="21.9701"
       x2="20.2989"
       y2="20.3692"
+      stroke="#F3F4F4"
       strokeLinecap="round"
     />
   </SVG>
 );
 
-export default DarkModeIcon;
+export default DarkModeToggle;
