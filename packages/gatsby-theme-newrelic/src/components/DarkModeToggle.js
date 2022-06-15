@@ -27,8 +27,6 @@ const DarkModeToggle = ({ className, size, onClick }) => {
     })
   );
 
-  console.log('className', className);
-
   return (
     <Button
       size={Button.SIZE.EXTRA_SMALL}
