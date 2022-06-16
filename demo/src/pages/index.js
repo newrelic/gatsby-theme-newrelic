@@ -24,7 +24,10 @@ import {
   ExternalLink,
   Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
-import apm from '../images/apm-intro-overview.png';
+
+import tallImage from '../images/nr-one-ajax-browser.png';
+import regularImage from '../images/apm-intro-overview.png';
+import transparentBackgroundImage from '../images/intro-DT.png';
 
 const codeSample = `
 import React from 'react';
@@ -450,11 +453,29 @@ nr1 create --type nerdpack --name pageviews-app
           <h3>give it a click!</h3>
           <Lightbox>
             <img
-              alt="a code editor gif"
+              alt="a very average screenshot"
               css={css`
                 width: 100%;
               `}
-              src={apm}
+              src={regularImage}
+            />
+          </Lightbox>
+          <Lightbox>
+            <img
+              alt="a very tall screenshot"
+              css={css`
+                width: 100%;
+              `}
+              src={tallImage}
+            />
+          </Lightbox>
+          <Lightbox>
+            <img
+              alt="a screenshot with a transparent background"
+              css={css`
+                width: 100%;
+              `}
+              src={transparentBackgroundImage}
             />
           </Lightbox>
         </section>

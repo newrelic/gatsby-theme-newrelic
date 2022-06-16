@@ -5,6 +5,7 @@ import { css } from '@emotion/react';
 import Portal from './Portal';
 import Icon from './Icon';
 import useScrollFreeze from '../hooks/useScrollFreeze';
+import useKeyPress from '../hooks/useKeyPress';
 import Button from './Button';
 
 const Lightbox = ({ children }) => {
@@ -19,6 +20,7 @@ const Lightbox = ({ children }) => {
     leave: { opacity: 0, transform: 'scale(0.96)' },
   });
   useScrollFreeze(lightboxOpen);
+  useKeyPress('Escape', () => setLightboxOpen(false));
 
   return (
     <>
@@ -68,6 +70,7 @@ const Lightbox = ({ children }) => {
                       display: flex;
                       flex-direction: column;
                       position: relative;
+                      background: var(--primary-background-color);
                     `}
                   >
                     <Button
@@ -89,7 +92,13 @@ const Lightbox = ({ children }) => {
                     >
                       <Icon name="fe-x" size="1rem" />
                     </Button>
-                    {children}
+                    <div
+                      css={css`
+                        overflow-y: scroll;
+                      `}
+                    >
+                      {children}
+                    </div>
                   </div>
                 </animated.div>
               </Portal>
