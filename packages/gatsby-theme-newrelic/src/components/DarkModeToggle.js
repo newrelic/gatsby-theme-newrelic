@@ -56,11 +56,36 @@ const DarkModeToggle = ({ className, size, onClick }) => {
       `}
     >
       <Icon
-        name={darkMode.value ? 'nr-dark-mode' : 'nr-light-mode'}
+        name="nr-dark-mode-toggle"
         className={className}
         size={size}
         css={css`
           cursor: pointer;
+          transition: opacity 250ms;
+          transition-timing-function: ease-out;
+
+          path {
+            transition: transform 250ms;
+            transform-origin: center;
+            transition-timing-function: ease-out;
+          }
+
+          .dark-mode & {
+            opacity: 0.8;
+            transition: opacity 250ms;
+            transition-timing-function: ease-out;
+
+            line {
+              stroke-linecap: butt;
+            }
+
+            path {
+              transform: rotate(0.5turn) translate(3%, 3%);
+              transform-origin: center;
+              transition: transform 250ms;
+              transition-timing-function: ease-out;
+            }
+          }
         `}
       />
     </Button>

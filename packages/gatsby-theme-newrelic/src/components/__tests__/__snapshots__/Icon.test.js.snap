@@ -949,7 +949,7 @@ exports[`nr-ai icon matches its snapshot 1`] = `
 </svg>
 `;
 
-exports[`nr-dark-mode icon matches its snapshot 1`] = `
+exports[`nr-dark-mode-toggle icon matches its snapshot 1`] = `
 .emotion-0 {
   width: 1em;
   height: 1em;
@@ -967,14 +967,17 @@ exports[`nr-dark-mode icon matches its snapshot 1`] = `
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    d="M12.9999 20.0722C11.1242 20.0722 9.3254 19.3271 7.99912 18.0008C6.67283 16.6745 5.92773 14.8757 5.92773 13C5.92773 11.1244 6.67283 9.32553 7.99912 7.99924C9.3254 6.67296 11.1242 5.92786 12.9999 5.92786L12.9999 13L12.9999 20.0722Z"
+    d="M13.0001 20.0722C14.8758 20.0722 16.6746 19.3271 18.0009 18.0008C19.3272 16.6745 20.0723 14.8757 20.0723 13C20.0723 11.1244 19.3272 9.32553 18.0009 7.99924C16.6746 6.67296 14.8758 5.92786 13.0001 5.92786V13L13.0001 20.0722Z"
+    fill="#F3F4F4"
   />
   <circle
     cx="12.9999"
     cy="13"
     r="7.57215"
+    stroke="#F3F4F4"
   />
   <line
+    stroke="#F3F4F4"
     strokeLinecap="round"
     x1="13.1826"
     x2="13.1826"
@@ -982,6 +985,7 @@ exports[`nr-dark-mode icon matches its snapshot 1`] = `
     y2="2.76407"
   />
   <line
+    stroke="#F3F4F4"
     strokeLinecap="round"
     x1="25.6125"
     x2="23.3485"
@@ -989,6 +993,7 @@ exports[`nr-dark-mode icon matches its snapshot 1`] = `
     y2="13.106"
   />
   <line
+    stroke="#F3F4F4"
     strokeLinecap="round"
     x1="13.106"
     x2="13.106"
@@ -996,6 +1001,7 @@ exports[`nr-dark-mode icon matches its snapshot 1`] = `
     y2="25.6126"
   />
   <line
+    stroke="#F3F4F4"
     strokeLinecap="round"
     x1="22.0242"
     x2="20.4232"
@@ -1003,6 +1009,7 @@ exports[`nr-dark-mode icon matches its snapshot 1`] = `
     y2="5.86798"
   />
   <line
+    stroke="#F3F4F4"
     strokeLinecap="round"
     x1="21.8998"
     x2="20.2989"
@@ -1170,76 +1177,6 @@ exports[`nr-i18n icon matches its snapshot 1`] = `
     x2="18.1819"
     y1="12.8864"
     y2="12.8864"
-  />
-</svg>
-`;
-
-exports[`nr-light-mode icon matches its snapshot 1`] = `
-.emotion-0 {
-  width: 1em;
-  height: 1em;
-  stroke: currentColor;
-}
-
-.emotion-0 path {
-  fill: currentColor;
-}
-
-<svg
-  className="emotion-0"
-  fill="none"
-  viewBox="0 0 27 27"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="M13.0001 20.0722C14.8758 20.0722 16.6746 19.3271 18.0009 18.0008C19.3272 16.6745 20.0723 14.8757 20.0723 13C20.0723 11.1244 19.3272 9.32553 18.0009 7.99924C16.6746 6.67296 14.8758 5.92786 13.0001 5.92786V13L13.0001 20.0722Z"
-    fill="#F3F4F4"
-  />
-  <circle
-    cx="12.9999"
-    cy="13"
-    r="7.57215"
-    stroke="#F3F4F4"
-  />
-  <line
-    stroke="#F3F4F4"
-    strokeLinecap="round"
-    x1="13.1826"
-    x2="13.1826"
-    y1="0.5"
-    y2="2.76407"
-  />
-  <line
-    stroke="#F3F4F4"
-    strokeLinecap="round"
-    x1="25.6125"
-    x2="23.3485"
-    y1="13.106"
-    y2="13.106"
-  />
-  <line
-    stroke="#F3F4F4"
-    strokeLinecap="round"
-    x1="13.106"
-    x2="13.106"
-    y1="23.3485"
-    y2="25.6126"
-  />
-  <line
-    stroke="#F3F4F4"
-    strokeLinecap="round"
-    x1="22.0242"
-    x2="20.4232"
-    y1="4.26704"
-    y2="5.86798"
-  />
-  <line
-    stroke="#F3F4F4"
-    strokeLinecap="round"
-    x1="21.8998"
-    x2="20.2989"
-    y1="21.9701"
-    y2="20.3692"
   />
 </svg>
 `;
