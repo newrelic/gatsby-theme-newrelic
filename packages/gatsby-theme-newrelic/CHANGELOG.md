@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.2.0...v6.3.0) (2022-06-17)
+
+
+### Bug Fixes
+
+* add line lengthening to the transition ([5bf403d](https://github.com/newrelic/gatsby-theme-newrelic/commit/5bf403d6e79e0f07c1d5e1b0cb4569aecc0d77d0))
+* move opacity to correct selector ([0f4e241](https://github.com/newrelic/gatsby-theme-newrelic/commit/0f4e241873e3b2e320499a2869930e12a6fc8c0e))
+* remove console log ([96a40e1](https://github.com/newrelic/gatsby-theme-newrelic/commit/96a40e12e112535ce671f675248d85f45379eb47))
+* remove console.log ([31b79bf](https://github.com/newrelic/gatsby-theme-newrelic/commit/31b79bf30759f03e0603df5958caa5a9591f0c1c))
+* remove unneeded curly braces ([cef0345](https://github.com/newrelic/gatsby-theme-newrelic/commit/cef03459f67820b4c22d182b89be180dc8d9a4b3))
+* update easeing ([ff8bb4f](https://github.com/newrelic/gatsby-theme-newrelic/commit/ff8bb4ff4eebf0f46c470e4f86033b76e1c3a3cf))
+* update icon name, remove console.log ([9cc5e27](https://github.com/newrelic/gatsby-theme-newrelic/commit/9cc5e27ed0ade453ddfe3334d91007633d3523d7))
+* update jest snapshot ([270abb3](https://github.com/newrelic/gatsby-theme-newrelic/commit/270abb3eb7660beeb4bafde4e18a6df9a8a5628f))
+* Updates to lightbox ([2c363d2](https://github.com/newrelic/gatsby-theme-newrelic/commit/2c363d28fd056b6065f875d8fcfa0c5fe5113584))
+* use classname vs darkMode.value for darkMode css ([906bae5](https://github.com/newrelic/gatsby-theme-newrelic/commit/906bae57c769bc787f682d67022509750843184f))
+* use localStorage to try and get icon oriented properly on pageload ([a127a38](https://github.com/newrelic/gatsby-theme-newrelic/commit/a127a38261dd14437e648a1940459065431d0fcc))
+
+
+### Features
+
+* add transition to light/dark mode icon ([40fa84d](https://github.com/newrelic/gatsby-theme-newrelic/commit/40fa84d2bd22a05a7fdf3f5cf369372c74588dfd))
+
+
+
+
+
 # [6.2.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.1.0...v6.2.0) (2022-06-14)
 
 
