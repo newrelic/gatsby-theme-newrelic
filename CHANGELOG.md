@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.4.0...v6.4.1) (2022-06-22)
+
+
+### Bug Fixes
+
+* actually use the modal on the sign up button ([82406e3](https://github.com/newrelic/gatsby-theme-newrelic/commit/82406e31d881b4b2c399988c8086643ed63ff468))
+* make sign up button not an External Link ([08cd316](https://github.com/newrelic/gatsby-theme-newrelic/commit/08cd316fff703c4d76562182554c87ee866c62e9))
+
+
+
+
+
 # [6.4.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.3.1...v6.4.0) (2022-06-22)
 
 
