@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.4.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.3.1...v6.4.0) (2022-06-22)
+
+
+### Bug Fixes
+
+* design tweaks ([fba3e63](https://github.com/newrelic/gatsby-theme-newrelic/commit/fba3e636681f59c82bccd58bb4e7c007383a4e7c))
+
+
+### Features
+
+* migrate functionality for signup over to theme ([5df8a5e](https://github.com/newrelic/gatsby-theme-newrelic/commit/5df8a5e0a3521ad0c9c9238bac7117e102ae3f47))
+
+
+
+
+
 ## [6.3.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.3.0...v6.3.1) (2022-06-22)
 
 
