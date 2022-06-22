@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useMedia from 'use-media';
 import path from 'path';
@@ -19,6 +19,7 @@ import useQueryParams from '../hooks/useQueryParams';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useHasMounted from '../hooks/useHasMounted';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
+import SignupModal from './SignupModal';
 
 export const NR_SITES = {
   DOCS: 'DOCS',
@@ -93,6 +94,7 @@ const GlobalHeader = ({
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
   const { t } = useThemeTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     allLocale: { nodes: locales },
@@ -438,7 +440,7 @@ const GlobalHeader = ({
               <Button
                 as={ExternalLink}
                 className={className}
-                href="https://newrelic.com/signup"
+                onClick={() => setIsModalOpen(true)}
                 size={Button.SIZE.SMALL}
                 variant={Button.VARIANT.LINK}
                 css={css`
@@ -458,6 +460,10 @@ const GlobalHeader = ({
               `}
             />
           </ul>
+          <SignupModal
+            onClose={() => setIsModalOpen(false)}
+            isOpen={isModalOpen}
+          />
         </div>
       </div>
     </>
