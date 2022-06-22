@@ -438,7 +438,6 @@ const GlobalHeader = ({
                 <span>{t('button.login')}</span>
               </Button>
               <Button
-                as={ExternalLink}
                 className={className}
                 onClick={() => setIsModalOpen(true)}
                 size={Button.SIZE.SMALL}
