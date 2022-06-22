@@ -22,6 +22,7 @@ import {
   Video,
   useTranslation,
   ExternalLink,
+  SignupModal,
   Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
 
@@ -99,6 +100,7 @@ const xmlSample = `
 const IndexPage = () => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <Layout.Main
@@ -170,6 +172,19 @@ const IndexPage = () => {
             iconName={SearchInput.ICONS.SEARCH}
             alignIcon={SearchInput.ICON_ALIGNMENT.RIGHT}
             isIconClickable
+          />
+        </section>
+        <section>
+          <h2>Sign up modal</h2>
+          <Button
+            variant={Button.VARIANT.PRIMARY}
+            onClick={() => setIsModalOpen(true)}
+          >
+            Sign up!
+          </Button>
+          <SignupModal
+            onClose={() => setIsModalOpen(false)}
+            isOpen={isModalOpen}
           />
         </section>
         <section>
