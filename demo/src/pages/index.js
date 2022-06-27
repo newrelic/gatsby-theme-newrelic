@@ -26,6 +26,7 @@ import {
   Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
 
+import Skeleton from '../../../packages/gatsby-theme-newrelic/src/components/Skeleton';
 import tallImage from '../images/nr-one-ajax-browser.png';
 import regularImage from '../images/apm-intro-overview.png';
 import transparentBackgroundImage from '../images/intro-DT.png';
@@ -139,6 +140,9 @@ const IndexPage = () => {
             <li>Final list item</li>
           </ul>
           <h2>Search inputs</h2>
+          <h2>This is a skeleton</h2>
+          <Skeleton />
+          <br />
           <SearchInput
             css={css`
               margin-bottom: 1rem;
