@@ -76,7 +76,7 @@ module.exports = {
             'https://signup-receiver.staging-service.newrelic.com',
           reCaptchaToken:
             process.env.RECAPTCHA_TOKEN ||
-            '6LdZ0xcgAAAAAPxQTpvn9B4qzTRhRM8llwvt41dX',
+            '6LdMFd8UAAAAAApWFzm8YCyuGCUfg57U1WvqVYqC',
         },
       },
     },
