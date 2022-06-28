@@ -64,5 +64,6 @@ module.exports = {
         ignoreRestSiblings: false,
       },
     ],
+    'no-control-regex': 0,
   },
 };
