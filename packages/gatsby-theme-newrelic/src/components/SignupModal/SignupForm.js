@@ -161,9 +161,6 @@ const SignupForm = ({ siteUrl }) => {
           placeholder="name@company"
           value={input.email.value}
           onChange={(e) => handleChange('email', e.target.value)}
-          css={css`
-            color: red !important;
-          `}
         />
         <Button
           variant={Button.VARIANT.PRIMARY}
