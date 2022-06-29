@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.4.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.4.1...v6.4.2) (2022-06-29)
+
+
+### Bug Fixes
+
+* add email validation to email input ([7c9278e](https://github.com/newrelic/gatsby-theme-newrelic/commit/7c9278e38e61bc1940048d771917ba034b303721))
+* disable linting on regex code ([68ff9fa](https://github.com/newrelic/gatsby-theme-newrelic/commit/68ff9fabcd4e9358f7059590b479a2e00df0a456))
+* remove unneeded css ([00b7344](https://github.com/newrelic/gatsby-theme-newrelic/commit/00b7344d9a9d5147d310c7949c49a8b22a05d3d9))
+* update eslint rules to allow regex escape characters ([4555bdb](https://github.com/newrelic/gatsby-theme-newrelic/commit/4555bdbc1ecaa3000ac5f6f93734be7f89eea465))
+* use storefront recaptcha site key to test that out ([d615279](https://github.com/newrelic/gatsby-theme-newrelic/commit/d615279373c7366b3f989434a040c2a7c0a12407))
+
+
+
+
+
 ## [6.4.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.4.0...v6.4.1) (2022-06-22)
 
 
