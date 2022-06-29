@@ -16,6 +16,15 @@ import useTessen from '../../hooks/useTessen';
 
 const isValid = (value) => value !== undefined && value.length > 0;
 
+// snippet from this article: https://gomakethings.com/email-validation-in-javascript/
+
+const isEmail = (email) =>
+  /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/.test(
+    email
+  );
+
+const isValidEmail = (value) => isValid(value) && isEmail(value);
+
 const defaultInputValues = { value: '', isValid: false };
 
 const defaultValues = { email: defaultInputValues, name: defaultInputValues };
@@ -32,14 +41,19 @@ const SignupForm = ({ siteUrl }) => {
 
   const handleChange = (parameter, value) => {
     const changedInput = { ...input };
-    changedInput[parameter] = { value, isValid: isValid(value) };
+    if (parameter === 'email') {
+      changedInput[parameter] = { value, isValid: isValidEmail(value) };
+    } else changedInput[parameter] = { value, isValid: isValid(value) };
 
     setInput(changedInput);
   };
 
   const onSubmit = async () => {
     setLoading(true);
-    const organizationId = await createAccountRequest(input, tessen);
+    const organizationId = await createAccountRequest(
+      { email: input.email.value, name: input.name.value },
+      tessen
+    );
 
     setLoading(false);
     if (organizationId) {
@@ -54,7 +68,7 @@ const SignupForm = ({ siteUrl }) => {
     setError(false);
   };
 
-  const invalidInput = !input.email.isValid || !input.name.isValid;
+  const validInput = input.email.isValid && input.name.isValid;
 
   if (loading) {
     return <Spinner />;
@@ -153,7 +167,7 @@ const SignupForm = ({ siteUrl }) => {
         />
         <Button
           variant={Button.VARIANT.PRIMARY}
-          disabled={invalidInput}
+          disabled={!validInput}
           onClick={onSubmit}
           css={css`
             margin-top: 0.5rem;
