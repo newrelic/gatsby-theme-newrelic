@@ -139,10 +139,15 @@ const IndexPage = () => {
             </li>
             <li>Final list item</li>
           </ul>
-          <h2>Search inputs</h2>
           <h2>This is a skeleton</h2>
-          <Skeleton />
+          <Skeleton
+            css={css`
+              width: 100px;
+              height: 100px;
+            `}
+          />
           <br />
+          <h2>Search inputs</h2>
           <SearchInput
             css={css`
               margin-bottom: 1rem;
