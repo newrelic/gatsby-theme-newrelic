@@ -50,7 +50,10 @@ const SignupForm = ({ siteUrl }) => {
 
   const onSubmit = async () => {
     setLoading(true);
-    const organizationId = await createAccountRequest(input, tessen);
+    const organizationId = await createAccountRequest(
+      { email: input.email.value, name: input.name.value },
+      tessen
+    );
 
     setLoading(false);
     if (organizationId) {
