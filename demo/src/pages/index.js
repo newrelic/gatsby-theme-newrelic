@@ -14,6 +14,7 @@ import {
   RelatedResources,
   SearchInput,
   SimpleFeedback,
+  Skeleton,
   Surface,
   Table,
   Tag,
@@ -26,7 +27,6 @@ import {
   Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
 
-import Skeleton from '../../../packages/gatsby-theme-newrelic/src/components/Skeleton';
 import tallImage from '../images/nr-one-ajax-browser.png';
 import regularImage from '../images/apm-intro-overview.png';
 import transparentBackgroundImage from '../images/intro-DT.png';
