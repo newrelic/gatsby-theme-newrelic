@@ -14,6 +14,7 @@ import {
   RelatedResources,
   SearchInput,
   SimpleFeedback,
+  Skeleton,
   Surface,
   Table,
   Tag,
@@ -138,6 +139,14 @@ const IndexPage = () => {
             </li>
             <li>Final list item</li>
           </ul>
+          <h2>This is a skeleton</h2>
+          <Skeleton
+            css={css`
+              width: 100px;
+              height: 100px;
+            `}
+          />
+          <br />
           <h2>Search inputs</h2>
           <SearchInput
             css={css`

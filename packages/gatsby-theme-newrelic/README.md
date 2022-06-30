@@ -78,6 +78,7 @@ websites](https://opensource.newrelic.com).
     - [`SEO`](#seo)
     - [`SimpleFeedback`](#simplefeedback)
     - [`Spinner`](#spinner)
+    - [`Skeleton`](#skeleton)
     - [`SplitColorButton`](#splitcolorbutton)
     - [`Surface`](#surface)
     - [`Table`](#table)
@@ -2263,6 +2264,34 @@ import { Spinner } from '@newrelic/gatsby-theme-newrelic';
 const View = () => (
   return <Spinner />;
 );
+```
+
+### `Skeleton`
+
+A placeholder element that the user sees before the actual content is loaded. It's designed as a square with the background color of the docs site.
+
+It works for light and dark mode.
+
+```js
+import { Skeleton } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop | Type | Required | Default | Description |
+| ---- | ---- | :------: | ------- | ----------- |
+| `width` | pixels | Yes | None | The width of the element. |
+| `height` | pixels | Yes | None | The height of the element. |
+
+**Example**
+
+```js
+<Skeleton
+  css={css`
+    width: 100px;
+    height: 100px;
+  `}
+/>
 ```
 
 ### `SplitColorButton`
