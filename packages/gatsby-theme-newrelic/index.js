@@ -45,6 +45,7 @@ export { default as SearchInput } from './src/components/SearchInput';
 export { default as SEO } from './src/components/SEO';
 export { default as SimpleFeedback } from './src/components/SimpleFeedback';
 export { default as SignupModal } from './src/components/SignupModal';
+export { default as Skeleton } from './src/components/Skeleton';
 export { default as Surface } from './src/components/Surface';
 export { default as Spinner } from './src/components/Spinner';
 export { default as Table } from './src/components/Table';
