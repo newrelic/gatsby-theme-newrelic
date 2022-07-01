@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.5.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.4.2...v6.5.0) (2022-07-01)
+
+
+### Features
+
+* **components:** skeleton ([ae0cc89](https://github.com/newrelic/gatsby-theme-newrelic/commit/ae0cc8933b790a2994adb0fba8bec6a1b5347e35))
+* **skeleton:** added dark mode ([c34747a](https://github.com/newrelic/gatsby-theme-newrelic/commit/c34747ad6e439cee967435a4e3229eb58400a7de))
+* **skeleton:** added docs and export ([db854c5](https://github.com/newrelic/gatsby-theme-newrelic/commit/db854c50b3935955c98e2d6481e2772e98992d3d))
+
+
+
+
+
 ## [6.4.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.4.1...v6.4.2) (2022-06-29)
 
 
