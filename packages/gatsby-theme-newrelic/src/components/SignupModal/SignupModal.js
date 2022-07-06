@@ -32,7 +32,19 @@ const SignupModal = ({ isOpen, onClose }) => {
 
   useScrollFreeze(isOpen);
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      css={css`
+        -ms-overflow-style: none; /* for Internet Explorer, Edge */
+        scrollbar-width: none; /* for Firefox */
+        overflow-y: scroll;
+
+        &:-webkit-scrollbar {
+          display: none; /* for Chrome, Safari, and Opera */
+        }
+      `}
+    >
       <Button
         css={css`
           position: absolute;
