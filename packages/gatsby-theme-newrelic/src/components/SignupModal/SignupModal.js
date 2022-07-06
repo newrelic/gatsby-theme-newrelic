@@ -36,13 +36,7 @@ const SignupModal = ({ isOpen, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
       css={css`
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-        overflow-y: scroll;
-
-        &:-webkit-scrollbar {
-          display: none;
-        }
+        overflow: auto;
       `}
     >
       <Button
