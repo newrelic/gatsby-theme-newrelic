@@ -142,6 +142,8 @@ With your new found confidence, check out the full documentation for the theme w
 We're currently developing this package, and will provide test information as
 we build out the library.
 
+Upon pushing to the `develop` branch, a preview on a newrelic.com subdomain will be available [here](https://gatsby-theme-demo.newrelic.com/)!
+
 ## Support
 
 New Relic hosts and moderates an online forum where customers can interact with

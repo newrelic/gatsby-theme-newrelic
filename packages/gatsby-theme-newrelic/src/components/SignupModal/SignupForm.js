@@ -176,6 +176,46 @@ const SignupForm = ({ siteUrl }) => {
         >
           Start Now
         </Button>
+        <div
+          css={css`
+            display: flex;
+            justify-content: center;
+          `}
+        >
+          <p
+            css={css`
+              font-size: 12px;
+              margin-top: 16px;
+            `}
+          >
+            By signing up you're agreeing to{' '}
+            <Link
+              css={css`
+                color: var(--primary-text-color);
+
+                &:hover {
+                  color: var(--brand-button-primary-accent);
+                }
+              `}
+              to="https://newrelic.com/termsandconditions/terms"
+            >
+              Terms of Service
+            </Link>{' '}
+            and{' '}
+            <Link
+              css={css`
+                color: var(--primary-text-color);
+
+                &:hover {
+                  color: var(--brand-button-primary-accent);
+                }
+              `}
+              to="https://newrelic.com/termsandconditions/privacy"
+            >
+              Services Privacy Notice.
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
