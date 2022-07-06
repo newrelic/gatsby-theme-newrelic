@@ -59,7 +59,7 @@ const Modal = ({ onClose, isOpen, children }) => {
                 padding: 2.5rem;
                 background-color: var(--modal-background-color);
                 border-radius: 1rem;
-                overflow: scroll;
+                overflow: auto;
               `}
             >
               {children}
