@@ -96,11 +96,11 @@ const SEO = ({ title, location, type, children }) => {
       })}
 
       {/* Android */}
-      <meta name="theme-color" content="#1d252c" />
+      <meta name="theme-color" content="--primary-background-color" />
       {/* Windows */}
-      <meta name="msapplication-navbutton-color" content="#1d252c" />
+      <meta name="msapplication-navbutton-color" content="--primary-background-color" />
       {/* iOS Safari */}
-      <meta name="apple-mobile-web-app-status-bar-style" content="#1d252c" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="--primary-background-color" />
 
       {getSwiftypeSiteType() && (
         <meta
