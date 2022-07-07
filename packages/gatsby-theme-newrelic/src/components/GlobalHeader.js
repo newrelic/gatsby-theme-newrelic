@@ -244,7 +244,7 @@ const GlobalHeader = ({
                   > a {
                     font-size: 18px;
                   }
-                  &:first-child {
+                  &:first-of-type {
                     > a {
                       padding-left: 0px;
                     }
