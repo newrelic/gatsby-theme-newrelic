@@ -47,7 +47,7 @@ const ContributingGuidelines = ({
           margin-bottom: 0.5rem;
 
           @supports not (gap: 1rem) {
-            > :first-of-type{
+            > :first-of-type {
               margin-right: 0.5rem;
             }
           }
