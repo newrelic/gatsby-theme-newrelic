@@ -1,5 +1,8 @@
+/* eslint react/no-unused-prop-types: 0 */
+
 import React, { memo, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
+
 import Result from './Result';
 import useKeyPress from '../../hooks/useKeyPress';
 

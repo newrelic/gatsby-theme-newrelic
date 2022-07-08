@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 
 const Portal = ({ children }) => {
   const [root] = useState(() =>
@@ -13,6 +14,10 @@ const Portal = ({ children }) => {
   }, [root]);
 
   return root ? createPortal(children, root) : null;
+};
+
+Portal.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default Portal;

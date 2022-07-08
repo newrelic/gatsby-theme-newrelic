@@ -10007,7 +10007,7 @@ gatsby-plugin-layout@^2.10.0:
   dependencies:
     "@babel/runtime" "^7.15.4"
 
-gatsby-plugin-mdx@^2.10.1, gatsby-plugin-mdx@^2.14.2:
+gatsby-plugin-mdx@^2.10.1:
   version "2.14.2"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-mdx/-/gatsby-plugin-mdx-2.14.2.tgz#c27de463af036e5186f0f99e1a3913fe04876500"
   integrity sha512-OHOAPBSOKxy1H5Ks0/FFVueeuJh9QRGGr9PSZVEZ6hd+54YF/8zvi+R3vuDYXnFyju2BREWO2aWj7NEmwfKFVw==
@@ -10466,7 +10466,7 @@ gatsby@4.4.0:
     xstate "^4.26.0"
     yaml-loader "^0.6.0"
 
-gatsby@^4.18.0:
+gatsby@^4.4.0:
   version "4.18.0"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-4.18.0.tgz#e87bc5f71b25ab24811fd7ecdfca3029d04b7177"
   integrity sha512-EyiwYUsbSKUKsdjm8nnLw5AGJwOJ9NAWcrFg1V/QU4CUnk/M8EiP0TxiGUmK1/K7g82XGxUjuAPYJKJk85yxHA==
@@ -16270,7 +16270,7 @@ promzard@^0.3.0:
   dependencies:
     read "1"
 
-prop-types@^15.5.10, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.10, prop-types@^15.5.7, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==

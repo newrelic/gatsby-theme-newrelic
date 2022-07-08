@@ -71,6 +71,7 @@
     "polished": "^4.1.1",
     "prism-react-renderer": "^1.2.0",
     "prismjs": "^1.28.0",
+    "prop-types": "^15.5.7",
     "react-i18next": "^11.8.13",
     "react-live": "^2.2.3",
     "react-middle-ellipsis": "^1.1.0",
