@@ -49,7 +49,9 @@ const NotFoundPage = ({
     (term) => {
       const termsToIgnore = ['docs', pageLocale];
 
-      return !(!term || termsToIgnore.includes(term));
+      if (!term || termsToIgnore.includes(term)) {
+        return false;
+      }
     },
     [pageLocale]
   );
