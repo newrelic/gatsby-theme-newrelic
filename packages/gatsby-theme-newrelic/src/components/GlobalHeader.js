@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import useMedia from 'use-media';
 import path from 'path';
@@ -94,7 +94,7 @@ const GlobalHeader = ({
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
   const { t } = useThemeTranslation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     allLocale: { nodes: locales },
@@ -439,7 +439,7 @@ const GlobalHeader = ({
               </Button>
               <Button
                 className={className}
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => setQueryParam('signup', '')}
                 size={Button.SIZE.SMALL}
                 variant={Button.VARIANT.LINK}
                 css={css`
@@ -460,8 +460,8 @@ const GlobalHeader = ({
             />
           </ul>
           <SignupModal
-            onClose={() => setIsModalOpen(false)}
-            isOpen={isModalOpen}
+            onClose={() => deleteQueryParam('signup')}
+            isOpen={hasMounted && queryParams.has('signup')}
           />
         </div>
       </div>
