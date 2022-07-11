@@ -23,7 +23,7 @@ const ANNOUNCEMENTS_DIRECTORY = 'src/announcements';
 const DEFAULT_BRANCH = 'main';
 
 exports.onPreInit = (_, themeOptions) => {
-  const { i18n, relatedResources = {}, tessen } = themeOptions;
+  const { i18n, relatedResources = {}, tessen, signup } = themeOptions;
 
   if (i18n && !i18n.translationsPath) {
     throw new Error(
@@ -37,6 +37,9 @@ exports.onPreInit = (_, themeOptions) => {
 
   if (tessen) {
     validateTessenOptions(tessen);
+  }
+  if (signup) {
+    validateSignupOptions(signup);
   }
 };
 
@@ -491,6 +494,26 @@ const validateTessenOptions = (tessenOptions) => {
   if (!segmentWriteKey) {
     throw new Error(
       "You have enabled Tessen, but the 'segmentWriteKey' is missing. Please define a 'tessen.segmentWriteKey' option"
+    );
+  }
+};
+
+const validateSignupOptions = (signupOptions) => {
+  const { environment, reCaptchaToken, signupUrl } = signupOptions;
+
+  if (!environment) {
+    throw new Error(
+      "You have enabled sign ups, but the 'environment' is missing. Please define a 'signup.environment' option"
+    );
+  }
+  if (!reCaptchaToken) {
+    throw new Error(
+      "You have enabled sign ups, but the 'reCaptchaToken' is missing. Please define a 'signup.reCaptchaToken' option"
+    );
+  }
+  if (!signupUrl) {
+    throw new Error(
+      "You have enabled sign ups, but the 'signupUrl' is missing. Please define a 'signup.signupUrl' option"
     );
   }
 };
