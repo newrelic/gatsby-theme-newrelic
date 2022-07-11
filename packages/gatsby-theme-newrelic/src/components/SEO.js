@@ -9,6 +9,7 @@ const SEO = ({ title, location, type, children }) => {
   const {
     site: { siteMetadata },
     allLocale: { nodes: locales },
+    newRelicThemeConfig,
   } = useStaticQuery(graphql`
     query {
       site {
@@ -23,6 +24,11 @@ const SEO = ({ title, location, type, children }) => {
           locale
           hrefLang
           isDefault
+        }
+      }
+      newRelicThemeConfig {
+        signup {
+          reCaptchaToken
         }
       }
     }
@@ -51,13 +57,13 @@ const SEO = ({ title, location, type, children }) => {
   };
 
   const recaptchaLinkScript = () => {
-    if (window?._nr_signup?.reCaptchaToken) {
+    if (newRelicThemeConfig.signup?.reCaptchaToken) {
       return (
         <script
           key="google-recaptcha"
           async
           defer
-          src={`https://www.google.com/recaptcha/api.js?render=${window._nr_signup.reCaptchaToken}`}
+          src={`https://www.google.com/recaptcha/api.js?render=${newRelicThemeConfig.signup?.reCaptchaToken}`}
         />
       );
     }
