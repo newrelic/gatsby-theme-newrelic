@@ -50,6 +50,19 @@ const SEO = ({ title, location, type, children }) => {
     return nrSubDomain ? nrSubDomain.concat(localeString) : null;
   };
 
+  const recaptchaLinkScript = () => {
+    if (window._nr_signup?.reCaptchaToken) {
+      return (
+        <script
+          key="google-recaptcha"
+          async
+          defer
+          src={`https://www.google.com/recaptcha/api.js?render=${window._nr_signup.reCaptchaToken}`}
+        />
+      );
+    }
+  };
+
   const siteLinkScript = () => {
     const { pathname } = location;
     const homepage = '/';
@@ -102,6 +115,7 @@ const SEO = ({ title, location, type, children }) => {
           content={getSwiftypeSiteType()}
         />
       )}
+      {recaptchaLinkScript()}
       {siteLinkScript()}
       {children}
     </Helmet>
