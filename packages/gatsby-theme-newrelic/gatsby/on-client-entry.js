@@ -10,12 +10,14 @@ const onClientEntry = (_, themeOptions) => {
     window.newrelic.setCustomAttribute('locale', locale);
   }
 
-  window._nr_signup = {
-    environment: `${themeOptions.signup.environment}`,
-    reCaptchaToken: `${themeOptions.signup.reCaptchaToken}`,
-    signupReceiverUrl: `${themeOptions.signup.signupUrl}`,
-    segmentKey: `${themeOptions.tessen.segmentWriteKey}`,
-  };
+  if (themeOptions.signup && themeOptions.tessen.segmentWriteKey) {
+    window._nr_signup = {
+      environment: `${themeOptions.signup.environment}`,
+      reCaptchaToken: `${themeOptions.signup.reCaptchaToken}`,
+      signupReceiverUrl: `${themeOptions.signup.signupUrl}`,
+      segmentKey: `${themeOptions.tessen.segmentWriteKey}`,
+    };
+  }
 };
 
 const isDarkMode = () => {

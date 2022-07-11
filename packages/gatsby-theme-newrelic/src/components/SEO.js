@@ -51,7 +51,7 @@ const SEO = ({ title, location, type, children }) => {
   };
 
   const recaptchaLinkScript = () => {
-    if (window._nr_signup?.reCaptchaToken) {
+    if (window?._nr_signup?.reCaptchaToken) {
       return (
         <script
           key="google-recaptcha"
