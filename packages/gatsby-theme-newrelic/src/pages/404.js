@@ -52,8 +52,6 @@ const NotFoundPage = ({
       if (!term || termsToIgnore.includes(term)) {
         return false;
       }
-
-      return true;
     },
     [pageLocale]
   );
@@ -120,10 +118,9 @@ const NotFoundPage = ({
         <ul
           css={css`
             list-style-type: none;
-            margin: 0;
             padding: 0;
             line-height: 1.75rem;
-            margin-top: 1rem;
+            margin: 1rem 0 0;
           `}
         >
           {searchResult.map((result, index) => {
@@ -182,7 +179,7 @@ const NotFoundPage = ({
         searchTerm,
       });
     }
-  }, [location.pathname, searchResult, searchTerm]);
+  }, [location.pathname, searchResult, searchTerm, tessen]);
 
   return (
     <>
