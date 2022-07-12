@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.5.4...v6.5.5) (2022-07-12)
+
+
+### Bug Fixes
+
+* **Linting:** resolving lint errors ([#715](https://github.com/newrelic/gatsby-theme-newrelic/issues/715)) ([#722](https://github.com/newrelic/gatsby-theme-newrelic/issues/722)) ([47da07c](https://github.com/newrelic/gatsby-theme-newrelic/commit/47da07cc3c97785742b222d5db0a6eb449b1fec7))
+
+
+
+
+
 ## [6.5.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.5.3...v6.5.4) (2022-07-12)
 
 
