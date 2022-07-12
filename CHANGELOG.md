@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.5.2...v6.5.3) (2022-07-12)
+
+
+### Bug Fixes
+
+* **Dependencies:** Security resolutions ([#713](https://github.com/newrelic/gatsby-theme-newrelic/issues/713)) ([ae7090f](https://github.com/newrelic/gatsby-theme-newrelic/commit/ae7090f3c992c8a55e7d8010391589e8c403d40c))
+
+
+
+
+
 ## [6.5.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.5.1...v6.5.2) (2022-07-08)
 
 **Note:** Version bump only for package gatsby-theme-newrelic
