@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.5.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.5.3...v6.5.4) (2022-07-12)
+
+
+### Bug Fixes
+
+* Explicitly define the signup schema ([f1a01c1](https://github.com/newrelic/gatsby-theme-newrelic/commit/f1a01c160fa36ce7a78f9ee931c63c0aa359621b))
+
+
+
+
+
 ## [6.5.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.5.2...v6.5.3) (2022-07-12)
 
 
