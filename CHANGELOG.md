@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.6.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.5.5...v6.6.0) (2022-07-12)
+
+
+### Bug Fixes
+
+* **Linting:** resolving lint errors ([#715](https://github.com/newrelic/gatsby-theme-newrelic/issues/715)) ([0dc8ec6](https://github.com/newrelic/gatsby-theme-newrelic/commit/0dc8ec693d4232e98bad60c5f6227277ada07df0))
+
+
+### Features
+
+* Add 200-300 weighted fonts ([addf07d](https://github.com/newrelic/gatsby-theme-newrelic/commit/addf07deff4acd6c1f8bab457458512f2ddcfcb2))
+
+
+
+
+
 ## [6.5.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.5.4...v6.5.5) (2022-07-12)
 
 
