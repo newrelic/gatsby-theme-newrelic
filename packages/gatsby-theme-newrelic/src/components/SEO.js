@@ -113,6 +113,10 @@ const SEO = ({ title, location, type, children }) => {
           />
         );
       })}
+
+      {/* Android and Safari iOS */}
+      <meta name="theme-color" content="#293338" />
+
       {getSwiftypeSiteType() && (
         <meta
           className="swiftype"
