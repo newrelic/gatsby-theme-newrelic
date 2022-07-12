@@ -36,6 +36,7 @@ const SCHEMA_CUSTOMIZATION_TYPES = `
     env: String!
     relatedResources: NewRelicThemeRelatedResourceConfig!
     tessen: NewRelicThemeTessenConfig
+    signup: NewRelicThemeSignupConfig
   }
 
   type NewRelicThemeRelatedResourceConfig {
@@ -50,6 +51,12 @@ const SCHEMA_CUSTOMIZATION_TYPES = `
   type NewRelicThemeTessenConfig {
     product: String
     subproduct: String
+  }
+
+  type NewRelicThemeSignupConfig {
+    environment: String!
+    reCaptchaToken: String!
+    signupURL: String! 
   }
 `;
 
