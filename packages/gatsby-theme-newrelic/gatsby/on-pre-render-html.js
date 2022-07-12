@@ -28,14 +28,6 @@ const onPreRenderHTML = (
       themeOptions.tessen && (
         <script key="tessen" type="text/javascript" src={tessenPath} />
       ),
-      themeOptions.signup.reCaptchaToken && (
-        <script
-          key="google-recaptcha"
-          async
-          defer
-          src={`https://www.google.com/recaptcha/api.js?render=${themeOptions.signup.reCaptchaToken}`}
-        />
-      ),
     ].filter(Boolean)
   );
 };

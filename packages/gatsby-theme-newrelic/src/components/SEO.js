@@ -9,6 +9,7 @@ const SEO = ({ title, location, type, children }) => {
   const {
     site: { siteMetadata },
     allLocale: { nodes: locales },
+    newRelicThemeConfig,
   } = useStaticQuery(graphql`
     query {
       site {
@@ -23,6 +24,11 @@ const SEO = ({ title, location, type, children }) => {
           locale
           hrefLang
           isDefault
+        }
+      }
+      newRelicThemeConfig {
+        signup {
+          reCaptchaToken
         }
       }
     }
@@ -48,6 +54,19 @@ const SEO = ({ title, location, type, children }) => {
       : null;
     const localeString = locale.isDefault ? '' : `-${locale.locale}`;
     return nrSubDomain ? nrSubDomain.concat(localeString) : null;
+  };
+
+  const recaptchaLinkScript = () => {
+    if (newRelicThemeConfig.signup?.reCaptchaToken) {
+      return (
+        <script
+          key="google-recaptcha"
+          async
+          defer
+          src={`https://www.google.com/recaptcha/api.js?render=${newRelicThemeConfig.signup?.reCaptchaToken}`}
+        />
+      );
+    }
   };
 
   const siteLinkScript = () => {
@@ -94,6 +113,10 @@ const SEO = ({ title, location, type, children }) => {
           />
         );
       })}
+
+      {/* Android and Safari iOS */}
+      <meta name="theme-color" content="#293338" />
+
       {getSwiftypeSiteType() && (
         <meta
           className="swiftype"
@@ -102,6 +125,7 @@ const SEO = ({ title, location, type, children }) => {
           content={getSwiftypeSiteType()}
         />
       )}
+      {recaptchaLinkScript()}
       {siteLinkScript()}
       {children}
     </Helmet>
