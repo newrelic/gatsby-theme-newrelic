@@ -8,6 +8,7 @@ import {
   Collapser,
   CollapserGroup,
   ContributingGuidelines,
+  CustomTextInput,
   Layout,
   Link,
   PageTools,
@@ -102,6 +103,7 @@ const IndexPage = () => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customInput, setCustomInput] = useState('test');
 
   return (
     <Layout.Main
@@ -139,6 +141,13 @@ const IndexPage = () => {
             </li>
             <li>Final list item</li>
           </ul>
+          <CustomTextInput
+            name="email"
+            label="Name Your App"
+            placeholder="App Name"
+            value={customInput}
+            onChange={(e) => setCustomInput(e.target.value)}
+          />
           <h2>This is a skeleton</h2>
           <Skeleton
             css={css`

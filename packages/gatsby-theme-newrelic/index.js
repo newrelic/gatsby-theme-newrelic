@@ -6,6 +6,7 @@ export { default as Collapser } from './src/components/Collapser';
 export { default as CollapserGroup } from './src/components/CollapserGroup';
 export { default as ContributingGuidelines } from './src/components/ContributingGuidelines';
 export { default as CreateIssueButton } from './src/components/CreateIssueButton';
+export { default as CustomTextInput } from './src/components/CustomTextInput';
 export { default as Dropdown } from './src/components/Dropdown';
 export { default as EditPageButton } from './src/components/EditPageButton';
 export { default as ExternalLink } from './src/components/ExternalLink';
