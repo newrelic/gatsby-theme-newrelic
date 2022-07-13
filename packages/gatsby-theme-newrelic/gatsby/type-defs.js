@@ -37,6 +37,7 @@ const SCHEMA_CUSTOMIZATION_TYPES = `
     relatedResources: NewRelicThemeRelatedResourceConfig!
     tessen: NewRelicThemeTessenConfig
     signup: NewRelicThemeSignupConfig
+    oneTrustId: String
   }
 
   type NewRelicThemeRelatedResourceConfig {
@@ -58,6 +59,8 @@ const SCHEMA_CUSTOMIZATION_TYPES = `
     reCaptchaToken: String!
     signupURL: String! 
   }
+
+
 `;
 
 module.exports = { SCHEMA_CUSTOMIZATION_TYPES };

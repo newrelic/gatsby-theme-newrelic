@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 import { graphql, useStaticQuery } from 'gatsby';
 import useLocale from '../hooks/useLocale';
 import path from 'path';
+import OneTrust from './OneTrust';
 
 const SEO = ({ title, location, type, children }) => {
   const {
@@ -30,6 +31,7 @@ const SEO = ({ title, location, type, children }) => {
         signup {
           reCaptchaToken
         }
+        oneTrustId
       }
     }
   `);
@@ -128,6 +130,7 @@ const SEO = ({ title, location, type, children }) => {
       {recaptchaLinkScript()}
       {siteLinkScript()}
       {children}
+      <OneTrust key="one-trust" id={newRelicThemeConfig.oneTrustId} />
     </Helmet>
   );
 };

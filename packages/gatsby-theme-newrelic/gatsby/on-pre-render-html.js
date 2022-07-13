@@ -3,14 +3,12 @@ import path from 'path';
 import { withPrefix } from 'gatsby';
 import { getTessenConfig } from '../src/utils/config';
 import { getTessenPath } from './constants';
-import OneTrust from '../src/components/OneTrust';
 
 const onPreRenderHTML = (
   { getHeadComponents, replaceHeadComponents },
   themeOptions
 ) => {
   const tessen = getTessenConfig(themeOptions);
-  const { oneTrustID } = themeOptions;
 
   const version = tessen ? tessen.tessenVersion : null;
 
@@ -18,7 +16,6 @@ const onPreRenderHTML = (
 
   replaceHeadComponents(
     [
-      <OneTrust key="one-trust" id={oneTrustID} />,
       ...getHeadComponents(),
       <link
         key="open-sans"
