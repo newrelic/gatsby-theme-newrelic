@@ -1,8 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import Icon from './Icon';
 
-const CustomTextInput = ({ name, label, placeholder, onChange, value }) => {
+const CustomTextInput = ({
+  name,
+  label,
+  placeholder,
+  onChange,
+  value,
+  toolTip,
+}) => {
   return (
     <div
       css={css`
@@ -14,6 +22,7 @@ const CustomTextInput = ({ name, label, placeholder, onChange, value }) => {
         htmlFor={name}
         css={css`
           background-color: var(--primary-background-color);
+          display: flex;
           font-weight: 600;
           padding: 0 8px;
           position: absolute;
@@ -24,6 +33,37 @@ const CustomTextInput = ({ name, label, placeholder, onChange, value }) => {
         `}
       >
         {label}
+        {toolTip && (
+          <div
+            css={css`
+              position: relative;
+            `}
+          >
+            <Icon
+              name="info"
+              css={css`
+                margin-left: 0.5rem;
+
+                .input-tooltip {
+                  opacity: 1;
+                }
+              `}
+              fill={'#0095a9'}
+              stroke={'#0095a9'}
+            />
+            <p
+              className={'input-tooltip'}
+              css={css`
+                background-color: tan;
+                font-weight: 400;
+                opacity: 0;
+                position: absolute;
+              `}
+            >
+              {toolTip}
+            </p>
+          </div>
+        )}
       </label>
       <input
         type="text"
@@ -41,6 +81,7 @@ const CustomTextInput = ({ name, label, placeholder, onChange, value }) => {
           font-family: inherit;
           font-size: inherit;
           line-height: 1;
+          outline: none;
           padding: 1.1875rem 1rem;
           width: 100%;
         `}
@@ -54,6 +95,7 @@ CustomTextInput.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
+  toolTip: PropTypes.string,
   value: PropTypes.string,
 };
 

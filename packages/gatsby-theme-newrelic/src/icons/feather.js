@@ -63,6 +63,13 @@ export default {
       <line x1="8" y1="12" x2="16" y2="12" />
     </>
   ),
+  info: (
+    <>
+      <circle cx="12" cy="12" r="10" stroke="#0095a9"></circle>
+      <line x1="12" y1="16" x2="12" y2="12" stroke="#0095a9"></line>
+      <line x1="12" y1="8" x2="12.01" y2="8" stroke="#0095a9"></line>
+    </>
+  ),
   loader: (
     <>
       <line x1="12" y1="2" x2="12" y2="6" />

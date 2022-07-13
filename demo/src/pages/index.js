@@ -147,6 +147,7 @@ const IndexPage = () => {
             placeholder="App Name"
             value={customInput}
             onChange={(e) => setCustomInput(e.target.value)}
+            toolTip={'test'}
           />
           <h2>This is a skeleton</h2>
           <Skeleton
