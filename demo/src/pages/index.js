@@ -13,6 +13,7 @@ import {
   PageTools,
   RelatedResources,
   SearchInput,
+  SideBySide,
   SimpleFeedback,
   Skeleton,
   Surface,
@@ -147,6 +148,21 @@ const IndexPage = () => {
             `}
           />
           <br />
+          <h2>Two columns</h2>
+          <SideBySide>
+            <div>
+              <p>Lorem ipsum</p>
+            </div>
+            <div>
+              <img
+                alt="example"
+                css={css`
+                  width: 100%;
+                `}
+                src={regularImage}
+              />
+            </div>
+          </SideBySide>
           <h2>Search inputs</h2>
           <SearchInput
             css={css`
