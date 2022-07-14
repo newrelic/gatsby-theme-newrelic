@@ -2,14 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import Icon from './Icon';
+import Link from './Link';
+import Surface from './Surface';
 
 const CustomTextInput = ({
+  error = false,
   name,
   label,
   placeholder,
   onChange,
   value,
   toolTip,
+  url,
 }) => {
   return (
     <div
@@ -22,6 +26,7 @@ const CustomTextInput = ({
         htmlFor={name}
         css={css`
           background-color: var(--primary-background-color);
+          border-radius: 8px;
           display: flex;
           font-weight: 600;
           padding: 0 8px;
@@ -36,33 +41,52 @@ const CustomTextInput = ({
         {toolTip && (
           <div
             css={css`
+              padding-left: 0.5rem;
               position: relative;
             `}
           >
             <Icon
               name="info"
               css={css`
-                margin-left: 0.5rem;
-
-                .input-tooltip {
-                  opacity: 1;
+                &:hover + .input-tooltip {
+                    opacity: 1;
+                    transition: opacity 325ms, transform 325ms;
+                    transform: translate(10px, -10px);
+                  }
                 }
-              `}
-              fill={'#0095a9'}
-              stroke={'#0095a9'}
+                `}
+              height={48}
+              width={48}
             />
-            <p
+            <Surface
+              base={Surface.BASE.PRIMARY}
               className={'input-tooltip'}
               css={css`
-                background-color: tan;
+                bottom: 8px;
                 font-weight: 400;
+                line-height: 1.25;
+                left: 10px;
+                min-width: 250px;
                 opacity: 0;
+                padding: 1rem;
                 position: absolute;
+                transition: opacity 325ms, transform 325ms;
               `}
             >
               {toolTip}
-            </p>
+            </Surface>
           </div>
+        )}
+        {url && (
+          <Link
+            css={css`
+              margin-left: 0.25rem;
+              text-decoration: none;
+            `}
+            to={url.href}
+          >
+            {url.title}
+          </Link>
         )}
       </label>
       <input
@@ -84,6 +108,12 @@ const CustomTextInput = ({
           outline: none;
           padding: 1.1875rem 1rem;
           width: 100%;
+
+          ${error &&
+          css`
+            background-color: rgba(255, 0, 0, 0.25);
+            border-color: #e60000;
+          `}
         `}
       />
     </div>
@@ -91,11 +121,16 @@ const CustomTextInput = ({
 };
 
 CustomTextInput.propTypes = {
+  error: PropTypes.bool,
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   toolTip: PropTypes.string,
+  url: PropTypes.exact({
+    href: PropTypes.string,
+    title: PropTypes.string,
+  }),
   value: PropTypes.string,
 };
 
