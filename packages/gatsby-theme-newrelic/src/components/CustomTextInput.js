@@ -48,6 +48,13 @@ const CustomTextInput = ({
             <Icon
               name="info"
               css={css`
+              transform: scale(1.3);
+              transition: transform 325ms;
+
+              &:hover {
+                transform: scale(1.6);
+                transition: transform 325ms;
+              }
                 &:hover + .input-tooltip {
                     opacity: 1;
                     transition: opacity 325ms, transform 325ms;
