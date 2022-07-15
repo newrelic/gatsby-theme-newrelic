@@ -67,7 +67,7 @@ const CustomTextInput = ({
             />
             <Surface
               base={Surface.BASE.PRIMARY}
-              className={'input-tooltip'}
+              className="input-tooltip"
               css={css`
                 bottom: 8px;
                 font-weight: 400;
