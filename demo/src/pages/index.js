@@ -160,10 +160,10 @@ const IndexPage = () => {
             url={{ href: 'https://newrelic.com', title: 'with a test link!' }}
           />
           <CustomTextInput
-            error={true}
+            error={customInput === 'error'}
             name="email"
             label="Name Your App"
-            placeholder="App Name"
+            placeholder="type 'error'"
             value={customInput}
             onChange={(e) => setCustomInput(e.target.value)}
           />

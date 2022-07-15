@@ -76,6 +76,7 @@ const CustomTextInput = ({
                 min-width: 250px;
                 opacity: 0;
                 padding: 1rem;
+                pointer-events: none;
                 position: absolute;
                 transition: opacity 325ms, transform 325ms;
               `}
@@ -114,12 +115,14 @@ const CustomTextInput = ({
           line-height: 1;
           outline: none;
           padding: 1.1875rem 1rem;
+          transition: background-color 200ms, border-color 200ms;
           width: 100%;
 
           ${error &&
           css`
             background-color: rgba(255, 0, 0, 0.25);
             border-color: #e60000;
+            transition: background-color 200ms, border-color 200ms;
           `}
         `}
       />
