@@ -7,6 +7,7 @@ import Surface from './Surface';
 
 const CustomTextInput = ({
   error = false,
+  errorMessage,
   name,
   label,
   placeholder,
@@ -29,11 +30,11 @@ const CustomTextInput = ({
           border-radius: 8px;
           display: flex;
           font-weight: 600;
-          padding: 0 8px;
+          padding: 2px 8px;
           position: absolute;
           left: 10px;
           line-height: 1;
-          top: -9px;
+          top: -11px;
           z-index: 1;
         `}
       >
@@ -46,15 +47,16 @@ const CustomTextInput = ({
             `}
           >
             <Icon
-              name="info"
+              name="fe-info"
               css={css`
-              transform: scale(1.3);
-              transition: transform 325ms;
-
-              &:hover {
-                transform: scale(1.6);
+                transform: scale(1.3);
                 transition: transform 325ms;
-              }
+
+                &:hover {
+                  transform: scale(1.6);
+                  transition: transform 325ms;
+                }
+                
                 &:hover + .input-tooltip {
                     opacity: 1;
                     transition: opacity 325ms, transform 325ms;
@@ -126,12 +128,22 @@ const CustomTextInput = ({
           `}
         `}
       />
+      {error && errorMessage && (
+        <p
+          css={css`
+            color: red;
+          `}
+        >
+          {errorMessage}
+        </p>
+      )}
     </div>
   );
 };
 
 CustomTextInput.propTypes = {
   error: PropTypes.bool,
+  errorMessage: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,

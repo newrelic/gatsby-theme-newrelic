@@ -159,6 +159,7 @@ const IndexPage = () => {
           />
           <CustomTextInput
             error={customInput === 'error'}
+            errorMessage="Please respect this error message"
             name="email"
             label="Name Your App"
             placeholder="type 'error'"
