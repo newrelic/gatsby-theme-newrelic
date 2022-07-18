@@ -16,9 +16,10 @@ const SideBySide = ({ children, className }) => {
     <div
       css={css`
         display: grid;
+        grid-gap: 0.5rem;
         grid-template-columns: repeat(
           ${numberOfChildren},
-          calc(${spacePercentage}% - 0.5rem)
+          calc(${spacePercentage}%)
         );
 
         p:last-child {
@@ -32,7 +33,18 @@ const SideBySide = ({ children, className }) => {
       className={className}
     >
       {childObjects.map((child, i) => {
-        return <div key={i}>{child}</div>;
+        return (
+          <div
+            css={css`
+              img {
+                width: 100%;
+              }
+            `}
+            key={i}
+          >
+            {child}
+          </div>
+        );
       })}
     </div>
   );

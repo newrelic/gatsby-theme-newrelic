@@ -99,6 +99,39 @@ const xmlSample = `
 </dependency>
 `;
 
+const jsonExample = `
+[
+	{
+		color: "red",
+		value: "#f00"
+	},
+	{
+		color: "green",
+		value: "#0f0"
+	},
+	{
+		color: "blue",
+		value: "#00f"
+	},
+	{
+		color: "cyan",
+		value: "#0ff"
+	},
+	{
+		color: "magenta",
+		value: "#f0f"
+	},
+	{
+		color: "yellow",
+		value: "#ff0"
+	},
+	{
+		color: "black",
+		value: "#000"
+	}
+]
+`;
+
 const IndexPage = () => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
@@ -150,18 +183,8 @@ const IndexPage = () => {
           <br />
           <h2>Two columns</h2>
           <SideBySide>
-            <div>
-              <p>Lorem ipsum</p>
-            </div>
-            <div>
-              <img
-                alt="example"
-                css={css`
-                  width: 100%;
-                `}
-                src={regularImage}
-              />
-            </div>
+            <CodeBlock language="json">{jsonExample}</CodeBlock>
+            <img alt="example" src={regularImage} />
           </SideBySide>
           <h2>Search inputs</h2>
           <SearchInput
