@@ -31,7 +31,7 @@ const GlobalStyles = ({ layout }) => (
 
       body {
         font-size: 16px;
-        font-family: var(--primary-font-family);
+        font-family: var(--primary-font-family), sans-serif;
         color: var(--primary-text-color);
         background-color: var(--primary-background-color);
         line-height: 1.5;
