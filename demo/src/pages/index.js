@@ -8,6 +8,7 @@ import {
   Collapser,
   CollapserGroup,
   ContributingGuidelines,
+  CustomTextInput,
   Layout,
   Link,
   PageTools,
@@ -102,6 +103,7 @@ const IndexPage = () => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customInput, setCustomInput] = useState('');
 
   return (
     <Layout.Main
@@ -139,6 +141,31 @@ const IndexPage = () => {
             </li>
             <li>Final list item</li>
           </ul>
+          <CustomTextInput
+            name="email"
+            label="Name Your App"
+            placeholder="App Name"
+            value={customInput}
+            onChange={(e) => setCustomInput(e.target.value)}
+            toolTip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
+          />
+          <CustomTextInput
+            name="email"
+            label="Name Your App"
+            placeholder="App Name"
+            value={customInput}
+            onChange={(e) => setCustomInput(e.target.value)}
+            url={{ href: 'https://newrelic.com', title: 'with a test link!' }}
+          />
+          <CustomTextInput
+            error={customInput === 'error'}
+            errorMessage="Please respect this error message"
+            name="email"
+            label="Name Your App"
+            placeholder="type 'error'"
+            value={customInput}
+            onChange={(e) => setCustomInput(e.target.value)}
+          />
           <h2>This is a skeleton</h2>
           <Skeleton
             css={css`
