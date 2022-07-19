@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
-import DropdownContext from './Context';
+import DropdownContext from '../Context';
 import Toggle from './Toggle';
 import Menu from './Menu';
 import MenuItem from './MenuItem';

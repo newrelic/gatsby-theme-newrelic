@@ -18,6 +18,7 @@ import {
   Skeleton,
   Surface,
   Table,
+  Tabs,
   Tag,
   TagList,
   Terminal,
@@ -87,16 +88,6 @@ data:
           # Use the discovered IP as the host address
           STATUS_URL: http://\${discovery.ip}/server-status?auto
           METRICS: 1</mark>
-`;
-
-const xmlSample = `
-<dependency>
-  <groupId>com.newrelic.agent.java</groupId>
-  <artifactId>newrelic-java</artifactId>
-  <version><var>JAVA_AGENT_VERSION</var></version>
-  <scope>provided</scope>
-  <type>zip</type>
-</dependency>
 `;
 
 const IndexPage = () => {
@@ -257,52 +248,69 @@ const IndexPage = () => {
           </Callout>
         </section>
         <section>
-          <h2>A code block</h2>
-          <CodeBlock
-            copyable
-            lineNumbers
-            highlightedLines="5-7,12"
-            fileName="src/components/Button.js"
-            language="jsx"
-            css={css`
-              margin-bottom: 2rem;
-            `}
-          >
-            {codeSample}
-          </CodeBlock>
-          <h2>A live editable code block w/ preview</h2>
-          <CodeBlock
-            copyable
-            lineNumbers
-            live
-            preview
-            fileName="src/components/Button.js"
-            language="jsx"
-            scope={{ Button }}
-            css={css`
-              margin-bottom: 2rem;
-            `}
-          >
-            {liveCodeSample}
-          </CodeBlock>
-          <h2>Code block w/ embedded var/mark/links</h2>
-          <CodeBlock
-            language="graphql"
-            css={css`
-              margin-bottom: 1rem;
-            `}
-          >
-            {codeSampleWithAdditionalTags}
-          </CodeBlock>
-          <CodeBlock
-            language="yaml"
-            css={css`
-              margin-bottom: 1rem;
-            `}
-          >
-            {anotherSample}
-          </CodeBlock>
-          <CodeBlock language="xml">{xmlSample}</CodeBlock>
+          <h2>Code blocks in tabs</h2>
+          <Tabs>
+            <Tabs.Bar>
+              <Tabs.BarItem id="codeblock">A code block</Tabs.BarItem>
+              <Tabs.BarItem id="live-edit">
+                A live editable code block w/ preview
+              </Tabs.BarItem>
+              <Tabs.BarItem id="embedded">
+                Code block w/ embedded var/mark/links
+              </Tabs.BarItem>
+            </Tabs.Bar>
+            <Tabs.Pages>
+              <Tabs.Page id="codeblock">
+                {' '}
+                <CodeBlock
+                  copyable
+                  lineNumbers
+                  highlightedLines="5-7,12"
+                  fileName="src/components/Button.js"
+                  language="jsx"
+                  css={css`
+                    margin-bottom: 2rem;
+                  `}
+                >
+                  {codeSample}
+                </CodeBlock>
+              </Tabs.Page>
+              <Tabs.Page id="live-edit">
+                <CodeBlock
+                  copyable
+                  lineNumbers
+                  live
+                  preview
+                  fileName="src/components/Button.js"
+                  language="jsx"
+                  scope={{ Button }}
+                  css={css`
+                    margin-bottom: 2rem;
+                  `}
+                >
+                  {liveCodeSample}
+                </CodeBlock>
+              </Tabs.Page>
+              <Tabs.Page id="embedded">
+                <CodeBlock
+                  language="graphql"
+                  css={css`
+                    margin-bottom: 1rem;
+                  `}
+                >
+                  {codeSampleWithAdditionalTags}
+                </CodeBlock>
+                <CodeBlock
+                  language="yaml"
+                  css={css`
+                    margin-bottom: 1rem;
+                  `}
+                >
+                  {anotherSample}
+                </CodeBlock>
+              </Tabs.Page>
+            </Tabs.Pages>
+          </Tabs>
         </section>
         <section>
           <h2>Terminal</h2>
