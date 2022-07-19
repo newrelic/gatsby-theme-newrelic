@@ -9,10 +9,11 @@ export default css`
 
     --secondary-background-color: var(--system-background-surface-1-light);
     --secondary-text-color: var(--system-text-secondary-light);
-
     --secondary-text-color-inverted: var(
       --system-text-secondary-inverted-light
     );
+
+    --muted-text: var(--system-text-muted-light);
 
     --modal-background-color: var(--secondary-background-color);
     --modal-wrapper-color: var(--modal-wrapper-background-light);
@@ -52,6 +53,8 @@ export default css`
     --secondary-background-color: var(--system-background-surface-1-dark);
     --secondary-text-color: var(--system-text-secondary-dark);
     --secondary-text-color-inverted: var(--system-text-secondary-inverted-dark);
+
+    --muted-text: var(--system-text-disabled-dark);
 
     --modal-background-color: var(--system-background-surface-1-dark);
     --modal-wrapper-color: var(--modal-wrapper-background-dark);
