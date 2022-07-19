@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.7.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.6.0...v6.7.0) (2022-07-19)
+
+
+### Bug Fixes
+
+* add error and url props to CustomInputComponent, update global ::placeholder styles ([cf02285](https://github.com/newrelic/gatsby-theme-newrelic/commit/cf022857ee929b7ecc1b92b4793331392b9f15f4))
+* finish touches on animations and transition styling ([ae4dfcd](https://github.com/newrelic/gatsby-theme-newrelic/commit/ae4dfcd4fc95db0663abb2ac17050677482f62a2))
+* increase size of icon, add pop up animation on icon ([c9c005c](https://github.com/newrelic/gatsby-theme-newrelic/commit/c9c005c46f6b8a1b7c37910fce899ed1e29e66e5))
+* make svg tags self closing, syntax update ([fc3f44b](https://github.com/newrelic/gatsby-theme-newrelic/commit/fc3f44b86735d2407f22ce064f38fc0eff7e72e5))
+* remove background change on error state ([6bd326a](https://github.com/newrelic/gatsby-theme-newrelic/commit/6bd326a0c25456b2da0d72f0a2969eef9b5eed80))
+* update some styles, add ability to display error message ([8ddfc54](https://github.com/newrelic/gatsby-theme-newrelic/commit/8ddfc54fc647eb744b04b43d157fb8efc2c27492))
+
+
+### Features
+
+* add docs on layout functionality ([3d0f6d6](https://github.com/newrelic/gatsby-theme-newrelic/commit/3d0f6d6cd3af085fb10981c4c39a6904dee62eec))
+
+
+
+
+
 # [6.6.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.5.5...v6.6.0) (2022-07-12)
 
 
