@@ -13,6 +13,7 @@ import {
   PageTools,
   RelatedResources,
   SearchInput,
+  Side,
   SideBySide,
   SimpleFeedback,
   Skeleton,
@@ -181,10 +182,16 @@ const IndexPage = () => {
             `}
           />
           <br />
-          <h2>Two columns</h2>
+          <h2>Content displayed in two columns</h2>
           <SideBySide>
-            <CodeBlock language="json">{jsonExample}</CodeBlock>
-            <img alt="example" src={regularImage} />
+            <Side>
+              <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+              <CodeBlock language="json">{jsonExample}</CodeBlock>
+            </Side>
+
+            <Side>
+              <img alt="example" src={regularImage} />
+            </Side>
           </SideBySide>
           <h2>Search inputs</h2>
           <SearchInput

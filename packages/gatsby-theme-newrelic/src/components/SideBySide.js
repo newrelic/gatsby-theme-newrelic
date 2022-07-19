@@ -16,7 +16,7 @@ const SideBySide = ({ children, className }) => {
     <div
       css={css`
         display: grid;
-        grid-gap: 0.5rem;
+        grid-gap: 1rem;
         grid-template-columns: repeat(
           ${numberOfChildren},
           calc(${spacePercentage}%)

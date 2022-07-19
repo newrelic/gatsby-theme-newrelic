@@ -77,6 +77,8 @@ websites](https://opensource.newrelic.com).
     - [`SearchInput`](#searchinput)
     - [`SkewedContainer`](#skewedcontainer)
     - [`SEO`](#seo)
+    - [`Side`](#side)
+    - [`SideBySide`](#sidebyside)
     - [`SimpleFeedback`](#simplefeedback)
     - [`Spinner`](#spinner)
     - [`Skeleton`](#skeleton)
@@ -2245,6 +2247,71 @@ const MainLayout = () => (
     </>
   )
 );
+```
+
+### `Side`
+
+This component is used to have content displayed in several columns. You have to use it in
+conjunction with a [`SideBySide`](#sidebyside) component.
+
+You can have several components inside a `Side` component.
+
+```js
+import { Side, SideBySide } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type | Required | Default | Description                                              |
+| ---------- | ---- | -------- | ------- | -------------------------------------------------------- |
+| `children` | node | no       |         | The content that's displayed in one side of the columns. |
+
+**Example**
+
+```js
+<SideBySide>
+  <Side>
+    <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+    <CodeBlock language="json">{myCodeBlock}</CodeBlock>
+  </Side>
+
+  <Side>
+    <img alt="example" src={exampleImg} />
+  </Side>
+</SideBySide>
+```
+
+### `SideBySide`
+
+This component is used to have content displayed in several columns. You have to use it in
+conjunction with a [`Side`](#sidebyside) component.
+
+Ideally, there'll never be more than two columns of content in a doc.
+
+```js
+import { Side, SideBySide } from '@newrelic/gatsby-theme-newrelic';
+```
+
+**Props**
+
+| Prop       | Type   | Required | Default | Description                                              |
+| ---------- | ------ | -------- | ------- | -------------------------------------------------------- |
+| `children` | node   | no       |         | The content that's displayed in one side of the columns. |
+| `className`| string | no       |         | Additional `className` for the component.                |
+
+**Example**
+
+```js
+<SideBySide>
+  <Side>
+    <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+    <CodeBlock language="json">{myCodeBlock}</CodeBlock>
+  </Side>
+
+  <Side>
+    <img alt="example" src={exampleImg} />
+  </Side>
+</SideBySide>
 ```
 
 ### `SimpleFeedback`
