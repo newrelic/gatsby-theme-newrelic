@@ -122,9 +122,8 @@ const CustomTextInput = ({
 
           ${error &&
           css`
-            background-color: rgba(255, 0, 0, 0.25);
             border-color: #e60000;
-            transition: background-color 200ms, border-color 200ms;
+            transition: border-color 200ms;
           `}
         `}
       />
