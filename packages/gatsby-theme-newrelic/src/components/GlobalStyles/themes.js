@@ -35,6 +35,7 @@ export default css`
 
     input::placeholder {
       color: var(--primary-text-color);
+      opacity: 80%;
     }
 
     *:not(pre) > code,
@@ -73,6 +74,7 @@ export default css`
 
     input::placeholder {
       color: var(--primary-text-color);
+      opacity: 80%;
     }
 
     *:not(pre) > code,

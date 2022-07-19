@@ -27,6 +27,7 @@ websites](https://opensource.newrelic.com).
       - [`signup`](#signup)
       - [`oneTrustID`](#onetrustid)
         - [Environment-specific configuration](#environment-specific-configuration)
+    - [Layouts](#layouts)
   - [Components](#components)
     - [`Banner`](#banner)
     - [`Button`](#button)
@@ -590,6 +591,10 @@ module.exports = {
   ],
 };
 ```
+
+### Layouts
+This theme supports Layout components in a similar way to Gatsby `V1` through the [`gatsby-plugin-layout`](https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/). This plugin allows you to persist the layout between page changes, as well as state.
+To start using this layout functionality create a component at `src/layouts/index.jsx`, then the plugin will automatically inject the component into your pages.
 
 ## Components
 
