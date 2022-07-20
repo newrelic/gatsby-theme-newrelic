@@ -9,6 +9,7 @@ import {
   CollapserGroup,
   ContributingGuidelines,
   CustomTextInput,
+  InteractiveForm,
   Layout,
   Link,
   PageTools,
@@ -166,6 +167,10 @@ const IndexPage = () => {
             value={customInput}
             onChange={(e) => setCustomInput(e.target.value)}
           />
+
+          <h2>Interactive form</h2>
+          <InteractiveForm />
+
           <h2>This is a skeleton</h2>
           <Skeleton
             css={css`
