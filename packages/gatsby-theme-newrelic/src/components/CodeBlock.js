@@ -133,6 +133,7 @@ const CodeBlock = ({
           `}
         >
           <div
+            id="codeblock"
             css={css`
               max-height: 26em;
               overflow: auto;
