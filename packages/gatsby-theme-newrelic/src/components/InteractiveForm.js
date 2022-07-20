@@ -9,6 +9,7 @@ import InteractiveOutput from './InteractiveOutput';
 const InteractiveForm = () => {
   const [appName, setAppName] = useState('My Application');
   const [licenseKey, setLicenseKey] = useState('12345');
+
   const scrollToAppName = () => {
     scroller.scrollTo('line-32', {
       duration: 800,
@@ -35,6 +36,7 @@ const InteractiveForm = () => {
         display: flex;
         justify-content: space-between;
         width: 100%;
+        position: relative;
       `}
     >
       <div
@@ -50,7 +52,7 @@ const InteractiveForm = () => {
             scrollToAppName();
             setAppName(e.target.value);
           }}
-          toolTip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
+          toolTip="The app name in the agent's configuration file will be used in the New Relic user interface"
           css={css`
             margin-bottom: 1.5rem;
           `}
@@ -63,7 +65,10 @@ const InteractiveForm = () => {
             scrollToLicenseKey();
             setLicenseKey(e.target.value);
           }}
-          url={{ href: 'https://newrelic.com', title: 'license key' }}
+          url={{
+            href: 'https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#ingest-license-key',
+            title: 'license key',
+          }}
           css={css`
             margin-bottom: 1.5rem;
           `}
@@ -93,6 +98,16 @@ const InteractiveForm = () => {
         css={css`
           margin-top: 1rem;
           width: 49%;
+
+          #codeblock {
+            // removing the height of the buttons at the top or it overflows
+            max-height: calc(100% - 50px);
+          }
+          > div {
+            height: calc(100% - 16px);
+            position: absolute;
+            width: inherit;
+          }
         `}
         appName={appName}
         licenseKey={licenseKey}

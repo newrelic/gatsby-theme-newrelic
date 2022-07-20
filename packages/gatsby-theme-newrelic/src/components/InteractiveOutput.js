@@ -1,5 +1,5 @@
 import React from 'react';
-import { css } from '@emotion/react';
+import PropTypes from 'prop-types';
 import CodeBlock from './CodeBlock';
 
 const InteractiveOutput = ({ className, licenseKey, appName }) => {
@@ -408,26 +408,24 @@ const InteractiveOutput = ({ className, licenseKey, appName }) => {
 `;
 
   return (
-    <div
-      css={css`
-        border: 2px solid var(--border-color);
-        border-radius: 8px;
-      `}
+    <CodeBlock
+      lineNumbers
+      altStyle
+      copyable
+      highlightedLines="16,32"
+      fileName="newrelic.yml"
+      language="yml"
       className={className}
     >
-      <CodeBlock
-        lineNumbers
-        copyable
-        fileName="newrelic.yml"
-        language="yml"
-        css={css`
-          margin-bottom: 2rem;
-        `}
-      >
-        {javaConfig}
-      </CodeBlock>
-    </div>
+      {javaConfig}
+    </CodeBlock>
   );
+};
+
+InteractiveOutput.propTypes = {
+  className: PropTypes.string,
+  licenseKey: PropTypes.string,
+  appName: PropTypes.string,
 };
 
 export default InteractiveOutput;
