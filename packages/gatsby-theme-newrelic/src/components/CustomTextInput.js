@@ -6,6 +6,7 @@ import Link from './Link';
 import Surface from './Surface';
 
 const CustomTextInput = ({
+  className,
   error = false,
   errorMessage,
   name,
@@ -22,6 +23,7 @@ const CustomTextInput = ({
         margin-top: 16px;
         position: relative;
       `}
+      className={className}
     >
       <label
         htmlFor={name}
@@ -141,6 +143,7 @@ const CustomTextInput = ({
 };
 
 CustomTextInput.propTypes = {
+  className: PropTypes.string,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   name: PropTypes.string,
