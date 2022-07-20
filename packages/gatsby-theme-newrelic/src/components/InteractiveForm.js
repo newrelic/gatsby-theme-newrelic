@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDebounce } from 'react-use';
 import { css } from '@emotion/react';
 import { scroller } from 'react-scroll';
 import Link from './Link';
@@ -10,9 +11,29 @@ const InteractiveForm = () => {
   const [appName, setAppName] = useState('My Application');
   const [licenseKey, setLicenseKey] = useState('12345');
 
+  useDebounce(
+    () => {
+      if (appName !== 'My Application') {
+        scrollToAppName();
+      }
+    },
+    400,
+    [appName]
+  );
+
+  useDebounce(
+    () => {
+      if (licenseKey !== '12345') {
+        scrollToLicenseKey();
+      }
+    },
+    400,
+    [licenseKey]
+  );
+
   const scrollToAppName = () => {
     scroller.scrollTo('line-32', {
-      duration: 800,
+      duration: 600,
       delay: 0,
       smooth: 'easeInOutQuart',
       containerId: 'codeblock',
@@ -22,7 +43,7 @@ const InteractiveForm = () => {
 
   const scrollToLicenseKey = () => {
     scroller.scrollTo('line-16', {
-      duration: 800,
+      duration: 600,
       delay: 0,
       smooth: 'easeInOutQuart',
       containerId: 'codeblock',
@@ -37,11 +58,17 @@ const InteractiveForm = () => {
         justify-content: space-between;
         width: 100%;
         position: relative;
+        @media screen and (max-width: 1000px) {
+          flex-direction: column;
+        }
       `}
     >
       <div
         css={css`
           width: 49%;
+          @media screen and (max-width: 1000px) {
+            width: 100%;
+          }
         `}
       >
         <CustomTextInput
@@ -49,7 +76,6 @@ const InteractiveForm = () => {
           label="Name your app"
           value={appName}
           onChange={(e) => {
-            scrollToAppName();
             setAppName(e.target.value);
           }}
           toolTip="The app name in the agent's configuration file will be used in the New Relic user interface"
@@ -62,7 +88,6 @@ const InteractiveForm = () => {
           label="Enter your New Relic"
           value={licenseKey}
           onChange={(e) => {
-            scrollToLicenseKey();
             setLicenseKey(e.target.value);
           }}
           url={{
@@ -98,6 +123,9 @@ const InteractiveForm = () => {
         css={css`
           margin-top: 1rem;
           width: 49%;
+          @media screen and (max-width: 1000px) {
+            width: 100%;
+          }
 
           #codeblock {
             // removing the height of the buttons at the top or it overflows
@@ -107,6 +135,10 @@ const InteractiveForm = () => {
             height: calc(100% - 16px);
             position: absolute;
             width: inherit;
+            @media screen and (max-width: 1000px) {
+              position: relative;
+              height: 400px;
+            }
           }
         `}
         appName={appName}
