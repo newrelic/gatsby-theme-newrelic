@@ -45,6 +45,8 @@ export { default as RelatedResources } from './src/components/RelatedResources';
 export { default as SearchInput } from './src/components/SearchInput';
 export { default as Select } from './src/components/Select';
 export { default as SEO } from './src/components/SEO';
+export { default as Side } from './src/components/Side';
+export { default as SideBySide } from './src/components/SideBySide';
 export { default as SimpleFeedback } from './src/components/SimpleFeedback';
 export { default as SignupModal } from './src/components/SignupModal';
 export { default as Skeleton } from './src/components/Skeleton';

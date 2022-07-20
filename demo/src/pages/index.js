@@ -14,6 +14,8 @@ import {
   PageTools,
   RelatedResources,
   SearchInput,
+  Side,
+  SideBySide,
   SimpleFeedback,
   Skeleton,
   Surface,
@@ -88,6 +90,39 @@ data:
           # Use the discovered IP as the host address
           STATUS_URL: http://\${discovery.ip}/server-status?auto
           METRICS: 1</mark>
+`;
+
+const jsonExample = `
+[
+	{
+		color: "red",
+		value: "#f00"
+	},
+	{
+		color: "green",
+		value: "#0f0"
+	},
+	{
+		color: "blue",
+		value: "#00f"
+	},
+	{
+		color: "cyan",
+		value: "#0ff"
+	},
+	{
+		color: "magenta",
+		value: "#f0f"
+	},
+	{
+		color: "yellow",
+		value: "#ff0"
+	},
+	{
+		color: "black",
+		value: "#000"
+	}
+]
 `;
 
 const IndexPage = () => {
@@ -165,6 +200,17 @@ const IndexPage = () => {
             `}
           />
           <br />
+          <h2>Content displayed in two columns</h2>
+          <SideBySide>
+            <Side>
+              <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
+              <CodeBlock language="json">{jsonExample}</CodeBlock>
+            </Side>
+
+            <Side>
+              <img alt="example" src={regularImage} />
+            </Side>
+          </SideBySide>
           <h2>Search inputs</h2>
           <SearchInput
             css={css`
