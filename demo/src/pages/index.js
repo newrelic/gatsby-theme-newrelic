@@ -92,16 +92,6 @@ data:
           METRICS: 1</mark>
 `;
 
-const xmlSample = `
-<dependency>
-  <groupId>com.newrelic.agent.java</groupId>
-  <artifactId>newrelic-java</artifactId>
-  <version><var>JAVA_AGENT_VERSION</var></version>
-  <scope>provided</scope>
-  <type>zip</type>
-</dependency>
-`;
-
 const jsonExample = `
 [
 	{
