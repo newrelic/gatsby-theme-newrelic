@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.8.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.7.0...v6.8.0) (2022-07-20)
+
+
+### Features
+
+* Add tab component ([8fcbe25](https://github.com/newrelic/gatsby-theme-newrelic/commit/8fcbe259706b2455820ad303bccd731184c10e7c))
+* **SideBySide:** added Side comp & docs ([9a7aa5d](https://github.com/newrelic/gatsby-theme-newrelic/commit/9a7aa5d33f47be6e87760e62db69fba31e1e1329))
+* **SideBySide:** new component ([e02743c](https://github.com/newrelic/gatsby-theme-newrelic/commit/e02743c8e1998fa8b433cefe7a5632fa34c5e832))
+* **SideBySide:** removed div and fixed component ([09423ab](https://github.com/newrelic/gatsby-theme-newrelic/commit/09423ab0c45b40883b6f5d65864cd17495efa019))
+
+
+
+
+
 # [6.7.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.6.0...v6.7.0) (2022-07-19)
 
 
