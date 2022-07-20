@@ -72,7 +72,7 @@ export default css`
     font-style: 'normal';
   }
 
-  --primary-font-family: Sohne;
+  --primary-font-family: Sohne, system-ui, sans-serif;
   --code-font: 'Menlo', 'Consolas', monospace;
 
   --paragraph-spacing: 1.25rem;

@@ -8,6 +8,7 @@ import {
   Collapser,
   CollapserGroup,
   ContributingGuidelines,
+  CustomTextInput,
   Layout,
   Link,
   PageTools,
@@ -19,6 +20,7 @@ import {
   Skeleton,
   Surface,
   Table,
+  Tabs,
   Tag,
   TagList,
   Terminal,
@@ -137,6 +139,7 @@ const IndexPage = () => {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customInput, setCustomInput] = useState('');
 
   return (
     <Layout.Main
@@ -174,6 +177,31 @@ const IndexPage = () => {
             </li>
             <li>Final list item</li>
           </ul>
+          <CustomTextInput
+            name="email"
+            label="Name Your App"
+            placeholder="App Name"
+            value={customInput}
+            onChange={(e) => setCustomInput(e.target.value)}
+            toolTip="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to "
+          />
+          <CustomTextInput
+            name="email"
+            label="Name Your App"
+            placeholder="App Name"
+            value={customInput}
+            onChange={(e) => setCustomInput(e.target.value)}
+            url={{ href: 'https://newrelic.com', title: 'with a test link!' }}
+          />
+          <CustomTextInput
+            error={customInput === 'error'}
+            errorMessage="Please respect this error message"
+            name="email"
+            label="Name Your App"
+            placeholder="type 'error'"
+            value={customInput}
+            onChange={(e) => setCustomInput(e.target.value)}
+          />
           <h2>This is a skeleton</h2>
           <Skeleton
             css={css`
@@ -276,52 +304,69 @@ const IndexPage = () => {
           </Callout>
         </section>
         <section>
-          <h2>A code block</h2>
-          <CodeBlock
-            copyable
-            lineNumbers
-            highlightedLines="5-7,12"
-            fileName="src/components/Button.js"
-            language="jsx"
-            css={css`
-              margin-bottom: 2rem;
-            `}
-          >
-            {codeSample}
-          </CodeBlock>
-          <h2>A live editable code block w/ preview</h2>
-          <CodeBlock
-            copyable
-            lineNumbers
-            live
-            preview
-            fileName="src/components/Button.js"
-            language="jsx"
-            scope={{ Button }}
-            css={css`
-              margin-bottom: 2rem;
-            `}
-          >
-            {liveCodeSample}
-          </CodeBlock>
-          <h2>Code block w/ embedded var/mark/links</h2>
-          <CodeBlock
-            language="graphql"
-            css={css`
-              margin-bottom: 1rem;
-            `}
-          >
-            {codeSampleWithAdditionalTags}
-          </CodeBlock>
-          <CodeBlock
-            language="yaml"
-            css={css`
-              margin-bottom: 1rem;
-            `}
-          >
-            {anotherSample}
-          </CodeBlock>
-          <CodeBlock language="xml">{xmlSample}</CodeBlock>
+          <h2>Code blocks in tabs</h2>
+          <Tabs>
+            <Tabs.Bar>
+              <Tabs.BarItem id="codeblock">A code block</Tabs.BarItem>
+              <Tabs.BarItem id="live-edit">
+                A live editable code block w/ preview
+              </Tabs.BarItem>
+              <Tabs.BarItem id="embedded">
+                Code block w/ embedded var/mark/links
+              </Tabs.BarItem>
+            </Tabs.Bar>
+            <Tabs.Pages>
+              <Tabs.Page id="codeblock">
+                {' '}
+                <CodeBlock
+                  copyable
+                  lineNumbers
+                  highlightedLines="5-7,12"
+                  fileName="src/components/Button.js"
+                  language="jsx"
+                  css={css`
+                    margin-bottom: 2rem;
+                  `}
+                >
+                  {codeSample}
+                </CodeBlock>
+              </Tabs.Page>
+              <Tabs.Page id="live-edit">
+                <CodeBlock
+                  copyable
+                  lineNumbers
+                  live
+                  preview
+                  fileName="src/components/Button.js"
+                  language="jsx"
+                  scope={{ Button }}
+                  css={css`
+                    margin-bottom: 2rem;
+                  `}
+                >
+                  {liveCodeSample}
+                </CodeBlock>
+              </Tabs.Page>
+              <Tabs.Page id="embedded">
+                <CodeBlock
+                  language="graphql"
+                  css={css`
+                    margin-bottom: 1rem;
+                  `}
+                >
+                  {codeSampleWithAdditionalTags}
+                </CodeBlock>
+                <CodeBlock
+                  language="yaml"
+                  css={css`
+                    margin-bottom: 1rem;
+                  `}
+                >
+                  {anotherSample}
+                </CodeBlock>
+              </Tabs.Page>
+            </Tabs.Pages>
+          </Tabs>
         </section>
         <section>
           <h2>Terminal</h2>
