@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import Surface from './Surface';
 
-const FlipCard = ({ className, flipped, children }) => {
+const AnimatedCard = ({ className, flipped, children }) => {
   return (
     <div
       css={css`
@@ -38,6 +38,7 @@ const CardFront = ({ children, className }) => (
     base={Surface.BASE.PRIMARY}
     css={css`
       position: absolute;
+      padding: 1rem;
       width: 100%;
       height: 100%;
       -webkit-backface-visibility: hidden;
@@ -54,6 +55,7 @@ const CardBack = ({ children, className }) => (
     base={Surface.BASE.PRIMARY}
     css={css`
       position: absolute;
+      padding: 1rem;
       width: 100%;
       height: 100%;
       -webkit-backface-visibility: hidden;
@@ -66,10 +68,53 @@ const CardBack = ({ children, className }) => (
   </Surface>
 );
 
-FlipCard.Front = CardFront;
-FlipCard.Back = CardBack;
+const CardHover = ({ children, className }) => {
+  const [firstChild, secondChild] = children;
+  return (
+    <Surface
+      base={Surface.BASE.PRIMARY}
+      css={css`
+        width: 100%;
+        height: 100%;
+        padding: 1rem;
+        position: absolute;
+        &:hover {
+          div:nth-child(1) {
+            opacity: 0;
+          }
+          div:nth-child(2) {
+            opacity: 1;
+          }
+        }
+      `}
+      className={className}
+    >
+      <div
+        css={css`
+          position: absolute;
+          transition: opacity 0.4s linear;
+        `}
+      >
+        {firstChild}
+      </div>
+      <div
+        css={css`
+          position: absolute;
+          transition: opacity 0.4s linear;
+          opacity: 0;
+        `}
+      >
+        {secondChild}
+      </div>
+    </Surface>
+  );
+};
 
-FlipCard.propTypes = {
+AnimatedCard.Front = CardFront;
+AnimatedCard.Back = CardBack;
+AnimatedCard.Hover = CardHover;
+
+AnimatedCard.propTypes = {
   className: PropTypes.string,
   flipped: PropTypes.bool,
   children: PropTypes.node,
@@ -82,5 +127,9 @@ CardBack.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
 };
+CardHover.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node,
+};
 
-export default FlipCard;
+export default AnimatedCard;
