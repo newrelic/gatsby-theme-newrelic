@@ -634,7 +634,7 @@ nr1 create --type nerdpack --name pageviews-app
         </section>
         <h2>A flip card</h2>
         <section>
-          <FlipCard flipToBack={flipCard}>
+          <FlipCard flipped={flipCard}>
             <FlipCard.Front
               css={css`
                 padding: 1rem;

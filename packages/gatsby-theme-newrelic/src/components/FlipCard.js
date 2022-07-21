@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import Surface from './Surface';
 
-const FlipCard = ({ className, flipToBack, children }) => {
+const FlipCard = ({ className, flipped, children }) => {
   return (
     <div
       css={css`
@@ -21,7 +21,7 @@ const FlipCard = ({ className, flipToBack, children }) => {
           height: 100%;
           transition: transform 0.6s;
           transform-style: preserve-3d;
-          ${flipToBack &&
+          ${flipped &&
           css`
             transform: rotateY(180deg);
           `}
@@ -71,7 +71,7 @@ FlipCard.Back = CardBack;
 
 FlipCard.propTypes = {
   className: PropTypes.string,
-  flipToBack: PropTypes.bool,
+  flipped: PropTypes.bool,
   children: PropTypes.node,
 };
 CardFront.propTypes = {
