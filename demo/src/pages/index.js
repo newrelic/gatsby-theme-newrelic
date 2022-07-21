@@ -14,6 +14,7 @@ import {
   PageTools,
   RelatedResources,
   SearchInput,
+  SelectInLine,
   Side,
   SideBySide,
   SimpleFeedback,
@@ -192,6 +193,17 @@ const IndexPage = () => {
             value={customInput}
             onChange={(e) => setCustomInput(e.target.value)}
           />
+          <section       css={css`
+              margin-top: 10px;
+            `}>
+            <h2>Inline drop down select</h2>
+            <SelectInLine label="Example" >
+              <option value="first">first</option>
+              <option value="second">second</option>
+              <option value="third">third</option>
+              <option value="disabled" disabled={true}>disabled</option>
+            </SelectInLine>
+          </section>
           <h2>This is a skeleton</h2>
           <Skeleton
             css={css`
