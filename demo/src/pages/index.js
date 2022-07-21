@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import {
   Button,
-  FlipCard,
+  AnimatedCard,
   CodeBlock,
   Callout,
   Collapser,
@@ -632,14 +632,17 @@ nr1 create --type nerdpack --name pageviews-app
             </tbody>
           </Table>
         </section>
-        <h2>A flip card</h2>
         <section>
-          <FlipCard flipped={flipCard}>
-            <FlipCard.Front
-              css={css`
-                padding: 1rem;
-              `}
-            >
+          <h2>Animated card</h2>
+          <h3>A flip card</h3>
+
+          <AnimatedCard
+            flipped={flipCard}
+            css={css`
+              margin-bottom: 2rem;
+            `}
+          >
+            <AnimatedCard.Front>
               <h3>Hello there</h3>
               <Button
                 variant={Button.VARIANT.PRIMARY}
@@ -653,12 +656,8 @@ nr1 create --type nerdpack --name pageviews-app
                   `}
                 />
               </Button>
-            </FlipCard.Front>
-            <FlipCard.Back
-              css={css`
-                padding: 1rem;
-              `}
-            >
+            </AnimatedCard.Front>
+            <AnimatedCard.Back>
               <h3>This is the back!</h3>
               <Button
                 variant={Button.VARIANT.PRIMARY}
@@ -666,8 +665,33 @@ nr1 create --type nerdpack --name pageviews-app
               >
                 click me to flip back
               </Button>
-            </FlipCard.Back>
-          </FlipCard>
+            </AnimatedCard.Back>
+          </AnimatedCard>
+          <h3>Text change on hover</h3>
+          <AnimatedCard
+            css={css`
+              height: 100px;
+            `}
+          >
+            <AnimatedCard.Hover>
+              <>
+                <h3
+                  css={css`
+                    color: palevioletred;
+                  `}
+                >
+                  Install some cool stuff today
+                </h3>
+                <p>You really ought to</p>
+              </>
+              <>
+                <p>And heres why....</p>
+                <ul>
+                  <li>reasons</li>
+                </ul>
+              </>
+            </AnimatedCard.Hover>
+          </AnimatedCard>
         </section>
         <section>
           <TagList>

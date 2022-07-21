@@ -1,3 +1,4 @@
+export { default as AnimatedCard } from './src/components/AnimatedCard';
 export { default as Banner } from './src/components/Banner';
 export { default as Button } from './src/components/Button';
 export { default as Callout } from './src/components/Callout';
@@ -11,7 +12,6 @@ export { default as Dropdown } from './src/components/Dropdown';
 export { default as EditPageButton } from './src/components/EditPageButton';
 export { default as ExternalLink } from './src/components/ExternalLink';
 export { default as FeatherSVG } from './src/components/FeatherSVG';
-export { default as FlipCard } from './src/components/FlipCard';
 export { default as GlobalFooter } from './src/components/GlobalFooter';
 export {
   default as GlobalHeader,
