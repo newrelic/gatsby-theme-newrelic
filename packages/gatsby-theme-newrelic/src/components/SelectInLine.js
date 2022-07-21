@@ -11,6 +11,16 @@ const Select = ({ disabled, className, label, ...props }) => (
       .dark-mode & {
         background-color: var(--secondary-background-color);
       }
+      
+      &::after {
+        content: '';
+        grid-area: select;
+        justify-self: end;
+        width: 0.5rem;
+        height: 0.25rem;
+        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+        background-color: var(--border-color);
+      }
     `}
     className={className}
   >
