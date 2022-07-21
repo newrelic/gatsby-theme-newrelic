@@ -78,9 +78,9 @@ const SelectInline = ({ disabled, className, label, ...props }) => (
   </div>
 );
 
-Select.propTypes = {
+SelectInline.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string
 };
 
-export default Select;
+export default SelectInline;
