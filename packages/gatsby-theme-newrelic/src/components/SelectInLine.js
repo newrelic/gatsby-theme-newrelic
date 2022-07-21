@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 
-const Select = ({ disabled, className, label, ...props }) => (
+const SelectInline = ({ disabled, className, label, ...props }) => (
   <div
     css={css`
       margin-top: 16px;
@@ -55,7 +55,15 @@ const Select = ({ disabled, className, label, ...props }) => (
         outline: none;
         color: var(--primary-text-color);
         transition: background-color 200ms, border-color 200ms;
-
+&::after {
+        content: '';
+        grid-area: select;
+        justify-self: end;
+        width: 0.5rem;
+        height: 0.25rem;
+        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+        background-color: var(--border-color);
+      }
         option {
           font: -moz-pull-down-menu;
           color: var(--system-text-primary-light);
