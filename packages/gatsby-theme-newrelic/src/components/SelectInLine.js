@@ -6,21 +6,26 @@ const SelectInline = ({ disabled, className, label, ...props }) => (
   <div
     css={css`
       margin-top: 16px;
+      display: flex;
       position: relative;
-
-      .dark-mode & {
-        background-color: var(--secondary-background-color);
-      }
 
       &::after {
         content: '';
-        grid-area: select;
         justify-self: end;
-        width: 0.5rem;
-        height: 0.25rem;
+        position: absolute;
+        width: 1rem;
+        right: 1rem;
+        height: 0.5rem;
+        -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
         clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-        background-color: var(--border-color);
+        background-color: var(--primary-text-color);
+        top: 1.5rem;
       }
+      
+      .dark-mode & {
+        background-color: var(--secondary-background-color);
+      }
+      
     `}
     className={className}
   >
@@ -56,24 +61,11 @@ const SelectInline = ({ disabled, className, label, ...props }) => (
         color: var(--primary-text-color);
         transition: background-color 200ms, border-color 200ms;
 
-        &::after {
-          content: '';
-          grid-area: select;
-          justify-self: end;
-          width: 0.5rem;
-          height: 0.25rem;
-          clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-          background-color: var(--border-color);
-        }
-
         option {
           font: -moz-pull-down-menu;
           color: var(--system-text-primary-light);
         }
-
-        .dark-mode & {
-          border-color: var(--brand-button-primary-accent-hover);
-        }
+        
       `}
       {...props}
     />
