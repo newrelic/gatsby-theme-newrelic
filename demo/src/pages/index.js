@@ -7,7 +7,6 @@ import {
   Callout,
   Collapser,
   CollapserGroup,
-  ContributingGuidelines,
   CustomTextInput,
   Layout,
   Link,
@@ -29,6 +28,7 @@ import {
   ExternalLink,
   SignupModal,
   Lightbox,
+  FeedbackForm,
 } from '@newrelic/gatsby-theme-newrelic';
 
 import tallImage from '../images/nr-one-ajax-browser.png';
@@ -639,14 +639,19 @@ nr1 create --type nerdpack --name pageviews-app
       </Layout.Content>
       <Layout.PageTools
         css={css`
+          border: none;
           @media screen and (max-width: 1280px) {
             display: none;
           }
         `}
       >
-        <SimpleFeedback pageTitle="Demo Site" />
-        <ContributingGuidelines fileRelativePath="demo/src/pages/index.js" />
-        <PageTools.Section>
+        <FeedbackForm pageTitle="Demo Site" />
+        {/* <ContributingGuidelines fileRelativePath="demo/src/pages/index.js" /> */}
+        <PageTools.Section
+          css={css`
+            border: 1px solid var(--border-color);
+          `}
+        >
           <PageTools.Title>How to use</PageTools.Title>
           <p>
             The <code>PageTools</code> component is great for use as a sidebar
