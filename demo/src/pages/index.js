@@ -3,12 +3,14 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import {
   Button,
+  FlipCard,
   CodeBlock,
   Callout,
   Collapser,
   CollapserGroup,
   ContributingGuidelines,
   CustomTextInput,
+  Icon,
   Layout,
   Link,
   PageTools,
@@ -130,6 +132,7 @@ const IndexPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customInput, setCustomInput] = useState('');
+  const [flipCard, setFlipCard] = useState(false);
 
   return (
     <Layout.Main
@@ -629,7 +632,43 @@ nr1 create --type nerdpack --name pageviews-app
             </tbody>
           </Table>
         </section>
-
+        <h2>A flip card</h2>
+        <section>
+          <FlipCard flipToBack={flipCard}>
+            <FlipCard.Front
+              css={css`
+                padding: 1rem;
+              `}
+            >
+              <h3>Hello there</h3>
+              <Button
+                variant={Button.VARIANT.PRIMARY}
+                onClick={() => setFlipCard(true)}
+              >
+                click me to flip
+                <Icon
+                  name="fe-thumbsup"
+                  css={css`
+                    margin-left: 0.5rem;
+                  `}
+                />
+              </Button>
+            </FlipCard.Front>
+            <FlipCard.Back
+              css={css`
+                padding: 1rem;
+              `}
+            >
+              <h3>This is the back!</h3>
+              <Button
+                variant={Button.VARIANT.PRIMARY}
+                onClick={() => setFlipCard(false)}
+              >
+                click me to flip back
+              </Button>
+            </FlipCard.Back>
+          </FlipCard>
+        </section>
         <section>
           <TagList>
             <Tag>React</Tag>
