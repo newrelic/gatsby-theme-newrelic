@@ -21,11 +21,10 @@ const SelectInline = ({ disabled, className, label, ...props }) => (
         background-color: var(--primary-text-color);
         top: 1.5rem;
       }
-      
+
       .dark-mode & {
         background-color: var(--secondary-background-color);
       }
-      
     `}
     className={className}
   >
@@ -65,7 +64,6 @@ const SelectInline = ({ disabled, className, label, ...props }) => (
           font: -moz-pull-down-menu;
           color: var(--system-text-primary-light);
         }
-        
       `}
       {...props}
     />
@@ -74,7 +72,8 @@ const SelectInline = ({ disabled, className, label, ...props }) => (
 
 SelectInline.propTypes = {
   disabled: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
+  label: PropTypes.string,
 };
 
 export default SelectInline;
