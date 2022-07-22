@@ -9,12 +9,12 @@ import useTessen from '../hooks/useTessen';
 import ContributingGuidelines from './ContributingGuidelines';
 
 const FeedbackForm = () => {
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState('');
   const { t } = useThemeTranslation();
   const tessen = useTessen();
 
   const handleClick = (feedbackType) => {
-    setClicked(true);
+    setClicked(feedbackType);
     tessen.track({
       eventName: 'feedbackThumbClick',
       category: `${feedbackType}FeedbackClick`,
@@ -74,6 +74,17 @@ const FeedbackForm = () => {
               font-size: 1rem;
               transition: transform 200ms;
 
+              ${clicked === 'Positive' &&
+              css`
+                svg {
+                  stroke-width: 3;
+                }
+
+                .thumbs-up {
+                  stroke: var(--brand-button-primary-accent);
+                }
+              `}
+
               &:hover {
                 color: var(--primary-text-color);
                 transform: scale(1.3);
@@ -81,6 +92,7 @@ const FeedbackForm = () => {
 
                 .thumbs-up {
                   fill: var(--brand-button-primary-accent);
+                  stroke: var(--primary-text-color);
                 }
               }
             `}
@@ -105,6 +117,17 @@ const FeedbackForm = () => {
               font-size: 1rem;
               transition: transform 200ms;
 
+              ${clicked === 'Negative' &&
+              css`
+                svg {
+                  stroke-width: 3px;
+                }
+
+                .thumbs-down {
+                  stroke: var(--color-red);
+                }
+              `}
+
               &:hover {
                 color: var(--primary-text-color);
                 transform: scale(1.3);
@@ -112,6 +135,7 @@ const FeedbackForm = () => {
 
                 .thumbs-down {
                   fill: var(--color-red);
+                  stroke: var(--primary-text-color);
                 }
               }
             `}
