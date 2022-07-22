@@ -76,6 +76,9 @@ const FeedbackForm = () => {
 
               ${clicked === 'Positive' &&
               css`
+                border-bottom: solid 2px var(--secondary-text-color);
+                font-weight: bold;
+
                 svg {
                   stroke-width: 3;
                 }
@@ -89,6 +92,10 @@ const FeedbackForm = () => {
                 color: var(--primary-text-color);
                 transform: scale(1.3);
                 transition: transform 200ms;
+
+                svg {
+                  stroke-width: 2;
+                }
 
                 .thumbs-up {
                   fill: var(--brand-button-primary-accent);
@@ -119,6 +126,9 @@ const FeedbackForm = () => {
 
               ${clicked === 'Negative' &&
               css`
+                border-bottom: solid 2px var(--secondary-text-color);
+                font-weight: bold;
+
                 svg {
                   stroke-width: 3px;
                 }
@@ -132,6 +142,10 @@ const FeedbackForm = () => {
                 color: var(--primary-text-color);
                 transform: scale(1.3);
                 transition: transform 200ms;
+
+                svg {
+                  stroke-width: 2;
+                }
 
                 .thumbs-down {
                   fill: var(--color-red);
