@@ -46,6 +46,7 @@ export { default as Portal } from './src/components/Portal';
 export { default as RelatedResources } from './src/components/RelatedResources';
 export { default as SearchInput } from './src/components/SearchInput';
 export { default as Select } from './src/components/Select';
+export { default as SelectInLine } from './src/components/SelectInLine';
 export { default as SEO } from './src/components/SEO';
 export { default as Side } from './src/components/Side';
 export { default as SideBySide } from './src/components/SideBySide';
