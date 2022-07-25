@@ -1,3 +1,4 @@
+export { default as AnimatedCard } from './src/components/AnimatedCard';
 export { default as Banner } from './src/components/Banner';
 export { default as Button } from './src/components/Button';
 export { default as Callout } from './src/components/Callout';
@@ -19,6 +20,7 @@ export {
 export { default as GitHubIssueButton } from './src/components/GitHubIssueButton';
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';
+export { default as InteractiveForm } from './src/components/InteractiveForm';
 export { default as Layout } from './src/components/Layout';
 export { default as Lightbox } from './src/components/Lightbox';
 export { default as Link } from './src/components/Link';

@@ -78,7 +78,10 @@ const CodeHighlight = ({
             >
               {tokens.map((line, idx) => (
                 // eslint-disable-next-line react/jsx-key
-                <div {...getLineProps({ line, key: idx })}>
+                <div
+                  {...getLineProps({ line, key: idx })}
+                  name={`line-${idx + 1}`}
+                >
                   {lineNumbers && (
                     <div
                       css={css`

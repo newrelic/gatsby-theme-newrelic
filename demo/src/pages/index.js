@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { css } from '@emotion/react';
 import {
   Button,
+  AnimatedCard,
   CodeBlock,
   Callout,
   Collapser,
   CollapserGroup,
   ContributingGuidelines,
   CustomTextInput,
+  InteractiveForm,
+  Icon,
   Layout,
   Link,
   PageTools,
@@ -131,6 +134,7 @@ const IndexPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customInput, setCustomInput] = useState('');
+  const [flipCard, setFlipCard] = useState(false);
 
   return (
     <Layout.Main
@@ -208,6 +212,10 @@ const IndexPage = () => {
               </option>
             </SelectInLine>
           </section>
+
+          <h2>Interactive form</h2>
+          <InteractiveForm />
+
           <h2>This is a skeleton</h2>
           <Skeleton
             css={css`
@@ -645,7 +653,67 @@ nr1 create --type nerdpack --name pageviews-app
             </tbody>
           </Table>
         </section>
+        <section>
+          <h2>Animated card</h2>
+          <h3>A flip card</h3>
 
+          <AnimatedCard
+            flipped={flipCard}
+            css={css`
+              margin-bottom: 2rem;
+            `}
+          >
+            <AnimatedCard.Front>
+              <h3>Hello there</h3>
+              <Button
+                variant={Button.VARIANT.PRIMARY}
+                onClick={() => setFlipCard(true)}
+              >
+                click me to flip
+                <Icon
+                  name="fe-thumbsup"
+                  css={css`
+                    margin-left: 0.5rem;
+                  `}
+                />
+              </Button>
+            </AnimatedCard.Front>
+            <AnimatedCard.Back>
+              <h3>This is the back!</h3>
+              <Button
+                variant={Button.VARIANT.PRIMARY}
+                onClick={() => setFlipCard(false)}
+              >
+                click me to flip back
+              </Button>
+            </AnimatedCard.Back>
+          </AnimatedCard>
+          <h3>Text change on hover</h3>
+          <AnimatedCard
+            css={css`
+              height: 100px;
+            `}
+          >
+            <AnimatedCard.Hover>
+              <>
+                <h3
+                  css={css`
+                    color: palevioletred;
+                  `}
+                >
+                  Install some cool stuff today
+                </h3>
+                <p>You really ought to</p>
+              </>
+              <>
+                <p>And heres why....</p>
+                <ul>
+                  <li>reasons</li>
+                </ul>
+              </>
+            </AnimatedCard.Hover>
+          </AnimatedCard>
+        </section>
         <section>
           <TagList>
             <Tag>React</Tag>
