@@ -76,7 +76,7 @@ const FeedbackForm = () => {
 
               ${clicked === 'Positive' &&
               css`
-                border-bottom: solid 2px var(--secondary-text-color);
+                background-color: var(--modal-wrapper-color);
                 font-weight: bold;
 
                 svg {
@@ -124,7 +124,7 @@ const FeedbackForm = () => {
 
               ${clicked === 'Negative' &&
               css`
-                border-bottom: solid 2px var(--secondary-text-color);
+                background-color: var(--modal-wrapper-color);
                 font-weight: bold;
 
                 svg {
