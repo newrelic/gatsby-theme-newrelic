@@ -28,6 +28,8 @@ import {
   TagList,
   Terminal,
   Video,
+  Walkthrough,
+  WalkthroughStep,
   useTranslation,
   ExternalLink,
   SignupModal,
@@ -703,6 +705,29 @@ nr1 create --type nerdpack --name pageviews-app
             <Tag>React</Tag>
             <Tag interactive>Agent</Tag>
           </TagList>
+        </section>
+        <section>
+          <h2>Walkthrough with steps</h2>
+          <Walkthrough>
+            <WalkthroughStep title="The first step" id="step1">
+              hello there!
+            </WalkthroughStep>
+            <WalkthroughStep title="The next step" id="step2" active>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+            </WalkthroughStep>
+            <WalkthroughStep title="The last step" id="step3">
+              finished
+            </WalkthroughStep>
+          </Walkthrough>
         </section>
       </Layout.Content>
       <Layout.PageTools
