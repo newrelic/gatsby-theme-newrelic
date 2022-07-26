@@ -78,6 +78,7 @@ const WalkthroughStep = ({
             display: flex;
             justify-content: center;
             align-items: center;
+            font-weight: bold;
             background: var(--primary-background-color);
             border: var(--ring-border-width) var(--timeline-color) solid;
 
