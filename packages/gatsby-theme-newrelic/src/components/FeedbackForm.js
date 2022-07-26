@@ -89,7 +89,6 @@ const FeedbackForm = () => {
               `}
 
               &:hover {
-                color: var(--primary-text-color);
                 transform: scale(1.3);
                 transition: transform 200ms;
 
@@ -98,8 +97,7 @@ const FeedbackForm = () => {
                 }
 
                 .thumbs-up {
-                  fill: var(--brand-button-primary-accent);
-                  stroke: var(--primary-text-color);
+                  stroke: var(--brand-button-primary-accent);
                 }
               }
             `}
@@ -139,7 +137,6 @@ const FeedbackForm = () => {
               `}
 
               &:hover {
-                color: var(--primary-text-color);
                 transform: scale(1.3);
                 transition: transform 200ms;
 
@@ -148,8 +145,7 @@ const FeedbackForm = () => {
                 }
 
                 .thumbs-down {
-                  fill: var(--color-red);
-                  stroke: var(--primary-text-color);
+                  stroke: var(--color-red);
                 }
               }
             `}
