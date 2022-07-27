@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.9.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.9.0...v6.9.1) (2022-07-27)
+
+
+### Bug Fixes
+
+* Export component and change var name ([3a28389](https://github.com/newrelic/gatsby-theme-newrelic/commit/3a28389d5098358c3abd223ed79cc241bd54e3c2))
+
+
+
+
+
 # [6.9.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.8.0...v6.9.0) (2022-07-27)
 
 
