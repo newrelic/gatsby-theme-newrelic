@@ -30,7 +30,6 @@ import {
   Terminal,
   Video,
   Walkthrough,
-  WalkthroughStep,
   useTranslation,
   ExternalLink,
   SignupModal,
@@ -796,10 +795,10 @@ nr1 create --type nerdpack --name pageviews-app
         <section>
           <h2>Walkthrough with steps</h2>
           <Walkthrough>
-            <WalkthroughStep title="The first step" id="step1">
+            <Walkthrough.Step title="The first step" id="step1">
               hello there!
-            </WalkthroughStep>
-            <WalkthroughStep title="The next step" id="step2" active>
+            </Walkthrough.Step>
+            <Walkthrough.Step title="The next step" id="step2" active>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
               ever since the 1500s, when an unknown printer took a galley of
@@ -810,10 +809,10 @@ nr1 create --type nerdpack --name pageviews-app
               containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
-            </WalkthroughStep>
-            <WalkthroughStep title="The last step" id="step3">
+            </Walkthrough.Step>
+            <Walkthrough.Step title="The last step" id="step3">
               finished
-            </WalkthroughStep>
+            </Walkthrough.Step>
           </Walkthrough>
         </section>
       </Layout.Content>

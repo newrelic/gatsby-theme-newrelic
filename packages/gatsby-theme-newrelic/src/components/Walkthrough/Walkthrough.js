@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import WalkthroughStep from './WalkthroughStep';
 
 const Walkthrough = ({ className, children }) => {
-  const filteredSteps = children.filter(
-    (child) => child.type.name === 'WalkthroughStep'
-  );
-  const numberedSteps = filteredSteps.map((child, idx) => {
+  const numberedSteps = children.map((child, idx) => {
     return { ...child, props: { ...child.props, number: idx + 1 } };
   });
 
@@ -31,6 +29,8 @@ const Walkthrough = ({ className, children }) => {
     </div>
   );
 };
+
+Walkthrough.Step = WalkthroughStep;
 
 Walkthrough.propTypes = {
   className: PropTypes.string,

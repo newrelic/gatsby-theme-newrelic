@@ -64,7 +64,6 @@ export { default as Terminal } from './src/components/Terminal';
 export { default as TextHighlight } from './src/components/TextHighlight';
 export { default as Video } from './src/components/Video';
 export { default as Walkthrough } from './src/components/Walkthrough';
-export { default as WalkthroughStep } from './src/components/Walkthrough/WalkthroughStep';
 
 export { default as formatCode } from './src/utils/formatCode';
 export { default as useActiveHash } from './src/hooks/useActiveHash';
