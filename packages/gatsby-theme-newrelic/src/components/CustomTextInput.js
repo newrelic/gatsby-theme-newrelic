@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDebounce } from 'react-use';
+import { scroller } from 'react-scroll';
 import { css } from '@emotion/react';
 import Icon from './Icon';
 import Link from './Link';
@@ -14,9 +16,26 @@ const CustomTextInput = ({
   placeholder,
   onChange,
   value,
+  codeLine,
+  defaultValue,
   toolTip,
   url,
 }) => {
+  useDebounce(
+    () => {
+      if (value !== defaultValue && codeLine) {
+        scroller.scrollTo(`line-${codeLine}`, {
+          duration: 600,
+          delay: 0,
+          smooth: 'easeInOutQuart',
+          containerId: 'codeblock',
+          offset: -5,
+        });
+      }
+    },
+    400,
+    [value]
+  );
   return (
     <div
       css={css`
@@ -144,10 +163,12 @@ const CustomTextInput = ({
 
 CustomTextInput.propTypes = {
   className: PropTypes.string,
+  defaultValue: PropTypes.string,
   error: PropTypes.bool,
   errorMessage: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
+  codeLine: PropTypes.number,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
   toolTip: PropTypes.string,

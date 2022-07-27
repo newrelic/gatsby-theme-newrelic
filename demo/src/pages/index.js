@@ -17,6 +17,7 @@ import {
   PageTools,
   RelatedResources,
   SearchInput,
+  SelectInLine,
   Side,
   SideBySide,
   SimpleFeedback,
@@ -35,7 +36,7 @@ import {
   SignupModal,
   Lightbox,
 } from '@newrelic/gatsby-theme-newrelic';
-
+import config from '../content/configFiles/javaConfig';
 import tallImage from '../images/nr-one-ajax-browser.png';
 import regularImage from '../images/apm-intro-overview.png';
 import transparentBackgroundImage from '../images/intro-DT.png';
@@ -136,6 +137,8 @@ const IndexPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customInput, setCustomInput] = useState('');
   const [flipCard, setFlipCard] = useState(false);
+  const [appName, setAppName] = useState('My Application');
+  const [licenseKey, setLicenseKey] = useState('12345');
 
   return (
     <Layout.Main
@@ -198,9 +201,91 @@ const IndexPage = () => {
             value={customInput}
             onChange={(e) => setCustomInput(e.target.value)}
           />
+          <section
+            css={css`
+              margin-top: 10px;
+            `}
+          >
+            <h2>Inline drop down select</h2>
+            <SelectInLine label="Example">
+              <option value="first">first</option>
+              <option value="second">second</option>
+              <option value="third">third</option>
+              <option value="disabled" disabled>
+                disabled
+              </option>
+            </SelectInLine>
+          </section>
 
           <h2>Interactive form</h2>
-          <InteractiveForm />
+          <InteractiveForm
+            config={config}
+            inputs={[
+              {
+                value: licenseKey,
+                line: 15,
+              },
+              {
+                value: appName,
+                line: 31,
+              },
+            ]}
+          >
+            <InteractiveForm.InputList>
+              <CustomTextInput
+                name="app-name"
+                label="Name your app"
+                codeLine={31}
+                defaultValue="My Application"
+                value={appName}
+                onChange={(e) => {
+                  setAppName(e.target.value);
+                }}
+                toolTip="The app name in the agent's configuration file will be used in the New Relic user interface"
+                css={css`
+                  margin-bottom: 1.5rem;
+                `}
+              />
+              <CustomTextInput
+                name="license-key"
+                label="Enter your New Relic "
+                codeLine={15}
+                defaultValue="12345"
+                value={licenseKey}
+                onChange={(e) => {
+                  setLicenseKey(e.target.value);
+                }}
+                url={{
+                  href: 'https://docs.newrelic.com/docs/apis/intro-apis/new-relic-api-keys/#ingest-license-key',
+                  title: 'license key',
+                }}
+                css={css`
+                  margin-bottom: 1.5rem;
+                `}
+              />
+            </InteractiveForm.InputList>
+            <InteractiveForm.Tip>
+              When using the config file we recommend:
+              <ul>
+                <li>
+                  change the default <code>newrelic.yml</code> file permissions
+                  to read/write only for the owner of the application server
+                  process.
+                </li>
+                <li>
+                  make sure <code>newrelic.yml</code> is part of your backup
+                  routine.
+                </li>
+                <li>
+                  use the{' '}
+                  <Link to="https://docs.newrelic.com/docs/new-relic-solutions/solve-common-issues/diagnostics-cli-nrdiag/diagnostics-cli-nrdiag/">
+                    New Relic Diagnostics CLI
+                  </Link>{' '}
+                  to validate your settings, either before or after you deploy.
+                </li>
+              </ul>
+            </InteractiveForm.Tip>
+          </InteractiveForm>
 
           <h2>This is a skeleton</h2>
           <Skeleton
@@ -214,7 +299,9 @@ const IndexPage = () => {
           <SideBySide>
             <Side>
               <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
-              <CodeBlock language="json">{jsonExample}</CodeBlock>
+              <CodeBlock language="json" lineNumbers>
+                {jsonExample}
+              </CodeBlock>
             </Side>
 
             <Side>
