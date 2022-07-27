@@ -1,3 +1,4 @@
+export { default as AnimatedCard } from './src/components/AnimatedCard';
 export { default as Banner } from './src/components/Banner';
 export { default as Button } from './src/components/Button';
 export { default as Callout } from './src/components/Callout';
@@ -19,6 +20,7 @@ export {
 export { default as GitHubIssueButton } from './src/components/GitHubIssueButton';
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';
+export { default as InteractiveForm } from './src/components/InteractiveForm';
 export { default as Layout } from './src/components/Layout';
 export { default as Lightbox } from './src/components/Lightbox';
 export { default as Link } from './src/components/Link';
@@ -44,6 +46,7 @@ export { default as Portal } from './src/components/Portal';
 export { default as RelatedResources } from './src/components/RelatedResources';
 export { default as SearchInput } from './src/components/SearchInput';
 export { default as Select } from './src/components/Select';
+export { default as SelectInLine } from './src/components/SelectInLine';
 export { default as SEO } from './src/components/SEO';
 export { default as Side } from './src/components/Side';
 export { default as SideBySide } from './src/components/SideBySide';
@@ -60,6 +63,7 @@ export { default as TagList } from './src/components/TagList';
 export { default as Terminal } from './src/components/Terminal';
 export { default as TextHighlight } from './src/components/TextHighlight';
 export { default as Video } from './src/components/Video';
+export { default as Walkthrough } from './src/components/Walkthrough';
 
 export { default as formatCode } from './src/utils/formatCode';
 export { default as useActiveHash } from './src/hooks/useActiveHash';
