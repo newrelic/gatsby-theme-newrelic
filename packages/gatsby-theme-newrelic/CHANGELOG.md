@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.9.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.8.0...v6.9.0) (2022-07-27)
+
+
+### Bug Fixes
+
+* Add code scrolling ability to custom input ([69eb5dd](https://github.com/newrelic/gatsby-theme-newrelic/commit/69eb5ddb5214678ae93125f8e9a3d661e087d17c))
+* resolve linting errors ([d2ed47e](https://github.com/newrelic/gatsby-theme-newrelic/commit/d2ed47e6504ec2450810a287cdd9aed83fb76932))
+
+
+### Features
+
+* Add walkthrough component ([d1872d8](https://github.com/newrelic/gatsby-theme-newrelic/commit/d1872d8f37efd25ac8c3a4cc76aa751af48323aa))
+* **Select:** New Select component added ([078fb72](https://github.com/newrelic/gatsby-theme-newrelic/commit/078fb723525df4c15bf7ee1de3e9ecad5e6383a1))
+* **Select:** New Select component added ([f93fd0a](https://github.com/newrelic/gatsby-theme-newrelic/commit/f93fd0a77556ba2da2b64ba5a7138cf579dd2f64))
+* **Select:** New Select component added ([fcf9b02](https://github.com/newrelic/gatsby-theme-newrelic/commit/fcf9b028c4cfb7c8f6a39fdc0b1925c4251222b7))
+* **Select:** New Select component added ([a40e7dd](https://github.com/newrelic/gatsby-theme-newrelic/commit/a40e7dddd599410729e67c25a3e63377e738561b))
+* Add flipcard component ([65b48dd](https://github.com/newrelic/gatsby-theme-newrelic/commit/65b48ddb566f35520cdc92e68766071c8f7e35d3))
+* **Select:** New Select component added ([288bc51](https://github.com/newrelic/gatsby-theme-newrelic/commit/288bc519264cfc1d8e7e8712726f59bc4905d170))
+* Create interactive form and demo ([c628181](https://github.com/newrelic/gatsby-theme-newrelic/commit/c628181bb9f3c8d0ec3884ed9be18916a14892d5))
+
+
+
+
+
 # [6.8.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.7.0...v6.8.0) (2022-07-20)
 
 
