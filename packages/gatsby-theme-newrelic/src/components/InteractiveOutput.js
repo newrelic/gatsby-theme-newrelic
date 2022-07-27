@@ -4,7 +4,7 @@ import CodeBlock from './CodeBlock';
 
 const InteractiveOutput = ({ className, inputs, config }) => {
   let lines = '';
-  inputs.forEach((input) => (lines = lines.concat(`,${input.line}`)));
+  inputs.forEach((input) => (lines = lines.concat(`,${input.codeLine}`)));
 
   const updateConfig = () => {
     let updatedConfig = config.slice();
