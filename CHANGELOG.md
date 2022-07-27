@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.9.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.9.1...v6.9.2) (2022-07-27)
+
+
+### Bug Fixes
+
+* update logo viewBox ([757e717](https://github.com/newrelic/gatsby-theme-newrelic/commit/757e7177c8c23d8203496c9f6ef2052190474aa6))
+
+
+
+
+
 ## [6.9.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.9.0...v6.9.1) (2022-07-27)
 
 
