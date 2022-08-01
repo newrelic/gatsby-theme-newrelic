@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.9.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.9.2...v6.9.3) (2022-08-01)
+
+
+### Bug Fixes
+
+* update gatsby version to 4.8.2 ([7589090](https://github.com/newrelic/gatsby-theme-newrelic/commit/7589090cac0e4f75319c5cd86eb8c98383a88d88))
+
+
+
+
+
 ## [6.9.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.9.1...v6.9.2) (2022-07-27)
 
 
