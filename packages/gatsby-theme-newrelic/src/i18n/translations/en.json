@@ -33,9 +33,16 @@
     "disagree": "No"
   },
   "feedback": {
-    "question": "Was this page helpful?",
-    "positive": "Yes",
-    "negative": "No"
+    "question": "How was the content on this page?",
+    "poor": "Poor",
+    "good": "Good",
+    "great": "Great",
+    "acknowledge": "Got it. Feel free to tell us more.",
+    "comments": "Your thoughts",
+    "email": "Your email (optional)",
+    "submitButton": "Submit feedback",
+    "submitMessage": "Thanks for your detailed feedback",
+    "reset": "Reset"
   },
   "footer": {
     "copyright": "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
