@@ -45,14 +45,16 @@ const ComplexFeedback = () => {
         padding: 1rem;
         gap: 1rem;
         p {
+          color: var(--system-text-primary-light);
           margin: 0;
           font-size: 14px;
         }
-
-        @supports not (gap: 1rem) {
-          > :first-of-type {
-            margin-right: 1rem;
-          }
+        input::placeholder {
+          color: var(--system-text-primary-light);
+        }
+        h5,
+        h4 {
+          color: var(--system-text-primary-light);
         }
       `}
     >
@@ -66,6 +68,7 @@ const ComplexFeedback = () => {
           <Button
             onClick={handleReset}
             css={css`
+              border: none;
               border-bottom: 1px solid;
               border-radius: 0;
               padding: 0;
@@ -103,10 +106,12 @@ const ComplexFeedback = () => {
               onClick={() => handleFeedbackClick('poor')}
               css={css`
                 height: 3rem;
-                color: var(--primary-text-color);
+                color: var(--system-text-primary-light);
+                border-color: var(--system-text-primary-light);
+
                 ${feedbackType === 'poor' &&
                 css`
-                  background: var(--button-background-color);
+                  background: var(--system-text-primary-light);
                   color: var(--system-text-primary-dark);
                 `}
               `}
@@ -127,11 +132,12 @@ const ComplexFeedback = () => {
               onClick={() => handleFeedbackClick('good')}
               css={css`
                 height: 3rem;
-                color: var(--primary-text-color);
+                color: var(--system-text-primary-light);
+                border-color: var(--system-text-primary-light);
 
                 ${feedbackType === 'good' &&
                 css`
-                  background: var(--button-background-color);
+                  background: var(--system-text-primary-light);
                   color: var(--system-text-primary-dark);
                 `}
               `}
@@ -152,10 +158,12 @@ const ComplexFeedback = () => {
               onClick={() => handleFeedbackClick('great')}
               css={css`
                 height: 3rem;
-                color: var(--primary-text-color);
+                color: var(--system-text-primary-light);
+                border-color: var(--system-text-primary-light);
+
                 ${feedbackType === 'great' &&
                 css`
-                  background: var(--button-background-color);
+                  background: var(--system-text-primary-light);
                   color: var(--system-text-primary-dark);
                 `}
               `}
@@ -204,6 +212,12 @@ const ComplexFeedback = () => {
                 onClick={handleSubmit}
                 css={css`
                   height: 3rem;
+                  background: var(--system-text-primary-light);
+                  color: var(--system-text-primary-dark);
+                  .dark-mode &:hover {
+                    background: var(--color-black);
+                    color: var(--system-text-primary-dark);
+                  }
                 `}
               >
                 {t('feedback.submitButton')}
