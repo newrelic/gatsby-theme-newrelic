@@ -5,6 +5,7 @@ export { default as Callout } from './src/components/Callout';
 export { default as CodeBlock } from './src/components/CodeBlock';
 export { default as Collapser } from './src/components/Collapser';
 export { default as CollapserGroup } from './src/components/CollapserGroup';
+export { default as ComplexFeedback } from './src/components/ComplexFeedback';
 export { default as ContributingGuidelines } from './src/components/ContributingGuidelines';
 export { default as CreateIssueButton } from './src/components/CreateIssueButton';
 export { default as CustomTextInput } from './src/components/CustomTextInput';
