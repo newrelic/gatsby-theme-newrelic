@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.10.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.9.3...v6.10.0) (2022-08-23)
+
+
+### Bug Fixes
+
+* Adjust for darkmode ([39a757d](https://github.com/newrelic/gatsby-theme-newrelic/commit/39a757d2152ef97cf87083f4cf859b9d9fc1b0a5))
+
+
+### Features
+
+* Create complex feedback component and use in demo ([1596e89](https://github.com/newrelic/gatsby-theme-newrelic/commit/1596e89459b7e66e889a162c52add10b3921ecdb))
+
+
+
+
+
 ## [6.9.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.9.2...v6.9.3) (2022-08-01)
 
 
