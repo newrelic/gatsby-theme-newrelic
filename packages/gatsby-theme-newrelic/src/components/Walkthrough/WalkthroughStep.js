@@ -8,10 +8,14 @@ const WalkthroughStep = ({
   title,
   active = false,
   number,
+  onMouseOver,
+  onFocus,
 }) => {
   return (
     <>
       <aside
+        onMouseOver={onMouseOver}
+        onFocus={onFocus}
         css={css`
           --timeline-color: ${active
             ? 'var(--brand-button-primary-accent)'
@@ -95,6 +99,8 @@ const WalkthroughStep = ({
           margin-bottom: 2rem;
         `}
         className={className}
+        onMouseOver={onMouseOver}
+        onFocus={onFocus}
       >
         <h3>{title}</h3>
         {children}
@@ -109,6 +115,8 @@ WalkthroughStep.propTypes = {
   title: PropTypes.string,
   active: PropTypes.bool,
   number: PropTypes.number,
+  onFocus: PropTypes.func,
+  onMouseOver: PropTypes.func,
 };
 
 export default WalkthroughStep;
