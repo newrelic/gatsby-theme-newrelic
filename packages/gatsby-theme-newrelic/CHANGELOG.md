@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.11.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.10.0...v6.11.0) (2022-08-26)
+
+
+### Features
+
+* **signup:** swap out link to signup page for signup modal ([54eac44](https://github.com/newrelic/gatsby-theme-newrelic/commit/54eac44c9fca467f7492de595851143c63be183f))
+
+
+
+
+
 # [6.10.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.9.3...v6.10.0) (2022-08-23)
 
 
