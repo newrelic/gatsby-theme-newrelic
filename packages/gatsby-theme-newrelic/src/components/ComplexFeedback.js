@@ -43,7 +43,7 @@ const ComplexFeedback = () => {
         justify-content: center;
         background: var(--erno-yellow);
         padding: 1rem;
-        gap: 1rem;
+        gap: 10px;
         p {
           color: var(--system-text-primary-light);
           margin: 0;
@@ -90,14 +90,7 @@ const ComplexFeedback = () => {
           <div
             css={css`
               display: flex;
-              justify-content: space-between;
-              align-items: flex-start;
-
-              @supports not (gap: 0.5rem) {
-                a:first-of-type {
-                  margin-right: 0.25rem;
-                }
-              }
+              justify-content: center;
             `}
           >
             <Button
