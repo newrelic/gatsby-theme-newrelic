@@ -437,11 +437,10 @@ const GlobalHeader = ({
               >
                 <span>{t('button.login')}</span>
               </Button>
+
               <Button
+                as={ExternalLink}
                 className={className}
-                onClick={() => setIsModalOpen(true)}
-                size={Button.SIZE.SMALL}
-                variant={Button.VARIANT.LINK}
                 css={css`
                   font-size: 18px;
                   white-space: nowrap;
@@ -449,6 +448,13 @@ const GlobalHeader = ({
                     color: var(--brand-button-primary-accent);
                   }
                 `}
+                href="https://newrelic.com/signup"
+                size={Button.SIZE.SMALL}
+                variant={Button.VARIANT.LINK}
+                instrumentation={{
+                  component: 'SignUpButton',
+                  layoutElement: 'globalHeader',
+                }}
               >
                 <span>{t('button.startNow')}</span>
               </Button>
