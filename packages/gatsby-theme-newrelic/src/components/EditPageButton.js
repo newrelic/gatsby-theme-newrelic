@@ -44,7 +44,7 @@ const EditPageButton = ({
       onClick={handleClick}
     >
       <Icon
-        name="fe-github"
+        name="fe-edit"
         css={css`
           margin-right: 0.5rem;
         `}

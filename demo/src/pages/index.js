@@ -8,7 +8,6 @@ import {
   Callout,
   Collapser,
   CollapserGroup,
-  ComplexFeedback,
   ContributingGuidelines,
   CustomTextInput,
   InteractiveForm,
@@ -21,6 +20,7 @@ import {
   SelectInLine,
   Side,
   SideBySide,
+  SimpleFeedback,
   Skeleton,
   Surface,
   Table,
@@ -823,6 +823,7 @@ nr1 create --type nerdpack --name pageviews-app
           }
         `}
       >
+        <SimpleFeedback pageTitle="Demo Site" />
         <ContributingGuidelines fileRelativePath="demo/src/pages/index.js" />
         <PageTools.Section>
           <PageTools.Title>How to use</PageTools.Title>
@@ -831,7 +832,6 @@ nr1 create --type nerdpack --name pageviews-app
             to give page-specific context to a user
           </p>
         </PageTools.Section>
-        <ComplexFeedback pageTitle="Demo Site" />
       </Layout.PageTools>
     </Layout.Main>
   );
