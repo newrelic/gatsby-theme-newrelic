@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.0...v6.11.1) (2022-08-29)
+
+
+### Bug Fixes
+
+* temporarily remove the complex feedback form ([7509977](https://github.com/newrelic/gatsby-theme-newrelic/commit/75099772b15334757a2af00ce1ea6760a8f82345))
+
+
+
+
+
 # [6.11.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.10.0...v6.11.0) (2022-08-26)
 
 
