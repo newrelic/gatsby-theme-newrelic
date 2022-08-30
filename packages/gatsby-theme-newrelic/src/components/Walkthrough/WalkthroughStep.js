@@ -10,6 +10,7 @@ const WalkthroughStep = ({
   number,
   onMouseOver,
   onFocus,
+  id,
 }) => {
   return (
     <>
@@ -102,7 +103,7 @@ const WalkthroughStep = ({
         onMouseOver={onMouseOver}
         onFocus={onFocus}
       >
-        <h3>{title}</h3>
+        <h2 id={id}>{title}</h2>
         {children}
       </div>
     </>
@@ -117,6 +118,7 @@ WalkthroughStep.propTypes = {
   number: PropTypes.number,
   onFocus: PropTypes.func,
   onMouseOver: PropTypes.func,
+  id: PropTypes.string,
 };
 
 export default WalkthroughStep;
