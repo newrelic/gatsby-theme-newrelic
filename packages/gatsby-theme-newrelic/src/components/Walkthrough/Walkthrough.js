@@ -16,7 +16,7 @@ const Walkthrough = ({ className, children }) => {
         --ring-border-width: 3px;
 
         display: grid;
-        grid-template-columns: auto minmax(100px, 1fr);
+        grid-template-columns: auto minmax(0, 1fr);
         grid-column-gap: 2rem;
 
         @media screen and (max-width: 1000px) {
