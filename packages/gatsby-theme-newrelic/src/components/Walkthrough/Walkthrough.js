@@ -16,11 +16,11 @@ const Walkthrough = ({ className, children }) => {
         --ring-border-width: 3px;
 
         display: grid;
-        grid-template-columns: auto 1fr;
+        grid-template-columns: auto minmax(100px, 1fr);
         grid-column-gap: 2rem;
 
         @media screen and (max-width: 1000px) {
-          grid-template-columns: auto;
+          grid-template-columns: 100%;
         }
       `}
       className={className}
