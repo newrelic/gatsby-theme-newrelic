@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.2...v6.11.3) (2022-08-30)
+
+
+### Bug Fixes
+
+* remove arbitrary 100px minimum on grid ([bdc1a8c](https://github.com/newrelic/gatsby-theme-newrelic/commit/bdc1a8cfd3e8d3e63d06da36505aed5220be95b7))
+* update grid to not allow children to extend parent width ([12c284b](https://github.com/newrelic/gatsby-theme-newrelic/commit/12c284b2a5b23a31b904522cbf2fb40b41914d3e))
+
+
+
+
+
 ## [6.11.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.1...v6.11.2) (2022-08-30)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
