@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.3...v6.11.4) (2022-08-30)
+
+
+### Bug Fixes
+
+* move tooltip further left on small screens ([cc7c306](https://github.com/newrelic/gatsby-theme-newrelic/commit/cc7c306de2c7d52339e869fc74ed5c478e08fd83))
+
+
+
+
+
 ## [6.11.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.2...v6.11.3) (2022-08-30)
 
 
