@@ -102,6 +102,10 @@ const CustomTextInput = ({
                 pointer-events: none;
                 position: absolute;
                 transition: opacity 325ms, transform 325ms;
+
+                @media screen and (max-width: 600px) {
+                  left: -100px;
+                }
               `}
             >
               {toolTip}
