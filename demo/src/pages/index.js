@@ -403,53 +403,13 @@ const IndexPage = () => {
             </Tabs.Bar>
             <Tabs.Pages>
               <Tabs.Page id="codeblock">
-                {' '}
-                <CodeBlock
-                  copyable
-                  lineNumbers
-                  highlightedLines="5-7,12"
-                  fileName="src/components/Button.js"
-                  language="jsx"
-                  css={css`
-                    margin-bottom: 2rem;
-                  `}
-                >
-                  {codeSample}
-                </CodeBlock>
+                <Terminal>cd codeblock</Terminal>
               </Tabs.Page>
               <Tabs.Page id="live-edit">
-                <CodeBlock
-                  copyable
-                  lineNumbers
-                  live
-                  preview
-                  fileName="src/components/Button.js"
-                  language="jsx"
-                  scope={{ Button }}
-                  css={css`
-                    margin-bottom: 2rem;
-                  `}
-                >
-                  {liveCodeSample}
-                </CodeBlock>
+                <Terminal>cd live-edit</Terminal>
               </Tabs.Page>
               <Tabs.Page id="embedded">
-                <CodeBlock
-                  language="graphql"
-                  css={css`
-                    margin-bottom: 1rem;
-                  `}
-                >
-                  {codeSampleWithAdditionalTags}
-                </CodeBlock>
-                <CodeBlock
-                  language="yaml"
-                  css={css`
-                    margin-bottom: 1rem;
-                  `}
-                >
-                  {anotherSample}
-                </CodeBlock>
+                <Terminal>cd embedded</Terminal>
               </Tabs.Page>
             </Tabs.Pages>
           </Tabs>
