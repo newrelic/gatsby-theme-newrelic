@@ -403,6 +403,71 @@ const IndexPage = () => {
             </Tabs.Bar>
             <Tabs.Pages>
               <Tabs.Page id="codeblock">
+                {' '}
+                <CodeBlock
+                  copyable
+                  lineNumbers
+                  highlightedLines="5-7,12"
+                  fileName="src/components/Button.js"
+                  language="jsx"
+                  css={css`
+                    margin-bottom: 2rem;
+                  `}
+                >
+                  {codeSample}
+                </CodeBlock>
+              </Tabs.Page>
+              <Tabs.Page id="live-edit">
+                <CodeBlock
+                  copyable
+                  lineNumbers
+                  live
+                  preview
+                  fileName="src/components/Button.js"
+                  language="jsx"
+                  scope={{ Button }}
+                  css={css`
+                    margin-bottom: 2rem;
+                  `}
+                >
+                  {liveCodeSample}
+                </CodeBlock>
+              </Tabs.Page>
+              <Tabs.Page id="embedded">
+                <CodeBlock
+                  language="graphql"
+                  css={css`
+                    margin-bottom: 1rem;
+                  `}
+                >
+                  {codeSampleWithAdditionalTags}
+                </CodeBlock>
+                <CodeBlock
+                  language="yaml"
+                  css={css`
+                    margin-bottom: 1rem;
+                  `}
+                >
+                  {anotherSample}
+                </CodeBlock>
+              </Tabs.Page>
+            </Tabs.Pages>
+          </Tabs>
+        </section>
+        <section>
+          <h2>Code blocks in tabs</h2>
+          <Tabs>
+            <Tabs.Bar>
+              <Tabs.BarItem id="codeblock">A code block</Tabs.BarItem>
+              <Tabs.BarItem id="live-edit">
+                A live editable code block w/ preview
+              </Tabs.BarItem>
+              <Tabs.BarItem id="embedded">
+                Code block w/ embedded var/mark/links
+              </Tabs.BarItem>
+            </Tabs.Bar>
+            <Tabs.Pages>
+              <Tabs.Page id="codeblock">
                 <Terminal>cd codeblock</Terminal>
               </Tabs.Page>
               <Tabs.Page id="live-edit">
