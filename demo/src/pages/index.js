@@ -455,17 +455,31 @@ const IndexPage = () => {
           </Tabs>
         </section>
         <section>
-          <h2>Terminal</h2>
-          <Terminal>cd packages/gatsby-theme-newrelic</Terminal>
-
-          <h2>Animated terminal</h2>
-          <Terminal animate>
-            {`
-nr1 create --type nerdpack --name pageviews-app
-[output] {success}✔  {plain}Component created successfully!
-[output]    {purple}nerdpack {blue}pageviews-app {plain}is available at {green}"./pageviews-app"
-            `}
-          </Terminal>
+          <h2>Terminal in Tabs</h2>
+          <Tabs>
+            <Tabs.Bar>
+              <Tabs.BarItem id="terminal">Regular Terminal</Tabs.BarItem>
+              <Tabs.BarItem id="animated">Animated Terminal</Tabs.BarItem>
+              <Tabs.BarItem id="another">Another Terminal</Tabs.BarItem>
+            </Tabs.Bar>
+            <Tabs.Pages>
+              <Tabs.Page id="terminal">
+                <Terminal>cd packages/gatsby-theme-newrelic</Terminal>
+              </Tabs.Page>
+              <Tabs.Page id="animated">
+                <Terminal animate>
+                  {`
+                  nr1 create --type nerdpack --name pageviews-app
+                  [output] {success}✔  {plain}Component created successfully!
+                  [output]    {purple}nerdpack {blue}pageviews-app {plain}is available at {green}"./pageviews-app"
+                              `}
+                </Terminal>
+              </Tabs.Page>
+              <Tabs.Page id="another">
+                <Terminal>git checkout this-awesome-stuff</Terminal>
+              </Tabs.Page>
+            </Tabs.Pages>
+          </Tabs>
         </section>
         <section>
           <h2>Buttons</h2>
