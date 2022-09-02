@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.4...v6.11.5) (2022-09-02)
+
+
+### Bug Fixes
+
+* add all terminals to tabs in demo ([5d18020](https://github.com/newrelic/gatsby-theme-newrelic/commit/5d18020d64bfa9258e8a3a7e37a9ad1f9732087b))
+* reinstate the Code Block examples ([4a73c5d](https://github.com/newrelic/gatsby-theme-newrelic/commit/4a73c5db1753793a608c187bd00c9a3e653d43f2))
+* update styles to hide pages that aren't selected vs removing from DOM ([0e49cff](https://github.com/newrelic/gatsby-theme-newrelic/commit/0e49cff3129e94a4d82e674531f74981ea81fcb3))
+
+
+
+
+
 ## [6.11.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.3...v6.11.4) (2022-08-30)
 
 
