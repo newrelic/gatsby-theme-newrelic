@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.5...v6.11.6) (2022-09-07)
+
+
+### Bug Fixes
+
+* update jest snapshot ([e4006b3](https://github.com/newrelic/gatsby-theme-newrelic/commit/e4006b3d16eba6a285df0e0a4a319b4cd55d8cc5))
+* update NR logo to new branding ([6b5d937](https://github.com/newrelic/gatsby-theme-newrelic/commit/6b5d9378e7f22733c050a83b2849f7df50f2dd51))
+
+
+
+
+
 ## [6.11.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.4...v6.11.5) (2022-09-02)
 
 
