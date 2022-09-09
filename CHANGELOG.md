@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.6...v6.11.7) (2022-09-09)
+
+
+### Bug Fixes
+
+* add option to theme to allow listing certain routes that can allow scrolling via the gatsby api ([9aafba3](https://github.com/newrelic/gatsby-theme-newrelic/commit/9aafba3040a4c86370e0372ddda2445d40408948))
+* update shouldUpdateScroll theme option to account specifically for site search and changing pages ([3ef10fa](https://github.com/newrelic/gatsby-theme-newrelic/commit/3ef10fa06a554dd74e67d4a48fa167381ea61b24))
+* update the order of conditionals for better performance ([1045fcb](https://github.com/newrelic/gatsby-theme-newrelic/commit/1045fcbae798f4a19b6c3307a9a788d534212e37))
+
+
+
+
+
 ## [6.11.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.5...v6.11.6) (2022-09-07)
 
 
