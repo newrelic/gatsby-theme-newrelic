@@ -78,6 +78,9 @@ module.exports = {
             process.env.RECAPTCHA_TOKEN ||
             '6LdMFd8UAAAAAApWFzm8YCyuGCUfg57U1WvqVYqC',
         },
+        shouldUpdateScroll: {
+          routes: ['/'],
+        },
       },
     },
     {
