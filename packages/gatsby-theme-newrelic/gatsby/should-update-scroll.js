@@ -11,11 +11,11 @@ const shouldUpdateScroll = (
   // If the 'shouldUpdateScroll' theme option exists and is one of the listed routes
   // OR if a user is changing pages/urls, allow for scrolling to top...
   if (
+    routerProps?.location?.pathname !== prevRouterProps?.location?.pathname ||
     (themeOptions?.shouldUpdateScroll &&
       themeOptions.shouldUpdateScroll.routes.some((route) =>
         routerProps?.location?.pathname.startsWith(route)
-      )) ||
-    routerProps?.location?.pathname !== prevRouterProps?.location?.pathname
+      ))
   ) {
     const currentPosition = getSavedScrollPosition(routerProps?.location);
     return currentPosition || [0, 0];
