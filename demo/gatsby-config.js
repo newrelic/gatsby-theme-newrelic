@@ -25,7 +25,8 @@ module.exports = {
         layout: {
           component: require.resolve('./src/layouts'),
           contentPadding: '2rem',
-          maxWidth: '1480px',
+          maxWidth: '1280px',
+          sidebarWidth: '300px',
           mobileBreakpoint: '760px',
         },
         newrelic: {
