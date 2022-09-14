@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
 
+import { isValidEmail } from '../utils/isValidEmail';
 import Button from './Button';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
@@ -10,6 +11,7 @@ const ComplexFeedback = () => {
   const [feedbackType, setfeedbackType] = useState(null);
   const [userComments, setUserComments] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
+  const [shouldSubmit, setShouldSubmit] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const { t } = useThemeTranslation();
   const tessen = useTessen();
@@ -42,7 +44,6 @@ const ComplexFeedback = () => {
         flex-direction: column;
         justify-content: center;
         background: var(--erno-yellow);
-        padding: 1rem;
         gap: 1rem;
         p {
           color: var(--system-text-primary-light);
@@ -185,7 +186,11 @@ const ComplexFeedback = () => {
               <p>{t('feedback.comments')}</p>
               <textarea
                 value={userComments}
-                onChange={(e) => setUserComments(e.target.value)}
+                maxLength="30000"
+                onChange={(e) => {
+                  setUserComments(e.target.value);
+                  setShouldSubmit(e.target.value.length > 0);
+                }}
                 css={css`
                   font-size: 0.75rem;
                   padding: 0.5rem;
@@ -198,7 +203,14 @@ const ComplexFeedback = () => {
               <input
                 value={userEmail}
                 placeholder="reli@example.com"
-                onChange={(e) => setUserEmail(e.target.value)}
+                onChange={(e) => {
+                  setUserEmail(e.target.value);
+                  setShouldSubmit(
+                    userComments.length > 0 &&
+                      (isValidEmail(e.target.value) ||
+                        e.target.value.length === 0)
+                  );
+                }}
                 css={css`
                   font-size: 0.75rem;
                   padding: 0.5rem;
@@ -206,10 +218,20 @@ const ComplexFeedback = () => {
                   border: 1px solid;
                 `}
               />
+              {userEmail && !isValidEmail(userEmail) && (
+                <p
+                  css={css`
+                    color: var(--attention-notification-critical);
+                  `}
+                >
+                  {t('feedback.validEmail')}
+                </p>
+              )}
               <Button
                 variant={Button.VARIANT.NORMAL}
                 size={Button.SIZE.LARGE}
                 onClick={handleSubmit}
+                disabled={!shouldSubmit}
                 css={css`
                   height: 3rem;
                   background: var(--system-text-primary-light);
@@ -217,6 +239,9 @@ const ComplexFeedback = () => {
                   .dark-mode &:hover {
                     background: var(--color-black);
                     color: var(--system-text-primary-dark);
+                  }
+                  &:disabled {
+                    cursor: not-allowed;
                   }
                 `}
               >

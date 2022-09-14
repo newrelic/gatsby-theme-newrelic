@@ -5,6 +5,7 @@ import { useMount } from 'react-use';
 
 import { setUTMCookies } from './utmCookie';
 import { createAccountRequest } from './signup';
+import { isValidInput, isValidEmail } from '../../utils/isValidEmail';
 
 import Button from '../Button';
 import Link from '../Link';
@@ -13,17 +14,6 @@ import TextInput from './TextInput';
 import ErrorMessage from './ErrorMessage';
 
 import useTessen from '../../hooks/useTessen';
-
-const isValid = (value) => value !== undefined && value.length > 0;
-
-// snippet from this article: https://gomakethings.com/email-validation-in-javascript/
-
-const isEmail = (email) =>
-  /^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$/.test(
-    email
-  );
-
-const isValidEmail = (value) => isValid(value) && isEmail(value);
 
 const defaultInputValues = { value: '', isValid: false };
 
@@ -43,7 +33,7 @@ const SignupForm = ({ siteUrl }) => {
     const changedInput = { ...input };
     if (parameter === 'email') {
       changedInput[parameter] = { value, isValid: isValidEmail(value) };
-    } else changedInput[parameter] = { value, isValid: isValid(value) };
+    } else changedInput[parameter] = { value, isValid: isValidInput(value) };
 
     setInput(changedInput);
   };
