@@ -11,6 +11,9 @@ const onPreRenderHTML = (
 ) => {
   const tessen = getTessenConfig(themeOptions);
   const { oneTrustID } = themeOptions;
+  const {
+    optimizely: { projectNameSlug },
+  } = themeOptions;
 
   const version = tessen ? tessen.tessenVersion : null;
 
@@ -27,6 +30,11 @@ const onPreRenderHTML = (
       />,
       themeOptions.tessen && (
         <script key="tessen" type="text/javascript" src={tessenPath} />
+      ),
+      projectNameSlug && (
+        <script
+          src={`https://cdn.optimizely.com/public/7331003/s/${projectNameSlug}.js`}
+        />
       ),
     ].filter(Boolean)
   );
