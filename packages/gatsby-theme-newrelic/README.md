@@ -195,6 +195,9 @@ module.exports = {
             authorizationKey: 'my-auth-key',
           },
         },
+        optmizely: {
+          projectNameSlug: 'slug_from_optmizely'
+        },
         tessen: {
           product: 'DEMO',
           subproduct: 'DEMO',
@@ -319,6 +322,20 @@ In short, the order of priority for populating content is driven by:
     from Swiftype.
 
     - **Default**: `5`
+
+#### `optmizely`
+
+Optional configuration to add optimizely A/B testing snippet. Optimizely projects are set up by Marketing peoples. Each project has an associated, slugified name for the javascript file it creates. Once the snippet is added to a site, the Optimizely code manipulates DOM according to experiment configuration.
+
+- `projectNameSlug`: The slugified name of the Optimizely project, which is used in the snippet as the name of the javascript file that's sourced into the site.
+
+**Example**
+
+```js
+optimizely: {
+  projectNameSlug: 'slugified_name_of_project';
+}
+```
 
 #### `tessen`
 
@@ -595,6 +612,7 @@ module.exports = {
 ```
 
 ### Layouts
+
 This theme supports Layout components in a similar way to Gatsby `V1` through the [`gatsby-plugin-layout`](https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/). This plugin allows you to persist the layout between page changes, as well as state.
 To start using this layout functionality create a component at `src/layouts/index.jsx`, then the plugin will automatically inject the component into your pages.
 
@@ -1287,7 +1305,7 @@ import { GlobalFooter } from '@newrelic/gatsby-theme-newrelic';
 
 Renders the global header used on all New Relic Gatsby sites. This component
 utilizes the [`layout` configuration](#layout) from the theme to size itself.
-*Note*: The [`signup`](#signup) configuration options are needed for this component to function correctly.
+_Note_: The [`signup`](#signup) configuration options are needed for this component to function correctly.
 
 ```js
 import { GlobalHeader } from '@newrelic/gatsby-theme-newrelic';
@@ -2299,10 +2317,10 @@ import { Side, SideBySide } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop       | Type   | Required | Default | Description                                              |
-| ---------- | ------ | -------- | ------- | -------------------------------------------------------- |
-| `children` | node   | no       |         | The content that's displayed in one side of the columns. |
-| `className`| string | no       |         | Additional `className` for the component.                |
+| Prop        | Type   | Required | Default | Description                                              |
+| ----------- | ------ | -------- | ------- | -------------------------------------------------------- |
+| `children`  | node   | no       |         | The content that's displayed in one side of the columns. |
+| `className` | string | no       |         | Additional `className` for the component.                |
 
 **Example**
 
@@ -2373,10 +2391,10 @@ import { Skeleton } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop | Type | Required | Default | Description |
-| ---- | ---- | :------: | ------- | ----------- |
-| `width` | pixels | Yes | None | The width of the element. |
-| `height` | pixels | Yes | None | The height of the element. |
+| Prop     | Type   | Required | Default | Description                |
+| -------- | ------ | :------: | ------- | -------------------------- |
+| `width`  | pixels |   Yes    | None    | The width of the element.  |
+| `height` | pixels |   Yes    | None    | The height of the element. |
 
 **Example**
 
