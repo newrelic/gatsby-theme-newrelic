@@ -292,7 +292,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
 
               @media screen and (max-width: ${NAV_BREAKPOINT}) {
                 width: 100%;
-                justify-content: space-between;
+                justify-content: flex-end;
                 margin: 0;
               }
             `}
@@ -384,7 +384,6 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                     chevron={false}
                     css={css`
                       margin: 0;
-                      height: 72px;
                       border-radius: 0px;
                       font-size: 0.75rem;
                       color: var(--system-text-primary-dark);
@@ -475,11 +474,6 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                 <span>{t('button.startNow')}</span>
               </Button>
             </li>
-            <li
-              css={css`
-                display: flex;
-              `}
-            />
           </ul>
           <SignupModal
             onClose={() => setIsModalOpen(false)}
