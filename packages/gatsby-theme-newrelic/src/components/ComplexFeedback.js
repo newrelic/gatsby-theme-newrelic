@@ -206,7 +206,7 @@ const ComplexFeedback = () => {
                 onChange={(e) => {
                   setUserEmail(e.target.value);
                   setShouldSubmit(
-                    userComments.length > 0 &&
+                    userComments?.length > 0 &&
                       (isValidEmail(e.target.value) ||
                         e.target.value.length === 0)
                   );
@@ -221,7 +221,11 @@ const ComplexFeedback = () => {
               {userEmail && !isValidEmail(userEmail) && (
                 <p
                   css={css`
-                    color: var(--attention-notification-critical);
+                    // using && here to increase specificity over the p styling in the section above
+                    && {
+                      color: var(--attention-notification-critical);
+                      margin-top: -1rem;
+                    }
                   `}
                 >
                   {t('feedback.validEmail')}
