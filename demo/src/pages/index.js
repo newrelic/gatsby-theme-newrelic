@@ -229,6 +229,7 @@ const IndexPage = () => {
                 line: 31,
               },
             ]}
+            containerId="agent-config-codeblock"
           >
             <InteractiveForm.InputList>
               <CustomTextInput
@@ -244,6 +245,7 @@ const IndexPage = () => {
                 css={css`
                   margin-bottom: 1.5rem;
                 `}
+                containerId="agent-config-codeblock"
               />
               <CustomTextInput
                 name="license-key"
@@ -261,6 +263,7 @@ const IndexPage = () => {
                 css={css`
                   margin-bottom: 1.5rem;
                 `}
+                containerId="agent-config-codeblock"
               />
             </InteractiveForm.InputList>
             <InteractiveForm.Tip>

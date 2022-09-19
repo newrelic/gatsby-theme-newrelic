@@ -62,6 +62,7 @@ const CodeBlock = ({
   live,
   preview,
   scope,
+  containerId,
 }) => {
   children = children.trim();
 
@@ -216,7 +217,7 @@ const CodeBlock = ({
             </div>
           )}
           <div
-            id="codeblock"
+            id={containerId ?? 'codeblock'}
             css={css`
               max-height: 26em;
               overflow: auto;
@@ -325,6 +326,7 @@ CodeBlock.propTypes = {
   live: PropTypes.bool,
   preview: PropTypes.bool,
   scope: PropTypes.object,
+  containerId: PropTypes.string,
 };
 
 CodeBlock.defaultProps = {
