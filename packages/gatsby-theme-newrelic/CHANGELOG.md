@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.7...v6.11.8) (2022-09-19)
+
+
+### Bug Fixes
+
+* give codeblock for interactive form a different configurable id ([8e6a0f1](https://github.com/newrelic/gatsby-theme-newrelic/commit/8e6a0f13766381b0718942dcef8d6f897345b984))
+* update type defs for incoming theme options to use shouldUpdateScroll ([ff03d79](https://github.com/newrelic/gatsby-theme-newrelic/commit/ff03d793335c7b919de3d7040e4193cd832e69ee))
+
+
+
+
+
 ## [6.11.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.6...v6.11.7) (2022-09-09)
 
 
