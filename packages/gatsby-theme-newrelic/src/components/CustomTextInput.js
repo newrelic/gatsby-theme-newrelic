@@ -20,6 +20,7 @@ const CustomTextInput = ({
   defaultValue,
   toolTip,
   url,
+  containerId,
 }) => {
   useDebounce(
     () => {
@@ -28,7 +29,7 @@ const CustomTextInput = ({
           duration: 600,
           delay: 0,
           smooth: 'easeInOutQuart',
-          containerId: 'codeblock',
+          containerId,
           offset: -5,
         });
       }
@@ -181,6 +182,7 @@ CustomTextInput.propTypes = {
     title: PropTypes.string,
   }),
   value: PropTypes.string,
+  containerId: PropTypes.string,
 };
 
 export default CustomTextInput;

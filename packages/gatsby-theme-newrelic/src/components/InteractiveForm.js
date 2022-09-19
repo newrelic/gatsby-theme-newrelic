@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Callout from './Callout';
 import InteractiveOutput from './InteractiveOutput';
 
-const InteractiveForm = ({ children, inputs, config }) => {
+const InteractiveForm = ({ children, inputs, config, containerId }) => {
   return (
     <div
       css={css`
@@ -28,6 +28,7 @@ const InteractiveForm = ({ children, inputs, config }) => {
         {children}
       </div>
       <InteractiveOutput
+        containerId={containerId}
         inputs={inputs}
         config={config}
         css={css`
@@ -71,6 +72,7 @@ InteractiveForm.propTypes = {
   children: PropTypes.node,
   inputs: PropTypes.array,
   config: PropTypes.string,
+  containerId: PropTypes.string,
 };
 
 Tip.propTypes = {

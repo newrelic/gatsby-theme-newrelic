@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CodeBlock from './CodeBlock';
 
-const InteractiveOutput = ({ className, inputs, config }) => {
+const InteractiveOutput = ({ className, inputs, config, containerId }) => {
   let lines = '';
   inputs.forEach((input) => (lines = lines.concat(`,${input.codeLine}`)));
 
@@ -23,6 +23,7 @@ const InteractiveOutput = ({ className, inputs, config }) => {
       fileName="newrelic.yml"
       language="yml"
       className={className}
+      containerId={containerId}
     >
       {updateConfig()}
     </CodeBlock>
@@ -33,6 +34,7 @@ InteractiveOutput.propTypes = {
   className: PropTypes.string,
   inputs: PropTypes.array,
   config: PropTypes.string,
+  containerId: PropTypes.string.isRequired,
 };
 
 export default InteractiveOutput;
