@@ -310,7 +310,7 @@ const IndexPage = () => {
               </CodeBlock>
             </Side>
 
-            <Side fullHeight>
+            <Side>
               <img alt="example" src={regularImage} />
             </Side>
           </SideBySide>

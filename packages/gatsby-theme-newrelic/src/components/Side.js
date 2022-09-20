@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 
-const Side = ({ children, fullHeight }) => {
+const Side = ({ children }) => {
   return (
     <div
       css={css`
-        height: ${fullHeight ? '100%' : 'auto'};
+        height: 100%;
       `}
     >
       {children}
@@ -16,7 +16,6 @@ const Side = ({ children, fullHeight }) => {
 
 Side.propTypes = {
   children: PropTypes.node,
-  fullHeight: PropTypes.bool,
 };
 
 export default Side;
