@@ -9,7 +9,11 @@ const InteractiveOutput = ({ className, inputs, config, containerId }) => {
   const updateConfig = () => {
     let updatedConfig = config.slice();
     inputs.forEach((input, idx) => {
-      updatedConfig = updatedConfig.replace(`<input${idx + 1}>`, input.value);
+      console.log(input);
+      updatedConfig = updatedConfig.replace(
+        `<input${idx + 1}>`,
+        input.value?.length ? input.value : input.defaultValue
+      );
     });
     return updatedConfig;
   };
