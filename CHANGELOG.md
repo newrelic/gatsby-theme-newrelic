@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.11.9](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.8...v6.11.9) (2022-09-20)
+
+
+### Bug Fixes
+
+* use default value for interactive output ([9ddaccd](https://github.com/newrelic/gatsby-theme-newrelic/commit/9ddaccdf524c193e1d09c12a7242d762d7c40315))
+
+
+
+
+
 ## [6.11.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.7...v6.11.8) (2022-09-19)
 
 
