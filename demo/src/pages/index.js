@@ -136,8 +136,8 @@ const IndexPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customInput, setCustomInput] = useState('');
   const [flipCard, setFlipCard] = useState(false);
-  const [appName, setAppName] = useState('My Application');
-  const [licenseKey, setLicenseKey] = useState('12345');
+  const [appName, setAppName] = useState('');
+  const [licenseKey, setLicenseKey] = useState('');
 
   return (
     <Layout.Main
@@ -223,10 +223,12 @@ const IndexPage = () => {
               {
                 value: licenseKey,
                 line: 15,
+                defaultValue: '12345',
               },
               {
                 value: appName,
                 line: 31,
+                defaultValue: 'My Application',
               },
             ]}
             containerId="agent-config-codeblock"
@@ -237,6 +239,7 @@ const IndexPage = () => {
                 label="Name your app"
                 codeLine={31}
                 defaultValue="My Application"
+                placeholder="My Application"
                 value={appName}
                 onChange={(e) => {
                   setAppName(e.target.value);
@@ -252,6 +255,7 @@ const IndexPage = () => {
                 label="Enter your New Relic "
                 codeLine={15}
                 defaultValue="12345"
+                placeholder="12345"
                 value={licenseKey}
                 onChange={(e) => {
                   setLicenseKey(e.target.value);
