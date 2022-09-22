@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 
 import { isValidEmail } from '../utils/isValidEmail';
 import { titleCaseify } from '../utils/titleCase';
+import RecaptchaFooter from './SignupModal/RecaptchaFooter';
 import Button from './Button';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
@@ -276,6 +277,7 @@ const ComplexFeedback = () => {
               >
                 {t('feedback.submitButton')}
               </Button>
+              <RecaptchaFooter />
             </>
           )}
         </>
