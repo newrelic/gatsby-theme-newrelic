@@ -18,6 +18,13 @@ const onClientEntry = (_, themeOptions) => {
       segmentKey: `${themeOptions.tessen.segmentWriteKey}`,
     };
   }
+  if (themeOptions.feedback && themeOptions.tessen.segmentWriteKey) {
+    window._nr_feedback = {
+      environment: `${themeOptions.feedback.environment}`,
+      reCaptchaToken: `${themeOptions.feedback.reCaptchaToken}`,
+      segmentKey: `${themeOptions.tessen.segmentWriteKey}`,
+    };
+  }
 };
 
 const isDarkMode = () => {

@@ -154,6 +154,7 @@ exports.sourceNodes = (
       ? { product: tessen.product, subproduct: tessen.subproduct }
       : null,
     signup: themeOptions.signup,
+    feedback: themeOptions.feedback,
   };
 
   createNode({

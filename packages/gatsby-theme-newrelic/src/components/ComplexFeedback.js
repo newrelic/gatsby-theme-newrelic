@@ -3,6 +3,8 @@ import { css } from '@emotion/react';
 import { useLocation } from '@reach/router';
 
 import { isValidEmail } from '../utils/isValidEmail';
+import { titleCaseify } from '../utils/titleCase';
+import RecaptchaFooter from './SignupModal/RecaptchaFooter';
 import Button from './Button';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
@@ -16,19 +18,42 @@ const ComplexFeedback = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const { t } = useThemeTranslation();
   const tessen = useTessen();
-  const location = useLocation();
+  const CAPTCHA_ACTION = 'userFeedback';
+
+  const recaptchaReady = () => {
+    return new Promise((resolve, reject) => {
+      try {
+        window.grecaptcha.ready(resolve);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  };
+
+  const generateRecaptchaToken = () => {
+    // turn the recaptcha thenable into an actual promise
+    return new Promise((resolve, reject) => {
+      window.grecaptcha
+        .execute(window._nr_feedback.reCaptchaToken, {
+          action: CAPTCHA_ACTION,
+        })
+        .then(resolve, reject);
+    });
+  };
 
   const handleFeedbackClick = (feedbackType) => {
     setfeedbackType(feedbackType);
     tessen.track({
       eventName: 'feedbackThumbClick',
-      category: `${feedbackType}FeedbackClick`,
+      category: `${titleCaseify(feedbackType)}FeedbackClick`,
       path: location.pathname,
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setFormSubmitted(true);
+    await recaptchaReady();
+    const recaptchaToken = await generateRecaptchaToken();
     // TODO submit to jira
     tessen.track({
       eventName: 'feedbackSubmitted',
@@ -260,6 +285,7 @@ const ComplexFeedback = () => {
               >
                 {t('feedback.submitButton')}
               </Button>
+              <RecaptchaFooter />
             </>
           )}
         </>

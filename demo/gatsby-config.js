@@ -78,6 +78,13 @@ module.exports = {
             process.env.RECAPTCHA_TOKEN ||
             '6LdMFd8UAAAAAApWFzm8YCyuGCUfg57U1WvqVYqC',
         },
+        feedback: {
+          environment: process.env.ENVIRONMENT || 'staging',
+          reCaptchaToken:
+            process.env.RECAPTCHA_TOKEN ||
+            '6Lfn8wUiAAAAANBY-ZtKg4V9b4rdGZtJuAng62jo',
+        },
+
         shouldUpdateScroll: {
           routes: ['/'],
         },
