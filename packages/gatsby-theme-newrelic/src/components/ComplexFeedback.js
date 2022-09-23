@@ -18,6 +18,7 @@ const ComplexFeedback = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const { t } = useThemeTranslation();
   const tessen = useTessen();
+  const location = useLocation();
   const CAPTCHA_ACTION = 'userFeedback';
 
   const recaptchaReady = () => {
@@ -57,7 +58,7 @@ const ComplexFeedback = () => {
     // TODO submit to jira
     tessen.track({
       eventName: 'feedbackSubmitted',
-      category: `${feedbackType}FeedbackSubmit`,
+      category: `${titleCaseify(feedbackType)}FeedbackSubmit`,
       path: location.pathname,
       userEmail,
       userComments,
