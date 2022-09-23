@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
+import { useLocation } from '@reach/router';
 
 import { isValidEmail } from '../utils/isValidEmail';
 import { titleCaseify } from '../utils/titleCase';
@@ -17,6 +18,7 @@ const ComplexFeedback = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const { t } = useThemeTranslation();
   const tessen = useTessen();
+  const location = useLocation();
   const CAPTCHA_ACTION = 'userFeedback';
 
   const recaptchaReady = () => {
@@ -54,6 +56,13 @@ const ComplexFeedback = () => {
     await recaptchaReady();
     const recaptchaToken = await generateRecaptchaToken();
     // TODO submit to jira
+    tessen.track({
+      eventName: 'feedbackSubmitted',
+      category: `${titleCaseify(feedbackType)}FeedbackSubmit`,
+      path: location.pathname,
+      userEmail,
+      userComments,
+    });
   };
 
   const handleReset = () => {
