@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
+import { useLocation } from '@reach/router';
 
 import { isValidEmail } from '../utils/isValidEmail';
 import Button from './Button';
@@ -15,6 +16,7 @@ const ComplexFeedback = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const { t } = useThemeTranslation();
   const tessen = useTessen();
+  const location = useLocation();
 
   const handleFeedbackClick = (feedbackType) => {
     setfeedbackType(feedbackType);
@@ -28,6 +30,13 @@ const ComplexFeedback = () => {
   const handleSubmit = () => {
     setFormSubmitted(true);
     // TODO submit to jira
+    tessen.track({
+      eventName: 'feedbackSubmitted',
+      category: `${feedbackType}FeedbackSubmit`,
+      path: location.pathname,
+      userEmail,
+      userComments,
+    });
   };
 
   const handleReset = () => {
