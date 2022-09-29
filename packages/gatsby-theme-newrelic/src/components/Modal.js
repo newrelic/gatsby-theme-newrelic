@@ -6,7 +6,7 @@ import { rgba } from 'polished';
 
 import Portal from './Portal';
 
-const Modal = ({ onClose, isOpen, children }) => {
+const Modal = ({ onClose, isOpen, children, className }) => {
   const transitions = useTransition(isOpen, {
     config: { tension: 220, friction: 22 },
     from: {
@@ -40,6 +40,7 @@ const Modal = ({ onClose, isOpen, children }) => {
                 padding: 0;
               }
             `}
+            className={className}
             onClick={onClose}
           >
             <animated.div
@@ -74,6 +75,7 @@ Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 export default Modal;

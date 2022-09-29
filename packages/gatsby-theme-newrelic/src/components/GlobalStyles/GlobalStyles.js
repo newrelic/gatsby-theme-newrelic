@@ -21,6 +21,7 @@ const GlobalStyles = ({ layout }) => (
 
         --site-max-width: ${layout.maxWidth};
         --site-content-padding: ${layout.contentPadding};
+        --sidebar-width: ${layout.sidebarWidth};
       }
 
       ${themes}
@@ -202,6 +203,7 @@ GlobalStyles.propTypes = {
   layout: PropTypes.shape({
     contentPadding: PropTypes.string,
     maxWidth: PropTypes.string,
+    sidebarWidth: PropTypes.string,
   }),
 };
 
