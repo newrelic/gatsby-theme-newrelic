@@ -4,6 +4,7 @@ import { rgba } from 'polished';
 export default css`
   --color-white: #ffffff;
   --color-black: #000000;
+  --erno-black: #1d252c;
   --erno-yellow: #fdebb8;
 
   --system-text-primary-light: #293338;

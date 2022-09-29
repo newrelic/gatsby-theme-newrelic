@@ -83,13 +83,9 @@ const createNavList = (listType, activeSite = null) => {
 // swaps out logo into collapsable nav
 const NAV_BREAKPOINT = '1070px';
 const LOGO_TEXT_BREAKPOINT = '460px';
+const LAYOUT_BREAKPOINT = '1150px';
 
-const GlobalHeader = ({
-  customStyles,
-  className,
-  activeSite,
-  hideSearch = false,
-}) => {
+const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
   const hasMounted = useHasMounted();
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
@@ -145,100 +141,116 @@ const GlobalHeader = ({
         data-swiftype-index={false}
         className={className}
         css={css`
-          background-color: var(--system-text-primary-light);
+          display: grid;
+          background-color: var(--erno-black);
+          grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+          grid-template-rows: 1fr auto;
+          grid-template-areas: 'logo nav';
           box-shadow: var(--shadow-2);
           position: sticky;
           top: 0;
           z-index: 80;
+          height: var(--global-header-height);
+          @media screen and (max-width: ${LAYOUT_BREAKPOINT}) and (min-width: ${NAV_BREAKPOINT}) {
+            grid-template-columns: calc(150px + var(--site-content-padding)) minmax(
+                0,
+                1fr
+              );
+          }
+          @media screen and (max-width: ${mobileBreakpoint}) {
+            grid-template-columns: calc(150px + var(--site-content-padding)) minmax(
+                0,
+                1fr
+              );
+          }
         `}
       >
-        <div
+        <nav
           css={css`
-            height: var(--global-header-height);
-            display: flex;
-            justify-content: space-between;
-            max-width: var(--site-max-width);
-            margin: 0 auto;
+            grid-area: logo;
             padding: 0 var(--site-content-padding);
+            display: flex;
+            align-items: center;
+            height: 100%;
+            overflow: hidden;
           `}
         >
-          <nav
+          <ExternalLink
+            href="https://newrelic.com/"
             css={css`
               display: flex;
               align-items: center;
-              height: 100%;
-              overflow: hidden;
-              position: relative;
+              @media screen and (max-width: ${NAV_BREAKPOINT}) {
+                display: none;
+              }
             `}
+            instrumentation={{
+              component: 'globalHeaderLogo',
+              layoutElement: 'globalHeader',
+            }}
           >
-            <ExternalLink
-              href="https://newrelic.com/"
+            <NewRelicLogo
+              size="150px"
               css={css`
-                display: flex;
-                align-items: center;
-
-                @media screen and (max-width: ${NAV_BREAKPOINT}) {
-                  display: none;
+                .text-color {
+                  fill: var(--color-white);
                 }
               `}
-              instrumentation={{
-                component: 'globalHeaderLogo',
-                layoutElement: 'globalHeader',
-              }}
+            />
+          </ExternalLink>
+
+          <Dropdown
+            css={css`
+              display: none;
+
+              @media screen and (max-width: ${NAV_BREAKPOINT}) {
+                display: block;
+              }
+            `}
+          >
+            <Dropdown.Toggle
+              size={Button.SIZE.EXTRA_SMALL}
+              variant={Button.VARIANT.LINK}
+              chevron={false}
+              css={css`
+                padding-left: 0;
+                padding-right: 0;
+              `}
             >
               <NewRelicLogo
-                size="150px"
+                size={hideLogoText ? '45px' : '150px'}
                 css={css`
                   .text-color {
                     fill: var(--color-white);
                   }
                 `}
+                omitText={hideLogoText}
               />
-            </ExternalLink>
-
-            <Dropdown
-              css={css`
-                display: none;
-
-                @media screen and (max-width: ${NAV_BREAKPOINT}) {
-                  display: block;
-                }
-              `}
-            >
-              <Dropdown.Toggle
-                size={Button.SIZE.EXTRA_SMALL}
-                variant={Button.VARIANT.LINK}
-                chevron={false}
-                css={css`
-                  padding-left: 0;
-                  padding-right: 0;
-                `}
-              >
-                <NewRelicLogo
-                  size={hideLogoText ? '45px' : '150px'}
-                  css={css`
-                    .text-color {
-                      fill: var(--color-white);
-                    }
-                  `}
-                  omitText={hideLogoText}
-                />
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                {createNavList('dropdown', activeSite)}
-              </Dropdown.Menu>
-            </Dropdown>
-
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {createNavList('dropdown', activeSite)}
+            </Dropdown.Menu>
+          </Dropdown>
+        </nav>
+        <div
+          css={css`
+            grid-area: nav;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 var(--site-content-padding);
+            width: 100%;
+            max-width: var(--site-max-width);
+            margin: auto;
+          `}
+        >
+          <nav>
             <ul
               css={css`
                 height: 100%;
-                margin: 0;
-                padding: 0;
                 display: flex;
                 list-style-type: none;
                 white-space: nowrap;
-                position: relative;
-                margin-left: ${customStyles?.navLeftMargin || '120px'};
+                padding: 0;
 
                 li {
                   > a {
@@ -249,9 +261,6 @@ const GlobalHeader = ({
                       padding-left: 0px;
                     }
                   }
-                }
-                @media screen and (max-width: 1200px) {
-                  margin-left: 2rem;
                 }
 
                 @media screen and (max-width: ${NAV_BREAKPOINT}) {
@@ -272,8 +281,6 @@ const GlobalHeader = ({
               list-style-type: none;
               align-items: center;
               justify-content: flex-end;
-              background: var(--system-text-primary-light);
-              flex: 1;
 
               > li {
                 transition: all 0.2s ease-out;
@@ -282,6 +289,12 @@ const GlobalHeader = ({
                   margin-left: 0.5rem;
                 }
               }
+
+              @media screen and (max-width: ${NAV_BREAKPOINT}) {
+                width: 100%;
+                justify-content: flex-end;
+                margin: 0;
+              }
             `}
           >
             <li
@@ -289,10 +302,12 @@ const GlobalHeader = ({
                 margin: 0rem 1rem;
                 width: 100%;
                 max-width: 320px;
-                margin-right: ${customStyles?.searchRightMargin || '1rem'};
 
                 @media screen and (max-width: 930px) {
                   margin-right: 1rem;
+                }
+                @media screen and (max-width: ${NAV_BREAKPOINT}) {
+                  margin-left: 0;
                 }
                 @media screen and (max-width: ${mobileBreakpoint}) {
                   display: none;
@@ -369,7 +384,6 @@ const GlobalHeader = ({
                     chevron={false}
                     css={css`
                       margin: 0;
-                      height: 72px;
                       border-radius: 0px;
                       font-size: 0.75rem;
                       color: var(--system-text-primary-dark);
@@ -447,6 +461,7 @@ const GlobalHeader = ({
                   span {
                     color: var(--brand-button-primary-accent);
                   }
+                  padding-right: 0;
                 `}
                 href="https://newrelic.com/signup"
                 size={Button.SIZE.SMALL}
@@ -459,11 +474,6 @@ const GlobalHeader = ({
                 <span>{t('button.startNow')}</span>
               </Button>
             </li>
-            <li
-              css={css`
-                display: flex;
-              `}
-            />
           </ul>
           <SignupModal
             onClose={() => setIsModalOpen(false)}
@@ -477,10 +487,6 @@ const GlobalHeader = ({
 
 GlobalHeader.propTypes = {
   className: PropTypes.string,
-  customStyles: PropTypes.shape({
-    navLeftMargin: PropTypes.string,
-    searchRightMargin: PropTypes.string,
-  }),
   activeSite: PropTypes.oneOf(Object.values(NR_SITES)),
   hideSearch: PropTypes.bool,
 };

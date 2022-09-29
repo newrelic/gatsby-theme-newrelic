@@ -12,7 +12,7 @@ const LOGO_TEXT_BREAKPOINT = '460px';
 const NewRelicLogo = ({ className, size, omitText }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox={`0 0 ${omitText ? '55' : '179'} 40`}
+    viewBox={`0 -3 ${omitText ? '55' : '171'} 36`}
     className={className}
     css={css`
       fill: none;

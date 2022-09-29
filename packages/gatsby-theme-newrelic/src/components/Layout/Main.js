@@ -9,6 +9,8 @@ const Main = ({ className, children }) => {
       css={css`
         grid-area: main;
         padding: var(--site-content-padding);
+        max-width: var(--site-max-width);
+        margin: 0 auto;
       `}
     >
       {children}

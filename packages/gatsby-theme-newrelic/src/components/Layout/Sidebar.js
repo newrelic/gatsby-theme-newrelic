@@ -6,7 +6,6 @@ const Sidebar = ({ children, className }) => {
   return (
     <aside
       data-swiftype-index={false}
-      className={className}
       css={css`
         grid-area: sidebar;
         border-right: 1px solid var(--divider-color);
@@ -18,6 +17,7 @@ const Sidebar = ({ children, className }) => {
           display: none;
         }
       `}
+      className={className}
     >
       <div
         css={css`

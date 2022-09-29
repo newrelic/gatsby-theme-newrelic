@@ -11,7 +11,7 @@ import Icon from '../Icon';
 import Button from '../Button';
 import useScrollFreeze from '../../hooks/useScrollFreeze';
 
-const SignupModal = ({ isOpen, onClose }) => {
+const SignupModal = ({ isOpen, onClose, className }) => {
   const {
     site: {
       siteMetadata: { siteUrl },
@@ -32,7 +32,7 @@ const SignupModal = ({ isOpen, onClose }) => {
 
   useScrollFreeze(isOpen);
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal className={className} isOpen={isOpen} onClose={onClose}>
       <Button
         css={css`
           position: absolute;
@@ -112,6 +112,7 @@ const SignupModal = ({ isOpen, onClose }) => {
 SignupModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+  className: PropTypes.string,
 };
 
 export default SignupModal;
