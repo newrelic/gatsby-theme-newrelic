@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.12.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.9...v6.12.0) (2022-09-29)
+
+
+### Features
+
+* Update layout and header for new LHN styles ([fcbe159](https://github.com/newrelic/gatsby-theme-newrelic/commit/fcbe159d500ea8e09a9e419d5753c69a6e12f5d1))
+
+
+
+
+
 ## [6.11.9](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.8...v6.11.9) (2022-09-20)
 
 
