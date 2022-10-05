@@ -50,7 +50,7 @@ const MobileNavModal = ({ children, style, onClose }) => {
           z-index: 100;
           transform-origin: top right;
           box-shadow: var(--shadow-6);
-          background-color: var(--modal-background-color);
+          background-color: var(--erno-black);
           padding-bottom: 1rem;
         `}
       >
@@ -61,14 +61,14 @@ const MobileNavModal = ({ children, style, onClose }) => {
             align-items: center;
             padding: 0.75rem 1rem;
             border-bottom: 1px solid;
-            border-bottom-color: var(--divider-color);
+            border-bottom-color: var(--nav-item);
             box-shadow: ${y > shadowPoint ? 'var(--shadow-3)' : 'none'};
             transition: 0.25s ease-out;
           `}
         >
           <span
             css={css`
-              color: var(--accent-text-color);
+              color: var(--nav-category);
               text-transform: uppercase;
               font-size: 0.875rem;
             `}
@@ -80,13 +80,13 @@ const MobileNavModal = ({ children, style, onClose }) => {
             onClick={onClose}
             css={css`
               background: none;
-              color: currentColor;
+              color: var(--nav-item);
               border: none;
               padding: 0.25rem;
               border-radius: 0.25rem;
 
               &:active {
-                background: var(--primary-hover-color);
+                background: var(--nav-highlight);
               }
             `}
           >
@@ -106,6 +106,10 @@ const MobileNavModal = ({ children, style, onClose }) => {
             padding: 1rem;
             height: 100%;
             overflow: auto;
+            span,
+            svg {
+              color: var(--nav-item);
+            }
           `}
         >
           {children}
