@@ -30,6 +30,9 @@ const SEO = ({ title, location, type, children }) => {
         signup {
           reCaptchaToken
         }
+        feedback {
+          reCaptchaToken
+        }
       }
     }
   `);
@@ -57,13 +60,24 @@ const SEO = ({ title, location, type, children }) => {
   };
 
   const recaptchaLinkScript = () => {
-    if (newRelicThemeConfig.signup?.reCaptchaToken) {
+    // commenting out since we aren't using signup at the moment
+    // if (newRelicThemeConfig.signup?.reCaptchaToken) {
+    //   return (
+    //     <script
+    //       key="google-recaptcha"
+    //       async
+    //       defer
+    //       src={`https://www.google.com/recaptcha/api.js?render=${newRelicThemeConfig.signup?.reCaptchaToken}`}
+    //     />
+    //   );
+    // }
+    if (newRelicThemeConfig.feedback?.reCaptchaToken) {
       return (
         <script
           key="google-recaptcha"
           async
           defer
-          src={`https://www.google.com/recaptcha/api.js?render=${newRelicThemeConfig.signup?.reCaptchaToken}`}
+          src={`https://www.google.com/recaptcha/api.js?render=${newRelicThemeConfig.feedback?.reCaptchaToken}`}
         />
       );
     }
