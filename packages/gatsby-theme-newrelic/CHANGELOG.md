@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.13.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.12.0...v6.13.0) (2022-10-06)
+
+
+### Bug Fixes
+
+* Fix validation styling ([fb5ec84](https://github.com/newrelic/gatsby-theme-newrelic/commit/fb5ec84ee5f3e290dd2dc00026a09f1ea787fa4c))
+* Move isValidEmail into helper and validate feedback ([a0a899c](https://github.com/newrelic/gatsby-theme-newrelic/commit/a0a899c9335911d86f5ae31d9f82ad0135da550c))
+* Update nav colors ([250986c](https://github.com/newrelic/gatsby-theme-newrelic/commit/250986ca161faf64b69f94f3ac10d3022d353a7e))
+
+
+### Features
+
+* Add recaptcha to feedback component ([81b086a](https://github.com/newrelic/gatsby-theme-newrelic/commit/81b086a4edd1dfa42577ee532fe438c342ef369f))
+* Post feedback to jira ([23d694e](https://github.com/newrelic/gatsby-theme-newrelic/commit/23d694ef2259c36e056029608fc72edefa9d2265))
+
+
+
+
+
 # [6.12.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.11.9...v6.12.0) (2022-09-29)
 
 
