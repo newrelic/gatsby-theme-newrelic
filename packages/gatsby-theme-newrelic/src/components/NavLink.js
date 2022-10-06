@@ -54,22 +54,12 @@ const NavLink = ({
           @media screen and (max-width: ${mobileBreakpoint}) {
             border-radius: 0;
             border-left: var(--border-width) solid transparent;
-
-            ${active &&
-            css`
-              border-left-color: var(--system-text-secondary-inverted-light);
-              .dark-mode & {
-                border-left-color: var(
-                  --system-background-selected-low-contrast-dark
-                );
-              }
-            `}
           }
         `}
 
         ${active &&
         css`
-          background: var(--primary-hover-color);
+          background: var(--nav-highlight);
         `}
       `}
     >

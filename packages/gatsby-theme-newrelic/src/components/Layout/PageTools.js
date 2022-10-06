@@ -17,6 +17,7 @@ const LayoutPageTools = ({ className, children }) => {
             (var(--global-header-height) + var(--site-content-padding) * 2)
         );
         overflow-y: auto;
+        gap: 1rem;
       `}
     >
       {children}

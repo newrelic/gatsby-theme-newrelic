@@ -28,6 +28,10 @@ export default css`
   --system-background-selected-low-contrast-dark: #404b53;
   --system-background-floating-dark: #3a444b;
 
+  --nav-category: #1dcad3;
+  --nav-item: #afe2e3;
+  --nav-highlight: #0d374a;
+
   --interactive-link-light: #0c74df;
   --interactive-link-dark: #3d9dff;
 

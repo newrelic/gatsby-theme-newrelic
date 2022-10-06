@@ -8,6 +8,7 @@ import {
   Callout,
   Collapser,
   CollapserGroup,
+  ComplexFeedback,
   ContributingGuidelines,
   CustomTextInput,
   InteractiveForm,
@@ -20,7 +21,6 @@ import {
   SelectInLine,
   Side,
   SideBySide,
-  SimpleFeedback,
   Skeleton,
   Surface,
   Table,
@@ -844,7 +844,6 @@ const IndexPage = () => {
           }
         `}
       >
-        <SimpleFeedback pageTitle="Demo Site" />
         <ContributingGuidelines fileRelativePath="demo/src/pages/index.js" />
         <PageTools.Section>
           <PageTools.Title>How to use</PageTools.Title>
@@ -853,6 +852,7 @@ const IndexPage = () => {
             to give page-specific context to a user
           </p>
         </PageTools.Section>
+        <ComplexFeedback pageTitle="Demo Site" />
       </Layout.PageTools>
     </Layout.Main>
   );

@@ -1,31 +1,87 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
+import PropTypes from 'prop-types';
+import { useLocation } from '@reach/router';
 
+import { isValidEmail } from '../utils/isValidEmail';
+import { titleCaseify } from '../utils/titleCase';
+import RecaptchaFooter from './SignupModal/RecaptchaFooter';
 import Button from './Button';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useTessen from '../hooks/useTessen';
 
-const ComplexFeedback = () => {
+const ComplexFeedback = ({ pageTitle }) => {
   const [feedbackType, setfeedbackType] = useState(null);
   const [userComments, setUserComments] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
+  const [shouldSubmit, setShouldSubmit] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const { t } = useThemeTranslation();
   const tessen = useTessen();
+  const location = useLocation();
+  const CAPTCHA_ACTION = 'userFeedback';
+
+  const recaptchaReady = () => {
+    return new Promise((resolve, reject) => {
+      try {
+        window.grecaptcha.ready(resolve);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  };
+
+  const generateRecaptchaToken = () => {
+    // turn the recaptcha thenable into an actual promise
+    return new Promise((resolve, reject) => {
+      window.grecaptcha
+        .execute(window._nr_feedback.reCaptchaToken, {
+          action: CAPTCHA_ACTION,
+        })
+        .then(resolve, reject);
+    });
+  };
 
   const handleFeedbackClick = (feedbackType) => {
     setfeedbackType(feedbackType);
     tessen.track({
       eventName: 'feedbackThumbClick',
-      category: `${feedbackType}FeedbackClick`,
+      category: `${titleCaseify(feedbackType)}FeedbackClick`,
       path: location.pathname,
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setFormSubmitted(true);
-    // TODO submit to jira
+    await recaptchaReady();
+    const recaptchaToken = await generateRecaptchaToken();
+    tessen.track({
+      eventName: 'feedbackSubmitted',
+      category: `${titleCaseify(feedbackType)}FeedbackSubmit`,
+      path: location.pathname,
+      userEmail,
+      userComments,
+    });
+    const jiraSubmission = {
+      title: pageTitle,
+      description: userComments,
+      rating: feedbackType,
+      pageUrl: location.pathname,
+      email: userEmail,
+      recaptchaToken,
+    };
+    fetch(
+      'https://docs-user-feedback-service.newrelic-external.com/user-feedback-service',
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jiraSubmission),
+      }
+    );
   };
 
   const handleReset = () => {
@@ -42,7 +98,6 @@ const ComplexFeedback = () => {
         flex-direction: column;
         justify-content: center;
         background: var(--erno-yellow);
-        padding: 1rem;
         gap: 1rem;
         p {
           color: var(--system-text-primary-light);
@@ -185,7 +240,11 @@ const ComplexFeedback = () => {
               <p>{t('feedback.comments')}</p>
               <textarea
                 value={userComments}
-                onChange={(e) => setUserComments(e.target.value)}
+                maxLength="30000"
+                onChange={(e) => {
+                  setUserComments(e.target.value);
+                  setShouldSubmit(e.target.value.length > 0);
+                }}
                 css={css`
                   font-size: 0.75rem;
                   padding: 0.5rem;
@@ -198,7 +257,14 @@ const ComplexFeedback = () => {
               <input
                 value={userEmail}
                 placeholder="reli@example.com"
-                onChange={(e) => setUserEmail(e.target.value)}
+                onChange={(e) => {
+                  setUserEmail(e.target.value);
+                  setShouldSubmit(
+                    userComments?.length > 0 &&
+                      (isValidEmail(e.target.value) ||
+                        e.target.value.length === 0)
+                  );
+                }}
                 css={css`
                   font-size: 0.75rem;
                   padding: 0.5rem;
@@ -206,10 +272,24 @@ const ComplexFeedback = () => {
                   border: 1px solid;
                 `}
               />
+              {userEmail && !isValidEmail(userEmail) && (
+                <p
+                  css={css`
+                    // using && here to increase specificity over the p styling in the section above
+                    && {
+                      color: var(--attention-notification-critical);
+                      margin-top: -1rem;
+                    }
+                  `}
+                >
+                  {t('feedback.validEmail')}
+                </p>
+              )}
               <Button
                 variant={Button.VARIANT.NORMAL}
                 size={Button.SIZE.LARGE}
                 onClick={handleSubmit}
+                disabled={!shouldSubmit}
                 css={css`
                   height: 3rem;
                   background: var(--system-text-primary-light);
@@ -218,16 +298,24 @@ const ComplexFeedback = () => {
                     background: var(--color-black);
                     color: var(--system-text-primary-dark);
                   }
+                  &:disabled {
+                    cursor: not-allowed;
+                  }
                 `}
               >
                 {t('feedback.submitButton')}
               </Button>
+              <RecaptchaFooter />
             </>
           )}
         </>
       )}
     </PageTools.Section>
   );
+};
+
+ComplexFeedback.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
 };
 
 export default ComplexFeedback;

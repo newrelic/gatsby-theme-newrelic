@@ -195,6 +195,9 @@ const GlobalStyles = ({ layout }) => (
       .gatsby-resp-image-background-image {
         border-radius: 0.25rem;
       }
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
     `}
   />
 );
