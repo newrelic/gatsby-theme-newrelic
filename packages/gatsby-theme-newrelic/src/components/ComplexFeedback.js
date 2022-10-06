@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { css } from '@emotion/react';
+import PropTypes from 'prop-types';
 import { useLocation } from '@reach/router';
 
 import { isValidEmail } from '../utils/isValidEmail';
@@ -10,7 +11,7 @@ import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useTessen from '../hooks/useTessen';
 
-const ComplexFeedback = () => {
+const ComplexFeedback = ({ pageTitle }) => {
   const [feedbackType, setfeedbackType] = useState(null);
   const [userComments, setUserComments] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
@@ -55,7 +56,6 @@ const ComplexFeedback = () => {
     setFormSubmitted(true);
     await recaptchaReady();
     const recaptchaToken = await generateRecaptchaToken();
-    // TODO submit to jira
     tessen.track({
       eventName: 'feedbackSubmitted',
       category: `${titleCaseify(feedbackType)}FeedbackSubmit`,
@@ -63,6 +63,25 @@ const ComplexFeedback = () => {
       userEmail,
       userComments,
     });
+    const jiraSubmission = {
+      title: pageTitle,
+      description: userComments,
+      rating: feedbackType,
+      pageUrl: location.pathname,
+      email: userEmail,
+      recaptchaToken,
+    };
+    fetch(
+      'https://docs-user-feedback-service.newrelic-external.com/user-feedback-service',
+      {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jiraSubmission),
+      }
+    );
   };
 
   const handleReset = () => {
@@ -293,6 +312,10 @@ const ComplexFeedback = () => {
       )}
     </PageTools.Section>
   );
+};
+
+ComplexFeedback.propTypes = {
+  pageTitle: PropTypes.string.isRequired,
 };
 
 export default ComplexFeedback;
