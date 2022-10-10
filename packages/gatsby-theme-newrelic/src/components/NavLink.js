@@ -18,6 +18,7 @@ const NavLink = ({
   onClick,
   onToggle,
   mobileBreakpoint,
+  ...props
 }) => {
   const tessen = useTessen();
 
@@ -62,6 +63,7 @@ const NavLink = ({
           background: var(--nav-highlight);
         `}
       `}
+      {...props}
     >
       {icon && (
         <Icon
