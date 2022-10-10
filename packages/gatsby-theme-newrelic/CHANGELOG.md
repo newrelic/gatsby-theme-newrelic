@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.0...v6.13.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* Pass all props to navlink ([b5b78f4](https://github.com/newrelic/gatsby-theme-newrelic/commit/b5b78f459052bbc39983d14d0e89c7e055cc561a))
+
+
+
+
+
 # [6.13.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.12.0...v6.13.0) (2022-10-06)
 
 
