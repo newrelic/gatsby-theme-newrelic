@@ -38,6 +38,14 @@ const useSearch = ({ searchTerm, filters }) => {
   const locale = useLocale();
   const [{ page, results }, dispatch] = useReducer(reducer, initialState);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const defaultSources = locale.isDefault
+    ? ['developer', 'docs', 'opensource', 'quickstarts']
+    : [
+        `developer-${locale.locale}`,
+        `docs-${locale.locale}`,
+        `opensource-${locale.locale}`,
+        `quickstarts`,
+      ];
 
   const swiftypeFilters = useMemo(() => {
     const selectedFilters = filters.map(({ defaultFilters, type }) => {
@@ -69,6 +77,7 @@ const useSearch = ({ searchTerm, filters }) => {
     ({ queryKey: [, searchTerm, page, filters] }) =>
       search({
         searchTerm,
+        defaultSources,
         filters,
         page,
         perPage: 20,
