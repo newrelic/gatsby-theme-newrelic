@@ -45,8 +45,9 @@ const ComplexFeedback = ({ pageTitle }) => {
 
   const handleFeedbackClick = (feedbackType) => {
     setfeedbackType(feedbackType);
+    setShouldSubmit(true);
     tessen.track({
-      eventName: 'feedbackThumbClick',
+      eventName: 'feedbackRating',
       category: `${titleCaseify(feedbackType)}FeedbackClick`,
       path: location.pathname,
     });
@@ -71,17 +72,19 @@ const ComplexFeedback = ({ pageTitle }) => {
       email: userEmail,
       recaptchaToken,
     };
-    fetch(
-      'https://docs-user-feedback-service.newrelic-external.com/user-feedback-service',
-      {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(jiraSubmission),
-      }
-    );
+    if (userComments) {
+      fetch(
+        'https://docs-user-feedback-service.newrelic-external.com/user-feedback-service',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(jiraSubmission),
+        }
+      );
+    }
   };
 
   const handleReset = () => {
@@ -97,6 +100,7 @@ const ComplexFeedback = ({ pageTitle }) => {
         border: none;
         flex-direction: column;
         justify-content: center;
+        max-width: 320px;
         background: var(--erno-yellow);
         gap: 1rem;
         p {
@@ -158,65 +162,13 @@ const ComplexFeedback = ({ pageTitle }) => {
             <Button
               variant={Button.VARIANT.OUTLINE}
               size={Button.SIZE.SMALL}
-              onClick={() => handleFeedbackClick('poor')}
+              onClick={() => handleFeedbackClick('yes')}
               css={css`
                 height: 3rem;
                 color: var(--system-text-primary-light);
                 border-color: var(--system-text-primary-light);
 
-                ${feedbackType === 'poor' &&
-                css`
-                  background: var(--system-text-primary-light);
-                  color: var(--system-text-primary-dark);
-                `}
-              `}
-            >
-              <div
-                css={css`
-                  margin-right: 0.5rem;
-                  font-size: 0.75rem;
-                `}
-              >
-                🙁
-              </div>
-              {t('feedback.poor')}
-            </Button>
-            <Button
-              variant={Button.VARIANT.OUTLINE}
-              size={Button.SIZE.SMALL}
-              onClick={() => handleFeedbackClick('good')}
-              css={css`
-                height: 3rem;
-                color: var(--system-text-primary-light);
-                border-color: var(--system-text-primary-light);
-
-                ${feedbackType === 'good' &&
-                css`
-                  background: var(--system-text-primary-light);
-                  color: var(--system-text-primary-dark);
-                `}
-              `}
-            >
-              <div
-                css={css`
-                  margin-right: 0.5rem;
-                  font-size: 0.75rem;
-                `}
-              >
-                🙂
-              </div>
-              {t('feedback.good')}
-            </Button>
-            <Button
-              variant={Button.VARIANT.OUTLINE}
-              size={Button.SIZE.SMALL}
-              onClick={() => handleFeedbackClick('great')}
-              css={css`
-                height: 3rem;
-                color: var(--system-text-primary-light);
-                border-color: var(--system-text-primary-light);
-
-                ${feedbackType === 'great' &&
+                ${feedbackType === 'yes' &&
                 css`
                   background: var(--system-text-primary-light);
                   color: var(--system-text-primary-dark);
@@ -231,19 +183,70 @@ const ComplexFeedback = ({ pageTitle }) => {
               >
                 😁
               </div>
-              {t('feedback.great')}
+              {t('feedback.yes')}
+            </Button>
+            <Button
+              variant={Button.VARIANT.OUTLINE}
+              size={Button.SIZE.SMALL}
+              onClick={() => handleFeedbackClick('no')}
+              css={css`
+                height: 3rem;
+                color: var(--system-text-primary-light);
+                border-color: var(--system-text-primary-light);
+
+                ${feedbackType === 'no' &&
+                css`
+                  background: var(--system-text-primary-light);
+                  color: var(--system-text-primary-dark);
+                `}
+              `}
+            >
+              <div
+                css={css`
+                  margin-right: 0.5rem;
+                  font-size: 0.75rem;
+                `}
+              >
+                🙁
+              </div>
+              {t('feedback.no')}
+            </Button>
+
+            <Button
+              variant={Button.VARIANT.OUTLINE}
+              size={Button.SIZE.SMALL}
+              onClick={() => handleFeedbackClick('somewhat')}
+              css={css`
+                height: 3rem;
+                color: var(--system-text-primary-light);
+                border-color: var(--system-text-primary-light);
+
+                ${feedbackType === 'somewhat' &&
+                css`
+                  background: var(--system-text-primary-light);
+                  color: var(--system-text-primary-dark);
+                `}
+              `}
+            >
+              <div
+                css={css`
+                  margin-right: 0.5rem;
+                  font-size: 0.75rem;
+                `}
+              >
+                😐
+              </div>
+              {t('feedback.somewhat')}
             </Button>
           </div>
           {feedbackType && (
             <>
-              <p>{t('feedback.acknowledge')}</p>
               <p>{t('feedback.comments')}</p>
               <textarea
                 value={userComments}
                 maxLength="30000"
                 onChange={(e) => {
                   setUserComments(e.target.value);
-                  setShouldSubmit(e.target.value.length > 0);
                 }}
                 css={css`
                   font-size: 0.75rem;
@@ -254,15 +257,22 @@ const ComplexFeedback = ({ pageTitle }) => {
                 `}
               />
               <p>{t('feedback.email')}</p>
+              <div
+                css={css`
+                  p {
+                    font-size: 0.625rem;
+                  }
+                `}
+              >
+                <p>{t('feedback.emailDisclaimer')}</p>
+              </div>
               <input
                 value={userEmail}
-                placeholder="reli@example.com"
+                placeholder="datanerd@example.com"
                 onChange={(e) => {
                   setUserEmail(e.target.value);
                   setShouldSubmit(
-                    userComments?.length > 0 &&
-                      (isValidEmail(e.target.value) ||
-                        e.target.value.length === 0)
+                    isValidEmail(e.target.value) || e.target.value.length === 0
                   );
                 }}
                 css={css`
