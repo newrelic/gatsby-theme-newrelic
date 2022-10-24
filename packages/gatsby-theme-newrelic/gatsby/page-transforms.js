@@ -8,7 +8,12 @@ const addLocale = ({ page }, themeOptions) => {
 
   // We don't want to add the locale to 404 pageContext because we want to
   // determine the locale at runtime based on the path in the URL
-  if (page.context.locale || page.path.match(/404/)) {
+  if (
+    page.context.locale ||
+    page.internalComponentName === 'Component/404.html' ||
+    page.internalComponentName === 'Component/dev-404-page/' ||
+    page.internalComponentName === 'Component/404/'
+  ) {
     return page;
   }
 

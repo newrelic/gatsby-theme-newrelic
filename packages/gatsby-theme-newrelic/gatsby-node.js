@@ -301,7 +301,11 @@ exports.onCreatePage = (helpers, themeOptions) => {
   }
 
   if (
-    !transformedPage.path.match(/404/) &&
+    !(
+      page.internalComponentName === 'Component/404.html' ||
+      page.internalComponentName === 'Component/dev-404-page/' ||
+      page.internalComponentName === 'Component/404/'
+    ) &&
     transformedPage.context.fileRelativePath.includes('src/pages/') &&
     transformedPage.context.locale === 'en'
   ) {
@@ -317,7 +321,12 @@ exports.onCreatePage = (helpers, themeOptions) => {
     });
   }
 
-  if (page.path.match(/404/) && !page.context.layout) {
+  if (
+    (page.internalComponentName === 'Component/404.html' ||
+      page.internalComponentName === 'Component/dev-404-page/' ||
+      page.internalComponentName === 'Component/404/') &&
+    !page.context.layout
+  ) {
     deletePage(page);
     createPage({
       ...page,

@@ -21,7 +21,7 @@
   },
   "github": {
     "createIssue": "Create issue",
-    "editPage": "Edit on GitHub"
+    "editPage": "Edit this doc"
   },
   "contributing": {
     "guide": "Suggest a change and learn how to <1>contribute</1>"
@@ -33,13 +33,13 @@
     "disagree": "No"
   },
   "feedback": {
-    "question": "How was the content on this page?",
-    "poor": "Poor",
-    "good": "Good",
-    "great": "Great",
-    "acknowledge": "Got it. Feel free to tell us more.",
-    "comments": "Your thoughts",
+    "question": "Was this doc helpful?",
+    "yes": "Yes",
+    "no": "No",
+    "somewhat": "Somewhat",
+    "comments": "Tell us more (optional)",
     "email": "Your email (optional)",
+    "emailDisclaimer": "We'll only use this email for follow-up questions about your feedback.",
     "validEmail": "Please provide a valid email",
     "submitButton": "Submit feedback",
     "submitMessage": "Thanks for your detailed feedback",
