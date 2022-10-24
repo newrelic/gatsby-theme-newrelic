@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.1...v6.13.2) (2022-10-24)
+
+
+### Bug Fixes
+
+* create more robust conditionals to render 404 pages with basic layout ([e4c1d3f](https://github.com/newrelic/gatsby-theme-newrelic/commit/e4c1d3f1b8f10e2c1a5deb34ad9f14e4ef478f14))
+* make user comments optional and update copy ([fee3ecb](https://github.com/newrelic/gatsby-theme-newrelic/commit/fee3ecbf62e96cb4663cdf775f9b0d33b526c82c))
+* Pass locale dependent default sources ([fa2ddb5](https://github.com/newrelic/gatsby-theme-newrelic/commit/fa2ddb5fe769bed02548d19a249e46fc84dc5a76))
+* update edit copy ([4102087](https://github.com/newrelic/gatsby-theme-newrelic/commit/41020870af49337f7ae1d4558aa44f22a19d41f6))
+* update some styles to the edit page button ([df6f3b8](https://github.com/newrelic/gatsby-theme-newrelic/commit/df6f3b8afd7da342ffa0327b88504db1f8b5915e))
+
+
+
+
+
 ## [6.13.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.0...v6.13.1) (2022-10-10)
 
 
