@@ -22,7 +22,6 @@ const ContributingGuidelines = ({ className, fileRelativePath }) => {
         <EditPageButton
           fileRelativePath={fileRelativePath}
           variant={Button.VARIANT.OUTLINE}
-          size={Button.SIZE.SMALL}
           instrumentation={{ component: 'ContributingGuidelines' }}
           css={css`
             width: 100%;

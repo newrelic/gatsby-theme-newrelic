@@ -42,10 +42,14 @@ const EditPageButton = ({
       as={Link}
       to={`${repository}/blob/${branch}/${fileRelativePath || ''}`}
       onClick={handleClick}
+      css={css`
+        font-size: 1rem;
+      `}
     >
       <Icon
-        name="fe-github"
+        name="fe-edit"
         css={css`
+          font-size: 1rem;
           margin-right: 0.5rem;
         `}
       />
