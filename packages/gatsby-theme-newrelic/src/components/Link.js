@@ -15,6 +15,7 @@ const isNewRelicDomain = (to) =>
   to.endsWith('newrelic.com') || to.includes('newrelic.com/');
 const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 const isImageLink = (className) => className === 'gatsby-resp-image-link';
+const isRelativePath = (to) => !to.startsWith('http') && to.startsWith('/');
 
 const Link = forwardRef(
   (
@@ -85,7 +86,7 @@ const Link = forwardRef(
     }
 
     if (isExternal(to) || isEmbedPageLink) {
-      if (isEmbedPageLink && !isExternal(to)) {
+      if (isRelativePath(to)) {
         to = siteUrl + to;
       }
 
