@@ -24,6 +24,7 @@ const Link = forwardRef(
       instrumentation = {},
       displayExternalIcon,
       shouldAutoLocalize = true,
+      isEmbedPageLink = false,
       ...props
     },
     ref
@@ -83,7 +84,11 @@ const Link = forwardRef(
       );
     }
 
-    if (isExternal(to)) {
+    if (isExternal(to) || isEmbedPageLink) {
+      if (isEmbedPageLink && !isExternal(to)) {
+        to = siteUrl + to;
+      }
+
       const rel = isNewRelicDomain(to) ? 'noopener' : 'noopener noreferrer';
 
       return (
@@ -144,6 +149,7 @@ Link.propTypes = {
   children: PropTypes.node,
   shouldAutoLocalize: PropTypes.bool,
   displayExternalIcon: PropTypes.bool,
+  isEmbedPageLink: PropTypes.bool,
 };
 
 export default Link;
