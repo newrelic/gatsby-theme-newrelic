@@ -11,7 +11,8 @@
     "test": "jest",
     "test:watch": "yarn test --watch",
     "lint": "lerna run lint",
-    "extract-i18n": "yarn workspace @newrelic/gatsby-theme-newrelic extract-i18n"
+    "extract-i18n": "yarn workspace @newrelic/gatsby-theme-newrelic extract-i18n",
+    "docgen": "react-docgen packages/gatsby-theme-newrelic -o demo/docgen_output.json --pretty"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
@@ -28,9 +29,10 @@
     "jest-localstorage-mock": "^2.4.3",
     "lerna": "^3.22.1",
     "prettier": "^2.0.5",
+    "react-docgen": "^5.4.3",
     "react-test-renderer": "^16.13.1"
   },
   "resolutions": {
-    "sharp":"^0.31.1"
+    "sharp": "^0.31.1"
   }
 }
