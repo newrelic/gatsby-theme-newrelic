@@ -29,5 +29,8 @@
     "lerna": "^3.22.1",
     "prettier": "^2.0.5",
     "react-test-renderer": "^16.13.1"
+  },
+  "resolutions": {
+    "sharp":"^0.31.1"
   }
 }
