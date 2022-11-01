@@ -12,7 +12,7 @@
     "test:watch": "yarn test --watch",
     "lint": "lerna run lint",
     "extract-i18n": "yarn workspace @newrelic/gatsby-theme-newrelic extract-i18n",
-    "docgen": "react-docgen packages/gatsby-theme-newrelic -o demo/docgen_output.json --pretty"
+    "docgen": "react-docgen packages/gatsby-theme-newrelic -o demo/docgen_output.json --pretty && node docgen_reformat.js"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
