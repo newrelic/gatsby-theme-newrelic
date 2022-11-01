@@ -3,18 +3,18 @@ const fs = require('fs');
 const reformatted_data = JSON.parse(fs.readFileSync('./demo/docgen_output.json'));
 const docgen_values = Object.values(reformatted_data);
 
-console.log(docgen_values[31].props);
+const docgenUpdatedProps = docgen_values.map((item) => {
 
-
-// PROPS BEFORE : {
-//   children: { type: { name: 'node' }, required: false, description: '' },
-//   whatever: { type: { name: 'node' }, required: false, description: '' }
-// }
-
-
-// PROPS AFTER : 
-// [
-//     { name: 'children', type: 'node', required: false, description: '' },
-//     { name: 'whatever', type: 'node', required: false, description: '' }
-// ]
+  if(item.props) {
+    let newProps = item.props;
+    const reduceProps = Object.entries(newProps).reduce((acc, val) => {
+        acc = [...acc, { name: val[0], type: val[1].type.name, required: val[1].required, description: val[1].description}]
+      return acc
+  }, []);
+  item.props = reduceProps
+  return item
+  } else {
+    return item
+  }
+})
 
