@@ -3,15 +3,15 @@
     "headingText": "결과를 찾을 수 없습니다.",
     "searchInputLabel": "검색 범위를 좁혀서 다시 시도해보세요.",
     "searchResultMessage": "다음을 찾고 계셨나요?",
-    "docsHomeMessage": "<1>{{nrSubDomain}} 홈</1>으로 돌아가기",
+    "docsHomeMessage": "<1>{{nrSubDomain}}홈</1>으로 돌아가기",
     "fileIssueMessage": "찾으시는 정보가 없습니까?"
   },
   "button": {
-    "close": "닫기",
+    "close": "종료",
     "copied": "복사됨",
-    "copy": "카피",
+    "copy": "복사",
     "login": "로그인",
-    "startNow": "지금 시작하세요"
+    "startNow": "지금 시작하기"
   },
   "callout": {
     "tip": "팁",
@@ -21,21 +21,29 @@
   },
   "github": {
     "createIssue": "문제 신고",
-    "editPage": "페이지 수정"
+    "editPage": "GitHub에서 편집"
   },
   "contributing": {
-    "guide": "변경 제안 및 <1>기여</1> 방법"
+    "guide": "변경 제안 및 <1>기여 방법</1>"
   },
   "cookieConsent": {
     "title": "이 웹사이트는 쿠키를 사용합니다.",
-    "statement": "뉴렐릭은 귀하의 경험을 향상하고 관련된 콘텐츠를 제공하기 위해 당사 웹사이트와 서비스에서 쿠키 및 기타 유사한 기술(이하 ‘쿠키’)을 사용합니다. 사이트를 계속 이용하시면 쿠키 사용을 허락하는 것으로 간주합니다. <2>여기</2>에서 보다 자세한 내용을 확인하실 수 있습니다. 쿠키에 동의하시면, <4>예</4>를 클릭하십시오.",
+    "statement": "뉴렐릭은 사용자의 경험을 향상하고 관련된 콘텐츠를 제공하기 위해 당사 웹 사이트 및 서비스에 (\"쿠키\") 및 기타 유사 기술을 사용합니다. 웹사이트와 서비스를 계속 이용하시면 쿠키 사용을 허락하는 것으로 간주합니다. <2>여기</2>에서 보다 자세한 내용을 확인하실 수 있습니다. 쿠키에 동의하시면, <4>예</4>를 클릭하십시오.",
     "agree": "예",
     "disagree": "아니요"
   },
   "feedback": {
     "question": "이 페이지가 도움이 되었습니까?",
-    "positive": "예",
-    "negative": "아니요"
+    "yes": "예",
+    "no": "아니요",
+    "somewhat": "다소",
+    "comments": "좀 더 자세한 정보를 알려주세요.(선택사항)",
+    "email": "귀하의 이메일(선택사항)",
+    "emailDisclaimer": "이 이메일은 귀하의 피드백에 대한 후속 질문이 있는 경우에만 사용됩니다..",
+    "validEmail": "유효한 이메일 주소를 입력해주세요.",
+    "submitButton": "피드백 제출하기",
+    "submitMessage": "자세한 피드백을 주셔서 감사합니다.",
+    "reset": "재설정"
   },
   "footer": {
     "copyright": "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
@@ -53,7 +61,7 @@
     "title": "관련 리소스"
   },
   "searchInput": {
-    "placeholder": "검색"
+    "placeholder": "문서 검색"
   },
   "tableOfContents": {
     "title": "이 페이지"
