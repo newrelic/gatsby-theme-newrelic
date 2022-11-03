@@ -1,19 +1,12 @@
 {
-  "packages": [
-    "packages/*"
-  ],
-  "version": "6.13.3",
+  "packages": ["packages/*"],
+  "version": "6.13.4",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "ignoreChanges": [
-    "README.md"
-  ],
+  "ignoreChanges": ["README.md"],
   "command": {
     "version": {
-      "allowBranch": [
-        "main",
-        "feature/newrelic-io"
-      ],
+      "allowBranch": ["main", "feature/newrelic-io"],
       "message": "chore(release): publish %s"
     },
     "publish": {
