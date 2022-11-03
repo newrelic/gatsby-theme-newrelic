@@ -37,7 +37,6 @@ const Homepage = () => {
         style={{
           color: 'blue',
           listStyle: 'none',
-          border: '1px solid red',
           display: 'flex',
           justifyContent: 'space-evenly',
           height: '100px',
@@ -50,8 +49,9 @@ const Homepage = () => {
           style={{
             padding: '3px',
             height: '100%',
-            width: '25%',
-            border: '1px solid white',
+            width: '20%',
+            backgroundColor: 'whitesmoke',
+            borderRadius: '5px',
           }}
         >
           TILE
@@ -60,8 +60,9 @@ const Homepage = () => {
           style={{
             padding: '3px',
             height: '100%',
-            width: '25%',
-            border: '1px solid white',
+            width: '20%',
+            backgroundColor: 'whitesmoke',
+            borderRadius: '5px',
           }}
         >
           TILE
@@ -70,8 +71,9 @@ const Homepage = () => {
           style={{
             padding: '3px',
             height: '100%',
-            width: '25%',
-            border: '1px solid white',
+            width: '20%',
+            backgroundColor: 'whitesmoke',
+            borderRadius: '5px',
           }}
         >
           TILE
@@ -80,8 +82,10 @@ const Homepage = () => {
           style={{
             padding: '3px',
             height: '100%',
-            width: '25%',
-            border: '1px solid white',
+            width: '20%',
+            // border: '1px solid white',
+            backgroundColor: 'whitesmoke',
+            borderRadius: '5px',
           }}
         >
           TILE
