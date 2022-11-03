@@ -1,12 +1,27 @@
 import React from 'react';
+import { css } from '@emotion/react';
 
 const Homepage = () => {
   return (
-    <div style={{ textAlign: 'center', padding: '15px' }}>
-      <header style={{ paddingTop: '5px', paddingBottom: '20px' }}>
+    <div
+      css={css`
+        text-align: center;
+        padding: 15px;
+      `}
+    >
+      <header
+        css={css`
+          padding-top: 5px;
+          padding-bottom: 25px;
+        `}
+      >
         <h1>Demo Name</h1>
       </header>
-      <div style={{ paddingBottom: '25px' }}>
+      <div
+        css={css`
+          padding-bottom: 25px;
+        `}
+      >
         <p>
           Crooked grind goofy footed face plant skate or die 1080 slob air.
           Smith grind shinner slappy coping bearings hang-up. Cess slide Jerry
@@ -14,7 +29,12 @@ const Homepage = () => {
           death box bone air pogo lip.
         </p>
       </div>
-      <div style={{ display: 'flex', paddingBottom: '25px' }}>
+      <div
+        css={css`
+          display: flex;
+          padding-bottom: 25px;
+        `}
+      >
         <section>
           <h2>What's new Section</h2>
           <p>
@@ -34,59 +54,56 @@ const Homepage = () => {
       </div>
 
       <ul
-        style={{
-          color: 'blue',
-          listStyle: 'none',
-          display: 'flex',
-          justifyContent: 'space-evenly',
-          height: '100px',
-          margin: '0px',
-          padding: '0px',
-          textAlign: 'center',
-        }}
+        css={css`
+          color: blue;
+          list-style: none;
+          display: flex;
+          justify-content: space-evenly;
+          height: 100px;
+          text-align: center;
+        `}
       >
         <li
-          style={{
-            padding: '3px',
-            height: '100%',
-            width: '20%',
-            backgroundColor: 'whitesmoke',
-            borderRadius: '5px',
-          }}
+          css={css`
+            padding: 3px;
+            height: 100%;
+            width: 20%;
+            background-color: white;
+            border-radius: 5px;
+          `}
         >
           TILE
         </li>
         <li
-          style={{
-            padding: '3px',
-            height: '100%',
-            width: '20%',
-            backgroundColor: 'whitesmoke',
-            borderRadius: '5px',
-          }}
+          css={css`
+            padding: 3px;
+            height: 100%;
+            width: 20%;
+            background-color: white;
+            border-radius: 5px;
+          `}
         >
           TILE
         </li>
         <li
-          style={{
-            padding: '3px',
-            height: '100%',
-            width: '20%',
-            backgroundColor: 'whitesmoke',
-            borderRadius: '5px',
-          }}
+          css={css`
+            padding: 3px;
+            height: 100%;
+            width: 20%;
+            background-color: white;
+            border-radius: 5px;
+          `}
         >
           TILE
         </li>
         <li
-          style={{
-            padding: '3px',
-            height: '100%',
-            width: '20%',
-            // border: '1px solid white',
-            backgroundColor: 'whitesmoke',
-            borderRadius: '5px',
-          }}
+          css={css`
+            padding: 3px;
+            height: 100%;
+            width: 20%;
+            background-color: white;
+            border-radius: 5px;
+          `}
         >
           TILE
         </li>
