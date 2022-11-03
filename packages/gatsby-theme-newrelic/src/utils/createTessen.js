@@ -11,7 +11,7 @@ import { CAMEL_CASE, TITLE_CASE } from './constants';
  * @param {string} key
  * @returns {string | null} The value of the cookie or `null`
  */
-const getCookie = (key) => Cookies.get(key).replace(/%22/g, '') || null;
+const getCookie = (key) => Cookies.get(key)?.replace(/%22/g, '') || null;
 
 const warnAboutNoop = ({ config, action, name, category }) => {
   warning(
