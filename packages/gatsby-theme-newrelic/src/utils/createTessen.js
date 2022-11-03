@@ -55,8 +55,8 @@ const tessenAction =
       );
     }
 
-    const customerId = JSON.parse(Cookies.get('ajs_user_id') || 'null');
-    const anonymousId = JSON.parse(Cookies.get('ajs_anonymous_id') || 'null');
+    const customerId = Cookies.get('ajs_user_id') || null;
+    const anonymousId = Cookies.get('ajs_anonymous_id') || null;
 
     window.Tessen[action](
       eventName,
