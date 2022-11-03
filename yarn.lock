@@ -10654,7 +10654,7 @@ gatsby-telemetry@^3.4.0:
     lodash "^4.17.21"
     node-fetch "^2.6.7"
 
-gatsby-transformer-json@:
+gatsby-transformer-json@^4.24.0:
   version "4.24.0"
   resolved "https://registry.yarnpkg.com/gatsby-transformer-json/-/gatsby-transformer-json-4.24.0.tgz#1ecc4d0e93f17e56da887ea2b7ba6e37e38b48e4"
   integrity sha512-jvrkx5g2zxLqpV5TYglKvffFlY3sobUqnljfFE58uyZvcrU8AN8fWWpCJFVc/kjwAoZG8h9J7E/9sD7eGle/IA==
