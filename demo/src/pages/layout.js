@@ -116,13 +116,7 @@ const LayoutPage = ({ data }) => {
           <SideBySide>
             <Side>
               <h4> This Side contains a code block. </h4>
-              <CodeBlock language="json">
-                {`{ 
-                    apples: 3, 
-                    bananas: 4, 
-                    carrots: 1 
-                }`}
-              </CodeBlock>
+              <CodeBlock language="json">{jsonExample}</CodeBlock>
             </Side>
             <Side>
               <h4>And this Side contains text.</h4>
@@ -184,5 +178,11 @@ const saySomeGibberish = () => {
 
 saySomeGibberish();
 `;
+
+const jsonExample = `{ 
+    apples: 3, 
+    bananas: 4, 
+    carrots: 1 
+}`;
 
 export default LayoutPage;
