@@ -17,6 +17,13 @@ const tempData = {
 
 const CodeExamples = ({ data }) => {
   const componentsData = data.allJson.edges;
+  const codeBlockData = componentsData.find(
+    (obj) => obj.node.displayName === 'CodeBlock'
+  );
+  const terminalData = componentsData.find(
+    (obj) => obj.node.displayName === 'Terminal'
+  );
+  console.log('terminalData', terminalData);
   console.log(data);
   return (
     <Layout.Main
@@ -26,7 +33,9 @@ const CodeExamples = ({ data }) => {
     >
       <Layout.Content>
         <CodeBlock language="json">This is a code block</CodeBlock>
-        <PropsDisplay componentInfo={data.allJson.edges[0].node} />
+        <PropsDisplay componentInfo={codeBlockData.node} />
+        <Terminal>This is a terminal</Terminal>
+        <PropsDisplay componentInfo={terminalData.node} />
       </Layout.Content>
     </Layout.Main>
   );
