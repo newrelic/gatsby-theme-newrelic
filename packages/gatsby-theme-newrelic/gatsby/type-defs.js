@@ -38,6 +38,7 @@ const SCHEMA_CUSTOMIZATION_TYPES = `
     tessen: NewRelicThemeTessenConfig
     signup: NewRelicThemeSignupConfig
     shouldUpdateScroll: RoutesAllowingScroll
+    feedback: NewRelicThemeFeedbackConfig
   }
 
   type NewRelicThemeRelatedResourceConfig {
@@ -58,6 +59,11 @@ const SCHEMA_CUSTOMIZATION_TYPES = `
     environment: String!
     reCaptchaToken: String!
     signupURL: String! 
+  }
+
+  type NewRelicThemeFeedbackConfig {
+    environment: String!
+    reCaptchaToken: String!
   }
 
   type RoutesAllowingScroll {
