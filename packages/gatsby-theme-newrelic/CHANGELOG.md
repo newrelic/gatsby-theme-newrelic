@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.5...v6.13.6) (2022-11-04)
+
+### Bug Fixes
+
+- add feedback data to the gql schema ([5d9392d](https://github.com/newrelic/gatsby-theme-newrelic/commit/5d9392d8669c6404fc3ef789abeb2af93e76a0b6))
+
 ## [6.13.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.4...v6.13.5) (2022-11-04)
 
 ### Bug Fixes
