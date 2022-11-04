@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.4...v6.13.5) (2022-11-04)
+
+### Bug Fixes
+
+- Only replace quotes if present and a string ([fcfe5b4](https://github.com/newrelic/gatsby-theme-newrelic/commit/fcfe5b43eda203da60596f6de0cdafd82542119b))
+- Properly setting Tessen values from Cookies ([fcfe629](https://github.com/newrelic/gatsby-theme-newrelic/commit/fcfe62927e3bd8808b8c5beb41a41c538132f2b3))
+
 ## [6.13.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.3...v6.13.4) (2022-11-03)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
