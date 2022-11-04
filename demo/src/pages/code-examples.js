@@ -3,28 +3,13 @@ import { CodeBlock, Layout, Terminal } from '@newrelic/gatsby-theme-newrelic';
 import { css } from '@emotion/react';
 import PropsDisplay from '../components/PropsDisplay';
 import { graphql } from 'gatsby';
-
-const tempData = {
-  description: '',
-  displayName: 'Banner',
-  methods: [],
-  props: [
-    { name: 'children', type: 'node', required: true, description: '' },
-    { name: 'onClose', type: 'func', required: true, description: '' },
-    { name: 'visible', type: 'bool', required: true, description: '' },
-  ],
-};
+import findComponentData from '../utils/findComponentData';
 
 const CodeExamples = ({ data }) => {
   const componentsData = data.allJson.edges;
-  const codeBlockData = componentsData.find(
-    (obj) => obj.node.displayName === 'CodeBlock'
-  );
-  const terminalData = componentsData.find(
-    (obj) => obj.node.displayName === 'Terminal'
-  );
-  console.log('terminalData', terminalData);
-  console.log(data);
+  const codeBlockData = findComponentData('CodeBlock', componentsData);
+  const terminalData = findComponentData('Terminal', componentsData);
+
   return (
     <Layout.Main
       css={css`
@@ -32,10 +17,12 @@ const CodeExamples = ({ data }) => {
       `}
     >
       <Layout.Content>
-        <CodeBlock language="json">This is a code block</CodeBlock>
-        <PropsDisplay componentInfo={codeBlockData.node} />
-        <Terminal>This is a terminal</Terminal>
-        <PropsDisplay componentInfo={terminalData.node} />
+        <PropsDisplay componentInfo={codeBlockData}>
+          <CodeBlock language="json">This is a code block</CodeBlock>
+        </PropsDisplay>
+        <PropsDisplay componentInfo={terminalData}>
+          <Terminal>This is a terminal</Terminal>
+        </PropsDisplay>
       </Layout.Content>
     </Layout.Main>
   );
