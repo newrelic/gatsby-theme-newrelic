@@ -1,7 +1,10 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import useDarkMode from 'use-dark-mode';
 
 const Homepage = () => {
+  const darkMode = useDarkMode();
+
   return (
     <div
       css={css`
@@ -68,8 +71,9 @@ const Homepage = () => {
             padding: 3px;
             height: 100%;
             width: 20%;
-            background-color: white;
             border-radius: 5px;
+            background-color: white;
+            box-shadow: ${darkMode.value ? 'none' : 'var( --shadow-1)'};
           `}
         >
           TILE
@@ -79,8 +83,9 @@ const Homepage = () => {
             padding: 3px;
             height: 100%;
             width: 20%;
-            background-color: white;
             border-radius: 5px;
+            background-color: white;
+            box-shadow: ${darkMode.value ? 'none' : 'var( --shadow-1)'};
           `}
         >
           TILE
@@ -90,8 +95,9 @@ const Homepage = () => {
             padding: 3px;
             height: 100%;
             width: 20%;
-            background-color: white;
             border-radius: 5px;
+            background-color: white;
+            box-shadow: ${darkMode.value ? 'none' : 'var( --shadow-1)'};
           `}
         >
           TILE
@@ -101,8 +107,9 @@ const Homepage = () => {
             padding: 3px;
             height: 100%;
             width: 20%;
-            background-color: white;
             border-radius: 5px;
+            background-color: white;
+            box-shadow: ${darkMode.value ? 'none' : 'var( --shadow-1)'};
           `}
         >
           TILE
