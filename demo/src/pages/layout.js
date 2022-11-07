@@ -11,7 +11,6 @@ import {
 } from '@newrelic/gatsby-theme-newrelic';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import { css } from '@emotion/react';
 import PropsDisplay from '../components/PropsDisplay';
 import findComponentData from '../utils/findComponentData';
 
@@ -99,7 +98,7 @@ const LayoutPage = ({ data }) => {
               {Array(5)
                 .fill()
                 .map((item, i) => (
-                  <tr>
+                  <tr key={`row-${i}`}>
                     <td>Item {i * 3 + 1}</td>
                     <td>Item {i * 3 + 2}</td>
                     <td>Item {i * 3 + 3}</td>
