@@ -34,15 +34,33 @@ const Surfaces = ({ data, location }) => {
           </Callout>
         </PropsDisplay>
         <PropsDisplay componentInfo={surfaceData}>
-          <Surface base={Surface.BASE.PRIMARY} interactive>
+          <Surface
+            base={Surface.BASE.PRIMARY}
+            interactive={false}
+            css={css`
+              margin-bottom: 0.5rem;
+            `}
+          >
             This is a surface.
+          </Surface>
+          <Surface
+            base={Surface.BASE.PRIMARY}
+            interactive
+            css={css`
+              margin-bottom: 0.5rem;
+            `}
+          >
+            This is an interactive surface.
+          </Surface>
+          <Surface base={Surface.BASE.SECONDARY}>
+            This is a surface with the "SECONDARY" base.
           </Surface>
         </PropsDisplay>
         <PropsDisplay componentInfo={animatedCardData}>
           <AnimatedCard
             css={css`
               height: 150px;
-              margin-bottom: 2rem;
+              margin-bottom: 0.5rem;
             `}
             flipped={animatedCardFlip}
           >
