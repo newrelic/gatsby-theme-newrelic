@@ -9,7 +9,7 @@ const PropsDisplay = ({ componentInfo, children }) => {
         margin-bottom: 1rem;
       `}
     >
-      <h2>{componentInfo.displayName}</h2>
+      <h2 id={componentInfo.displayName}>{componentInfo.displayName}</h2>
       {children}
       <p>{componentInfo.description}</p>
       {componentInfo.props ? (
