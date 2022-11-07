@@ -9,6 +9,7 @@ import {
   Side,
   CodeBlock,
 } from '@newrelic/gatsby-theme-newrelic';
+import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import { css } from '@emotion/react';
 import PropsDisplay from '../components/PropsDisplay';
@@ -170,6 +171,10 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+LayoutPage.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
 const jsExample = `
 const saySomeGibberish = () => {
