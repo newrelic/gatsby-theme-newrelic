@@ -30,7 +30,7 @@ const styles = {
   },
 };
 
-const Surface = ({ base, interactive, children, injected_css }) => (
+const Surface = ({ base, interactive, children, className }) => (
   <div
     css={css`
       border-radius: 0.25rem;
@@ -52,9 +52,8 @@ const Surface = ({ base, interactive, children, injected_css }) => (
 
         ${styles.interactive[base]};
       `}
-
-      ${injected_css};
     `}
+    className={className}
   >
     {children}
   </div>
@@ -64,7 +63,7 @@ Surface.propTypes = {
   base: PropTypes.oneOf(Object.values(BASES)).isRequired,
   interactive: PropTypes.bool,
   children: PropTypes.node, // This surface is interactive! It moves!
-  injected_css: PropTypes.string,
+  className: PropTypes.string,
 };
 
 Surface.defaultProps = {
