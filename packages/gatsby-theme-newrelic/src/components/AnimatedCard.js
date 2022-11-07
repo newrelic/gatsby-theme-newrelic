@@ -36,13 +36,14 @@ const AnimatedCard = ({ className, flipped, children }) => {
 const CardFront = ({ children, className }) => (
   <Surface
     base={Surface.BASE.PRIMARY}
-    css={css`
+    injected_css={css`
       position: absolute;
       padding: 1rem;
       width: 100%;
       height: 100%;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
+      transform: rotateY(0);
     `}
     className={className}
   >
@@ -53,7 +54,7 @@ const CardFront = ({ children, className }) => (
 const CardBack = ({ children, className }) => (
   <Surface
     base={Surface.BASE.PRIMARY}
-    css={css`
+    injected_css={css`
       position: absolute;
       padding: 1rem;
       width: 100%;
@@ -73,7 +74,7 @@ const CardHover = ({ children, className }) => {
   return (
     <Surface
       base={Surface.BASE.PRIMARY}
-      css={css`
+      injected_css={css`
         width: 100%;
         height: 100%;
         padding: 1rem;
