@@ -65,7 +65,7 @@ const Surfaces = ({ data, location }) => {
             `}
           >
             <AnimatedCard.Hover>
-              <p>This is hover version. Hover over me!</p>
+              <p>This is the hover version. Hover over me!</p>
               <p>The text changes when hovered!</p>
             </AnimatedCard.Hover>
           </AnimatedCard>
