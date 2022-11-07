@@ -40,7 +40,14 @@ const PropsDisplay = ({ componentInfo, children }) => {
                     <i>Required</i>
                   </div>
                 )}
-                <p>{prop.description}</p>
+                {prop.description && (
+                  <div>
+                    <span>Description: </span>
+                    <span
+                      dangerouslySetInnerHTML={{ __html: prop.description }}
+                    />
+                  </div>
+                )}
               </div>
             );
           })}

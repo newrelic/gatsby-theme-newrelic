@@ -60,9 +60,18 @@ const Surface = ({ base, interactive, children, className }) => (
 );
 
 Surface.propTypes = {
+  /**
+   * Either 'PRIMARY' or 'SECONDARY'
+   */
   base: PropTypes.oneOf(Object.values(BASES)).isRequired,
   interactive: PropTypes.bool,
-  children: PropTypes.node, // This surface is interactive! It moves!
+  /**
+   * The inner HTML
+   */
+  children: PropTypes.node,
+  /**
+   * This will usually need to be specified whenever the Surface has a 'css' prop, for those injected styles to render
+   */
   className: PropTypes.string,
 };
 
