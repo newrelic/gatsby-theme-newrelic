@@ -17,12 +17,12 @@ import findComponentData from '../utils/findComponentData';
 const InteractiveExamples = ({ data }) => {
   const [showModal, setShowModal] = useState(false);
   const componentsData = data.allJson.edges;
-  const customTextInputData = findComponentData('CustomTextInput', componentsData);
-  // const selectInlineData = findComponentData('SelectInline', componentsData); 
+  // const customTextInputData = findComponentData('CustomTextInput', componentsData);
+  const selectInlineData = findComponentData('SelectInline', componentsData); 
   // const searchInputData = findComponentData('SearchInput', componentsData);
-  const signupModalData = findComponentData('SignupModal', componentsData);
-  const linkData = findComponentData('Link', componentsData);
-  console.log(linkData);
+  // const signupModalData = findComponentData('SignupModal', componentsData);
+  // const linkData = findComponentData('Link', componentsData);
+  console.log(selectInlineData);
 
   return (
     <Layout.Main
@@ -31,20 +31,21 @@ const InteractiveExamples = ({ data }) => {
       `}>
       <Layout.Content>
         <h1>INTERACTIVE COMPONENTS</h1>
-        <PropsDisplay css={css`
-                              bottom-margin: 2em;`} componentInfo={customTextInputData}>
+        {/* <PropsDisplay componentInfo={customTextInputData}>
           <CustomTextInput label={"Input Label"} value={"Displaying Sample Text"}>This is a custom text input</CustomTextInput>
           <CustomTextInput
             placeholder={"Displaying Placeholder Text"}
             label={"Input Label"} >This is a custom text input</CustomTextInput>
-        </PropsDisplay>
-        {/* <PropsDisplay componentInfo={selectInlineData}>
-          <SelectInline>This is Select Inline</SelectInline>
         </PropsDisplay> */}
+        <PropsDisplay componentInfo={selectInlineData}>
+          <SelectInline>This is Select Inline</SelectInline>
+        </PropsDisplay>
         {/* <PropsDisplay componentInfo={searchInputData}>
           <SearchInput>This is the Search Input</SearchInput>
         </PropsDisplay> */}
-        <h2>Button</h2>
+        {/* <h2 css={css`
+                margin-top: 2em;
+                `}>Button</h2>
         <div className="primary-btns" css={css`
                   margin-bottom: 0.5rem;`}>
           <Button css={css`
@@ -138,13 +139,17 @@ const InteractiveExamples = ({ data }) => {
           <Button variant={Button.VARIANT.PRIMARY} onClick={() => setShowModal(true)}>Display Sign Up Modal</Button>
           <SignupModal isOpen={showModal} onClose={() => setShowModal(false)}>This is the Signup Modal</SignupModal>
         </PropsDisplay>
+        <div css={css`
+                  margin-bottom: 2em;
+                  `}>
+          </div>
         <PropsDisplay componentInfo={linkData}>
         <Link to={"https://newrelic.com/"}>Link to newrelic.com</Link><br></br>
           <div css={css`
                     padding-bottom: 0.5rem;
                   `}></div>
         <Link displayExternalIcon={true} to={"https://newrelic.com/"}>Link to newrelic.com with External Icon</Link>
-        </PropsDisplay>
+        </PropsDisplay> */}
       </Layout.Content>
     </Layout.Main>
   );
