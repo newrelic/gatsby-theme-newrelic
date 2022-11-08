@@ -28,6 +28,23 @@
         "url": "/layout#SideBySide"
       }
     ]
-
+  },
+  {
+    "title": "Surface Components",
+    "url": "/surfaces",
+    "pages": [
+      {
+        "title": "Callout",
+        "url": "/surfaces#Callout"
+      },
+      {
+        "title": "Surface",
+        "url": "/surfaces#Surface"
+      },
+      {
+        "title": "Animated Card",
+        "url": "/surfaces#AnimatedCard"
+      }
+    ]
   }
 ]
