@@ -9,7 +9,7 @@ const PropsDisplay = ({ componentInfo, children }) => {
         margin-bottom: 1rem;
       `}
     >
-      <h2>{componentInfo.displayName}</h2>
+      <h2 id={componentInfo.displayName}>{componentInfo.displayName}</h2>
       {children}
       <p>{componentInfo.description}</p>
       {componentInfo.props ? (
@@ -40,7 +40,14 @@ const PropsDisplay = ({ componentInfo, children }) => {
                     <i>Required</i>
                   </div>
                 )}
-                <p>{prop.description}</p>
+                {prop.description && (
+                  <div>
+                    <span>Description: </span>
+                    <span
+                      dangerouslySetInnerHTML={{ __html: prop.description }}
+                    />
+                  </div>
+                )}
               </div>
             );
           })}
