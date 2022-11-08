@@ -6,19 +6,22 @@ import {
   Tag,
   Layout,
   TagList,
+  Link,
 } from '@newrelic/gatsby-theme-newrelic';
 import { css } from '@emotion/react';
 import PropsDisplay from '../components/PropsDisplay';
 import { graphql } from 'gatsby';
 import findComponentData from '../utils/findComponentData';
 import regularImage from '../images/apm-intro-overview.png';
+import { docgenJson } from '../../types';
 
 const UtilsExamples = ({ data }) => {
-  console.log('data', data);
   const componentsData = data.allJson.edges;
   const videoData = findComponentData('Video', componentsData);
   const lightboxData = findComponentData('Lightbox', componentsData);
   const walkthroughData = findComponentData('Walkthrough', componentsData);
+  const tagData = findComponentData('Tag', componentsData);
+  const tagListData = findComponentData('TagList', componentsData);
 
   return (
     <Layout.Main
@@ -63,16 +66,37 @@ const UtilsExamples = ({ data }) => {
             </Walkthrough.Step>
           </Walkthrough>
         </PropsDisplay>
-        <Tag interactive>Agent</Tag>
+        <PropsDisplay componentInfo={tagData}>
+          <Tag interactive>Agent</Tag>
+        </PropsDisplay>
+        <PropsDisplay componentInfo={tagListData}>
+          <TagList>
+            <Tag as="a" href="www.google.com">
+              React
+            </Tag>
+            <Tag as={Link} to="https://www.google.com">
+              Agent
+            </Tag>
+            <Tag>Null</Tag>
+          </TagList>
+        </PropsDisplay>
       </Layout.Content>
     </Layout.Main>
   );
 };
 
+UtilsExamples.propTypes = {
+  data: docgenJson,
+};
+
 export const pageQuery = graphql`
   query UtilsQuery {
     allJson(
-      filter: { displayName: { in: ["Video", "Lightbox", "Walkthrough"] } }
+      filter: {
+        displayName: {
+          in: ["Video", "Lightbox", "Walkthrough", "Tag", "TagList"]
+        }
+      }
     ) {
       edges {
         node {

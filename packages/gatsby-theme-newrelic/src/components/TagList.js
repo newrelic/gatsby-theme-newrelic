@@ -1,26 +1,37 @@
-import styled from '@emotion/styled';
-import Tag from './Tag';
+import React from 'react';
+import { css } from '@emotion/react';
+import PropTypes from 'prop-types';
 
-const TagList = styled.div`
-  --gap: 0.5rem;
+const TagList = ({ children }) => (
+  <div
+    css={css`
+      --gap: 0.5rem;
 
-  display: inline-flex;
-  flex-wrap: wrap;
-  margin: 0 calc(-1 * var(--gap)) calc(-1 * var(--gap)) 0;
+      display: inline-flex;
+      flex-wrap: wrap;
+      margin: 0 calc(-1 * var(--gap)) calc(-1 * var(--gap)) 0;
 
-  ${Tag} {
-    margin: 0 var(--gap) var(--gap) 0;
-  }
+      ~ span {
+        margin: 0 var(--gap) var(--gap) 0;
+      }
 
-  @supports (gap: 0) {
-    margin: unset;
-    width: unset;
-    gap: var(--gap);
+      @supports (gap: 0) {
+        margin: unset;
+        width: unset;
+        gap: var(--gap);
 
-    ${Tag} {
-      margin: unset;
-    }
-  }
-`;
+        ~ span {
+          margin: unset;
+        }
+      }
+    `}
+  >
+    {children}
+  </div>
+);
+
+TagList.propTypes = {
+  children: PropTypes.node,
+};
 
 export default TagList;

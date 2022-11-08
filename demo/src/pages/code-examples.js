@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import PropsDisplay from '../components/PropsDisplay';
 import { graphql } from 'gatsby';
 import findComponentData from '../utils/findComponentData';
+import { docgenJson } from '../../types';
 
 const CodeExamples = ({ data }) => {
   const componentsData = data.allJson.edges;
@@ -26,6 +27,10 @@ const CodeExamples = ({ data }) => {
       </Layout.Content>
     </Layout.Main>
   );
+};
+
+CodeExamples.propTypes = {
+  data: docgenJson,
 };
 
 export const pageQuery = graphql`
