@@ -1,6 +1,6 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 
 const VARIANTS = {
   PRIMARY: 'primary',
@@ -69,7 +69,14 @@ const styles = {
   `,
 };
 
-const Button = ({ variant, size, disabled, children, as: Component, ...props }) => {
+const Button = ({
+  variant,
+  size,
+  disabled,
+  children,
+  as: Component,
+  ...props
+}) => {
   return (
     <Component
       {...props}
@@ -89,11 +96,13 @@ const Button = ({ variant, size, disabled, children, as: Component, ...props }) 
         white-space: nowrap;
         text-decoration: none;
 
-        ${ variant && styles.variant[variant]}
-        ${ size && styles.size[size]}
-        ${ disabled && disabled && styles.disabled}
+        ${variant && styles.variant[variant]}
+        ${size && styles.size[size]}
+        ${disabled && disabled && styles.disabled}
       `}
-    >{children}</Component>
+    >
+      {children}
+    </Component>
   );
 };
 
@@ -104,10 +113,12 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(Object.values(Button.SIZE)),
   variant: PropTypes.oneOf(Object.values(Button.VARIANT)).isRequired,
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  children: PropTypes.node,
 };
 
 Button.defaultProps = {
-  as: "button"
+  as: 'button',
 };
 
 export default Button;
