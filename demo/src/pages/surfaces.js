@@ -5,6 +5,7 @@ import {
   Surface,
   AnimatedCard,
   Button,
+  Link,
 } from '@newrelic/gatsby-theme-newrelic';
 import { css } from '@emotion/react';
 import PropsDisplay from '../components/PropsDisplay';
@@ -36,7 +37,6 @@ const Surfaces = ({ data, location }) => {
         <PropsDisplay componentInfo={surfaceData}>
           <Surface
             base={Surface.BASE.PRIMARY}
-            interactive={false}
             css={css`
               margin-bottom: 0.5rem;
             `}
@@ -52,8 +52,16 @@ const Surfaces = ({ data, location }) => {
           >
             This is an interactive surface.
           </Surface>
-          <Surface base={Surface.BASE.SECONDARY}>
+          <Surface
+            base={Surface.BASE.SECONDARY}
+            css={css`
+              margin-bottom: 0.5rem;
+            `}
+          >
             This is a surface with the "SECONDARY" base.
+          </Surface>
+          <Surface base={Surface.BASE.PRIMARY} as={Link} to="/surfaces">
+            This is a surface with the "as" tag set to &#123;Link&#125;.
           </Surface>
         </PropsDisplay>
         <PropsDisplay componentInfo={animatedCardData}>
@@ -66,13 +74,19 @@ const Surfaces = ({ data, location }) => {
           >
             <AnimatedCard.Front>
               <p>This is the front of the flipping version.</p>
-              <Button onClick={() => setAnimatedCardFlip(true)}>
+              <Button
+                variant={Button.VARIANT.PRIMARY}
+                onClick={() => setAnimatedCardFlip(true)}
+              >
                 Click to Flip!
               </Button>
             </AnimatedCard.Front>
             <AnimatedCard.Back>
               <p>And this is the back!</p>
-              <Button onClick={() => setAnimatedCardFlip(false)}>
+              <Button
+                variant={Button.VARIANT.PRIMARY}
+                onClick={() => setAnimatedCardFlip(false)}
+              >
                 Click to Flip!
               </Button>
             </AnimatedCard.Back>
