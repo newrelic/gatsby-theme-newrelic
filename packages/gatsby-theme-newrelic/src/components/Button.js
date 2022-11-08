@@ -69,26 +69,53 @@ const styles = {
   `,
 };
 
-const Button = styled.button`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 400;
-  border-radius: 3px;
-  font-family: var(--primary-font-family);
-  line-height: 1;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: all 0.15s ease-out;
-  white-space: nowrap;
-  text-decoration: none;
+const Button = ({ variant, size, disabled, children }) => {
+  return (
+    <button
+      css={css`
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        border-radius: 3px;
+        font-family: var(--primary-font-family);
+        line-height: 1;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: all 0.15s ease-out;
+        white-space: nowrap;
+        text-decoration: none;
 
-  ${({ variant }) => styles.variant[variant]}
-  ${({ size }) => styles.size[size]}
-  ${({ disabled }) => disabled && styles.disabled}
-`;
+        ${({ variant }) => styles.variant[variant]}
+        ${({ size }) => styles.size[size]}
+        ${({ disabled }) => disabled && styles.disabled}
+      `}
+    >{children}</button>
+  );
+};
+
+// const Button = styled.button`
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   padding: 0.5rem 1rem;
+//   font-size: 0.875rem;
+//   font-weight: 400;
+//   border-radius: 3px;
+//   font-family: var(--primary-font-family);
+//   line-height: 1;
+//   cursor: pointer;
+//   border: 1px solid transparent;
+//   transition: all 0.15s ease-out;
+//   white-space: nowrap;
+//   text-decoration: none;
+
+//   ${({ variant }) => styles.variant[variant]}
+//   ${({ size }) => styles.size[size]}
+//   ${({ disabled }) => disabled && styles.disabled}
+// `;
 
 Button.VARIANT = VARIANTS;
 Button.SIZE = SIZES;
