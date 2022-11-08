@@ -71,11 +71,11 @@ const UtilsExamples = ({ data }) => {
         </PropsDisplay>
         <PropsDisplay componentInfo={tagListData}>
           <TagList>
-            <Tag as="a" href="www.google.com">
-              React
+            <Tag as="a" href="/code-examples">
+              Code Examples
             </Tag>
             <Tag as={Link} to="https://www.google.com">
-              Agent
+              Google
             </Tag>
             <Tag>Null</Tag>
           </TagList>
