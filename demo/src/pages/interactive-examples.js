@@ -2,7 +2,6 @@ import { React, useState } from 'react';
 import {
   Layout,
   CustomTextInput,
-  // SelectInline,
   SignupModal,
   Button,
   Link,
