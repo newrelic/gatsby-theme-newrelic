@@ -89,7 +89,7 @@ const SimpleFeedback = () => {
                   color: var(--primary-text-color);
                 `}
               />
-              {t('feedback.positive')}
+              {t('feedback.yes')}
             </Button>
             <Button
               variant={Button.VARIANT.LINK}
@@ -110,7 +110,7 @@ const SimpleFeedback = () => {
                   color: var(--primary-text-color);
                 `}
               />
-              {t('feedback.negative')}
+              {t('feedback.no')}
             </Button>
           </div>
         </>
