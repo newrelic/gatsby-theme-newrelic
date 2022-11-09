@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.6...v6.13.7) (2022-11-09)
+
+### Bug Fixes
+
+- feedback form UI handles long translation strings ([876aaef](https://github.com/newrelic/gatsby-theme-newrelic/commit/876aaef00c502aef068dfef13069400631d39f2f))
+- update simple feedback form to use new feedback form verbiage and variables ([8b20e68](https://github.com/newrelic/gatsby-theme-newrelic/commit/8b20e688f73278b24e1aaf2199fde65f2afe36d1))
+
 ## [6.13.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.5...v6.13.6) (2022-11-04)
 
 ### Bug Fixes
