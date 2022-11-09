@@ -99,7 +99,6 @@ const ComplexFeedback = ({ pageTitle }) => {
         display: flex;
         border: none;
         flex-direction: column;
-        justify-content: center;
         max-width: 320px;
         background: var(--erno-yellow);
         gap: 1rem;
@@ -149,7 +148,8 @@ const ComplexFeedback = ({ pageTitle }) => {
           <div
             css={css`
               display: flex;
-              justify-content: space-between;
+              flex-wrap: wrap;
+              justify-content: space-around;
               align-items: flex-start;
 
               @supports not (gap: 0.5rem) {
@@ -165,6 +165,7 @@ const ComplexFeedback = ({ pageTitle }) => {
               onClick={() => handleFeedbackClick('yes')}
               css={css`
                 height: 3rem;
+                margin-bottom: 0.5rem;
                 color: var(--system-text-primary-light);
                 border-color: var(--system-text-primary-light);
 
@@ -191,6 +192,7 @@ const ComplexFeedback = ({ pageTitle }) => {
               onClick={() => handleFeedbackClick('no')}
               css={css`
                 height: 3rem;
+                margin-bottom: 0.5rem;
                 color: var(--system-text-primary-light);
                 border-color: var(--system-text-primary-light);
 
@@ -218,6 +220,7 @@ const ComplexFeedback = ({ pageTitle }) => {
               onClick={() => handleFeedbackClick('somewhat')}
               css={css`
                 height: 3rem;
+                margin-bottom: 0.5rem;
                 color: var(--system-text-primary-light);
                 border-color: var(--system-text-primary-light);
 

@@ -84,8 +84,23 @@ Callout.VARIANT = VARIANTS;
 
 Callout.propTypes = {
   className: PropTypes.string,
+  /**
+   * The title to appear at the top of the callout
+   */
   title: PropTypes.string,
-  variant: PropTypes.oneOf(Object.values(Callout.VARIANT)).isRequired,
+  /**
+   * Must be one of: <br />
+   * <ul>
+   * - CAUTION <br />
+   * - IMPORTANT <br />
+   * - TIP <br />
+   * - COURSE <br />
+   * </ul>
+   */
+  variant: PropTypes.oneOf(Object.values(VARIANTS)).isRequired,
+  /**
+   * The inner HTML
+   */
   children: PropTypes.node.isRequired,
 };
 

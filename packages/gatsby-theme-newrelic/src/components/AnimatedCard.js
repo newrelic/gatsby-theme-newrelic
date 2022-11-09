@@ -43,6 +43,7 @@ const CardFront = ({ children, className }) => (
       height: 100%;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
+      transform: rotateY(0);
     `}
     className={className}
   >
@@ -116,7 +117,13 @@ AnimatedCard.Hover = CardHover;
 
 AnimatedCard.propTypes = {
   className: PropTypes.string,
+  /**
+   * Whether the front or back of a flipping card is currently visible
+   */
   flipped: PropTypes.bool,
+  /**
+   * The inner HTML
+   */
   children: PropTypes.node,
 };
 CardFront.propTypes = {
