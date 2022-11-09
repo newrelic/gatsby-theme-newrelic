@@ -64,5 +64,45 @@
         "url": "/PageTools#RelatedResources"
       }
     ]
+  },
+  {
+    "title": "Utils",
+    "url": "/utils-examples",
+    "pages": [
+      {
+        "title": "Video",
+        "url": "/utils-examples#Video"
+      },
+      {
+        "title": "Lightbox",
+        "url": "/utils-examples#Lightbox"
+      },
+      {
+        "title": "Walkthrough",
+        "url": "/utils-examples#Walkthrough"
+      },
+      {
+        "title": "Tag",
+        "url": "/utils-examples#Tag"
+      },
+      {
+        "title": "TagList",
+        "url": "/utils-examples#TagList"
+      }
+    ]
+  },
+  {
+    "title": "Code Examples",
+    "url": "/code-examples",
+    "pages": [
+      {
+        "title": "CodeBlock",
+        "url": "/code-examples#CodeBlock"
+      },
+      {
+        "title": "Terminal",
+        "url": "/code-examples#Terminal"
+      }
+    ]
   }
 ]

@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import { Collapser } from '@newrelic/gatsby-theme-newrelic';
+import PropTypes from 'prop-types';
 
 const PropsDisplay = ({ componentInfo, children }) => {
   return (
@@ -18,12 +19,13 @@ const PropsDisplay = ({ componentInfo, children }) => {
           id={componentInfo.displayName}
           defaultOpen={false}
         >
-          {componentInfo.props.map((prop) => {
+          {componentInfo.props.map((prop, i) => {
             return (
               <div
                 css={css`
                   padding-bottom: 0.5rem;
                 `}
+                key={prop.name + i}
               >
                 <div>
                   <b>{prop.name}</b>
@@ -57,6 +59,22 @@ const PropsDisplay = ({ componentInfo, children }) => {
       )}
     </div>
   );
+};
+
+PropsDisplay.propTypes = {
+  componentInfo: PropTypes.shape({
+    description: PropTypes.string,
+    displayName: PropTypes.string,
+    props: PropTypes.arrayOf(
+      PropTypes.shape({
+        description: PropTypes.string,
+        name: PropTypes.string,
+        required: PropTypes.bool,
+        type: PropTypes.string,
+      })
+    ),
+  }),
+  children: PropTypes.node,
 };
 
 export default PropsDisplay;
