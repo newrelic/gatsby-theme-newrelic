@@ -30,6 +30,8 @@ const UtilsExamples = ({ data }) => {
       `}
     >
       <Layout.Content>
+        <h1>Utils</h1>
+
         <PropsDisplay componentInfo={videoData}>
           <Video id="inyshp3m7r" type={Video.TYPE.WISTIA} width="500px" />
         </PropsDisplay>

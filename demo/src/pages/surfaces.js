@@ -29,6 +29,8 @@ const Surfaces = ({ data, location }) => {
       location={location}
     >
       <Layout.Content>
+        <h1>Surfaces</h1>
+
         <PropsDisplay componentInfo={calloutData}>
           <Callout title="Hello world!" variant={Callout.VARIANT.IMPORTANT}>
             This is a callout.

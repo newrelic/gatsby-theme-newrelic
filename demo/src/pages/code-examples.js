@@ -18,6 +18,7 @@ const CodeExamples = ({ data }) => {
       `}
     >
       <Layout.Content>
+        <h1>Code Examples</h1>
         <PropsDisplay componentInfo={codeBlockData}>
           <CodeBlock language="json">This is a code block</CodeBlock>
         </PropsDisplay>
