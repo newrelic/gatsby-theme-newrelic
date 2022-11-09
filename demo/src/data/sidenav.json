@@ -46,5 +46,23 @@
         "url": "/surfaces#AnimatedCard"
       }
     ]
+  },
+  {
+    "title": "Page Tools",
+    "url": "/PageTools",
+    "pages": [
+      {
+        "title": "Contributing Guidelines",
+        "url": "/PageTools#ContributingGuidelines"
+      },
+      {
+        "title": "Complex Feedback",
+        "url": "/PageTools#ComplexFeedback"
+      },
+      {
+        "title": "Related Resouces",
+        "url": "/PageTools#RelatedResources"
+      }
+    ]
   }
 ]
