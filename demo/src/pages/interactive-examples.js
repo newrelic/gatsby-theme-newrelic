@@ -6,18 +6,21 @@ import {
   Button,
   Link,
   SearchInput,
+  SelectInLine,
 } from '@newrelic/gatsby-theme-newrelic';
 import { css } from '@emotion/react';
 import PropsDisplay from '../components/PropsDisplay';
 import { graphql } from 'gatsby';
 import findComponentData from '../utils/findComponentData';
-import SelectInline from '@newrelic/gatsby-theme-newrelic/src/components/SelectInLine';
 
 const InteractiveExamples = ({ data }) => {
   const [showModal, setShowModal] = useState(false);
   const componentsData = data.allJson.edges;
 
-  const customTextInputData = findComponentData('CustomTextInput', componentsData);
+  const customTextInputData = findComponentData(
+    'CustomTextInput',
+    componentsData
+  );
   const selectInlineData = findComponentData('SelectInline', componentsData);
   const searchInputData = findComponentData('SearchInput', componentsData);
   const buttonData = findComponentData('Button', componentsData);
@@ -33,10 +36,7 @@ const InteractiveExamples = ({ data }) => {
       <Layout.Content>
         <h1>INTERACTIVE COMPONENTS</h1>
         <PropsDisplay componentInfo={customTextInputData}>
-          <CustomTextInput
-            label="Input Label"
-            value="Sample Text"
-          ></CustomTextInput>
+          <CustomTextInput label="Input Label" value="Sample Text" />
         </PropsDisplay>
         <div
           css={css`
@@ -44,11 +44,11 @@ const InteractiveExamples = ({ data }) => {
           `}
         />
         <PropsDisplay componentInfo={selectInlineData}>
-          <SelectInline label="Selection Label">
+          <SelectInLine label="Selection Label">
             <option value="first">first</option>
             <option value="second">second</option>
             <option value="third">third</option>
-          </SelectInline>
+          </SelectInLine>
         </PropsDisplay>
         <div
           css={css`
@@ -62,17 +62,17 @@ const InteractiveExamples = ({ data }) => {
             `}
             value="Large Search Input"
             size={SearchInput.SIZE.LARGE}
-          ></SearchInput>
+          />
           <SearchInput
             css={css`
               margin-bottom: 0.5rem;
             `}
             value="Medium Search Input (default)"
-          ></SearchInput>
+          />
           <SearchInput
             value="Small Search Input"
             size={SearchInput.SIZE.SMALL}
-          ></SearchInput>
+          />
         </PropsDisplay>
         <div
           css={css`
