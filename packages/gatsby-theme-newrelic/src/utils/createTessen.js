@@ -2,6 +2,17 @@ import warning from 'warning';
 import Cookies from 'js-cookie';
 import { CAMEL_CASE, TITLE_CASE } from './constants';
 
+/**
+ * Helper function to get string-based cookies given a specific key. This will
+ * strip URL-encoded quotes (`%22`) if present.
+ *
+ * @example const id = getCookie('ajs_user_id'); // "12345"
+ *
+ * @param {string} key
+ * @returns {string | null} The value of the cookie or `null`
+ */
+const getCookie = (key) => Cookies.get(key)?.replace(/%22/g, '') || null;
+
 const warnAboutNoop = ({ config, action, name, category }) => {
   warning(
     config,
@@ -55,8 +66,8 @@ const tessenAction =
       );
     }
 
-    const customerId = JSON.parse(Cookies.get('ajs_user_id') || 'null');
-    const anonymousId = JSON.parse(Cookies.get('ajs_anonymous_id') || 'null');
+    const customerId = getCookie('ajs_user_id');
+    const anonymousId = getCookie('ajs_anonymous_id');
 
     window.Tessen[action](
       eventName,

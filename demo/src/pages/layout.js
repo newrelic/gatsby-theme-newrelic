@@ -29,6 +29,7 @@ const LayoutPage = ({ data }) => {
   return (
     <Layout.Main>
       <Layout.Content>
+        <h1>Layout</h1>
         <PropsDisplay componentInfo={collapserData}>
           <Collapser title="This is a single collapser.">
             These are the contents.

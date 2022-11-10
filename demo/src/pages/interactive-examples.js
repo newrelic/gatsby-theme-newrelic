@@ -9,8 +9,9 @@ import {
   SelectInLine,
 } from '@newrelic/gatsby-theme-newrelic';
 import { css } from '@emotion/react';
-import PropsDisplay from '../components/PropsDisplay';
 import { graphql } from 'gatsby';
+import { docgenJson } from '../../types';
+import PropsDisplay from '../components/PropsDisplay';
 import findComponentData from '../utils/findComponentData';
 
 const InteractiveExamples = ({ data }) => {
@@ -34,7 +35,7 @@ const InteractiveExamples = ({ data }) => {
       `}
     >
       <Layout.Content>
-        <h1>INTERACTIVE COMPONENTS</h1>
+        <h1>Interactive Components</h1>
         <PropsDisplay componentInfo={customTextInputData}>
           <CustomTextInput label="Input Label" value="Sample Text" />
         </PropsDisplay>
