@@ -39,11 +39,6 @@ const InteractiveExamples = ({ data }) => {
         <PropsDisplay componentInfo={customTextInputData}>
           <CustomTextInput label="Input Label" value="Sample Text" />
         </PropsDisplay>
-        <div
-          css={css`
-            margin-bottom: 3em;
-          `}
-        />
         <PropsDisplay componentInfo={selectInlineData}>
           <SelectInLine label="Selection Label">
             <option value="first">first</option>
@@ -51,11 +46,6 @@ const InteractiveExamples = ({ data }) => {
             <option value="third">third</option>
           </SelectInLine>
         </PropsDisplay>
-        <div
-          css={css`
-            margin-bottom: 3em;
-          `}
-        />
         <PropsDisplay componentInfo={searchInputData}>
           <SearchInput
             css={css`
@@ -75,11 +65,6 @@ const InteractiveExamples = ({ data }) => {
             size={SearchInput.SIZE.SMALL}
           />
         </PropsDisplay>
-        <div
-          css={css`
-            margin-bottom: 3em;
-          `}
-        />
         <PropsDisplay componentInfo={buttonData}>
           <Button
             css={css`
@@ -210,11 +195,6 @@ const InteractiveExamples = ({ data }) => {
             Extra Small Link
           </Button>
         </PropsDisplay>
-        <div
-          css={css`
-            margin-bottom: 2em;
-          `}
-        />
         <PropsDisplay componentInfo={signupModalData}>
           <Button
             variant={Button.VARIANT.PRIMARY}
@@ -224,19 +204,9 @@ const InteractiveExamples = ({ data }) => {
           </Button>
           <SignupModal isOpen={showModal} onClose={() => setShowModal(false)} />
         </PropsDisplay>
-        <div
-          css={css`
-            margin-bottom: 2em;
-          `}
-        />
         <PropsDisplay componentInfo={linkData}>
           <Link to="https://newrelic.com/">Link to newrelic.com</Link>
           <br />
-          <div
-            css={css`
-              padding-bottom: 0.5rem;
-            `}
-          />
           <Link displayExternalIcon to="https://newrelic.com/">
             Link to newrelic.com with External Icon
           </Link>
