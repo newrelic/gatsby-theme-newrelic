@@ -18,15 +18,15 @@ const InteractiveExamples = ({ data }) => {
   const [showModal, setShowModal] = useState(false);
   const componentsData = data.allJson.edges;
 
-  const customTextInputData = findComponentData(
-    'CustomTextInput',
-    componentsData
-  );
   const selectInlineData = findComponentData('SelectInline', componentsData);
   const searchInputData = findComponentData('SearchInput', componentsData);
   const buttonData = findComponentData('Button', componentsData);
   const signupModalData = findComponentData('SignupModal', componentsData);
   const linkData = findComponentData('Link', componentsData);
+  const customTextInputData = findComponentData(
+    'CustomTextInput',
+    componentsData
+  );
 
   return (
     <Layout.Main
@@ -244,6 +244,10 @@ const InteractiveExamples = ({ data }) => {
       </Layout.Content>
     </Layout.Main>
   );
+};
+
+InteractiveExamples.propTypes = {
+  data: docgenJson,
 };
 
 export const pageQuery = graphql`
