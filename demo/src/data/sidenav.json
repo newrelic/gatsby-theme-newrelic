@@ -49,19 +49,19 @@
   },
   {
     "title": "Page Tools",
-    "url": "/PageTools",
+    "url": "/page-tools",
     "pages": [
       {
         "title": "Contributing Guidelines",
-        "url": "/PageTools#ContributingGuidelines"
+        "url": "/page-tools#ContributingGuidelines"
       },
       {
         "title": "Complex Feedback",
-        "url": "/PageTools#ComplexFeedback"
+        "url": "/page-tools#ComplexFeedback"
       },
       {
         "title": "Related Resouces",
-        "url": "/PageTools#RelatedResources"
+        "url": "/page-tools#RelatedResources"
       }
     ]
   }
