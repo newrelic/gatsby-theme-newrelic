@@ -1,6 +1,6 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 
 const VARIANTS = {
   PRIMARY: 'primary',
@@ -69,26 +69,42 @@ const styles = {
   `,
 };
 
-const Button = styled.button`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 400;
-  border-radius: 3px;
-  font-family: var(--primary-font-family);
-  line-height: 1;
-  cursor: pointer;
-  border: 1px solid transparent;
-  transition: all 0.15s ease-out;
-  white-space: nowrap;
-  text-decoration: none;
+const Button = ({
+  variant,
+  size,
+  disabled,
+  children,
+  as: Component,
+  ...props
+}) => {
+  return (
+    <Component
+      {...props}
+      css={css`
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        border-radius: 3px;
+        font-family: var(--primary-font-family);
+        line-height: 1;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: all 0.15s ease-out;
+        white-space: nowrap;
+        text-decoration: none;
 
-  ${({ variant }) => styles.variant[variant]}
-  ${({ size }) => styles.size[size]}
-  ${({ disabled }) => disabled && styles.disabled}
-`;
+        ${variant && styles.variant[variant]}
+        ${size && styles.size[size]}
+        ${disabled && disabled && styles.disabled}
+      `}
+    >
+      {children}
+    </Component>
+  );
+};
 
 Button.VARIANT = VARIANTS;
 Button.SIZE = SIZES;
@@ -97,6 +113,12 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(Object.values(Button.SIZE)),
   variant: PropTypes.oneOf(Object.values(Button.VARIANT)).isRequired,
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  children: PropTypes.node,
+};
+
+Button.defaultProps = {
+  as: 'button',
 };
 
 export default Button;

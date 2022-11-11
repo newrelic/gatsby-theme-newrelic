@@ -104,5 +104,35 @@
         "url": "/code-examples#Terminal"
       }
     ]
+  },
+  {
+    "title": "Interactive Components",
+    "url": "/interactive-examples",
+    "pages": [
+      {
+        "title": "Custom Text Input",
+        "url": "/interactive-examples#CustomTextInput"
+      },
+      {
+        "title": "Select Inline",
+        "url": "/interactive-examples#SelectInline"
+      },
+      {
+        "title": "Search Input",
+        "url": "/interactive-examples#SearchInput"
+      },
+      {
+        "title": "Button",
+        "url": "/interactive-examples#Button"
+      },
+      {
+        "title": "Signup Modal",
+        "url": "/interactive-examples#SignupModal"
+      },
+      {
+        "title": "Link",
+        "url": "/interactive-examples#Link"
+      }
+    ]
   }
 ]
