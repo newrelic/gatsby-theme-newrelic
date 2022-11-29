@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.9](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.8...v6.13.9) (2022-11-29)
+
+### Bug Fixes
+
+- Make fileName in CodeBlock dynamic ([29d042d](https://github.com/newrelic/gatsby-theme-newrelic/commit/29d042de49b24db87b21b03e5942e7218aed4e97))
+
 ## [6.13.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.7...v6.13.8) (2022-11-29)
 
 ### Bug Fixes
