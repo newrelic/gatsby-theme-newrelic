@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CodeBlock from './CodeBlock';
 
-const InteractiveOutput = ({ className, inputs, config, containerId }) => {
+const InteractiveOutput = ({
+  className,
+  inputs,
+  config,
+  containerId,
+  fileName,
+}) => {
   let lines = '';
   inputs.forEach((input) => (lines = lines.concat(`,${input.codeLine}`)));
 
@@ -23,7 +29,7 @@ const InteractiveOutput = ({ className, inputs, config, containerId }) => {
       altStyle
       copyable
       highlightedLines={lines}
-      fileName="newrelic.yml"
+      fileName={fileName}
       language="yml"
       className={className}
       containerId={containerId}
@@ -37,6 +43,7 @@ InteractiveOutput.propTypes = {
   className: PropTypes.string,
   inputs: PropTypes.array,
   config: PropTypes.string,
+  fileName: PropTypes.string,
   containerId: PropTypes.string.isRequired,
 };
 

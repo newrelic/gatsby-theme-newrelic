@@ -29,6 +29,7 @@ const InteractiveForm = ({ children, inputs, config, containerId }) => {
       </div>
       <InteractiveOutput
         containerId={containerId}
+        fileName="newrelic.yml"
         inputs={inputs}
         config={config}
         css={css`
