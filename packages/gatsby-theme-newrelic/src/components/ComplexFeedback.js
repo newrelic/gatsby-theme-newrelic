@@ -68,7 +68,7 @@ const ComplexFeedback = ({ pageTitle }) => {
       title: pageTitle,
       description: userComments,
       rating: feedbackType,
-      pageUrl: location.pathname,
+      pageUrl: location.href,
       email: userEmail,
       recaptchaToken,
     };
