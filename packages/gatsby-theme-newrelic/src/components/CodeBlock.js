@@ -99,8 +99,9 @@ const CodeBlock = ({
 
   const handleDownloadClick = useInstrumentedHandler(
     () => {
-      const blob = new Blob([children], { type: 'yaml' });
-      saveAs(blob, 'newrelic.yml');
+      const fileExtension = fileName.split('.')[1];
+      const blob = new Blob([children], { type: fileExtension });
+      saveAs(blob, fileName);
     },
     {
       eventName: 'downloadCodeBlockClick',
