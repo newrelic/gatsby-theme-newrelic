@@ -18,6 +18,7 @@ const NavItem = ({
   __parent: parent,
   __depth: depth = 0,
   __root: root,
+  className,
 }) => {
   const locale = useLocale();
   const location = useLocation();
@@ -87,6 +88,7 @@ const NavItem = ({
           }
         `}
       `}
+      className={className}
     >
       <NavLink
         active={isCurrentPage}

@@ -1,35 +1,33 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import useDarkMode from 'use-dark-mode';
+import { Layout } from '@newrelic/gatsby-theme-newrelic';
 
 const Homepage = () => {
   const darkMode = useDarkMode();
 
   return (
-    <div
-      css={css`
-        text-align: center;
-        padding: 15px;
-      `}
-    >
+    <Layout.Main>
       <header
         css={css`
           padding-top: 5px;
           padding-bottom: 25px;
         `}
       >
-        <h1>Demo Name</h1>
+        <h1>gatsby-theme-newrelic</h1>
       </header>
       <div
         css={css`
           padding-bottom: 25px;
+          max-width: 800px;
         `}
       >
         <p>
-          Crooked grind goofy footed face plant skate or die 1080 slob air.
-          Smith grind shinner slappy coping bearings hang-up. Cess slide Jerry
-          Hsu heel flip frontside air fakie out axle betty. Bearings hang-up
-          death box bone air pogo lip.
+          This theme contains contains common configuration and shared
+          components used across New Relic Gatsby sites. It is primarily used on
+          the <a href="https://docs.newrelic.com">docs</a>,
+          <a href="https://developer.newrelic.com">developer</a> and{' '}
+          <a href="https://opensource.newrelic.com">open source</a> websites.
         </p>
       </div>
       <div
@@ -39,20 +37,8 @@ const Homepage = () => {
         `}
       >
         <section>
-          <h2>What's new Section</h2>
-          <p>
-            Kick-nose nose grab goofy footed mini ramp ollie north. Nose-bump
-            quarter pipe air finger flip blunt. Crooked grind poseur wax
-            freestyle nose.
-          </p>
-        </section>
-        <section>
-          <h2>What's next Section</h2>
-          <p>
-            Gnarly steps launch ramp rip grip lien air. Full-cab vert Pantsman
-            hurricane ollie hole deck. Bail hanger Mike Taylor griptape 540
-            casper slide.
-          </p>
+          <h2>What's new</h2>
+          <p>Check out our latest components:</p>
         </section>
       </div>
 
@@ -76,7 +62,7 @@ const Homepage = () => {
             box-shadow: ${darkMode.value ? 'none' : 'var( --shadow-1)'};
           `}
         >
-          TILE
+          <a href="/PageTools#ComplexFeedback">ComplexFeedback</a>
         </li>
         <li
           css={css`
@@ -88,34 +74,10 @@ const Homepage = () => {
             box-shadow: ${darkMode.value ? 'none' : 'var( --shadow-1)'};
           `}
         >
-          TILE
-        </li>
-        <li
-          css={css`
-            padding: 3px;
-            height: 100%;
-            width: 20%;
-            border-radius: 5px;
-            background-color: white;
-            box-shadow: ${darkMode.value ? 'none' : 'var( --shadow-1)'};
-          `}
-        >
-          TILE
-        </li>
-        <li
-          css={css`
-            padding: 3px;
-            height: 100%;
-            width: 20%;
-            border-radius: 5px;
-            background-color: white;
-            box-shadow: ${darkMode.value ? 'none' : 'var( --shadow-1)'};
-          `}
-        >
-          TILE
+          <a href="/utils-examples#Walkthrough">Walkthrough</a>
         </li>
       </ul>
-    </div>
+    </Layout.Main>
   );
 };
 

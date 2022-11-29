@@ -44,7 +44,13 @@ const MainLayout = (props) => {
           />
           <Navigation searchTerm={searchTerm}>
             {nav.map((page, index) => (
-              <NavItem key={`nav${index}${page.url}`} page={page} />
+              <NavItem
+                css={css`
+                  --nav-highlight: var(--primary-hover-color);
+                `}
+                key={`nav${index}${page.url}`}
+                page={page}
+              />
             ))}
           </Navigation>
         </Layout.Sidebar>
