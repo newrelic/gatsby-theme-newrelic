@@ -85,6 +85,7 @@ export { default as useNavigation } from './src/hooks/useNavigation';
 export { default as useScrollFreeze } from './src/hooks/useScrollFreeze';
 export { default as useWarning } from './src/hooks/useWarning';
 export { stripTrailingSlash } from './src/utils/location';
+export { isValidEmail, isValidInput } from './src/utils/isValidEmail';
 
 export { SWIFTYPE_ENGINE_KEY } from './src/utils/constants';
 
