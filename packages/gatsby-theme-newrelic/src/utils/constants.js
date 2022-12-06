@@ -21,6 +21,11 @@ const SPLIT_TRACKING_EVENTS = {
   SIGNUP_BUTTON_CLICK: 'DEVEN_signuptext_click',
 };
 
+const FEEDBACK_FORM_TYPE = {
+  general: 'userDocFeedback',
+  install: 'userInstallFeedback',
+};
+
 module.exports = {
   STORAGE_KEYS,
   TRACKING_COOKIE_NAME,
@@ -30,4 +35,5 @@ module.exports = {
   TITLE_CASE,
   SPLITS,
   SPLIT_TRACKING_EVENTS,
+  FEEDBACK_FORM_TYPE,
 };
