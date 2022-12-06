@@ -87,6 +87,6 @@ export { default as useWarning } from './src/hooks/useWarning';
 export { stripTrailingSlash } from './src/utils/location';
 export { isValidEmail, isValidInput } from './src/utils/isValidEmail';
 
-export { SWIFTYPE_ENGINE_KEY } from './src/utils/constants';
+export { SWIFTYPE_ENGINE_KEY, FEEDBACK_FORM_TYPE } from './src/utils/constants';
 
 export * from 'react-i18next';
