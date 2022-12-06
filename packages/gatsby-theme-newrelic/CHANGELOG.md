@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.11](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.10...v6.13.11) (2022-12-06)
+
+### Bug Fixes
+
+- Export feedback const ([7a759c6](https://github.com/newrelic/gatsby-theme-newrelic/commit/7a759c6024a55974a1ece323225fb1297443a59f))
+
 ## [6.13.10](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.9...v6.13.10) (2022-12-06)
 
 ### Bug Fixes
