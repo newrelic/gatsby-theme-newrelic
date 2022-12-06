@@ -10,6 +10,7 @@ import Button from './Button';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useTessen from '../hooks/useTessen';
+import { FEEDBACK_FORM_TYPE } from '../utils/constants';
 
 const ComplexFeedback = ({ pageTitle }) => {
   const [feedbackType, setfeedbackType] = useState(null);
@@ -66,6 +67,7 @@ const ComplexFeedback = ({ pageTitle }) => {
     });
     const jiraSubmission = {
       title: pageTitle,
+      formType: FEEDBACK_FORM_TYPE.general,
       description: userComments,
       rating: feedbackType,
       pageUrl: location.href,
