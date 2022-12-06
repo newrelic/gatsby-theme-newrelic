@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.10](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.9...v6.13.10) (2022-12-06)
+
+### Bug Fixes
+
+- Add formType to complexfeedback ([59b25d9](https://github.com/newrelic/gatsby-theme-newrelic/commit/59b25d93987f01c0a673f4b72669294a17076838))
+- Export util functions ([4df12c7](https://github.com/newrelic/gatsby-theme-newrelic/commit/4df12c78c4c26ff58fd929c39a87ac0a29f2fa1b))
+
 ## [6.13.9](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.8...v6.13.9) (2022-11-29)
 
 ### Bug Fixes
