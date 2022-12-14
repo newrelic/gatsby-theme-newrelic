@@ -10490,19 +10490,20 @@ gatsby-transformer-sharp@3.10.0:
     semver "^7.3.4"
     sharp "^0.28.3"
 
-gatsby-transformer-sharp@4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-4.6.0.tgz#a9c2ee2007df2ffb6a941c736588295bca26c10a"
-  integrity sha512-hf1GohwPhjKg1tRFI3GfJS3SxVoXI+j7MqwPsWetzRvaFy+3kecmU/azklnTfT7/2LexfDxtso9/lCHgFl5fIQ==
+gatsby-transformer-sharp@4.19.0:
+  version "4.19.0"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-4.19.0.tgz#0acc603d1368c44033acf01bd8d061adb61e3858"
+  integrity sha512-SoY9yGNjC+C+gAfJ//+DqXGBukVKeb4HnobOmkpbugYtLGRwb4AhKOT7eqCn+AK/4+oDDB3ZNNfTUf0vRFQgzA==
   dependencies:
     "@babel/runtime" "^7.15.4"
+    "@gatsbyjs/potrace" "^2.2.0"
     bluebird "^3.7.2"
     common-tags "^1.8.2"
-    fs-extra "^10.0.0"
-    potrace "^2.1.8"
-    probe-image-size "^6.0.0"
-    semver "^7.3.5"
-    sharp "^0.29.3"
+    fs-extra "^10.1.0"
+    gatsby-plugin-utils "^3.13.0"
+    probe-image-size "^7.2.3"
+    semver "^7.3.7"
+    sharp "^0.30.3"
 
 gatsby-worker@^1.18.0:
   version "1.18.0"
@@ -16382,6 +16383,15 @@ probe-image-size@^6.0.0:
   integrity sha512-99PZ5+RU4gqiTfK5ZDMDkZtn6eL4WlKfFyVJV7lFQvH3iGmQ85DqMTOdxorERO26LHkevR2qsxnHp0x/2UDJPA==
   dependencies:
     deepmerge "^4.0.0"
+    needle "^2.5.2"
+    stream-parser "~0.3.1"
+
+probe-image-size@^7.2.3:
+  version "7.2.3"
+  resolved "https://registry.yarnpkg.com/probe-image-size/-/probe-image-size-7.2.3.tgz#d49c64be540ec8edea538f6f585f65a9b3ab4309"
+  integrity sha512-HubhG4Rb2UH8YtV4ba0Vp5bQ7L78RTONYu/ujmCu5nBI8wGv24s4E9xSKBi0N1MowRpxk76pFCpJtW0KPzOK0w==
+  dependencies:
+    lodash.merge "^4.6.2"
     needle "^2.5.2"
     stream-parser "~0.3.1"
 
