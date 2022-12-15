@@ -41,7 +41,7 @@
     "@mdx-js/mdx": "^1.6.16",
     "@mdx-js/react": "^1.6.16",
     "@splitsoftware/splitio-react": "^1.6.0",
-    "gatsby": "4.8.2",
+    "gatsby": "4.19.0",
     "gatsby-plugin-mdx": "^2.10.1",
     "i18next-parser": "^3.6.0",
     "react": "^17.0.2",
