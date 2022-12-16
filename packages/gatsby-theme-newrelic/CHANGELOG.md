@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.12](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.11...v6.13.12) (2022-12-16)
+
+### Bug Fixes
+
+- dedupe gatsby transformer sharp ([a32c803](https://github.com/newrelic/gatsby-theme-newrelic/commit/a32c80323908457ce35ec234b69c812dd7fec4e3))
+
 ## [6.13.11](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.10...v6.13.11) (2022-12-06)
 
 ### Bug Fixes
