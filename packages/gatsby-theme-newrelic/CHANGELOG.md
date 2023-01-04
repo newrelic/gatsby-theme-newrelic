@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.13](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.12...v6.13.13) (2023-01-04)
+
+### Bug Fixes
+
+- auto-fill search query from URL ([0cca1d8](https://github.com/newrelic/gatsby-theme-newrelic/commit/0cca1d88edff56a1cf0cf022091ba277b51784e2))
+- bump prismjs version ([c151d14](https://github.com/newrelic/gatsby-theme-newrelic/commit/c151d148bccb7bbbce9133876ba95240e3f7ebc8))
+
 ## [6.13.12](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.11...v6.13.12) (2022-12-16)
 
 ### Bug Fixes
