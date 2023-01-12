@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { LoggedInContext } from '../components/LoggedInContext';
 
+const SAVED_STATUS_KEY = 'gatsby-theme-newrelic/logged-in-status';
 const NERDGRAPH_URL = 'https://nerd-graph.service.newrelic.com/graphql';
 
 /**
@@ -24,22 +25,28 @@ const NERDGRAPH_URL = 'https://nerd-graph.service.newrelic.com/graphql';
  * @param {string} serviceName
  */
 export const useLoggedIn = (serviceName) => {
+  const savedStatus = getSavedStatus();
   // if `context` is null, we don't have `LoggedInProvider` as
   // an ancestor, so we'll have to make the call ourself.
   const context = useContext(LoggedInContext);
   const [loading, setLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(savedStatus);
+  const skipCall = context != null || savedStatus != null;
 
   useEffect(() => {
-    if (context != null) return;
+    if (skipCall) return;
 
     setLoading(true);
     checkIfUserLoggedIn(serviceName)
+      .then((isLoggedIn) => {
+        setSavedStatus(isLoggedIn);
+        return isLoggedIn;
+      })
       .then(setLoggedIn)
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [serviceName, skipCall]);
 
   if (context != null) return context;
   return { loading, loggedIn };
@@ -72,3 +79,30 @@ const checkIfUserLoggedIn = (serviceName) =>
   })
     .then((res) => res.ok)
     .catch(() => false);
+
+/**
+ * Check `sessionStorage` to see if we've cached the user's logged in status.
+ *
+ * @returns {Boolean | null} A boolean if the key is set, otherwise returns null.
+ */
+const getSavedStatus = () => {
+  if (typeof window === 'undefined') return null;
+  const status = window.sessionStorage.getItem(SAVED_STATUS_KEY);
+  if (status != null) return status === 'true';
+  return null;
+};
+
+/**
+ * Cache the user's logged in status in `sessionStorage`.
+ */
+const setSavedStatus = (isLoggedIn) => {
+  if (typeof window === 'undefined') return;
+  // `setItem` can fail and throw an exception,
+  // like if the user has storage disabled or the site has surpassed its quota.
+  try {
+    window.sessionStorage.setItem(SAVED_STATUS_KEY, isLoggedIn);
+  } catch (err) {
+    // ESLint complains if i leave this block empty.
+    // but it also complains if i put an empty return here 🙃.
+  }
+};
