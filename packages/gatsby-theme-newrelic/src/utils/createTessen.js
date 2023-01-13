@@ -1,6 +1,10 @@
 import warning from 'warning';
 import Cookies from 'js-cookie';
 import { CAMEL_CASE, TITLE_CASE } from './constants';
+import {
+  checkIfUserLoggedIn,
+  getSavedStatus as getSavedLoggedInStatus,
+} from '../hooks/useLoggedIn';
 
 /**
  * Helper function to get string-based cookies given a specific key. This will
@@ -40,7 +44,7 @@ const canSendAction = ({ config, name, category }) =>
 
 const tessenAction =
   (action, config) =>
-  ({ eventName, category, ...properties }) => {
+  async ({ eventName, category, ...properties }) => {
     if (!canSendAction({ config, name: eventName, category })) {
       return warnAboutNoop({ config, action, name: eventName, category });
     }
@@ -68,6 +72,8 @@ const tessenAction =
 
     const customerId = getCookie('ajs_user_id');
     const anonymousId = getCookie('ajs_anonymous_id');
+    const loggedIn =
+      getSavedLoggedInStatus() ?? (await checkIfUserLoggedIn(config.product));
 
     window.Tessen[action](
       eventName,
@@ -80,6 +86,7 @@ const tessenAction =
         location: 'Public',
         customer_user_id: customerId,
         anonymousId,
+        loggedIn,
       },
       {
         Segment: {

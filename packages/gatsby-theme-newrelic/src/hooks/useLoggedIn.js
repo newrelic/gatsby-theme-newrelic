@@ -58,7 +58,7 @@ export const useLoggedIn = (serviceName) => {
  *
  * @returns {Promise<Boolean>}
  */
-const checkIfUserLoggedIn = (serviceName) =>
+export const checkIfUserLoggedIn = (serviceName) =>
   fetch(NERDGRAPH_URL, {
     method: 'POST',
     credentials: 'include',
@@ -85,7 +85,7 @@ const checkIfUserLoggedIn = (serviceName) =>
  *
  * @returns {Boolean | null} A boolean if the key is set, otherwise returns null.
  */
-const getSavedStatus = () => {
+export const getSavedStatus = () => {
   if (typeof window === 'undefined') return null;
   const status = window.sessionStorage.getItem(SAVED_STATUS_KEY);
   if (status != null) return status === 'true';
