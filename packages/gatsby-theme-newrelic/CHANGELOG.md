@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.14](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.13...v6.13.14) (2023-01-13)
+
+### Bug Fixes
+
+- bump deps in theme to match docs site ([e6c5337](https://github.com/newrelic/gatsby-theme-newrelic/commit/e6c5337e0a638e50fe51c685181dda60c1eab0cf))
+
 ## [6.13.13](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.12...v6.13.13) (2023-01-04)
 
 ### Bug Fixes
