@@ -7,6 +7,8 @@ const NERDGRAPH_URL = 'https://nerd-graph.service.newrelic.com/graphql';
 /**
  * Asynchronously checks whether the current user is logged in.
  * Returns an object with `loading` and `loggedIn` properties.
+ * If `newRelicRequestingServicesHeader` isn't configured in the theme options,
+ * the hook skips the call to NerdGraph and `loggedIn` will always be null.
  *
  * If you have multiple components which need the user's logged in state,
  * wrap them with `LoggedInProvider` to avoid making duplicate checks.
@@ -21,23 +23,24 @@ const NERDGRAPH_URL = 'https://nerd-graph.service.newrelic.com/graphql';
  *   return <div>hey new friend!</div>
  * }
  * ```
- *
- * @param {string} serviceName
  */
-export const useLoggedIn = (serviceName) => {
+export const useLoggedIn = () => {
   const savedStatus = getSavedStatus();
   // if `context` is null, we don't have `LoggedInProvider` as
   // an ancestor, so we'll have to make the call ourself.
   const context = useContext(LoggedInContext);
   const [loading, setLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(savedStatus);
-  const skipCall = context != null || savedStatus != null;
+  const hasNRRSHeader =
+    typeof window !== 'undefined' &&
+    typeof window.newRelicRequestingServicesHeader !== 'string';
+  const skipCall = context != null || savedStatus != null || hasNRRSHeader;
 
   useEffect(() => {
     if (skipCall) return;
 
     setLoading(true);
-    checkIfUserLoggedIn(serviceName)
+    checkIfUserLoggedIn()
       .then((isLoggedIn) => {
         setSavedStatus(isLoggedIn);
         return isLoggedIn;
@@ -46,7 +49,7 @@ export const useLoggedIn = (serviceName) => {
       .finally(() => {
         setLoading(false);
       });
-  }, [serviceName, skipCall]);
+  }, [skipCall]);
 
   if (context != null) return context;
   return { loading, loggedIn };
@@ -58,14 +61,14 @@ export const useLoggedIn = (serviceName) => {
  *
  * @returns {Promise<Boolean>}
  */
-export const checkIfUserLoggedIn = (serviceName) =>
+export const checkIfUserLoggedIn = () =>
   fetch(NERDGRAPH_URL, {
     method: 'POST',
     credentials: 'include',
     redirect: 'error',
     headers: {
       'Content-Type': 'application/json',
-      'NewRelic-Requesting-Services': serviceName,
+      'NewRelic-Requesting-Services': window.newRelicRequestingServicesHeader,
     },
     body: JSON.stringify({
       query: `{

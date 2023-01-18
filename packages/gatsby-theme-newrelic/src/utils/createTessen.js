@@ -72,8 +72,17 @@ const tessenAction =
 
     const customerId = getCookie('ajs_user_id');
     const anonymousId = getCookie('ajs_anonymous_id');
-    const loggedIn =
-      getSavedLoggedInStatus() ?? (await checkIfUserLoggedIn(config.product));
+
+    // if a site doesn't configure this in the theme options,
+    // we don't make the call to NerdGraph and we don't send
+    // a `loggedIn` field with the request.
+    if (window.newRelicRequestingServicesHeader) {
+      const loggedIn =
+        getSavedLoggedInStatus() ?? (await checkIfUserLoggedIn(config.product));
+      // i don't like mutating this object, but it's the least ugly way
+      // to conditionally add this property.
+      properties.loggedIn = loggedIn;
+    }
 
     window.Tessen[action](
       eventName,
@@ -86,7 +95,6 @@ const tessenAction =
         location: 'Public',
         customer_user_id: customerId,
         anonymousId,
-        loggedIn,
       },
       {
         Segment: {

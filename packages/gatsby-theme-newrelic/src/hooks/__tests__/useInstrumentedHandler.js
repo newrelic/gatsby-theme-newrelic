@@ -24,6 +24,7 @@ const SEGMENT_OBJECT = {
   },
 };
 
+global.newRelicRequestingServicesHeader = 'gatsby-theme-newrelic-demo'
 global.Tessen = {
   track: jest.fn(),
 };
