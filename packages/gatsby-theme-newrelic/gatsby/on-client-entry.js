@@ -30,12 +30,14 @@ const onClientEntry = (_, themeOptions) => {
 const isDarkMode = () => {
   if (isLocalStorageAvailable()) {
     const localStorageTheme = localStorage.getItem('darkMode');
-
-    if (localStorageTheme) {
+    if (localStorageTheme === 'true' || localStorageTheme === 'false') {
       return JSON.parse(localStorageTheme);
     }
   }
-
+  window.localStorage.setItem(
+    'darkMode',
+    document.body.classList.contains('dark-mode')
+  );
   return document.body.classList.contains('dark-mode');
 };
 
