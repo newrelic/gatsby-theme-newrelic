@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.15](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.14...v6.13.15) (2023-01-18)
+
+### Bug Fixes
+
+- Set darkMode in localStorage on client entry ([9431867](https://github.com/newrelic/gatsby-theme-newrelic/commit/94318675df9883ddc7a4dc388887d0764af37ef9))
+
 ## [6.13.14](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.13...v6.13.14) (2023-01-13)
 
 ### Bug Fixes
