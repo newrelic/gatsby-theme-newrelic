@@ -2450,6 +2450,8 @@ A container for Step components
 
 The child of a Steps component, will render individual steps and automatically number them
 
+** note: If using a header within a step component you'll need to use html tags rather than markdown
+
 **Example**
 
 ````js
