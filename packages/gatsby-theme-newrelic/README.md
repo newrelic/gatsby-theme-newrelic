@@ -27,6 +27,7 @@ websites](https://opensource.newrelic.com).
       - [`signup`](#signup)
       - [`oneTrustID`](#onetrustid)
         - [Environment-specific configuration](#environment-specific-configuration)
+      - [`newRelicRequestingServicesHeader`](#newRelicRequestingServicesHeader)
     - [Layouts](#layouts)
   - [Components](#components)
     - [`Banner`](#banner)
@@ -593,6 +594,14 @@ module.exports = {
   ],
 };
 ```
+#### `newRelicRequestingServicesHeader`
+
+Configure the name reported to NerdGraph in the `NewRelic-Requesting-Services` header.
+The value should be formatted like a slug, dash-separated and all lowercase, like `'io-website'`.
+This header is only used in the call to check the current user's logged in status.
+Currently, Tessen and the `useLoggedIn` hook are the only places this is used.
+If this isn't configured, Tessen won't include the `loggedIn` field on any events,
+and `useLoggedIn().loggedIn` will always be `null`.
 
 ### Layouts
 This theme supports Layout components in a similar way to Gatsby `V1` through the [`gatsby-plugin-layout`](https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/). This plugin allows you to persist the layout between page changes, as well as state.

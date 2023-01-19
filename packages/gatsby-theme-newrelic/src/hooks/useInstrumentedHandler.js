@@ -11,45 +11,53 @@ const useInstrumentedHandler = (handler, attributes) => {
     savedHandler.current = handler;
   }, [handler]);
 
-  return useCallback(
-    (...args) => {
-      const { eventName, category, ...attrs } =
-        typeof attributes === 'function' ? attributes(...args) : attributes;
+  const instrumentedHandler = (...args) => {
+    const { eventName, category, ...attrs } =
+      typeof attributes === 'function' ? attributes(...args) : attributes;
 
-      if (window.Tessen) {
+    if (window.Tessen) {
+      warning(
+        eventName,
+        'You are attempting to instrument a handler, but the `eventName` property is not set. This will result in a no-op.'
+      );
+
+      eventName &&
         warning(
-          eventName,
-          'You are attempting to instrument a handler, but the `eventName` property is not set. This will result in a no-op.'
+          CAMEL_CASE.test(eventName),
+          `You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op.`
         );
 
+      warning(
+        category,
+        'You are attempting to instrument a handler, but the `category` property is not set. This will result in a no-op.'
+      );
+
+      category &&
+        warning(
+          TITLE_CASE.test(category),
+          `You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op.`
+        );
+
+      // exposes the Promise that `tessen.track` returns.
+      // this is _not_ intended to be used in code.
+      // this is purely for the test suite so we can wait for this
+      // fn to finish and check if `window.Tessen.track` is called.
+      instrumentedHandler.tessenResult =
         eventName &&
-          warning(
-            CAMEL_CASE.test(eventName),
-            `You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op.`
-          );
-
-        warning(
-          category,
-          'You are attempting to instrument a handler, but the `category` property is not set. This will result in a no-op.'
-        );
-
         category &&
-          warning(
-            TITLE_CASE.test(category),
-            `You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op.`
-          );
+        tessen.track({ eventName, category, ...attrs });
+    }
 
-        eventName &&
-          category &&
-          tessen.track({ eventName, category, ...attrs });
-      }
+    if (savedHandler.current) {
+      return savedHandler.current(...args);
+    }
+  };
 
-      if (savedHandler.current) {
-        return savedHandler.current(...args);
-      }
-    },
-    [attributes, tessen]
-  );
+  return useCallback(instrumentedHandler, [
+    attributes,
+    instrumentedHandler,
+    tessen,
+  ]);
 };
 
 export default useInstrumentedHandler;

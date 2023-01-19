@@ -25,6 +25,11 @@ const onClientEntry = (_, themeOptions) => {
       segmentKey: `${themeOptions.tessen.segmentWriteKey}`,
     };
   }
+
+  if (themeOptions.newRelicRequestingServicesHeader) {
+    window.newRelicRequestingServicesHeader =
+      themeOptions.newRelicRequestingServicesHeader;
+  }
 };
 
 const isDarkMode = () => {

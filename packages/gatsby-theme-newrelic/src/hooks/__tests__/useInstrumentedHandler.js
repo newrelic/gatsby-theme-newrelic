@@ -1,5 +1,7 @@
 import useInstrumentedHandler from '../useInstrumentedHandler';
 import { renderHook } from '@testing-library/react-hooks';
+import { enableFetchMocks } from 'jest-fetch-mock';
+enableFetchMocks();
 
 const originalError = console.error;
 const TESSEN_OBJECT = {
@@ -8,6 +10,7 @@ const TESSEN_OBJECT = {
   nr_product: 'THEME',
   nr_subproduct: 'TTHEME',
   location: 'Public',
+  loggedIn: true,
   customer_user_id: null,
   anonymousId: null,
   env: '',
@@ -21,6 +24,7 @@ const SEGMENT_OBJECT = {
   },
 };
 
+global.newRelicRequestingServicesHeader = 'gatsby-theme-newrelic-demo'
 global.Tessen = {
   track: jest.fn(),
 };
@@ -30,7 +34,7 @@ afterEach(() => {
   global.Tessen.track.mockClear();
 });
 
-test('instruments tessen and calls original handler with all arguments', () => {
+test('instruments tessen and calls original handler with all arguments', async () => {
   const originalHandler = jest.fn();
   const { result } = renderHook(() =>
     useInstrumentedHandler(originalHandler, {
@@ -42,6 +46,7 @@ test('instruments tessen and calls original handler with all arguments', () => {
 
   result.current(1, 2);
 
+  await result.current.tessenResult;
   expect(originalHandler).toHaveBeenCalledTimes(1);
   expect(originalHandler).toHaveBeenCalledWith(1, 2);
   expect(global.Tessen.track).toHaveBeenCalledTimes(1);
@@ -52,7 +57,7 @@ test('instruments tessen and calls original handler with all arguments', () => {
   );
 });
 
-test('attaches any additional fields in config as attributes', () => {
+test('attaches any additional fields in config as attributes', async () => {
   const { result } = renderHook(() =>
     useInstrumentedHandler(jest.fn(), {
       eventName: 'eventName',
@@ -63,6 +68,7 @@ test('attaches any additional fields in config as attributes', () => {
   );
 
   result.current();
+  await result.current.tessenResult;
 
   expect(global.Tessen.track).toHaveBeenCalledWith(
     'eventName',
@@ -71,7 +77,7 @@ test('attaches any additional fields in config as attributes', () => {
   );
 });
 
-test('allows config argument to be a function called with the handler arguments', () => {
+test('allows config argument to be a function called with the handler arguments', async () => {
   const { result } = renderHook(() =>
     useInstrumentedHandler(jest.fn(), (a, b) => ({
       eventName: 'eventName',
@@ -81,6 +87,8 @@ test('allows config argument to be a function called with the handler arguments'
     }))
   );
   result.current(2, 2);
+  await result.current.tessenResult;
+
   expect(global.Tessen.track).toHaveBeenCalledWith(
     'eventName',
     { ...TESSEN_OBJECT, sum: 4 },

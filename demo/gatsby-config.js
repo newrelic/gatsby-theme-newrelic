@@ -88,6 +88,7 @@ module.exports = {
         shouldUpdateScroll: {
           routes: ['/'],
         },
+        newRelicRequestingServicesHeader: 'gatsby-theme-newrelic-demo',
       },
     },
     {
