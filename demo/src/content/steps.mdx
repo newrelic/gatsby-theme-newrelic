@@ -1,0 +1,56 @@
+---
+title: 'Look at some mdx steps!'
+resources:
+  - title: New Relic One VSCode extension
+    url: https://marketplace.visualstudio.com/items?itemName=new-relic.nr1
+  - title: Build on New Relic One
+    url: https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/build-new-relic-one/new-relic-one-build-your-own-custom-new-relic-one-application
+  - title: Build apps
+    url: /build-apps
+---
+
+Here are some steps
+
+<Steps>
+
+<Step>
+
+This is a step
+
+<SideBySide>
+
+Here's some content in a sidebyside in a step!
+
+```json fileName=nerdlets/entity-nerdlet-nerdlet/nr1.json
+{
+  "schemaType": "NERDLET",
+  "id": "entity-nerdlet-nerdlet",
+  "displayName": "EntityNerdletNerdlet",
+  "description": "",
+  "context": {
+    "entities": []
+  }
+}
+```
+
+</SideBySide>
+
+</Step>
+
+<Step>
+
+Here's content without the sidebyside component
+
+```json
+{
+  "schemaType": "LAUNCHER",
+  "id": "my-awesome-nerdpack-launcher",
+  "description": "Describe me",
+  "displayName": "INSERT_YOUR_TILE_LABEL_HERE",
+  "rootNerdletId": "my-awesome-nerdpack-nerdlet"
+}
+```
+
+</Step>
+
+</Steps>
