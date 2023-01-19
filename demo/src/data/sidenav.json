@@ -1,5 +1,9 @@
 [
   {
+    "title": "Steps",
+    "url": "/steps"
+  },
+  {
     "title": "Collect data",
     "icon": "nr-tdp",
     "url": "/collect-data",
