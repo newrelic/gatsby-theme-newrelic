@@ -29,26 +29,8 @@ const TutorialStep = ({ children, stepNumber, totalSteps }) => {
     >
       <StepCounter stepNumber={stepNumber} total={totalSteps} />
       {title}
-      {content.map((column, idx) => {
-        return Array.isArray(column) ? (
-          <div
-            key={idx}
-            css={css`
-              display: grid;
-              grid-template-columns: repeat(2, calc(50% - 0.5rem));
-              grid-gap: 1rem;
-
-              &:not(:last-child) {
-                margin-bottom: 2rem;
-              }
-            `}
-          >
-            <div>{column[0]}</div>
-            <div>{column[1]}</div>
-          </div>
-        ) : (
-          column
-        );
+      {content.map((item) => {
+        return item;
       })}
     </div>
   );
