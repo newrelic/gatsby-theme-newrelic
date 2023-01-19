@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.14.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.16...v6.14.0) (2023-01-19)
+
+### Bug Fixes
+
+- Account for grid-gap in SideBySide width ([654e487](https://github.com/newrelic/gatsby-theme-newrelic/commit/654e487f10764e728d09a459271403e9cbda77d7))
+
+### Features
+
+- Add TutorialStep components ([900cd32](https://github.com/newrelic/gatsby-theme-newrelic/commit/900cd32433f405b9975dac6ec8cbf38e6e412da2))
+
 ## [6.13.16](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.15...v6.13.16) (2023-01-19)
 
 ### Features
