@@ -84,6 +84,8 @@ websites](https://opensource.newrelic.com).
     - [`Spinner`](#spinner)
     - [`Skeleton`](#skeleton)
     - [`SplitColorButton`](#splitcolorbutton)
+    - [`Steps`](#steps)
+    - [`Step`](#step)
     - [`Surface`](#surface)
     - [`Table`](#table)
     - [`TableOfContents`](#tableofcontents)
@@ -595,6 +597,7 @@ module.exports = {
 ```
 
 ### Layouts
+
 This theme supports Layout components in a similar way to Gatsby `V1` through the [`gatsby-plugin-layout`](https://www.gatsbyjs.com/plugins/gatsby-plugin-layout/). This plugin allows you to persist the layout between page changes, as well as state.
 To start using this layout functionality create a component at `src/layouts/index.jsx`, then the plugin will automatically inject the component into your pages.
 
@@ -1287,7 +1290,7 @@ import { GlobalFooter } from '@newrelic/gatsby-theme-newrelic';
 
 Renders the global header used on all New Relic Gatsby sites. This component
 utilizes the [`layout` configuration](#layout) from the theme to size itself.
-*Note*: The [`signup`](#signup) configuration options are needed for this component to function correctly.
+_Note_: The [`signup`](#signup) configuration options are needed for this component to function correctly.
 
 ```js
 import { GlobalHeader } from '@newrelic/gatsby-theme-newrelic';
@@ -2299,10 +2302,10 @@ import { Side, SideBySide } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop       | Type   | Required | Default | Description                                              |
-| ---------- | ------ | -------- | ------- | -------------------------------------------------------- |
-| `children` | node   | no       |         | The content that's displayed in one side of the columns. |
-| `className`| string | no       |         | Additional `className` for the component.                |
+| Prop        | Type   | Required | Default | Description                                              |
+| ----------- | ------ | -------- | ------- | -------------------------------------------------------- |
+| `children`  | node   | no       |         | The content that's displayed in one side of the columns. |
+| `className` | string | no       |         | Additional `className` for the component.                |
 
 **Example**
 
@@ -2373,10 +2376,10 @@ import { Skeleton } from '@newrelic/gatsby-theme-newrelic';
 
 **Props**
 
-| Prop | Type | Required | Default | Description |
-| ---- | ---- | :------: | ------- | ----------- |
-| `width` | pixels | Yes | None | The width of the element. |
-| `height` | pixels | Yes | None | The height of the element. |
+| Prop     | Type   | Required | Default | Description                |
+| -------- | ------ | :------: | ------- | -------------------------- |
+| `width`  | pixels |   Yes    | None    | The width of the element.  |
+| `height` | pixels |   Yes    | None    | The height of the element. |
 
 **Example**
 
@@ -2430,6 +2433,36 @@ import { SplitColorButton } from '@newrelic/gatsby-theme-newrelic';
   <span>Click me!</span>
 </SplitColorButton>
 ```
+
+### `Steps`
+
+A container for Step components
+
+**Example**
+
+```js
+<Steps>
+  <Step>This is step 1</Step>
+</Steps>
+```
+
+### `Step`
+
+The child of a Steps component, will render individual steps and automatically number them
+
+**Example**
+
+````js
+<Steps>
+  <Step>This is step 1</Step>
+  <Step>
+    This is step 2 
+    ```js 
+    const itHasACodeBlock = true 
+    ```
+  </Step>
+</Steps>
+````
 
 ### `Surface`
 
