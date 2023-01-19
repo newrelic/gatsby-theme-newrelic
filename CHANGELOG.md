@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.13.16](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.15...v6.13.16) (2023-01-19)
+
+### Features
+
+- create `useLoggedIn` hook and `LoggedInProvider` ([79054a5](https://github.com/newrelic/gatsby-theme-newrelic/commit/79054a5eb986e265b2e5aaf6e7138072d2048bbf))
+
 ## [6.13.15](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.14...v6.13.15) (2023-01-18)
 
 ### Bug Fixes
