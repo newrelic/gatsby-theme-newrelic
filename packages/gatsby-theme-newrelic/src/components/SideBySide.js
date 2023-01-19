@@ -19,7 +19,7 @@ const SideBySide = ({ children, className }) => {
         grid-gap: 1rem;
         grid-template-columns: repeat(
           ${numberOfChildren},
-          calc(${spacePercentage}%)
+          calc(${spacePercentage}% - 0.5rem)
         );
 
         p:last-child {
