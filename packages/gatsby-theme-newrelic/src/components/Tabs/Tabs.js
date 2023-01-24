@@ -8,8 +8,8 @@ import BarItem from './BarItem';
 import Pages from './Pages';
 import Page from './Page';
 
-const Tabs = ({ children }) => {
-  const tabState = useState(undefined);
+const Tabs = ({ children, initialTab }) => {
+  const tabState = useState(initialTab);
 
   return (
     <TabsContext.Provider value={tabState}>{children}</TabsContext.Provider>
@@ -18,6 +18,10 @@ const Tabs = ({ children }) => {
 
 Tabs.propTypes = {
   children: PropTypes.node.isRequired,
+  /**
+   * this should be the `id` of the tab.
+   */
+  initialTab: PropTypes.string,
 };
 
 Tabs.Bar = Bar;
