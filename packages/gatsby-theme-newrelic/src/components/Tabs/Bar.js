@@ -5,6 +5,36 @@ import useTabs from './useTabs';
 import Select from '../Select';
 import { useStaticQuery, graphql } from 'gatsby';
 
+/**
+ * `TabBar`s and `TabItem`s can be rendered under the hood with
+ * MDXCreateElement, which can potentially be nested multiple times.
+ * Trying to render `TabItem`s from MDX directly will render `[object Object]`.
+ * This function returns the deepest descendent element,
+ * which in the case of `TabItem`s is a string.
+ * It expects every element in the chain to have one child, otherwise
+ * it returns null since it wouldn't know which child to continue from.
+ */
+const getDeepestChild = (child) => {
+  if (typeof child !== 'object') return child;
+
+  try {
+    React.Children.only(child);
+  } catch (err) {
+    return null;
+  }
+
+  if (!child?.props?.children) {
+    return child;
+  }
+
+  const deeperChild = child.props.children;
+  if (deeperChild.props) {
+    return getDeepestChild(deeperChild);
+  }
+
+  return deeperChild;
+};
+
 const MobileTabControl = ({ children, className }) => {
   const [currentTab, setCurrentTab] = useTabs();
   // eslint gets angry about using props from React.Children.map
@@ -26,7 +56,7 @@ const MobileTabControl = ({ children, className }) => {
           selected={props.id === currentTab}
           disabled={props.disabled}
         >
-          {props.children}
+          {getDeepestChild(props.children)}
           {(props.count || props.count === 0) && ` (${props.count})`}
         </option>
       ))}
