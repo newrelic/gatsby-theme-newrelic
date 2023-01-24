@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.15.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.14.0...v6.15.0) (2023-01-24)
+
+### Bug Fixes
+
+- get deepest descendent for mobile tabs ([2ad30b6](https://github.com/newrelic/gatsby-theme-newrelic/commit/2ad30b66a817312d3da12d8e69ee2242bb63c3fd))
+- pass `className` prop through to the `button` ([16fb74c](https://github.com/newrelic/gatsby-theme-newrelic/commit/16fb74cb34167592d43bed5d4b5d6ea44239414b))
+- reexport `useLoggedIn` from index file ([6f12824](https://github.com/newrelic/gatsby-theme-newrelic/commit/6f12824f86cd043e1cd33552057217dba18a85bb))
+
+### Features
+
+- add `initialTab` prop to `Tabs` ([34dffce](https://github.com/newrelic/gatsby-theme-newrelic/commit/34dffce74a44376bd4fa9b791a632495def0349d))
+
 # [6.14.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.13.16...v6.14.0) (2023-01-19)
 
 ### Bug Fixes
