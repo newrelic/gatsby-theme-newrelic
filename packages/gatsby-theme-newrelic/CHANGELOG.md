@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.15.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.15.0...v6.15.1) (2023-01-25)
+
+### Bug Fixes
+
+- add default export for `useLoggedIn` ([0012ced](https://github.com/newrelic/gatsby-theme-newrelic/commit/0012ced186a9f459182555693eb76389874c5235))
+
 # [6.15.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.14.0...v6.15.0) (2023-01-24)
 
 ### Bug Fixes
