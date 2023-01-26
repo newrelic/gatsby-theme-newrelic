@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import TabsContext from '../Context';
@@ -9,10 +9,16 @@ import Pages from './Pages';
 import Page from './Page';
 
 const Tabs = ({ children, initialTab }) => {
-  const tabState = useState(initialTab);
+  const [tabState, setTabState] = useState(initialTab);
+
+  useEffect(() => {
+    setTabState(initialTab);
+  }, [initialTab]);
 
   return (
-    <TabsContext.Provider value={tabState}>{children}</TabsContext.Provider>
+    <TabsContext.Provider value={[tabState, setTabState]}>
+      {children}
+    </TabsContext.Provider>
   );
 };
 
