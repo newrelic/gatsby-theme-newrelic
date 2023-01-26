@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import { css } from '@emotion/react';
 import useTabs from './useTabs';
 
@@ -48,7 +49,10 @@ const BarItem = ({
           }
         }
       `}
-      className={`${className || ''}${isSelected ? ' isSelected' : ''}`}
+      className={cx(
+        { [`${className}`]: className },
+        { isSelected: isSelected }
+      )}
     >
       {children}
     </button>
