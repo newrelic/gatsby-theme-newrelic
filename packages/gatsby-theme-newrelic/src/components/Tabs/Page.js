@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 
 import useTabs from './useTabs';
 
-const Page = ({ index, children, id }) => {
+const Page = ({ index, children, id, className }) => {
   const [currentTab] = useTabs();
 
   const isSelected =
@@ -21,6 +21,7 @@ const Page = ({ index, children, id }) => {
           overflow: hidden;
         `
       }
+      className={className}
     >
       {children}
     </div>
@@ -31,6 +32,7 @@ Page.propTypes = {
   index: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default Page;
