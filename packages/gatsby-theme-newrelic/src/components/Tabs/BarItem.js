@@ -59,6 +59,7 @@ const BarItem = ({
 BarItem.propTypes = {
   index: PropTypes.number,
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   id: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
