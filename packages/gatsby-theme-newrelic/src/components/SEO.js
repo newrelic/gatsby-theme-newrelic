@@ -123,7 +123,7 @@ const SEO = ({ title, location, type, children }) => {
             key={locale}
             rel="alternate"
             href={url.href}
-            hrefLang={hrefLang}
+            hrefLang={isDefault ? 'x-default' : hrefLang}
           />
         );
       })}

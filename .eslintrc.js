@@ -65,5 +65,6 @@ module.exports = {
       },
     ],
     'no-control-regex': 0,
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
   },
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import { css } from '@emotion/react';
 import useTabs from './useTabs';
 
@@ -39,17 +40,19 @@ const BarItem = ({
           color: var(--primary-text-color);
         }
 
-        ${isSelected &&
-        css`
+        &.isSelected {
           color: var(--primary-text-color);
           border-bottom: var(--brand-button-primary-accent) solid 3px;
 
           .dark-mode & {
             border-bottom: var(--brand-button-primary-accent-hover) solid 3px;
           }
-        `}
+        }
       `}
-      className={className}
+      className={cx(
+        { [`${className}`]: className },
+        { isSelected: isSelected }
+      )}
     >
       {children}
     </button>
@@ -59,9 +62,11 @@ const BarItem = ({
 BarItem.propTypes = {
   index: PropTypes.number,
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   id: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default BarItem;
