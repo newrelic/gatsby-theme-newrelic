@@ -475,10 +475,6 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
               </Button>
             </li>
           </ul>
-          <SignupModal
-            onClose={() => setIsModalOpen(false)}
-            isOpen={isModalOpen}
-          />
         </div>
       </div>
     </>
