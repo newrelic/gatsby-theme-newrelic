@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.15.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.15.1...v6.15.2) (2023-01-30)
+
+### Bug Fixes
+
+- Give BarItem a className of isSelected ([5100904](https://github.com/newrelic/gatsby-theme-newrelic/commit/5100904253b75144a7e1429449f7c924ca31c993))
+- **SEO:** change hreflang on alt link if default language ([c7fca1c](https://github.com/newrelic/gatsby-theme-newrelic/commit/c7fca1c6e8551f72a5e694cd79db6509601beee6))
+- small padding tweak to give content in NavItem space ([351152b](https://github.com/newrelic/gatsby-theme-newrelic/commit/351152b78f94f3977463fc09a6208e60fc4f45cc))
+- update PropTypes in BarItem ([9df43a8](https://github.com/newrelic/gatsby-theme-newrelic/commit/9df43a896c60b6f60119fe499b4d043470aa43d6))
+
 ## [6.15.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.15.0...v6.15.1) (2023-01-25)
 
 ### Bug Fixes
