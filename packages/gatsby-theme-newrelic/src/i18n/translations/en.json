@@ -54,6 +54,16 @@
     "cookiePolicy": "Cookie Policy",
     "ukSlaveryAct": "UK Slavery Act"
   },
+  "licenseKey": {
+    "buttonText": "account license key",
+    "popover": {
+      "header": "License Key",
+      "explainer": "Your license key is used to associate your incoming data with your account.",
+      "learnMore": "Learn More",
+      "getYourKey": "Get your key",
+      "createAccount": "Create account"
+    }
+  },
   "mobileNav": {
     "header": "Pages"
   },

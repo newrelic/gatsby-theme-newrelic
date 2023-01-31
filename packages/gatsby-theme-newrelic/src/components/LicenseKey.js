@@ -15,10 +15,12 @@ import {
   useInstrumentedHandler,
   useTessen,
 } from '@newrelic/gatsby-theme-newrelic';
+import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const LicenseKey = () => {
   // `useId` from React 18 would be better here
   const { current: popoverId } = useRef(Math.random().toString());
+  const { t } = useThemeTranslation();
   const clicked = useRef(false);
   const [opened, setOpened] = useState(false);
   const hide = () => setOpened(false);
@@ -75,7 +77,7 @@ const LicenseKey = () => {
         }}
         type="button"
       >
-        account license key{' '}
+        {t('licenseKey.buttonText')}{' '}
         <Icon
           css={css`
             margin-left: 0.25em;
@@ -104,6 +106,7 @@ const slideFadeIn = keyframes`
 `;
 
 const Popover = forwardRef(({ id, hidden = false }, ref) => {
+  const { t } = useThemeTranslation();
   const onLearnMore = useInstrumentedHandler(() => {}, {
     eventName: 'learnMoreClick',
     category: 'LicenseKey',
@@ -217,7 +220,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
             margin: 0;
           `}
         >
-          License key
+          {t('licenseKey.popover.header')}
         </p>
         <p
           css={css`
@@ -225,8 +228,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
             margin: 0 0 8px;
           `}
         >
-          Your license key is used to associate your incoming data with your
-          account.{' '}
+          {t('licenseKey.popover.explainer')}{' '}
           <a
             css={css`
               color: currentColor;
@@ -240,7 +242,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
             onClick={onLearnMore}
             tabIndex={0}
           >
-            Learn more
+            {t('licenseKey.popover.learnMore')}
           </a>
         </p>
         <Button
@@ -250,7 +252,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
           tabIndex={0}
           variant={Button.VARIANT.PRIMARY}
         >
-          Get your key{' '}
+          {t('licenseKey.popover.getYourKey')}{' '}
           <Icon
             css={css`
               margin-left: 4px;
@@ -273,7 +275,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
           tabIndex={0}
           variant={Button.VARIANT.OUTLINE}
         >
-          Create account
+          {t('licenseKey.popover.createAccount')}
         </Button>
       </div>
     </div>
