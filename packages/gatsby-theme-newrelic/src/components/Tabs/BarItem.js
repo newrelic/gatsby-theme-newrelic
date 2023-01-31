@@ -66,7 +66,6 @@ BarItem.propTypes = {
   id: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
-  className: PropTypes.string,
 };
 
 export default BarItem;
