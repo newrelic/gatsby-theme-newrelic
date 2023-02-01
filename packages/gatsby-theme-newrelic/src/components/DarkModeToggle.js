@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import Icon from './Icon';
 import Button from './Button';
-import useDarkMode from 'use-dark-mode';
+import useDarkMode from '../hooks/useDarkMode';
 import isLocalStorageAvailable from '../utils/isLocalStorageAvailable';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
