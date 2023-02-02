@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import useMedia from 'use-media';
 import path from 'path';
@@ -19,7 +19,6 @@ import useQueryParams from '../hooks/useQueryParams';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useHasMounted from '../hooks/useHasMounted';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
-import SignupModal from './SignupModal';
 
 export const NR_SITES = {
   DOCS: 'DOCS',
@@ -90,7 +89,6 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
   const location = useLocation();
   const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
   const { t } = useThemeTranslation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const {
     allLocale: { nodes: locales },
@@ -475,10 +473,6 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
               </Button>
             </li>
           </ul>
-          <SignupModal
-            onClose={() => setIsModalOpen(false)}
-            isOpen={isModalOpen}
-          />
         </div>
       </div>
     </>

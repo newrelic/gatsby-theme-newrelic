@@ -34,6 +34,7 @@ import {
   ExternalLink,
   SignupModal,
   Lightbox,
+  LicenseKey,
 } from '@newrelic/gatsby-theme-newrelic';
 import config from '../content/configFiles/javaConfig';
 import tallImage from '../images/nr-one-ajax-browser.png';
@@ -835,6 +836,14 @@ const IndexPage = () => {
               finished
             </Walkthrough.Step>
           </Walkthrough>
+        </section>
+        <section>
+          <h2>License Key</h2>
+          here's some text that tells you to look at your <LicenseKey />. here's
+          some text after it to make sure the <code>
+            &lt;LicenseKey&gt;
+          </code>{' '}
+          component stays inline and doesn't break formatting.
         </section>
       </Layout.Content>
       <Layout.PageTools

@@ -24,6 +24,7 @@ export { default as Icon } from './src/components/Icon';
 export { default as InteractiveForm } from './src/components/InteractiveForm';
 export { default as InteractiveOutput } from './src/components/InteractiveOutput';
 export { default as Layout } from './src/components/Layout';
+export { default as LicenseKey } from './src/components/LicenseKey';
 export { default as Lightbox } from './src/components/Lightbox';
 export { default as Link } from './src/components/Link';
 export { default as NavLink } from './src/components/NavLink';
