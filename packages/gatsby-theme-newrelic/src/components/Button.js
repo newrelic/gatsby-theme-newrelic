@@ -81,7 +81,9 @@ const Button = styled.button`
   line-height: 1;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: all 0.15s ease-out;
+  transition-duration: 0.15s;
+  transition-property: color, background;
+  transition-timing-function: ease-out;
   white-space: nowrap;
   text-decoration: none;
 
