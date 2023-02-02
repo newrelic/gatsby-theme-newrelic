@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.16.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.15.2...v6.16.0) (2023-02-02)
+
+### Bug Fixes
+
+- **header:** remove unused SignupModal from global header ([4b683e3](https://github.com/newrelic/gatsby-theme-newrelic/commit/4b683e3fcb81c6f91d7761323e763301699f770a))
+- remove `stroke` attribute from info icon ([6f9413e](https://github.com/newrelic/gatsby-theme-newrelic/commit/6f9413e31d32c2ebc5346515c25d5d9abfd0b00d))
+
+### Features
+
+- Copy useDarkMode package into repo ([1080904](https://github.com/newrelic/gatsby-theme-newrelic/commit/1080904df9a60cfbc26442862a4f594acdd27180))
+- create LicenseKey component ([605f16f](https://github.com/newrelic/gatsby-theme-newrelic/commit/605f16fe30a2b28cc911cecd9b7e37956a32aaa9))
+
 ## [6.15.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.15.1...v6.15.2) (2023-01-30)
 
 ### Bug Fixes
