@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.1...v6.16.2) (2023-02-03)
+
+### Bug Fixes
+
+- Update copy ([1ff9225](https://github.com/newrelic/gatsby-theme-newrelic/commit/1ff922525cf878b0643c3c8edcb1e7aae97afa79))
+
 ## [6.16.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.0...v6.16.1) (2023-02-03)
 
 ### Bug Fixes
