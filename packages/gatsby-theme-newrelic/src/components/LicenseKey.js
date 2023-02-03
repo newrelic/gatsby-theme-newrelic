@@ -146,6 +146,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
         bottom: 200%;
         position: absolute;
         visibility: hidden;
+        z-index: 81;
 
         &.visible {
           visibility: visible;
@@ -170,6 +171,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
           color: var(--system-text-primary-dark);
           cursor: default;
           display: grid;
+          font-size: 0.75rem;
           gap: 8px;
           grid-template-columns: 1fr 1fr;
           justify-items: center;
