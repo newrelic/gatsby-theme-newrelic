@@ -55,11 +55,11 @@
     "ukSlaveryAct": "UK Slavery Act"
   },
   "licenseKey": {
-    "buttonText": "account license key",
+    "buttonText": "license key",
     "popover": {
-      "header": "License Key",
+      "header": "License key",
       "explainer": "Your license key is used to associate your incoming data with your account.",
-      "learnMore": "Learn More",
+      "learnMore": "Learn more",
       "getYourKey": "Get your key",
       "createAccount": "Create account"
     }
