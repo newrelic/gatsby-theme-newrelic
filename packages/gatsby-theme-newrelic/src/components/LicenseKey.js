@@ -37,7 +37,7 @@ const LicenseKey = () => {
     if (!opened) return;
 
     tessen.track({ category: 'LicenseKey', eventName: 'opened' });
-  }, [show, tessen]);
+  }, [opened, tessen]);
 
   return (
     <div
@@ -127,12 +127,12 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
 
       const box = node.getBoundingClientRect();
       const overflowLeft = Math.abs(Math.min(0, box.left));
-      const overflowRight = Math.min(0, window.innerWidth - box.right);
+      const overflowRight = Math.min(0, width - box.right);
 
       const offset = (overflowLeft + overflowRight).toFixed(2);
       ref.current.style.setProperty('--overflow-offset', `${offset}px`);
     },
-    [width]
+    [ref, width]
   );
 
   return (
@@ -146,6 +146,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
         bottom: 200%;
         position: absolute;
         visibility: hidden;
+        z-index: 81;
 
         &.visible {
           visibility: visible;
@@ -170,6 +171,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
           color: var(--system-text-primary-dark);
           cursor: default;
           display: grid;
+          font-size: 0.75rem;
           gap: 8px;
           grid-template-columns: 1fr 1fr;
           justify-items: center;
