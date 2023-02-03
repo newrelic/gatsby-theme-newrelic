@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.0...v6.16.1) (2023-02-03)
+
+### Bug Fixes
+
+- fix LicenseKey z-index and font size ([63c1cbe](https://github.com/newrelic/gatsby-theme-newrelic/commit/63c1cbefa7f5df2e37ba29d65ffcbc6e7fcf8120))
+
 # [6.16.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.15.2...v6.16.0) (2023-02-02)
 
 ### Bug Fixes
