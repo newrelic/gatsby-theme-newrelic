@@ -20,11 +20,19 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 const LicenseKey = () => {
   // `useId` from React 18 would be better here
   const { current: popoverId } = useRef(Math.random().toString());
+  const hideTimeoutId = useRef();
   const { t } = useThemeTranslation();
   const clicked = useRef(false);
   const [opened, setOpened] = useState(false);
   const hide = () => setOpened(false);
-  const show = () => setOpened(true);
+  const hideOnDelay = (delay = 440) => {
+    const id = setTimeout(hide, delay);
+    hideTimeoutId.current = id;
+  };
+  const show = () => {
+    if (hideTimeoutId.current != null) clearTimeout(hideTimeoutId.current);
+    setOpened(true);
+  };
 
   const popover = useRef();
   useClickAway(popover, () => {
@@ -51,7 +59,7 @@ const LicenseKey = () => {
         // if the Popover was opened via click,
         // we only want to close it via click.
         if (clicked.current) return;
-        hide();
+        hideOnDelay();
       }}
     >
       <button
@@ -200,7 +208,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
            */
           &::after {
             content: '';
-            height: 14%;
+            height: 20%;
             position: absolute;
             top: 100%;
             width: 100%;
