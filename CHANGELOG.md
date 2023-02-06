@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.2...v6.16.3) (2023-02-06)
+
+### Bug Fixes
+
+- popover closing too early ([716cb7a](https://github.com/newrelic/gatsby-theme-newrelic/commit/716cb7a8ce9d3e491c36dfb838cde9c0af1f12b6))
+- use `visibility` instead of `overflow` ([05fe6da](https://github.com/newrelic/gatsby-theme-newrelic/commit/05fe6da55687a178d164383bbcccfdc0aa93adc8))
+
 ## [6.16.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.1...v6.16.2) (2023-02-03)
 
 ### Bug Fixes
