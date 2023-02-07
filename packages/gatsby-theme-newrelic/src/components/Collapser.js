@@ -158,10 +158,9 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
           css={css`
             border-top: 1px solid var(--border-color);
             padding: 1rem;
-            visibility: visible;
             ${!isOpen &&
             `
-            visibility: hidden;
+              display: none;
             `}
           `}
         >
