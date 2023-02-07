@@ -377,6 +377,15 @@ const IndexPage = () => {
             <Collapser title="This one is open by default" defaultOpen>
               And you can see everything inside of it!
             </Collapser>
+            <Collapser
+              id="example-4"
+              title="Collapsers can even have collapsers inside of them"
+            >
+              <p>Here's some text</p>
+              <Collapser id="example-5" title="and another collapser!">
+                😃
+              </Collapser>
+            </Collapser>
           </CollapserGroup>
         </section>
         <section>
