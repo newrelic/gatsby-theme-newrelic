@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.3...v6.16.4) (2023-02-07)
+
+### Bug Fixes
+
+- add `eslint-disable` comment to attribute ([370a209](https://github.com/newrelic/gatsby-theme-newrelic/commit/370a20951606964e0c224c988bd969939a59b9dd))
+- use `display` instead of `visibility` ([0ce3a48](https://github.com/newrelic/gatsby-theme-newrelic/commit/0ce3a48f1aaec5ee4f576578df9e4392b582a5dd))
+
 ## [6.16.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.2...v6.16.3) (2023-02-06)
 
 ### Bug Fixes
