@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.4...v6.16.5) (2023-02-08)
+
+### Bug Fixes
+
+- fix wrong codeblock height in collapsers ([811a48a](https://github.com/newrelic/gatsby-theme-newrelic/commit/811a48a27d8f7e3f03df86696a6f125424b2bd82))
+
 ## [6.16.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.3...v6.16.4) (2023-02-07)
 
 ### Bug Fixes
