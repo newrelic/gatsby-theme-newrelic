@@ -162,7 +162,8 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
             padding: 1rem;
             visibility: visible;
 
-            &.collapser-hidden, .collapser-hidden & {
+            &.collapser-hidden,
+            .collapser-hidden & {
               visibility: hidden;
             }
           `}
