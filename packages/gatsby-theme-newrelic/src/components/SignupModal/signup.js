@@ -64,11 +64,16 @@ const createAccountError = (attributes, tessen) => {
   });
 };
 
-const createAccountRequest = async (input, tessen) => {
+/**
+ * Asynchronously attempt to create a New Relic account.
+ * Expects `input` object to have `email` and `name` properties.
+ * Resolves with the organization id from the response JSON
+ * if the request succeeds, otherwise resolves with `false`.
+ */
+const createAccountRequest = async (input, tessen, tessenEvent) => {
   const { name, email } = input;
   tessen.track({
-    eventName: 'attemptedSignup',
-    category: 'SignupForm',
+    ...tessenEvent,
     ...input,
   });
   let recaptchaToken;
