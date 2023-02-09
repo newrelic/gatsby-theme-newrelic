@@ -48,7 +48,7 @@ const LicenseKey = () => {
   }, [opened, tessen]);
 
   return (
-    <div
+    <span
       css={css`
         display: inline-flex;
         justify-content: center;
@@ -96,7 +96,7 @@ const LicenseKey = () => {
       </button>
 
       <Popover id={popoverId} hidden={!opened} ref={popover} />
-    </div>
+    </span>
   );
 };
 
@@ -148,7 +148,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
     // `.getBoundingClientRect()` takes transforms into account, so we would
     // get the wrong offset after the first measurement if we measured
     // the same `div` we transformed.
-    <div
+    <span
       className={!hidden && 'visible'}
       css={css`
         bottom: 200%;
@@ -162,7 +162,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
       `}
       ref={setOffsetRef}
     >
-      <div
+      <span
         className={!hidden && 'visible'}
         css={css`
           body.dark-mode & {
@@ -223,7 +223,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
         ref={ref}
         role="status"
       >
-        <p
+        <span
           css={css`
             font-weight: 500;
             justify-self: start;
@@ -231,8 +231,8 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
           `}
         >
           {t('licenseKey.popover.header')}
-        </p>
-        <p
+        </span>
+        <span
           css={css`
             grid-column: 1 / 3;
             margin: 0 0 8px;
@@ -254,7 +254,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
           >
             {t('licenseKey.popover.learnMore')}
           </a>
-        </p>
+        </span>
         <Button
           as="a"
           href="https://one.newrelic.com/api-keys"
@@ -287,8 +287,8 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
         >
           {t('licenseKey.popover.createAccount')}
         </Button>
-      </div>
-    </div>
+      </span>
+    </span>
   );
 });
 Popover.propTypes = {
