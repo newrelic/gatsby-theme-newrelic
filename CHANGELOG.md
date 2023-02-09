@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.5...v6.16.6) (2023-02-09)
+
+### Bug Fixes
+
+- make collapsers not take up height when closed ([e96d05a](https://github.com/newrelic/gatsby-theme-newrelic/commit/e96d05ab350facaa24995c99c06e01c188bf169b))
+
 ## [6.16.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.4...v6.16.5) (2023-02-08)
 
 ### Bug Fixes
