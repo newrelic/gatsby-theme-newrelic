@@ -7,6 +7,7 @@ import MDXCallout from './MDXCallout';
 import Collapser from './Collapser';
 import Icon from './Icon';
 import InlineCode from './InlineCode';
+import LicenseKey from './LicenseKey';
 import Link from './Link';
 import MDXCodeBlock from './MDXCodeBlock';
 import MDXCollapserGroup from './MDXCollapserGroup';
@@ -28,6 +29,7 @@ const defaultComponents = {
   CollapserGroup: MDXCollapserGroup,
   Icon,
   InlineCode,
+  LicenseKey,
   Link,
   SideBySide,
   Steps: TutorialSection,
