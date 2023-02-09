@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.16.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.6...v6.16.7) (2023-02-09)
+
+### Bug Fixes
+
+- codeblocks after LicenseKey not rendering properly ([0353707](https://github.com/newrelic/gatsby-theme-newrelic/commit/0353707b6f2e817c562724b4ffe7910bd8fd6164))
+
 ## [6.16.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.5...v6.16.6) (2023-02-09)
 
 ### Bug Fixes
