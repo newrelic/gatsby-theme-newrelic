@@ -8,7 +8,6 @@ import { usePrevious, useIsomorphicLayoutEffect } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useQueryParams from '../hooks/useQueryParams';
 import { useLocation } from '@reach/router';
-import cx from 'classnames';
 
 const ResizeObserver = global.ResizeObserver || class ResizeObserver {};
 
@@ -152,20 +151,19 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
 
       <animated.div
         style={{ height: isOpen && previousIsOpen ? 'auto' : viewHeight }}
+        css={css`
+          ${!isOpen &&
+          `
+            overflow: hidden;
+          `}
+        `}
       >
         <div
           ref={ref}
           aria-hidden={!isOpen}
-          className={cx(!isOpen && 'collapser-hidden')}
           css={css`
             border-top: 1px solid var(--border-color);
             padding: 1rem;
-            visibility: visible;
-
-            &.collapser-hidden,
-            .collapser-hidden & {
-              visibility: hidden;
-            }
           `}
         >
           {children}
