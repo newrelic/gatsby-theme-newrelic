@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/react';
 
 import TabsContext from '../Context';
 
@@ -8,11 +9,22 @@ import BarItem from './BarItem';
 import Pages from './Pages';
 import Page from './Page';
 
-const Tabs = ({ children, initialTab }) => {
+const Tabs = ({ children, initialTab, stacked }) => {
   const tabState = useState(initialTab);
 
   return (
-    <TabsContext.Provider value={tabState}>{children}</TabsContext.Provider>
+    <TabsContext.Provider value={[tabState, stacked]}>
+      <div
+        css={
+          stacked &&
+          css`
+            display: flex;
+          `
+        }
+      >
+        {children}
+      </div>
+    </TabsContext.Provider>
   );
 };
 

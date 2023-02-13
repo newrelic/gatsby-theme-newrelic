@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import useTabs from './useTabs';
 
 const Page = ({ index, children, id, className }) => {
-  const [currentTab] = useTabs();
+  const [[currentTab], stacked] = useTabs();
 
   const isSelected =
     id === currentTab || (currentTab === undefined && index === 0);
@@ -19,6 +19,7 @@ const Page = ({ index, children, id, className }) => {
         css`
           height: 0px;
           overflow: hidden;
+          width: 0px;
         `
       }
       className={className}
