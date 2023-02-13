@@ -26,7 +26,8 @@ const BarItem = ({
         onTabClick && onTabClick(id);
       }}
       css={css`
-        border: 0;
+        border: none;
+        border-bottom: var(--divider-color) solid 3px;
         background: none;
         color: var(--muted-text);
         flex-grow: 1;
@@ -51,6 +52,8 @@ const BarItem = ({
 
         ${stacked &&
         css`
+          border-bottom: none;
+          border-left: var(--divider-color) solid 3px;
           white-space: normal;
 
           &.isSelected {

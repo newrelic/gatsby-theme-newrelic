@@ -72,21 +72,7 @@ MobileTabControl.propTypes = {
 };
 
 const Bar = ({ children, className }) => {
-  const [, stacked] = useTabs();
-  console.log('stcked', stacked);
-  const {
-    site: {
-      layout: { mobileBreakpoint },
-    },
-  } = useStaticQuery(graphql`
-    query BarQuery {
-      site {
-        layout {
-          mobileBreakpoint
-        }
-      }
-    }
-  `);
+  const [, stacked, mobileBreakpoint] = useTabs();
 
   return (
     <>
@@ -104,15 +90,13 @@ const Bar = ({ children, className }) => {
         className={className}
         role="tablist"
         css={css`
+          border: none;
           display: flex;
           width: 100%;
-          border-bottom: 1px solid var(--divider-color);
           margin-bottom: 1em;
           overflow: auto;
           ${stacked &&
           css`
-            border-bottom: none;
-            border-left: 1px solid var(--divider-color);
             flex-direction: column;
             overflow: none;
             overflow-wrap: break-word;
