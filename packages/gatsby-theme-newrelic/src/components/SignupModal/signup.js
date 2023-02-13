@@ -62,6 +62,14 @@ const createAccountError = (attributes, tessen) => {
     category: 'SignupForm',
     ...attributes,
   });
+
+  if (process.env.NODE_ENV === 'development') {
+    /* eslint-disable-next-line no-console */
+    console.error(
+      `Failed to create account for user ${attributes.email}`,
+      attributes
+    );
+  }
 };
 
 /**
