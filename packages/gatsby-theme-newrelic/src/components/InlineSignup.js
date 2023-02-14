@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import cx from 'classnames';
 
@@ -8,6 +9,7 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 import Button from './Button';
 import Trans from './Trans';
 import { createAccountRequest } from './SignupModal/signup';
+import RecaptchaFooter from './SignupModal/RecaptchaFooter';
 
 const CTAButton = styled(Button)`
   align-self: start;
@@ -91,7 +93,7 @@ const Terms = styled.p`
   grid-column: 1 / 4;
   font-size: 0.875rem;
   line-height: 1.25;
-  margin-top: 0.25rem;
+  margin: 0.25rem 0 0.5rem;
 
   a {
     color: currentColor;
@@ -196,6 +198,11 @@ const InlineSignup = () => {
           </a>
         </Trans>
       </Terms>
+      <RecaptchaFooter
+        css={css`
+          grid-column: 1 / 4;
+        `}
+      />
     </Form>
   );
 };
