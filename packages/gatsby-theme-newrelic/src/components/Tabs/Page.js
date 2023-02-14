@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 
 import useTabs from './useTabs';
 
-const Page = ({ index, children, id, className, handleHeight }) => {
+const Page = ({ index, children, id, className }) => {
   const [[currentTab]] = useTabs();
 
   const isSelected =
