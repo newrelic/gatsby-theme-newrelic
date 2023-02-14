@@ -54,6 +54,16 @@
     "cookiePolicy": "쿠키 정책",
     "ukSlaveryAct": "영국 현대판 노예법"
   },
+  "licenseKey": {
+    "buttonText": "계정 라이선스 키",
+    "popover": {
+      "header": "라이선스 키",
+      "explainer": "라이선스 키는 계정에 유입되는 데이터를 연관시키는 데 사용됩니다.",
+      "learnMore": "자세히 보기",
+      "getYourKey": "키 받기",
+      "createAccount": "계정 생성"
+    }
+  },
   "mobileNav": {
     "header": "페이지"
   },
