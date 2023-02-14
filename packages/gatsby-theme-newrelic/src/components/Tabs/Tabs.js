@@ -50,6 +50,7 @@ Tabs.propTypes = {
    * this should be the `id` of the tab.
    */
   initialTab: PropTypes.string,
+  stacked: PropTypes.bool,
 };
 
 Tabs.Bar = Bar;
