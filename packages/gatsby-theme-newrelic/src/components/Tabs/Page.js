@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import useTabs from './useTabs';
 
 const Page = ({ index, children, id, className, handleHeight }) => {
-  const [[currentTab]] = useTabs();
+  const [[currentTab], stacked] = useTabs();
 
   const page = useCallback((div) => {
     if (!div) return;
@@ -21,9 +21,11 @@ const Page = ({ index, children, id, className, handleHeight }) => {
       role="tabpanel"
       aria-labelledby={id}
       css={css`
-        max-height: 500px;
-        overflow-y: scroll;
-
+        ${stacked &&
+        css`
+          max-height: 500px;
+          overflow: scroll;
+        `}
         ${!isSelected &&
         css`
           position: absolute;
