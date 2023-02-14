@@ -21,6 +21,7 @@ export {
 export { default as GitHubIssueButton } from './src/components/GitHubIssueButton';
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';
+export { default as InlineSignup } from './src/components/InlineSignup';
 export { default as InteractiveForm } from './src/components/InteractiveForm';
 export { default as InteractiveOutput } from './src/components/InteractiveOutput';
 export { default as Layout } from './src/components/Layout';

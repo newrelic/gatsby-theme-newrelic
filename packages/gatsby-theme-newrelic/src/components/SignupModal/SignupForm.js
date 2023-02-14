@@ -24,6 +24,10 @@ const SignupForm = ({ siteUrl }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const tessen = useTessen();
+  const submitEvent = {
+    eventName: 'attemptedSignup',
+    category: 'SignupForm',
+  };
 
   useMount(() => {
     setUTMCookies(siteUrl);
@@ -42,7 +46,8 @@ const SignupForm = ({ siteUrl }) => {
     setLoading(true);
     const organizationId = await createAccountRequest(
       { email: input.email.value, name: input.name.value },
-      tessen
+      tessen,
+      submitEvent
     );
 
     setLoading(false);
