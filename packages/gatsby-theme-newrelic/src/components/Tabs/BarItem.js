@@ -62,6 +62,7 @@ const BarItem = ({
             border-left: var(--brand-button-primary-accent) solid 3px;
 
             .dark-mode & {
+              border-bottom: none;
               border-left: var(--brand-button-primary-accent-hover) solid 3px;
             }
           }

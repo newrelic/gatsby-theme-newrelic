@@ -17,7 +17,7 @@ const Pages = ({ children }) => {
           display: flex;
           height: ${FIXED_HEIGHT}px;
           justify-content: center;
-          overflow: scroll;
+          overflow-y: scroll;
           padding: 0 8px;
           position: relative;
           width: 100%;
