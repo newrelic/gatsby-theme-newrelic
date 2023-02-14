@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import useTabs from './useTabs';
 import Select from '../Select';
-import { useStaticQuery, graphql } from 'gatsby';
 
 /**
  * `TabBar`s and `TabItem`s can be rendered under the hood with
@@ -98,8 +97,10 @@ const Bar = ({ children, className }) => {
           ${stacked &&
           css`
             flex-direction: column;
+            margin: 0 auto;
             overflow: none;
             overflow-wrap: break-word;
+            padding-bottom: 20%;
             width: 30%;
           `}
           @media screen and (max-width: ${mobileBreakpoint}) {
