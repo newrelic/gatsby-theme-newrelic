@@ -24,7 +24,7 @@ const Page = ({ index, children, id, className, handleHeight }) => {
         ${stacked &&
         css`
           max-height: 500px;
-          overflow: scroll;
+          overflow-y: scroll;
         `}
         ${!isSelected &&
         css`
@@ -45,6 +45,7 @@ Page.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
+  handleHeight: PropTypes.func,
 };
 
 export default Page;
