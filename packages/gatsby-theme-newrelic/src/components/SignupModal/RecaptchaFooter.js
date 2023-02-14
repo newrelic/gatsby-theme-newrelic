@@ -1,9 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import cx from 'classnames';
 
-const RecaptchaFooter = () => {
+const RecaptchaFooter = ({ className }) => {
   return (
     <div
+      className={cx(className && className)}
       css={css`
         p {
           font-size: 0.625rem;
@@ -17,6 +20,10 @@ const RecaptchaFooter = () => {
       </p>
     </div>
   );
+};
+
+RecaptchaFooter.propTypes = {
+  className: PropTypes.string,
 };
 
 export default RecaptchaFooter;
