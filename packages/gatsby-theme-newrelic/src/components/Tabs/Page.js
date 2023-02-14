@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 
 import useTabs from './useTabs';
 
-const Page = ({ index, children, id, className }) => {
+const Page = ({ index, children, id, className, handleHeight }) => {
   const [[currentTab]] = useTabs();
+
+  const page = useCallback((div) => {
+    if (!div) return;
+    const rect = div.getBoundingClientRect();
+    handleHeight(rect.height);
+  }, []);
 
   const isSelected =
     id === currentTab || (currentTab === undefined && index === 0);
@@ -14,16 +20,18 @@ const Page = ({ index, children, id, className }) => {
     <div
       role="tabpanel"
       aria-labelledby={id}
-      css={
-        !isSelected &&
+      css={css`
+        max-height: 500px;
+        overflow-y: scroll;
+
+        ${!isSelected &&
         css`
-          height: 0;
           position: absolute;
-          overflow: hidden;
-          width: 0;
-        `
-      }
+          visibility: hidden;
+        `}
+      `}
       className={className}
+      ref={page}
     >
       {children}
     </div>

@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+
 import useTabs from './useTabs';
 
 const Pages = ({ children }) => {
+  const [height, setHeight] = useState(0);
   const [, stacked] = useTabs();
-  // Using 500px as a fixed height to keep large content from making this look awkward.
-  const FIXED_HEIGHT = 500;
+  const handleHeight = (pageHeight) => {
+    if (pageHeight > height) {
+      const maxHeight = Math.min(pageHeight, 500);
+      setHeight(maxHeight);
+    }
+  };
 
   return (
     <div
@@ -15,17 +21,15 @@ const Pages = ({ children }) => {
         css`
           align-items: start;
           display: flex;
-          height: ${FIXED_HEIGHT}px;
+          height: ${height}px;
           justify-content: center;
-          overflow-y: scroll;
-          padding: 0 8px;
           position: relative;
           width: 100%;
         `
       }
     >
       {React.Children.map(children, (child, index) =>
-        React.cloneElement(child, { ...child.props, index })
+        React.cloneElement(child, { ...child.props, index, handleHeight })
       )}
     </div>
   );
