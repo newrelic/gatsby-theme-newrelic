@@ -420,7 +420,6 @@ const IndexPage = () => {
             </Tabs.Bar>
             <Tabs.Pages>
               <Tabs.Page id="codeblock">
-                <LicenseKey />{' '}
                 <CodeBlock
                   copyable
                   lineNumbers
