@@ -25,6 +25,12 @@ const Page = ({ index, children, id, className, handleHeight }) => {
         css`
           max-height: 500px;
           overflow-y: scroll;
+          width: 100%;
+          -ms-overflow-style: none; /* for Internet Explorer, Edge */
+          scrollbar-width: none; /* for Firefox */
+          &::-webkit-scrollbar {
+            display: none; /* for Chrome, Safari, and Opera */
+          }
         `}
         ${!isSelected &&
         css`

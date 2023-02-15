@@ -97,10 +97,11 @@ const Bar = ({ children, className }) => {
           ${stacked &&
           css`
             flex-direction: column;
-            margin: 0 auto;
+            min-height: 350px;
             overflow: none;
             overflow-wrap: break-word;
-            padding-bottom: 20%;
+            padding: 7.5% 0;
+            margin-right: 2rem;
             width: 30%;
           `}
           @media screen and (max-width: ${mobileBreakpoint}) {

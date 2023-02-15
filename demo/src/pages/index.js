@@ -512,7 +512,7 @@ const IndexPage = () => {
                 >
                   {liveCodeSample}
                 </CodeBlock>
-                <LicenseKey />
+                <LicenseKey /> - Do not use
               </Tabs.Page>
               <Tabs.Page id="embedded">
                 <CodeBlock
