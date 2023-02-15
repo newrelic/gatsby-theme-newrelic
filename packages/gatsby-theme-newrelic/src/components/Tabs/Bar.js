@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import useTabs from './useTabs';
 import Select from '../Select';
-import { useStaticQuery, graphql } from 'gatsby';
 
 /**
  * `TabBar`s and `TabItem`s can be rendered under the hood with
@@ -36,7 +35,8 @@ const getDeepestChild = (child) => {
 };
 
 const MobileTabControl = ({ children, className }) => {
-  const [currentTab, setCurrentTab] = useTabs();
+  const [[currentTab, setCurrentTab]] = useTabs();
+
   // eslint gets angry about using props from React.Children.map
   /* eslint-disable react/prop-types */
   return (
@@ -71,19 +71,7 @@ MobileTabControl.propTypes = {
 };
 
 const Bar = ({ children, className }) => {
-  const {
-    site: {
-      layout: { mobileBreakpoint },
-    },
-  } = useStaticQuery(graphql`
-    query BarQuery {
-      site {
-        layout {
-          mobileBreakpoint
-        }
-      }
-    }
-  `);
+  const [, stacked, mobileBreakpoint] = useTabs();
 
   return (
     <>
@@ -101,11 +89,21 @@ const Bar = ({ children, className }) => {
         className={className}
         role="tablist"
         css={css`
+          border: none;
           display: flex;
           width: 100%;
-          border-bottom: 1px solid var(--divider-color);
           margin-bottom: 1em;
           overflow: auto;
+          ${stacked &&
+          css`
+            flex-direction: column;
+            min-height: 350px;
+            overflow: none;
+            overflow-wrap: break-word;
+            padding: 7.5% 0;
+            margin-right: 2rem;
+            width: 30%;
+          `}
           @media screen and (max-width: ${mobileBreakpoint}) {
             display: none;
           }
