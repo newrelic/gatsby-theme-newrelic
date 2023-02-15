@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.17.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.7...v6.17.0) (2023-02-15)
+
+### Bug Fixes
+
+- make height/scrolling more dynamic based on individual pages ([938d709](https://github.com/newrelic/gatsby-theme-newrelic/commit/938d709a5ced3665d7e80f4c208c6d18ed4c5466))
+- make it overflow y and adding proptypes for handleHeight function ([1f51d2c](https://github.com/newrelic/gatsby-theme-newrelic/commit/1f51d2c61827d203a70cf217cda45fe6757388ab))
+- remove darkmode bottom borders on BarItem, overflow y only ([4d5298f](https://github.com/newrelic/gatsby-theme-newrelic/commit/4d5298f6d03a6db114810c923e37029760e6b32e))
+- remove unused prop ([033dc68](https://github.com/newrelic/gatsby-theme-newrelic/commit/033dc68b79c3bb00bcd8f0d67951c43f5c50fc11))
+- set fixed height and allow content to scroll ([3c6eac7](https://github.com/newrelic/gatsby-theme-newrelic/commit/3c6eac73a34daade756bac674f1035c9a86a84af))
+- update css to ensure overflows only occur on stacked Tabs ([e9cec30](https://github.com/newrelic/gatsby-theme-newrelic/commit/e9cec300a5acf34c5e8ce6a1de92ce1cd5604f78))
+- update proptypes ([4cb59e2](https://github.com/newrelic/gatsby-theme-newrelic/commit/4cb59e2116a45ed7f048795f162125d497f7c6ff))
+- update styles and mobile breakpoint ([10e5d89](https://github.com/newrelic/gatsby-theme-newrelic/commit/10e5d89a864ddab9efb9909cef5cb54cb46d6fca))
+
+### Features
+
+- add `screenreader-only` class ([6ba7f9b](https://github.com/newrelic/gatsby-theme-newrelic/commit/6ba7f9bde7535f0628ff65a6a3c75ded3fd7a339))
+- allow custom styling of `RecaptchaFooter` ([64d5864](https://github.com/newrelic/gatsby-theme-newrelic/commit/64d5864c4d959284da96cdaedd67a7ece8a546aa))
+- create InlineSignup component ([159d0ad](https://github.com/newrelic/gatsby-theme-newrelic/commit/159d0ad38f9bac82f56f63e2e9116818d0f49fda))
+- using 'stacked' prop updates bar ([44e7fe1](https://github.com/newrelic/gatsby-theme-newrelic/commit/44e7fe1f7b27c9447693ae79f7fb09a9b87e2545))
+
 ## [6.16.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.6...v6.16.7) (2023-02-09)
 
 ### Bug Fixes
