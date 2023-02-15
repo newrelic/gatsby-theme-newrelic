@@ -54,6 +54,16 @@
     "cookiePolicy": "Cookie Policy",
     "ukSlaveryAct": "UK Slavery Act"
   },
+  "inlineSignup": {
+    "ctaButton": "Start now",
+    "ctaText": "Sign up and install",
+    "emailLabel": "Company Email",
+    "emailValidationHint": "Please format your email like \"user@example.com\"",
+    "nameLabel": "Name",
+    "nameValidationHint": "Please enter your name",
+    "submitError": "An error occurred trying to create your account. Please try again later.",
+    "terms": "100 GB + 1 user free. Forever. No credit card required.<1 />By signing up you're agreeing to <4>Terms of Service</4> and <8>Services Privacy Notice.</8>"
+  },
   "licenseKey": {
     "buttonText": "license key",
     "popover": {
