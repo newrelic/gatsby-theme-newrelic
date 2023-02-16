@@ -11,95 +11,6 @@ import Trans from './Trans';
 import { createAccountRequest } from './SignupModal/signup';
 import RecaptchaFooter from './SignupModal/RecaptchaFooter';
 
-const CTAButton = styled(Button)`
-  align-self: start;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  margin-left: 0.5rem;
-  padding: 0.5rem;
-`;
-
-const CTAText = styled.p`
-  grid-column: 1 / 4;
-  font-size: 1.125rem;
-`;
-
-const Form = styled.form`
-  display: grid;
-  grid-template-columns: 37.5% 37.5% 25%;
-`;
-
-const ValidationHint = styled.p`
-  align-self: start;
-  font-size: 0.75rem;
-  justify-self: start;
-  line-height: 1.4;
-  padding-left: 0.25rem;
-  visibility: hidden;
-
-  &.error {
-    color: var(--color-red);
-    visibility: visible;
-  }
-`;
-
-const Input = styled.input`
-  background: var(--secondary-background-color);
-  border: 1px solid var(--primary-text-color);
-  color: var(--primary-text-color);
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  padding: 0.5rem;
-  width: 100%;
-
-  &:focus-within {
-    border-radius: 4px;
-    outline: 2px solid rgba(0, 126, 138, 0.6);
-    z-index: 1;
-  }
-
-  &.first {
-    margin-right: -2px;
-  }
-
-  &.first:not(:focus-within) {
-    border-radius: 4px 0px 0px 4px;
-    border-right: 1px solid transparent;
-  }
-
-  &.last:not(:focus-within) {
-    border-radius: 0px 4px 4px 0px;
-  }
-
-  &:invalid:not(:focus-within):not(:placeholder-shown) + ${ValidationHint} {
-    visibility: visible;
-  }
-`;
-
-const InputContainer = styled.div`
-  display: grid;
-  gap: 0.25rem 0;
-  grid-template-rows: auto 1fr;
-  place-items: center;
-  position: relative;
-
-  &:first-of-type {
-    margin-left: 0.5rem;
-  }
-`;
-
-const Terms = styled.p`
-  color: var(--system-text-muted-light);
-  grid-column: 1 / 4;
-  font-size: 0.875rem;
-  line-height: 1.25;
-  margin: 0.25rem 0 0.5rem;
-
-  a {
-    color: currentColor;
-  }
-`;
-
 /**
  * [VSU] This component allows users to sign up inline in a doc.
  * It only renders if the current user is not logged in.
@@ -206,5 +117,94 @@ const InlineSignup = () => {
     </Form>
   );
 };
+
+const CTAButton = styled(Button)`
+  align-self: start;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+`;
+
+const CTAText = styled.p`
+  grid-column: 1 / 4;
+  font-size: 1.125rem;
+`;
+
+const Form = styled.form`
+  display: grid;
+  grid-template-columns: 37.5% 37.5% 25%;
+`;
+
+const ValidationHint = styled.p`
+  align-self: start;
+  font-size: 0.75rem;
+  justify-self: start;
+  line-height: 1.4;
+  padding-left: 0.25rem;
+  visibility: hidden;
+
+  &.error {
+    color: var(--color-red);
+    visibility: visible;
+  }
+`;
+
+const Input = styled.input`
+  background: var(--secondary-background-color);
+  border: 1px solid var(--primary-text-color);
+  color: var(--primary-text-color);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.5rem;
+  width: 100%;
+
+  &:focus-within {
+    border-radius: 4px;
+    outline: 2px solid rgba(0, 126, 138, 0.6);
+    z-index: 1;
+  }
+
+  &.first {
+    margin-right: -2px;
+  }
+
+  &.first:not(:focus-within) {
+    border-radius: 4px 0px 0px 4px;
+    border-right: 1px solid transparent;
+  }
+
+  &.last:not(:focus-within) {
+    border-radius: 0px 4px 4px 0px;
+  }
+
+  &:invalid:not(:focus-within):not(:placeholder-shown) + ${ValidationHint} {
+    visibility: visible;
+  }
+`;
+
+const InputContainer = styled.div`
+  display: grid;
+  gap: 0.25rem 0;
+  grid-template-rows: auto 1fr;
+  place-items: center;
+  position: relative;
+
+  &:first-of-type {
+    margin-left: 0.5rem;
+  }
+`;
+
+const Terms = styled.p`
+  color: var(--system-text-muted-light);
+  grid-column: 1 / 4;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  margin: 0.25rem 0 0.5rem;
+
+  a {
+    color: currentColor;
+  }
+`;
 
 export default InlineSignup;
