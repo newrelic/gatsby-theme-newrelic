@@ -11,6 +11,8 @@ import Trans from './Trans';
 import { createAccountRequest } from './SignupModal/signup';
 import RecaptchaFooter from './SignupModal/RecaptchaFooter';
 
+const MOBILE_BREAKPOINT = '600px';
+
 /**
  * [VSU] This component allows users to sign up inline in a doc.
  * It only renders if the current user is not logged in.
@@ -124,16 +126,29 @@ const CTAButton = styled(Button)`
   line-height: 1.25rem;
   margin-left: 0.5rem;
   padding: 0.5rem;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}) {
+    margin-left: 0;
+  }
 `;
 
 const CTAText = styled.p`
   grid-column: 1 / 4;
   font-size: 1.125rem;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}) {
+    margin: 0;
+  }
 `;
 
 const Form = styled.form`
   display: grid;
   grid-template-columns: 37.5% 37.5% 25%;
+
+  @media (max-width: ${MOBILE_BREAKPOINT}) {
+    gap: 1rem;
+    margin-left: 0;
+  }
 `;
 
 const ValidationHint = styled.p`
@@ -181,6 +196,14 @@ const Input = styled.input`
   &:invalid:not(:focus-within):not(:placeholder-shown) + ${ValidationHint} {
     visibility: visible;
   }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}) {
+    &.first:not(:focus-within),
+    &.last:not(:focus-within) {
+      border: 1px solid var(--primary-text-color);
+      border-radius: 4px;
+    }
+  }
 `;
 
 const InputContainer = styled.div`
@@ -192,6 +215,14 @@ const InputContainer = styled.div`
 
   &:first-of-type {
     margin-left: 0.5rem;
+  }
+
+  @media (max-width: ${MOBILE_BREAKPOINT}) {
+    grid-column: 1 / 4;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
   }
 `;
 
