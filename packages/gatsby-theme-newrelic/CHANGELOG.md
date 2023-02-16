@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.0...v6.17.1) (2023-02-16)
+
+### Bug Fixes
+
+- InlineSignup mobile styles ([7eeff29](https://github.com/newrelic/gatsby-theme-newrelic/commit/7eeff2912e690dd23671553dfd48eef889172e41))
+
 # [6.17.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.16.7...v6.17.0) (2023-02-15)
 
 ### Bug Fixes
