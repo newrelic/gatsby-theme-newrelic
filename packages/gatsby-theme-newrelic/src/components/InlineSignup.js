@@ -144,6 +144,7 @@ const CTAText = styled.p`
 const Form = styled.form`
   display: grid;
   grid-template-columns: 37.5% 37.5% 25%;
+  margin-bottom: 2rem;
 
   @media (max-width: ${MOBILE_BREAKPOINT}) {
     gap: 1rem;
