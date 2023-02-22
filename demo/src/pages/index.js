@@ -12,7 +12,6 @@ import {
   ContributingGuidelines,
   CustomTextInput,
   InteractiveForm,
-  InlineSignup,
   Icon,
   Layout,
   Link,
@@ -918,10 +917,6 @@ const IndexPage = () => {
             &lt;LicenseKey&gt;
           </code>{' '}
           component stays inline and doesn't break formatting.
-        </section>
-        <section>
-          <h2>Inline Signup</h2>
-          <InlineSignup />
         </section>
       </Layout.Content>
       <Layout.PageTools
