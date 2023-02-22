@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.1...v6.17.2) (2023-02-22)
+
+### Bug Fixes
+
+- re-enable signup reCaptcha script tag ([231adde](https://github.com/newrelic/gatsby-theme-newrelic/commit/231addeb7c2ae76bcd4ed3ea6a8c782c36389f89))
+
 ## [6.17.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.0...v6.17.1) (2023-02-16)
 
 ### Bug Fixes
