@@ -60,19 +60,20 @@ const SEO = ({ title, location, type, children }) => {
   };
 
   const recaptchaLinkScript = () => {
-    // commenting out since we aren't using signup at the moment
-    // if (newRelicThemeConfig.signup?.reCaptchaToken) {
-    //   return (
-    //     <script
-    //       key="google-recaptcha"
-    //       async
-    //       defer
-    //       src={`https://www.google.com/recaptcha/api.js?render=${newRelicThemeConfig.signup?.reCaptchaToken}`}
-    //     />
-    //   );
-    // }
+    const scriptTags = [];
+    if (newRelicThemeConfig.signup?.reCaptchaToken) {
+      scriptTags.push(
+        <script
+          key="google-recaptcha"
+          async
+          defer
+          src={`https://www.google.com/recaptcha/api.js?render=${newRelicThemeConfig.signup?.reCaptchaToken}`}
+        />
+      );
+    }
+
     if (newRelicThemeConfig.feedback?.reCaptchaToken) {
-      return (
+      scriptTags.push(
         <script
           key="google-recaptcha"
           async
@@ -81,6 +82,8 @@ const SEO = ({ title, location, type, children }) => {
         />
       );
     }
+
+    return scriptTags;
   };
 
   const siteLinkScript = () => {
