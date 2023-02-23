@@ -57,7 +57,7 @@ const Lightbox = ({ children }) => {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    z-index: 900;
+                    z-index: var(--depth-8);
                     background: var(--modal-wrapper-color);
                   `}
                   onClick={() => setLightboxOpen(false)}

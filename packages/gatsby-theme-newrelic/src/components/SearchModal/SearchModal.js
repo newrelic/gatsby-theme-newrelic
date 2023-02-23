@@ -111,7 +111,7 @@ const SearchModal = ({ onClose, isOpen }) => {
               bottom: 0;
               left: 0;
               padding: var(--site-content-padding);
-              z-index: 900;
+              z-index: var(--depth-8);
               background: var(--modal-wrapper-color);
 
               @media screen and (max-width: 760px) {
@@ -148,7 +148,7 @@ const SearchModal = ({ onClose, isOpen }) => {
               css={css`
                 --horizontal-spacing: 1rem;
 
-                z-index: 101;
+                z-index: var(--depth-6);
                 max-width: 1024px;
                 width: 100%;
                 margin: auto;

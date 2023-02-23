@@ -29,7 +29,7 @@ const Modal = ({ onClose, isOpen, children, className }) => {
               bottom: 0;
               left: 0;
               padding: var(--site-content-padding);
-              z-index: 900;
+              z-index: var(--depth-8);
               background: ${rgba('#d5d7d7', 0.75)};
 
               .dark-mode & {
@@ -49,7 +49,7 @@ const Modal = ({ onClose, isOpen, children, className }) => {
               css={css`
                 --horizontal-spacing: 1rem;
 
-                z-index: 101;
+                z-index: var(--depth-6);
                 max-width: 1024px;
                 width: 100%;
                 margin: auto;

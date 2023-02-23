@@ -27,7 +27,7 @@ const MobileNavModal = ({ children, style, onClose }) => {
           left: 0;
           bottom: 0;
           right: 0;
-          z-index: 90;
+          z-index: var(--depth-4);
 
           background: ${rgba('#d5d7d7', 0.5)};
 
@@ -47,7 +47,7 @@ const MobileNavModal = ({ children, style, onClose }) => {
           bottom: 0.5rem;
           left: 1rem;
           right: 1rem;
-          z-index: 100;
+          z-index: var(--depth-5);
           transform-origin: top right;
           box-shadow: var(--shadow-6);
           background-color: var(--erno-black);
