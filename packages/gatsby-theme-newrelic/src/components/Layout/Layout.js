@@ -10,7 +10,6 @@ import Sidebar from './Sidebar';
 const Layout = ({ className, children }) => {
   return (
     <div
-      className={className}
       css={css`
         display: grid;
         grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
@@ -28,6 +27,7 @@ const Layout = ({ className, children }) => {
           grid-template-rows: unset;
         }
       `}
+      className={className}
     >
       {children}
     </div>
