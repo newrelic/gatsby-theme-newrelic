@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.3...v6.17.4) (2023-02-24)
+
+### Bug Fixes
+
+- Move className so it can overwrite css prop ([54f3dd2](https://github.com/newrelic/gatsby-theme-newrelic/commit/54f3dd2894a24dee7e6e0bfb7fb0d9480dc1d572))
+
 ## [6.17.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.2...v6.17.3) (2023-02-22)
 
 **Note:** Version bump only for package gatsby-theme-newrelic
