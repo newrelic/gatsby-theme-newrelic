@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.4...v6.17.5) (2023-02-28)
+
+### Bug Fixes
+
+- Use org level bot token ([006503a](https://github.com/newrelic/gatsby-theme-newrelic/commit/006503a6a39cb781223f37aa8804fedba396494e))
+
 ## [6.17.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.3...v6.17.4) (2023-02-24)
 
 ### Bug Fixes
