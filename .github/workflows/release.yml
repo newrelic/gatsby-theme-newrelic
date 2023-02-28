@@ -40,5 +40,5 @@ jobs:
           GIT_AUTHOR_EMAIL: ${{ env.BOT_EMAIL }}
           GIT_COMMITTER_NAME: ${{ env.BOT_NAME }}
           GIT_COMMITTER_EMAIL: ${{ env.BOT_EMAIL }}
-          GH_TOKEN: ${{ secrets.OPENSOURCE_BOT_TOKEN }}
+          GH_TOKEN: ${{ secrets.DEVEX_OPENSOURCE_BOT_TOKEN }}
         run: yarn release
