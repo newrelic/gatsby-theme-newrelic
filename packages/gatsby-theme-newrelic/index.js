@@ -46,6 +46,7 @@ export { default as NewRelicLogo } from './src/components/NewRelicLogo';
 export { default as OneTrust } from './src/components/OneTrust';
 export { default as Overlay } from './src/components/Overlay';
 export { default as PageTools } from './src/components/PageTools';
+export { Popover, PopoverButton } from './src/components/Popover';
 export { default as Portal } from './src/components/Portal';
 export { default as RelatedResources } from './src/components/RelatedResources';
 export { default as SearchInput } from './src/components/SearchInput';
