@@ -8,7 +8,7 @@ import SignUpLink from './SignUpLink';
 import Icon from './Icon';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { css } from '@emotion/react';
-import useLoggedIn from '../hooks/useLoggedIn';
+import { useLoggedIn } from '../hooks/useLoggedIn';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
