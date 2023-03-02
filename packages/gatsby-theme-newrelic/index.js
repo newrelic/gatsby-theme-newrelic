@@ -89,6 +89,8 @@ export { default as useLoggedIn } from './src/hooks/useLoggedIn';
 export { stripTrailingSlash } from './src/utils/location';
 export { isValidEmail, isValidInput } from './src/utils/isValidEmail';
 
+export { LoggedInProvider } from './src/components/LoggedInContext';
+
 export { SWIFTYPE_ENGINE_KEY, FEEDBACK_FORM_TYPE } from './src/utils/constants';
 
 export * from 'react-i18next';

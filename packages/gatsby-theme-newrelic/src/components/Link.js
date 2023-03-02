@@ -8,6 +8,7 @@ import SignUpLink from './SignUpLink';
 import Icon from './Icon';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { css } from '@emotion/react';
+import useLoggedIn from '../hooks/useLoggedIn';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
@@ -45,6 +46,16 @@ const Link = forwardRef(
         }
       }
     `);
+
+    // Supplied from LoggedInProvider
+    const { loggedIn } = useLoggedIn();
+
+    if (to.includes('one.newrelic.com')) {
+      // Using session storage, so the value will come as a string.
+      if (loggedIn === 'false') {
+        to = 'https://newrelic.com/signup';
+      }
+    }
 
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
       eventName: 'externalLinkClick',
