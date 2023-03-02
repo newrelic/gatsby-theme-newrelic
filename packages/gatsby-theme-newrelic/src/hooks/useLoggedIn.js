@@ -55,8 +55,6 @@ export const useLoggedIn = () => {
   return { loading, loggedIn };
 };
 
-export default useLoggedIn;
-
 /**
  * Makes a call to NerdGraph and returns whether the user
  * is logged in via the NR cookie hitting Service Gateway.
