@@ -920,8 +920,13 @@ const IndexPage = () => {
             <code>&lt;LicenseKey&gt;</code> component stays inline and doesn't
             break formatting.
           </section>
+
           <Link to="https://one.newrelic.com/test">
             TEST THE DYNAMIC PRODUCT LINK
+          </Link>
+          <br />
+          <Link to="https://one.eu.newrelic.com/test">
+            TEST THE DYNAMIC PRODUCT LINK -- EU
           </Link>
         </Layout.Content>
         <Layout.PageTools

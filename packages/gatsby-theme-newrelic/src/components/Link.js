@@ -50,11 +50,11 @@ const Link = forwardRef(
     // Supplied from LoggedInProvider
     const { loggedIn } = useLoggedIn();
 
-    if (to.includes('one.newrelic.com')) {
-      // Using session storage, so the value will come as a string.
-      if (loggedIn === 'false') {
-        to = 'https://newrelic.com/signup';
-      }
+    // Looks for 'one.newrelic.com' || 'one.eu.newrelic.com'
+    const productRegex = /one(?:\.eu)?\.newrelic\.com/;
+
+    if (productRegex.test(to) && !loggedIn) {
+      to = 'https://newrelic.com/signup';
     }
 
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
