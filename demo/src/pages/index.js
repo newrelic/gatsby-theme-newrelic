@@ -14,6 +14,7 @@ import {
   InteractiveForm,
   InlineSignup,
   Icon,
+  InlinePopover,
   Layout,
   Link,
   PageTools,
@@ -922,6 +923,10 @@ const IndexPage = () => {
         <section>
           <h2>Inline Signup</h2>
           <InlineSignup />
+        </section>
+        <section>
+          <h2>Inline Popover</h2>
+          <InlinePopover type="apm" />
         </section>
       </Layout.Content>
       <Layout.PageTools
