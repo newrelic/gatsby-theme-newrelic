@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.17.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.5...v6.17.6) (2023-03-02)
+
+### Bug Fixes
+
+- import useLoggedIn hook to not be default syntax ([f6c4d3b](https://github.com/newrelic/gatsby-theme-newrelic/commit/f6c4d3b9455a66dcd5edf176a3075ccdc9a02d15))
+- remove unused export ([54ffb44](https://github.com/newrelic/gatsby-theme-newrelic/commit/54ffb444b3f2c2ab211395c0a5b2854f08f849d1))
+
 ## [6.17.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.4...v6.17.5) (2023-02-28)
 
 ### Bug Fixes
