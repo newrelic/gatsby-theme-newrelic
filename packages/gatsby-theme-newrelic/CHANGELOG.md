@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.18.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.6...v6.18.0) (2023-03-06)
+
+### Features
+
+- generalize the LicenseKey Popover ([98745e2](https://github.com/newrelic/gatsby-theme-newrelic/commit/98745e2fc655525ae20b135e624687e4556eda2a))
+
 ## [6.17.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.17.5...v6.17.6) (2023-03-02)
 
 ### Bug Fixes

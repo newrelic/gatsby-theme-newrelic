@@ -1,6 +1,6 @@
 {
   "name": "@newrelic/gatsby-theme-newrelic",
-  "version": "6.17.6",
+  "version": "6.18.0",
   "main": "index.js",
   "license": "Apache-2.0",
   "publishConfig": {
