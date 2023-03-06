@@ -54,6 +54,16 @@
     "cookiePolicy": "Cookie ポリシー",
     "ukSlaveryAct": "英国現代奴隷法"
   },
+  "licenseKey": {
+    "buttonText": "アカウントのライセンスキー",
+    "popover": {
+      "header": "ライセンスキー",
+      "explainer": "ライセンスキーを使用すると、受信データをお使いのアカウントに関連付けできます。",
+      "learnMore": "詳細情報",
+      "getYourKey": "キーの取得",
+      "createAccount": "アカウントの作成"
+    }
+  },
   "mobileNav": {
     "header": "ページ"
   },

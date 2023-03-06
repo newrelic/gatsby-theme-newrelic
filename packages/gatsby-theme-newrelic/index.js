@@ -21,7 +21,6 @@ export {
 export { default as GitHubIssueButton } from './src/components/GitHubIssueButton';
 export { default as HamburgerMenu } from './src/components/HamburgerMenu';
 export { default as Icon } from './src/components/Icon';
-export { default as InlineSignup } from './src/components/InlineSignup';
 export { default as InteractiveForm } from './src/components/InteractiveForm';
 export { default as InteractiveOutput } from './src/components/InteractiveOutput';
 export { default as Layout } from './src/components/Layout';
@@ -87,9 +86,11 @@ export { default as usePrevious } from './src/hooks/usePrevious';
 export { default as useNavigation } from './src/hooks/useNavigation';
 export { default as useScrollFreeze } from './src/hooks/useScrollFreeze';
 export { default as useWarning } from './src/hooks/useWarning';
-export { default as useLoggedIn } from './src/hooks/useLoggedIn';
+export { useLoggedIn } from './src/hooks/useLoggedIn';
 export { stripTrailingSlash } from './src/utils/location';
 export { isValidEmail, isValidInput } from './src/utils/isValidEmail';
+
+export { LoggedInProvider } from './src/components/LoggedInContext';
 
 export { SWIFTYPE_ENGINE_KEY, FEEDBACK_FORM_TYPE } from './src/utils/constants';
 
