@@ -37,6 +37,7 @@ import {
   LicenseKey,
   LoggedInProvider,
 } from '@newrelic/gatsby-theme-newrelic';
+import CustomPopoverExample from '../../../packages/gatsby-theme-newrelic/src/components/Popover/CustomPopoverExample';
 import config from '../content/configFiles/javaConfig';
 import tallImage from '../images/nr-one-ajax-browser.png';
 import regularImage from '../images/apm-intro-overview.png';
@@ -928,6 +929,10 @@ const IndexPage = () => {
           <Link to="https://one.eu.newrelic.com/test">
             TEST THE DYNAMIC PRODUCT LINK -- EU
           </Link>
+          <section>
+            <h2>Custom Popover Component</h2>
+            <CustomPopoverExample />
+          </section>
         </Layout.Content>
         <Layout.PageTools
           css={css`
