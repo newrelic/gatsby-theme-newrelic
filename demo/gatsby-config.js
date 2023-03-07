@@ -3,6 +3,7 @@ require('dotenv').config({
 });
 
 module.exports = {
+  trailingSlash: 'always',
   flags: {
     DEV_SSR: true,
   },
