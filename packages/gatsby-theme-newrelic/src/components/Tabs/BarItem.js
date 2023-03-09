@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { css } from '@emotion/react';
 import useTabs from './useTabs';
+import useInstrumentedHandler from '../../hooks/useInstrumentedHandler';
 
 const BarItem = ({
   className,
@@ -16,15 +17,24 @@ const BarItem = ({
   const isSelected =
     id === currentTab || (currentTab === undefined && index === 0);
 
+  const handleTabClick = useInstrumentedHandler(
+    () => {
+      !disabled && setCurrentTab(id);
+      onTabClick && onTabClick(id);
+    },
+    {
+      eventName: 'tabClick',
+      category: 'Tabs',
+      id,
+    }
+  );
+
   return (
     <button
       role="tab"
       aria-controls={id}
       type="button"
-      onClick={() => {
-        !disabled && setCurrentTab(id);
-        onTabClick && onTabClick(id);
-      }}
+      onClick={handleTabClick}
       css={css`
         border: none;
         border-bottom: var(--divider-color) solid 3px;
