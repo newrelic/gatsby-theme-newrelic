@@ -9,7 +9,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { useToggle } from 'react-use';
 import useWarning from '../hooks/useWarning';
 
-const MobileHeader = ({ children }) => {
+const MobileHeader = ({ children, className }) => {
   const [isOpen, toggle] = useToggle(false);
 
   const {
@@ -43,6 +43,7 @@ const MobileHeader = ({ children }) => {
           display: flex;
         }
       `}
+      className={className}
     >
       <Link
         to="/"
@@ -75,6 +76,7 @@ const MobileHeader = ({ children }) => {
 
 MobileHeader.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
 };
 
 export default MobileHeader;
