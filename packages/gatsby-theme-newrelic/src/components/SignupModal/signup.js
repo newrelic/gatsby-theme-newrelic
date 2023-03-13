@@ -13,8 +13,7 @@ const recaptchaReady = () => {
   });
 };
 
-const getSegmentAnonymousId = () =>
-  JSON.parse(Cookies.get('ajs_anonymous_id') || 'null');
+const getSegmentAnonymousId = () => Cookies.get('ajs_anonymous_id') || 'null';
 
 export const getUriParameters = () =>
   new URLSearchParams(window.location.search);
