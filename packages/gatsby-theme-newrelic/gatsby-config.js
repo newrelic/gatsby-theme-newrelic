@@ -7,6 +7,7 @@ module.exports = ({ layout, newrelic, robots = {}, sitemap = true }) => {
         resolve: 'gatsby-plugin-sitemap',
         options: {
           output: '/',
+          excludes: ['*/embed/'],
         },
       },
       'gatsby-plugin-use-dark-mode',
@@ -17,7 +18,6 @@ module.exports = ({ layout, newrelic, robots = {}, sitemap = true }) => {
           defaults: {},
         },
       },
-
       layout &&
         layout.component && {
           resolve: `gatsby-plugin-layout`,
