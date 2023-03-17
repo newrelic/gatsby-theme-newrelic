@@ -65,6 +65,7 @@ const BarItem = ({
           border-bottom: none;
           border-left: var(--divider-color) solid 3px;
           white-space: normal;
+          text-align: left;
 
           &.isSelected {
             color: var(--primary-text-color);

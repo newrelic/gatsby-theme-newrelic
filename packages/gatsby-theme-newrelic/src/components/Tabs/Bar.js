@@ -100,7 +100,6 @@ const Bar = ({ children, className }) => {
             min-height: 350px;
             overflow: none;
             overflow-wrap: break-word;
-            padding: 7.5% 0;
             margin-right: 2rem;
             width: 30%;
           `}
