@@ -6,7 +6,7 @@ import useTabs from './useTabs';
 
 const Pages = ({ children }) => {
   const [height, setHeight] = useState(0);
-  const [, stacked] = useTabs();
+  const [, stacked, mobileBreakPoint] = useTabs();
   const handleHeight = (pageHeight) => {
     if (pageHeight > height) {
       const maxHeight = Math.min(pageHeight, 500);
@@ -23,8 +23,10 @@ const Pages = ({ children }) => {
           display: flex;
           height: ${height}px;
           justify-content: center;
-          position: relative;
-          width: 100%;
+          width: 70%;
+          @media screen and (max-width: ${mobileBreakPoint}) {
+            width: 100%;
+          }
         `
       }
     >
