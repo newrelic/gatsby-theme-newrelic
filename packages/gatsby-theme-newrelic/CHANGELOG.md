@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.5...v6.18.7) (2023-03-17)
+
+**Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
+
 ## [6.18.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.5...v6.18.6) (2023-03-17)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic

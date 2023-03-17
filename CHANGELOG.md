@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.5...v6.18.7) (2023-03-17)
+
+### Bug Fixes
+
+- stacked tabs design ([cdf2e0b](https://github.com/newrelic/gatsby-theme-newrelic/commit/cdf2e0ba8fa16078694a0ca973508d061f73082d))
+- stacked tabs responsive design ([1b496b0](https://github.com/newrelic/gatsby-theme-newrelic/commit/1b496b06846815a8b83503cd885ff4b9b928cf10))
+
 ## [6.18.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.5...v6.18.6) (2023-03-17)
 
 **Note:** Version bump only for package gatsby-theme-newrelic
