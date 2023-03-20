@@ -137,7 +137,7 @@ const GlobalFooter = ({ className }) => {
                   `}
                   onClick={handlePrivacyClick}
                 >
-                  Your Privacy Choices
+                  {t('footer.privacyChoices')}
                 </Button>
               )}
 
