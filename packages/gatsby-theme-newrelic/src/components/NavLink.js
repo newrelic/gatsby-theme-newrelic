@@ -40,6 +40,7 @@ const NavLink = ({
         align-items: center;
         justify-content: space-between;
         cursor: pointer;
+        color: var(--primary-text-color);
         transition: 0.2s ease-out;
         padding: 0.5rem var(--nav-link-padding);
         margin: 0 calc(var(--nav-link-padding) * -1);
