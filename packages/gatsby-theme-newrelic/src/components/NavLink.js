@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import Link from './Link';
 import Icon from './Icon';
 import Button from './Button';
@@ -13,6 +14,7 @@ const NavLink = ({
   className,
   to,
   icon,
+  label,
   isExpanded,
   expandable,
   onClick,
@@ -38,7 +40,6 @@ const NavLink = ({
         align-items: center;
         justify-content: space-between;
         cursor: pointer;
-        color: var(--primary-text-color);
         transition: 0.2s ease-out;
         padding: 0.5rem var(--nav-link-padding);
         margin: 0 calc(var(--nav-link-padding) * -1);
@@ -65,23 +66,26 @@ const NavLink = ({
       `}
       {...props}
     >
-      {icon && (
-        <Icon
-          name={icon}
-          size="var(--icon-size)"
-          css={css`
-            margin-right: var(--icon-spacing);
-          `}
-        />
-      )}
+      <div>
+        {icon && (
+          <Icon
+            name={icon}
+            size="var(--icon-size)"
+            css={css`
+              margin-right: var(--icon-spacing);
+            `}
+          />
+        )}
 
-      <span
-        css={css`
-          flex: 1;
-        `}
-      >
-        {children}
-      </span>
+        <span
+          css={css`
+            flex: 1;
+          `}
+        >
+          {children}
+        </span>
+        {label && <NavLabel>{label}</NavLabel>}
+      </div>
 
       {isExternalLink ? (
         <Icon name="fe-external-link" size="1rem" />
@@ -121,10 +125,22 @@ const NavLink = ({
   );
 };
 
+const NavLabel = styled.p`
+  display: inline;
+  margin-left: 0.5rem;
+  padding: 0 0.25rem;
+  background: #e1edff;
+  border-radius: 3px;
+  color: #0b6acb;
+  font-size: 0.75rem;
+  font-weight: 400;
+`;
+
 NavLink.propTypes = {
   active: PropTypes.bool,
   className: PropTypes.string,
   icon: PropTypes.string,
+  label: PropTypes.string,
   children: PropTypes.node.isRequired,
   isExpanded: PropTypes.bool.isRequired,
   expandable: PropTypes.bool.isRequired,
