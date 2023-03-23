@@ -9,7 +9,7 @@ const onPreRenderHTML = (
   themeOptions
 ) => {
   const tessen = getTessenConfig(themeOptions);
-  const languages = { kr: 'ko', jp: 'ja', en: 'en' };
+  const languages = { kr: 'ko', jp: 'ja' };
 
   const getCurrentLanguage = () => {
     let matchingLanguage = 'en';
