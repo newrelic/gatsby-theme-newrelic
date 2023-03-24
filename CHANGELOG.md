@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.9](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.8...v6.18.9) (2023-03-24)
+
+### Bug Fixes
+
+- Delete OneTrust ([3fe7a88](https://github.com/newrelic/gatsby-theme-newrelic/commit/3fe7a888bf23d52eee82bdfbc55055a0c2caddbb))
+- Swap Osano for OneTrust and add footer button ([1a522e2](https://github.com/newrelic/gatsby-theme-newrelic/commit/1a522e25e194490154063220dbc6c130977f214e))
+
 ## [6.18.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.7...v6.18.8) (2023-03-24)
 
 ### Bug Fixes
