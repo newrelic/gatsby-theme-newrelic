@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.7...v6.18.8) (2023-03-24)
+
+### Bug Fixes
+
+- make collapser animation how it used to be ([bd18aab](https://github.com/newrelic/gatsby-theme-newrelic/commit/bd18aab022b0649c2714b2a773a42c6e82c433f4))
+- make search return 7 results and not fetch any more ([ef30783](https://github.com/newrelic/gatsby-theme-newrelic/commit/ef30783e3e67942246b0af5bdd53c8f56b1ceb7b))
+
 ## [6.18.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.5...v6.18.7) (2023-03-17)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
