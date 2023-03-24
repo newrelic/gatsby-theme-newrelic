@@ -80,7 +80,7 @@ const useSearch = ({ searchTerm, filters }) => {
         defaultSources,
         filters,
         page,
-        perPage: 20,
+        perPage: 7,
       }),
     {
       enabled: Boolean(debouncedSearchTerm),
