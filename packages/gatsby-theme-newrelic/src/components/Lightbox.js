@@ -7,8 +7,10 @@ import Icon from './Icon';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import useKeyPress from '../hooks/useKeyPress';
 import Button from './Button';
+import useTessen from '../hooks/useTessen';
 
 const Lightbox = ({ children }) => {
+  const tessen = useTessen();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const transitions = useTransition(lightboxOpen, {
     config: { tension: 220, friction: 22 },
@@ -26,7 +28,13 @@ const Lightbox = ({ children }) => {
     <>
       <button
         type="button"
-        onClick={() => setLightboxOpen(true)}
+        onClick={() => {
+          tessen.track({
+            eventName: 'openLightbox',
+            category: 'LightboxClick',
+          });
+          setLightboxOpen(true);
+        }}
         css={css`
           border: none;
           width: 100%;
