@@ -7,6 +7,7 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from './Trans';
 import Link from './Link';
 import RecaptchaFooter from './SignupModal/RecaptchaFooter';
+import Button from './Button';
 
 // We need to use this as a JS value otherwise the HTML entity gets saved in the
 // string and escaped by React, therefore rendering the literal &copy; text in
@@ -23,6 +24,17 @@ const GlobalFooter = ({ className }) => {
       }
     }
   `);
+
+  const hasOsano = () => {
+    if (typeof window !== 'undefined') {
+      return window.Osano !== undefined;
+    }
+    return false;
+  };
+
+  const handlePrivacyClick = () => {
+    window.Osano.cm.showDrawer('osano-cm-dom-info-dialog-open');
+  };
 
   return (
     <footer
@@ -112,6 +124,23 @@ const GlobalFooter = ({ className }) => {
               <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
                 {t('footer.privacyNotice', 'Privacy Notice')}
               </ExternalLink>
+              {hasOsano() && (
+                <Button
+                  variant={Button.VARIANT.LINK}
+                  css={css`
+                    padding: 0;
+                    margin-left: 0.75rem;
+                    font-size: 0.75rem;
+                    text-decoration: underline;
+                    white-space: nowrap;
+                    color: var(--system-text-primary-dark);
+                  `}
+                  onClick={handlePrivacyClick}
+                >
+                  {t('footer.privacyChoices')}
+                </Button>
+              )}
+
               <ExternalLink href="https://newrelic.com/termsandconditions/cookie-policy">
                 {t('footer.cookiePolicy', 'Cookie Policy')}
               </ExternalLink>

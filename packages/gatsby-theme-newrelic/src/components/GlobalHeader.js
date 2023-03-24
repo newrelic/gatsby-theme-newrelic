@@ -393,15 +393,21 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                   <Dropdown.Menu>
                     {locales.map(({ isDefault, locale, localName }) => (
                       <Dropdown.MenuItem
-                        as={Link}
                         key={locale}
-                        href={path.join(
-                          isDefault ? '' : `/${locale}`,
-                          location.pathname.replace(matchLocalePath, '')
-                        )}
                         onClick={() => handleLocaleClick({ locale })}
                       >
-                        {localName}
+                        <a
+                          href={path.join(
+                            isDefault ? '' : `/${locale}`,
+                            location.pathname.replace(matchLocalePath, '')
+                          )}
+                          css={css`
+                            text-decoration: none;
+                            color: var(--primary-text-color);
+                          `}
+                        >
+                          {localName}
+                        </a>
                       </Dropdown.MenuItem>
                     ))}
                   </Dropdown.Menu>
