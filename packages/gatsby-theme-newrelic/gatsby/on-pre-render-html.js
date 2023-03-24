@@ -3,14 +3,25 @@ import path from 'path';
 import { withPrefix } from 'gatsby';
 import { getTessenConfig } from '../src/utils/config';
 import { getTessenPath } from './constants';
-import OneTrust from '../src/components/OneTrust';
 
 const onPreRenderHTML = (
-  { getHeadComponents, replaceHeadComponents },
+  { getHeadComponents, replaceHeadComponents, pathname },
   themeOptions
 ) => {
   const tessen = getTessenConfig(themeOptions);
-  const { oneTrustID } = themeOptions;
+  const languages = { kr: 'ko', jp: 'ja' };
+
+  const getCurrentLanguage = () => {
+    let matchingLanguage = 'en';
+    for (const language in languages) {
+      if (pathname.startsWith(`/${language}/`)) {
+        matchingLanguage = languages[language];
+      }
+    }
+    return matchingLanguage;
+  };
+
+  const currentLanguage = getCurrentLanguage();
 
   const version = tessen ? tessen.tessenVersion : null;
 
@@ -18,7 +29,11 @@ const onPreRenderHTML = (
 
   replaceHeadComponents(
     [
-      <OneTrust key="one-trust" id={oneTrustID} />,
+      process.env.ENVIRONMENT === 'production' && (
+        <script
+          src={`https://cmp.osano.com/AzZVWOTJtg1WY32RK/cd381ba3-ebca-488c-a528-376a86764609/osano.js?language=${currentLanguage}&variant=one`}
+        />
+      ),
       ...getHeadComponents(),
       <link
         key="open-sans"

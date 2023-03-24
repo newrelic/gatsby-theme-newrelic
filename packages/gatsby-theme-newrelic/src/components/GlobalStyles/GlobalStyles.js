@@ -198,6 +198,9 @@ const GlobalStyles = ({ layout }) => (
       .grecaptcha-badge {
         visibility: hidden;
       }
+      .osano-cm-widget {
+        display: none;
+      }
       .screenreader-only {
         clip: rect(1px, 1px, 1px, 1px);
         clip-path: inset(50%);

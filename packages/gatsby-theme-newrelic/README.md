@@ -25,7 +25,6 @@ websites](https://opensource.newrelic.com).
       - [`prism`](#prism)
       - [`splitio`](#splitio)
       - [`signup`](#signup)
-      - [`oneTrustID`](#onetrustid)
         - [Environment-specific configuration](#environment-specific-configuration)
       - [`newRelicRequestingServicesHeader`](#newRelicRequestingServicesHeader)
     - [Layouts](#layouts)
@@ -165,7 +164,6 @@ module.exports = {
           contentPadding: '2rem',
           maxWidth: '1600px',
         },
-        oneTrustID: 'your-one-trust-id',
         newrelic: {
           configs: {
             staging: {
@@ -534,11 +532,6 @@ module.exports = {
 };
 ```
 
-#### `oneTrustID`
-
-The _OneTrust_ ID to be used when adding the cookie consent snippet. This is optional and, if not set, the snippet will not be included in the `<head>`.
-therefore ignored. Setting this value will do nothing.
-
 ##### Environment-specific configuration
 
 Use the `env` option to define environment-specific configuration. The
@@ -596,6 +589,7 @@ module.exports = {
   ],
 };
 ```
+
 #### `newRelicRequestingServicesHeader`
 
 Configure the name reported to NerdGraph in the `NewRelic-Requesting-Services` header.
@@ -1633,7 +1627,7 @@ Renders a button with the text "account license key", with a tooltip that provid
 additional information and helpful links regarding license keys.
 
 ```jsx
-import { LicenseKey } from '@newrelic/gatsby-theme-newrelic'
+import { LicenseKey } from '@newrelic/gatsby-theme-newrelic';
 ```
 
 **Props**
@@ -2259,7 +2253,7 @@ import { SkewedContainer } from '@newrelic/gatsby-theme-newrelic';
 
 ### `SEO`
 
-A component that injects meta-tags, links, and other relevant tags for search engine optimization. If `oneTrustID` is set, then this will include the _OneTrust_ cookie consent snippet.
+A component that injects meta-tags, links, and other relevant tags for search engine optimization.
 
 ```js
 import { SEO } from '@newrelic/gatsby-theme-newrelic';
@@ -2480,19 +2474,14 @@ A container for Step components
 
 The child of a Steps component, will render individual steps and automatically number them
 
-** note: If using a header within a step component you'll need to use html tags rather than markdown
+\*\* note: If using a header within a step component you'll need to use html tags rather than markdown
 
 **Example**
 
 ````js
 <Steps>
   <Step>This is step 1</Step>
-  <Step>
-    This is step 2 
-    ```js 
-    const itHasACodeBlock = true 
-    ```
-  </Step>
+  <Step>This is step 2 ```js const itHasACodeBlock = true ```</Step>
 </Steps>
 ````
 
