@@ -43,7 +43,7 @@ const SearchModal = ({ onClose, isOpen }) => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [filters, setFilters] = useState(DEFAULT_FILTER_TYPES);
   const [searchTerm, setSearchTerm] = useSearchQuery(filters);
-  const { status, results, fetchNextPage } = useSearch({
+  const { status, results } = useSearch({
     searchTerm,
     filters,
   });
@@ -74,10 +74,6 @@ const SearchModal = ({ onClose, isOpen }) => {
   useEffect(() => {
     setSelectedIndex(0);
   }, [searchTerm]);
-
-  const onIntersection = useCallback(() => {
-    fetchNextPage();
-  }, [fetchNextPage]);
 
   const handleSelectIndex = useCallback((idx) => {
     setSelectedIndex(idx);
@@ -202,10 +198,7 @@ const SearchModal = ({ onClose, isOpen }) => {
                 >
                   {Boolean(results?.length) && (
                     <>
-                      <ScrollContainer
-                        onIntersection={onIntersection}
-                        monitor={status === 'success'}
-                      >
+                      <ScrollContainer>
                         <ResultList
                           results={results}
                           selectedIndex={selectedIndex}

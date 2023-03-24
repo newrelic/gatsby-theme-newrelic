@@ -25,8 +25,6 @@ const ScrollContainer = ({ children }) => {
 
 ScrollContainer.propTypes = {
   children: PropTypes.node.isRequired,
-  onIntersection: PropTypes.func.isRequired,
-  monitor: PropTypes.bool,
 };
 
 export default ScrollContainer;
