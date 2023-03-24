@@ -152,10 +152,7 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
       <animated.div
         style={{ height: isOpen && previousIsOpen ? 'auto' : viewHeight }}
         css={css`
-          ${!isOpen &&
-          `
-            overflow: hidden;
-          `}
+          overflow: hidden;
         `}
       >
         <div
