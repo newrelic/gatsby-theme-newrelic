@@ -30,7 +30,7 @@ const Menu = ({ children, className }) => {
         display: ${open ? 'block' : 'none'};
         background: var(--secondary-background-color);
         border-radius: 0.25rem;
-        z-index: 1000;
+        z-index: var(--depth-9);
         padding: 0.5rem;
         box-shadow: 0 3px 8px 0 rgba(22, 38, 59, 0.2);
 
@@ -48,7 +48,7 @@ const Menu = ({ children, className }) => {
           border-bottom: var(--arrow-size) solid var(--background-color);
           width: 0;
           height: 0;
-          z-index: 1000;
+          z-index: var(--depth-9);
 
           ${ARROW_ALIGNMENTS[align]};
         }

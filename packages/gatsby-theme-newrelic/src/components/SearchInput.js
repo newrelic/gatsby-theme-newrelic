@@ -190,7 +190,7 @@ const SearchInput = forwardRef(
               margin: 0;
               padding: 0;
               outline: none;
-              z-index: 123;
+              z-index: var(--depth-7);
             `}
             type="button"
           >

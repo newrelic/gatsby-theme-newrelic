@@ -16,7 +16,7 @@ const Banner = ({ children, visible, onClose, ...props }) => {
         background-color: var(--brand-button-primary-accent);
         min-height: 5.625rem;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
-        z-index: 100;
+        z-index: var(--depth-5);
         position: relative;
 
         h1,

@@ -154,7 +154,7 @@ const Popover = forwardRef(({ id, hidden = false }, ref) => {
         bottom: 200%;
         position: absolute;
         visibility: hidden;
-        z-index: 81;
+        z-index: var(--depth-3);
 
         &.visible {
           visibility: visible;

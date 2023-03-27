@@ -147,7 +147,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
           box-shadow: var(--shadow-2);
           position: sticky;
           top: 0;
-          z-index: 80;
+          z-index: var(--depth-2);
           height: var(--global-header-height);
           @media screen and (max-width: ${LAYOUT_BREAKPOINT}) and (min-width: ${NAV_BREAKPOINT}) {
             grid-template-columns: calc(150px + var(--site-content-padding)) minmax(

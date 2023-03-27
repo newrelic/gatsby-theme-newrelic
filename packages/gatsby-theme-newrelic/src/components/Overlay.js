@@ -27,7 +27,7 @@ const Overlay = ({ children, onCloseOverlay, isOpen = false, className }) => {
     <Portal>
       <div
         css={css`
-          z-index: 1000;
+          z-index: var(--depth-9);
           position: fixed;
           top: 0;
           left: 0;

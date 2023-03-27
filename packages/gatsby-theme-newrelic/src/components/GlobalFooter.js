@@ -43,7 +43,7 @@ const GlobalFooter = ({ className }) => {
       css={css`
         color: var(--system-text-primary-dark);
         background-color: var(--system-text-primary-light);
-        z-index: 1;
+        z-index: var(--depth-1);
 
         a {
           color: var(--system-text-primary-dark);

@@ -57,7 +57,7 @@ const CustomTextInput = ({
           left: 10px;
           line-height: 1;
           top: -11px;
-          z-index: 1;
+          z-index: var(--depth-1);
         `}
       >
         {label}
