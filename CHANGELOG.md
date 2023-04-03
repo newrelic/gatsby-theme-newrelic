@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.18.10](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.9...v6.18.10) (2023-04-03)
+
+### Bug Fixes
+
+- Instrument lightbox clicks ([9bdf833](https://github.com/newrelic/gatsby-theme-newrelic/commit/9bdf833f16582472316dca7e306c0ae990752899))
+- Remove link to signup logic ([aa3d74d](https://github.com/newrelic/gatsby-theme-newrelic/commit/aa3d74dd5834bd869d064c2eb61df9d490c7c223))
+
 ## [6.18.9](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.8...v6.18.9) (2023-03-24)
 
 ### Bug Fixes
