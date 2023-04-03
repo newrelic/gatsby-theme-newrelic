@@ -8,7 +8,6 @@ import SignUpLink from './SignUpLink';
 import Icon from './Icon';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 import { css } from '@emotion/react';
-import { useLoggedIn } from '../hooks/useLoggedIn';
 
 const isHash = (to) => to.startsWith('#');
 const isExternal = (to) => to.startsWith('http');
@@ -46,16 +45,6 @@ const Link = forwardRef(
         }
       }
     `);
-
-    // Supplied from LoggedInProvider
-    const { loggedIn } = useLoggedIn();
-
-    // Looks for 'one.newrelic.com' || 'one.eu.newrelic.com'
-    const productRegex = /one(?:\.eu)?\.newrelic\.com/;
-
-    if (productRegex.test(to) && !loggedIn) {
-      to = 'https://newrelic.com/signup';
-    }
 
     const handleExternalLinkClick = useInstrumentedHandler(onClick, {
       eventName: 'externalLinkClick',
