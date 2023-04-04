@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.19.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.10...v6.19.0) (2023-04-04)
+
+### Bug Fixes
+
+- linting errors, update tests ([2277e02](https://github.com/newrelic/gatsby-theme-newrelic/commit/2277e026be60b2a590db96cf3b4c182c2ebf15c6))
+
+### Features
+
+- add chevron left and right icons ([c889522](https://github.com/newrelic/gatsby-theme-newrelic/commit/c889522a5f4a79ba6acfeebc16b99e2934b877c9))
+
 ## [6.18.10](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.18.9...v6.18.10) (2023-04-03)
 
 ### Bug Fixes
