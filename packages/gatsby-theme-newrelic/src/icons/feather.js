@@ -34,12 +34,23 @@ export default {
       <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
     </>
   ),
+  'chevron-left': (
+    <>
+      <polyline points="15 18 9 12 15 6" />
+    </>
+  ),
+  'chevron-right': (
+    <>
+      <polyline points="9 18 15 12 9 6" />
+    </>
+  ),
   'corner-down-left': (
     <>
       <polyline points="9 10 4 15 9 20" />
       <path d="M20 4v7a4 4 0 0 1-4 4H4" />
     </>
   ),
+
   download: (
     <>
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
