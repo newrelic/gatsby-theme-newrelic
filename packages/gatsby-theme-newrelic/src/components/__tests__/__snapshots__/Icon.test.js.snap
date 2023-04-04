@@ -156,6 +156,50 @@ exports[`fe-chevron-down icon matches its snapshot 1`] = `
 </svg>
 `;
 
+exports[`fe-chevron-left icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <polyline
+    points="15 18 9 12 15 6"
+  />
+</svg>
+`;
+
+exports[`fe-chevron-right icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+<svg
+  className="emotion-0"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <polyline
+    points="9 18 15 12 9 6"
+  />
+</svg>
+`;
+
 exports[`fe-cloud icon matches its snapshot 1`] = `
 .emotion-0 {
   width: 1em;
