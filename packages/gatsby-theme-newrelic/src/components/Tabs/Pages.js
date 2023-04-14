@@ -23,6 +23,7 @@ const Pages = ({ children }) => {
           display: flex;
           height: ${height}px;
           justify-content: center;
+          overflow: scroll;
           width: 70%;
           @media screen and (max-width: ${mobileBreakPoint}) {
             width: 100%;
