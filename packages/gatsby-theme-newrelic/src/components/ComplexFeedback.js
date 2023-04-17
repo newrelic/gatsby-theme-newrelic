@@ -102,7 +102,7 @@ const ComplexFeedback = ({ pageTitle }) => {
         border: none;
         flex-direction: column;
         max-width: 320px;
-        background: var(--erno-yellow);
+        background: #afe2e3;
         gap: 1rem;
         p {
           color: var(--system-text-primary-light);
@@ -143,6 +143,7 @@ const ComplexFeedback = ({ pageTitle }) => {
           <h4
             css={css`
               margin-bottom: 0;
+              text-align: center;
             `}
           >
             {t('feedback.question')}
@@ -154,6 +155,12 @@ const ComplexFeedback = ({ pageTitle }) => {
               justify-content: space-around;
               align-items: flex-start;
 
+              button {
+                width: 45%;
+                font-size: 14px;
+                border: none;
+              }
+
               @supports not (gap: 0.5rem) {
                 a:first-of-type {
                   margin-right: 0.25rem;
@@ -163,13 +170,13 @@ const ComplexFeedback = ({ pageTitle }) => {
           >
             <Button
               variant={Button.VARIANT.OUTLINE}
-              size={Button.SIZE.SMALL}
+              size={Button.SIZE.LARGE}
               onClick={() => handleFeedbackClick('yes')}
               css={css`
                 height: 3rem;
                 margin-bottom: 0.5rem;
                 color: var(--system-text-primary-light);
-                border-color: var(--system-text-primary-light);
+                background: var(--system-background-app-light);
 
                 ${feedbackType === 'yes' &&
                 css`
@@ -181,7 +188,7 @@ const ComplexFeedback = ({ pageTitle }) => {
               <div
                 css={css`
                   margin-right: 0.5rem;
-                  font-size: 0.75rem;
+                  font-size: 14px;
                 `}
               >
                 😁
@@ -196,7 +203,7 @@ const ComplexFeedback = ({ pageTitle }) => {
                 height: 3rem;
                 margin-bottom: 0.5rem;
                 color: var(--system-text-primary-light);
-                border-color: var(--system-text-primary-light);
+                background: var(--system-background-app-light);
 
                 ${feedbackType === 'no' &&
                 css`
@@ -208,40 +215,12 @@ const ComplexFeedback = ({ pageTitle }) => {
               <div
                 css={css`
                   margin-right: 0.5rem;
-                  font-size: 0.75rem;
+                  font-size: 14px;
                 `}
               >
                 🙁
               </div>
               {t('feedback.no')}
-            </Button>
-
-            <Button
-              variant={Button.VARIANT.OUTLINE}
-              size={Button.SIZE.SMALL}
-              onClick={() => handleFeedbackClick('somewhat')}
-              css={css`
-                height: 3rem;
-                margin-bottom: 0.5rem;
-                color: var(--system-text-primary-light);
-                border-color: var(--system-text-primary-light);
-
-                ${feedbackType === 'somewhat' &&
-                css`
-                  background: var(--system-text-primary-light);
-                  color: var(--system-text-primary-dark);
-                `}
-              `}
-            >
-              <div
-                css={css`
-                  margin-right: 0.5rem;
-                  font-size: 0.75rem;
-                `}
-              >
-                😐
-              </div>
-              {t('feedback.somewhat')}
             </Button>
           </div>
           {feedbackType && (
@@ -258,7 +237,7 @@ const ComplexFeedback = ({ pageTitle }) => {
                   padding: 0.5rem;
                   min-height: 100px;
                   border-radius: 4px;
-                  border: 1px solid;
+                  border: none;
                 `}
               />
               <p>{t('feedback.email')}</p>
@@ -284,7 +263,7 @@ const ComplexFeedback = ({ pageTitle }) => {
                   font-size: 0.75rem;
                   padding: 0.5rem;
                   border-radius: 4px;
-                  border: 1px solid;
+                  border: none;
                 `}
               />
               {userEmail && !isValidEmail(userEmail) && (
