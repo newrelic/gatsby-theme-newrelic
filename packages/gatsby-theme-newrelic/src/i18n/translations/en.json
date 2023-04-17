@@ -36,7 +36,6 @@
     "question": "Was this doc helpful?",
     "yes": "Yes",
     "no": "No",
-    "somewhat": "Somewhat",
     "comments": "Tell us more (optional)",
     "email": "Your email (optional)",
     "emailDisclaimer": "We'll only use this email for follow-up questions about your feedback.",
