@@ -1621,27 +1621,6 @@ used for the site.
 </Layout.Sidebar>
 ```
 
-### `LicenseKey`
-
-Renders a button with the text "account license key", with a tooltip that provides
-additional information and helpful links regarding license keys.
-
-```jsx
-import { LicenseKey } from '@newrelic/gatsby-theme-newrelic';
-```
-
-**Props**
-
-None.
-
-**Example**
-
-```jsx
-import { LicenseKey } from '@newrelic/gatsby-theme-newrelic'
-
-This copy directs you to your <LicenseKey />.
-```
-
 ### `Link`
 
 Provides a "smart" link to link to other URLs. This provides a unified component
