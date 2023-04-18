@@ -34,7 +34,6 @@ import {
   ExternalLink,
   SignupModal,
   Lightbox,
-  LicenseKey,
   LoggedInProvider,
 } from '@newrelic/gatsby-theme-newrelic';
 import CustomPopoverExample from '../../../packages/gatsby-theme-newrelic/src/components/Popover/CustomPopoverExample';
@@ -516,7 +515,6 @@ const IndexPage = () => {
                   >
                     {liveCodeSample}
                   </CodeBlock>
-                  <LicenseKey /> - Do not use
                 </Tabs.Page>
                 <Tabs.Page id="embedded">
                   <CodeBlock
@@ -913,13 +911,6 @@ const IndexPage = () => {
                 finished
               </Walkthrough.Step>
             </Walkthrough>
-          </section>
-          <section>
-            <h2>License Key</h2>
-            here's some text that tells you to look at your <LicenseKey />.
-            here's some text after it to make sure the{' '}
-            <code>&lt;LicenseKey&gt;</code> component stays inline and doesn't
-            break formatting.
           </section>
 
           <Link to="https://one.newrelic.com/test">
