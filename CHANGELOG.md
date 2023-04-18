@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.19.2...v7.0.0) (2023-04-18)
+
+### Features
+
+- remove LicenseKey component ([0565bea](https://github.com/newrelic/gatsby-theme-newrelic/commit/0565bea589ae5223453a2b25969cb211359b7847))
+
+### BREAKING CHANGES
+
+- remove LicenseKey component
+
 ## [6.19.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.19.1...v6.19.2) (2023-04-17)
 
 ### Bug Fixes
