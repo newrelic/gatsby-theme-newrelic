@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.0.0...v7.0.1) (2023-04-19)
+
+### Bug Fixes
+
+- add `overflow-x` hidden to body ([f8aa10c](https://github.com/newrelic/gatsby-theme-newrelic/commit/f8aa10c43ed5cf2c49f140c014f69e9a3ffe6f26))
+- Popover offset not working ([1f4b90c](https://github.com/newrelic/gatsby-theme-newrelic/commit/1f4b90cdec301b01aad79362e96ab2837bd463ae))
+
 # [7.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v6.19.2...v7.0.0) (2023-04-18)
 
 ### Features
