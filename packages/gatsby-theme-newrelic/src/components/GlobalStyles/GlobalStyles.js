@@ -36,6 +36,7 @@ const GlobalStyles = ({ layout }) => (
         color: var(--primary-text-color);
         background-color: var(--primary-background-color);
         line-height: 1.5;
+        overflow-x: hidden;
       }
 
       a {
