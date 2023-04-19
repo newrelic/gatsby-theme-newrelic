@@ -22,7 +22,7 @@ const Popover = ({ bottom, children, id, left, onClose, show }) => {
       if (overflowOffset === offset) return;
       setOverflowOffset(offset);
     },
-    [width, overflowOffset]
+    [overflowOffset, show, width]
   );
   useClickAway(ref, onClose);
 
@@ -88,7 +88,7 @@ const Popover = ({ bottom, children, id, left, onClose, show }) => {
               position: absolute;
               rotate: 45deg;
               transform-origin: center;
-              translate: calc(var(--overflow-offset) + 50% * -1) 0;
+              translate: calc(var(--overflow-offset) * -1 + 50%) 0;
               width: var(--size);
             }
 
@@ -118,7 +118,7 @@ const Popover = ({ bottom, children, id, left, onClose, show }) => {
   );
 };
 
-// `--overflow-offset` is set in a `useCallback` below.
+// `--overflow-offset` is set in a `useCallback` above.
 // it's used to shift the popover left or right so it doesn't overflow the screen.
 const slideFadeIn = keyframes`
   from {
