@@ -1,18 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 
 import useTabs from './useTabs';
 
 const Pages = ({ children }) => {
-  const [height, setHeight] = useState(0);
-  const [, stacked, mobileBreakPoint] = useTabs();
-  const handleHeight = (pageHeight) => {
-    if (pageHeight > height) {
-      const maxHeight = Math.min(pageHeight, 500);
-      setHeight(maxHeight);
-    }
-  };
+  const { containerHeight, stacked, mobileBreakPoint } = useTabs();
 
   return (
     <div
@@ -21,7 +14,7 @@ const Pages = ({ children }) => {
         css`
           align-items: start;
           display: flex;
-          height: ${height}px;
+          height: ${containerHeight}px;
           justify-content: center;
           width: 70%;
           @media screen and (max-width: ${mobileBreakPoint}) {
@@ -31,7 +24,7 @@ const Pages = ({ children }) => {
       }
     >
       {React.Children.map(children, (child, index) =>
-        React.cloneElement(child, { ...child.props, index, handleHeight })
+        React.cloneElement(child, { ...child.props, index })
       )}
     </div>
   );

@@ -4,14 +4,17 @@ import { css } from '@emotion/react';
 
 import useTabs from './useTabs';
 
-const Page = ({ index, children, id, className, handleHeight }) => {
-  const [[currentTab], stacked] = useTabs();
+const Page = ({ index, children, id, className }) => {
+  const { currentTab, updateHeight, stacked } = useTabs();
 
-  const page = useCallback((div) => {
-    if (!div) return;
-    const rect = div.getBoundingClientRect();
-    handleHeight(rect.height);
-  }, []);
+  const page = useCallback(
+    (div) => {
+      if (!div) return;
+      const rect = div.getBoundingClientRect();
+      updateHeight(rect.height);
+    },
+    [updateHeight]
+  );
 
   const isSelected =
     id === currentTab || (currentTab === undefined && index === 0);
@@ -52,7 +55,6 @@ Page.propTypes = {
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
-  handleHeight: PropTypes.func,
 };
 
 export default Page;
