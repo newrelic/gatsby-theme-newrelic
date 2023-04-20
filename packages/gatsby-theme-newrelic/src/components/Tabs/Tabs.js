@@ -10,7 +10,16 @@ import Pages from './Pages';
 import Page from './Page';
 
 const Tabs = ({ children, initialTab, stacked }) => {
-  const tabState = useState(initialTab);
+  const [currentTab, setCurrentTab] = useState(initialTab);
+  const [containerHeight, setContainerHeight] = useState(0);
+
+  const updateHeight = (pageHeight) => {
+    if (pageHeight > containerHeight) {
+      const maxHeight = Math.min(pageHeight, 500);
+      setContainerHeight(maxHeight);
+    }
+  };
+
   const {
     site: {
       layout: { mobileBreakpoint },
@@ -25,8 +34,17 @@ const Tabs = ({ children, initialTab, stacked }) => {
     }
   `);
 
+  const context = {
+    containerHeight,
+    currentTab,
+    mobileBreakpoint,
+    setCurrentTab,
+    stacked,
+    updateHeight,
+  };
+
   return (
-    <TabsContext.Provider value={[tabState, stacked, mobileBreakpoint]}>
+    <TabsContext.Provider value={context}>
       <div
         css={css`
           ${stacked &&

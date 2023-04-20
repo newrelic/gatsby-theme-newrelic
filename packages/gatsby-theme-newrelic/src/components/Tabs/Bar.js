@@ -35,7 +35,7 @@ const getDeepestChild = (child) => {
 };
 
 const MobileTabControl = ({ children, className }) => {
-  const [[currentTab, setCurrentTab]] = useTabs();
+  const { currentTab, setCurrentTab } = useTabs();
 
   // eslint gets angry about using props from React.Children.map
   /* eslint-disable react/prop-types */
@@ -71,7 +71,7 @@ MobileTabControl.propTypes = {
 };
 
 const Bar = ({ children, className }) => {
-  const [, stacked, mobileBreakpoint] = useTabs();
+  const { containerHeight, mobileBreakpoint, stacked } = useTabs();
 
   return (
     <>
@@ -97,6 +97,7 @@ const Bar = ({ children, className }) => {
           ${stacked &&
           css`
             flex-direction: column;
+            height: ${containerHeight}px;
             min-height: 350px;
             overflow: none;
             overflow-wrap: break-word;

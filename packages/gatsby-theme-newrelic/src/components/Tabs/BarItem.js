@@ -13,7 +13,7 @@ const BarItem = ({
   disabled,
   onClick: onTabClick,
 }) => {
-  const [[currentTab, setCurrentTab], stacked] = useTabs();
+  const { currentTab, setCurrentTab, stacked } = useTabs();
   const isSelected =
     id === currentTab || (currentTab === undefined && index === 0);
 
