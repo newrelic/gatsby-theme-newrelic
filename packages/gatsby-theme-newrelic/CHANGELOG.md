@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.0.1...v7.0.2) (2023-04-20)
+
+### Bug Fixes
+
+- add `height: 100%` to fix overflow ([706e00e](https://github.com/newrelic/gatsby-theme-newrelic/commit/706e00e43b20c6e0d8d7e997a31a6b910ffba8c8))
+- hoist height into context & use for Bar ([e88fc5f](https://github.com/newrelic/gatsby-theme-newrelic/commit/e88fc5f72f1357f4496969e0c621e214c1d5e6f1))
+
 ## [7.0.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.0.0...v7.0.1) (2023-04-19)
 
 ### Bug Fixes
