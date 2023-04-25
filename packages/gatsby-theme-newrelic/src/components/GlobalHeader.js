@@ -395,19 +395,17 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                       <Dropdown.MenuItem
                         key={locale}
                         onClick={() => handleLocaleClick({ locale })}
+                        as="a"
+                        href={path.join(
+                          isDefault ? '' : `/${locale}`,
+                          location.pathname.replace(matchLocalePath, '')
+                        )}
+                        css={css`
+                          text-decoration: none;
+                          color: var(--primary-text-color);
+                        `}
                       >
-                        <a
-                          href={path.join(
-                            isDefault ? '' : `/${locale}`,
-                            location.pathname.replace(matchLocalePath, '')
-                          )}
-                          css={css`
-                            text-decoration: none;
-                            color: var(--primary-text-color);
-                          `}
-                        >
-                          {localName}
-                        </a>
+                        {localName}
                       </Dropdown.MenuItem>
                     ))}
                   </Dropdown.Menu>
