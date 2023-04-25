@@ -11,7 +11,7 @@ const MenuItem = ({ as, children, href, className, onClick }) => {
       onClick={onClick}
       className={className}
       to={href}
-      href={as === 'a' && href && href}
+      href={as === 'a' && href}
       css={css`
         display: block;
         padding: 0.25rem 0.5rem;
