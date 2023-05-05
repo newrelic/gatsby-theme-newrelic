@@ -230,7 +230,7 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
     options: {
       languages: uniq([
         'markup',
-        'apache',
+        'apacheconf',
         'bash',
         'clike',
         'c',
