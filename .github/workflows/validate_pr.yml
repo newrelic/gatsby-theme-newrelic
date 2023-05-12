@@ -5,6 +5,7 @@ on:
     branches:
       - develop
       - main
+      - tabatha/gh-actions-deprecations
 
 jobs:
   test:
