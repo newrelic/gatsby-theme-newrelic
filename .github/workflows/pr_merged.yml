@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - develop
-      - tabatha/gh-actions-deprecations
+      - tabatha/test-workflows
 
 env:
   BOT_NAME: nr-opensource-bot
@@ -83,7 +83,7 @@ jobs:
             const result = await github.rest.repos.updateBranchProtection({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              branch: 'tabatha/gh-actions-deprecations',
+              branch: 'tabatha/test-workflows',
               required_status_checks: null,
               restrictions: null,
               enforce_admins: null,
@@ -96,7 +96,7 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.DEVEX_OPENSOURCE_BOT_TOKEN }}
-          branch: tabatha/gh-actions-deprecations
+          branch: tabatha/tes-workflows
 
       - name: Re-enable "required_pull_request_reviews" branch protection
         id: enable-branch-protection
@@ -109,7 +109,7 @@ jobs:
             const result = await github.rest.repos.updateBranchProtection({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              branch: 'tabatha/gh-actions-deprecations',
+              branch: 'tabatha/tes-workflows',
               required_status_checks: null,
               restrictions: null,
               enforce_admins: true,

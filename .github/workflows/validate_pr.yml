@@ -5,7 +5,7 @@ on:
     branches:
       - develop
       - main
-      - tabatha/gh-actions-deprecations
+      - tabatha/test-workflows
 
 jobs:
   test:

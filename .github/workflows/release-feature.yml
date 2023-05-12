@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - feature/newrelic-io
-      - tabatha/gh-actions-deprecations
+      - tabatha/test-workflows
 
 env:
   BOT_NAME: nr-opensource-bot
