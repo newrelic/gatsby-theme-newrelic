@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.0.2...v7.0.3) (2023-05-12)
+
+### Bug Fixes
+
+- Use menuItem as a tag ([9736092](https://github.com/newrelic/gatsby-theme-newrelic/commit/973609222e6492b22ca22716e3d985d9204dd371))
+
 ## [7.0.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.0.1...v7.0.2) (2023-04-20)
 
 ### Bug Fixes
