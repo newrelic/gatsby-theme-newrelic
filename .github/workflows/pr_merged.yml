@@ -64,9 +64,6 @@ jobs:
             git config user.name "${{ env.BOT_NAME }}"
             oss third-party manifest
             oss third-party notices
-            git add third_party_manifest.json
-            git add THIRD_PARTY_NOTICES.md
-            git commit -m 'chore: update third-party manifest and notices [skip-cd]'
             echo "::set-output name=commit::true"
           else
             echo "No change in package.json, not regenerating third-party notices"
@@ -83,7 +80,7 @@ jobs:
             const result = await github.rest.repos.updateBranchProtection({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              branch: 'tabatha/test-workflows',
+              branch: 'develop',
               required_status_checks: null,
               restrictions: null,
               enforce_admins: null,
@@ -109,7 +106,7 @@ jobs:
             const result = await github.rest.repos.updateBranchProtection({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              branch: 'tabatha/tes-workflows',
+              branch: 'develop',
               required_status_checks: null,
               restrictions: null,
               enforce_admins: true,
