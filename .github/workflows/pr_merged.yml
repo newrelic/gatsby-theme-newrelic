@@ -23,22 +23,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Download Cached Deps
-        id: cache-node-modules
-        uses: actions/cache@v3
-        env:
-          cache-name: node-modules
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-
+          node-version: 17
+          cache: 'yarn'
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
@@ -66,7 +52,7 @@ jobs:
             git add third_party_manifest.json
             git add THIRD_PARTY_NOTICES.md
             git commit -m 'chore: update third-party manifest and notices [skip-cd]'
-            echo "::set-output name=commit::true"
+            echo "commit=true" >> $GITHUB_OUTPUT
           else
             echo "No change in package.json, not regenerating third-party notices"
           fi
