@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - tabatha/tes-workflows
+      - tabatha/test-workflows
 
 env:
   BOT_NAME: nr-opensource-bot
