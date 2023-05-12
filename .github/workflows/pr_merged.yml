@@ -1,7 +1,7 @@
 name: PR Merged
 
 on:
-  push:
+  pull_request:
     branches:
       - develop
       - tabatha/test-workflows

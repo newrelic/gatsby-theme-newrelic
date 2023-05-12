@@ -1,7 +1,7 @@
 name: Release Feature Branch
 
 on:
-  push:
+  pull_request:
     branches:
       - feature/newrelic-io
       - tabatha/test-workflows
