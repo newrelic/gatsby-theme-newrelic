@@ -70,6 +70,7 @@ export { default as Walkthrough } from './src/components/Walkthrough';
 export { default as formatCode } from './src/utils/formatCode';
 export { default as useActiveHash } from './src/hooks/useActiveHash';
 export { default as useClipboard } from './src/hooks/useClipboard';
+export { default as useDarkMode } from './src/hooks/useDarkMode';
 export { default as useFormattedCode } from './src/hooks/useFormattedCode';
 export { default as useInstrumentedHandler } from './src/hooks/useInstrumentedHandler';
 export { default as useKeyPress } from './src/hooks/useKeyPress';
