@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.0.3...v7.0.4) (2023-05-22)
+
+### Bug Fixes
+
+- export useDarkMode hook ([44d1601](https://github.com/newrelic/gatsby-theme-newrelic/commit/44d160161a7b50a5347731d0951657011262bfd9))
+
 ## [7.0.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.0.2...v7.0.3) (2023-05-12)
 
 ### Bug Fixes
