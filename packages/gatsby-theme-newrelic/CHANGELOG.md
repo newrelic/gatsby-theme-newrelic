@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.0.4...v7.1.0) (2023-05-26)
+
+### Features
+
+- add `sideEffects: false` for tree-shaking ([44e4066](https://github.com/newrelic/gatsby-theme-newrelic/commit/44e406671bdfab1606334b6eb8ce3cc6eb30e3d0))
+
 ## [7.0.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.0.3...v7.0.4) (2023-05-22)
 
 ### Bug Fixes
