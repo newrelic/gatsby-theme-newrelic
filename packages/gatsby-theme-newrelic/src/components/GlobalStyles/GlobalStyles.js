@@ -58,6 +58,14 @@ const GlobalStyles = ({ layout }) => (
         }
       }
 
+      img {
+        max-height: 460px;
+
+        &.unbound {
+          max-height: unset;
+        }
+      }
+
       h1,
       h2,
       h3,
