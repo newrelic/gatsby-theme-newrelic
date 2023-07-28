@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.1.0...v7.1.1) (2023-07-28)
+
+### Bug Fixes
+
+- Only use live provider around live code ([2bd8986](https://github.com/newrelic/gatsby-theme-newrelic/commit/2bd8986494cf1376671c037017b50880bcf9f22a))
+
 # [7.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.0.4...v7.1.0) (2023-05-26)
 
 ### Features
