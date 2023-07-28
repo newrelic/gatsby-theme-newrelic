@@ -115,22 +115,24 @@ const CodeBlock = ({
   }, [formattedCode]);
 
   return (
-    <LiveProvider code={code} scope={scope}>
+    <>
       {preview && (
-        <components.Preview
-          css={css`
-            padding: 2rem;
-            background: var(--color-white);
-            border: 1px solid var(--primary-contrast-color);
-            box-shadow: var(--boxshadow);
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
+        <LiveProvider code={code} scope={scope}>
+          <components.Preview
+            css={css`
+              padding: 2rem;
+              background: var(--color-white);
+              border: 1px solid var(--primary-contrast-color);
+              box-shadow: var(--boxshadow);
+              border-top-left-radius: 4px;
+              border-top-right-radius: 4px;
 
-            .dark-mode & {
-              background: var(--code-console-background-main);
-            }
-          `}
-        />
+              .dark-mode & {
+                background: var(--code-console-background-main);
+              }
+            `}
+          />
+        </LiveProvider>
       )}
       <div className={className}>
         <div
@@ -227,12 +229,16 @@ const CodeBlock = ({
             {language !== 'html' && containsEmbeddedHTML ? (
               <RawCode code={children} language={language} />
             ) : live ? (
-              <CodeEditor
-                value={code}
-                language={language}
-                lineNumbers={lineNumbers}
-                onChange={(code) => dispatch({ type: 'update', payload: code })}
-              />
+              <LiveProvider code={code} scope={scope}>
+                <CodeEditor
+                  value={code}
+                  language={language}
+                  lineNumbers={lineNumbers}
+                  onChange={(code) =>
+                    dispatch({ type: 'update', payload: code })
+                  }
+                />
+              </LiveProvider>
             ) : (
               <CodeHighlight
                 highlightedLines={highlightedLines}
@@ -293,20 +299,22 @@ const CodeBlock = ({
           )}
         </div>
         {(live || preview) && (
-          <LiveError
-            css={css`
-              color: white;
-              background: var(--attention-notification-critical);
-              padding: 0.5rem 1rem;
-              font-size: 0.75rem;
-              overflow: auto;
-              margin-top: 0.5rem;
-              border-radius: 2px;
-            `}
-          />
+          <LiveProvider code={code} scope={scope}>
+            <LiveError
+              css={css`
+                color: white;
+                background: var(--attention-notification-critical);
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+                overflow: auto;
+                margin-top: 0.5rem;
+                border-radius: 2px;
+              `}
+            />
+          </LiveProvider>
         )}
       </div>
-    </LiveProvider>
+    </>
   );
 };
 
