@@ -95,22 +95,20 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
     site: {
       layout: { mobileBreakpoint },
     },
-  } = useStaticQuery(graphql`
-    query GlobalHeaderQuery {
-      allLocale(sort: { fields: [isDefault, locale], order: [DESC, ASC] }) {
-        nodes {
-          locale
-          localName
-          isDefault
-        }
-      }
-      site {
-        layout {
-          mobileBreakpoint
-        }
-      }
+  } = useStaticQuery(graphql`query GlobalHeaderQuery {
+  allLocale(sort: [{isDefault: DESC}, {locale: ASC}]) {
+    nodes {
+      locale
+      localName
+      isDefault
     }
-  `);
+  }
+  site {
+    layout {
+      mobileBreakpoint
+    }
+  }
+}`);
 
   const hideLogoText = useMedia({ maxWidth: LOGO_TEXT_BREAKPOINT });
 
