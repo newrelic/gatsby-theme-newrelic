@@ -59,6 +59,7 @@
     "gatsby-plugin-emotion": "^6.10.0",
     "gatsby-plugin-layout": "^2.10.0",
     "gatsby-plugin-newrelic": "2.3.0",
+    "gatsby-plugin-portal": "^1.0.7",
     "gatsby-plugin-react-helmet": "^5.4.0",
     "gatsby-plugin-robots-txt": "^1.6.8",
     "gatsby-plugin-sharp": "^5.0.0",

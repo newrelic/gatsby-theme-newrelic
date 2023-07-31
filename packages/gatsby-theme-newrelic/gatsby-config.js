@@ -3,6 +3,7 @@ module.exports = ({ layout, newrelic, robots = {}, sitemap = true }) => {
     plugins: [
       'gatsby-plugin-emotion',
       'gatsby-plugin-react-helmet',
+      'gatsby-plugin-portal',
       sitemap && {
         resolve: 'gatsby-plugin-sitemap',
         options: {

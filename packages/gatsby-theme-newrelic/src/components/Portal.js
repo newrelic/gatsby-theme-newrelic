@@ -2,18 +2,14 @@ import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
-const Portal = ({ children, initializer }) => {
-  const [root] = useState(() =>
-    typeof document === 'undefined' ? null : document.createElement('div')
-  );
+const root =
+  typeof document === 'undefined' ? null : document.querySelector('#portal');
 
+const Portal = ({ children, initializer }) => {
   useEffect(() => {
     if (root) {
       initializer?.(root);
     }
-    document.body.appendChild(root);
-
-    return () => document.body.removeChild(root);
   }, [initializer, root]);
 
   return root ? createPortal(children, root) : null;
