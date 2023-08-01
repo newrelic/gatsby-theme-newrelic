@@ -6350,7 +6350,7 @@ common-path-prefix@^3.0.0:
   resolved "https://registry.yarnpkg.com/common-path-prefix/-/common-path-prefix-3.0.0.tgz#7d007a7e07c58c4b4d5f433131a19141b29f11e0"
   integrity sha512-QE33hToZseCH3jS0qN96O/bSh3kaw/h+Tq7ngyY9eWDUnTlTNUyqfqvCXioLe5Na5jFsL78ra/wuBU4iuEgd4w==
 
-common-tags@1.8.2, common-tags@^1.8.0, common-tags@^1.8.2:
+common-tags@1.8.2, common-tags@^1.8.2:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.8.2.tgz#94ebb3c076d26032745fd54face7f688ef5ac9c6"
   integrity sha512-gk/Z852D2Wtb//0I+kRFNKKE9dIIVirjoqPoA1wJU+XePVXZfGeBpk45+A1rKO4Q43prqWBNY/MiIeRLbPWUaA==
@@ -9167,15 +9167,15 @@ gatsby-plugin-sharp@^5.0.0:
     semver "^7.5.1"
     sharp "^0.32.1"
 
-gatsby-plugin-sitemap@^4.6.0:
-  version "4.11.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sitemap/-/gatsby-plugin-sitemap-4.11.0.tgz#87fdb71bbfc2457ae4e7bd86fa98bdda2444378b"
-  integrity sha512-DMzdyJxzUDawSt81SrnieDYLYru57Z0lYADBLbfM/eQacvXA0wGN/HtDIG1laWrToR/Er1WZqGFBEyfnIAu5Gg==
+gatsby-plugin-sitemap@^6.11.0:
+  version "6.11.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sitemap/-/gatsby-plugin-sitemap-6.11.0.tgz#c58ad3601f8276a2f3fcd5d404651e0da421b1a8"
+  integrity sha512-YpCnENEsmqcQ6s7OXKvj402i7ODHpmr4sNXxIf2ecT7EpL9JiRhmCwYsg0WGaAEC+QG1BggFuMDC9rAqoRcYng==
   dependencies:
-    "@babel/runtime" "^7.15.4"
-    common-tags "^1.8.0"
-    minimatch "^3.0.4"
-    sitemap "^7.0.0"
+    "@babel/runtime" "^7.20.13"
+    common-tags "^1.8.2"
+    minimatch "^3.1.2"
+    sitemap "^7.1.1"
 
 gatsby-plugin-typescript@^5.11.0:
   version "5.11.0"
@@ -16006,7 +16006,7 @@ sisteransi@^1.0.5:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
-sitemap@^7.0.0:
+sitemap@^7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/sitemap/-/sitemap-7.1.1.tgz#eeed9ad6d95499161a3eadc60f8c6dce4bea2bef"
   integrity sha512-mK3aFtjz4VdJN0igpIJrinf3EO8U8mxOPsTBzSsy06UtjZQJ3YY3o3Xa7zSc5nMqcMrRwlChHZ18Kxg0caiPBg==
