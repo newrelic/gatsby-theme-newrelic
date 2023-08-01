@@ -61,7 +61,7 @@
     "gatsby-plugin-newrelic": "2.3.0",
     "gatsby-plugin-portal": "^1.0.7",
     "gatsby-plugin-react-helmet": "^6.11.0",
-    "gatsby-plugin-robots-txt": "^1.6.8",
+    "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sharp": "^5.0.0",
     "gatsby-plugin-sitemap": "^4.6.0",
     "gatsby-plugin-use-dark-mode": "^1.3.0",
