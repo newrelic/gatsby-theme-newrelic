@@ -30,7 +30,7 @@ const createContentHash = (announcement) => {
 
   return btoa(
     [
-      announcement.slug,
+      announcement.fields.slug,
       announcement.frontmatter.startDate,
       announcement.frontmatter.endDate,
     ].join(':')
@@ -42,21 +42,27 @@ const components = {
 };
 
 const AnnouncementBanner = () => {
-  const { allMdx } = useStaticQuery(graphql`{
-  allMdx(
-    sort: {frontmatter: {startDate: ASC}}
-    filter: {fileAbsolutePath: {regex: "/src/announcements/"}}
-  ) {
-    nodes {
-      slug
-      body
-      frontmatter {
-        startDate(formatString: "YYYY-MM-DD")
-        endDate(formatString: "YYYY-MM-DD")
+  const { allMdx } = useStaticQuery(graphql`
+    {
+      allMdx(
+        sort: { frontmatter: { startDate: ASC } }
+        filter: {
+          internal: { contentFilePath: { regex: "/src/announcements/" } }
+        }
+      ) {
+        nodes {
+          fields {
+            slug
+          }
+          body
+          frontmatter {
+            startDate(formatString: "YYYY-MM-DD")
+            endDate(formatString: "YYYY-MM-DD")
+          }
+        }
       }
     }
-  }
-}`);
+  `);
 
   const announcement = findCurrentAnnouncement(allMdx.nodes);
   const announcementId = announcement ? createContentHash(announcement) : null;
