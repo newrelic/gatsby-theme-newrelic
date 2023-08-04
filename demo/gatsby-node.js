@@ -19,6 +19,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
             fileRelativePath
             slug
           }
+          internal {
+            contentFilePath
+          }
         }
       }
     }
@@ -35,14 +38,17 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     ({ isDefault }) => !isDefault
   );
 
+  const basicTemplate = path.resolve('src/templates/basic.js')
+
   allMdx.nodes.forEach((node) => {
     const {
       fields: { fileRelativePath, slug },
+      internal: {contentFilePath}
     } = node;
 
     createPage({
       path: slug,
-      component: path.resolve('src/templates/basic.js'),
+      component: `${basicTemplate}?__contentFilePath=${contentFilePath}`,
       context: {
         slug,
         fileRelativePath,

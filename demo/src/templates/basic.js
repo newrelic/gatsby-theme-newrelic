@@ -15,10 +15,10 @@ import {
 import GitHubSlugger from 'github-slugger';
 import toString from 'mdast-util-to-string';
 
-const BasicTemplate = ({ data, location }) => {
+const BasicTemplate = ({ data, location, children }) => {
   const slugger = useMemo(() => new GitHubSlugger(), []);
   const {
-    mdx: { body, frontmatter, fields, relatedResources, mdxAST },
+    mdx: { frontmatter, fields, relatedResources, mdxAST },
   } = data;
 
   const headings = useMemo(() => {
@@ -66,7 +66,7 @@ const BasicTemplate = ({ data, location }) => {
         </h1>
         <Layout.Content>
           <MarkdownContainer>
-            <MDX body={body} />
+            <MDX children={children} />
           </MarkdownContainer>
         </Layout.Content>
 
@@ -92,7 +92,6 @@ BasicTemplate.propTypes = {
 export const pageQuery = graphql`
   query ($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
-      body
       mdxAST
       frontmatter {
         title
