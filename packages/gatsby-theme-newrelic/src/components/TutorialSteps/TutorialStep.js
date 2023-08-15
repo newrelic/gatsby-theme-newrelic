@@ -25,6 +25,11 @@ const TutorialStep = ({ children, stepNumber, totalSteps }) => {
         &:last-child {
           border-bottom: 1px solid var(--divider-color);
         }
+
+        h2,
+        h3 {
+          font-size: 1.17em;
+        }
       `}
     >
       <StepCounter stepNumber={stepNumber} total={totalSteps} />
