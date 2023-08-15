@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.1.1...v7.1.2) (2023-08-15)
+
+### Bug Fixes
+
+- h2 and h3 have the same styling within Steps ([c42352c](https://github.com/newrelic/gatsby-theme-newrelic/commit/c42352c79bd172ca82e60eb4857805439e241d8b))
+
 ## [7.1.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.1.0...v7.1.1) (2023-07-28)
 
 ### Bug Fixes
