@@ -38,12 +38,12 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     ({ isDefault }) => !isDefault
   );
 
-  const basicTemplate = path.resolve('src/templates/basic.js')
+  const basicTemplate = path.resolve('src/templates/basic.js');
 
   allMdx.nodes.forEach((node) => {
     const {
       fields: { fileRelativePath, slug },
-      internal: {contentFilePath}
+      internal: { contentFilePath },
     } = node;
 
     createPage({
@@ -72,8 +72,10 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       fallback: {
+        crypto: false,
         http: false,
         https: false,
+        url: false,
         zlib: false,
       },
     },
