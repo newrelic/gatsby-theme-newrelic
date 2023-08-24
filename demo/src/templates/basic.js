@@ -66,7 +66,7 @@ const BasicTemplate = ({ data, location, children }) => {
         </h1>
         <Layout.Content>
           <MarkdownContainer>
-            <MDX children={children} />
+            <MDX>{children}</MDX>
           </MarkdownContainer>
         </Layout.Content>
 
@@ -85,6 +85,7 @@ const BasicTemplate = ({ data, location, children }) => {
 };
 
 BasicTemplate.propTypes = {
+  children: PropTypes.node.isRequired,
   data: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };

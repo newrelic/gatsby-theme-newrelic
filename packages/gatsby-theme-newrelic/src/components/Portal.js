@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
@@ -10,7 +10,7 @@ const Portal = ({ children, initializer }) => {
     if (root) {
       initializer?.(root);
     }
-  }, [initializer, root]);
+  }, [initializer]);
 
   return root ? createPortal(children, root) : null;
 };
