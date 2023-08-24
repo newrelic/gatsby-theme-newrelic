@@ -373,9 +373,11 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
   const { i18n } = themeOptions;
 
   actions.setWebpackConfig({
-    externals: {
-      tessen: 'Tessen',
-    },
+    externals: [
+      {
+        tessen: 'Tessen',
+      },
+    ],
     plugins: [
       plugins.define({
         GATSBY_THEME_NEWRELIC_I18N_PATH: JSON.stringify(
