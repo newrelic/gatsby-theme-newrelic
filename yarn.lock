@@ -1398,6 +1398,14 @@
     "@emotion/weak-memoize" "^0.3.1"
     stylis "4.2.0"
 
+"@emotion/css-prettifier@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@emotion/css-prettifier/-/css-prettifier-1.1.3.tgz#014ff59a87a3be5f2ce555b70f096af66b2dc845"
+  integrity sha512-KNv23+VQ+pcw3ebd1vSEl11CQ6SKAG5EQkrinjVGsfw3ZTWe6/tpWQrsvFLqCtU2LRiLPi04KgFCE4A9+crfpQ==
+  dependencies:
+    "@emotion/memoize" "^0.8.1"
+    stylis "4.2.0"
+
 "@emotion/hash@^0.9.1":
   version "0.9.1"
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.9.1.tgz#4ffb0055f7ef676ebc3a5a91fb621393294e2f43"
@@ -1409,6 +1417,17 @@
   integrity sha512-61Mf7Ufx4aDxx1xlDeOm8aFFigGHE4z+0sKCa+IHCeZKiyP9RLD0Mmx7m8b9/Cf37f7NAvQOOJAbQQGVr5uERw==
   dependencies:
     "@emotion/memoize" "^0.8.1"
+
+"@emotion/jest@^11.11.0":
+  version "11.11.0"
+  resolved "https://registry.yarnpkg.com/@emotion/jest/-/jest-11.11.0.tgz#4d64b33052308739dcdd7396fd2bc902f7244f82"
+  integrity sha512-XZlnmdUZ32YjQnInsCFk/plKpkV/NXN1Ab4YoNvXN887MeR3Hr5ZsTyoblIW8AWwdfQiZHHphaPMb56lk6Ofdw==
+  dependencies:
+    "@babel/runtime" "^7.18.3"
+    "@emotion/css-prettifier" "^1.1.3"
+    chalk "^4.1.0"
+    specificity "^0.4.1"
+    stylis "4.2.0"
 
 "@emotion/memoize@^0.8.1":
   version "0.8.1"
@@ -11493,11 +11512,6 @@ jest-each@^29.6.3:
     jest-util "^29.6.3"
     pretty-format "^29.6.3"
 
-jest-emotion@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/jest-emotion/-/jest-emotion-11.0.0.tgz#0131e60f5067c65c73981cd0565f777672cafb28"
-  integrity sha512-nw+iYPcHM+H5huUIsDh53uEIp6SrN5v+MOxa7qyXReae9foCTACDkFuF/1Hfkik/R8mDMir7q5QEiVMRJ0/f2Q==
-
 jest-environment-jsdom@^29.6.4:
   version "29.6.4"
   resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-29.6.4.tgz#0daf44454041f9e1ef7fa82eb1bd43426a82eb1c"
@@ -16596,6 +16610,11 @@ spdx-license-ids@^3.0.0:
   version "3.0.13"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.13.tgz#7189a474c46f8d47c7b0da4b987bb45e908bd2d5"
   integrity sha512-XkD+zwiqXHikFZm4AX/7JSCXA98U5Db4AFd5XUg/+9UNtnH75+Z9KxtpYiJZx36mUDVOwH83pl7yvCer6ewM3w==
+
+specificity@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/specificity/-/specificity-0.4.1.tgz#aab5e645012db08ba182e151165738d00887b019"
+  integrity sha512-1klA3Gi5PD1Wv9Q0wUoOQN1IWAuPu0D1U03ThXTr0cJ20+/iq2tHSDnK7Kk/0LXJ1ztUB2/1Os0wKmfyNgUQfg==
 
 split-on-first@^1.0.0:
   version "1.1.0"

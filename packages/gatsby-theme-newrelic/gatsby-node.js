@@ -241,6 +241,10 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
   const { prism = {} } = themeOptions;
 
   setBabelPlugin({
+    name: '@emotion/babel-plugin',
+  });
+
+  setBabelPlugin({
     name: 'babel-plugin-prismjs',
     options: {
       languages: uniq([
