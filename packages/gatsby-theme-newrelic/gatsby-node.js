@@ -20,6 +20,10 @@ const { SWIFTYPE_ENGINE_KEY } = require('./src/utils/constants');
 let writeableRelatedResourceData = {};
 
 const uniq = (arr) => [...new Set(arr)];
+const is404Page = (page) =>
+  page.internalComponentName === 'Component/404.html' ||
+  page.internalComponentName === 'Component/dev-404-page/' ||
+  page.internalComponentName === 'Component/404/';
 
 const ANNOUNCEMENTS_DIRECTORY = 'src/announcements';
 const DEFAULT_BRANCH = 'main';
@@ -334,11 +338,7 @@ exports.onCreatePage = (helpers, themeOptions) => {
   }
 
   if (
-    !(
-      page.internalComponentName === 'Component/404.html' ||
-      page.internalComponentName === 'Component/dev-404-page/' ||
-      page.internalComponentName === 'Component/404/'
-    ) &&
+    !is404Page(page) &&
     transformedPage.context.fileRelativePath.includes('src/pages/') &&
     transformedPage.context.locale === 'en'
   ) {
@@ -354,12 +354,7 @@ exports.onCreatePage = (helpers, themeOptions) => {
     });
   }
 
-  if (
-    (page.internalComponentName === 'Component/404.html' ||
-      page.internalComponentName === 'Component/dev-404-page/' ||
-      page.internalComponentName === 'Component/404/') &&
-    !page.context.layout
-  ) {
+  if (is404Page(page) && !page.context.layout) {
     deletePage(page);
     createPage({
       ...page,
