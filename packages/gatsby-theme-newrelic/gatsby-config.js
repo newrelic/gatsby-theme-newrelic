@@ -19,13 +19,12 @@ module.exports = ({ layout, newrelic, robots = {}, sitemap = true }) => {
           defaults: {},
         },
       },
-      layout &&
-        layout.component && {
-          resolve: `gatsby-plugin-layout`,
-          options: {
-            component: layout.component,
-          },
+      layout?.component && {
+        resolve: `gatsby-plugin-layout`,
+        options: {
+          component: layout.component,
         },
+      },
       {
         resolve: 'gatsby-source-filesystem',
         options: {
