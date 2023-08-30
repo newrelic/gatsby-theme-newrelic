@@ -129,6 +129,7 @@ module.exports = {
             options: {
               maxWidth: 1200,
               linkImagesToOriginal: false,
+              wrapperStyle: 'margin-bottom: var(--paragraph-spacing);',
             },
           },
           {
