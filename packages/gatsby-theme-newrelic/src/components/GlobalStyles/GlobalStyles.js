@@ -60,6 +60,7 @@ const GlobalStyles = ({ layout }) => (
 
       img {
         max-height: 550px;
+        max-width: 100%;
 
         &.unbound {
           max-height: unset;

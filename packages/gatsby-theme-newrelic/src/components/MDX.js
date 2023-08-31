@@ -7,6 +7,7 @@ import MDXCallout from './MDXCallout';
 import Collapser from './Collapser';
 import Icon from './Icon';
 import InlineCode from './InlineCode';
+import Lightbox from './Lightbox';
 import Link from './Link';
 import MDXCodeBlock from './MDXCodeBlock';
 import MDXCollapserGroup from './MDXCollapserGroup';
@@ -27,6 +28,46 @@ const defaultComponents = {
   Collapser,
   CollapserGroup: MDXCollapserGroup,
   Icon,
+  img: (props) =>
+    console.log('hiiiiiiiii', props) ||
+    props.style ||
+    props.variant === 'TechTile' ? (
+      <img
+        width={props.width ? props.width : 'inherit'}
+        src={props.src}
+        alt={props.alt ? props.alt : 'Docs site'}
+        title={props.title}
+        style={
+          props.style
+            ? { ...props.style, margin: '0 0.25rem' }
+            : { margin: '0 0.25rem' }
+        }
+      />
+    ) : (
+      <Lightbox>
+        <img
+          width={props.width ? props.width : 'auto'}
+          src={props.src}
+          alt={props.alt ? props.alt : 'Docs site'}
+          title={props.title}
+          style={
+            props.style
+              ? {
+                  ...props.style,
+                  borderRadius: '0.25rem',
+                  maxWidth: '100%',
+                  margin: '0 0.25rem',
+                }
+              : {
+                  borderRadius: '0.25rem',
+                  maxWidth: '100%',
+                  margin: '0 0.25rem',
+                }
+          }
+        />
+      </Lightbox>
+    ),
+
   InlineCode,
   Link,
   SideBySide,

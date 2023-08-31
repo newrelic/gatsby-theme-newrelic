@@ -67,6 +67,11 @@ const Lightbox = ({ children }) => {
                     align-items: center;
                     z-index: 900;
                     background: var(--modal-wrapper-color);
+
+                    img {
+                      max-height: unset;
+                      max-width: unset;
+                    }
                   `}
                   onClick={() => setLightboxOpen(false)}
                 >
