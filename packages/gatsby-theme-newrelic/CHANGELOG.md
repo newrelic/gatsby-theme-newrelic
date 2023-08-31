@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.1.2...v7.1.3) (2023-08-31)
+
+### Bug Fixes
+
+- images overflowing main body container ([69cf7ee](https://github.com/newrelic/gatsby-theme-newrelic/commit/69cf7eeb39f87b85384a6aa79de44c50dc98bb2a))
+
 ## [7.1.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.1.1...v7.1.2) (2023-08-15)
 
 ### Bug Fixes
