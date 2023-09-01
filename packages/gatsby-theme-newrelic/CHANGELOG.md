@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.1.3...v7.2.0) (2023-09-01)
+
+### Bug Fixes
+
+- Create mdxAST field ([42ec26f](https://github.com/newrelic/gatsby-theme-newrelic/commit/42ec26f73759bd2dd123881efbbc04d8433f6dab))
+- make Button `variant` not required ([d60aa36](https://github.com/newrelic/gatsby-theme-newrelic/commit/d60aa36a41dcdb631cf560a27bb65773843cad8c))
+- make Tabs.Pages index prop not required ([f445e49](https://github.com/newrelic/gatsby-theme-newrelic/commit/f445e498ca7bb58be81add96b448495f3012c2e9))
+- Update slugify function ([80cc35a](https://github.com/newrelic/gatsby-theme-newrelic/commit/80cc35ad09fd602463141051291cf52724cb4010))
+- use 'value' prop instead of 'selected' on option element ([d11a777](https://github.com/newrelic/gatsby-theme-newrelic/commit/d11a77721896a36b5cac386fcad8be62702f0d93))
+
+### Features
+
+- Upgrade node and packages ([60db122](https://github.com/newrelic/gatsby-theme-newrelic/commit/60db122d238ac3be1e375d2d33231b4d6dd2e70a))
+
 ## [7.1.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.1.2...v7.1.3) (2023-08-31)
 
 ### Bug Fixes
