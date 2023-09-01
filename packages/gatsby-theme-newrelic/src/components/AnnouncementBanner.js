@@ -30,7 +30,7 @@ const createContentHash = (announcement) => {
 
   return btoa(
     [
-      announcement.slug,
+      announcement.fields.slug,
       announcement.frontmatter.startDate,
       announcement.frontmatter.endDate,
     ].join(':')
@@ -43,13 +43,17 @@ const components = {
 
 const AnnouncementBanner = () => {
   const { allMdx } = useStaticQuery(graphql`
-    query {
+    {
       allMdx(
-        sort: { fields: [frontmatter___startDate] }
-        filter: { fileAbsolutePath: { regex: "/src/announcements/" } }
+        sort: { frontmatter: { startDate: ASC } }
+        filter: {
+          internal: { contentFilePath: { regex: "/src/announcements/" } }
+        }
       ) {
         nodes {
-          slug
+          fields {
+            slug
+          }
           body
           frontmatter {
             startDate(formatString: "YYYY-MM-DD")
