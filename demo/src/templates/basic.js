@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import {
   ContributingGuidelines,
@@ -15,10 +15,10 @@ import {
 import GitHubSlugger from 'github-slugger';
 import toString from 'mdast-util-to-string';
 
-const BasicTemplate = ({ data, location }) => {
+const BasicTemplate = ({ data, location, children }) => {
   const slugger = useMemo(() => new GitHubSlugger(), []);
   const {
-    mdx: { body, frontmatter, fields, relatedResources, mdxAST },
+    mdx: { frontmatter, fields, relatedResources, mdxAST },
   } = data;
 
   const headings = useMemo(() => {
@@ -39,34 +39,11 @@ const BasicTemplate = ({ data, location }) => {
   return (
     <>
       <SEO location={location} title={frontmatter.title} />
-      <Layout.Main
-        css={css`
-          display: grid;
-          grid-template-areas:
-            'page-title page-tools'
-            'content page-tools';
-          grid-template-columns: minmax(0, 1fr) 320px;
-          grid-column-gap: var(--site-content-padding);
-
-          @media screen and (max-width: 760px) {
-            grid-template-areas:
-              'page-title'
-              'content'
-              'page-tools';
-            grid-template-columns: minmax(0, 1fr);
-          }
-        `}
-      >
-        <h1
-          css={css`
-            grid-area: page-title;
-          `}
-        >
-          {frontmatter.title}
-        </h1>
+      <Main>
+        <Title>{frontmatter.title}</Title>
         <Layout.Content>
           <MarkdownContainer>
-            <MDX body={body} />
+            <MDX>{children}</MDX>
           </MarkdownContainer>
         </Layout.Content>
 
@@ -79,20 +56,41 @@ const BasicTemplate = ({ data, location }) => {
           <TableOfContents headings={headings} />
           <RelatedResources resources={relatedResources} />
         </Layout.PageTools>
-      </Layout.Main>
+      </Main>
     </>
   );
 };
 
 BasicTemplate.propTypes = {
+  children: PropTypes.node.isRequired,
   data: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };
 
+const Main = styled(Layout.Main)`
+  display: grid;
+  grid-template-areas:
+    'page-title page-tools'
+    'content page-tools';
+  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-column-gap: var(--site-content-padding);
+
+  @media screen and (max-width: 760px) {
+    grid-template-areas:
+      'page-title'
+      'content'
+      'page-tools';
+    grid-template-columns: minmax(0, 1fr);
+  }
+`;
+
+const Title = styled.h1`
+  grid-area: page-title;
+`;
+
 export const pageQuery = graphql`
   query ($slug: String!) {
-    mdx(slug: { eq: $slug }) {
-      body
+    mdx(fields: { slug: { eq: $slug } }) {
       mdxAST
       frontmatter {
         title

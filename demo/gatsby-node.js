@@ -11,11 +11,16 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           isDefault
         }
       }
-      allMdx(filter: { fileAbsolutePath: { regex: "/src/content/" } }) {
+      allMdx(
+        filter: { internal: { contentFilePath: { regex: "/src/content/" } } }
+      ) {
         nodes {
-          slug
           fields {
             fileRelativePath
+            slug
+          }
+          internal {
+            contentFilePath
           }
         }
       }
@@ -33,15 +38,17 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     ({ isDefault }) => !isDefault
   );
 
+  const basicTemplate = path.resolve('src/templates/basic.js');
+
   allMdx.nodes.forEach((node) => {
     const {
-      slug,
-      fields: { fileRelativePath },
+      fields: { fileRelativePath, slug },
+      internal: { contentFilePath },
     } = node;
 
     createPage({
       path: slug,
-      component: path.resolve('src/templates/basic.js'),
+      component: `${basicTemplate}?__contentFilePath=${contentFilePath}`,
       context: {
         slug,
         fileRelativePath,
@@ -65,8 +72,10 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       fallback: {
+        crypto: false,
         http: false,
         https: false,
+        url: false,
         zlib: false,
       },
     },

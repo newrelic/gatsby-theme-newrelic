@@ -1,5 +1,5 @@
 import useUserId from '../useUserId';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { STORAGE_KEYS } from '../../utils/constants';
 
 beforeEach(() => {

@@ -26,7 +26,7 @@ const Popover = ({ bottom, children, id, left, onClose, show }) => {
   );
   useClickAway(ref, onClose);
 
-  return (
+  return show ? (
     <Portal
       initializer={(div) => {
         if (div == null) return;
@@ -115,7 +115,7 @@ const Popover = ({ bottom, children, id, left, onClose, show }) => {
         </div>
       </div>
     </Portal>
-  );
+  ) : null;
 };
 
 // `--overflow-offset` is set in a `useCallback` above.

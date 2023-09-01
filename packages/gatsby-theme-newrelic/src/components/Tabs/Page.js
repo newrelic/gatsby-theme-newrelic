@@ -51,7 +51,7 @@ const Page = ({ index, children, id, className }) => {
 };
 
 Page.propTypes = {
-  index: PropTypes.number.isRequired,
+  index: PropTypes.number,
   children: PropTypes.node.isRequired,
   id: PropTypes.string.isRequired,
   className: PropTypes.string,

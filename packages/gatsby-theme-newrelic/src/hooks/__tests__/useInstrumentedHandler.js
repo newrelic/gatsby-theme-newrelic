@@ -1,5 +1,5 @@
 import useInstrumentedHandler from '../useInstrumentedHandler';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { enableFetchMocks } from 'jest-fetch-mock';
 enableFetchMocks();
 
@@ -24,7 +24,7 @@ const SEGMENT_OBJECT = {
   },
 };
 
-global.newRelicRequestingServicesHeader = 'gatsby-theme-newrelic-demo'
+global.newRelicRequestingServicesHeader = 'gatsby-theme-newrelic-demo';
 global.Tessen = {
   track: jest.fn(),
 };

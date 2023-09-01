@@ -2,6 +2,8 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const fs = require('fs');
 const { withDefaults } = require('./src/utils/defaultOptions');
+const remark = require('remark');
+const remarkMdx = require('remark-mdx');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
 const {
@@ -18,9 +20,14 @@ const { SWIFTYPE_ENGINE_KEY } = require('./src/utils/constants');
 let writeableRelatedResourceData = {};
 
 const uniq = (arr) => [...new Set(arr)];
+const is404Page = (page) =>
+  page.internalComponentName === 'Component/404.html' ||
+  page.internalComponentName === 'Component/dev-404-page/' ||
+  page.internalComponentName === 'Component/404/';
 
 const ANNOUNCEMENTS_DIRECTORY = 'src/announcements';
 const DEFAULT_BRANCH = 'main';
+const MDX_NODE_TYPES = new Set(['Mdx', 'MarkdownRemark']);
 
 exports.onPreInit = (_, themeOptions) => {
   const { i18n, relatedResources = {}, tessen, signup } = themeOptions;
@@ -111,10 +118,22 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   }
 };
 
-exports.createSchemaCustomization = ({ actions }) => {
+exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes } = actions;
 
-  createTypes(SCHEMA_CUSTOMIZATION_TYPES);
+  const mdxASTResolver = schema.buildObjectType({
+    name: `Mdx`,
+    fields: {
+      mdxAST: {
+        type: `JSON`,
+        async resolve(mdxNode) {
+          return remark().use(remarkMdx).parse(mdxNode.body);
+        },
+      },
+    },
+  });
+
+  createTypes([SCHEMA_CUSTOMIZATION_TYPES, mdxASTResolver]);
 };
 
 exports.sourceNodes = (
@@ -226,6 +245,10 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
   const { prism = {} } = themeOptions;
 
   setBabelPlugin({
+    name: '@emotion/babel-plugin',
+  });
+
+  setBabelPlugin({
     name: 'babel-plugin-prismjs',
     options: {
       languages: uniq([
@@ -274,11 +297,24 @@ exports.onCreateNode = async (utils, themeOptions) => {
   const { createNodeField } = actions;
   const { program } = store.getState();
 
-  if (['Mdx', 'MarkdownRemark'].includes(node.internal.type)) {
+  const slugify = (str) => str.replace('src/content/', '').replace('.mdx', '');
+
+  if (MDX_NODE_TYPES.has(node.internal.type)) {
+    const fileRelativePath = getFileRelativePath(
+      node.internal.contentFilePath,
+      program.directory
+    );
+
     createNodeField({
       node,
       name: 'fileRelativePath',
-      value: getFileRelativePath(node.fileAbsolutePath, program.directory),
+      value: fileRelativePath,
+    });
+
+    createNodeField({
+      node,
+      name: 'slug',
+      value: slugify(fileRelativePath),
     });
   }
 
@@ -302,11 +338,7 @@ exports.onCreatePage = (helpers, themeOptions) => {
   }
 
   if (
-    !(
-      page.internalComponentName === 'Component/404.html' ||
-      page.internalComponentName === 'Component/dev-404-page/' ||
-      page.internalComponentName === 'Component/404/'
-    ) &&
+    !is404Page(page) &&
     transformedPage.context.fileRelativePath.includes('src/pages/') &&
     transformedPage.context.locale === 'en'
   ) {
@@ -322,12 +354,7 @@ exports.onCreatePage = (helpers, themeOptions) => {
     });
   }
 
-  if (
-    (page.internalComponentName === 'Component/404.html' ||
-      page.internalComponentName === 'Component/dev-404-page/' ||
-      page.internalComponentName === 'Component/404/') &&
-    !page.context.layout
-  ) {
+  if (is404Page(page) && !page.context.layout) {
     deletePage(page);
     createPage({
       ...page,
@@ -345,9 +372,11 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
   const { i18n } = themeOptions;
 
   actions.setWebpackConfig({
-    externals: {
-      tessen: 'Tessen',
-    },
+    externals: [
+      {
+        tessen: 'Tessen',
+      },
+    ],
     plugins: [
       plugins.define({
         GATSBY_THEME_NEWRELIC_I18N_PATH: JSON.stringify(
@@ -427,8 +456,8 @@ const createRelatedResources = async (
   const { createNode, createParentChildLink } = actions;
 
   if (
-    !['Mdx', 'Quickstarts'].includes(node.internal.type) ||
-    node.fileAbsolutePath?.includes(ANNOUNCEMENTS_DIRECTORY)
+    !MDX_NODE_TYPES.has(node.internal.type) ||
+    node.internal.contentFilePath?.includes(ANNOUNCEMENTS_DIRECTORY)
   ) {
     return;
   }
