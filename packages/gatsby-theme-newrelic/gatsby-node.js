@@ -300,8 +300,12 @@ exports.onCreateNode = async (utils, themeOptions) => {
   const slugify = (str) => str.replace('src/content/', '').replace('.mdx', '');
 
   if (MDX_NODE_TYPES.has(node.internal.type)) {
+    const absolutePath =
+      node.internal.type === 'MarkdownRemark'
+        ? node.fileAbsolutePath
+        : node.internal.contentFilePath;
     const fileRelativePath = getFileRelativePath(
-      node.internal.contentFilePath,
+      absolutePath,
       program.directory
     );
 
