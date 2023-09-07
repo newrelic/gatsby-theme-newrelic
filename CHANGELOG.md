@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.2.0...v7.2.1) (2023-09-07)
+
+### Bug Fixes
+
+- use `fileAbsolutePath` for `MarkdownRemark` nodes ([e1b5d23](https://github.com/newrelic/gatsby-theme-newrelic/commit/e1b5d23643e1deb6dc01d48b64da4665e484f60e))
+
 # [7.2.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.1.3...v7.2.0) (2023-09-01)
 
 ### Bug Fixes
