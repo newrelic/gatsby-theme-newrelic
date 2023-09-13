@@ -26,7 +26,7 @@ code, the source code can be found at [https://github.com/newrelic/gatsby-theme-
 * [eslint-plugin-jsx-a11y](#eslint-plugin-jsx-a11y)
 * [eslint-plugin-react-hooks](#eslint-plugin-react-hooks)
 * [eslint](#eslint)
-* [jest-emotion](#jest-emotion)
+* [@emotion/jest](#emotion-jest)
 * [jest-localstorage-mock](#jest-localstorage-mock)
 * [jest](#jest)
 * [lerna](#lerna)
@@ -459,9 +459,9 @@ THE SOFTWARE.
 
 ```
 
-### jest-emotion
+### @emotion/jest
 
-This product includes source derived from [jest-emotion](https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion) ([v10.0.32](https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion/tree/v10.0.32)), distributed under the [MIT License](https://github.com/emotion-js/emotion/tree/master/packages/jest-emotion/blob/v10.0.32/LICENSE):
+This product includes source derived from [@emotion/jest](https://github.com/emotion-js/emotion/tree/main/packages/jest) ([v10.0.32](https://github.com/emotion-js/emotion/tree/%40emotion/jest%4011.11.0/packages/jest)), distributed under the [MIT License](https://github.com/emotion-js/emotion/blob/%40emotion/jest%4011.11.0/packages/jest/LICENSE):
 
 ```
 MIT License

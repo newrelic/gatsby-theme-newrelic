@@ -97,7 +97,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
     },
   } = useStaticQuery(graphql`
     query GlobalHeaderQuery {
-      allLocale(sort: { fields: [isDefault, locale], order: [DESC, ASC] }) {
+      allLocale(sort: [{ isDefault: DESC }, { locale: ASC }]) {
         nodes {
           locale
           localName

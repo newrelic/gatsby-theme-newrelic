@@ -221,6 +221,13 @@ const GlobalStyles = ({ layout }) => (
         padding: 0;
         position: absolute;
       }
+      .header-anchor {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        padding-right: 4px;
+      }
     `}
   />
 );

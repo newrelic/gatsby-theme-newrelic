@@ -1,5 +1,5 @@
 import useKeyPress from '../useKeyPress';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { fireEvent } from '@testing-library/react';
 
 test('calls handler when the key is pressed', () => {
