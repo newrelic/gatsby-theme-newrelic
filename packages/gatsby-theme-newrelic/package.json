@@ -86,7 +86,6 @@
     "react-typist": "^2.0.5",
     "react-use": "^17.2.3",
     "remark": "13.0.0",
-    "remark-mdxjs": "2.0.0-next.8",
     "stream-browserify": "^3.0.0",
     "terser": "^5.6.1",
     "ua-parser-js": "^0.7.28",
