@@ -1,7 +1,7 @@
-const { merge, omit } = require('lodash');
-const getResolvedEnv = require('./config/resolvedEnv');
+import { merge, omit } from 'lodash-es';
+import getResolvedEnv from './config/resolvedEnv.mjs';
 
-const buildConfigGetter =
+export const buildConfigGetter =
   (configKey, { defaults = {}, envOptions = false } = {}) =>
   (themeOptions) => {
     const config = themeOptions[configKey];
@@ -16,5 +16,3 @@ const buildConfigGetter =
       envOptions && config.env ? config.env[getResolvedEnv(themeOptions)] : {}
     );
   };
-
-module.exports = { buildConfigGetter };

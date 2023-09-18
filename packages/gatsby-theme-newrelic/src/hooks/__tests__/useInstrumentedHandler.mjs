@@ -1,7 +1,7 @@
 import useInstrumentedHandler from '../useInstrumentedHandler';
 import { renderHook } from '@testing-library/react';
-import { enableFetchMocks } from 'jest-fetch-mock';
-enableFetchMocks();
+import fetchMock from 'jest-fetch-mock';
+fetchMock.enableFetchMocks();
 
 const originalError = console.error;
 const TESSEN_OBJECT = {

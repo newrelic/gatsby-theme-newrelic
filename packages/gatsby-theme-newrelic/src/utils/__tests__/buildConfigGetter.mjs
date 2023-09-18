@@ -1,6 +1,6 @@
-import { buildConfigGetter } from '../configBuilder';
+import { buildConfigGetter } from '../configBuilder.mjs';
 
-jest.mock('../config/resolvedEnv', () => jest.fn(() => 'development'));
+jest.mock('../config/resolvedEnv.mjs', () => jest.fn(() => 'development'));
 
 test('returns null if the theme option is not defined', () => {
   const themeOptions = {};

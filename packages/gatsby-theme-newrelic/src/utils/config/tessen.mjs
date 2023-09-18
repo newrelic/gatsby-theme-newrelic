@@ -1,6 +1,6 @@
 const { buildConfigGetter } = require('../configBuilder');
 
-module.exports = buildConfigGetter('tessen', {
+export default buildConfigGetter('tessen', {
   envOptions: true,
   defaults: {
     minify: process.env.NODE_ENV !== 'development',

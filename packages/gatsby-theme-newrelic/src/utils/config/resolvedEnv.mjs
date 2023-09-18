@@ -6,7 +6,7 @@ const defaultResolveEnv = () =>
   process.env.NODE_ENV ||
   DEFAULT_ENV;
 
-module.exports = (themeOptions) => {
+export default (themeOptions) => {
   const { resolveEnv = defaultResolveEnv } = themeOptions;
 
   return resolveEnv();

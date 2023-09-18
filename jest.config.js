@@ -1,7 +1,9 @@
+/** @type {import('jest').Config} */
 module.exports = {
   testEnvironment: 'jsdom',
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.m?[jt]sx?$',
   transform: {
-    '^.+\\.js$': '<rootDir>/jest-preprocess.js',
+    '^.+\\.m?js$': '<rootDir>/jest-preprocess.mjs',
   },
   testPathIgnorePatterns: ['node_modules', '\\.cache/'],
   globals: {
@@ -10,8 +12,9 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!(gatsby|gatsby-plugin-mdx|gatsby-link|gatsby-script)/)',
   ],
-  setupFiles: ['<rootDir>/loadershim.js', 'jest-localstorage-mock'],
-  setupFilesAfterEnv: ['<rootDir>/setup-test-env.js'],
+  setupFiles: ['<rootDir>/loadershim.mjs', 'jest-localstorage-mock'],
+  setupFilesAfterEnv: ['<rootDir>/setup-test-env.mjs'],
+  moduleFileExtensions: ['js', 'ts', 'tsx', 'json', 'mjs'],
   moduleNameMapper: {
     '^@reach/router(.*)': '<rootDir>/node_modules/@gatsbyjs/reach-router$1',
   },
