@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import getScrollHeight from '../utils/scrollHeight';
-import { useWindowSize } from 'react-use';
+import reactUse from 'react-use';
+const { useWindowSize } = reactUse
+
 
 // global header height + layout content padding
 const MIN_THRESHOLD = 68;

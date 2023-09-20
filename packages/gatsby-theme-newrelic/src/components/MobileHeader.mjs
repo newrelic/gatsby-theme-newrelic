@@ -6,8 +6,9 @@ import Logo from './Logo';
 import HamburgerMenu from './HamburgerMenu';
 import MobileNavigation from './MobileNavigation';
 import { graphql, useStaticQuery } from 'gatsby';
-import { useToggle } from 'react-use';
+import reactUse from 'react-use';
 import useWarning from '../hooks/useWarning';
+const{ useToggle } = reactUse
 
 const MobileHeader = ({ children, className }) => {
   const [isOpen, toggle] = useToggle(false);

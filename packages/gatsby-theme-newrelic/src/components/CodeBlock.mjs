@@ -3,7 +3,7 @@ import React, { useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { LiveError, LivePreview, LiveProvider } from 'react-live';
-import { saveAs } from 'file-saver';
+import fileSaver from 'file-saver';
 import Button from './Button';
 import CodeEditor from './CodeEditor';
 import Icon from './Icon';
@@ -14,6 +14,7 @@ import useClipboard from '../hooks/useClipboard';
 import useFormattedCode from '../hooks/useFormattedCode';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
+const {saveAs} = fileSaver
 
 const AUTO_FORMATTED_LANGUAGES = [
   'jsx',

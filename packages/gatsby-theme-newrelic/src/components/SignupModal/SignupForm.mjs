@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
-import { useMount } from 'react-use';
+import reactUse from 'react-use';
+const { useMount } = reactUse
 
 import { setUTMCookies } from './utmCookie';
 import { createAccountRequest } from './signup';

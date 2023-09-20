@@ -9,8 +9,9 @@ import { useMachine } from '@xstate/react';
 import machine from './machine';
 import gaussianRound from './gaussianRound';
 import MenuBar from './MenuBar';
-import { useIntersection } from 'react-use';
+import reactUse from 'react-use';
 import useClipboard from '../../hooks/useClipboard';
+const { useInteraction } = reactUse
 
 const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? useLayoutEffect : useEffect;
