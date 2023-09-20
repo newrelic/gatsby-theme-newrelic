@@ -1,4 +1,4 @@
-const { buildConfigGetter } = require('../configBuilder');
+import { buildConfigGetter } from '../configBuilder.mjs';
 
 export default buildConfigGetter('tessen', {
   envOptions: true,
