@@ -4,7 +4,6 @@ import Icon from './Icon';
 import { createLocalStorageStateHook } from 'use-local-storage-state';
 import { graphql, useStaticQuery } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
-import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { STORAGE_KEYS } from '../utils/constants';
 import { parseISO, endOfDay, isBefore, isAfter } from 'date-fns';
 import useHasMounted from '../hooks/useHasMounted';
@@ -90,7 +89,7 @@ const AnnouncementBanner = () => {
       }}
     >
       <MDXProvider components={components}>
-        <MDXRenderer>{announcement.body}</MDXRenderer>
+        {announcement.body}
       </MDXProvider>
     </Banner>
   ) : null;
