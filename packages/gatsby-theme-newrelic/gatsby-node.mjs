@@ -5,15 +5,16 @@ import { createRequire } from 'module';
 import remark from 'remark';
 import remarkMdx from 'remark-mdx';
 
-import createRelatedResourceNode from './src/utils/related-resources/createRelatedResourceNode.js';
-import getRelatedResources from './src/utils/related-resources/fetchRelatedResources.js';
-import pageTransforms from './gatsby/page-transforms.js';
-import { SCHEMA_CUSTOMIZATION_TYPES } from './gatsby/type-defs.js';
-import { SWIFTYPE_ENGINE_KEY } from './src/utils/constants.js';
-import { getFileRelativePath } from './gatsby/utils/fs.js';
-import configUtils from './src/utils/config/index.js';
+import { withDefaults } from './src/utils/defaultOptions.mjs';
+import * as configUtils from './src/utils/config/index.mjs';
+import { SWIFTYPE_ENGINE_KEY } from './src/utils/constants.mjs';
+import createRelatedResourceNode from './src/utils/related-resources/createRelatedResourceNode.mjs';
+import getRelatedResources from './src/utils/related-resources/fetchRelatedResources.mjs';
+
 import { getTessenPath } from './gatsby/constants.js';
-import { withDefaults } from './src/utils/defaultOptions.js';
+import pageTransforms from './gatsby/page-transforms.mjs';
+import { SCHEMA_CUSTOMIZATION_TYPES } from './gatsby/type-defs.js';
+import { getFileRelativePath } from './gatsby/utils/fs.js';
 
 const require = createRequire(import.meta.url);
 

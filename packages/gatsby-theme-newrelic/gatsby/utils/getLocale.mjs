@@ -1,4 +1,4 @@
-const { getI18nConfig } = require('../../src/utils/config');
+import { getI18nConfig } from '../../src/utils/config/index.mjs';
 
 const getLocale = ({ location }, themeOptions) => {
   const { locales, defaultLocale } = getI18nConfig(themeOptions);
@@ -12,4 +12,4 @@ const getLocale = ({ location }, themeOptions) => {
   return locale.locale;
 };
 
-module.exports = getLocale;
+export default getLocale;

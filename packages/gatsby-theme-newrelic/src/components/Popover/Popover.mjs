@@ -2,8 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import { css, keyframes } from '@emotion/react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import reactUse from 'react-use';
-const { useClickAway, useWindowSize } = reactUse
+import { useClickAway, useWindowSize } from 'react-use/esm';
 import Portal from '../Portal';
 
 const Popover = ({ bottom, children, id, left, onClose, show }) => {

@@ -10,7 +10,7 @@ module.exports = {
     __PATH_PREFIX__: '',
   },
   transformIgnorePatterns: [
-    'node_modules/(?!(gatsby|gatsby-plugin-mdx|gatsby-link|gatsby-script)/)',
+    'node_modules/(?!(gatsby|gatsby-plugin-mdx|gatsby-link|gatsby-script|react-use)/)',
   ],
   setupFiles: ['<rootDir>/loadershim.mjs', 'jest-localstorage-mock'],
   setupFilesAfterEnv: ['<rootDir>/setup-test-env.mjs'],

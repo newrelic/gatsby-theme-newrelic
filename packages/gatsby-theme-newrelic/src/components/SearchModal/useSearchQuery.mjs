@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
-import reactUse from 'react-use';
+import { useDebounce } from 'react-use/esm';
 import useQueryParams from '../../hooks/useQueryParams';
 import useTessen from '../../hooks/useTessen';
-const { useDebounce } = reactUse
-
 
 const useSearchQuery = (filters) => {
   const { queryParams, setQueryParam } = useQueryParams();

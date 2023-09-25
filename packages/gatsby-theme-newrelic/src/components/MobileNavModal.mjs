@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import { animated } from 'react-spring';
 import { darken, rgba } from 'polished';
-import reactUse from 'react-use';
+import { useScroll } from 'react-use/esm';
 import Icon from './Icon';
 import Portal from './Portal';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-const { useScroll } = reactUse
 
 const REM = 16;
 
