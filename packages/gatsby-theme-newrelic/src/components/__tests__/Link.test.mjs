@@ -25,27 +25,13 @@ const DEFAULT_DATA = {
 const useStaticData = (overrides) =>
   useStaticQuery.mockImplementation(() => merge({}, DEFAULT_DATA, overrides));
 
-jest.unstable_mockModule('gatsby', () => ({
-  __esModule: true,
-  graphql: () => {},
-  Link: ({ to, ...props }) => <a href={to} {...props} />,
-  useStaticQuery: jest.fn(() => ({
-    newRelicThemeConfig: {
-      tessen: {
-        product: 'foo',
-        subproduct: 'bar',
-      },
+useStaticData({
+  site: {
+    siteMetadata: {
+      siteUrl: 'https://example.com',
     },
-    allLocale: {
-      nodes: [{ locale: 'en', isDefault: true }],
-    },
-    site: {
-      siteMetadata: {
-        siteUrl: 'https://example.com',
-      },
-    },
-  })),
-}));
+  },
+});
 
 test('transforms absolute links to relative links when it matches the siteUrl', () => {
   renderWithProviders(<Link to="https://example.com/path/to/page">Link</Link>);
