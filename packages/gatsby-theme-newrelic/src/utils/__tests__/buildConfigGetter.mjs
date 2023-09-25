@@ -1,7 +1,5 @@
 import { buildConfigGetter } from '../configBuilder.mjs';
 
-jest.unstable_mockModule('../config/resolvedEnv.mjs', () => jest.fn(() => 'development'));
-
 test('returns null if the theme option is not defined', () => {
   const themeOptions = {};
 
@@ -26,7 +24,7 @@ test('merges environment-specific config when enabled and defined', () => {
       enable: true,
       anotherOption: false,
       env: {
-        development: {
+        test: {
           enable: false,
         },
       },

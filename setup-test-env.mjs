@@ -11,6 +11,11 @@ global.ResizeObserver = class ResizeObserver {
   disconnect = jest.fn();
 };
 
+// this mock runs after the test environment is set up,
+// but before any tests run.
+// any mocks need to be here, because if they're in a test file,
+// the mocks aren't properly hoisted (because of ESM) and
+// the module won't actually be mocked.
 jest.unstable_mockModule('gatsby', () => ({
   __esModule: true,
   graphql: jest.fn(),

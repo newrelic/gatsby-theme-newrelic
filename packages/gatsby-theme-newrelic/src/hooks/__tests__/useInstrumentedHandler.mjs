@@ -7,8 +7,8 @@ const originalError = console.error;
 const TESSEN_OBJECT = {
   name: 'click',
   category: 'CategoryName',
-  nr_product: 'THEME',
-  nr_subproduct: 'TTHEME',
+  nr_product: 'foo',
+  nr_subproduct: 'foobar',
   location: 'Public',
   loggedIn: true,
   customer_user_id: null,
