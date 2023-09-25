@@ -14,7 +14,8 @@ import useClipboard from '../hooks/useClipboard';
 import useFormattedCode from '../hooks/useFormattedCode';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
-const {saveAs} = fileSaver
+
+const { saveAs } = fileSaver;
 
 const AUTO_FORMATTED_LANGUAGES = [
   'jsx',

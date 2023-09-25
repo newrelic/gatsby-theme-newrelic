@@ -7,7 +7,7 @@
     "build": "yarn clean && gatsby build",
     "develop": "GATSBY_NEWRELIC_ENV=development gatsby develop -p 8001",
     "clean": "gatsby clean",
-    "lint": "eslint src/"
+    "lint": "eslint src/ --ext .js --ext .mjs"
   },
   "dependencies": {
     "@mdx-js/mdx": "^2.3.0",

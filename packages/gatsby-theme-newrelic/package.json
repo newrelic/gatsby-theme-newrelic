@@ -11,7 +11,7 @@
     "clean": "gatsby clean",
     "develop": "GATSBY_NEWRELIC_ENV=production gatsby develop",
     "extract-i18n": "i18next",
-    "lint": "eslint gatsby-*.js gatsby/ src/"
+    "lint": "eslint gatsby-*.{mjs,js} gatsby/ src/ --ext .js --ext .mjs"
   },
   "homepage": "https://github.com/newrelic/gatsby-theme-newrelic/tree/develop/packages/gatsby-theme-newrelic",
   "repository": "https://github.com/newrelic/gatsby-theme-newrelic",

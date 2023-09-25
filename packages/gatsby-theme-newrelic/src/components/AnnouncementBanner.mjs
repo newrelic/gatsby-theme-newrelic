@@ -88,9 +88,7 @@ const AnnouncementBanner = () => {
         setLastAnnouncementDismissed(announcementId);
       }}
     >
-      <MDXProvider components={components}>
-        {announcement.body}
-      </MDXProvider>
+      <MDXProvider components={components}>{announcement.body}</MDXProvider>
     </Banner>
   ) : null;
 };
