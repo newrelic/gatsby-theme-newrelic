@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.2.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.2.1...v7.2.2) (2023-09-26)
+
+### Bug Fixes
+
+- clean up `@mdx-js/{mdx,react}` packages ([4f30134](https://github.com/newrelic/gatsby-theme-newrelic/commit/4f301341b4bb0a77ab74d263b4a3f2031116b735))
+- remove `remark-mdxjs` dependency ([2287c1a](https://github.com/newrelic/gatsby-theme-newrelic/commit/2287c1a769954128bbafb74c083c42c709595ddd))
+- update `remark-mdx`, make gastby-node ESM ([f7be576](https://github.com/newrelic/gatsby-theme-newrelic/commit/f7be5767394dae582ce0c85526e330bfc2e66a53))
+
 ## [7.2.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.2.0...v7.2.1) (2023-09-07)
 
 ### Bug Fixes
