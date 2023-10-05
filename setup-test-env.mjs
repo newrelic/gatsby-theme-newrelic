@@ -36,6 +36,7 @@ jest.unstable_mockModule('gatsby', () => ({
         siteUrl: 'https://github.com/foo/bar',
         repository: 'https://foobar.net',
       },
+      layout: { mobileBreakpoint: '500px' },
     },
     newRelicThemeConfig: {
       tessen: {
