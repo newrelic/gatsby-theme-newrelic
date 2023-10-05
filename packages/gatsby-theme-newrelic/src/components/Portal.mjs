@@ -2,17 +2,20 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 
-const root =
+// this used to just be a constant, but it failed to render correctly
+// in tests. using a function means it will try for the root again,
+// so tests using a `Portal` will render correctly.
+const root = () =>
   typeof document === 'undefined' ? null : document.querySelector('#portal');
 
 const Portal = ({ children, initializer }) => {
   useEffect(() => {
-    if (root) {
-      initializer?.(root);
+    if (root()) {
+      initializer?.(root());
     }
   }, [initializer]);
 
-  return root ? createPortal(children, root) : null;
+  return root() ? createPortal(children, root()) : null;
 };
 
 Portal.propTypes = {
