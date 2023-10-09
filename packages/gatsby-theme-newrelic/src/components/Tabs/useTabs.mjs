@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import TabsContext from '../Context';
+import TabsContext from '../Context.mjs';
 
 const useTabs = () => useContext(TabsContext);
 
