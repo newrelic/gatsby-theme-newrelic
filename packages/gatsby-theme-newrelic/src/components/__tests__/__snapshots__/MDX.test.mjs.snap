@@ -1,0 +1,2116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders mdx as html 1`] = `
+.emotion-0:not(:last-child) {
+  margin-bottom: var(--block-element-spacing);
+}
+
+.emotion-1 {
+  position: relative;
+  padding-top: 56.25%;
+  height: 0;
+}
+
+.emotion-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.emotion-3 {
+  padding: 1.25rem;
+  border-radius: 0.25rem;
+  border: 1px solid;
+  border-left-width: 6px;
+  color: var(--primary-text-color);
+  border-color: var(--attention-notification-announcement);
+  background: var(--callout-tip-background-color);
+}
+
+.emotion-3:not(:last-child) {
+  margin-bottom: var(--block-element-spacing);
+}
+
+.emotion-4 {
+  font-size: 0.75rem!important;
+  text-transform: uppercase;
+  margin-top: 0!important;
+  color: var(--attention-notification-announcement);
+}
+
+.emotion-5:not(:last-child) {
+  margin-bottom: var(--block-element-spacing);
+}
+
+.emotion-6 {
+  background: var(--code-console-background-main);
+  border-radius: 4px;
+}
+
+.emotion-6 a {
+  color: var(--system-text-primary-dark);
+}
+
+.emotion-7 {
+  max-height: 26em;
+  overflow: auto;
+}
+
+.emotion-8 {
+  color: var(--code-console-text-primary);
+  font-family: var(--code-font);
+  font-size: 0.75rem;
+  display: block;
+  overflow: auto;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  tab-size: 2;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  text-shadow: none;
+  padding: 1rem;
+}
+
+.emotion-8 .namespace {
+  opacity: 0.7;
+}
+
+.emotion-8 .token.plain:empty {
+  display: inline-block;
+}
+
+.emotion-8 .token.comment,
+.emotion-8 .token.prolog,
+.emotion-8 .token.doctype,
+.emotion-8 .token.cdata {
+  color: var(--color-comment);
+}
+
+.emotion-8 .token.tag,
+.emotion-8 .token.class-name {
+  color: var(--code-query-syntax-keyword);
+}
+
+.emotion-8 .token.function {
+  color: var(--code-query-syntax-function);
+}
+
+.emotion-8 .token.punctuation,
+.emotion-8 .token.operator,
+.emotion-8 .token.keyword,
+.emotion-8 .token.property,
+.emotion-8 .token.entity,
+.emotion-8 .token.atrule,
+.emotion-8 .token.attr-value,
+.emotion-8 .token.url {
+  color: var(--code-query-syntax-operator);
+}
+
+.emotion-8 .token.regex,
+.emotion-8 .token.important,
+.emotion-8 .token.variable {
+  color: var(--code-query-syntax-regex);
+}
+
+.emotion-8 .token.selector,
+.emotion-8 .token.attr-name,
+.emotion-8 .token.string,
+.emotion-8 .token.char,
+.emotion-8 .token.builtin,
+.emotion-8 .token.inserted {
+  color: var(--code-query-syntax-string);
+}
+
+.emotion-8 .token.property,
+.emotion-8 .token.boolean,
+.emotion-8 .token.constant,
+.emotion-8 .token.symbol,
+.emotion-8 .token.deleted,
+.emotion-8 .token.number {
+  color: var(--code-query-syntax-numeric);
+}
+
+.emotion-8 .token.important,
+.emotion-8 .token.bold {
+  font-weight: bold;
+}
+
+.emotion-8 .token.italic {
+  font-style: italic;
+}
+
+.emotion-8 .token.entity {
+  cursor: help;
+}
+
+.emotion-9 {
+  width: 100%;
+  padding: 0;
+  background: none;
+}
+
+.emotion-9 var,
+.emotion-9 mark {
+  font-size: inherit;
+}
+
+.emotion-9 var {
+  background: var(--color-current-line);
+  color: inherit;
+}
+
+.emotion-9 a:hover var {
+  background: var(--color-selection);
+}
+
+.emotion-9 mark .token {
+  color: var(--color-black)!important;
+}
+
+.emotion-19 {
+  color: var(--color-comment);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: var(--color-background);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 0 1rem;
+  font-size: 0.75rem;
+}
+
+.emotion-20 {
+  font-family: var(--code-font);
+  white-space: nowrap;
+  overflow: hidden;
+  padding-right: 0.5rem;
+}
+
+.emotion-21 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  border-radius: 3px;
+  font-family: var(--primary-font-family);
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition-duration: 0.15s;
+  transition-property: color,background;
+  transition-timing-function: ease-out;
+  white-space: nowrap;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: var(--link-color);
+  background: transparent;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  color: var(--system-text-primary-dark);
+}
+
+.emotion-23 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-right: 0.5rem;
+}
+
+.emotion-43 {
+  --chrome-color: #252526;
+  --border-radius: 0.25rem;
+  background: #1e1e1e;
+  border-radius: var(--border-radius);
+}
+
+.emotion-43:not(:last-child) {
+  margin-bottom: var(--block-element-spacing);
+}
+
+.emotion-44 {
+  background: var(--chrome-color);
+  display: grid;
+  grid-template-columns: repeat(3, auto) 1fr 90px;
+  grid-gap: 0.5rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 1rem;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  height: 38px;
+}
+
+.emotion-45 {
+  background: #ed6b60;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+.emotion-46 {
+  background: #f5be4f;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+.emotion-47 {
+  background: #62c554;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+.emotion-48 {
+  color: #ccc;
+  text-align: center;
+  font-family: var(--code-font);
+  font-size: 0.75rem;
+}
+
+.emotion-49 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  border-radius: 3px;
+  font-family: var(--primary-font-family);
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition-duration: 0.15s;
+  transition-property: color,background;
+  transition-timing-function: ease-out;
+  white-space: nowrap;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: var(--link-color);
+  background: transparent;
+  font-size: 0.75rem;
+  justify-self: end;
+  white-space: nowrap;
+}
+
+.emotion-51 {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  margin-right: 0.5rem;
+}
+
+.emotion-52 {
+  padding: 1rem;
+  height: 0px;
+  font-family: var(--code-font);
+  font-size: 0.75rem;
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  color: var(--code-console-text-primary);
+  display: block;
+  overflow: auto;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  tab-size: 2;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  text-shadow: none;
+}
+
+.emotion-52 .namespace {
+  opacity: 0.7;
+}
+
+.emotion-52 .token.plain:empty {
+  display: inline-block;
+}
+
+.emotion-52 .token.comment {
+  color: var(--color-comment);
+}
+
+.emotion-52 .token.punctuation,
+.emotion-52 .token.operator {
+  color: var(--code-console-text-highlight);
+}
+
+.emotion-52 .token.constant {
+  color: var(--code-query-syntax-keyword);
+}
+
+.emotion-52 .token.string {
+  color: var(--code-query-syntax-string);
+}
+
+.emotion-52>code {
+  background: none;
+  padding: 0;
+  width: 100%;
+}
+
+.emotion-52 .token-line {
+  display: grid;
+  grid-template-columns: 1ch 1fr;
+  grid-gap: 1rem;
+}
+
+.emotion-53 {
+  display: grid;
+  grid-template-columns: 1ch auto;
+  grid-gap: 1ch;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: start;
+  justify-content: start;
+  -webkit-align-items: baseline;
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+
+.emotion-54 {
+  color: var(--code-console-text-highlight);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.emotion-55 {
+  position: relative;
+  color: #fafafa;
+  white-space: pre;
+}
+
+.emotion-55:empty {
+  height: 100%;
+}
+
+.emotion-56 {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+.emotion-102 {
+  color: var(--code-console-text-primary);
+  font-family: var(--code-font);
+  font-size: 0.75rem;
+  display: block;
+  overflow: auto;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  tab-size: 2;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  text-shadow: none;
+  padding: 1rem;
+}
+
+.emotion-103 {
+  width: 100%;
+  padding: 0;
+  background: none;
+}
+
+.emotion-103 var,
+.emotion-103 mark {
+  font-size: inherit;
+  padding: 0.125rem;
+}
+
+.emotion-103 var {
+  background: var(--color-selection);
+  color: inherit;
+}
+
+.emotion-103 a:hover var {
+  background: var(--color-selection);
+}
+
+.emotion-103 mark {
+  color: var(--color-black)!important;
+}
+
+.emotion-103 mark var {
+  color: var(--system-text-secondary-inverted-light);
+}
+
+<div>
+  <hr />
+  
+
+  <p>
+    title: 'Create a "Hello, World!" application'
+resources:
+  </p>
+  
+
+  <ul>
+    
+
+    <li>
+      title: New Relic One VSCode extension
+url: https://marketplace.visualstudio.com/items?itemName=new-relic.nr1
+    </li>
+    
+
+    <li>
+      title: Build on New Relic One
+url: https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/build-new-relic-one/new-relic-one-build-your-own-custom-new-relic-one-application
+    </li>
+    
+
+    <li>
+      title: Build apps
+url: /build-apps
+    </li>
+    
+
+  </ul>
+  
+
+  <hr />
+  
+
+  <p>
+    Here's how you can quickly build a "Hello, World!" application in New Relic One. In these steps, you create a local version of the New Relic One site where you can prototype your application. Then, when you're ready to share the application with others, you can publish it to New Relic One.
+  </p>
+  
+
+  <p>
+    See the video, which demonstrates the steps in this guide in five minutes.
+  </p>
+  
+
+  <div
+    class="emotion-0"
+  >
+    <div
+      class="emotion-1"
+    >
+      <iframe
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen=""
+        class="emotion-2"
+        frameborder="0"
+        src="//www.youtube.com/embed/7omo0qHxku8?modestbranding=1"
+      />
+    </div>
+  </div>
+  
+
+  <h2>
+    Before you begin
+  </h2>
+  
+
+  <p>
+    To get started, make sure you have accounts in GitHub and 
+    <a
+      href="https://newrelic.com/signup/"
+      rel="noopener"
+      target="_blank"
+    >
+      New Relic
+    </a>
+    .
+  </p>
+  
+
+  <p>
+    To develop projects, you need the New Relic One CLI (command line interface).
+  </p>
+  
+
+  <p>
+    If you haven't already installed it, do the following:
+  </p>
+  
+
+  <ul>
+    
+
+    <li>
+      Install 
+      <a
+        href="https://nodejs.org/en/download/"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        Node.js
+      </a>
+      .
+    </li>
+    
+
+    <li>
+      Complete all the steps in the 
+      <a
+        href="https://one.newrelic.com/launcher/developer-center.launcher?pane=eyJuZXJkbGV0SWQiOiJkZXZlbG9wZXItY2VudGVyLmRldmVsb3Blci1jZW50ZXIifQ=="
+        rel="noopener"
+        target="_blank"
+      >
+        CLI quick start
+      </a>
+      .
+    </li>
+    
+
+  </ul>
+  
+
+  <p>
+    For additional details about setting up your environment, see 
+    <a
+      href="set-up-dev-env"
+    >
+      Set up your development environment
+    </a>
+    .
+  </p>
+  
+
+  <div
+    class="emotion-3"
+  >
+    <h4
+      class="emotion-4"
+    >
+      Tip
+    </h4>
+    <p>
+      Use the 
+      <a
+        href="https://marketplace.visualstudio.com/items?itemName=new-relic.nr1"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        New Relic One VSCode extension
+      </a>
+      
+or the 
+      <a
+        href="https://marketplace.visualstudio.com/items?itemName=new-relic.new-relic-extension-pack"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        New Relic VSCode extension pack
+      </a>
+       to build your apps.
+    </p>
+  </div>
+  
+
+  <h2>
+    Create a local version of the "Hello, World!" application
+  </h2>
+  
+
+  <p>
+    The CLI allows you to run a local version of New Relic One. You can develop your application locally before you publish it in New Relic One.
+  </p>
+  
+
+  <p>
+    If you followed all the steps in the CLI quick start, you now have files under a new directory named after your nerdpack project. Here's how you edit those files to create a "Hello, World!" project:
+  </p>
+  
+
+  <p>
+    Open a code editor and point it to the new directory named after your nerdpack project (for example, 
+    <code>
+      my-awesome-nerdpack
+    </code>
+    ).
+  </p>
+  
+
+  <p>
+    Your code editor displays two artifacts:
+  </p>
+  
+
+  <ul>
+    
+
+    <li>
+      <code>
+        launchers
+      </code>
+       containing the homepage tile
+    </li>
+    
+
+    <li>
+      <code>
+        nerdlets
+      </code>
+       containing your application code
+    </li>
+    
+
+  </ul>
+  
+
+  <p>
+    Expand 
+    <code>
+      nerdlets
+    </code>
+     in your code editor, and open 
+    <code>
+      index.js
+    </code>
+    .
+  </p>
+  
+
+  <p>
+    Change the default 
+    <code>
+      return
+    </code>
+     message to 
+    <code>
+      "Hello, World!"
+    </code>
+    :
+  </p>
+  
+
+  <div
+    class="emotion-5"
+  >
+    <div
+      class="emotion-6"
+    >
+      <div
+        class="emotion-7"
+        id="codeblock"
+      >
+        <pre
+          class="emotion-8"
+          data-language="js"
+        >
+          <code
+            class="emotion-9"
+          >
+            <div
+              class="token-line"
+              name="line-1"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token keyword module"
+                  style="color: rgb(86, 156, 214);"
+                >
+                  import
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token imports maybe-class-name"
+                >
+                  React
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token keyword module"
+                  style="color: rgb(86, 156, 214);"
+                >
+                  from
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token string"
+                  style="color: rgb(206, 145, 120);"
+                >
+                  'react'
+                </span>
+                <span
+                  class="token punctuation"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  ;
+                </span>
+                <span
+                  class="token plain"
+                />
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-2"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                  style="display: inline-block;"
+                >
+                  
+
+                </span>
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-3"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                />
+                <span
+                  class="token comment"
+                  style="color: rgb(106, 153, 85);"
+                >
+                  // https://docs.newrelic.com/docs/new-relic-programmable-platform-introduction
+                </span>
+                <span
+                  class="token plain"
+                />
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-4"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                  style="display: inline-block;"
+                >
+                  
+
+                </span>
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-5"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                />
+                <span
+                  class="token keyword module"
+                  style="color: rgb(86, 156, 214);"
+                >
+                  export
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token keyword module"
+                  style="color: rgb(86, 156, 214);"
+                >
+                  default
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token keyword"
+                  style="color: rgb(86, 156, 214);"
+                >
+                  class
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token class-name"
+                  style="color: rgb(78, 201, 176);"
+                >
+                  MyAwesomeNerdpackNerdletNerdlet
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token keyword"
+                  style="color: rgb(86, 156, 214);"
+                >
+                  extends
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token class-name"
+                  style="color: rgb(78, 201, 176);"
+                >
+                  React
+                </span>
+                <span
+                  class="token class-name punctuation"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  .
+                </span>
+                <span
+                  class="token class-name"
+                  style="color: rgb(78, 201, 176);"
+                >
+                  Component
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token punctuation"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  {
+                </span>
+                <span
+                  class="token plain"
+                />
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-6"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                >
+                    
+                </span>
+                <span
+                  class="token function"
+                  style="color: rgb(220, 220, 170);"
+                >
+                  render
+                </span>
+                <span
+                  class="token punctuation"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  (
+                </span>
+                <span
+                  class="token punctuation"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  )
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token punctuation"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  {
+                </span>
+                <span
+                  class="token plain"
+                />
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-7"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                >
+                      
+                </span>
+                <span
+                  class="token keyword control-flow"
+                  style="color: rgb(86, 156, 214);"
+                >
+                  return
+                </span>
+                <span
+                  class="token plain"
+                >
+                   
+                </span>
+                <span
+                  class="token operator"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  &lt;
+                </span>
+                <span
+                  class="token plain"
+                >
+                  h1
+                </span>
+                <span
+                  class="token operator"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  &gt;
+                </span>
+                <span
+                  class="token string"
+                  style="color: rgb(206, 145, 120);"
+                >
+                  "Hello, World!"
+                </span>
+                <span
+                  class="token operator"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  &lt;
+                </span>
+                <span
+                  class="token operator"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  /
+                </span>
+                <span
+                  class="token plain"
+                >
+                  h1
+                </span>
+                <span
+                  class="token operator"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  &gt;
+                </span>
+                <span
+                  class="token punctuation"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  ;
+                </span>
+                <span
+                  class="token plain"
+                />
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-8"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                >
+                    
+                </span>
+                <span
+                  class="token punctuation"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  }
+                </span>
+                <span
+                  class="token plain"
+                />
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-9"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                />
+                <span
+                  class="token punctuation"
+                  style="color: rgb(212, 212, 212);"
+                >
+                  }
+                </span>
+              </div>
+            </div>
+          </code>
+        </pre>
+      </div>
+      <div
+        class="emotion-19"
+      >
+        <div
+          class="emotion-20"
+        />
+        <button
+          class="emotion-21 emotion-22"
+          type="button"
+        >
+          <svg
+            class="emotion-23"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              height="13"
+              rx="2"
+              ry="2"
+              width="13"
+              x="9"
+              y="9"
+            />
+            <path
+              d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+            />
+          </svg>
+          Copy
+        </button>
+      </div>
+    </div>
+  </div>
+  
+
+  <p>
+    As an optional step, you can add a custom launcher icon using any image file named 
+    <code>
+      icon.png
+    </code>
+    . Replace the default 
+    <code>
+      icon.png
+    </code>
+     file under 
+    <code>
+      launcher
+    </code>
+     by dragging in your new image file:
+  </p>
+  
+
+  <p>
+    <img
+      alt="Launcher artifact with icon.png"
+      src="./images/custom-tile.png"
+    />
+  </p>
+  
+
+  <div
+    class="emotion-3"
+  >
+    <h4
+      class="emotion-4"
+    >
+      Tip
+    </h4>
+    <p>
+      You will need an icon.png in 2 places for it to be representing properly in the New Relic One Catalog, To set a launcher icon place an icon.png file in the the launcher directory. To set the icon for the app details page place an icon in the root directory of the project.
+    </p>
+  </div>
+  
+
+  <p>
+    To change the name of the launcher to something meaningful, in your code editor under 
+    <code>
+      launchers
+    </code>
+    , open 
+    <code>
+      nr1.json
+    </code>
+    .
+  </p>
+  
+
+  <p>
+    Change the value for 
+    <code>
+      displayName
+    </code>
+     to anything you want as the launcher label, and save the file:
+  </p>
+  
+
+  <div
+    class="emotion-5"
+  >
+    <div
+      class="emotion-6"
+    >
+      <div
+        class="emotion-7"
+        id="codeblock"
+      >
+        <pre
+          class="emotion-8"
+          data-language="json"
+        >
+          <code
+            class="emotion-9"
+          >
+            <div
+              class="token-line"
+              name="line-1"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                >
+                  {
+                </span>
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-2"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                >
+                    "schemaType": "LAUNCHER",
+                </span>
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-3"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                >
+                    "id": "my-awesome-nerdpack-launcher",
+                </span>
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-4"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                >
+                    "description": "Describe me",
+                </span>
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-5"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                >
+                    "displayName": "INSERT_YOUR_TILE_LABEL_HERE",
+                </span>
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-6"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                >
+                    "rootNerdletId": "my-awesome-nerdpack-nerdlet"
+                </span>
+              </div>
+            </div>
+            <div
+              class="token-line"
+              name="line-7"
+              style="color: rgb(156, 220, 254);"
+            >
+              <div
+                class="emotion-10"
+              >
+                <span
+                  class="token plain"
+                >
+                  }
+                </span>
+              </div>
+            </div>
+          </code>
+        </pre>
+      </div>
+      <div
+        class="emotion-19"
+      >
+        <div
+          class="emotion-20"
+        />
+        <button
+          class="emotion-21 emotion-22"
+          type="button"
+        >
+          <svg
+            class="emotion-23"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              height="13"
+              rx="2"
+              ry="2"
+              width="13"
+              x="9"
+              y="9"
+            />
+            <path
+              d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+            />
+          </svg>
+          Copy
+        </button>
+      </div>
+    </div>
+  </div>
+  
+
+  <p>
+    To see your new changes locally, start the Node server with this command in your terminal:
+  </p>
+  
+
+  <div
+    class="emotion-43"
+  >
+    <div
+      class="emotion-44"
+    >
+      <div
+        class="emotion-45"
+      />
+      <div
+        class="emotion-46"
+      />
+      <div
+        class="emotion-47"
+      />
+      <div
+        class="emotion-48"
+      >
+        bash
+      </div>
+      <button
+        class="dark-mode emotion-49 emotion-22"
+      >
+        <svg
+          class="emotion-51"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            height="13"
+            rx="2"
+            ry="2"
+            width="13"
+            x="9"
+            y="9"
+          />
+          <path
+            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+          />
+        </svg>
+        Copy
+      </button>
+    </div>
+    <pre
+      class="emotion-52"
+    >
+      <code>
+        <div
+          class="emotion-53"
+        >
+          <span
+            class="emotion-54"
+          >
+            $
+          </span>
+          <div
+            class="emotion-55"
+          >
+            <span
+              class="token plain emotion-56"
+            >
+              npm start
+            </span>
+          </div>
+        </div>
+      </code>
+    </pre>
+  </div>
+  
+
+  <p>
+    Open a browser and go to 
+    <a
+      href="https://one.newrelic.com/?nerdpacks=local"
+      rel="noopener"
+      target="_blank"
+    >
+      https://one.newrelic.com/?nerdpacks=local
+    </a>
+     (this url is also shown in the terminal).
+  </p>
+  
+
+  <p>
+    When the browser opens, click 
+    <strong>
+      Apps
+    </strong>
+    , and then in the 
+    <strong>
+      Other apps
+    </strong>
+     section, click the new launcher for your application. Here's an example where we inserted a leaf icon:
+  </p>
+  
+
+  <p>
+    <img
+      alt="The customized nerdlet launcher"
+      src="./images/hello-world-launcher.png"
+    />
+  </p>
+  
+
+  <p>
+    After you click the new launcher, your "Hello, World!" appears:
+  </p>
+  
+
+  <p>
+    <img
+      alt="Hello, World in the browser"
+      src="./images/hello-world-output-local.png"
+    />
+  </p>
+  
+
+  <h2>
+    Publish your application to New Relic
+  </h2>
+  
+
+  <p>
+    Your colleagues can't see your local application, so when you are ready to share it, publish it to the New Relic One catalog. The catalog is where you can find any pre-existing custom applications, as well as any applications you create in your own organization.
+  </p>
+  
+
+  <p>
+    Execute the following in your terminal:
+  </p>
+  
+
+  <div
+    class="emotion-43"
+  >
+    <div
+      class="emotion-44"
+    >
+      <div
+        class="emotion-45"
+      />
+      <div
+        class="emotion-46"
+      />
+      <div
+        class="emotion-47"
+      />
+      <div
+        class="emotion-48"
+      >
+        bash
+      </div>
+      <button
+        class="dark-mode emotion-49 emotion-22"
+      >
+        <svg
+          class="emotion-51"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            height="13"
+            rx="2"
+            ry="2"
+            width="13"
+            x="9"
+            y="9"
+          />
+          <path
+            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+          />
+        </svg>
+        Copy
+      </button>
+    </div>
+    <pre
+      class="emotion-52"
+    >
+      <code>
+        <div
+          class="emotion-53"
+        >
+          <span
+            class="emotion-54"
+          >
+            $
+          </span>
+          <div
+            class="emotion-55"
+          >
+            <span
+              class="token plain emotion-56"
+            >
+              nr1 nerdpack:publish
+            </span>
+          </div>
+        </div>
+      </code>
+    </pre>
+  </div>
+  
+
+  <p>
+    Close your local New Relic One development tab, and open 
+    <a
+      href="https://one.newrelic.com"
+      rel="noopener"
+      target="_blank"
+    >
+      New Relic One
+    </a>
+    .
+  </p>
+  
+
+  <p>
+    Click the 
+    <strong>
+      Apps
+    </strong>
+     launcher.
+  </p>
+  
+
+  <p>
+    Under 
+    <strong>
+      New Relic One catalog
+    </strong>
+    , click the launcher for your new application.
+  </p>
+  
+
+  <p>
+    When your new application opens, notice that it doesn't display any helpful descriptive information. The next section shows you how to add descriptive metadata.
+  </p>
+  
+
+  <p>
+    <img
+      alt="An empty application description in the catalog"
+      src="./images/catalog-description-empty.png"
+    />
+  </p>
+  
+
+  <figcaption>
+    <p>
+      This is a custom caption that goes under the image
+    </p>
+  </figcaption>
+  
+
+  <h2>
+    Add details to describe your project
+  </h2>
+  
+
+  <p>
+    Now that your new application is in the New Relic One catalog, you can add details that help users understand what your application does and how to use it.
+  </p>
+  
+
+  <p>
+    Go to your project in the terminal and execute the following:
+  </p>
+  
+
+  <div
+    class="emotion-43"
+  >
+    <div
+      class="emotion-44"
+    >
+      <div
+        class="emotion-45"
+      />
+      <div
+        class="emotion-46"
+      />
+      <div
+        class="emotion-47"
+      />
+      <div
+        class="emotion-48"
+      >
+        bash
+      </div>
+      <button
+        class="dark-mode emotion-49 emotion-22"
+      >
+        <svg
+          class="emotion-51"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            height="13"
+            rx="2"
+            ry="2"
+            width="13"
+            x="9"
+            y="9"
+          />
+          <path
+            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+          />
+        </svg>
+        Copy
+      </button>
+    </div>
+    <pre
+      class="emotion-52"
+    >
+      <code>
+        <div
+          class="emotion-53"
+        >
+          <span
+            class="emotion-54"
+          >
+            $
+          </span>
+          <div
+            class="emotion-55"
+          >
+            <span
+              class="token plain emotion-56"
+            >
+              nr1 create
+            </span>
+          </div>
+        </div>
+      </code>
+    </pre>
+  </div>
+  
+
+  <p>
+    Select 
+    <strong>
+      catalog
+    </strong>
+    , which creates a stub in your project under the 
+    <code>
+      catalog
+    </code>
+     directory. Here's how the results might look in your code editor:
+  </p>
+  
+
+  <p>
+    <img
+      alt="Catalog stub"
+      src="./images/new-catalog-stub.png"
+    />
+  </p>
+  
+
+  <p>
+    In the 
+    <code>
+      catalog
+    </code>
+     directory of your project, add screenshots or various types of metadata to describe your project. For details about what you can add, see 
+    <a
+      href="https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/build-new-relic-one/discover-manage-applications-new-relic-one-catalog#clamshell-2"
+      rel="noopener"
+      target="_blank"
+    >
+      Add catalog metadata and screenshots
+    </a>
+    .
+  </p>
+  
+
+  <p>
+    After you add the screenshots and descriptions you want, execute the following to save your metadata to the catalog:
+  </p>
+  
+
+  <div
+    class="emotion-43"
+  >
+    <div
+      class="emotion-44"
+    >
+      <div
+        class="emotion-45"
+      />
+      <div
+        class="emotion-46"
+      />
+      <div
+        class="emotion-47"
+      />
+      <div
+        class="emotion-48"
+      >
+        bash
+      </div>
+      <button
+        class="dark-mode emotion-49 emotion-22"
+      >
+        <svg
+          class="emotion-51"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            height="13"
+            rx="2"
+            ry="2"
+            width="13"
+            x="9"
+            y="9"
+          />
+          <path
+            d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+          />
+        </svg>
+        Copy
+      </button>
+    </div>
+    <pre
+      class="emotion-52"
+    >
+      <code>
+        <div
+          class="emotion-53"
+        >
+          <span
+            class="emotion-54"
+          >
+            $
+          </span>
+          <div
+            class="emotion-55"
+          >
+            <span
+              class="token plain emotion-56"
+            >
+              nr1 catalog:submit
+            </span>
+          </div>
+        </div>
+      </code>
+    </pre>
+  </div>
+  
+
+  <p>
+    Return to the catalog and refresh the page to see your new screenshots and metadata describing your project.
+  </p>
+  
+
+  <h2>
+    Subscribe accounts to your application
+  </h2>
+  
+
+  <p>
+    To make sure other users see your application in the catalog, you need to subscribe accounts to the application. Any user with the NerdPack manager or admin role can subscribe to an application from accounts that they have permission to manage.
+  </p>
+  
+
+  <p>
+    If you're not already displaying your application's description page in the browser, click the launcher for the application in the catalog under 
+    <strong>
+      Your company applications
+    </strong>
+    .
+  </p>
+  
+
+  <p>
+    On your application's description page, click 
+    <strong>
+      Add this app
+    </strong>
+    .
+  </p>
+  
+
+  <p>
+    Select the accounts you want to subscribe to the application, and then click 
+    <strong>
+      Update accounts
+    </strong>
+     to save your selections.
+  </p>
+  
+
+  <p>
+    When you return to the Apps page, you'll see the launcher for your new application.
+  </p>
+  
+
+  <h2>
+    Advance configurations
+  </h2>
+  
+
+  <h3>
+    Extend webpack configuration
+  </h3>
+  
+
+  <p>
+    You can use our 
+    <code>
+      .extended-webpackrc.js
+    </code>
+     file to extend the webpack 4 configuration. This allows you to add your own aliases, scripts, and configurations when locally serving or deploying your app.
+  </p>
+  
+
+  <h3>
+    Proxy browser setup
+  </h3>
+  
+
+  <p>
+    Generally, you don't need to know how your application code is loaded in New Relic One. But understanding how this works can help you if you encounter issues (for example, with a proxy or browser setup).
+  </p>
+  
+
+  <p>
+    When developing, your code is served from your local laptop by using an nr-local.net subdomain. This domain points to 127.0.0.1, and will use a variety of ports to connect, including 9973.
+  </p>
+  
+
+  <p>
+    In order to load third-party code into the platform, (both in development and production), New Relic One uses an 
+    <code>
+      &lt;IFRAME&gt;
+    </code>
+    , as well as a separate domain (a subdomain of nr-ext.net) to perform the load, relying on same-domain policy to sandbox the code.
+  </p>
+  
+
+  <p>
+    For this reason, your network administrator may need to enable access to:
+  </p>
+  
+
+  <ul>
+    
+
+    <li>
+      
+
+      <p>
+        Any subdomain of nr-local.net, or, at the very least, to any domain of the shape of 
+        <code>
+          &lt;UserId&gt;
+        </code>
+        .nr-local.net, where UserId is a 32-hexadecimal character identifier that is unique to the user logged into the platform (you can use 
+        <code>
+          [0-9a-f]{32}
+        </code>
+         to discriminate it).
+      </p>
+      
+
+    </li>
+    
+
+    <li>
+      
+
+      <p>
+        Any subdomain of nr-ext.net, or, at the very least, to any domain in the shape of 
+        <code>
+          &lt;NerdpackUuid&gt;
+        </code>
+        .g 
+        <code>
+          &lt;NerdpackGid&gt;
+        </code>
+        .nr-ext.net, where NerdpackUuid is the UUID assigned to your package, and NerdpackGid is zero, or a positive integer (you can use 
+        <code>
+          0|[1-9]\\d+
+        </code>
+         to discriminate it).
+      </p>
+      
+
+    </li>
+    
+
+  </ul>
+  
+
+  <h2>
+    Sample code
+  </h2>
+  
+
+  <p>
+    The following is some sample code that you can use as configuration in your application.
+  </p>
+  
+
+  <div
+    class="emotion-5"
+  >
+    <div
+      class="emotion-6"
+    >
+      <div
+        class="emotion-7"
+        id="codeblock"
+      >
+        <pre
+          class="emotion-102"
+          data-language="xml"
+        >
+          <code
+            class="emotion-103"
+          >
+            &lt;dependency&gt;
+  &lt;groupId&gt;com.newrelic.agent.java&lt;/groupId&gt;
+  &lt;artifactId&gt;newrelic-java&lt;/artifactId&gt;
+  &lt;version&gt;
+            <var>
+              JAVA_AGENT_VERSION
+            </var>
+            &lt;/version&gt;
+  &lt;scope&gt;provided&lt;/scope&gt;
+  &lt;type&gt;zip&lt;/type&gt;
+  &lt;accountId&gt;
+            <mark>
+              YOUR_ACCOUNT_ID
+            </mark>
+            &lt;/accountId&gt;
+&lt;/dependency&gt;
+          </code>
+        </pre>
+      </div>
+      <div
+        class="emotion-19"
+      >
+        <div
+          class="emotion-20"
+        />
+        <button
+          class="emotion-21 emotion-22"
+          type="button"
+        >
+          <svg
+            class="emotion-23"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              height="13"
+              rx="2"
+              ry="2"
+              width="13"
+              x="9"
+              y="9"
+            />
+            <path
+              d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+            />
+          </svg>
+          Copy
+        </button>
+      </div>
+    </div>
+  </div>
+  
+
+  <p>
+    Replace 
+    <mark>
+      YOUR_ACCOUNT_ID
+    </mark>
+     with your account ID and 
+    <var>
+      JAVA_AGENT_VERSION
+    </var>
+     with the agent version you want to install.
+  </p>
+  
+
+  <h2>
+    Summary
+  </h2>
+  
+
+  <p>
+    Now that you've completed the steps in this example, you learned the basic steps to:
+  </p>
+  
+
+  <ul>
+    
+
+    <li>
+      Create a local application.
+    </li>
+    
+
+    <li>
+      Publish the application to the New Relic One catalog so you can share it with your colleagues.
+    </li>
+    
+
+    <li>
+      Add details to the project in the catalog so users understand how to use it.
+    </li>
+    
+
+    <li>
+      Subscribe accounts to your application so other users can use it.
+    </li>
+    
+
+  </ul>
+</div>
+`;

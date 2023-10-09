@@ -1,0 +1,213 @@
+---
+title: 'Create a "Hello, World!" application'
+resources:
+  - title: New Relic One VSCode extension
+    url: https://marketplace.visualstudio.com/items?itemName=new-relic.nr1
+  - title: Build on New Relic One
+    url: https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/build-new-relic-one/new-relic-one-build-your-own-custom-new-relic-one-application
+  - title: Build apps
+    url: /build-apps
+---
+
+Here's how you can quickly build a "Hello, World!" application in New Relic One. In these steps, you create a local version of the New Relic One site where you can prototype your application. Then, when you're ready to share the application with others, you can publish it to New Relic One.
+
+See the video, which demonstrates the steps in this guide in five minutes.
+
+<Video id="7omo0qHxku8" type="youtube" />
+
+## Before you begin
+
+To get started, make sure you have accounts in GitHub and [New Relic](https://newrelic.com/signup/).
+
+To develop projects, you need the New Relic One CLI (command line interface).
+
+If you haven't already installed it, do the following:
+
+- Install [Node.js](https://nodejs.org/en/download/).
+- Complete all the steps in the [CLI quick start](https://one.newrelic.com/launcher/developer-center.launcher?pane=eyJuZXJkbGV0SWQiOiJkZXZlbG9wZXItY2VudGVyLmRldmVsb3Blci1jZW50ZXIifQ==).
+
+For additional details about setting up your environment, see [Set up your development environment](set-up-dev-env).
+
+<Callout variant="tip">
+
+Use the [New Relic One VSCode extension](https://marketplace.visualstudio.com/items?itemName=new-relic.nr1)
+or the [New Relic VSCode extension pack](https://marketplace.visualstudio.com/items?itemName=new-relic.new-relic-extension-pack) to build your apps.
+
+</Callout>
+
+## Create a local version of the "Hello, World!" application
+
+The CLI allows you to run a local version of New Relic One. You can develop your application locally before you publish it in New Relic One.
+
+If you followed all the steps in the CLI quick start, you now have files under a new directory named after your nerdpack project. Here's how you edit those files to create a "Hello, World!" project:
+
+Open a code editor and point it to the new directory named after your nerdpack project (for example, `my-awesome-nerdpack`).
+
+Your code editor displays two artifacts:
+
+- `launchers` containing the homepage tile
+- `nerdlets` containing your application code
+
+Expand `nerdlets` in your code editor, and open `index.js`.
+
+Change the default `return` message to `"Hello, World!"`:
+
+```js
+import React from 'react';
+
+// https://docs.newrelic.com/docs/new-relic-programmable-platform-introduction
+
+export default class MyAwesomeNerdpackNerdletNerdlet extends React.Component {
+  render() {
+    return <h1>"Hello, World!"</h1>;
+  }
+}
+```
+
+As an optional step, you can add a custom launcher icon using any image file named `icon.png`. Replace the default `icon.png` file under `launcher` by dragging in your new image file:
+
+![Launcher artifact with icon.png](./images/custom-tile.png)
+
+ <Callout variant="tip">
+
+You will need an icon.png in 2 places for it to be representing properly in the New Relic One Catalog, To set a launcher icon place an icon.png file in the the launcher directory. To set the icon for the app details page place an icon in the root directory of the project.
+
+</Callout>
+
+To change the name of the launcher to something meaningful, in your code editor under `launchers`, open `nr1.json`.
+
+Change the value for `displayName` to anything you want as the launcher label, and save the file:
+
+```json
+{
+  "schemaType": "LAUNCHER",
+  "id": "my-awesome-nerdpack-launcher",
+  "description": "Describe me",
+  "displayName": "INSERT_YOUR_TILE_LABEL_HERE",
+  "rootNerdletId": "my-awesome-nerdpack-nerdlet"
+}
+```
+
+To see your new changes locally, start the Node server with this command in your terminal:
+
+```bash
+npm start
+```
+
+Open a browser and go to [https://one.newrelic.com/?nerdpacks=local](https://one.newrelic.com/?nerdpacks=local) (this url is also shown in the terminal).
+
+When the browser opens, click **Apps**, and then in the **Other apps** section, click the new launcher for your application. Here's an example where we inserted a leaf icon:
+
+![The customized nerdlet launcher](./images/hello-world-launcher.png)
+
+After you click the new launcher, your "Hello, World!" appears:
+
+![Hello, World in the browser](./images/hello-world-output-local.png)
+
+## Publish your application to New Relic
+
+Your colleagues can't see your local application, so when you are ready to share it, publish it to the New Relic One catalog. The catalog is where you can find any pre-existing custom applications, as well as any applications you create in your own organization.
+
+Execute the following in your terminal:
+
+```bash
+nr1 nerdpack:publish
+```
+
+Close your local New Relic One development tab, and open [New Relic One](https://one.newrelic.com).
+
+Click the **Apps** launcher.
+
+Under **New Relic One catalog**, click the launcher for your new application.
+
+When your new application opens, notice that it doesn't display any helpful descriptive information. The next section shows you how to add descriptive metadata.
+
+![An empty application description in the catalog](./images/catalog-description-empty.png)
+
+<figcaption>
+
+This is a custom caption that goes under the image
+
+</figcaption>
+
+## Add details to describe your project
+
+Now that your new application is in the New Relic One catalog, you can add details that help users understand what your application does and how to use it.
+
+Go to your project in the terminal and execute the following:
+
+```bash
+nr1 create
+```
+
+Select **catalog**, which creates a stub in your project under the `catalog` directory. Here's how the results might look in your code editor:
+
+![Catalog stub](./images/new-catalog-stub.png)
+
+In the `catalog` directory of your project, add screenshots or various types of metadata to describe your project. For details about what you can add, see [Add catalog metadata and screenshots](https://docs.newrelic.com/docs/new-relic-one/use-new-relic-one/build-new-relic-one/discover-manage-applications-new-relic-one-catalog#clamshell-2).
+
+After you add the screenshots and descriptions you want, execute the following to save your metadata to the catalog:
+
+```bash
+nr1 catalog:submit
+```
+
+Return to the catalog and refresh the page to see your new screenshots and metadata describing your project.
+
+## Subscribe accounts to your application
+
+To make sure other users see your application in the catalog, you need to subscribe accounts to the application. Any user with the NerdPack manager or admin role can subscribe to an application from accounts that they have permission to manage.
+
+If you're not already displaying your application's description page in the browser, click the launcher for the application in the catalog under **Your company applications**.
+
+On your application's description page, click **Add this app**.
+
+Select the accounts you want to subscribe to the application, and then click **Update accounts** to save your selections.
+
+When you return to the Apps page, you'll see the launcher for your new application.
+
+## Advance configurations
+
+### Extend webpack configuration
+
+You can use our `.extended-webpackrc.js` file to extend the webpack 4 configuration. This allows you to add your own aliases, scripts, and configurations when locally serving or deploying your app.
+
+### Proxy browser setup
+
+Generally, you don't need to know how your application code is loaded in New Relic One. But understanding how this works can help you if you encounter issues (for example, with a proxy or browser setup).
+
+When developing, your code is served from your local laptop by using an nr-local.net subdomain. This domain points to 127.0.0.1, and will use a variety of ports to connect, including 9973.
+
+In order to load third-party code into the platform, (both in development and production), New Relic One uses an `<IFRAME>`, as well as a separate domain (a subdomain of nr-ext.net) to perform the load, relying on same-domain policy to sandbox the code.
+
+For this reason, your network administrator may need to enable access to:
+
+- Any subdomain of nr-local.net, or, at the very least, to any domain of the shape of `<UserId>`.nr-local.net, where UserId is a 32-hexadecimal character identifier that is unique to the user logged into the platform (you can use `[0-9a-f]{32}` to discriminate it).
+
+- Any subdomain of nr-ext.net, or, at the very least, to any domain in the shape of `<NerdpackUuid>`.g `<NerdpackGid>`.nr-ext.net, where NerdpackUuid is the UUID assigned to your package, and NerdpackGid is zero, or a positive integer (you can use `0|[1-9]\d+` to discriminate it).
+
+## Sample code
+
+The following is some sample code that you can use as configuration in your application.
+
+```xml
+<dependency>
+  <groupId>com.newrelic.agent.java</groupId>
+  <artifactId>newrelic-java</artifactId>
+  <version><var>JAVA_AGENT_VERSION</var></version>
+  <scope>provided</scope>
+  <type>zip</type>
+  <accountId><mark>YOUR_ACCOUNT_ID</mark></accountId>
+</dependency>
+```
+
+Replace <mark>YOUR_ACCOUNT_ID</mark> with your account ID and <var>JAVA_AGENT_VERSION</var> with the agent version you want to install.
+
+## Summary
+
+Now that you've completed the steps in this example, you learned the basic steps to:
+
+- Create a local application.
+- Publish the application to the New Relic One catalog so you can share it with your colleagues.
+- Add details to the project in the catalog so users understand how to use it.
+- Subscribe accounts to your application so other users can use it.
