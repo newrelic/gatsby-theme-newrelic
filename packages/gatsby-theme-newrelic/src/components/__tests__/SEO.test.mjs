@@ -1,8 +1,6 @@
 import { useStaticQuery } from 'gatsby';
 import { renderWithProviders } from '../../test-utils/renderHelpers.mjs';
 
-import { prettyDOM } from '@testing-library/dom';
-
 import { Helmet } from 'react-helmet';
 import SEO from '../SEO.mjs';
 
