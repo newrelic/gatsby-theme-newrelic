@@ -1,4 +1,8 @@
 /** @type {import('jest').Config} */
+
+// for Date mocks
+process.env.TZ = 'PST';
+
 module.exports = {
   testEnvironment: 'jsdom',
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.m?[jt]sx?$',

@@ -29,11 +29,11 @@ const Table = ({ className, children, ...props }) => (
           border-bottom: 1px solid var(--primary-text-color);
           border-top: 1px solid var(--primary-text-color);
           tr {
-            &:nth-child(even) {
+            &:nth-of-type(even) {
               background: var(--primary-background-color);
             }
 
-            &:nth-child(odd) {
+            &:nth-of-type(odd) {
               background: var(--primary-hover-color);
 
               .dark-mode & {
