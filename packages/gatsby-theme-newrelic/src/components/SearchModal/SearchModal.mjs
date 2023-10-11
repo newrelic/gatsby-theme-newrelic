@@ -68,7 +68,7 @@ const SearchModal = ({ onClose, isOpen }) => {
   }, [isOpen, didChangeRoute, onClose]);
 
   useEffect(() => {
-    isOpen && searchInput.current.focus();
+    isOpen && searchInput?.current?.focus();
   }, [isOpen]);
 
   useEffect(() => {
