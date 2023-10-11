@@ -4,6 +4,11 @@ import { Highlight } from 'prism-react-renderer';
 import Prism from 'prismjs';
 import Shell from './Shell';
 
+/**
+ * Display code with syntax highlighting.
+ * `Terminal` is a thin wrapper around the `Shell` component,
+ * but `Shell` can't be used alone, as it depends on props from `Highlight`.
+ */
 const Terminal = ({ children, ...props }) => {
   const code = children.trim();
 

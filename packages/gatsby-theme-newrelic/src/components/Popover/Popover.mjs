@@ -5,6 +5,27 @@ import PropTypes from 'prop-types';
 import { useClickAway, useWindowSize } from 'react-use/esm';
 import Portal from '../Portal';
 
+/**
+ * The base component for creating custom popovers, this component
+ * shows a container filled with custom content over an anchor position
+ * provided by `PopoverButton`.
+ *
+ * This component should be used to wrap the content you want to show,
+ * then pass that component to `PopoverButton`.
+ *
+ * @example
+ * ```jsx
+ * const CustomPopover = (props) =>
+ *   <Popover {...props}>
+ *     <h1>howdy! 🤠</h1>
+ *   </Popover>
+ *
+ * export const HowdyPopover = () =>
+ *   <PopoverButton Popover={CustomPopover}>
+ *     click here to howdy
+ *   </PopoverButton>
+ * ```
+ */
 const Popover = ({ bottom, children, id, left, onClose, show }) => {
   const [overflowOffset, setOverflowOffset] = useState('0px');
   const ref = useRef();

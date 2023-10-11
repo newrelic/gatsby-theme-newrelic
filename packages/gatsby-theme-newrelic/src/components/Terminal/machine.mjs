@@ -3,6 +3,9 @@ import gaussianRound from './gaussianRound';
 
 const ONLY_WHITESPACE = /^\s*$/;
 
+/**
+ * A state machine that handles displaying a block of code one line at a time.
+ */
 const machine = Machine(
   {
     id: 'terminal',
