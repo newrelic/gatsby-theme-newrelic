@@ -36,6 +36,7 @@ jest.unstable_mockModule('gatsby', () => ({
         siteUrl: 'https://github.com/foo/bar',
         repository: 'https://foobar.net',
       },
+      layout: { mobileBreakpoint: '500px' },
     },
     newRelicThemeConfig: {
       tessen: {
@@ -45,3 +46,20 @@ jest.unstable_mockModule('gatsby', () => ({
     },
   })),
 }));
+
+// mock userAgent
+Object.defineProperty(
+  window.navigator,
+  'userAgent',
+  ((value) => ({
+    get() {
+      value =
+        'Mozilla/5.0 (darwin) AppleWebKit/555.56 (KHTML, like Gecko) jsdom/20.0.3';
+      return value;
+    },
+
+    set(v) {
+      value = v;
+    },
+  }))(window.navigator.userAgent)
+);

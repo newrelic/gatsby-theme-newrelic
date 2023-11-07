@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Banner from './Banner';
-import Icon from './Icon';
+import Banner from './Banner.mjs';
+import Icon from './Icon.mjs';
 import { createLocalStorageStateHook } from 'use-local-storage-state';
 import { graphql, useStaticQuery } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
-import { STORAGE_KEYS } from '../utils/constants';
+import { STORAGE_KEYS } from '../utils/constants.mjs';
 import { parseISO, endOfDay, isBefore, isAfter } from 'date-fns';
-import useHasMounted from '../hooks/useHasMounted';
+import useHasMounted from '../hooks/useHasMounted.mjs';
 
 const useLastAnnouncementDismissed = createLocalStorageStateHook(
   STORAGE_KEYS.LAST_ANNOUNCEMENT_DISMISSED
@@ -82,6 +82,7 @@ const AnnouncementBanner = () => {
   return announcement && visible ? (
     <Banner
       data-swiftype-index={false}
+      data-testid="announcement-banner"
       visible={visible}
       onClose={() => {
         setVisible(false);
