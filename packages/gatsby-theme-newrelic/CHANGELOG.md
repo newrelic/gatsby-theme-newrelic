@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [8.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.2.2...v8.0.0) (2023-11-07)
+
+### Bug Fixes
+
+- Add SEO test ([d81bd2c](https://github.com/newrelic/gatsby-theme-newrelic/commit/d81bd2c1dea5814f667033eaab65a48e53a3f638))
+- remove unneeded comment and console log ([0a920f8](https://github.com/newrelic/gatsby-theme-newrelic/commit/0a920f8f17332635c15efd057fcda0459f955ffe))
+- rerender feedback form for each test ([c680aac](https://github.com/newrelic/gatsby-theme-newrelic/commit/c680aac298a445199a978556f54bc6c40c3c9735))
+- rerender feedback form for each test ([362f131](https://github.com/newrelic/gatsby-theme-newrelic/commit/362f131756ded9768e6df57a0c436464613bf6cb))
+- resolve `:nth-child` error ([9a82209](https://github.com/newrelic/gatsby-theme-newrelic/commit/9a82209d50394b408b8b45582fe3774ba22e1e8c))
+
+### chore
+
+- remove unused component ([e77d381](https://github.com/newrelic/gatsby-theme-newrelic/commit/e77d3814e27b34c0322da62c8c06384600a15410))
+
+### Features
+
+- add useHasMounted test ([56f6000](https://github.com/newrelic/gatsby-theme-newrelic/commit/56f60009cedcdf07193f9889031ab6cbd5492aea))
+- update gatsby plugin newrelic ([73516ab](https://github.com/newrelic/gatsby-theme-newrelic/commit/73516ab7a03bbb7b4f7e842b01e2661f20d6d703))
+
+### BREAKING CHANGES
+
+- delete AnimatedCard Component
+
 ## [7.2.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.2.1...v7.2.2) (2023-09-26)
 
 ### Bug Fixes
