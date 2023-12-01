@@ -10,8 +10,8 @@
     "lint": "eslint src/ --ext .js --ext .mjs"
   },
   "dependencies": {
-    "@mdx-js/mdx": "^2.3.0",
-    "@mdx-js/react": "^2.3.0",
+    "@mdx-js/mdx": "^1.6.16",
+    "@mdx-js/react": "^1.6.16",
     "@newrelic/gatsby-theme-newrelic": "^3.2.0",
     "gatsby": "^5.0.0",
     "gatsby-plugin-mdx": "^5.11.0",

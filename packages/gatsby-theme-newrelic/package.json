@@ -26,7 +26,8 @@
   "peerDependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mdx-js/mdx": "^2.3.0",
+    "@mdx-js/mdx": "^1.6.16",
+    "@mdx-js/react": "^1.6.16",
     "@splitsoftware/splitio-react": "^1.2.0",
     "gatsby": "5.x",
     "prettier": "^2.0.0",
@@ -37,6 +38,8 @@
   "devDependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mdx-js/mdx": "^1.6.16",
+    "@mdx-js/react": "^1.6.16",
     "@splitsoftware/splitio-react": "^1.6.0",
     "gatsby": "^5.0.0",
     "i18next-parser": "^3.6.0",
