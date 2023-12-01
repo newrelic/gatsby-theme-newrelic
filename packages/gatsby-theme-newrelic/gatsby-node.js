@@ -1,24 +1,22 @@
-import path from 'path';
-import { createFilePath } from 'gatsby-source-filesystem';
-import fs from 'fs';
-import { createRequire } from 'module';
-import remark from 'remark';
-import remarkMdx from 'remark-mdx';
+const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
+const fs = require('fs');
+const { withDefaults } = require('./src/utils/defaultOptions');
+const remark = require('remark');
+const remarkMdx = require('remark-mdx');
+const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
+const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
+const {
+  getTessenConfig,
+  getResolvedEnv,
+  getI18nConfig,
+} = require('./src/utils/config');
+const pageTransforms = require('./gatsby/page-transforms');
+const { getTessenPath } = require('./gatsby/constants');
+const { getFileRelativePath } = require('./gatsby/utils/fs');
+const { SCHEMA_CUSTOMIZATION_TYPES } = require('./gatsby/type-defs');
+const { SWIFTYPE_ENGINE_KEY } = require('./src/utils/constants');
 
-import { withDefaults } from './src/utils/defaultOptions.mjs';
-import * as configUtils from './src/utils/config/index.mjs';
-import { SWIFTYPE_ENGINE_KEY } from './src/utils/constants.mjs';
-import createRelatedResourceNode from './src/utils/related-resources/createRelatedResourceNode.mjs';
-import getRelatedResources from './src/utils/related-resources/fetchRelatedResources.mjs';
-
-import { getTessenPath } from './gatsby/constants.js';
-import pageTransforms from './gatsby/page-transforms.mjs';
-import { SCHEMA_CUSTOMIZATION_TYPES } from './gatsby/type-defs.js';
-import { getFileRelativePath } from './gatsby/utils/fs.js';
-
-const require = createRequire(import.meta.url);
-
-const { getTessenConfig, getResolvedEnv, getI18nConfig } = configUtils;
 let writeableRelatedResourceData = {};
 
 const uniq = (arr) => [...new Set(arr)];
@@ -31,7 +29,7 @@ const ANNOUNCEMENTS_DIRECTORY = 'src/announcements';
 const DEFAULT_BRANCH = 'main';
 const MDX_NODE_TYPES = new Set(['Mdx', 'MarkdownRemark']);
 
-export const onPreInit = (_, themeOptions) => {
+exports.onPreInit = (_, themeOptions) => {
   const { i18n, relatedResources = {}, tessen, signup } = themeOptions;
 
   if (i18n && !i18n.translationsPath) {
@@ -52,7 +50,7 @@ export const onPreInit = (_, themeOptions) => {
   }
 };
 
-export const onPreBootstrap = ({ reporter, store }, themeOptions) => {
+exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   const { program } = store.getState();
 
   const imagePath = path.join(program.directory, 'src/images');
@@ -120,7 +118,7 @@ export const onPreBootstrap = ({ reporter, store }, themeOptions) => {
   }
 };
 
-export const createSchemaCustomization = ({ actions, schema }) => {
+exports.createSchemaCustomization = ({ actions, schema }) => {
   const { createTypes } = actions;
 
   const mdxASTResolver = schema.buildObjectType({
@@ -138,7 +136,7 @@ export const createSchemaCustomization = ({ actions, schema }) => {
   createTypes([SCHEMA_CUSTOMIZATION_TYPES, mdxASTResolver]);
 };
 
-export const sourceNodes = (
+exports.sourceNodes = (
   { actions, createNodeId, createContentDigest },
   themeOptions
 ) => {
@@ -191,7 +189,7 @@ export const sourceNodes = (
   });
 };
 
-export const createResolvers = ({ createResolvers }, themeOptions) => {
+exports.createResolvers = ({ createResolvers }, themeOptions) => {
   const { layout = {} } = themeOptions;
   const relatedResources = {
     args: {
@@ -242,7 +240,7 @@ export const createResolvers = ({ createResolvers }, themeOptions) => {
   });
 };
 
-export const onCreateBabelConfig = ({ actions }, themeOptions) => {
+exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
   const { setBabelPlugin } = actions;
   const { prism = {} } = themeOptions;
 
@@ -293,7 +291,7 @@ export const onCreateBabelConfig = ({ actions }, themeOptions) => {
   });
 };
 
-export const onCreateNode = async (utils, themeOptions) => {
+exports.onCreateNode = async (utils, themeOptions) => {
   const { relatedResources } = withDefaults(themeOptions);
   const { node, actions, store } = utils;
   const { createNodeField } = actions;
@@ -327,7 +325,7 @@ export const onCreateNode = async (utils, themeOptions) => {
   await createRelatedResources(utils, relatedResources);
 };
 
-export const onCreatePage = (helpers, themeOptions) => {
+exports.onCreatePage = (helpers, themeOptions) => {
   const { page, actions } = helpers;
   const { createPage, deletePage } = actions;
   const { locales } = getI18nConfig(themeOptions);
@@ -374,7 +372,7 @@ export const onCreatePage = (helpers, themeOptions) => {
   }
 };
 
-export const onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
+exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
   const { i18n } = themeOptions;
 
   actions.setWebpackConfig({
@@ -406,7 +404,7 @@ export const onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
   });
 };
 
-export const onPostBootstrap = (_, themeOptions) => {
+exports.onPostBootstrap = (_, themeOptions) => {
   const {
     relatedResources: {
       swiftype: { refetch, resultsPath },
