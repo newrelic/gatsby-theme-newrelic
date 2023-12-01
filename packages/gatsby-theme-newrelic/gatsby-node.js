@@ -2,8 +2,6 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const fs = require('fs');
 const { withDefaults } = require('./src/utils/defaultOptions');
-const remark = require('remark');
-const remarkMdx = require('remark-mdx');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
 const {
@@ -118,22 +116,10 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
   }
 };
 
-exports.createSchemaCustomization = ({ actions, schema }) => {
+exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
 
-  const mdxASTResolver = schema.buildObjectType({
-    name: `Mdx`,
-    fields: {
-      mdxAST: {
-        type: `JSON`,
-        async resolve(mdxNode) {
-          return remark().use(remarkMdx).parse(mdxNode.body);
-        },
-      },
-    },
-  });
-
-  createTypes([SCHEMA_CUSTOMIZATION_TYPES, mdxASTResolver]);
+  createTypes(SCHEMA_CUSTOMIZATION_TYPES);
 };
 
 exports.sourceNodes = (
