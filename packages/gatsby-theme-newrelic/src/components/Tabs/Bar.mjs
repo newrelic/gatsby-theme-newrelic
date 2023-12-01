@@ -41,7 +41,6 @@ const MobileTabControl = ({ children, className }) => {
   /* eslint-disable react/prop-types */
   return (
     <Select
-      value={currentTab}
       onChange={(e) => {
         setCurrentTab(e.target.value);
       }}
@@ -51,7 +50,12 @@ const MobileTabControl = ({ children, className }) => {
       className={className}
     >
       {React.Children.map(children, ({ props }) => (
-        <option key={props.id} value={props.id} disabled={props.disabled}>
+        <option
+          key={props.id}
+          value={props.id}
+          selected={props.id === currentTab}
+          disabled={props.disabled}
+        >
           {getDeepestChild(props.children)}
           {(props.count || props.count === 0) && ` (${props.count})`}
         </option>
