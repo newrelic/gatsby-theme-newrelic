@@ -87,7 +87,7 @@ const Button = styled.button`
   white-space: nowrap;
   text-decoration: none;
 
-  ${({ variant }) => styles.variant[variant] ?? ''}
+  ${({ variant }) => styles.variant[variant]}
   ${({ size }) => styles.size[size]}
   ${({ disabled }) => disabled && styles.disabled}
 `;
@@ -98,7 +98,7 @@ Button.SIZE = SIZES;
 Button.propTypes = {
   disabled: PropTypes.bool,
   size: PropTypes.oneOf(Object.values(Button.SIZE)),
-  variant: PropTypes.oneOf(Object.values(Button.VARIANT)),
+  variant: PropTypes.oneOf(Object.values(Button.VARIANT)).isRequired,
 };
 
 export default Button;
