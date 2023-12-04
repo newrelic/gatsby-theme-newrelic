@@ -4,8 +4,6 @@
 process.env.TZ = 'PST';
 
 module.exports = {
-  testEnvironment: 'jsdom',
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.m?[jt]sx?$',
   transform: {
     '^.+\\.m?js$': '<rootDir>/jest-preprocess.mjs',
   },
@@ -21,5 +19,6 @@ module.exports = {
   moduleFileExtensions: ['js', 'ts', 'tsx', 'json', 'mjs'],
   moduleNameMapper: {
     '^@reach/router(.*)': '<rootDir>/node_modules/@gatsbyjs/reach-router$1',
+    '^gatsby-page-utils/(.*)$': `gatsby-page-utils/dist/$1`,
   },
 };

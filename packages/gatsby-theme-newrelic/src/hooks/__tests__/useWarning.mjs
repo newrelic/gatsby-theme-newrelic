@@ -1,5 +1,5 @@
 import useWarning from '../useWarning';
-import { renderHook } from '@testing-library/react';
+import { renderHook } from '@testing-library/react-hooks';
 
 const originalConsoleError = console.error;
 
