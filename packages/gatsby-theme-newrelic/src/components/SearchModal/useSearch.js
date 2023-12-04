@@ -1,10 +1,8 @@
 import { useCallback, useState, useEffect, useReducer, useMemo } from 'react';
-import reactUse from 'react-use';
+import { useDebounce } from 'react-use';
 import search from './search';
 import { useQuery } from 'react-query';
 import useLocale from '../../hooks/useLocale';
-const { useDebounce } = reactUse
-
 
 const ACTIONS = {
   NEXT_PAGE: 'nextPage',

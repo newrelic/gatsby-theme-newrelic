@@ -4,11 +4,10 @@ import { css } from '@emotion/react';
 import Icon from './Icon';
 import Link from './Link';
 import { animated, useSpring } from 'react-spring';
-import reactUse from 'react-use';
+import { usePrevious, useIsomorphicLayoutEffect } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useQueryParams from '../hooks/useQueryParams';
 import { useLocation } from '@reach/router';
-const { usePrevious, useIsomorphicLayoutEffect } = reactUse
 
 const ResizeObserver = global.ResizeObserver || class ResizeObserver {};
 
