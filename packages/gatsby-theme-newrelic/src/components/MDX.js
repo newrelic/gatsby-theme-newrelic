@@ -20,8 +20,8 @@ import TutorialSection from './TutorialSteps/TutorialSection';
 
 const defaultComponents = {
   a: MDXLink,
-  code: (props) => <code>{props.children}</code>,
-  pre: (props) => <MDXCodeBlock {...props.children.props} />,
+  code: MDXCodeBlock,
+  pre: (props) => props.children,
   Button,
   ButtonLink: (props) => <Button {...props} as={Link} />,
   Callout: MDXCallout,
