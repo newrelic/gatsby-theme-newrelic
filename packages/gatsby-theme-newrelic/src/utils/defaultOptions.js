@@ -13,7 +13,7 @@ const DEFAULT_SITE_LABELS = {
   'https://learn.newrelic.com': 'learn',
 };
 
-export const withDefaults = (themeOptions) => {
+const withDefaults = (themeOptions) => {
   const { relatedResources = {} } = themeOptions;
 
   return {
@@ -30,3 +30,5 @@ export const withDefaults = (themeOptions) => {
     },
   };
 };
+
+module.exports = { withDefaults };

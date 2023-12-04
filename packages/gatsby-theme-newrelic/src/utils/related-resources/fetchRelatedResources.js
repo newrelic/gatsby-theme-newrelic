@@ -1,6 +1,6 @@
-import fs from 'fs';
-import search from './search.mjs';
-import { once, memoize } from 'lodash-es';
+const fs = require('fs');
+const search = require('./search');
+const { once, memoize } = require('lodash');
 
 const getExcludedUrls = (node, siteUrl) => {
   const { frontmatter = {} } = node;
@@ -50,7 +50,7 @@ const getLocalResults = ({ slug }, swiftypeOptions) => {
   return data[slug] || [];
 };
 
-export default async (helpers, swiftypeOptions) => {
+module.exports = async (helpers, swiftypeOptions) => {
   const { reporter } = helpers;
   const { refetch } = swiftypeOptions;
   const isProdEnv = process.env.NODE_ENV === 'production';

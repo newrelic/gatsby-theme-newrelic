@@ -1,5 +1,5 @@
-import fetch from 'node-fetch';
-import { appendTrailingSlash, stripTrailingSlash } from './url.mjs';
+const fetch = require('node-fetch');
+const { appendTrailingSlash, stripTrailingSlash } = require('./url');
 
 const normalizeUrl = (url) => {
   const prefix = url.startsWith('!') ? '!' : '';
@@ -13,7 +13,11 @@ const normalizeUrl = (url) => {
 
 const uniq = (arr) => [...new Set(arr)];
 
-export default async (url, params = {}, { engineKey, limit, excludedUrls }) => {
+module.exports = async (
+  url,
+  params = {},
+  { engineKey, limit, excludedUrls }
+) => {
   const { page: pageFilters = {} } = params.filters || {};
 
   const res = await fetch(

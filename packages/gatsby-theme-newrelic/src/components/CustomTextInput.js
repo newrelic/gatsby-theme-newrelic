@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDebounce } from 'react-use/esm';
+import reactUse from 'react-use';
 import { scroller } from 'react-scroll';
 import { css } from '@emotion/react';
 import Icon from './Icon';
 import Link from './Link';
 import Surface from './Surface';
+const { useDebounce } = reactUse
 
 const CustomTextInput = ({
   className,

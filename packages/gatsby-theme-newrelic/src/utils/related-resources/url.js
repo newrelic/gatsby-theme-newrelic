@@ -4,7 +4,7 @@ const hasQueryParams = (urlString) => {
   return Boolean(url.search);
 };
 
-export const appendTrailingSlash = (url) => {
+exports.appendTrailingSlash = (url) => {
   if (hasQueryParams(url)) {
     return url;
   }
@@ -12,7 +12,7 @@ export const appendTrailingSlash = (url) => {
   return url.endsWith('/') ? url : `${url}/`;
 };
 
-export const stripTrailingSlash = (url) => {
+exports.stripTrailingSlash = (url) => {
   if (hasQueryParams(url)) {
     return url;
   }

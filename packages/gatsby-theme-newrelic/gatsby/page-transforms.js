@@ -1,6 +1,6 @@
-import { getI18nConfig } from '../src/utils/config/index.mjs';
-import { getFileRelativePath } from './utils/fs.js';
-import getLocale from './utils/getLocale.mjs';
+const { getI18nConfig } = require('../src/utils/config');
+const { getFileRelativePath } = require('./utils/fs');
+const getLocale = require('./utils/getLocale');
 
 const addLocale = ({ page }, themeOptions) => {
   const { defaultLocale, locales } = getI18nConfig(themeOptions);
@@ -46,4 +46,4 @@ const addFileRelativePath = ({ page, store }) => {
   };
 };
 
-export default [addLocale, addFileRelativePath];
+module.exports = [addLocale, addFileRelativePath];

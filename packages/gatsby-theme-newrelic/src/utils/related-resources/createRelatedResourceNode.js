@@ -1,4 +1,4 @@
-export default ({
+module.exports = ({
   createNode,
   createNodeId,
   createContentDigest,
