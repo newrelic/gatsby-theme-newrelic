@@ -85,7 +85,6 @@ const BasicTemplate = ({ data, location }) => {
 };
 
 BasicTemplate.propTypes = {
-  children: PropTypes.node.isRequired,
   data: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };
