@@ -2,6 +2,40 @@ import React from 'react';
 import CodeBlock from '../CodeBlock.mjs';
 import { renderWithProviders } from '../../test-utils/renderHelpers.mjs';
 
+jest.unstable_mockModule('gatsby', () => ({
+  __esModule: true,
+  graphql: () => {},
+  Link: ({ to, ...props }) => <a href={to} {...props} />,
+  useStaticQuery: () => ({
+    allLocale: {
+      nodes: [
+        {
+          name: 'English',
+          locale: 'en',
+          localizedPath: '/en',
+          isDefault: true,
+        },
+      ],
+    },
+    site: {
+      siteMetadata: {
+        siteUrl: 'https://github.com/foo/bar',
+        repository: 'https://foobar.net',
+      },
+    },
+    newRelicThemeConfig: {
+      tessen: {
+        product: 'foo',
+        subproduct: 'foobar',
+      },
+    },
+  }),
+}));
+
+beforeEach(() => {
+  jest.useFakeTimers()
+})
+
 test('renders embedded var tag', () => {
   const { container } = renderWithProviders(
     <CodeBlock language="graphql">{`
