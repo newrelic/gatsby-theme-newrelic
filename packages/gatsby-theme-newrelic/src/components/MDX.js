@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { MDXProvider } from '@mdx-js/react';
 import Button from './Button';
 import MDXCallout from './MDXCallout';
@@ -37,16 +38,16 @@ const defaultComponents = {
   Video: MDXVideo,
 };
 
-const MDX = ({ children, components }) => {
+const MDX = ({ body, components }) => {
   return (
     <MDXProvider components={{ ...defaultComponents, ...components }}>
-      {children}
+      <MDXRenderer>{body}</MDXRenderer>
     </MDXProvider>
   );
 };
 
 MDX.propTypes = {
-  children: PropTypes.object.isRequired,
+  body: PropTypes.string.isRequired,
   components: PropTypes.object,
 };
 
