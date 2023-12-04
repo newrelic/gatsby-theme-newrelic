@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Highlight } from 'prism-react-renderer';
+import Highlight from 'prism-react-renderer';
 import Prism from 'prismjs';
 import Shell from './Shell';
 
