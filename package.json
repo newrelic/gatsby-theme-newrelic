@@ -15,7 +15,6 @@
     "extract-i18n": "yarn workspace @newrelic/gatsby-theme-newrelic extract-i18n"
   },
   "devDependencies": {
-    "@emotion/jest": "^11.11.0",
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.2.6",
