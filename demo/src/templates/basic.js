@@ -90,7 +90,7 @@ const Title = styled.h1`
 
 export const pageQuery = graphql`
   query ($slug: String!) {
-    mdx(fields: { slug: { eq: $slug } }) {
+    mdx(slug: { eq: $slug }) {
       body
       mdxAST
       frontmatter {
