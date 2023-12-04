@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { graphql } from 'gatsby';
 import {
   ContributingGuidelines,
@@ -39,8 +39,31 @@ const BasicTemplate = ({ data, location }) => {
   return (
     <>
       <SEO location={location} title={frontmatter.title} />
-      <Main>
-        <Title>{frontmatter.title}</Title>
+      <Layout.Main
+        css={css`
+          display: grid;
+          grid-template-areas:
+            'page-title page-tools'
+            'content page-tools';
+          grid-template-columns: minmax(0, 1fr) 320px;
+          grid-column-gap: var(--site-content-padding);
+
+          @media screen and (max-width: 760px) {
+            grid-template-areas:
+              'page-title'
+              'content'
+              'page-tools';
+            grid-template-columns: minmax(0, 1fr);
+          }
+        `}
+      >
+        <h1
+          css={css`
+            grid-area: page-title;
+          `}
+        >
+          {frontmatter.title}
+        </h1>
         <Layout.Content>
           <MarkdownContainer>
             <MDX body={body} />
@@ -56,7 +79,7 @@ const BasicTemplate = ({ data, location }) => {
           <TableOfContents headings={headings} />
           <RelatedResources resources={relatedResources} />
         </Layout.PageTools>
-      </Main>
+      </Layout.Main>
     </>
   );
 };
@@ -66,27 +89,6 @@ BasicTemplate.propTypes = {
   data: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };
-
-const Main = styled(Layout.Main)`
-  display: grid;
-  grid-template-areas:
-    'page-title page-tools'
-    'content page-tools';
-  grid-template-columns: minmax(0, 1fr) 320px;
-  grid-column-gap: var(--site-content-padding);
-
-  @media screen and (max-width: 760px) {
-    grid-template-areas:
-      'page-title'
-      'content'
-      'page-tools';
-    grid-template-columns: minmax(0, 1fr);
-  }
-`;
-
-const Title = styled.h1`
-  grid-area: page-title;
-`;
 
 export const pageQuery = graphql`
   query ($slug: String!) {
