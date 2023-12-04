@@ -65,10 +65,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   actions.setWebpackConfig({
     resolve: {
       fallback: {
-        crypto: false,
         http: false,
         https: false,
-        url: false,
         zlib: false,
       },
     },
