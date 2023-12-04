@@ -24,8 +24,8 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.3.0",
     "@mdx-js/mdx": "^1.6.16",
     "@mdx-js/react": "^1.6.16",
     "@splitsoftware/splitio-react": "^1.2.0",
@@ -37,8 +37,8 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.3.0",
     "@mdx-js/mdx": "^1.6.16",
     "@mdx-js/react": "^1.6.16",
     "@splitsoftware/splitio-react": "^1.6.0",
