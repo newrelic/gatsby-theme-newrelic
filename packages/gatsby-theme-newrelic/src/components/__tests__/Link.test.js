@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from '../Link';
 import { screen } from '@testing-library/react';
-import { renderWithProviders } from '../../test-utils/renderHelpers.mjs';
+import { renderWithProviders } from '../../test-utils/renderHelpers';
 import { useStaticQuery } from 'gatsby';
-import { merge } from 'lodash-es';
+import { merge } from 'lodash';
 
 const DEFAULT_DATA = {
   newRelicThemeConfig: {
@@ -25,7 +25,7 @@ const DEFAULT_DATA = {
 const useStaticData = (overrides) =>
   useStaticQuery.mockImplementation(() => merge({}, DEFAULT_DATA, overrides));
 
-jest.unstable_mockModule('gatsby', () => ({
+jest.mock('gatsby', () => ({
   __esModule: true,
   graphql: () => {},
   Link: ({ to, ...props }) => <a href={to} {...props} />,

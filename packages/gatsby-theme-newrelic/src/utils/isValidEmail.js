@@ -9,4 +9,4 @@ const isEmail = (email) =>
 
 const isValidEmail = (value) => isValidInput(value) && isEmail(value);
 
-export { isValidInput, isValidEmail };
+module.exports = { isValidInput, isValidEmail };
