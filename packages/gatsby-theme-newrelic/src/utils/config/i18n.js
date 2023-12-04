@@ -63,4 +63,4 @@ const getI18nConfig = (themeOptions) => {
   };
 };
 
-export default getI18nConfig;
+module.exports = getI18nConfig;
