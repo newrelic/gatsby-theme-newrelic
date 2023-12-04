@@ -13,9 +13,9 @@ global.ResizeObserver = class ResizeObserver {
 
 jest.unstable_mockModule('gatsby', () => ({
   __esModule: true,
-  graphql: jest.fn(),
-  Link: jest.fn(({ to, ...props }) => <a href={to} {...props} />),
-  useStaticQuery: jest.fn(() => ({
+  graphql: () => {},
+  Link: ({ to, ...props }) => <a href={to} {...props} />,
+  useStaticQuery: () => ({
     allLocale: {
       nodes: [
         {
@@ -39,7 +39,7 @@ jest.unstable_mockModule('gatsby', () => ({
         subproduct: 'foobar',
       },
     },
-  })),
+  }),
 }));
 
 // mock userAgent
