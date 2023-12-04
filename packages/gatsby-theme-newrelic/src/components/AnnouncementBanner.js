@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import Banner from './Banner.mjs';
-import Icon from './Icon.mjs';
+import Banner from './Banner';
+import Icon from './Icon';
 import { createLocalStorageStateHook } from 'use-local-storage-state';
 import { graphql, useStaticQuery } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
-import { STORAGE_KEYS } from '../utils/constants.mjs';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { STORAGE_KEYS } from '../utils/constants';
 import { parseISO, endOfDay, isBefore, isAfter } from 'date-fns';
-import useHasMounted from '../hooks/useHasMounted.mjs';
+import useHasMounted from '../hooks/useHasMounted';
 
 const useLastAnnouncementDismissed = createLocalStorageStateHook(
   STORAGE_KEYS.LAST_ANNOUNCEMENT_DISMISSED
@@ -29,7 +30,7 @@ const createContentHash = (announcement) => {
 
   return btoa(
     [
-      announcement.fields.slug,
+      announcement.slug,
       announcement.frontmatter.startDate,
       announcement.frontmatter.endDate,
     ].join(':')
@@ -42,17 +43,13 @@ const components = {
 
 const AnnouncementBanner = () => {
   const { allMdx } = useStaticQuery(graphql`
-    {
+    query {
       allMdx(
-        sort: { frontmatter: { startDate: ASC } }
-        filter: {
-          internal: { contentFilePath: { regex: "/src/announcements/" } }
-        }
+        sort: { fields: [frontmatter___startDate] }
+        filter: { fileAbsolutePath: { regex: "/src/announcements/" } }
       ) {
         nodes {
-          fields {
-            slug
-          }
+          slug
           body
           frontmatter {
             startDate(formatString: "YYYY-MM-DD")
@@ -82,14 +79,15 @@ const AnnouncementBanner = () => {
   return announcement && visible ? (
     <Banner
       data-swiftype-index={false}
-      data-testid="announcement-banner"
       visible={visible}
       onClose={() => {
         setVisible(false);
         setLastAnnouncementDismissed(announcementId);
       }}
     >
-      <MDXProvider components={components}>{announcement.body}</MDXProvider>
+      <MDXProvider components={components}>
+        <MDXRenderer>{announcement.body}</MDXRenderer>
+      </MDXProvider>
     </Banner>
   ) : null;
 };

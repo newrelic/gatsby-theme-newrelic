@@ -2,7 +2,6 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const fs = require('fs');
 const { withDefaults } = require('./src/utils/defaultOptions');
-const GithubSlugger = require('github-slugger');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
 const {
@@ -26,8 +25,6 @@ const is404Page = (page) =>
 
 const ANNOUNCEMENTS_DIRECTORY = 'src/announcements';
 const DEFAULT_BRANCH = 'main';
-const MDX_NODE_TYPES = new Set(['Mdx', 'MarkdownRemark']);
-const slugger = new GithubSlugger();
 
 exports.onPreInit = (_, themeOptions) => {
   const { i18n, relatedResources = {}, tessen, signup } = themeOptions;
@@ -281,20 +278,11 @@ exports.onCreateNode = async (utils, themeOptions) => {
   const { createNodeField } = actions;
   const { program } = store.getState();
 
-  if (MDX_NODE_TYPES.has(node.internal.type)) {
+  if (['Mdx', 'MarkdownRemark'].includes(node.internal.type)) {
     createNodeField({
       node,
       name: 'fileRelativePath',
-      value: getFileRelativePath(
-        node.internal.contentFilePath,
-        program.directory
-      ),
-    });
-
-    createNodeField({
-      node,
-      name: 'slug',
-      value: slugger.slug(node.frontmatter.title),
+      value: getFileRelativePath(node.fileAbsolutePath, program.directory),
     });
   }
 
@@ -436,8 +424,8 @@ const createRelatedResources = async (
   const { createNode, createParentChildLink } = actions;
 
   if (
-    !MDX_NODE_TYPES.has(node.internal.type) ||
-    node.internal.contentFilePath?.includes(ANNOUNCEMENTS_DIRECTORY)
+    !['Mdx', 'Quickstarts'].includes(node.internal.type) ||
+    node.fileAbsolutePath?.includes(ANNOUNCEMENTS_DIRECTORY)
   ) {
     return;
   }

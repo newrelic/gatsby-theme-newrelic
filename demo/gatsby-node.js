@@ -11,13 +11,11 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
           isDefault
         }
       }
-      allMdx(
-        filter: { internal: { contentFilePath: { regex: "/src/content/" } } }
-      ) {
+      allMdx(filter: { fileAbsolutePath: { regex: "/src/content/" } }) {
         nodes {
+          slug
           fields {
             fileRelativePath
-            slug
           }
           internal {
             contentFilePath
@@ -42,8 +40,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   allMdx.nodes.forEach((node) => {
     const {
-      fields: { fileRelativePath, slug },
-      internal: { contentFilePath },
+      slug,
+      fields: { fileRelativePath },
     } = node;
 
     createPage({
