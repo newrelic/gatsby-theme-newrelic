@@ -25,26 +25,31 @@ const SEGMENT_OBJECT = {
   },
 };
 
-test('Should display the feedback form, and click positive button', () => {
+describe('Simple Feedback Form', () => {
   const screen = render(<SimpleFeedback />);
-  const buttons = screen.getAllByRole('button');
-  const positiveButton = buttons[0];
-  fireEvent.click(positiveButton);
-  expect(global.Tessen.track).toHaveBeenCalledWith(
-    'feedbackThumbClick',
-    tessenObject('Positive'),
-    SEGMENT_OBJECT
-  );
-});
 
-test('Should display the feedback form, and click negative button', () => {
-  const screen = render(<SimpleFeedback />);
   const buttons = screen.getAllByRole('button');
-  const negativeButton = buttons[1];
-  fireEvent.click(negativeButton);
-  expect(global.Tessen.track).toHaveBeenLastCalledWith(
-    'feedbackThumbClick',
-    tessenObject('Negative'),
-    SEGMENT_OBJECT
-  );
+  console.log(buttons);
+
+  afterEach(() => jest.resetAllMocks());
+
+  it('Should display the feedback form, and click positive button', () => {
+    const positiveButton = buttons[0];
+    fireEvent.click(positiveButton);
+    expect(global.Tessen.track).toHaveBeenCalledWith(
+      'feedbackThumbClick',
+      tessenObject('Positive'),
+      SEGMENT_OBJECT
+    );
+  });
+
+  it('Should display the feedback form, and click negative button', () => {
+    const negativeButton = buttons[1];
+    fireEvent.click(negativeButton);
+    expect(global.Tessen.track).toHaveBeenLastCalledWith(
+      'feedbackThumbClick',
+      tessenObject('Negative'),
+      SEGMENT_OBJECT
+    );
+  });
 });
