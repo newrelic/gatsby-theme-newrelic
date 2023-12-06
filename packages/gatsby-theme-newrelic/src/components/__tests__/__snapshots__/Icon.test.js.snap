@@ -942,17 +942,17 @@ exports[`logo-apple icon matches its snapshot 1`] = `
 `;
 
 exports[`logo-newrelic icon matches its snapshot 1`] = `
-.emotion-0 {
+.emotion-2 {
   width: 1em;
   height: 1em;
 }
 
-.emotion-1 {
+.emotion-0 {
   fill: var(--primary-text-color);
 }
 
 <svg
-  className="emotion-0"
+  className="emotion-2"
   viewBox="0 0 32 32"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -965,7 +965,7 @@ exports[`logo-newrelic icon matches its snapshot 1`] = `
     fill="#1CE783"
   />
   <path
-    className="text-color emotion-1 emotion-2"
+    className="text-color emotion-0 emotion-1"
     d="M9.25323 19.0793V28.9247L14.6209 32.0005V16.0015L0.666504 8V14.1556L9.25323 19.0793Z"
   />
 </svg>

@@ -1,8 +1,8 @@
 import React from 'react';
-import CodeBlock from '../CodeBlock.mjs';
-import { renderWithProviders } from '../../test-utils/renderHelpers.mjs';
+import CodeBlock from '../CodeBlock';
+import { renderWithProviders } from '../../test-utils/renderHelpers';
 
-jest.unstable_mockModule('gatsby', () => ({
+jest.mock('gatsby', () => ({
   __esModule: true,
   graphql: () => {},
   Link: ({ to, ...props }) => <a href={to} {...props} />,
@@ -33,8 +33,8 @@ jest.unstable_mockModule('gatsby', () => ({
 }));
 
 beforeEach(() => {
-  jest.useFakeTimers()
-})
+  jest.useFakeTimers();
+});
 
 test('renders embedded var tag', () => {
   const { container } = renderWithProviders(
