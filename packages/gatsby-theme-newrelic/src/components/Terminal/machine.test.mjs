@@ -1,9 +1,9 @@
 import Prism from 'prismjs';
 import { interpret } from 'xstate';
 
-import machine from '../../Terminal/machine.mjs';
-import normalizeTokens from '../../../test-utils/normalizeTokens.mjs';
-import translateLines from '../../Terminal/utils/translateLines.mjs';
+import machine from '../Terminal/machine.mjs';
+import normalizeTokens from './normalizeTokens.mjs';
+import translateLines from './utils/translateLines.mjs';
 
 test('state machine advances one line at a time and completes', () => {
   const onTransition = jest.fn();
