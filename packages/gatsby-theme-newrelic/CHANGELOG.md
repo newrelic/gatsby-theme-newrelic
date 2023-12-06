@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v8.0.0...v9.0.0) (2023-12-06)
+
+- feat!: revert Gatsby 5 changes (#959) ([4271a27](https://github.com/newrelic/gatsby-theme-newrelic/commit/4271a27c539634fe61dd4c93d079c05b9fbbe9d3)), closes [#959](https://github.com/newrelic/gatsby-theme-newrelic/issues/959)
+
+### BREAKING CHANGES
+
+- reverts the Gatsby 5 changes so the theme
+  is back on Gatsby 4.
+
 # [8.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v7.2.2...v8.0.0) (2023-11-07)
 
 ### Bug Fixes
