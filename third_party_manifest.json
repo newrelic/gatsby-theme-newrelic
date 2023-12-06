@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "Fri Jul 08 2022 20:36:01 GMT+0000 (Coordinated Universal Time)",
+  "lastUpdated": "Wed Dec 06 2023 21:50:23 GMT+0000 (Coordinated Universal Time)",
   "projectName": "gatsby-theme-newrelic",
   "projectUrl": "https://github.com/newrelic/gatsby-theme-newrelic.git",
-  "includeDev": true,
   "includeOptDeps": false,
+  "includeDev": true,
   "dependencies": {},
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic@0.3.1": {
@@ -18,15 +18,15 @@
       "licenseTextSource": "file",
       "publisher": "New Relic"
     },
-    "@testing-library/jest-dom@5.16.4": {
+    "@testing-library/jest-dom@5.17.0": {
       "name": "@testing-library/jest-dom",
-      "version": "5.16.4",
+      "version": "5.17.0",
       "range": "^5.11.4",
       "licenses": "MIT",
       "repoUrl": "https://github.com/testing-library/jest-dom",
-      "versionedRepoUrl": "https://github.com/testing-library/jest-dom/tree/v5.16.4",
+      "versionedRepoUrl": "https://github.com/testing-library/jest-dom/tree/v5.17.0",
       "licenseFile": "node_modules/@testing-library/jest-dom/LICENSE",
-      "licenseUrl": "https://github.com/testing-library/jest-dom/blob/v5.16.4/LICENSE",
+      "licenseUrl": "https://github.com/testing-library/jest-dom/blob/v5.17.0/LICENSE",
       "licenseTextSource": "file",
       "publisher": "Ernesto Garcia",
       "email": "gnapse@gmail.com",
@@ -83,6 +83,18 @@
       "publisher": "Philipp Spiess",
       "email": "hello@philippspiess.com"
     },
+    "eslint-plugin-graphql@4.0.0": {
+      "name": "eslint-plugin-graphql",
+      "version": "4.0.0",
+      "range": "^4.0.0",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/apollostack/eslint-plugin-graphql",
+      "versionedRepoUrl": "https://github.com/apollostack/eslint-plugin-graphql/tree/v4.0.0",
+      "licenseFile": "node_modules/eslint-plugin-graphql/README.md",
+      "licenseUrl": "https://github.com/apollostack/eslint-plugin-graphql/blob/v4.0.0/README.md",
+      "licenseTextSource": "spdx",
+      "publisher": "Sashko Stubailo"
+    },
     "eslint-plugin-jsx-a11y@6.6.0": {
       "name": "eslint-plugin-jsx-a11y",
       "version": "6.6.0",
@@ -131,6 +143,20 @@
       "licenseTextSource": "file",
       "publisher": "Kye Hohenberger"
     },
+    "jest-fetch-mock@3.0.3": {
+      "name": "jest-fetch-mock",
+      "version": "3.0.3",
+      "range": "^3.0.3",
+      "licenses": "MIT",
+      "repoUrl": "https://github.com/jefflau/jest-fetch-mock",
+      "versionedRepoUrl": "https://github.com/jefflau/jest-fetch-mock/tree/v3.0.3",
+      "licenseFile": "node_modules/jest-fetch-mock/LICENSE.md",
+      "licenseUrl": "https://github.com/jefflau/jest-fetch-mock/blob/v3.0.3/LICENSE.md",
+      "licenseTextSource": "file",
+      "publisher": "Jeff Lau",
+      "email": "jeff-lau@live.com",
+      "url": "http://jefflau.net/"
+    },
     "jest-localstorage-mock@2.4.21": {
       "name": "jest-localstorage-mock",
       "version": "2.4.21",
@@ -156,15 +182,15 @@
       "licenseUrl": "https://github.com/facebook/jest/blob/v26.6.3/LICENSE",
       "licenseTextSource": "file"
     },
-    "lerna@3.22.1": {
+    "lerna@5.6.2": {
       "name": "lerna",
-      "version": "3.22.1",
-      "range": "^3.22.1",
+      "version": "5.6.2",
+      "range": "^5.6.2",
       "licenses": "MIT",
       "repoUrl": "https://github.com/lerna/lerna",
-      "versionedRepoUrl": "https://github.com/lerna/lerna/tree/v3.22.1",
+      "versionedRepoUrl": "https://github.com/lerna/lerna/tree/v5.6.2",
       "licenseFile": "node_modules/lerna/LICENSE",
-      "licenseUrl": "https://github.com/lerna/lerna/blob/v3.22.1/LICENSE",
+      "licenseUrl": "https://github.com/lerna/lerna/blob/v5.6.2/LICENSE",
       "licenseTextSource": "file",
       "publisher": "Sebastian McKenzie",
       "email": "sebmck@gmail.com"

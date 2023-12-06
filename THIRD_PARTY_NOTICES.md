@@ -23,10 +23,12 @@ code, the source code can be found at [https://github.com/newrelic/gatsby-theme-
 * [@testing-library/react](#testing-libraryreact)
 * [babel-jest](#babel-jest)
 * [babel-preset-gatsby](#babel-preset-gatsby)
+* [eslint-plugin-graphql](#eslint-plugin-graphql)
 * [eslint-plugin-jsx-a11y](#eslint-plugin-jsx-a11y)
 * [eslint-plugin-react-hooks](#eslint-plugin-react-hooks)
 * [eslint](#eslint)
 * [jest-emotion](#jest-emotion)
+* [jest-fetch-mock](#jest-fetch-mock)
 * [jest-localstorage-mock](#jest-localstorage-mock)
 * [jest](#jest)
 * [lerna](#lerna)
@@ -250,7 +252,7 @@ This product includes source derived from [@newrelic/eslint-plugin-newrelic](htt
 
 ### @testing-library/jest-dom
 
-This product includes source derived from [@testing-library/jest-dom](https://github.com/testing-library/jest-dom) ([v5.16.4](https://github.com/testing-library/jest-dom/tree/v5.16.4)), distributed under the [MIT License](https://github.com/testing-library/jest-dom/blob/v5.16.4/LICENSE):
+This product includes source derived from [@testing-library/jest-dom](https://github.com/testing-library/jest-dom) ([v5.17.0](https://github.com/testing-library/jest-dom/tree/v5.17.0)), distributed under the [MIT License](https://github.com/testing-library/jest-dom/blob/v5.17.0/LICENSE):
 
 ```
 The MIT License (MIT)
@@ -387,6 +389,22 @@ SOFTWARE.
 
 ```
 
+### eslint-plugin-graphql
+
+This product includes source derived from [eslint-plugin-graphql](https://github.com/apollostack/eslint-plugin-graphql) ([v4.0.0](https://github.com/apollostack/eslint-plugin-graphql/tree/v4.0.0)), distributed under the [MIT License](https://github.com/apollostack/eslint-plugin-graphql/blob/v4.0.0/README.md):
+
+```
+MIT License
+
+Copyright (c) <year> <copyright holders>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
+
 ### eslint-plugin-jsx-a11y
 
 This product includes source derived from [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y) ([v6.6.0](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/v6.6.0)), distributed under the [MIT License](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/v6.6.0/LICENSE.md):
@@ -488,6 +506,35 @@ SOFTWARE.
 
 ```
 
+### jest-fetch-mock
+
+This product includes source derived from [jest-fetch-mock](https://github.com/jefflau/jest-fetch-mock) ([v3.0.3](https://github.com/jefflau/jest-fetch-mock/tree/v3.0.3)), distributed under the [MIT License](https://github.com/jefflau/jest-fetch-mock/blob/v3.0.3/LICENSE.md):
+
+```
+MIT License
+
+Copyright (c) 2017 Jeff Lau
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+```
+
 ### jest-localstorage-mock
 
 This product includes source derived from [jest-localstorage-mock](https://github.com/clarkbw/jest-localstorage-mock) ([v2.4.21](https://github.com/clarkbw/jest-localstorage-mock/tree/v2.4.21)), distributed under the [BSD-3-Clause License](https://github.com/clarkbw/jest-localstorage-mock/blob/v2.4.21/LICENSE):
@@ -556,7 +603,7 @@ SOFTWARE.
 
 ### lerna
 
-This product includes source derived from [lerna](https://github.com/lerna/lerna) ([v3.22.1](https://github.com/lerna/lerna/tree/v3.22.1)), distributed under the [MIT License](https://github.com/lerna/lerna/blob/v3.22.1/LICENSE):
+This product includes source derived from [lerna](https://github.com/lerna/lerna) ([v5.6.2](https://github.com/lerna/lerna/tree/v5.6.2)), distributed under the [MIT License](https://github.com/lerna/lerna/blob/v5.6.2/LICENSE):
 
 ```
 Copyright (c) 2015-present Lerna Contributors
