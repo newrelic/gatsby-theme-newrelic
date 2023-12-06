@@ -11,6 +11,7 @@ import {
   ContributingGuidelines,
   CustomTextInput,
   InteractiveForm,
+  Icon,
   Layout,
   Link,
   PageTools,
@@ -135,6 +136,7 @@ const IndexPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customInput, setCustomInput] = useState('');
+  const [flipCard, setFlipCard] = useState(false);
   const [appName, setAppName] = useState('');
   const [licenseKey, setLicenseKey] = useState('');
 
