@@ -1,6 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import SimpleFeedback from '../SimpleFeedback.mjs';
 
+// global.newRelicRequestingServicesHeader = 'gatsby-theme-newrelic-demo';
 global.Tessen = {
   track: jest.fn(),
 };
