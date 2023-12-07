@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.1.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.0.0...v9.1.0) (2023-12-07)
+
+### Features
+
+- add privacy icon ([ade825a](https://github.com/newrelic/gatsby-theme-newrelic/commit/ade825a9a2a8543d1c025165108c86a7642936d1))
+
 # [9.0.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v8.0.0...v9.0.0) (2023-12-06)
 
 - feat!: revert Gatsby 5 changes (#959) ([4271a27](https://github.com/newrelic/gatsby-theme-newrelic/commit/4271a27c539634fe61dd4c93d079c05b9fbbe9d3)), closes [#959](https://github.com/newrelic/gatsby-theme-newrelic/issues/959)
