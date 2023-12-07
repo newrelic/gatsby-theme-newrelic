@@ -4,6 +4,7 @@ import ExternalLink from './ExternalLink';
 import { graphql, useStaticQuery } from 'gatsby';
 import { css } from '@emotion/react';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import PrivacySwitch from '../icons/PrivacySwitch';
 import Trans from './Trans';
 import Link from './Link';
 import RecaptchaFooter from './SignupModal/RecaptchaFooter';
@@ -35,6 +36,7 @@ const GlobalFooter = ({ className }) => {
   const handlePrivacyClick = () => {
     window.Osano.cm.showDrawer('osano-cm-dom-info-dialog-open');
   };
+  const osanoPresent = hasOsano();
 
   return (
     <footer
@@ -98,8 +100,9 @@ const GlobalFooter = ({ className }) => {
               css={css`
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: center;
+                justify-content: flex-end;
                 grid-area: legal;
+                max-width: ${osanoPresent ? '29rem' : '32rem'};
 
                 a {
                   margin-left: 0.75rem;
@@ -124,7 +127,7 @@ const GlobalFooter = ({ className }) => {
               <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
                 {t('footer.privacyNotice', 'Privacy Notice')}
               </ExternalLink>
-              {hasOsano() && (
+              {osanoPresent && (
                 <Button
                   variant={Button.VARIANT.LINK}
                   css={css`
@@ -134,10 +137,21 @@ const GlobalFooter = ({ className }) => {
                     text-decoration: underline;
                     white-space: nowrap;
                     color: var(--system-text-primary-dark);
+
+                    &:hover svg {
+                      filter: invert(100%);
+                    }
                   `}
                   onClick={handlePrivacyClick}
                 >
                   {t('footer.privacyChoices')}
+                  <PrivacySwitch
+                    css={css`
+                      height: 1em;
+                      margin-left: 0.5em;
+                    `}
+                    size="2em"
+                  />
                 </Button>
               )}
 
