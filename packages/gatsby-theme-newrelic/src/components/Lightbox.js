@@ -69,6 +69,7 @@ const Lightbox = ({ children }) => {
                     background: var(--modal-wrapper-color);
 
                     img {
+                      max-height: unset;
                       max-width: unset;
                     }
                   `}
