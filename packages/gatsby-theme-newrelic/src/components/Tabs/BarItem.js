@@ -30,7 +30,10 @@ const BarItem = ({ className, index, children, id, disabled }) => {
       css={css`
         border: none;
         border-top: var(--primary-background-color) solid 2px;
-        border-bottom: var(--border-color) solid 2px;
+        border-bottom: #1dcad3 solid 2px;
+
+        transition: 0.5s ease-in;
+        transition-property: background;
 
         background: none;
         color: var(--primary-text-color);
@@ -48,13 +51,13 @@ const BarItem = ({ className, index, children, id, disabled }) => {
         &.isSelected {
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
+          background: var(--secondary-background-color);
 
           border: #1dcad3 solid 2px;
-          border-bottom: var(--primary-background-color) solid 2px;
+          border-bottom: var(--secondary-background-color) solid 2px;
 
           .dark-mode & {
-            border: #1dcad3 solid 2px;
-            border-bottom: var(--primary-background-color) solid 2px;
+            border-bottom: var(--secondary-background-color) solid 2px;
           }
         }
 

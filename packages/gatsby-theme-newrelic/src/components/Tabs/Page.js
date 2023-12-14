@@ -33,15 +33,12 @@ const Page = ({ index, children, id, className }) => {
       aria-labelledby={id}
       css={css`
         opacity: 1;
-        background: var(--primary-background-color);
+        background: var(--secondary-background-color);
 
         transform: translateX(0);
 
-        -webkit-transition: all 0.9s ease-in-out;
-        -moz-transition: all 0.9s ease-in-out;
-        -ms-transition: all 0.9s ease-in-out;
-        -o-transition: all 0.9s ease-in-out;
-        transition: all 0.9s ease-in-out;
+        transition: 0.75s ease-in;
+        transition-property: visibility, transform, opacity;
 
         ${stacked &&
         css`
@@ -64,11 +61,9 @@ const Page = ({ index, children, id, className }) => {
           ${transitionDirection === 'left'
             ? css`
                 transform: translateX(100%);
-                border: blue dotted 4px;
               `
             : css`
                 transform: translateX(-100%);
-                border: red dotted 4px;
               `}
         `}
       `}

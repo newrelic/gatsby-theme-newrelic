@@ -165,62 +165,14 @@ const IndexPage = () => {
           <section>
             <Tabs>
               <Tabs.Bar>
-                <Tabs.BarItem id="codeblock">A code block</Tabs.BarItem>
-                <Tabs.BarItem id="live-edit">
+                <Tabs.BarItem id="text">Lotsa text</Tabs.BarItem>
+                <Tabs.BarItem id="Codeblock">A code block</Tabs.BarItem>
+                <Tabs.BarItem id="Live-edit">
                   A live editable code block w/ preview
                 </Tabs.BarItem>
                 <Tabs.BarItem id="embedded">var/mark/links</Tabs.BarItem>
-                <Tabs.BarItem id="text">lotsa text</Tabs.BarItem>
               </Tabs.Bar>
               <Tabs.Pages>
-                <Tabs.Page id="codeblock">
-                  <CodeBlock
-                    copyable
-                    lineNumbers
-                    highlightedLines="5-7,12"
-                    fileName="src/components/Button.js"
-                    language="jsx"
-                    css={css`
-                      margin-bottom: 2rem;
-                    `}
-                  >
-                    {codeSample}
-                  </CodeBlock>
-                </Tabs.Page>
-                <Tabs.Page id="live-edit">
-                  <CodeBlock
-                    copyable
-                    lineNumbers
-                    live
-                    preview
-                    fileName="src/components/Button.js"
-                    language="jsx"
-                    scope={{ Button }}
-                    css={css`
-                      margin-bottom: 2rem;
-                    `}
-                  >
-                    {liveCodeSample}
-                  </CodeBlock>
-                </Tabs.Page>
-                <Tabs.Page id="embedded">
-                  <CodeBlock
-                    language="graphql"
-                    css={css`
-                      margin-bottom: 1rem;
-                    `}
-                  >
-                    {codeSampleWithAdditionalTags}
-                  </CodeBlock>
-                  <CodeBlock
-                    language="yaml"
-                    css={css`
-                      margin-bottom: 1rem;
-                    `}
-                  >
-                    {anotherSample}
-                  </CodeBlock>
-                </Tabs.Page>
                 <Tabs.Page id="text">
                   <h2>Lorem ipsum dolor sit amet.</h2>
                   <p>
@@ -281,6 +233,55 @@ const IndexPage = () => {
                     mi. Enim nulla aliquet porttitor lacus luctus accumsan
                     tortor posuere ac.
                   </p>
+                </Tabs.Page>
+
+                <Tabs.Page id="codeblock">
+                  <CodeBlock
+                    copyable
+                    lineNumbers
+                    highlightedLines="5-7,12"
+                    fileName="src/components/Button.js"
+                    language="jsx"
+                    css={css`
+                      margin-bottom: 2rem;
+                    `}
+                  >
+                    {codeSample}
+                  </CodeBlock>
+                </Tabs.Page>
+                <Tabs.Page id="live-edit">
+                  <CodeBlock
+                    copyable
+                    lineNumbers
+                    live
+                    preview
+                    fileName="src/components/Button.js"
+                    language="jsx"
+                    scope={{ Button }}
+                    css={css`
+                      margin-bottom: 2rem;
+                    `}
+                  >
+                    {liveCodeSample}
+                  </CodeBlock>
+                </Tabs.Page>
+                <Tabs.Page id="embedded">
+                  <CodeBlock
+                    language="graphql"
+                    css={css`
+                      margin-bottom: 1rem;
+                    `}
+                  >
+                    {codeSampleWithAdditionalTags}
+                  </CodeBlock>
+                  <CodeBlock
+                    language="yaml"
+                    css={css`
+                      margin-bottom: 1rem;
+                    `}
+                  >
+                    {anotherSample}
+                  </CodeBlock>
                 </Tabs.Page>
               </Tabs.Pages>
             </Tabs>
