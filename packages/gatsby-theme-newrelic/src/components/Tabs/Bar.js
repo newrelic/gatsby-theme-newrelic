@@ -35,14 +35,18 @@ const getDeepestChild = (child) => {
 };
 
 const MobileTabControl = ({ children, className }) => {
-  const { currentTab, setCurrentTab } = useTabs();
+  const { currentTabIndex, setCurrentTabIndex } = useTabs();
 
   // eslint gets angry about using props from React.Children.map
   /* eslint-disable react/prop-types */
   return (
     <Select
       onChange={(e) => {
-        setCurrentTab(e.target.value);
+        const selectedId = e.currentTarget.value;
+        const index = children.findIndex(
+          (child) => child.props.id === selectedId
+        );
+        setCurrentTabIndex(index);
       }}
       css={css`
         margin-bottom: 1rem;
@@ -53,7 +57,7 @@ const MobileTabControl = ({ children, className }) => {
         <option
           key={props.id}
           value={props.id}
-          selected={props.id === currentTab}
+          selected={props.index === currentTabIndex}
           disabled={props.disabled}
         >
           {getDeepestChild(props.children)}

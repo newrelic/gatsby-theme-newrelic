@@ -5,31 +5,14 @@ import { css } from '@emotion/react';
 import useTabs from './useTabs';
 import useInstrumentedHandler from '../../hooks/useInstrumentedHandler';
 
-const BarItem = ({
-  className,
-  index,
-  children,
-  id,
-  disabled,
-  onClick: onTabClick,
-}) => {
-  const {
-    currentTab,
-    previousTabId,
-    setCurrentTab,
-    setPreviousTabId,
-    setTransitionDirection,
-    stacked,
-  } = useTabs();
+const BarItem = ({ className, index, children, id, disabled }) => {
+  const { currentTabIndex, setCurrentTabIndex, stacked } = useTabs();
   const isSelected =
-    id === currentTab || (currentTab === undefined && index === 0);
+    index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
   const handleTabClick = useInstrumentedHandler(
     () => {
-      !disabled && setCurrentTab(id);
-      onTabClick && onTabClick(id);
-      setTransitionDirection(previousTabId > index ? 'left' : 'right');
-      setPreviousTabId(index);
+      !disabled && setCurrentTabIndex(index);
     },
     {
       eventName: 'tabClick',
@@ -46,7 +29,9 @@ const BarItem = ({
       onClick={handleTabClick}
       css={css`
         border: none;
-        border-bottom: var(--border-color) solid 1px;
+        border-top: var(--primary-background-color) solid 2px;
+        border-bottom: var(--border-color) solid 2px;
+
         background: none;
         color: var(--primary-text-color);
         flex-grow: 1;
@@ -61,31 +46,33 @@ const BarItem = ({
         }
 
         &.isSelected {
-          border: var(--brand-button-primary-accent) solid 1px;
-          border-bottom: none;
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
 
+          border: #1dcad3 solid 2px;
+          border-bottom: var(--primary-background-color) solid 2px;
+
           .dark-mode & {
-            border-top: var(--brand-button-primary-accent-hover) solid 1px;
+            border: #1dcad3 solid 2px;
+            border-bottom: var(--primary-background-color) solid 2px;
           }
         }
 
         ${stacked &&
         css`
           border-bottom: none;
-          border-left: var(--divider-color) solid 1px;
+          border-left: var(--divider-color) solid 2px;
           white-space: normal;
           text-align: left;
 
           &.isSelected {
             color: var(--primary-text-color);
             border-bottom: none;
-            border-left: var(--brand-button-primary-accent) solid 1px;
+            border-left: var(--brand-button-primary-accent) solid 2px;
 
             .dark-mode & {
               border-bottom: none;
-              border-left: var(--brand-button-primary-accent-hover) solid 1px;
+              border-left: var(--brand-button-primary-accent-hover) solid 2px;
             }
           }
         `}
@@ -106,7 +93,6 @@ BarItem.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func,
 };
 
 export default BarItem;

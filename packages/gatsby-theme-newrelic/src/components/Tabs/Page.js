@@ -6,9 +6,9 @@ import useTabs from './useTabs';
 
 const Page = ({ index, children, id, className }) => {
   const {
-    currentTab,
+    currentTabIndex,
     transitionDirection,
-    previousTabId,
+    previousTabIndex,
     updateHeight,
     stacked,
   } = useTabs();
@@ -23,9 +23,9 @@ const Page = ({ index, children, id, className }) => {
   );
 
   const isSelected =
-    id === currentTab || (currentTab === undefined && index === 0);
+    index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
-  console.log('🔮🔮🔮🔮', transitionDirection, previousTabId, index);
+  console.log('🔮🔮🔮🔮', transitionDirection, previousTabIndex, index);
 
   return (
     <div

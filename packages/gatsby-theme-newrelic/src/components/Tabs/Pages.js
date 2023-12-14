@@ -12,11 +12,12 @@ const Pages = ({ children }) => {
       css={css`
         padding: 1em 0.5em;
         margin-bottom: 1em;
-        border: 1px var(--border-color) solid;
+        border: var(--border-color) solid 2px;
         border-top: none;
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;
-        overflow-y: hidden;
+        overflow: hidden;
+        position: relative;
 
         ${stacked &&
         css`
