@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
+import { useLocation } from '@reach/router';
 
 import TabsContext from '../Context';
 import Bar from './Bar';
@@ -29,6 +30,37 @@ const Tabs = ({ children, initialTab }) => {
       setContainerHeight(maxHeight);
     }
   };
+
+  const location = useLocation();
+
+  // this needs to run in a useEffect since the hash
+  // isn't available on the server during SSG.
+  // to put it another way, in order to have this work with SSG
+  // we'd hypothetically need to render a separate HTML file
+  // for every single tab id on the page.
+  // i don't think we can do this with Gatsby.
+  useEffect(() => {
+    const hash = location.hash.replace('#', '');
+    if (hash !== '') {
+      const [_tabBar, tabPages] = children;
+      // Tabs should always look like this:
+      // ```
+      // <Tabs>
+      //   <Tabs.Bar>...</Tabs.Bar>
+      //   <Tabs.Pages>...</Tabs.Pages>
+      // </Tabs>
+      // ```
+      // if not, something is wrong and we'll only break the page
+      // by trying further.
+      if (tabPages.type === Pages) {
+        const pages = tabPages.props.children;
+        const index = pages.findIndex((page) => page.props.id === hash);
+        if (index !== -1) {
+          setTab(index);
+        }
+      }
+    }
+  }, []);
 
   const {
     site: {

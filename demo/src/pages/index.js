@@ -165,15 +165,15 @@ const IndexPage = () => {
           <section>
             <Tabs>
               <Tabs.Bar>
-                <Tabs.BarItem id="text">Lotsa text</Tabs.BarItem>
-                <Tabs.BarItem id="Codeblock">A code block</Tabs.BarItem>
-                <Tabs.BarItem id="Live-edit">
+                <Tabs.BarItem id="lotsa-text">Lotsa text</Tabs.BarItem>
+                <Tabs.BarItem id="first-codeblock">A code block</Tabs.BarItem>
+                <Tabs.BarItem id="first-live-edit">
                   A live editable code block w/ preview
                 </Tabs.BarItem>
-                <Tabs.BarItem id="embedded">var/mark/links</Tabs.BarItem>
+                <Tabs.BarItem id="first-embedded">var/mark/links</Tabs.BarItem>
               </Tabs.Bar>
               <Tabs.Pages>
-                <Tabs.Page id="text">
+                <Tabs.Page id="lotsa-text">
                   <h2>Lorem ipsum dolor sit amet.</h2>
                   <p>
                     Consectetur adipiscing elit, sed do eiusmod tempor
@@ -235,7 +235,7 @@ const IndexPage = () => {
                   </p>
                 </Tabs.Page>
 
-                <Tabs.Page id="codeblock">
+                <Tabs.Page id="first-codeblock">
                   <CodeBlock
                     copyable
                     lineNumbers
@@ -249,7 +249,7 @@ const IndexPage = () => {
                     {codeSample}
                   </CodeBlock>
                 </Tabs.Page>
-                <Tabs.Page id="live-edit">
+                <Tabs.Page id="first-live-edit">
                   <CodeBlock
                     copyable
                     lineNumbers
@@ -265,7 +265,7 @@ const IndexPage = () => {
                     {liveCodeSample}
                   </CodeBlock>
                 </Tabs.Page>
-                <Tabs.Page id="embedded">
+                <Tabs.Page id="first-embedded">
                   <CodeBlock
                     language="graphql"
                     css={css`
