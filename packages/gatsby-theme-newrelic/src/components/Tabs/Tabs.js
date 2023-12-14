@@ -11,6 +11,8 @@ import Page from './Page';
 
 const Tabs = ({ children, initialTab, stacked }) => {
   const [currentTab, setCurrentTab] = useState(initialTab);
+  const [previousTabId, setPreviousTabId] = useState();
+  const [transitionDirection, setTransitionDirection] = useState('hi');
   const [containerHeight, setContainerHeight] = useState(0);
 
   const updateHeight = (pageHeight) => {
@@ -37,8 +39,12 @@ const Tabs = ({ children, initialTab, stacked }) => {
   const context = {
     containerHeight,
     currentTab,
+    previousTabId,
+    transitionDirection,
     mobileBreakpoint,
     setCurrentTab,
+    setPreviousTabId,
+    setTransitionDirection,
     stacked,
     updateHeight,
   };
@@ -47,6 +53,8 @@ const Tabs = ({ children, initialTab, stacked }) => {
     <TabsContext.Provider value={context}>
       <div
         css={css`
+          overflow-x: hidden;
+          overflow-y: hidden;
           ${stacked &&
           css`
             display: flex;

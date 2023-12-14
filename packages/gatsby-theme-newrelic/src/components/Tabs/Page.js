@@ -5,7 +5,13 @@ import { css } from '@emotion/react';
 import useTabs from './useTabs';
 
 const Page = ({ index, children, id, className }) => {
-  const { currentTab, updateHeight, stacked } = useTabs();
+  const {
+    currentTab,
+    transitionDirection,
+    previousTabId,
+    updateHeight,
+    stacked,
+  } = useTabs();
 
   const page = useCallback(
     (div) => {
@@ -19,17 +25,30 @@ const Page = ({ index, children, id, className }) => {
   const isSelected =
     id === currentTab || (currentTab === undefined && index === 0);
 
+  console.log('🔮🔮🔮🔮', transitionDirection, previousTabId, index);
+
   return (
     <div
       role="tabpanel"
       aria-labelledby={id}
       css={css`
+        opacity: 1;
+        background: var(--primary-background-color);
+
+        transform: translateX(0);
+
+        -webkit-transition: all 0.9s ease-in-out;
+        -moz-transition: all 0.9s ease-in-out;
+        -ms-transition: all 0.9s ease-in-out;
+        -o-transition: all 0.9s ease-in-out;
+        transition: all 0.9s ease-in-out;
+
         ${stacked &&
         css`
           height: 100%;
           max-height: 500px;
-          overflow-y: scroll;
           width: 100%;
+          overflow-y: scroll;
           -ms-overflow-style: none; /* for Internet Explorer, Edge */
           scrollbar-width: none; /* for Firefox */
           &::-webkit-scrollbar {
@@ -38,8 +57,19 @@ const Page = ({ index, children, id, className }) => {
         `}
         ${!isSelected &&
         css`
-          position: absolute;
           visibility: hidden;
+          position: absolute;
+          opacity: 0;
+
+          ${transitionDirection === 'left'
+            ? css`
+                transform: translateX(100%);
+                border: blue dotted 4px;
+              `
+            : css`
+                transform: translateX(-100%);
+                border: red dotted 4px;
+              `}
         `}
       `}
       className={className}

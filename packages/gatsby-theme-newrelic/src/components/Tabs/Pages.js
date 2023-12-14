@@ -9,8 +9,16 @@ const Pages = ({ children }) => {
 
   return (
     <div
-      css={
-        stacked &&
+      css={css`
+        padding: 1em 0.5em;
+        margin-bottom: 1em;
+        border: 1px var(--border-color) solid;
+        border-top: none;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        overflow-y: hidden;
+
+        ${stacked &&
         css`
           align-items: start;
           display: flex;
@@ -20,8 +28,8 @@ const Pages = ({ children }) => {
           @media screen and (max-width: ${mobileBreakPoint}) {
             width: 100%;
           }
-        `
-      }
+        `}
+      `}
     >
       {React.Children.map(children, (child, index) =>
         React.cloneElement(child, { ...child.props, index })

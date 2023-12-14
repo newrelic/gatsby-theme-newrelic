@@ -62,7 +62,6 @@ const MobileTabControl = ({ children, className }) => {
       ))}
     </Select>
   );
-  /* eslint-enable react/prop-types */
 };
 
 MobileTabControl.propTypes = {
@@ -92,7 +91,6 @@ const Bar = ({ children, className }) => {
           border: none;
           display: flex;
           width: 100%;
-          margin-bottom: 1em;
           overflow: auto;
           ${stacked &&
           css`

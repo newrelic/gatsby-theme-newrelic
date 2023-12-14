@@ -13,7 +13,14 @@ const BarItem = ({
   disabled,
   onClick: onTabClick,
 }) => {
-  const { currentTab, setCurrentTab, stacked } = useTabs();
+  const {
+    currentTab,
+    previousTabId,
+    setCurrentTab,
+    setPreviousTabId,
+    setTransitionDirection,
+    stacked,
+  } = useTabs();
   const isSelected =
     id === currentTab || (currentTab === undefined && index === 0);
 
@@ -21,6 +28,8 @@ const BarItem = ({
     () => {
       !disabled && setCurrentTab(id);
       onTabClick && onTabClick(id);
+      setTransitionDirection(previousTabId > index ? 'left' : 'right');
+      setPreviousTabId(index);
     },
     {
       eventName: 'tabClick',
@@ -37,9 +46,9 @@ const BarItem = ({
       onClick={handleTabClick}
       css={css`
         border: none;
-        border-bottom: var(--divider-color) solid 3px;
+        border-bottom: var(--border-color) solid 1px;
         background: none;
-        color: var(--muted-text);
+        color: var(--primary-text-color);
         flex-grow: 1;
         text-align: center;
         padding: 0.5em;
@@ -52,29 +61,31 @@ const BarItem = ({
         }
 
         &.isSelected {
-          color: var(--primary-text-color);
-          border-bottom: var(--brand-button-primary-accent) solid 3px;
+          border: var(--brand-button-primary-accent) solid 1px;
+          border-bottom: none;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
 
           .dark-mode & {
-            border-bottom: var(--brand-button-primary-accent-hover) solid 3px;
+            border-top: var(--brand-button-primary-accent-hover) solid 1px;
           }
         }
 
         ${stacked &&
         css`
           border-bottom: none;
-          border-left: var(--divider-color) solid 3px;
+          border-left: var(--divider-color) solid 1px;
           white-space: normal;
           text-align: left;
 
           &.isSelected {
             color: var(--primary-text-color);
             border-bottom: none;
-            border-left: var(--brand-button-primary-accent) solid 3px;
+            border-left: var(--brand-button-primary-accent) solid 1px;
 
             .dark-mode & {
               border-bottom: none;
-              border-left: var(--brand-button-primary-accent-hover) solid 3px;
+              border-left: var(--brand-button-primary-accent-hover) solid 1px;
             }
           }
         `}
