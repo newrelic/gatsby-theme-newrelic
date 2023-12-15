@@ -1,17 +1,13 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 
 import useTabs from './useTabs';
 
 const Page = ({ index, children, id, className }) => {
-  const {
-    currentTabIndex,
-    transitionDirection,
-    previousTabIndex,
-    updateHeight,
-    stacked,
-  } = useTabs();
+  const { currentTabIndex, transitionDirection, updateHeight, stacked } =
+    useTabs();
+  const tabpanel = useRef(null);
 
   const page = useCallback(
     (div) => {
@@ -25,17 +21,29 @@ const Page = ({ index, children, id, className }) => {
   const isSelected =
     index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
-  console.log('🔮🔮🔮🔮', transitionDirection, previousTabIndex, index);
+  useEffect(() => {
+    if (tabpanel.current == null) return;
+    if (isSelected) {
+      console.log(tabpanel.current);
+      const amount = transitionDirection === 'left' ? '100%' : '-100%';
+      tabpanel.current.style.transform = `translateX(${amount})`;
+      requestAnimationFrame(() => {
+        tabpanel.current.style.transform = 'translateX(0%)';
+      });
+    } else {
+      const amount = transitionDirection === 'left' ? '-100%' : '100%';
+      tabpanel.current.style.transform = `translateX(${amount})`;
+    }
+  }, [isSelected]);
 
   return (
     <div
       role="tabpanel"
       aria-labelledby={id}
+      ref={tabpanel}
       css={css`
         opacity: 1;
         background: var(--secondary-background-color);
-
-        transform: translateX(0);
 
         transition: 0.75s ease-in;
         transition-property: visibility, transform, opacity;
@@ -57,20 +65,11 @@ const Page = ({ index, children, id, className }) => {
           visibility: hidden;
           position: absolute;
           opacity: 0;
-
-          ${transitionDirection === 'left'
-            ? css`
-                transform: translateX(100%);
-              `
-            : css`
-                transform: translateX(-100%);
-              `}
         `}
       `}
       className={className}
-      ref={page}
     >
-      {children}
+      <div ref={page}>{children}</div>
     </div>
   );
 };
