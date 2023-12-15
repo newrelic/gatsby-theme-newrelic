@@ -10,10 +10,10 @@ const Pages = ({ children }) => {
   return (
     <div
       css={css`
-        padding: 1em 0.5em;
+        padding: 1em;
         margin-bottom: 1em;
         background: var(--secondary-background-color);
-        border: #1dcad3 solid 2px;
+        border: #afe2e3 solid 1px;
         border-top: none;
         border-bottom-left-radius: 4px;
         border-bottom-right-radius: 4px;

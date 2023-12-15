@@ -29,8 +29,8 @@ const BarItem = ({ className, index, children, id, disabled }) => {
       onClick={handleTabClick}
       css={css`
         border: none;
-        border-top: var(--primary-background-color) solid 2px;
-        border-bottom: #1dcad3 solid 2px;
+        border-top: var(--primary-background-color) solid 1px;
+        border-bottom: #afe2e3 solid 1px;
 
         transition: 0.5s ease-in;
         transition-property: background;
@@ -38,8 +38,9 @@ const BarItem = ({ className, index, children, id, disabled }) => {
         background: none;
         color: var(--primary-text-color);
         flex-grow: 1;
-        text-align: center;
-        padding: 0.5em;
+        text-align: left;
+        font-weight: bold;
+        padding: 0.75em 0.5em 0.75em 01em;
         cursor: pointer;
         user-select: none;
         white-space: nowrap;
@@ -53,11 +54,12 @@ const BarItem = ({ className, index, children, id, disabled }) => {
           border-top-right-radius: 4px;
           background: var(--secondary-background-color);
 
-          border: #1dcad3 solid 2px;
-          border-bottom: var(--secondary-background-color) solid 2px;
+          border: var(--border-color) solid 1px;
+          border: #afe2e3 solid 1px;
+          border-bottom: var(--secondary-background-color) solid 1px;
 
           .dark-mode & {
-            border-bottom: var(--secondary-background-color) solid 2px;
+            border-bottom: var(--secondary-background-color) solid 1px;
           }
         }
 
