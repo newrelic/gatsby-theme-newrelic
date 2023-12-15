@@ -30,10 +30,10 @@ const Page = ({ index, children, id, className }) => {
       console.log(tabpanel.current);
       const amount = transitionDirection === 'left' ? '100%' : '-100%';
       tabpanel.current.style.transform = `translateX(${amount})`;
-      tabpanel.current.style.transition = `none`;
+      tabpanel.current.style.transitionProperty = `none`;
       requestAnimationFrame(() => {
         tabpanel.current.style.transform = 'translateX(0%)';
-        tabpanel.current.style.transition = `0.75s ease-in`;
+        tabpanel.current.style.transitionProperty = `visibility, transform, opacity`;
       });
     } else {
       const amount = transitionDirection === 'left' ? '-100%' : '100%';
@@ -49,28 +49,35 @@ const Page = ({ index, children, id, className }) => {
       css={css`
         opacity: 1;
         background: var(--secondary-background-color);
+        top: 1em;
+        left: 0.5em;
 
-        transition: 0.75s ease-in;
+        transition-duration: 750ms;
+        transition-timing-function: ease-in
         transition-property: visibility, transform, opacity;
 
-        ${stacked &&
-        css`
-          height: 100%;
-          max-height: 500px;
-          width: 100%;
-          overflow-y: scroll;
-          -ms-overflow-style: none; /* for Internet Explorer, Edge */
-          scrollbar-width: none; /* for Firefox */
-          &::-webkit-scrollbar {
-            display: none; /* for Chrome, Safari, and Opera */
-          }
-        `}
-        ${!isSelected &&
-        css`
-          visibility: hidden;
-          position: absolute;
-          opacity: 0;
-        `}
+        ${
+          stacked &&
+          css`
+            height: 100%;
+            max-height: 500px;
+            width: 100%;
+            overflow-y: scroll;
+            -ms-overflow-style: none; /* for Internet Explorer, Edge */
+            scrollbar-width: none; /* for Firefox */
+            &::-webkit-scrollbar {
+              display: none; /* for Chrome, Safari, and Opera */
+            }
+          `
+        }
+        ${
+          !isSelected &&
+          css`
+            visibility: hidden;
+            position: absolute;
+            opacity: 0;
+          `
+        }
       `}
       className={className}
     >
