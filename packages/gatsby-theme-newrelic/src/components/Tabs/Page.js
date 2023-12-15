@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 
 import useTabs from './useTabs';
+import useHasMounted from '../../hooks/useHasMounted';
 
 const Page = ({ index, children, id, className }) => {
   const { currentTabIndex, transitionDirection, updateHeight, stacked } =
     useTabs();
   const tabpanel = useRef(null);
+
+  const hasMounted = useHasMounted();
 
   const page = useCallback(
     (div) => {
@@ -22,19 +25,21 @@ const Page = ({ index, children, id, className }) => {
     index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
   useEffect(() => {
-    if (tabpanel.current == null) return;
+    if (tabpanel.current == null || !hasMounted) return;
     if (isSelected) {
       console.log(tabpanel.current);
       const amount = transitionDirection === 'left' ? '100%' : '-100%';
       tabpanel.current.style.transform = `translateX(${amount})`;
+      tabpanel.current.style.transition = `none`;
       requestAnimationFrame(() => {
         tabpanel.current.style.transform = 'translateX(0%)';
+        tabpanel.current.style.transition = `0.75s ease-in`;
       });
     } else {
       const amount = transitionDirection === 'left' ? '-100%' : '100%';
       tabpanel.current.style.transform = `translateX(${amount})`;
     }
-  }, [isSelected]);
+  }, [isSelected, hasMounted]);
 
   return (
     <div
