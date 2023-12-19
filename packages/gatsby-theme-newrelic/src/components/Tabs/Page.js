@@ -62,34 +62,37 @@ const Page = ({ index, children, id, className }) => {
         opacity: 1;
         background: var(--secondary-background-color);
         top: 1em;
-        left: 0.5em;
+        left: 1em;
 
-        transition-duration: 750ms;
-        transition-timing-function: ease-in
+        transition-delay: 0ms, 0ms, 170ms;
+        transition-duration: 620ms, 620ms, 340ms;
+        transition-timing-function: cubic-bezier(0.55, 0, 0.45, 1);
         transition-property: visibility, transform, opacity;
 
-        ${
-          stacked &&
-          css`
-            height: 100%;
-            max-height: 500px;
-            width: 100%;
-            overflow-y: scroll;
-            -ms-overflow-style: none; /* for Internet Explorer, Edge */
-            scrollbar-width: none; /* for Firefox */
-            &::-webkit-scrollbar {
-              display: none; /* for Chrome, Safari, and Opera */
-            }
-          `
-        }
-        ${
-          !isSelected &&
-          css`
-            visibility: hidden;
-            position: absolute;
-            opacity: 0;
-          `
-        }
+        ${stacked &&
+        css`
+          height: 100%;
+          max-height: 500px;
+          width: 100%;
+          overflow-y: scroll;
+          -ms-overflow-style: none; /* for Internet Explorer, Edge */
+          scrollbar-width: none; /* for Firefox */
+          &::-webkit-scrollbar {
+            display: none; /* for Chrome, Safari, and Opera */
+          }
+        `}
+        ${!isSelected &&
+        css`
+          transition-delay: 0ms;
+          visibility: hidden;
+          position: absolute;
+          opacity: 0;
+
+          & * {
+            /* this hides scrollbar pop-ins on exiting tabs */
+            overflow: hidden !important;
+          }
+        `}
       `}
       className={className}
     >
