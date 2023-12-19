@@ -87,15 +87,14 @@ const CodeBlock = ({
     code: formattedCode,
     modified: false,
   });
+  const copiedCode = containsEmbeddedHTML ? normalizedCode : code;
 
-  const handleCopyClick = useInstrumentedHandler(
-    () => copy(containsEmbeddedHTML ? normalizedCode : code),
-    {
-      eventName: 'copyCodeBlockClick',
-      category: 'CodeBlock',
-      modified,
-    }
-  );
+  const handleCopyClick = useInstrumentedHandler(() => copy(copiedCode), {
+    eventName: 'copyCodeBlockClick',
+    category: 'CodeBlock',
+    modified,
+    contents: copiedCode.replace(/[\r\n]+/gm, '').substring(0, 200),
+  });
 
   const handleDownloadClick = useInstrumentedHandler(
     () => {
