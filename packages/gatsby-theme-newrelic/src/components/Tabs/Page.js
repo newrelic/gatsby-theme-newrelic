@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import useMedia from 'use-media';
 
 import useTabs from './useTabs';
 import useHasMounted from '../../hooks/useHasMounted';
@@ -8,6 +9,7 @@ import useHasMounted from '../../hooks/useHasMounted';
 const Page = ({ index, children, id, className }) => {
   const { currentTabIndex, transitionDirection, updateHeight, stacked } =
     useTabs();
+  const prefersReducedMotion = useMedia({ prefersReducedMotion: 'reduce' });
   const tabpanel = useRef(null);
 
   const hasMounted = useHasMounted();
@@ -25,7 +27,7 @@ const Page = ({ index, children, id, className }) => {
     index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
   useEffect(() => {
-    if (tabpanel.current == null || !hasMounted) return;
+    if (tabpanel.current == null || !hasMounted || prefersReducedMotion) return;
     if (isSelected) {
       console.log(tabpanel.current);
       const amount = transitionDirection === 'left' ? '100%' : '-100%';
