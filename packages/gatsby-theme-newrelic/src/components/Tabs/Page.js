@@ -29,17 +29,27 @@ const Page = ({ index, children, id, className }) => {
   useEffect(() => {
     if (tabpanel.current == null || !hasMounted || prefersReducedMotion) return;
     if (isSelected) {
-      console.log(tabpanel.current);
       const amount = transitionDirection === 'left' ? '100%' : '-100%';
-      tabpanel.current.style.transform = `translateX(${amount})`;
       tabpanel.current.style.transitionProperty = `none`;
+      tabpanel.current.style.transform = `translateX(${amount})`;
+      // one `rAF` here doesn't properly wait for the initial transform
+      // to be applied before adding the end state.
+      // https://stackoverflow.com/questions/44145740
       requestAnimationFrame(() => {
-        tabpanel.current.style.transform = 'translateX(0%)';
-        tabpanel.current.style.transitionProperty = `visibility, transform, opacity`;
+        requestAnimationFrame(() => {
+          tabpanel.current.style.transitionProperty = `visibility, transform, opacity`;
+          tabpanel.current.style.transform = 'translateX(0%)';
+        });
       });
     } else {
-      const amount = transitionDirection === 'left' ? '-100%' : '100%';
-      tabpanel.current.style.transform = `translateX(${amount})`;
+      // these `rAF`s are so the animation for the exiting tab is synced
+      // with the animation for the entering tab.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const amount = transitionDirection === 'left' ? '-100%' : '100%';
+          tabpanel.current.style.transform = `translateX(${amount})`;
+        });
+      });
     }
   }, [isSelected, hasMounted]);
 
