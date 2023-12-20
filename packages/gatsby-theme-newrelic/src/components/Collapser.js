@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
+import styled from '@emotion/styled';
 import Icon from './Icon';
 import Link from './Link';
 import { animated, useSpring } from 'react-spring';
 import { usePrevious, useIsomorphicLayoutEffect } from 'react-use';
 import useKeyPress from '../hooks/useKeyPress';
 import useQueryParams from '../hooks/useQueryParams';
+import useClipboard from '../hooks/useClipboard';
+
 import { useLocation } from '@reach/router';
 
 const ResizeObserver = global.ResizeObserver || class ResizeObserver {};
@@ -24,6 +27,7 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
   const [height, setHeight] = useState(0);
   const { height: viewHeight } = useSpring({ height: isOpen ? height : 0 });
   const previousIsOpen = usePrevious(isOpen);
+  const [copied, copy] = useClipboard();
 
   useKeyPress(['s', 'f', 'h'], (e) => setIsOpen(e.key !== 'h'));
 
@@ -121,6 +125,7 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
               className="anchor"
               css={css`
                 margin-left: 0.5rem;
+                position: relative;
               `}
             >
               <Icon
@@ -129,7 +134,11 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
                   display: block;
                   color: inherit !important;
                 `}
+                onClick={() => {
+                  copy(`${location.origin}#${id}`);
+                }}
               />
+              {copied && <CopiedMessage>Copied!</CopiedMessage>}
             </Link>
           )}
         </h5>
@@ -169,6 +178,33 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
     </div>
   );
 };
+
+const copyAnimation = keyframes`
+from {
+  transform: translate3d(0,0,0);
+  opacity: 0;
+}
+
+40%, to {
+  transform: translate3d(5px, 0, 0);
+  opacity: 1;
+}
+`;
+
+const CopiedMessage = styled.p`
+  background: var(--brand-button-primary-accent);
+  color: var(--system-text-primary-light);
+  border-radius: 3px;
+  font-size: 1rem;
+  min-width: 70px;
+  padding: 0 0.25rem;
+  text-align: center;
+  margin-left: 0.25rem;
+  margin-bottom: 0;
+  position: absolute;
+  bottom: -33%;
+  animation: ${copyAnimation} 1s ease;
+`;
 
 Collapser.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
