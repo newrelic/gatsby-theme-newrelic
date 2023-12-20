@@ -68,6 +68,7 @@ const MobileTabControl = ({ children, className }) => {
   );
 };
 
+/* eslint-enable react/prop-types */
 MobileTabControl.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
