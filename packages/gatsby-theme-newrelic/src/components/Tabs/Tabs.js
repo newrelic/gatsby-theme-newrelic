@@ -11,9 +11,12 @@ import Page from './Page';
 
 const Tabs = ({ children, initialTab, stacked }) => {
   const [currentTabIndex, setCurrentTabIndex] = useState(initialTab);
-  const [previousTabIndex, setPreviousTabIndex] = useState();
-  const transitionDirection =
-    previousTabIndex > currentTabIndex ? 'right' : 'left';
+  const [previousTabIndex, setPreviousTabIndex] = useState(initialTab);
+  let transitionDirection = 'none';
+
+  if (previousTabIndex !== currentTabIndex) {
+    transitionDirection = previousTabIndex > currentTabIndex ? 'right' : 'left';
+  }
   const [containerHeight, setContainerHeight] = useState(0);
 
   const setTab = (tab) => {

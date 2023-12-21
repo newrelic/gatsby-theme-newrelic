@@ -27,7 +27,13 @@ const Page = ({ index, children, id, className }) => {
     index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
   useEffect(() => {
-    if (tabpanel.current == null || !hasMounted || prefersReducedMotion) return;
+    if (
+      tabpanel.current == null ||
+      !hasMounted ||
+      prefersReducedMotion ||
+      transitionDirection === 'none'
+    )
+      return;
     if (isSelected) {
       const amount = transitionDirection === 'left' ? '100%' : '-100%';
       tabpanel.current.style.transitionProperty = `none`;
