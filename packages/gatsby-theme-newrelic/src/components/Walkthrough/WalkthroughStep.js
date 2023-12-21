@@ -59,9 +59,11 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
             border-radius: 50%;
             border: var(--ring-border-width) var(--secondary-text-color) solid;
             color: var(--secondary-text-color);
+            display: grid;
             font-size: 23px; // Centering gets weird w/ circle divs
             font-weight: 400;
             height: var(--ring-size);
+            place-items: center;
             position: absolute;
             right: calc((var(--timeline-width) * -1) / 2);
             text-align: center;
