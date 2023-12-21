@@ -31,7 +31,7 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
           position: relative;
 
           &::after {
-            background: var(--border-color);
+            background: var(--secondary-text-color);
             bottom: 0;
             content: '';
             position: absolute;
@@ -57,8 +57,8 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
           css={css`
             background: var(--primary-background-color);
             border-radius: 50%;
-            border: var(--ring-border-width) var(--border-color) solid;
-            color: var(--border-color);
+            border: var(--ring-border-width) var(--secondary-text-color) solid;
+            color: var(--secondary-text-color);
             font-size: 23px; // Centering gets weird w/ circle divs
             font-weight: 400;
             height: var(--ring-size);
@@ -80,7 +80,7 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
       </aside>
       <div
         css={css`
-          border-bottom: solid 1px var(--border-color);
+          border-bottom: solid 1px var(--secondary-text-color);
           margin-bottom: 1.25rem;
           padding-bottom: 2rem;
           width: 100%;
