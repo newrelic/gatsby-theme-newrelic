@@ -57,7 +57,7 @@ const Page = ({ index, children, id, className }) => {
         });
       });
     }
-  }, [isSelected, hasMounted]);
+  }, [isSelected, hasMounted, prefersReducedMotion, transitionDirection]);
 
   return (
     <div
