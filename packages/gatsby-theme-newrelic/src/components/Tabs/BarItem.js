@@ -28,20 +28,17 @@ const BarItem = ({ className, index, children, id, disabled }) => {
       type="button"
       onClick={handleTabClick}
       css={css`
-        border: none;
-        border-top: var(--primary-background-color) solid 1px;
-        border-bottom: #afe2e3 solid 1px;
-
-        transition: 0.5s ease-in;
-        transition-property: background;
-
         background: none;
+        border: none;
+        border-bottom: #afe2e3 solid 1px;
+        border-top: var(--primary-background-color) solid 1px;
         color: var(--primary-text-color);
-        flex-grow: 1;
-        text-align: left;
-        font-weight: bold;
-        padding: 0.75em 0.5em 0.75em 01em;
         cursor: pointer;
+        flex-grow: 1;
+        font-weight: bold;
+        padding: 0.75em 0.5em 0.75em 1em;
+        text-align: left;
+        transition: 500ms background ease-in;
         user-select: none;
         white-space: nowrap;
 
