@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -28,6 +28,7 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
   const { height: viewHeight } = useSpring({ height: isOpen ? height : 0 });
   const previousIsOpen = usePrevious(isOpen);
   const [copied, copy] = useClipboard();
+  const linkRef = useRef(null);
 
   useKeyPress(['s', 'f', 'h'], (e) => setIsOpen(e.key !== 'h'));
 
@@ -74,7 +75,14 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
       `}
     >
       <button
-        onClick={() => setIsOpen((isOpen) => !isOpen)}
+        onClick={(e) => {
+          if (
+            linkRef.current?.contains(e.target) ||
+            linkRef.current === e.target
+          )
+            return;
+          setIsOpen((isOpen) => !isOpen);
+        }}
         type="button"
         css={css`
           --color-transition-duration: 0.3s;
@@ -121,6 +129,7 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
           <span>{title}</span>
           {id && (
             <Link
+              ref={linkRef}
               to={`#${id}`}
               className="anchor"
               css={css`
