@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.1.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.1.1...v9.1.2) (2023-12-27)
+
+### Bug Fixes
+
+- Add copy to collapser header ([0867ce6](https://github.com/newrelic/gatsby-theme-newrelic/commit/0867ce633b961be3a768f5809c10cc6812a97505))
+
 ## [9.1.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.1.0...v9.1.1) (2023-12-08)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
