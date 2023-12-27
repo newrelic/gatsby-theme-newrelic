@@ -82,21 +82,23 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
       </aside>
       <div
         css={css`
-          border-bottom: solid 1px var(--secondary-text-color);
+          border-bottom: solid 1px var(--border-color);
           margin-bottom: 1.25rem;
           padding-bottom: 2rem;
           width: 100%;
         `}
         className={className}
       >
-        <h3
-          css={css`
-            font-size: 1.25rem;
-          `}
-          id={id}
-        >
-          {title}
-        </h3>
+        {title && (
+          <h3
+            css={css`
+              font-size: 1.25rem;
+            `}
+            id={id}
+          >
+            {title}
+          </h3>
+        )}
         {children}
       </div>
     </div>
