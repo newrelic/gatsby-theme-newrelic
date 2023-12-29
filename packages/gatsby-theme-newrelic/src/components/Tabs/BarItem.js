@@ -13,7 +13,7 @@ const BarItem = ({
   disabled,
   onClick: onTabClick,
 }) => {
-  const { currentTab, setCurrentTab, stacked } = useTabs();
+  const { currentTab, setCurrentTab } = useTabs();
   const isSelected =
     id === currentTab || (currentTab === undefined && index === 0);
 
@@ -59,25 +59,6 @@ const BarItem = ({
             border-bottom: var(--brand-button-primary-accent-hover) solid 3px;
           }
         }
-
-        ${stacked &&
-        css`
-          border-bottom: none;
-          border-left: var(--divider-color) solid 3px;
-          white-space: normal;
-          text-align: left;
-
-          &.isSelected {
-            color: var(--primary-text-color);
-            border-bottom: none;
-            border-left: var(--brand-button-primary-accent) solid 3px;
-
-            .dark-mode & {
-              border-bottom: none;
-              border-left: var(--brand-button-primary-accent-hover) solid 3px;
-            }
-          }
-        `}
       `}
       className={cx(
         { [`${className}`]: className },

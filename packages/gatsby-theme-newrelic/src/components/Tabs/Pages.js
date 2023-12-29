@@ -5,24 +5,10 @@ import { css } from '@emotion/react';
 import useTabs from './useTabs';
 
 const Pages = ({ children }) => {
-  const { containerHeight, stacked, mobileBreakPoint } = useTabs();
+  const { containerHeight, mobileBreakPoint } = useTabs();
 
   return (
-    <div
-      css={
-        stacked &&
-        css`
-          align-items: start;
-          display: flex;
-          height: ${containerHeight}px;
-          justify-content: center;
-          width: 70%;
-          @media screen and (max-width: ${mobileBreakPoint}) {
-            width: 100%;
-          }
-        `
-      }
-    >
+    <div>
       {React.Children.map(children, (child, index) =>
         React.cloneElement(child, { ...child.props, index })
       )}

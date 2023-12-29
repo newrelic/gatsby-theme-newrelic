@@ -9,7 +9,7 @@ import BarItem from './BarItem';
 import Pages from './Pages';
 import Page from './Page';
 
-const Tabs = ({ children, initialTab, stacked }) => {
+const Tabs = ({ children, initialTab }) => {
   const [currentTab, setCurrentTab] = useState(initialTab);
   const [containerHeight, setContainerHeight] = useState(0);
 
@@ -39,25 +39,12 @@ const Tabs = ({ children, initialTab, stacked }) => {
     currentTab,
     mobileBreakpoint,
     setCurrentTab,
-    stacked,
     updateHeight,
   };
 
   return (
     <TabsContext.Provider value={context}>
-      <div
-        css={css`
-          ${stacked &&
-          css`
-            display: flex;
-          `}
-          @media screen and (max-width: ${mobileBreakpoint}) {
-            display: block;
-          }
-        `}
-      >
-        {children}
-      </div>
+      <div>{children}</div>
     </TabsContext.Provider>
   );
 };
@@ -68,7 +55,6 @@ Tabs.propTypes = {
    * this should be the `id` of the tab.
    */
   initialTab: PropTypes.string,
-  stacked: PropTypes.bool,
 };
 
 Tabs.Bar = Bar;
