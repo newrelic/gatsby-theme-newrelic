@@ -7,7 +7,7 @@ const BREAKPOINTS = {
   RELATED_CONTENT: '1520px',
 };
 
-const SideBySide = ({ children, className }) => {
+const SideBySide = ({ backgroundColor, children, className }) => {
   const childObjects = Children.toArray(children);
   const numberOfChildren = childObjects.length;
   const spacePercentage = 100 / numberOfChildren;
@@ -15,12 +15,18 @@ const SideBySide = ({ children, className }) => {
   return (
     <div
       css={css`
+        ${backgroundColor &&
+        css`
+          background: var(--primary-hover-color);
+        `}
+        border-radius: 0.25rem;
         display: grid;
         grid-gap: 1rem;
         grid-template-columns: repeat(
           ${numberOfChildren},
           calc(${spacePercentage}% - 0.5rem)
         );
+        padding: 1rem;
 
         p:last-child {
           margin-bottom: 0;
@@ -51,6 +57,7 @@ const SideBySide = ({ children, className }) => {
 };
 
 SideBySide.propTypes = {
+  backgroundColor: PropTypes.bool,
   className: PropTypes.string,
   children: PropTypes.node,
 };

@@ -303,7 +303,7 @@ const IndexPage = () => {
             />
             <br />
             <h2>Content displayed in two columns</h2>
-            <SideBySide>
+            <SideBySide backgroundColor>
               <Side>
                 <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
                 <CodeBlock language="json" lineNumbers>
