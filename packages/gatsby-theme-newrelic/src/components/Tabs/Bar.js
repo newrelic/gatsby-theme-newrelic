@@ -75,7 +75,7 @@ MobileTabControl.propTypes = {
 };
 
 const Bar = ({ children, className }) => {
-  const { containerHeight, mobileBreakpoint, stacked } = useTabs();
+  const { mobileBreakpoint } = useTabs();
 
   return (
     <>
@@ -97,16 +97,6 @@ const Bar = ({ children, className }) => {
           display: flex;
           width: 100%;
           overflow: auto;
-          ${stacked &&
-          css`
-            flex-direction: column;
-            height: ${containerHeight}px;
-            min-height: 350px;
-            overflow: none;
-            overflow-wrap: break-word;
-            margin-right: 2rem;
-            width: 30%;
-          `}
           @media screen and (max-width: ${mobileBreakpoint}) {
             display: none;
           }

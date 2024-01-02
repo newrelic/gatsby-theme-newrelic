@@ -7,8 +7,7 @@ import useTabs from './useTabs';
 import useHasMounted from '../../hooks/useHasMounted';
 
 const Page = ({ index, children, id, className }) => {
-  const { currentTabIndex, transitionDirection, updateHeight, stacked } =
-    useTabs();
+  const { currentTabIndex, transitionDirection, updateHeight } = useTabs();
   const prefersReducedMotion = useMedia({ prefersReducedMotion: 'reduce' });
   const tabpanel = useRef(null);
 
@@ -74,19 +73,6 @@ const Page = ({ index, children, id, className }) => {
         transition-duration: 620ms, 620ms, 340ms;
         transition-timing-function: cubic-bezier(0.55, 0, 0.45, 1);
         transition-property: visibility, transform, opacity;
-
-        ${stacked &&
-        css`
-          height: 100%;
-          max-height: 500px;
-          width: 100%;
-          overflow-y: scroll;
-          -ms-overflow-style: none; /* for Internet Explorer, Edge */
-          scrollbar-width: none; /* for Firefox */
-          &::-webkit-scrollbar {
-            display: none; /* for Chrome, Safari, and Opera */
-          }
-        `}
         ${!isSelected &&
         css`
           transition-delay: 0ms;

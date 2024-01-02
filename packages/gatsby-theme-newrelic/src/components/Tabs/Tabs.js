@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/react';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import TabsContext from '../Context';
@@ -9,7 +8,7 @@ import BarItem from './BarItem';
 import Pages from './Pages';
 import Page from './Page';
 
-const Tabs = ({ children, initialTab, stacked }) => {
+const Tabs = ({ children, initialTab }) => {
   const [currentTabIndex, setCurrentTabIndex] = useState(initialTab);
   const [previousTabIndex, setPreviousTabIndex] = useState(initialTab);
   let transitionDirection = 'none';
@@ -53,25 +52,12 @@ const Tabs = ({ children, initialTab, stacked }) => {
     mobileBreakpoint,
     setCurrentTabIndex: setTab,
     setPreviousTabIndex,
-    stacked,
     updateHeight,
   };
 
   return (
     <TabsContext.Provider value={context}>
-      <div
-        css={css`
-          ${stacked &&
-          css`
-            display: flex;
-          `}
-          @media screen and (max-width: ${mobileBreakpoint}) {
-            display: block;
-          }
-        `}
-      >
-        {children}
-      </div>
+      <div>{children}</div>
     </TabsContext.Provider>
   );
 };
@@ -82,7 +68,6 @@ Tabs.propTypes = {
    * this should be the `id` of the tab.
    */
   initialTab: PropTypes.string,
-  stacked: PropTypes.bool,
 };
 
 Tabs.Bar = Bar;

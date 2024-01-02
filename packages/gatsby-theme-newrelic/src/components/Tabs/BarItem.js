@@ -6,7 +6,7 @@ import useTabs from './useTabs';
 import useInstrumentedHandler from '../../hooks/useInstrumentedHandler';
 
 const BarItem = ({ className, index, children, id, disabled }) => {
-  const { currentTabIndex, setCurrentTabIndex, stacked } = useTabs();
+  const { currentTabIndex, setCurrentTabIndex } = useTabs();
   const isSelected =
     index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
@@ -59,25 +59,6 @@ const BarItem = ({ className, index, children, id, disabled }) => {
             border-bottom: var(--secondary-background-color) solid 1px;
           }
         }
-
-        ${stacked &&
-        css`
-          border-bottom: none;
-          border-left: var(--divider-color) solid 2px;
-          white-space: normal;
-          text-align: left;
-
-          &.isSelected {
-            color: var(--primary-text-color);
-            border-bottom: none;
-            border-left: var(--brand-button-primary-accent) solid 2px;
-
-            .dark-mode & {
-              border-bottom: none;
-              border-left: var(--brand-button-primary-accent-hover) solid 2px;
-            }
-          }
-        `}
       `}
       className={cx(
         { [`${className}`]: className },
