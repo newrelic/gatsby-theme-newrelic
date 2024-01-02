@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/react';
 import { useStaticQuery, graphql } from 'gatsby';
 
 import TabsContext from '../Context';

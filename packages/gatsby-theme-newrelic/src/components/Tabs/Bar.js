@@ -71,7 +71,7 @@ MobileTabControl.propTypes = {
 };
 
 const Bar = ({ children, className }) => {
-  const { containerHeight, mobileBreakpoint } = useTabs();
+  const { mobileBreakpoint } = useTabs();
 
   return (
     <>
