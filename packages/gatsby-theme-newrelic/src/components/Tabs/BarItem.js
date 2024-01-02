@@ -5,22 +5,14 @@ import { css } from '@emotion/react';
 import useTabs from './useTabs';
 import useInstrumentedHandler from '../../hooks/useInstrumentedHandler';
 
-const BarItem = ({
-  className,
-  index,
-  children,
-  id,
-  disabled,
-  onClick: onTabClick,
-}) => {
-  const { currentTab, setCurrentTab } = useTabs();
+const BarItem = ({ className, index, children, id, disabled }) => {
+  const { currentTabIndex, setCurrentTabIndex, stacked } = useTabs();
   const isSelected =
-    id === currentTab || (currentTab === undefined && index === 0);
+    index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
   const handleTabClick = useInstrumentedHandler(
     () => {
-      !disabled && setCurrentTab(id);
-      onTabClick && onTabClick(id);
+      !disabled && setCurrentTabIndex(index);
     },
     {
       eventName: 'tabClick',
@@ -36,14 +28,17 @@ const BarItem = ({
       type="button"
       onClick={handleTabClick}
       css={css`
-        border: none;
-        border-bottom: var(--divider-color) solid 3px;
         background: none;
-        color: var(--muted-text);
-        flex-grow: 1;
-        text-align: center;
-        padding: 0.5em;
+        border: none;
+        border-bottom: #afe2e3 solid 1px;
+        border-top: var(--primary-background-color) solid 1px;
+        color: var(--primary-text-color);
         cursor: pointer;
+        flex-grow: 1;
+        font-weight: bold;
+        padding: 0.75em 0.5em 0.75em 1em;
+        text-align: left;
+        transition: 500ms background ease-in;
         user-select: none;
         white-space: nowrap;
 
@@ -52,11 +47,16 @@ const BarItem = ({
         }
 
         &.isSelected {
-          color: var(--primary-text-color);
-          border-bottom: var(--brand-button-primary-accent) solid 3px;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+          background: var(--secondary-background-color);
+
+          border: var(--border-color) solid 1px;
+          border: #afe2e3 solid 1px;
+          border-bottom: var(--secondary-background-color) solid 1px;
 
           .dark-mode & {
-            border-bottom: var(--brand-button-primary-accent-hover) solid 3px;
+            border-bottom: var(--secondary-background-color) solid 1px;
           }
         }
       `}
@@ -76,7 +76,6 @@ BarItem.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func,
 };
 
 export default BarItem;
