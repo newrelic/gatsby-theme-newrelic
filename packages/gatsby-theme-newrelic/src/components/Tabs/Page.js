@@ -7,8 +7,7 @@ import useTabs from './useTabs';
 import useHasMounted from '../../hooks/useHasMounted';
 
 const Page = ({ index, children, id, className }) => {
-  const { currentTabIndex, transitionDirection, updateHeight, stacked } =
-    useTabs();
+  const { currentTabIndex, transitionDirection, updateHeight } = useTabs();
   const prefersReducedMotion = useMedia({ prefersReducedMotion: 'reduce' });
   const tabpanel = useRef(null);
 

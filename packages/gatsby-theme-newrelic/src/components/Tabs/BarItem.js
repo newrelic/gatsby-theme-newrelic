@@ -6,7 +6,7 @@ import useTabs from './useTabs';
 import useInstrumentedHandler from '../../hooks/useInstrumentedHandler';
 
 const BarItem = ({ className, index, children, id, disabled }) => {
-  const { currentTabIndex, setCurrentTabIndex, stacked } = useTabs();
+  const { currentTabIndex, setCurrentTabIndex } = useTabs();
   const isSelected =
     index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
