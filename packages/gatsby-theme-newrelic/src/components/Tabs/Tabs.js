@@ -58,6 +58,13 @@ const Tabs = ({ children, initialTab }) => {
         const index = pages.findIndex((page) => page.props.id === hash);
         if (index !== -1) {
           setTab(index);
+          const y =
+            tabsContainer.current.getBoundingClientRect().top +
+            window.pageYOffset +
+            // header height
+            72;
+
+          window.scrollTo({ top: y, behavior: 'smooth' });
           tabsContainer.current.scrollIntoView();
         }
       }
