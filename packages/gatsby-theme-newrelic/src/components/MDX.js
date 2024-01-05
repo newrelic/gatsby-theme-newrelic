@@ -14,8 +14,7 @@ import MDXLink from './MDXLink';
 import MDXTable from './MDXTable';
 import MDXVideo from './MDXVideo';
 import SideBySide from './SideBySide';
-import TutorialStep from './TutorialSteps/TutorialStep';
-import TutorialSection from './TutorialSteps/TutorialSection';
+import Walkthrough from './Walkthrough';
 
 const defaultComponents = {
   a: MDXLink,
@@ -30,8 +29,8 @@ const defaultComponents = {
   InlineCode,
   Link,
   SideBySide,
-  Steps: TutorialSection,
-  Step: TutorialStep,
+  Steps: Walkthrough,
+  Step: Walkthrough.Step,
   table: MDXTable,
   Video: MDXVideo,
 };
