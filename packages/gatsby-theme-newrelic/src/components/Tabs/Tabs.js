@@ -9,7 +9,7 @@ import BarItem from './BarItem';
 import Pages from './Pages';
 import Page from './Page';
 
-const Tabs = ({ children, initialTab }) => {
+const Tabs = ({ children, initialTab = 0 }) => {
   const [currentTabIndex, setCurrentTabIndex] = useState(initialTab);
   const [previousTabIndex, setPreviousTabIndex] = useState(initialTab);
   const tabsContainer = useRef(null);
