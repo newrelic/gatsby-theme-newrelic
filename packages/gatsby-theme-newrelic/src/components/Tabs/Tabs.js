@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 import { useLocation } from '@reach/router';
@@ -12,6 +12,7 @@ import Page from './Page';
 const Tabs = ({ children, initialTab }) => {
   const [currentTabIndex, setCurrentTabIndex] = useState(initialTab);
   const [previousTabIndex, setPreviousTabIndex] = useState(initialTab);
+  const tabsContainer = useRef(null);
   let transitionDirection = 'none';
 
   if (previousTabIndex !== currentTabIndex) {
@@ -57,6 +58,7 @@ const Tabs = ({ children, initialTab }) => {
         const index = pages.findIndex((page) => page.props.id === hash);
         if (index !== -1) {
           setTab(index);
+          tabsContainer.current.scrollIntoView();
         }
       }
     }
@@ -89,7 +91,7 @@ const Tabs = ({ children, initialTab }) => {
 
   return (
     <TabsContext.Provider value={context}>
-      <div>{children}</div>
+      <div ref={tabsContainer}>{children}</div>
     </TabsContext.Provider>
   );
 };
