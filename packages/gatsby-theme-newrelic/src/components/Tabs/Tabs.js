@@ -60,12 +60,11 @@ const Tabs = ({ children, initialTab }) => {
           setTab(index);
           const y =
             tabsContainer.current.getBoundingClientRect().top +
-            window.pageYOffset +
+            window.scrollY -
             // header height
             72;
 
           window.scrollTo({ top: y, behavior: 'smooth' });
-          tabsContainer.current.scrollIntoView();
         }
       }
     }
