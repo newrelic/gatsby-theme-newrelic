@@ -17,6 +17,7 @@ const Walkthrough = ({ className, children }) => {
 
         display: flex;
         flex-direction: column;
+        padding: 1rem 0;
 
         @media screen and (max-width: 1000px) {
           grid-template-columns: 100%;
