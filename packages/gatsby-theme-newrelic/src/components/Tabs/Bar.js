@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import { navigate } from '@reach/router';
 import useTabs from './useTabs';
 import Select from '../Select';
 
@@ -47,17 +48,18 @@ const MobileTabControl = ({ children, className }) => {
           (child) => child.props.id === selectedId
         );
         setCurrentTabIndex(index);
+        navigate(`#${selectedId}`);
       }}
       css={css`
         margin-bottom: 1rem;
       `}
       className={className}
     >
-      {React.Children.map(children, ({ props }) => (
+      {React.Children.map(children, ({ props }, index) => (
         <option
           key={props.id}
           value={props.id}
-          selected={props.index === currentTabIndex}
+          selected={index === currentTabIndex}
           disabled={props.disabled}
         >
           {getDeepestChild(props.children)}
