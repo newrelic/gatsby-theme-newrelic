@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import { navigate } from '@reach/router';
 import useTabs from './useTabs';
 import Select from '../Select';
 
@@ -35,25 +36,30 @@ const getDeepestChild = (child) => {
 };
 
 const MobileTabControl = ({ children, className }) => {
-  const { currentTab, setCurrentTab } = useTabs();
+  const { currentTabIndex, setCurrentTabIndex } = useTabs();
 
   // eslint gets angry about using props from React.Children.map
   /* eslint-disable react/prop-types */
   return (
     <Select
       onChange={(e) => {
-        setCurrentTab(e.target.value);
+        const selectedId = e.currentTarget.value;
+        const index = children.findIndex(
+          (child) => child.props.id === selectedId
+        );
+        setCurrentTabIndex(index);
+        navigate(`#${selectedId}`);
       }}
       css={css`
         margin-bottom: 1rem;
       `}
       className={className}
     >
-      {React.Children.map(children, ({ props }) => (
+      {React.Children.map(children, ({ props }, index) => (
         <option
           key={props.id}
           value={props.id}
-          selected={props.id === currentTab}
+          selected={index === currentTabIndex}
           disabled={props.disabled}
         >
           {getDeepestChild(props.children)}
@@ -62,16 +68,16 @@ const MobileTabControl = ({ children, className }) => {
       ))}
     </Select>
   );
-  /* eslint-enable react/prop-types */
 };
 
+/* eslint-enable react/prop-types */
 MobileTabControl.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };
 
 const Bar = ({ children, className }) => {
-  const { containerHeight, mobileBreakpoint, stacked } = useTabs();
+  const { mobileBreakpoint } = useTabs();
 
   return (
     <>
@@ -92,18 +98,7 @@ const Bar = ({ children, className }) => {
           border: none;
           display: flex;
           width: 100%;
-          margin-bottom: 1em;
           overflow: auto;
-          ${stacked &&
-          css`
-            flex-direction: column;
-            height: ${containerHeight}px;
-            min-height: 350px;
-            overflow: none;
-            overflow-wrap: break-word;
-            margin-right: 2rem;
-            width: 30%;
-          `}
           @media screen and (max-width: ${mobileBreakpoint}) {
             display: none;
           }

@@ -11,13 +11,13 @@ const Walkthrough = ({ className, children }) => {
   return (
     <div
       css={css`
-        --timeline-width: 4px;
-        --ring-size: 1.75rem;
-        --ring-border-width: 3px;
+        --timeline-width: 2px;
+        --ring-size: 2.5rem;
+        --ring-border-width: 2px;
 
-        display: grid;
-        grid-template-columns: auto minmax(0, 1fr);
-        grid-column-gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0;
 
         @media screen and (max-width: 1000px) {
           grid-template-columns: 100%;

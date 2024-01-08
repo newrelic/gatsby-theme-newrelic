@@ -163,6 +163,128 @@ const IndexPage = () => {
           <h1>{t('home.welcome')}</h1>
           <p>{t('home.intro')}</p>
           <section>
+            <Tabs>
+              <Tabs.Bar>
+                <Tabs.BarItem id="lotsa-text">Lotsa text</Tabs.BarItem>
+                <Tabs.BarItem id="first-codeblock">A code block</Tabs.BarItem>
+                <Tabs.BarItem id="first-live-edit">
+                  A live editable code block w/ preview
+                </Tabs.BarItem>
+                <Tabs.BarItem id="first-embedded">var/mark/links</Tabs.BarItem>
+              </Tabs.Bar>
+              <Tabs.Pages>
+                <Tabs.Page id="lotsa-text">
+                  <h2>Lorem ipsum dolor sit amet.</h2>
+                  <p>
+                    Consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Id venenatis a
+                    condimentum vitae sapien pellentesque habitant. Mi quis
+                    hendrerit dolor magna eget. Tortor vitae purus faucibus
+                    ornare suspendisse sed. Eget mi proin sed libero enim sed
+                    faucibus. Odio facilisis mauris sit amet massa vitae tortor.
+                    Tempus urna et pharetra pharetra massa massa ultricies mi
+                    quis. Ac orci phasellus egestas tellus rutrum tellus
+                    pellentesque eu tincidunt. Fringilla urna porttitor rhoncus
+                    dolor purus non. Laoreet suspendisse interdum consectetur
+                    libero id. Nunc consequat interdum varius sit amet.
+                    Elementum facilisis leo vel fringilla est ullamcorper. Urna
+                    molestie at elementum eu facilisis sed odio morbi. Turpis
+                    egestas maecenas pharetra convallis. Rhoncus aenean vel elit
+                    scelerisque mauris pellentesque. Euismod nisi porta lorem
+                    mollis aliquam ut porttitor leo. Aliquet eget sit amet
+                    tellus cras adipiscing enim eu. Amet consectetur adipiscing
+                    elit duis tristique. Egestas quis ipsum suspendisse
+                    ultrices. Congue eu consequat ac felis donec et odio. Vitae
+                    auctor eu augue ut lectus.
+                  </p>
+                  <p>
+                    Et netus et malesuada fames. Vitae tortor condimentum
+                    lacinia quis vel eros donec ac odio. Purus viverra accumsan
+                    in nisl nisi scelerisque eu ultrices vitae. A arcu cursus
+                    vitae congue mauris rhoncus. Habitasse platea dictumst
+                    quisque sagittis purus sit amet. Massa id neque aliquam
+                    vestibulum morbi blandit cursus risus. Posuere ac ut
+                    consequat semper viverra nam libero justo laoreet.
+                  </p>
+                  <ul>
+                    <li>
+                      Purus viverra accumsan in nisl nisi scelerisque eu
+                      ultrices vitae.
+                    </li>
+                    <li>
+                      Ac auctor augue mauris augue neque gravida in fermentum.
+                    </li>
+                    <li>
+                      Purus viverra accumsan in nisl nisi scelerisque eu
+                      ultrices vitae.
+                    </li>
+                    <li>
+                      Ac auctor augue mauris augue neque gravida in fermentum.
+                    </li>
+                  </ul>
+                  <p>
+                    Tincidunt eget nullam non nisi. Interdum posuere lorem ipsum
+                    dolor sit amet. Eu lobortis elementum nibh tellus molestie
+                    nunc non. Blandit libero volutpat sed cras ornare arcu dui
+                    vivamus. At volutpat diam ut venenatis tellus in metus.
+                    Platea dictumst vestibulum rhoncus est pellentesque elit
+                    ullamcorper dignissim cras. Aliquet eget sit amet tellus
+                    cras adipiscing. Et pharetra pharetra massa massa ultricies
+                    mi. Enim nulla aliquet porttitor lacus luctus accumsan
+                    tortor posuere ac.
+                  </p>
+                </Tabs.Page>
+
+                <Tabs.Page id="first-codeblock">
+                  <CodeBlock
+                    copyable
+                    lineNumbers
+                    highlightedLines="5-7,12"
+                    fileName="src/components/Button.js"
+                    language="jsx"
+                    css={css`
+                      margin-bottom: 2rem;
+                    `}
+                  >
+                    {codeSample}
+                  </CodeBlock>
+                </Tabs.Page>
+                <Tabs.Page id="first-live-edit">
+                  <CodeBlock
+                    copyable
+                    lineNumbers
+                    live
+                    preview
+                    fileName="src/components/Button.js"
+                    language="jsx"
+                    scope={{ Button }}
+                    css={css`
+                      margin-bottom: 2rem;
+                    `}
+                  >
+                    {liveCodeSample}
+                  </CodeBlock>
+                </Tabs.Page>
+                <Tabs.Page id="first-embedded">
+                  <CodeBlock
+                    language="graphql"
+                    css={css`
+                      margin-bottom: 1rem;
+                    `}
+                  >
+                    {codeSampleWithAdditionalTags}
+                  </CodeBlock>
+                  <CodeBlock
+                    language="yaml"
+                    css={css`
+                      margin-bottom: 1rem;
+                    `}
+                  >
+                    {anotherSample}
+                  </CodeBlock>
+                </Tabs.Page>
+              </Tabs.Pages>
+            </Tabs>
             <h2>Lists</h2>
             <ul>
               <li>List item one</li>
@@ -303,7 +425,7 @@ const IndexPage = () => {
             />
             <br />
             <h2>Content displayed in two columns</h2>
-            <SideBySide>
+            <SideBySide backgroundColor>
               <Side>
                 <p>Lorem ipsum Lorem ipsum Lorem ipsum</p>
                 <CodeBlock language="json" lineNumbers>
@@ -409,70 +531,6 @@ const IndexPage = () => {
           <section>
             <h2>Code blocks in tabs</h2>
             <Tabs>
-              <Tabs.Bar>
-                <Tabs.BarItem id="codeblock">A code block</Tabs.BarItem>
-                <Tabs.BarItem id="live-edit">
-                  A live editable code block w/ preview
-                </Tabs.BarItem>
-                <Tabs.BarItem id="embedded">
-                  Code block w/ embedded var/mark/links
-                </Tabs.BarItem>
-              </Tabs.Bar>
-              <Tabs.Pages>
-                <Tabs.Page id="codeblock">
-                  <CodeBlock
-                    copyable
-                    lineNumbers
-                    highlightedLines="5-7,12"
-                    fileName="src/components/Button.js"
-                    language="jsx"
-                    css={css`
-                      margin-bottom: 2rem;
-                    `}
-                  >
-                    {codeSample}
-                  </CodeBlock>
-                </Tabs.Page>
-                <Tabs.Page id="live-edit">
-                  <CodeBlock
-                    copyable
-                    lineNumbers
-                    live
-                    preview
-                    fileName="src/components/Button.js"
-                    language="jsx"
-                    scope={{ Button }}
-                    css={css`
-                      margin-bottom: 2rem;
-                    `}
-                  >
-                    {liveCodeSample}
-                  </CodeBlock>
-                </Tabs.Page>
-                <Tabs.Page id="embedded">
-                  <CodeBlock
-                    language="graphql"
-                    css={css`
-                      margin-bottom: 1rem;
-                    `}
-                  >
-                    {codeSampleWithAdditionalTags}
-                  </CodeBlock>
-                  <CodeBlock
-                    language="yaml"
-                    css={css`
-                      margin-bottom: 1rem;
-                    `}
-                  >
-                    {anotherSample}
-                  </CodeBlock>
-                </Tabs.Page>
-              </Tabs.Pages>
-            </Tabs>
-          </section>
-          <section>
-            <h2>Stacked Tabs</h2>
-            <Tabs stacked>
               <Tabs.Bar>
                 <Tabs.BarItem id="codeblock">A code block</Tabs.BarItem>
                 <Tabs.BarItem id="live-edit">
