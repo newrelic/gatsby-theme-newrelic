@@ -1,6 +1,6 @@
 {
   "packages": ["packages/*"],
-  "version": "9.1.2",
+  "version": "9.2.0",
   "npmClient": "yarn",
   "useWorkspaces": true,
   "ignoreChanges": ["README.md"],

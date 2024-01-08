@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.2.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.1.2...v9.2.0) (2024-01-08)
+
+### Bug Fixes
+
+- Add codeblock contents to tessen tracking ([1561836](https://github.com/newrelic/gatsby-theme-newrelic/commit/15618368d2074dc5e9f281d1b949fec49174a0ec))
+- add neutral state where no animation needs to be performed for transitionDirection ([3279688](https://github.com/newrelic/gatsby-theme-newrelic/commit/327968839d6bf242b8ab3884c3e4ac7711bbe0d9))
+- add top/bottom padding to Walkthrough component ([3fa5da9](https://github.com/newrelic/gatsby-theme-newrelic/commit/3fa5da91efe27d99e64eef6f4109312536cc6a6d))
+- Bring back merge deleted imports ([af90e78](https://github.com/newrelic/gatsby-theme-newrelic/commit/af90e789cc7533629304b866b6c7309553c206d4))
+- center numbers more good ([cf95c5a](https://github.com/newrelic/gatsby-theme-newrelic/commit/cf95c5a5c50908aa2b30f3bb674870a03f3d5d24))
+- crisscross transitions ([98e39c5](https://github.com/newrelic/gatsby-theme-newrelic/commit/98e39c59d02ea918d6490cbd87d15586711edb56))
+- improve Page transition positioning ([d2152fe](https://github.com/newrelic/gatsby-theme-newrelic/commit/d2152fe2ca07d00759860114c7158ac7035ed481))
+- Please the linter ([8958bc6](https://github.com/newrelic/gatsby-theme-newrelic/commit/8958bc6986937cbf54aae39a88d8c082b09888d3))
+- Remove stacked tabs styling option ([d0e20b0](https://github.com/newrelic/gatsby-theme-newrelic/commit/d0e20b00143ce77a0ccdba533b961014c631805a))
+- remove unused components ([dd970bc](https://github.com/newrelic/gatsby-theme-newrelic/commit/dd970bcf8420321c793d2869ed86cb2cae1c9092))
+- replace TutorialSteps with Walkthrough in MDX component ([bdcb751](https://github.com/newrelic/gatsby-theme-newrelic/commit/bdcb751efe385da95d9763686b1d3891cc19c10a))
+- significant update to css and remove unnecessary selection functions ([303bcfa](https://github.com/newrelic/gatsby-theme-newrelic/commit/303bcfa5ebd54e4785b0671f3bfe419feca77f63))
+- update non-hover colors to be more clear to users ([19316c3](https://github.com/newrelic/gatsby-theme-newrelic/commit/19316c3834d52592fa962530d88718d368100a85))
+
+### Features
+
+- add ability to update background color on SidebySides with prop ([6a4cb92](https://github.com/newrelic/gatsby-theme-newrelic/commit/6a4cb92c2d5f8b32aeffb656b90ad29a06cd12ec))
+- save selected tab in URL hash ([eb885d9](https://github.com/newrelic/gatsby-theme-newrelic/commit/eb885d9a9a38cc9a64c0be7cf22536f652b5b618))
+
 ## [9.1.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.1.1...v9.1.2) (2023-12-27)
 
 ### Bug Fixes
