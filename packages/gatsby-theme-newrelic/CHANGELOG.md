@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.0...v9.2.1) (2024-01-09)
+
+### Bug Fixes
+
+- Add pathname to header link ([70afa78](https://github.com/newrelic/gatsby-theme-newrelic/commit/70afa78fa4cad36c6d6914d9710ec51a6d5914fc))
+
 # [9.2.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.1.2...v9.2.0) (2024-01-08)
 
 ### Bug Fixes
