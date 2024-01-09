@@ -144,7 +144,7 @@ const Collapser = ({ title, id, defaultOpen, children }) => {
                   color: inherit !important;
                 `}
                 onClick={() => {
-                  copy(`${location.origin}#${id}`);
+                  copy(`${location.origin}${location.pathname}#${id}`);
                 }}
               />
               {copied && <CopiedMessage>Copied!</CopiedMessage>}
