@@ -72,7 +72,7 @@ const Tabs = ({ children, initialTab = 0 }) => {
         }
       }
     }
-  }, []);
+  }, [location.hash]);
 
   const {
     site: {
