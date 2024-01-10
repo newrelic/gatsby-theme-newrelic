@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.1...v9.2.2) (2024-01-10)
+
+### Bug Fixes
+
+- update Tabs when clicking link on same page ([d559a28](https://github.com/newrelic/gatsby-theme-newrelic/commit/d559a2835ed237f1385dc7fbe44a4e2af643d7dc))
+
 ## [9.2.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.0...v9.2.1) (2024-01-09)
 
 ### Bug Fixes
