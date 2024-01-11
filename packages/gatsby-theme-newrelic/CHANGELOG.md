@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.2...v9.2.3) (2024-01-11)
+
+### Bug Fixes
+
+- tabs not linking on MDX pages ([0683e7f](https://github.com/newrelic/gatsby-theme-newrelic/commit/0683e7f220441c432d499a3e2aed31b2a6226320))
+
 ## [9.2.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.1...v9.2.2) (2024-01-10)
 
 ### Bug Fixes
