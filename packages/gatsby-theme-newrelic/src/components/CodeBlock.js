@@ -219,7 +219,8 @@ const CodeBlock = ({
             </div>
           )}
           <div
-            id={containerId ?? 'codeblock'}
+            className="codeblock"
+            id={containerId}
             css={css`
               max-height: 26em;
               overflow: auto;

@@ -39,7 +39,7 @@ const InteractiveForm = ({ children, inputs, config, containerId }) => {
             width: 100%;
           }
 
-          #codeblock {
+          .codeblock {
             // removing the height of the buttons at the top or it overflows
             max-height: calc(100% - 50px);
           }
