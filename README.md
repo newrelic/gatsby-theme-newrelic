@@ -150,7 +150,7 @@ New Relic hosts and moderates an online forum where customers can interact with
 New Relic employees as well as other customers to get help and share best
 practices. Like all official New Relic open source projects, there's a related
 [Community topic](https://discuss.newrelic.com/t/announcing-a-new-relic-gatsby-site-theme/109814)
-in the New Relic Explorers Hub.
+in the New Relic Support Forum.
 
 ## Contributing
 
