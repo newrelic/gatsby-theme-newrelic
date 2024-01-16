@@ -5,16 +5,16 @@ import Button from './Button';
 import Icon from './Icon';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import useTessen from '../hooks/useTessen';
+import useNRBrowserAgent from '../hooks/useNRBrowserAgent';
 
 const SimpleFeedback = () => {
   const [clicked, setClicked] = useState(false);
   const { t } = useThemeTranslation();
-  const tessen = useTessen();
+  const nrBrowserAgent = useNRBrowserAgent();
 
   const handleClick = (feedbackType) => {
     setClicked(true);
-    tessen.track({
+    nrBrowserAgent.addPageAction({
       eventName: 'feedbackThumbClick',
       category: `${feedbackType}FeedbackClick`,
       path: location.pathname,

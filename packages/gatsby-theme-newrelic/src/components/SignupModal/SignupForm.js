@@ -13,7 +13,7 @@ import Spinner from '../Spinner';
 import TextInput from './TextInput';
 import ErrorMessage from './ErrorMessage';
 
-import useTessen from '../../hooks/useTessen';
+import useNRBrowserAgent from '../../hooks/useNRBrowserAgent';
 
 const defaultInputValues = { value: '', isValid: false };
 
@@ -23,7 +23,7 @@ const SignupForm = ({ siteUrl }) => {
   const [input, setInput] = useState(defaultValues);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const tessen = useTessen();
+  const nrBrowserAgent = useNRBrowserAgent();
   const submitEvent = {
     eventName: 'attemptedSignup',
     category: 'SignupForm',

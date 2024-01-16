@@ -42,9 +42,17 @@ const warnAboutNoop = ({ config, action, name, category }) => {
 const canSendAction = ({ config, name, category }) =>
   name && category && config && config.product && config.subproduct;
 
-const tessenAction =
+const nrBrowserAction =
   (action, config) =>
   async ({ eventName, category, ...properties }) => {
+    console.log(
+      'createNRBrowserAgent',
+      action,
+      config,
+      eventName,
+      category,
+      properties
+    );
     if (!canSendAction({ config, name: eventName, category })) {
       return warnAboutNoop({ config, action, name: eventName, category });
     }
@@ -84,31 +92,20 @@ const tessenAction =
       properties.loggedIn = loggedIn;
     }
 
-    window.Tessen[action](
-      eventName,
-      {
-        ...properties,
-        env: config.env || '',
-        category,
-        nr_product: config.product,
-        nr_subproduct: config.subproduct,
-        location: 'Public',
-        customer_user_id: customerId,
-        anonymousId,
-      },
-      {
-        Segment: {
-          integrations: {
-            All: true,
-          },
-        },
-      }
-    );
+    window.newrelic[action](eventName, {
+      ...properties,
+      env: config.env || '',
+      category,
+      nr_product: config.product,
+      nr_subproduct: config.subproduct,
+      location: 'Public',
+      customer_user_id: customerId,
+      anonymousId,
+    });
   };
 
-const createTessen = (config) => ({
-  page: tessenAction('page', config),
-  track: tessenAction('track', config),
+const createNRBrowserAgent = (config) => ({
+  addPageAction: nrBrowserAction('addPageAction', config),
 });
 
-export default createTessen;
+export default createNRBrowserAgent;

@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import createTessen from '../utils/createTessen';
+import createNRBrowserAgent from '../utils/createNRBrowserAgent';
 
-const useTessen = () => {
+const useNRBrowserAgent = () => {
   const {
     newRelicThemeConfig: { tessen: config },
   } = useStaticQuery(graphql`
@@ -16,8 +16,8 @@ const useTessen = () => {
     }
   `);
 
-  const tessen = useMemo(() => createTessen(config), [config]);
-  return tessen;
+  const nrBrowserAgent = useMemo(() => createNRBrowserAgent(config), [config]);
+  return nrBrowserAgent;
 };
 
-export default useTessen;
+export default useNRBrowserAgent;

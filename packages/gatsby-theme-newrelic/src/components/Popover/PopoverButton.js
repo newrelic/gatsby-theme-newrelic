@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 
-import useTessen from '../../hooks/useTessen';
+import useNRBrowserAgent from '../../hooks/useNRBrowserAgent';
 import Icon from '../Icon';
 
 const PopoverButton = ({ children, tessenCategory, Popover }) => {
@@ -24,12 +24,15 @@ const PopoverButton = ({ children, tessenCategory, Popover }) => {
     setOpened(true);
   }, [setOpened]);
 
-  const tessen = useTessen();
+  const nrBrowserAgent = useNRBrowserAgent();
   useEffect(() => {
     if (!opened || !tessenCategory) return;
 
-    tessen.track({ category: tessenCategory, eventName: 'opened' });
-  }, [opened, tessen, tessenCategory]);
+    nrBrowserAgent.addPageAction({
+      category: tessenCategory,
+      eventName: 'opened',
+    });
+  }, [opened, nrBrowserAgent, tessenCategory]);
 
   const button = useCallback(
     (node) => {

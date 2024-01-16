@@ -14,7 +14,7 @@ import Button from '../components/Button';
 import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from '../components/Trans';
-import useTessen from '../hooks/useTessen';
+import useNRBrowserAgent from '../hooks/useNRBrowserAgent';
 
 const NotFoundPage = ({
   location,
@@ -36,7 +36,7 @@ const NotFoundPage = ({
   const { t: translate } = useThemeTranslation();
   const [searchTerm, setSearchTerm] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
-  const tessen = useTessen();
+  const nrBrowserAgent = useNRBrowserAgent();
 
   const pageLocale = getLocale({ location }, themeOptions);
 
@@ -169,7 +169,7 @@ const NotFoundPage = ({
 
   useEffect(() => {
     if (searchResult) {
-      tessen.track({
+      nrBrowserAgent.addPageAction({
         eventName: 'error404',
         category: 'ErrorPage',
         path: location.pathname,

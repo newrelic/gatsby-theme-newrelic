@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
-import useTessen from '../hooks/useTessen';
+import useNRBrowserAgent from '../hooks/useNRBrowserAgent';
 import useLocale from '../hooks/useLocale';
 import { useLocation } from '@reach/router';
 import { localizePath } from '../utils/localization';
@@ -19,7 +19,7 @@ const formatHref = (href, { locale }) => {
 
 const SignUpLink = forwardRef(
   ({ href, onClick, instrumentation, ...props }, ref) => {
-    const tessen = useTessen();
+    const nrBrowserAgent = useNRBrowserAgent();
     const location = useLocation();
     const locale = useLocale();
 
@@ -36,7 +36,7 @@ const SignUpLink = forwardRef(
             onClick(e);
           }
 
-          tessen.track({
+          nrBrowserAgent.addPageAction({
             eventName: 'stitchedPathLinkClick',
             category: 'DocPageLinkClick',
             href,

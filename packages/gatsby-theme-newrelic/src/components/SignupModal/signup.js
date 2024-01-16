@@ -56,7 +56,7 @@ const createAccountRequestInternal = (name, email, recaptcha) => {
 };
 
 const createAccountError = (attributes, tessen) => {
-  tessen.track({
+  nrBrowserAgent.addPageAction({
     eventName: 'failedSignup',
     category: 'SignupForm',
     ...attributes,
@@ -79,7 +79,7 @@ const createAccountError = (attributes, tessen) => {
  */
 const createAccountRequest = async (input, tessen, tessenEvent) => {
   const { name, email } = input;
-  tessen.track({
+  nrBrowserAgent.addPageAction({
     ...tessenEvent,
     ...input,
   });
@@ -117,7 +117,7 @@ const createAccountRequest = async (input, tessen, tessenEvent) => {
       return false;
     }
 
-    tessen.track({
+    nrBrowserAgent.addPageAction({
       eventName: 'successfulSignup',
       category: 'SignupForm',
       ...input,
