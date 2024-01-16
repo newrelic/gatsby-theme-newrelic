@@ -20,22 +20,17 @@ const getCookie = (key) => Cookies.get(key)?.replace(/%22/g, '') || null;
 const warnAboutNoop = ({ config, action, name, category }) => {
   warning(
     config,
-    `tessen.${action}: You are attempting to use a Tessen action, but do not have Tessen enabled. Calls to '${action}' will result in a noop. Please configure Tessen to track Tessen actions.`
-  );
-
-  warning(
-    config?.product && config?.subproduct,
-    `tessen.${action}: You are attempting to use a Tessen action, but Tessen is misconfigured. Calls to '${action}' will result in a noop. Please configure both the 'tessen.product' and 'tessen.subproduct' option in gatsby-config.js`
+    `nrBrowserAction.${action}: You are attempting to use a newrelic action, but do not have newrelic enabled. Calls to '${action}' will result in a noop. Please configure New Relic.`
   );
 
   warning(
     name,
-    `tessen.${action}: The 'name' argument is not defined. This has resulted in a noop. Please provide a 'name' argument.`
+    `nrBrowserAgent.${action}: The 'name' argument is not defined. This has resulted in a noop. Please provide a 'name' argument.`
   );
 
   warning(
     category,
-    `tessen.${action}: The 'category' argument is not defined. This has resulted in a noop. Please provide a 'category' argument.`
+    `nrBrowserAgent.${category}: The 'category' argument is not defined. This has resulted in a noop. Please provide a 'category' argument.`
   );
 };
 
@@ -60,21 +55,21 @@ const nrBrowserAction =
     if (!CAMEL_CASE.test(eventName)) {
       return warning(
         false,
-        `tessen.${action}: The 'name' argument needs to be in camelCase. This has resulted in a noop.`
+        `nrBrowserAgent.${action}: The 'name' argument needs to be in camelCase. This has resulted in a noop.`
       );
     }
 
     if (!TITLE_CASE.test(category)) {
       return warning(
         TITLE_CASE.test(category),
-        `tessen.${action}: The 'category' argument needs to be in TitleCase. This has resulted in a noop.`
+        `nrBrowserAgent.${action}: The 'category' argument needs to be in TitleCase. This has resulted in a noop.`
       );
     }
 
-    if (!window.Tessen) {
+    if (!window.newrelic) {
       return warning(
         false,
-        `tessen.${eventName}: You are attempting to use a Tessen action, but Tessen is not available on 'window'. Calls to '${eventName}' will result in a noop.`
+        `nrBrowserAgent.${eventName}: You are attempting to use a New Relic Browser Agent action, but newrelic is not available on 'window'. Calls to '${eventName}' will result in a noop.`
       );
     }
 
@@ -86,7 +81,7 @@ const nrBrowserAction =
     // a `loggedIn` field with the request.
     if (window.newRelicRequestingServicesHeader) {
       const loggedIn =
-        getSavedLoggedInStatus() ?? (await checkIfUserLoggedIn(config.product));
+        getSavedLoggedInStatus() ?? (await checkIfUserLoggedIn());
       // i don't like mutating this object, but it's the least ugly way
       // to conditionally add this property.
       properties.loggedIn = loggedIn;
@@ -94,11 +89,7 @@ const nrBrowserAction =
 
     window.newrelic[action](eventName, {
       ...properties,
-      env: config.env || '',
       category,
-      nr_product: config.product,
-      nr_subproduct: config.subproduct,
-      location: 'Public',
       customer_user_id: customerId,
       anonymousId,
     });
