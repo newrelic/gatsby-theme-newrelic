@@ -494,16 +494,6 @@ const validateSwiftypeOptions = (swiftypeOptions) => {
   }
 };
 
-const validateTessenOptions = (tessenOptions) => {
-  const { segmentWriteKey } = tessenOptions;
-
-  if (!segmentWriteKey) {
-    throw new Error(
-      "You have enabled Tessen, but the 'segmentWriteKey' is missing. Please define a 'tessen.segmentWriteKey' option"
-    );
-  }
-};
-
 const validateSignupOptions = (signupOptions) => {
   const { environment, reCaptchaToken, signupUrl } = signupOptions;
 

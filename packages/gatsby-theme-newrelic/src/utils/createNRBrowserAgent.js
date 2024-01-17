@@ -17,12 +17,7 @@ import {
  */
 const getCookie = (key) => Cookies.get(key)?.replace(/%22/g, '') || null;
 
-const warnAboutNoop = ({ config, action, name, category }) => {
-  warning(
-    config,
-    `nrBrowserAction.${action}: You are attempting to use a newrelic action, but do not have newrelic enabled. Calls to '${action}' will result in a noop. Please configure New Relic.`
-  );
-
+const warnAboutNoop = ({ action, name, category }) => {
   warning(
     name,
     `nrBrowserAgent.${action}: The 'name' argument is not defined. This has resulted in a noop. Please provide a 'name' argument.`
@@ -34,22 +29,20 @@ const warnAboutNoop = ({ config, action, name, category }) => {
   );
 };
 
-const canSendAction = ({ config, name, category }) =>
-  name && category && config && config.product && config.subproduct;
+const canSendAction = ({ name, category }) => name && category;
 
 const nrBrowserAction =
-  (action, config) =>
+  (action) =>
   async ({ eventName, category, ...properties }) => {
     console.log(
       'createNRBrowserAgent',
       action,
-      config,
       eventName,
       category,
       properties
     );
-    if (!canSendAction({ config, name: eventName, category })) {
-      return warnAboutNoop({ config, action, name: eventName, category });
+    if (!canSendAction({ name: eventName, category })) {
+      return warnAboutNoop({ action, name: eventName, category });
     }
 
     if (!CAMEL_CASE.test(eventName)) {
@@ -95,8 +88,8 @@ const nrBrowserAction =
     });
   };
 
-const createNRBrowserAgent = (config) => ({
-  addPageAction: nrBrowserAction('addPageAction', config),
+const createNRBrowserAgent = () => ({
+  addPageAction: nrBrowserAction('addPageAction'),
 });
 
 export default createNRBrowserAgent;
