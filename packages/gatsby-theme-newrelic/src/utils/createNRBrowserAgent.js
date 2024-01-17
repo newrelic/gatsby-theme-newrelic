@@ -34,13 +34,6 @@ const canSendAction = ({ name, category }) => name && category;
 const nrBrowserAction =
   (action) =>
   async ({ eventName, category, ...properties }) => {
-    console.log(
-      'createNRBrowserAgent',
-      action,
-      eventName,
-      category,
-      properties
-    );
     if (!canSendAction({ name: eventName, category })) {
       return warnAboutNoop({ action, name: eventName, category });
     }

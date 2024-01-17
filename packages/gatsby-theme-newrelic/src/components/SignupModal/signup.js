@@ -55,7 +55,7 @@ const createAccountRequestInternal = (name, email, recaptcha) => {
   });
 };
 
-const createAccountError = (attributes, tessen) => {
+const createAccountError = (attributes, nrBrowserAgent) => {
   nrBrowserAgent.addPageAction({
     eventName: 'failedSignup',
     category: 'SignupForm',
@@ -77,10 +77,10 @@ const createAccountError = (attributes, tessen) => {
  * Resolves with the organization id from the response JSON
  * if the request succeeds, otherwise resolves with `false`.
  */
-const createAccountRequest = async (input, tessen, tessenEvent) => {
+const createAccountRequest = async (input, nrBrowserAgent, event) => {
   const { name, email } = input;
   nrBrowserAgent.addPageAction({
-    ...tessenEvent,
+    ...event,
     ...input,
   });
   let recaptchaToken;
@@ -91,7 +91,7 @@ const createAccountRequest = async (input, tessen, tessenEvent) => {
   } catch (err) {
     createAccountError(
       { name, email, error: err, type: 'recaptchaError' },
-      tessen
+      nrBrowserAgent
     );
     return false;
   }
@@ -112,7 +112,7 @@ const createAccountRequest = async (input, tessen, tessenEvent) => {
           error: new Error(`Non-2xx signUp result: ${response.statusText}`),
           type: 'signUpReceiverError',
         },
-        tessen
+        nrBrowserAgent
       );
       return false;
     }
@@ -127,7 +127,7 @@ const createAccountRequest = async (input, tessen, tessenEvent) => {
   } catch (err) {
     createAccountError(
       { name, email, error: err, type: 'signUpReceiverError' },
-      tessen
+      nrBrowserAgent
     );
   }
 

@@ -46,7 +46,7 @@ const SignupForm = ({ siteUrl }) => {
     setLoading(true);
     const organizationId = await createAccountRequest(
       { email: input.email.value, name: input.name.value },
-      tessen,
+      nrBrowserAgent,
       submitEvent
     );
 

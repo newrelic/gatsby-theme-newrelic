@@ -4,13 +4,8 @@ const fs = require('fs');
 const { withDefaults } = require('./src/utils/defaultOptions');
 const createRelatedResourceNode = require('./src/utils/related-resources/createRelatedResourceNode');
 const getRelatedResources = require('./src/utils/related-resources/fetchRelatedResources');
-const {
-  getTessenConfig,
-  getResolvedEnv,
-  getI18nConfig,
-} = require('./src/utils/config');
+const { getResolvedEnv, getI18nConfig } = require('./src/utils/config');
 const pageTransforms = require('./gatsby/page-transforms');
-const { getTessenPath } = require('./gatsby/constants');
 const { getFileRelativePath } = require('./gatsby/utils/fs');
 const { SCHEMA_CUSTOMIZATION_TYPES } = require('./gatsby/type-defs');
 const { SWIFTYPE_ENGINE_KEY } = require('./src/utils/constants');
@@ -27,7 +22,7 @@ const ANNOUNCEMENTS_DIRECTORY = 'src/announcements';
 const DEFAULT_BRANCH = 'main';
 
 exports.onPreInit = (_, themeOptions) => {
-  const { i18n, relatedResources = {}, tessen, signup } = themeOptions;
+  const { i18n, relatedResources = {}, signup } = themeOptions;
 
   if (i18n && !i18n.translationsPath) {
     throw new Error(
@@ -39,9 +34,6 @@ exports.onPreInit = (_, themeOptions) => {
     validateSwiftypeOptions(relatedResources.swiftype);
   }
 
-  if (tessen) {
-    validateTessenOptions(tessen);
-  }
   if (signup) {
     validateSignupOptions(signup);
   }
@@ -55,7 +47,7 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
     program.directory,
     ANNOUNCEMENTS_DIRECTORY
   );
-  const { relatedResources = {}, tessen } = themeOptions;
+  const { relatedResources = {} } = themeOptions;
 
   createDirectory(imagePath, {
     reporter,
@@ -95,24 +87,6 @@ exports.onPreBootstrap = ({ reporter, store }, themeOptions) => {
       fs.readFileSync(resultsPath, { encoding: 'utf-8' })
     );
   }
-
-  const version = tessen ? tessen.tessenVersion : null;
-
-  const tessenLibrary = path.join(
-    program.directory,
-    'static',
-    path.basename(getTessenPath(version))
-  );
-
-  if (tessen && !fs.existsSync(tessenLibrary)) {
-    createDirectory(path.dirname(tessenLibrary));
-
-    fs.copyFileSync(getTessenPath(version), tessenLibrary);
-
-    reporter.info(
-      '[@newrelic/gatsby-theme-newrelic] adding Tessen library. Please commit this file.'
-    );
-  }
 };
 
 exports.createSchemaCustomization = ({ actions }) => {
@@ -128,7 +102,6 @@ exports.sourceNodes = (
   const i18n = getI18nConfig(themeOptions);
   const { relatedResources } = withDefaults(themeOptions);
   const { createNode } = actions;
-  const tessen = getTessenConfig(themeOptions);
   const env = getResolvedEnv(themeOptions);
 
   i18n.locales.forEach((locale) => {
@@ -154,9 +127,6 @@ exports.sourceNodes = (
         })
       ),
     },
-    tessen: tessen
-      ? { product: tessen.product, subproduct: tessen.subproduct }
-      : null,
     signup: themeOptions.signup,
     feedback: themeOptions.feedback,
   };
@@ -340,9 +310,6 @@ exports.onCreateWebpackConfig = ({ actions, plugins }, themeOptions) => {
   const { i18n } = themeOptions;
 
   actions.setWebpackConfig({
-    externals: {
-      tessen: 'Tessen',
-    },
     plugins: [
       plugins.define({
         GATSBY_THEME_NEWRELIC_I18N_PATH: JSON.stringify(

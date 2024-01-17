@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import useNRBrowserAgent from '../../hooks/useNRBrowserAgent';
 import Icon from '../Icon';
 
-const PopoverButton = ({ children, tessenCategory, Popover }) => {
+const PopoverButton = ({ children, nrBrowserAgentCategory, Popover }) => {
   const [opened, setOpened] = useState();
   const [{ bottom, left }, setBox] = useState({});
   const { current: popoverId } = useRef(Math.random().toString());
@@ -26,13 +26,13 @@ const PopoverButton = ({ children, tessenCategory, Popover }) => {
 
   const nrBrowserAgent = useNRBrowserAgent();
   useEffect(() => {
-    if (!opened || !tessenCategory) return;
+    if (!opened || !nrBrowserAgentCategory) return;
 
     nrBrowserAgent.addPageAction({
-      category: tessenCategory,
+      category: nrBrowserAgentCategory,
       eventName: 'opened',
     });
-  }, [opened, nrBrowserAgent, tessenCategory]);
+  }, [opened, nrBrowserAgent, nrBrowserAgentCategory]);
 
   const button = useCallback(
     (node) => {
@@ -137,11 +137,11 @@ PopoverButton.propTypes = {
    */
   Popover: PropTypes.elementType.isRequired,
   /**
-   * The `category` for the Tessen event sent.
+   * The `category` for the NR Browser Agent event sent.
    * The `eventName` is `'opened'`.
    * If not supplied, no event is sent.
    */
-  tessenCategory: PropTypes.string,
+  nrBrowserAgentCategory: PropTypes.string,
 };
 
 export default PopoverButton;
