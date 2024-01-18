@@ -1,5 +1,6 @@
 import { getUTMValues } from './utmCookie';
 import Cookies from 'js-cookie';
+import { addPageAction } from '../../utils/nrBrowserAgent';
 
 export const CAPTCHA_ACTION = 'v1/signups/create';
 
@@ -55,8 +56,8 @@ const createAccountRequestInternal = (name, email, recaptcha) => {
   });
 };
 
-const createAccountError = (attributes, nrBrowserAgent) => {
-  nrBrowserAgent.addPageAction({
+const createAccountError = (attributes) => {
+  addPageAction({
     eventName: 'failedSignup',
     category: 'SignupForm',
     ...attributes,
@@ -77,9 +78,9 @@ const createAccountError = (attributes, nrBrowserAgent) => {
  * Resolves with the organization id from the response JSON
  * if the request succeeds, otherwise resolves with `false`.
  */
-const createAccountRequest = async (input, nrBrowserAgent, event) => {
+const createAccountRequest = async (input, event) => {
   const { name, email } = input;
-  nrBrowserAgent.addPageAction({
+  addPageAction({
     ...event,
     ...input,
   });
@@ -89,10 +90,7 @@ const createAccountRequest = async (input, nrBrowserAgent, event) => {
     await recaptchaReady();
     recaptchaToken = await generateRecaptchaToken();
   } catch (err) {
-    createAccountError(
-      { name, email, error: err, type: 'recaptchaError' },
-      nrBrowserAgent
-    );
+    createAccountError({ name, email, error: err, type: 'recaptchaError' });
     return false;
   }
 
@@ -105,19 +103,16 @@ const createAccountRequest = async (input, nrBrowserAgent, event) => {
     const responseJson = await response.json();
 
     if (!response.ok) {
-      createAccountError(
-        {
-          name,
-          email,
-          error: new Error(`Non-2xx signUp result: ${response.statusText}`),
-          type: 'signUpReceiverError',
-        },
-        nrBrowserAgent
-      );
+      createAccountError({
+        name,
+        email,
+        error: new Error(`Non-2xx signUp result: ${response.statusText}`),
+        type: 'signUpReceiverError',
+      });
       return false;
     }
 
-    nrBrowserAgent.addPageAction({
+    addPageAction({
       eventName: 'successfulSignup',
       category: 'SignupForm',
       ...input,
@@ -125,10 +120,12 @@ const createAccountRequest = async (input, nrBrowserAgent, event) => {
     });
     return responseJson.organization_id;
   } catch (err) {
-    createAccountError(
-      { name, email, error: err, type: 'signUpReceiverError' },
-      nrBrowserAgent
-    );
+    createAccountError({
+      name,
+      email,
+      error: err,
+      type: 'signUpReceiverError',
+    });
   }
 
   return false;

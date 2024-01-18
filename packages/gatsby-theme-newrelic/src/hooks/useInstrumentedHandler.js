@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react';
 import warning from 'warning';
-import useNRBrowserAgent from './useNRBrowserAgent';
+import { addPageAction } from '../utils/nrBrowserAgent';
 import { CAMEL_CASE, TITLE_CASE } from '../utils/constants';
 
 const useInstrumentedHandler = (handler, attributes) => {
   const savedHandler = useRef();
-  const nrBrowserAgent = useNRBrowserAgent();
 
   useEffect(() => {
     savedHandler.current = handler;
@@ -38,14 +37,14 @@ const useInstrumentedHandler = (handler, attributes) => {
           `You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op.`
         );
 
-      // exposes the Promise that `nrBrowserAgent.addPageAction` returns.
+      // exposes the Promise that `addPageAction` returns.
       // this is _not_ intended to be used in code.
       // this is purely for the test suite so we can wait for this
       // fn to finish and check if `window.newrelic.addPageAction` is called.
-      instrumentedHandler.nrBrowserAgentResult =
-        eventName &&
-        category &&
-        nrBrowserAgent.addPageAction({ eventName, category, ...attrs });
+
+      if (eventName && category) {
+        addPageAction({ eventName, category, ...attrs });
+      }
     }
 
     if (savedHandler.current) {
@@ -53,11 +52,7 @@ const useInstrumentedHandler = (handler, attributes) => {
     }
   };
 
-  return useCallback(instrumentedHandler, [
-    attributes,
-    instrumentedHandler,
-    nrBrowserAgent,
-  ]);
+  return useCallback(instrumentedHandler, [attributes, addPageAction]);
 };
 
 export default useInstrumentedHandler;

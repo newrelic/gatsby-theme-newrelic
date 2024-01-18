@@ -9,7 +9,7 @@ import RecaptchaFooter from './SignupModal/RecaptchaFooter';
 import Button from './Button';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import useNRBrowserAgent from '../hooks/useNRBrowserAgent';
+import { addPageAction } from '../utils/nrBrowserAgent.js';
 import { FEEDBACK_FORM_TYPE } from '../utils/constants';
 
 const ComplexFeedback = ({ pageTitle }) => {
@@ -19,7 +19,7 @@ const ComplexFeedback = ({ pageTitle }) => {
   const [shouldSubmit, setShouldSubmit] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const { t } = useThemeTranslation();
-  const nrBrowserAgent = useNRBrowserAgent();
+
   const location = useLocation();
   const CAPTCHA_ACTION = 'userFeedback';
 
@@ -47,7 +47,7 @@ const ComplexFeedback = ({ pageTitle }) => {
   const handleFeedbackClick = (feedbackType) => {
     setfeedbackType(feedbackType);
     setShouldSubmit(true);
-    nrBrowserAgent.addPageAction({
+    addPageAction({
       eventName: 'feedbackRating',
       category: `${titleCaseify(feedbackType)}FeedbackClick`,
       path: location.pathname,
@@ -58,7 +58,7 @@ const ComplexFeedback = ({ pageTitle }) => {
     setFormSubmitted(true);
     await recaptchaReady();
     const recaptchaToken = await generateRecaptchaToken();
-    nrBrowserAgent.addPageAction({
+    addPageAction({
       eventName: 'feedbackSubmitted',
       category: `${titleCaseify(feedbackType)}FeedbackSubmit`,
       path: location.pathname,

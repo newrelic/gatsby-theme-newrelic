@@ -5,16 +5,15 @@ import Button from './Button';
 import Icon from './Icon';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import useNRBrowserAgent from '../hooks/useNRBrowserAgent';
+import { addPageAction } from '../utils/nrBrowserAgent.js';
 
 const SimpleFeedback = () => {
   const [clicked, setClicked] = useState(false);
   const { t } = useThemeTranslation();
-  const nrBrowserAgent = useNRBrowserAgent();
 
   const handleClick = (feedbackType) => {
     setClicked(true);
-    nrBrowserAgent.addPageAction({
+    addPageAction({
       eventName: 'feedbackThumbClick',
       category: `${feedbackType}FeedbackClick`,
       path: location.pathname,

@@ -7,10 +7,9 @@ import Icon from './Icon';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import useKeyPress from '../hooks/useKeyPress';
 import Button from './Button';
-import useNRBrowserAgent from '../hooks/useNRBrowserAgent';
+import { addPageAction } from '../utils/nrBrowserAgent.js';
 
 const Lightbox = ({ children }) => {
-  const nrBrowserAgent = useNRBrowserAgent();
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const transitions = useTransition(lightboxOpen, {
     config: { tension: 220, friction: 22 },
@@ -29,7 +28,7 @@ const Lightbox = ({ children }) => {
       <button
         type="button"
         onClick={() => {
-          nrBrowserAgent.addPageAction({
+          addPageAction({
             eventName: 'openLightbox',
             category: 'LightboxClick',
           });

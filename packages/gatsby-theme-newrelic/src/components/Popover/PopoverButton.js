@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 
-import useNRBrowserAgent from '../../hooks/useNRBrowserAgent';
+import { addPageAction } from '../../utils/nrBrowserAgent.js';
 import Icon from '../Icon';
 
 const PopoverButton = ({ children, nrBrowserAgentCategory, Popover }) => {
@@ -24,15 +24,14 @@ const PopoverButton = ({ children, nrBrowserAgentCategory, Popover }) => {
     setOpened(true);
   }, [setOpened]);
 
-  const nrBrowserAgent = useNRBrowserAgent();
   useEffect(() => {
     if (!opened || !nrBrowserAgentCategory) return;
 
-    nrBrowserAgent.addPageAction({
+    addPageAction({
       category: nrBrowserAgentCategory,
       eventName: 'opened',
     });
-  }, [opened, nrBrowserAgent, nrBrowserAgentCategory]);
+  }, [opened, addPageAction, nrBrowserAgentCategory]);
 
   const button = useCallback(
     (node) => {

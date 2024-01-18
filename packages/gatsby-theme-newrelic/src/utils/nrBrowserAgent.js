@@ -72,7 +72,10 @@ const nrBrowserAction =
       // to conditionally add this property.
       properties.loggedIn = loggedIn;
     }
-
+    console.log(
+      'addPageAction in nrBrowserAgent',
+      window.newrelic.addPageAction
+    );
     window.newrelic[action](eventName, {
       ...properties,
       category,
@@ -81,8 +84,4 @@ const nrBrowserAction =
     });
   };
 
-const createNRBrowserAgent = () => ({
-  addPageAction: nrBrowserAction('addPageAction'),
-});
-
-export default createNRBrowserAgent;
+export const addPageAction = nrBrowserAction('addPageAction');

@@ -10,34 +10,33 @@ const EVENT_OBJECT = {
   loggedIn: true,
   customer_user_id: null,
   anonymousId: null,
-  env: '',
 };
 
 global.newRelicRequestingServicesHeader = 'gatsby-theme-newrelic-demo';
-global.NrBrowserAgent = {
+global.newrelic = {
   addPageAction: jest.fn(),
 };
 
 afterEach(() => {
   console.error = originalError;
-  global.NrBrowserAgent.addPageAction.mockClear();
+  window.newrelic.addPageAction.mockClear();
 });
 
 test.only('instruments nrBrowserAgent and calls original handler with all arguments', async () => {
   const originalHandler = jest.fn();
-  const { waitFor, result } = renderHook(() =>
+  const { result } = renderHook(() =>
     useInstrumentedHandler(originalHandler, {
       eventName: 'eventName',
       category: 'CategoryName',
       name: 'click',
     })
   );
-  result.current(1, 2);
-  await waitFor;
-  console.log(waitFor);
-  // console.log(result.current.nrBrowserAgentResult);
-  expect(global.NrBrowserAgent.addPageAction).toHaveBeenCalledTimes(1);
-  expect(global.NrBrowserAgent.addPageAction).toHaveBeenCalledWith(
+
+  await result.current(1, 2);
+  expect(originalHandler).toHaveBeenCalledTimes(1);
+  expect(originalHandler).toHaveBeenCalledWith(1, 2);
+  expect(window.newrelic.addPageAction).toHaveBeenCalledTimes(1);
+  expect(window.newrelic.addPageAction).toHaveBeenCalledWith(
     'eventName',
     EVENT_OBJECT
   );
@@ -54,9 +53,8 @@ test('attaches any additional fields in config as attributes', async () => {
   );
 
   result.current();
-  await result.current.tessenResult;
 
-  expect(global.Tessen.track).toHaveBeenCalledWith('eventName', {
+  expect(window.newrelic.addPageAction).toHaveBeenCalledWith('eventName', {
     ...EVENT_OBJECT,
     darkMode: true,
   });
@@ -72,9 +70,9 @@ test('allows config argument to be a function called with the handler arguments'
     }))
   );
   result.current(2, 2);
-  await result.current.tessenResult;
+  // await result.current.tessenResult;
 
-  expect(global.Tessen.track).toHaveBeenCalledWith('eventName', {
+  expect(window.newrelic.addPageAction).toHaveBeenCalledWith('eventName', {
     ...EVENT_OBJECT,
     sum: 4,
   });
@@ -172,20 +170,4 @@ test('warns if eventName is not in Camel Case', () => {
       "You are attempting to instrument a handler, but the 'eventName' property is not in camelCase. This will result in a no-op."
     )
   );
-});
-
-test('does not instrument the request if Tessen is not installed', () => {
-  const originalTessen = global.Tessen;
-  global.Tessen = null;
-  const originalHandler = jest.fn();
-  const { result } = renderHook(() =>
-    useInstrumentedHandler(originalHandler, {
-      eventName: 'Event_name',
-      category: 'CategoryName',
-      name: 'click',
-    })
-  );
-  expect(() => result.current()).not.toThrow();
-  expect(originalHandler).toHaveBeenCalled();
-  global.Tessen = originalTessen;
 });

@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useDebounce } from 'react-use';
 import useQueryParams from '../../hooks/useQueryParams';
-import useNRBrowserAgent from '../../hooks/useNRBrowserAgent';
+import { addPageAction } from '../../utils/nrBrowserAgent.js';
 
 const useSearchQuery = (filters) => {
   const { queryParams, setQueryParam } = useQueryParams();
   const searchQueryParam = queryParams.get('q');
   const [searchTerm, setSearchTerm] = useState(searchQueryParam);
   const hasQParam = queryParams.has('q');
-  const nrBrowserAgent = useNRBrowserAgent();
 
   // when 'trailingSlash = "always"' is set in the gatsby-config
   // it adds a slash to query params on the 404 page, this
@@ -34,7 +33,7 @@ const useSearchQuery = (filters) => {
       if (hasQParam) {
         setQueryParam('q', searchTerm);
         if (searchTerm && searchTerm.length > 2) {
-          nrBrowserAgent.addPageAction({
+          addPageAction({
             eventName: 'swiftypeSearchInput',
             category: 'GlobalSearch',
             name: 'searchInput',

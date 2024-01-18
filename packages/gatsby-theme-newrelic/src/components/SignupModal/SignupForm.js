@@ -13,7 +13,7 @@ import Spinner from '../Spinner';
 import TextInput from './TextInput';
 import ErrorMessage from './ErrorMessage';
 
-import useNRBrowserAgent from '../../hooks/useNRBrowserAgent';
+import { addPageAction } from '../../utils/nrBrowserAgent.js';
 
 const defaultInputValues = { value: '', isValid: false };
 
@@ -23,7 +23,7 @@ const SignupForm = ({ siteUrl }) => {
   const [input, setInput] = useState(defaultValues);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const nrBrowserAgent = useNRBrowserAgent();
+
   const submitEvent = {
     eventName: 'attemptedSignup',
     category: 'SignupForm',
