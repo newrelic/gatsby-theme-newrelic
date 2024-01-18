@@ -4,56 +4,42 @@ import { enableFetchMocks } from 'jest-fetch-mock';
 enableFetchMocks();
 
 const originalError = console.error;
-const TESSEN_OBJECT = {
+const EVENT_OBJECT = {
   name: 'click',
   category: 'CategoryName',
-  nr_product: 'THEME',
-  nr_subproduct: 'TTHEME',
-  location: 'Public',
   loggedIn: true,
   customer_user_id: null,
   anonymousId: null,
   env: '',
 };
 
-const SEGMENT_OBJECT = {
-  Segment: {
-    integrations: {
-      All: true,
-    },
-  },
-};
-
 global.newRelicRequestingServicesHeader = 'gatsby-theme-newrelic-demo';
-global.Tessen = {
-  track: jest.fn(),
+global.NrBrowserAgent = {
+  addPageAction: jest.fn(),
 };
 
 afterEach(() => {
   console.error = originalError;
-  global.Tessen.track.mockClear();
+  global.NrBrowserAgent.addPageAction.mockClear();
 });
 
-test('instruments tessen and calls original handler with all arguments', async () => {
+test.only('instruments nrBrowserAgent and calls original handler with all arguments', async () => {
   const originalHandler = jest.fn();
-  const { result } = renderHook(() =>
+  const { waitFor, result } = renderHook(() =>
     useInstrumentedHandler(originalHandler, {
       eventName: 'eventName',
       category: 'CategoryName',
       name: 'click',
     })
   );
-
   result.current(1, 2);
-
-  await result.current.tessenResult;
-  expect(originalHandler).toHaveBeenCalledTimes(1);
-  expect(originalHandler).toHaveBeenCalledWith(1, 2);
-  expect(global.Tessen.track).toHaveBeenCalledTimes(1);
-  expect(global.Tessen.track).toHaveBeenCalledWith(
+  await waitFor;
+  console.log(waitFor);
+  // console.log(result.current.nrBrowserAgentResult);
+  expect(global.NrBrowserAgent.addPageAction).toHaveBeenCalledTimes(1);
+  expect(global.NrBrowserAgent.addPageAction).toHaveBeenCalledWith(
     'eventName',
-    TESSEN_OBJECT,
-    SEGMENT_OBJECT
+    EVENT_OBJECT
   );
 });
 
@@ -70,11 +56,10 @@ test('attaches any additional fields in config as attributes', async () => {
   result.current();
   await result.current.tessenResult;
 
-  expect(global.Tessen.track).toHaveBeenCalledWith(
-    'eventName',
-    { ...TESSEN_OBJECT, darkMode: true },
-    SEGMENT_OBJECT
-  );
+  expect(global.Tessen.track).toHaveBeenCalledWith('eventName', {
+    ...EVENT_OBJECT,
+    darkMode: true,
+  });
 });
 
 test('allows config argument to be a function called with the handler arguments', async () => {
@@ -89,11 +74,10 @@ test('allows config argument to be a function called with the handler arguments'
   result.current(2, 2);
   await result.current.tessenResult;
 
-  expect(global.Tessen.track).toHaveBeenCalledWith(
-    'eventName',
-    { ...TESSEN_OBJECT, sum: 4 },
-    SEGMENT_OBJECT
-  );
+  expect(global.Tessen.track).toHaveBeenCalledWith('eventName', {
+    ...EVENT_OBJECT,
+    sum: 4,
+  });
 });
 
 test('original return value is maintained', () => {

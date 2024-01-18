@@ -23,12 +23,6 @@ jest.mock('gatsby', () => ({
         repository: 'https://foobar.net',
       },
     },
-    newRelicThemeConfig: {
-      tessen: {
-        product: 'foo',
-        subproduct: 'foobar',
-      },
-    },
   }),
 }));
 

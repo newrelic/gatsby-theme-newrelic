@@ -6,12 +6,6 @@ import { useStaticQuery } from 'gatsby';
 import { merge } from 'lodash';
 
 const DEFAULT_DATA = {
-  newRelicThemeConfig: {
-    tessen: {
-      product: 'foo',
-      subproduct: 'bar',
-    },
-  },
   allLocale: {
     nodes: [{ locale: 'en', isDefault: true }],
   },
@@ -30,12 +24,6 @@ jest.mock('gatsby', () => ({
   graphql: () => {},
   Link: ({ to, ...props }) => <a href={to} {...props} />,
   useStaticQuery: jest.fn(() => ({
-    newRelicThemeConfig: {
-      tessen: {
-        product: 'foo',
-        subproduct: 'bar',
-      },
-    },
     allLocale: {
       nodes: [{ locale: 'en', isDefault: true }],
     },
