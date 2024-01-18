@@ -37,11 +37,6 @@ const useInstrumentedHandler = (handler, attributes) => {
           `You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op.`
         );
 
-      // exposes the Promise that `addPageAction` returns.
-      // this is _not_ intended to be used in code.
-      // this is purely for the test suite so we can wait for this
-      // fn to finish and check if `window.newrelic.addPageAction` is called.
-
       if (eventName && category) {
         addPageAction({ eventName, category, ...attrs });
       }
