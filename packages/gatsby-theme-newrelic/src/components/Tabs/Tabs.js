@@ -51,7 +51,6 @@ const Tabs = ({ children, initialTab = 0 }) => {
       //   <Tabs.Pages>...</Tabs.Pages>
       // </Tabs>
       // ```
-      console.log(pages);
       const pages = tabPages.props.children;
       const index = pages.findIndex((page) => page.props.id === hash);
       if (index !== -1) {
