@@ -73,6 +73,11 @@ module.exports = {
             category: 'ThemePageView',
           },
         },
+        segment: {
+          segmentWriteKey: 'oMdv2YZCnzuC1iTVi9iCnFn6F9ycYb5v',
+          category: 'demo_pages',
+        },
+
         splitio: {
           // Mocked features only used when in localhost mode
           // https://help.split.io/hc/en-us/articles/360020448791-JavaScript-SDK#localhost-mode
