@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.3...v9.2.4) (2024-01-19)
+
+### Bug Fixes
+
+- Add padding to walkthrough container ([80c0750](https://github.com/newrelic/gatsby-theme-newrelic/commit/80c0750070acd47a66c7dbfe4a896449d1559b4b))
+- Change explorers hub name ([21038fb](https://github.com/newrelic/gatsby-theme-newrelic/commit/21038fb24f50f504cf71dd1250efdecbb542fe34))
+
 ## [9.2.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.2...v9.2.3) (2024-01-11)
 
 ### Bug Fixes
