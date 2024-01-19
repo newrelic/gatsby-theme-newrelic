@@ -15,6 +15,7 @@ import MDXTable from './MDXTable';
 import MDXVideo from './MDXVideo';
 import SideBySide from './SideBySide';
 import Walkthrough from './Walkthrough';
+import Tabs from './Tabs';
 
 const defaultComponents = {
   a: MDXLink,
@@ -29,6 +30,11 @@ const defaultComponents = {
   InlineCode,
   Link,
   SideBySide,
+  Tabs,
+  TabsBar: Tabs.Bar,
+  TabsBarItem: Tabs.BarItem,
+  TabsPages: Tabs.Pages,
+  TabsPageItem: Tabs.Page,
   Steps: Walkthrough,
   Step: Walkthrough.Step,
   table: MDXTable,
