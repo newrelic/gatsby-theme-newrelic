@@ -13,8 +13,6 @@ import Spinner from '../Spinner';
 import TextInput from './TextInput';
 import ErrorMessage from './ErrorMessage';
 
-import { addPageAction } from '../../utils/nrBrowserAgent.js';
-
 const defaultInputValues = { value: '', isValid: false };
 
 const defaultValues = { email: defaultInputValues, name: defaultInputValues };
@@ -46,7 +44,6 @@ const SignupForm = ({ siteUrl }) => {
     setLoading(true);
     const organizationId = await createAccountRequest(
       { email: input.email.value, name: input.name.value },
-      nrBrowserAgent,
       submitEvent
     );
 
