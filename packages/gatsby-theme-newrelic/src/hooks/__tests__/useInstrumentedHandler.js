@@ -7,7 +7,7 @@ const originalError = console.error;
 
 global.newRelicRequestingServicesHeader = 'gatsby-theme-newrelic-demo';
 global.newrelic = {
-  addPageAction: jest.fn(() => Promise.resolve),
+  addPageAction: jest.fn(),
 };
 
 afterEach(() => {
@@ -90,7 +90,7 @@ test('warns if category is not in Title Case', () => {
   const { result } = renderHook(() =>
     useInstrumentedHandler(jest.fn(), {
       eventName: 'eventName',
-      category: 'category name',
+      category: 'categoryname',
       name: 'click',
     })
   );
