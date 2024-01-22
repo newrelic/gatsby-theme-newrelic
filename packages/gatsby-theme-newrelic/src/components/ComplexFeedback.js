@@ -14,8 +14,8 @@ import { FEEDBACK_FORM_TYPE } from '../utils/constants';
 
 const ComplexFeedback = ({ pageTitle }) => {
   const [feedbackType, setfeedbackType] = useState(null);
-  const [userComments, setUserComments] = useState(null);
-  const [userEmail, setUserEmail] = useState(null);
+  const [userComments, setUserComments] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [shouldSubmit, setShouldSubmit] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const { t } = useThemeTranslation();

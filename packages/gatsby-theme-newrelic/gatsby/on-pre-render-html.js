@@ -1,11 +1,10 @@
 import React from 'react';
-import path from 'path';
-import { withPrefix } from 'gatsby';
 
-const onPreRenderHTML = (
-  { getHeadComponents, replaceHeadComponents, pathname },
-  themeOptions
-) => {
+const onPreRenderHTML = ({
+  getHeadComponents,
+  replaceHeadComponents,
+  pathname,
+}) => {
   const languages = { kr: 'ko', jp: 'ja' };
 
   const getCurrentLanguage = () => {

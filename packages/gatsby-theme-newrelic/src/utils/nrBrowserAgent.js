@@ -38,16 +38,15 @@ const nrBrowserAction =
       return warnAboutNoop({ action, name: eventName, category });
     }
 
-    if (!CAMEL_CASE.test(eventName)) {
+    if (!CAMEL_CASE.test(eventName.toString())) {
       return warning(
         false,
         `nrBrowserAgent.${action}: The 'name' argument needs to be in camelCase. This has resulted in a noop.`
       );
     }
 
-    if (!TITLE_CASE.test(category)) {
+    if (!TITLE_CASE.test(category.toString())) {
       return warning(
-        TITLE_CASE.test(category),
         `nrBrowserAgent.${action}: The 'category' argument needs to be in TitleCase. This has resulted in a noop.`
       );
     }
