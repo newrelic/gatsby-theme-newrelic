@@ -116,6 +116,7 @@ websites](https://opensource.newrelic.com).
   - [Announcements](#announcements)
   - [Utils](#utils)
     - [`formatCode`](#formatcode)
+    - [`addPageAction`](#addPageAction)
   - [Testing](#testing)
     - [Mocking `ReactDOM.createPortal` for snapshot testing](#mocking-reactdomcreateportal-for-snapshot-testing)
 
@@ -2910,7 +2911,7 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
 
 - `handler` _(function)_: The function hander that should be augmented with nrBrowserAgent instrumentation.
   This can be `null` or `undefined`.
-- `attributes` _(object | function)_: Data passed to the `addPageAction` API when called.
+- `attributes` _(object | function)_: Data passed to the `nrBrowserAgent` API when called.
   The attributes **MUST** contain...
 
   - `eventName` - Needs to be in [Camel Case](https://en.wikipedia.org/wiki/Camel_case)
@@ -3481,6 +3482,28 @@ Utility function that formats a string of code using
     parser: 'babel',
   };
   ```
+
+### `addPageAction`
+
+Utility to send data to New Relic as page action events. Will automatically send the anonymous user ID as part of the event tracking via the Local Storage variable `ajs_anonymous_id`. Will send the customer ID if the user is denoted as logged in via the Local Storage variable `ajs_user_id`
+
+**Arguments:**
+
+- eventName: Camel cased event name to be sent to New Relic.
+- category: Title cased category to be sent to New Relic.
+- options: Can send any desired key/value pair to New Relic.
+
+**Example:**
+
+```js
+import { addPageAction } from '../utils/nrBrowserAgent.js';
+
+addPageAction({
+  eventName: 'feedbackRating',
+  category: `${titleCaseify(feedbackType)}FeedbackClick`,
+  path: location.pathname,
+});
+```
 
 ## Testing
 
