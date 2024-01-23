@@ -18,7 +18,6 @@ websites](https://opensource.newrelic.com).
       - [`newrelic`](#newrelic)
       - [`robots`](#robots)
       - [`relatedResources`](#relatedresources)
-      - [`tessen`](#tessen)
       - [`resolveEnv`](#resolveenv)
       - [`i18n`](#i18n)
       - [`layout`](#layout)
@@ -108,7 +107,6 @@ websites](https://opensource.newrelic.com).
     - [`useQueryParams`](#usequeryparams)
     - [`useScrollFreeze`](#usescrollfreeze)
     - [`useSyncedRef`](#usesyncedref)
-    - [`useTessen`](#usetessen)
     - [`useThemeTranslation`](#usethemetranslation)
     - [`useTimeout`](#usetimeout)
     - [`useUserId`](#useuserid)
@@ -195,10 +193,6 @@ module.exports = {
           core: {
             authorizationKey: 'my-auth-key',
           },
-        },
-        tessen: {
-          product: 'DEMO',
-          subproduct: 'DEMO',
         },
         relatedResources: {
           labels: {
@@ -321,69 +315,10 @@ In short, the order of priority for populating content is driven by:
 
     - **Default**: `5`
 
-#### `tessen`
-
-Optional configuration for Tessen tracking.
-
-- `tessenVersion` _(string)_: Version of tessen to select. Available versions are: `['1.3.0', '1.14.0']`. Defaults to `'1.3.0'` if not specified.
-- `product` _(string)_ **required**: The 4-character product set as `nr_product`
-- `subproduct` _(string)_ **required**: The 4-character subproduct set as `nr_subproduct`
-- `segmentWriteKey` _(string)_ **required**: The write key used for Segment
-  integration.
-- `trackPageViews` _(boolean)_: Determines whether to track page views via
-  Tessen's `tessen.page` action. If this is enabled, you **MUST** configure the
-  `pageView` settings to ensure the `name` and `category` are propertly
-  instrumented.
-  - **Default**: `false`
-- `pageView` _(object)_: Configuration for automatic page view tracking. If
-  `trackPageViews` is enabled, this **MUST** be configured to properly
-  instrument page views. If this is not configured, calls to page views will
-  result in a no-op. This takes the following configuration:
-  - `name` _(string)_ **required**: The name of the page view action. This is
-    passed to `tessen.page` to track page views.
-  - `category` _(string)_ **required**: The category of the page view action.
-    This is passed tot `tessen.page` to track page views.
-  - `getProperties` _(function)_: Function that allows you to specify additional
-    properties that should be instrumented as part of the page view. Takes an
-    object as its only argument with both the `location` and `env` as properties
-    on that object. The `env` is determined by the result of the
-    [`resolveEnv`](#resolvenv) configuration.
-  - `...rest`: All other properties will be added as `properties` to
-    `tessen.page`.
-- `env` _(object)_: Environment-specific configuration. This takes the same
-  properties as listed above. These values override the values set above. Useful
-  if you have environment overrides you'd like to apply. The environment is
-  determined based on the valued returned from [`resolveEnv`](#resolveenv).
-
-**Example**
-
-```js
-const config = {
-  tessen: {
-    tessenVersion: '1.3.0',
-    product: 'DEMO',
-    subproduct: 'DEMO',
-    trackPageViews: true,
-    pageView: {
-      name: 'pageView',
-      category: 'DemoPageView',
-      getProperties: ({ location, env }) => ({
-        env: env === 'production' ? 'prod' : env,
-      }),
-    },
-    env: {
-      development: {
-        trackPageViews: false,
-      },
-    },
-  },
-};
-```
-
 #### `resolveEnv`
 
 Optional function to determine the environment. Useful to provide a fine-tuned
-environment name for environment-specific configuration like [`tessen`](#tessen).
+environment name for environment-specific configuration.
 
 **Default**:
 
@@ -595,9 +530,8 @@ module.exports = {
 Configure the name reported to NerdGraph in the `NewRelic-Requesting-Services` header.
 The value should be formatted like a slug, dash-separated and all lowercase, like `'io-website'`.
 This header is only used in the call to check the current user's logged in status.
-Currently, Tessen and the `useLoggedIn` hook are the only places this is used.
-If this isn't configured, Tessen won't include the `loggedIn` field on any events,
-and `useLoggedIn().loggedIn` will always be `null`.
+Currently, the `useLoggedIn` hook is the only place this is used.
+If this isn't configured, nrBrowserAgent won't include the `loggedIn` field on any events, and `useLoggedIn().loggedIn` will always be `null`.
 
 ### Layouts
 
@@ -2966,7 +2900,7 @@ return <Component>
 
 ### `useInstrumentedHandler`
 
-A hook that wraps a function handler with Tessen instrumentation.
+A hook that wraps a function handler with nrBrowserAgent instrumentation.
 
 ```js
 import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
@@ -2974,9 +2908,9 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
 
 **Arguments**
 
-- `handler` _(function)_: The function hander that should be augmented with Tessen instrumentation.
+- `handler` _(function)_: The function hander that should be augmented with nrBrowserAgent instrumentation.
   This can be `null` or `undefined`.
-- `attributes` _(object | function)_: Data passed to the `Tessen.track` API when called.
+- `attributes` _(object | function)_: Data passed to the `addPageAction` API when called.
   The attributes **MUST** contain...
 
   - `eventName` - Needs to be in [Camel Case](https://en.wikipedia.org/wiki/Camel_case)
@@ -2986,7 +2920,7 @@ import { useInstrumentedHandler } from '@newrelic/gatsby-theme-newrelic';
 
 **Returns**
 
-`function` - The wrapped function handler to be instrumented with Tessen.
+`function` - The wrapped function handler to be instrumented with `addPageAction`.
 
 **Examples**
 
@@ -3285,52 +3219,6 @@ const Button = forwardRef((props, ref) => {
 
   return <button ref={buttonRef} {...props} />;
 });
-```
-
-### `useTessen`
-
-A hook that gets allows you to instrument actions with Tessen. This hook
-requires that [`tessen`](#tessen) is configured. If `tessen` is not configured,
-calls to each action will result in a no-op.
-
-**NOTE**: Calls to the Tessen actions are pre-configured with the `nr_product`,
-and `nr_subproduct` as configured in the [`tessen`](#tessen) configuration.
-`location` is also pre-configured as `Public`. Setting these values as
-`properties` in the actions will do nothing.
-
-```js
-import { useTessen } from '@newrelic/gatsby-theme-newrelic';
-```
-
-**Arguments**
-
-none
-
-**Returns**
-
-`Tessen` - The Tessen object that allows you to call actions.
-
-**Types**
-
-```ts
-type Tessen = {
-  page: (name: string, category: string, properties?: object) => void;
-  track: (name: string, category: string, properties?: object) => void;
-};
-```
-
-**Examples**
-
-```js
-const MyComponent = () => {
-  const tessen = useTessen();
-
-  return (
-    <button onClick={() => tessen.track('copyButtonClicked', 'MyCategory')}>
-      Copy
-    </button>
-  );
-};
 ```
 
 ### `useThemeTranslation`
