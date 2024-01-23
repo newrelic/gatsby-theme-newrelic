@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.4...v9.2.5) (2024-01-23)
+
+### Bug Fixes
+
+- add style to ensure page takes up full width even with narrow content ([f0bbf97](https://github.com/newrelic/gatsby-theme-newrelic/commit/f0bbf979bc6f5e5d89d2b67abf5ba37cfd47925d))
+
 ## [9.2.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.3...v9.2.4) (2024-01-19)
 
 ### Bug Fixes
