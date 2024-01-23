@@ -10,26 +10,27 @@ const customer_user_id = getCookie('ajs_user_id');
 
 // analytics.identify({}); ??????
 
-const warnAboutNoop = (category) => {
+const warnAboutNoop = (section) => {
   warning(
-    category,
-    "You have enabled page view tracking, but do not have page view tracking configured. This route change has not been tracked. Please configure the 'segment.category' option in gatsby-config.js"
+    section,
+    "You have enabled page view tracking, but do not have page view tracking configured. This route change has not been tracked. Please configure the 'segment.section' option in gatsby-config.js"
   );
 };
 
 const trackPageView = ({ config, env, location, prevLocation }) => {
-  const { category } = config;
+  const { section, platform } = config;
 
-  if (!category) {
-    return warnAboutNoop(category);
+  if (!section) {
+    return warnAboutNoop(section);
   }
 
-  //   analytics.page(`${category} page_viewed`, {
+  //   analytics.page(`${section} page_viewed`, {
   //     event_type: 'page_view',
   //     page_name: 'Title of page',
   //     path: location.pathname,
   //     referrer: prevLocation?.href,
-  //     section: 'docs_site',
+  //     section,
+  //     platform,
   //     meta_data: {
   //       env: env || 'development',
   //       customer_user_id,
@@ -38,12 +39,13 @@ const trackPageView = ({ config, env, location, prevLocation }) => {
   //   });
   // };
 
-  console.log('PAGE_VIEW', `${category} page_viewed`, {
+  console.log('PAGE_VIEW', `${section} page_viewed`, {
     event_type: 'page_view',
     page_name: 'Title of page',
     path: location.pathname,
     referrer: prevLocation?.href,
-    section: 'docs_site',
+    section,
+    platform,
     meta_data: {
       env: env || 'development',
       customer_user_id,

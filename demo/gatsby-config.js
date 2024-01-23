@@ -75,7 +75,8 @@ module.exports = {
         },
         segment: {
           segmentWriteKey: 'oMdv2YZCnzuC1iTVi9iCnFn6F9ycYb5v',
-          category: 'demo_pages',
+          section: 'theme_demo_site',
+          platform: 'theme_demo_pages',
         },
 
         splitio: {
