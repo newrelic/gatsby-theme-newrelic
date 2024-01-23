@@ -74,7 +74,7 @@ module.exports = {
           },
         },
         segment: {
-          segmentWriteKey: 'oMdv2YZCnzuC1iTVi9iCnFn6F9ycYb5v',
+          segmentWriteKey: 'n9T9St8geATEFC1tmc0XH7XzEsOSVZCK',
           section: 'theme_demo_site',
           platform: 'theme_demo_pages',
         },

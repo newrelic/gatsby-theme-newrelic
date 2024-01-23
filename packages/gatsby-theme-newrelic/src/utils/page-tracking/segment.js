@@ -2,46 +2,27 @@ import { AnalyticsBrowser } from '@segment/analytics-next';
 import warning from 'warning';
 import { getResolvedEnv, getSegmentConfig } from '../config';
 import Cookies from 'js-cookie';
+import { DEV_SEGMENT_WRITE_KEY } from '../constants';
 
-// const analytics = AnalyticsBrowser.load({ writeKey: DEV_SEGMENT_WRITE_KEY });
-const getCookie = (key) => Cookies.get(key)?.replace(/%22/g, '') || null;
-const customer_user_id = getCookie('ajs_user_id');
-// const anonymousId = analytics.user().anonymousId();
-
-// analytics.identify({}); ??????
-
-const warnAboutNoop = (section) => {
+const warnAboutNoop = (section, platform) => {
   warning(
-    section,
-    "You have enabled page view tracking, but do not have page view tracking configured. This route change has not been tracked. Please configure the 'segment.section' option in gatsby-config.js"
+    section && platform,
+    "You have enabled page view tracking, but do not have page view tracking configured. This route change has not been tracked. Please configure the 'segment.section' and 'segment.platform' options in gatsby-config.js"
   );
 };
 
-const trackPageView = ({ config, env, location, prevLocation }) => {
+const trackPageView = ({ config, env, location, prevLocation, analytics }) => {
   const { section, platform } = config;
+  const getCookie = (key) => Cookies.get(key)?.replace(/%22/g, '') || null;
+  const customer_user_id = getCookie('ajs_user_id');
+  const anonymousId = analytics.instance?.user().anonymousId();
 
-  if (!section) {
-    return warnAboutNoop(section);
+  if (!canSendPageView(config)) {
+    return warnAboutNoop(section, platform);
   }
 
-  //   analytics.page(`${section} page_viewed`, {
-  //     event_type: 'page_view',
-  //     page_name: 'Title of page',
-  //     path: location.pathname,
-  //     referrer: prevLocation?.href,
-  //     section,
-  //     platform,
-  //     meta_data: {
-  //       env: env || 'development',
-  //       customer_user_id,
-  //       anonymousId,
-  //     },
-  //   });
-  // };
-
-  console.log('PAGE_VIEW', `${section} page_viewed`, {
+  analytics.page(`${platform} page_viewed`, {
     event_type: 'page_view',
-    page_name: 'Title of page',
     path: location.pathname,
     referrer: prevLocation?.href,
     section,
@@ -49,39 +30,22 @@ const trackPageView = ({ config, env, location, prevLocation }) => {
     meta_data: {
       env: env || 'development',
       customer_user_id,
+      anonymousId,
     },
   });
 };
 
-// do we need anything like this?
-
-// const initializeTessenTracking =
-//   ({ config, env, location, prevLocation }) =>
-//   (options = {}) => {
-//     if (window.Tessen && !initialized) {
-//       initialized = true;
-//       const { segmentWriteKey } = config;
-//       window.Tessen.load(['Segment', 'NewRelic'], {
-//         Segment: {
-//           identifiable: true,
-//           writeKey:
-//             env === 'production' || env === 'prod'
-//               ? segmentWriteKey
-//               : DEV_SEGMENT_WRITE_KEY,
-//           useAmplitudeSessions: true,
-//         },
-//       });
-
-//       window.Tessen.identify({});
-
-//       options.trackPageView &&
-//         trackPageView({ config, env, location, prevLocation });
-//     }
-//   };
+const canSendPageView = (config) => config.section && config.platform;
 
 const trackViaSegment = ({ location, prevLocation }, themeOptions) => {
   const env = getResolvedEnv(themeOptions);
   const segmentConfig = getSegmentConfig(themeOptions);
+  const analytics = AnalyticsBrowser.load({
+    writeKey:
+      env === 'production' || env === 'prod'
+        ? segmentConfig.segmentWriteKey
+        : DEV_SEGMENT_WRITE_KEY,
+  });
 
   if (!segmentConfig) {
     return;
@@ -89,7 +53,13 @@ const trackViaSegment = ({ location, prevLocation }, themeOptions) => {
   // wrap inside a timeout to make sure react-helmet is done with its changes (https://github.com/gatsbyjs/gatsby/issues/11592)
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      trackPageView({ config: segmentConfig, env, location, prevLocation });
+      trackPageView({
+        config: segmentConfig,
+        env,
+        location,
+        prevLocation,
+        analytics,
+      });
     });
   });
 };

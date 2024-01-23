@@ -7,7 +7,7 @@ const STORAGE_KEYS = {
 
 const TRACKING_COOKIE_NAME = 'newrelic-gdpr-consent';
 
-const DEV_SEGMENT_WRITE_KEY = 'oMdv2YZCnzuC1iTVi9iCnFn6F9ycYb5v';
+const DEV_SEGMENT_WRITE_KEY = 'n9T9St8geATEFC1tmc0XH7XzEsOSVZCK';
 
 const SWIFTYPE_ENGINE_KEY = 'Ad9HfGjDw4GRkcmJjUut';
 
