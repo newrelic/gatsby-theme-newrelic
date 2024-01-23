@@ -11,6 +11,7 @@ const Main = ({ className, children }) => {
         padding: var(--site-content-padding);
         max-width: var(--site-max-width);
         margin: 0 auto;
+        width: 100%;
       `}
     >
       {children}
