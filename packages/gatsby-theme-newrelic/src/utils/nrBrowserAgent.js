@@ -38,6 +38,7 @@ const nrBrowserAction =
       return warnAboutNoop({ action, name: eventName, category });
     }
 
+    // The substring method is to limit the regex input length per CodeQL
     if (!CAMEL_CASE.test(eventName.toString().substring(0, 100))) {
       return warning(
         CAMEL_CASE.test(eventName.toString().substring(0, 100)),
