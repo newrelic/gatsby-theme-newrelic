@@ -68,7 +68,7 @@ const Tabs = ({ children, initialTab = 0 }) => {
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
-  }, [location.hash, children, setTab]);
+  }, [location.hash, children]);
 
   const {
     site: {

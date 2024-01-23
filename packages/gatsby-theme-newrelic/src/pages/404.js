@@ -176,7 +176,7 @@ const NotFoundPage = ({
         searchTerm,
       });
     }
-  }, [location.pathname, addPageAction, searchResult, searchTerm]);
+  }, [location.pathname, searchResult, searchTerm]);
 
   return (
     <>

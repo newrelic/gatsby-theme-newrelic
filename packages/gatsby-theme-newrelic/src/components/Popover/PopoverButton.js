@@ -31,7 +31,7 @@ const PopoverButton = ({ children, nrBrowserAgentCategory, Popover }) => {
       category: nrBrowserAgentCategory,
       eventName: 'opened',
     });
-  }, [opened, addPageAction, nrBrowserAgentCategory]);
+  }, [opened, nrBrowserAgentCategory]);
 
   const button = useCallback(
     (node) => {

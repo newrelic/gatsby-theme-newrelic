@@ -47,7 +47,7 @@ const useInstrumentedHandler = (handler, attributes) => {
     }
   };
 
-  return useCallback(instrumentedHandler, [attributes, addPageAction]);
+  return useCallback(instrumentedHandler, [attributes]);
 };
 
 export default useInstrumentedHandler;
