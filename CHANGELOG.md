@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.5...v9.2.6) (2024-01-25)
+
+### Bug Fixes
+
+- add addPageAction to the list of utils functions in the README ([8832042](https://github.com/newrelic/gatsby-theme-newrelic/commit/883204210035663de69f7931bb6581429ad1c79f))
+- add comment to denote the addition of adding a substring method ([74ba66f](https://github.com/newrelic/gatsby-theme-newrelic/commit/74ba66fd6aa41b20815c12d7d3a84354f6d980fe))
+- add necessary useEffects dependencies and remove unnecessary ones ([fb090c5](https://github.com/newrelic/gatsby-theme-newrelic/commit/fb090c59a7881befbafe1af3863806d4ebe241df))
+- Add segment function (wip) ([d9f23c1](https://github.com/newrelic/gatsby-theme-newrelic/commit/d9f23c1e8a54b2e50a2a6960db624ed524c5b3c8))
+- further updating of useEffect deps ([648cba2](https://github.com/newrelic/gatsby-theme-newrelic/commit/648cba27ffb5402e14bf9164827cadca301cdf7f))
+- init test updates ([af9cdef](https://github.com/newrelic/gatsby-theme-newrelic/commit/af9cdef3599637a04fa23d6a275595ceb752d8b7))
+- limit regex test string length ([a5e37bb](https://github.com/newrelic/gatsby-theme-newrelic/commit/a5e37bbee236785aa7bf8e5c3fef77323602acce))
+- remove tessen from gatsby config and all things related to that ([874806c](https://github.com/newrelic/gatsby-theme-newrelic/commit/874806c383e7b1687ea3e34f3b1a925d6ff0c0df))
+- remove tests that rely on addPageAction to be fired, could not make them work without making the hook async ([ea57e9b](https://github.com/newrelic/gatsby-theme-newrelic/commit/ea57e9b6aa3a957a77a1662e35f1b2da000e325a))
+- remove unneeded comment ([06316f7](https://github.com/newrelic/gatsby-theme-newrelic/commit/06316f752f8fec7ccd8ebd81b8a523f31067cbd0))
+- remove unneeded passing of addPageAction to Signup ([1ee53a0](https://github.com/newrelic/gatsby-theme-newrelic/commit/1ee53a0ae9f00f2d9dcacf050ef3eb2a6bb52e19))
+- remove use of useTessen for useNRBrowserAgent ([f868d95](https://github.com/newrelic/gatsby-theme-newrelic/commit/f868d95cb27bd9e321c2894a6402bbac3c8037a9))
+- slapping ignore statement on useEffect deps line with more specificity ([c4e1a5c](https://github.com/newrelic/gatsby-theme-newrelic/commit/c4e1a5c58b5674c3e0ac6b8b0760063b9df1921f))
+- slapping ignore statement on useEffect deps line, adding setTab will create a render loop ([145dd6d](https://github.com/newrelic/gatsby-theme-newrelic/commit/145dd6ddbff92c2322c50ec4b71c5fec0883dc82))
+- Update event format ([60a433e](https://github.com/newrelic/gatsby-theme-newrelic/commit/60a433e281f9da87a84cca2cdf839d4e690923be))
+- update locations where tessen is used to instead use nrBrowserAgent ([0a658d0](https://github.com/newrelic/gatsby-theme-newrelic/commit/0a658d0370a8644ebc7f3d8c829240593051caf8))
+- update README to remove tessen and update some areas with nrBrowserAgent/addPageAction ([6d91880](https://github.com/newrelic/gatsby-theme-newrelic/commit/6d9188003951c07ad43bc3650264969592e14df5))
+- update regex tests to stringify data for security sake, remove unneeded variables ([7df1582](https://github.com/newrelic/gatsby-theme-newrelic/commit/7df158222478aec88a4307a1532a6a9e6f1b5cab))
+- update tests to actually run correctly ([9e220a4](https://github.com/newrelic/gatsby-theme-newrelic/commit/9e220a46bdb5b93dce3d93275a8b361d9ff6606b))
+- Update the way the nrBrowserAgent file works throughout the project ([739632f](https://github.com/newrelic/gatsby-theme-newrelic/commit/739632f8e656ae8457b6a4e8c30fb274824445b3))
+- update useNRBrowserAgent to have no mention of tessen ([431317d](https://github.com/newrelic/gatsby-theme-newrelic/commit/431317d45a00209c2322e726a6b36ee28b5d1715))
+
 ## [9.2.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.4...v9.2.5) (2024-01-23)
 
 ### Bug Fixes
