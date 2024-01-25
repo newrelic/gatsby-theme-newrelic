@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.7...v9.2.8) (2024-01-25)
+
+### Bug Fixes
+
+- Use cookie instead of segment for anon id ([441d27c](https://github.com/newrelic/gatsby-theme-newrelic/commit/441d27c01015fb3fa08bb43f375b313343973997))
+
 ## [9.2.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.6...v9.2.7) (2024-01-25)
 
 ### Bug Fixes
