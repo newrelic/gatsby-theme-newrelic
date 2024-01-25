@@ -13,8 +13,6 @@ import Spinner from '../Spinner';
 import TextInput from './TextInput';
 import ErrorMessage from './ErrorMessage';
 
-import useTessen from '../../hooks/useTessen';
-
 const defaultInputValues = { value: '', isValid: false };
 
 const defaultValues = { email: defaultInputValues, name: defaultInputValues };
@@ -23,7 +21,7 @@ const SignupForm = ({ siteUrl }) => {
   const [input, setInput] = useState(defaultValues);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const tessen = useTessen();
+
   const submitEvent = {
     eventName: 'attemptedSignup',
     category: 'SignupForm',
@@ -46,7 +44,6 @@ const SignupForm = ({ siteUrl }) => {
     setLoading(true);
     const organizationId = await createAccountRequest(
       { email: input.email.value, name: input.name.value },
-      tessen,
       submitEvent
     );
 

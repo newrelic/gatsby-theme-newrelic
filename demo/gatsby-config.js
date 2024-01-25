@@ -61,17 +61,10 @@ module.exports = {
             },
           },
         },
-        tessen: {
-          tessenVersion: '1.14.0',
-          product: 'THEME',
-          subproduct: 'TTHEME',
-          // segment key for dev only source
-          segmentWriteKey: 'oMdv2YZCnzuC1iTVi9iCnFn6F9ycYb5v',
-          trackPageViews: true,
-          pageView: {
-            eventName: 'pageView',
-            category: 'ThemePageView',
-          },
+        segment: {
+          segmentWriteKey: 'n9T9St8geATEFC1tmc0XH7XzEsOSVZCK',
+          section: 'theme_demo',
+          platform: 'docs_pages',
         },
         splitio: {
           // Mocked features only used when in localhost mode

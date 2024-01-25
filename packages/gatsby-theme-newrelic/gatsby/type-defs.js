@@ -35,7 +35,6 @@ const SCHEMA_CUSTOMIZATION_TYPES = `
   type NewRelicThemeConfig implements Node {
     env: String!
     relatedResources: NewRelicThemeRelatedResourceConfig!
-    tessen: NewRelicThemeTessenConfig
     signup: NewRelicThemeSignupConfig
     shouldUpdateScroll: RoutesAllowingScroll
     feedback: NewRelicThemeFeedbackConfig
@@ -48,11 +47,6 @@ const SCHEMA_CUSTOMIZATION_TYPES = `
   type RelatedResourceLabel {
     baseUrl: String!
     label: String!
-  }
-
-  type NewRelicThemeTessenConfig {
-    product: String
-    subproduct: String
   }
 
   type NewRelicThemeSignupConfig {
