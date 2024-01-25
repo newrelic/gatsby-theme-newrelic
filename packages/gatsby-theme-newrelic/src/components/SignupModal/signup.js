@@ -1,5 +1,6 @@
 import { getUTMValues } from './utmCookie';
 import Cookies from 'js-cookie';
+import { addPageAction } from '../../utils/nrBrowserAgent';
 
 export const CAPTCHA_ACTION = 'v1/signups/create';
 
@@ -55,8 +56,8 @@ const createAccountRequestInternal = (name, email, recaptcha) => {
   });
 };
 
-const createAccountError = (attributes, tessen) => {
-  tessen.track({
+const createAccountError = (attributes) => {
+  addPageAction({
     eventName: 'failedSignup',
     category: 'SignupForm',
     ...attributes,
@@ -77,10 +78,10 @@ const createAccountError = (attributes, tessen) => {
  * Resolves with the organization id from the response JSON
  * if the request succeeds, otherwise resolves with `false`.
  */
-const createAccountRequest = async (input, tessen, tessenEvent) => {
+const createAccountRequest = async (input, event) => {
   const { name, email } = input;
-  tessen.track({
-    ...tessenEvent,
+  addPageAction({
+    ...event,
     ...input,
   });
   let recaptchaToken;
@@ -89,10 +90,7 @@ const createAccountRequest = async (input, tessen, tessenEvent) => {
     await recaptchaReady();
     recaptchaToken = await generateRecaptchaToken();
   } catch (err) {
-    createAccountError(
-      { name, email, error: err, type: 'recaptchaError' },
-      tessen
-    );
+    createAccountError({ name, email, error: err, type: 'recaptchaError' });
     return false;
   }
 
@@ -105,19 +103,16 @@ const createAccountRequest = async (input, tessen, tessenEvent) => {
     const responseJson = await response.json();
 
     if (!response.ok) {
-      createAccountError(
-        {
-          name,
-          email,
-          error: new Error(`Non-2xx signUp result: ${response.statusText}`),
-          type: 'signUpReceiverError',
-        },
-        tessen
-      );
+      createAccountError({
+        name,
+        email,
+        error: new Error(`Non-2xx signUp result: ${response.statusText}`),
+        type: 'signUpReceiverError',
+      });
       return false;
     }
 
-    tessen.track({
+    addPageAction({
       eventName: 'successfulSignup',
       category: 'SignupForm',
       ...input,
@@ -125,10 +120,12 @@ const createAccountRequest = async (input, tessen, tessenEvent) => {
     });
     return responseJson.organization_id;
   } catch (err) {
-    createAccountError(
-      { name, email, error: err, type: 'signUpReceiverError' },
-      tessen
-    );
+    createAccountError({
+      name,
+      email,
+      error: err,
+      type: 'signUpReceiverError',
+    });
   }
 
   return false;

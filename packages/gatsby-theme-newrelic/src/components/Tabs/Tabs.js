@@ -68,7 +68,8 @@ const Tabs = ({ children, initialTab = 0 }) => {
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
-  }, [location.hash]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.hash, children]);
 
   const {
     site: {

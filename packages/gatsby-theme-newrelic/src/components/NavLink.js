@@ -5,7 +5,7 @@ import { css } from '@emotion/react';
 import Link from './Link';
 import Icon from './Icon';
 import Button from './Button';
-import useTessen from '../hooks/useTessen';
+import { addPageAction } from '../utils/nrBrowserAgent.js';
 
 const NavLink = ({
   active,
@@ -20,8 +20,6 @@ const NavLink = ({
   mobileBreakpoint,
   ...props
 }) => {
-  const tessen = useTessen();
-
   const isExternalLink = to && !to.startsWith('/');
   const Element = to ? Link : 'div';
 
@@ -93,7 +91,7 @@ const NavLink = ({
             e.preventDefault();
             e.stopPropagation();
             onToggle && onToggle();
-            tessen.track({
+            addPageAction({
               eventName: 'navLinkInteraction',
               category: 'NavLink',
               name: 'navLinkClick',

@@ -13,7 +13,7 @@ const Portal = ({ children, initializer }) => {
     if (root()) {
       initializer?.(root());
     }
-  }, [initializer, root]);
+  }, [initializer]);
 
   return root() ? createPortal(children, root()) : null;
 };
