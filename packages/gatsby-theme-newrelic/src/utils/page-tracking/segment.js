@@ -21,11 +21,11 @@ const trackPageView = ({ config, env, location, prevLocation, analytics }) => {
     return warnAboutNoop(section, platform);
   }
 
-  analytics.page(`${platform} page_viewed`, {
+  analytics.page(`${section}_pages page_viewed`, {
     event_type: 'page_view',
     path: location.pathname,
     referrer: prevLocation?.href,
-    section,
+    section: `${section}_site`,
     platform,
     meta_data: {
       env: env || 'development',
