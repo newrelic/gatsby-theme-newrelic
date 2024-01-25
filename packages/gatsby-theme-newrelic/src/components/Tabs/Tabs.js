@@ -51,28 +51,25 @@ const Tabs = ({ children, initialTab = 0 }) => {
       //   <Tabs.Pages>...</Tabs.Pages>
       // </Tabs>
       // ```
-      // if not, something is wrong and we'll only break the page
-      // by trying further.
-      if (tabPages.type === Pages) {
-        const pages = tabPages.props.children;
-        const index = pages.findIndex((page) => page.props.id === hash);
-        if (index !== -1) {
-          // this is so the animation doesn't play on page load
-          // if the first tab is selected.
-          if (index !== 0) {
-            setTab(index);
-          }
-          const y =
-            tabsContainer.current.getBoundingClientRect().top +
-            window.scrollY -
-            // header height
-            72;
-
-          window.scrollTo({ top: y, behavior: 'smooth' });
+      const pages = tabPages.props.children;
+      const index = pages.findIndex((page) => page.props.id === hash);
+      if (index !== -1) {
+        // this is so the animation doesn't play on page load
+        // if the first tab is selected.
+        if (index !== 0) {
+          setTab(index);
         }
+        const y =
+          tabsContainer.current.getBoundingClientRect().top +
+          window.scrollY -
+          // header height
+          72;
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
-  }, [location.hash]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.hash, children]);
 
   const {
     site: {

@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react';
 import warning from 'warning';
-import useTessen from './useTessen';
+import { addPageAction } from '../utils/nrBrowserAgent';
 import { CAMEL_CASE, TITLE_CASE } from '../utils/constants';
 
 const useInstrumentedHandler = (handler, attributes) => {
   const savedHandler = useRef();
-  const tessen = useTessen();
 
   useEffect(() => {
     savedHandler.current = handler;
@@ -15,7 +14,7 @@ const useInstrumentedHandler = (handler, attributes) => {
     const { eventName, category, ...attrs } =
       typeof attributes === 'function' ? attributes(...args) : attributes;
 
-    if (window.Tessen) {
+    if (window.newrelic) {
       warning(
         eventName,
         'You are attempting to instrument a handler, but the `eventName` property is not set. This will result in a no-op.'
@@ -38,14 +37,9 @@ const useInstrumentedHandler = (handler, attributes) => {
           `You are attempting to instrument a handler, but the 'category' is not in TitleCase. This will result in a no-op.`
         );
 
-      // exposes the Promise that `tessen.track` returns.
-      // this is _not_ intended to be used in code.
-      // this is purely for the test suite so we can wait for this
-      // fn to finish and check if `window.Tessen.track` is called.
-      instrumentedHandler.tessenResult =
-        eventName &&
-        category &&
-        tessen.track({ eventName, category, ...attrs });
+      if (eventName && category) {
+        addPageAction({ eventName, category, ...attrs });
+      }
     }
 
     if (savedHandler.current) {
@@ -53,11 +47,7 @@ const useInstrumentedHandler = (handler, attributes) => {
     }
   };
 
-  return useCallback(instrumentedHandler, [
-    attributes,
-    instrumentedHandler,
-    tessen,
-  ]);
+  return useCallback(instrumentedHandler, [attributes]);
 };
 
 export default useInstrumentedHandler;

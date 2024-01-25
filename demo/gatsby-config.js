@@ -41,9 +41,9 @@ module.exports = {
         },
         layout: {
           component: require.resolve('./src/layouts'),
-          contentPadding: '2rem',
-          maxWidth: '1280px',
-          sidebarWidth: '300px',
+          contentPadding: '1.5rem',
+          maxWidth: '1600px',
+          sidebarWidth: '340px',
           mobileBreakpoint: '760px',
         },
         newrelic: {
@@ -61,24 +61,11 @@ module.exports = {
             },
           },
         },
-        tessen: {
-          tessenVersion: '1.14.0',
-          product: 'THEME',
-          subproduct: 'TTHEME',
-          // segment key for dev only source
-          segmentWriteKey: 'oMdv2YZCnzuC1iTVi9iCnFn6F9ycYb5v',
-          trackPageViews: true,
-          pageView: {
-            eventName: 'pageView',
-            category: 'ThemePageView',
-          },
-        },
         segment: {
           segmentWriteKey: 'n9T9St8geATEFC1tmc0XH7XzEsOSVZCK',
           section: 'theme_demo',
           platform: 'docs_pages',
         },
-
         splitio: {
           // Mocked features only used when in localhost mode
           // https://help.split.io/hc/en-us/articles/360020448791-JavaScript-SDK#localhost-mode

@@ -9,17 +9,17 @@ import RecaptchaFooter from './SignupModal/RecaptchaFooter';
 import Button from './Button';
 import PageTools from './PageTools';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import useTessen from '../hooks/useTessen';
+import { addPageAction } from '../utils/nrBrowserAgent.js';
 import { FEEDBACK_FORM_TYPE } from '../utils/constants';
 
 const ComplexFeedback = ({ pageTitle }) => {
   const [feedbackType, setfeedbackType] = useState(null);
-  const [userComments, setUserComments] = useState(null);
-  const [userEmail, setUserEmail] = useState(null);
+  const [userComments, setUserComments] = useState('');
+  const [userEmail, setUserEmail] = useState('');
   const [shouldSubmit, setShouldSubmit] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const { t } = useThemeTranslation();
-  const tessen = useTessen();
+
   const location = useLocation();
   const CAPTCHA_ACTION = 'userFeedback';
 
@@ -47,7 +47,7 @@ const ComplexFeedback = ({ pageTitle }) => {
   const handleFeedbackClick = (feedbackType) => {
     setfeedbackType(feedbackType);
     setShouldSubmit(true);
-    tessen.track({
+    addPageAction({
       eventName: 'feedbackRating',
       category: `${titleCaseify(feedbackType)}FeedbackClick`,
       path: location.pathname,
@@ -58,7 +58,7 @@ const ComplexFeedback = ({ pageTitle }) => {
     setFormSubmitted(true);
     await recaptchaReady();
     const recaptchaToken = await generateRecaptchaToken();
-    tessen.track({
+    addPageAction({
       eventName: 'feedbackSubmitted',
       category: `${titleCaseify(feedbackType)}FeedbackSubmit`,
       path: location.pathname,
