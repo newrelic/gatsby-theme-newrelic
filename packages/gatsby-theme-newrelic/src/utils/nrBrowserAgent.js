@@ -5,6 +5,7 @@ import {
   checkIfUserLoggedIn,
   getSavedStatus as getSavedLoggedInStatus,
 } from '../hooks/useLoggedIn';
+import { getResolvedEnv } from './config';
 
 /**
  * Helper function to get string-based cookies given a specific key. This will
@@ -62,6 +63,7 @@ const nrBrowserAction =
 
     const customerId = getCookie('ajs_user_id');
     const anonymousId = getCookie('ajs_anonymous_id');
+    properties.env = getResolvedEnv({});
 
     // if a site doesn't configure this in the theme options,
     // we don't make the call to NerdGraph and we don't send
