@@ -15,7 +15,7 @@ const trackPageView = ({ config, env, location, prevLocation, analytics }) => {
   const { section, platform } = config;
   const getCookie = (key) => Cookies.get(key)?.replace(/%22/g, '') || null;
   const customer_user_id = getCookie('ajs_user_id');
-  const anonymousId = analytics.instance?.user().anonymousId();
+  const anonymousId = getCookie('ajs_anonymous_id');
 
   if (!canSendPageView(config)) {
     return warnAboutNoop(section, platform);
