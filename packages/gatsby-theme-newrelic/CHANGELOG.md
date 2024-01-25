@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.7](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.6...v9.2.7) (2024-01-25)
+
+### Bug Fixes
+
+- add env to all page actions from theme ([b4d6300](https://github.com/newrelic/gatsby-theme-newrelic/commit/b4d630036950d792343236a9c8f83a8179078b95))
+
 ## [9.2.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.5...v9.2.6) (2024-01-25)
 
 ### Bug Fixes
