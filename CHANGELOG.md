@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.2.9](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.8...v9.2.9) (2024-01-31)
+
+### Bug Fixes
+
+- add custom attributes to browser agent events ([#999](https://github.com/newrelic/gatsby-theme-newrelic/issues/999)) ([fe1acf7](https://github.com/newrelic/gatsby-theme-newrelic/commit/fe1acf714522e04bc9338c6a4bc0219f54214c56))
+
 ## [9.2.8](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.7...v9.2.8) (2024-01-25)
 
 ### Bug Fixes
