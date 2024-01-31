@@ -22,9 +22,8 @@ const onRouteUpdate = ({ location, prevLocation }, themeOptions) => {
       locale !== getLocale({ location: prevLocation }, themeOptions)
     ) {
       window.newrelic.setCustomAttribute('locale', locale);
-
-      // third param: persist = true - maintains the attribute value through the whole session
     }
+    // third param: persist = true - maintains the attribute value through the whole session
     window.newrelic.setCustomAttribute('loggedIn', loggedIn, true);
     window.newrelic.setCustomAttribute(
       'customer_user_id',
