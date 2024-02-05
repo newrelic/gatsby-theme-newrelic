@@ -161,7 +161,13 @@ const IndexPage = () => {
           `}
         >
           <h1>{t('home.welcome')}</h1>
-          <p>{t('home.intro')}</p>
+          <p>Is Netlify an instrument??</p>
+          <img
+            alt="is mayo an instrument"
+            src="https://i.ytimg.com/vi/d1JA-nh0IfI/hqdefault.jpg"
+          />
+          <br />
+          <br />
           <section>
             <Tabs>
               <Tabs.Bar>
