@@ -15,6 +15,7 @@
     "@newrelic/gatsby-theme-newrelic": "^3.2.0",
     "gatsby": "^4.25.2",
     "gatsby-plugin-mdx": "^2.10.1",
+    "gatsby-plugin-netlify": "^5.1.1",
     "gatsby-plugin-sharp": "4.25.0",
     "gatsby-remark-autolink-headers": "^4.7.0",
     "gatsby-remark-images": "^5.7.0",
