@@ -38,7 +38,7 @@ module.exports = {
         },
         i18n: {
           translationsPath: `${__dirname}/src/i18n/translations`,
-          additionalLocales: ['jp', 'kr'],
+          additionalLocales: ['jp', 'kr', 'pt', 'es'],
         },
         layout: {
           component: require.resolve('./src/layouts'),
@@ -47,21 +47,20 @@ module.exports = {
           sidebarWidth: '340px',
           mobileBreakpoint: '760px',
         },
+        // New Relic Gatsby Theme - Demo Site
         newrelic: {
-          configs: {
-            development: {
-              instrumentationType: 'proAndSPA',
-              accountId: '10956800',
-              trustKey: '1',
-              agentID: '35094665',
-              licenseKey: 'NRJS-649173eb1a7b28cd6ab',
-              // New Relic Gatsby Theme - Demo Site
-              applicationID: '35094665',
-              beacon: 'staging-bam.nr-data.net',
-              errorBeacon: 'staging-bam.nr-data.net',
-            },
+          config: {
+            instrumentationType: 'proAndSPA',
+            accountId: '10956800',
+            trustKey: '1',
+            agentID: '35094665',
+            licenseKey: 'NRJS-649173eb1a7b28cd6ab',
+            applicationID: '35094665',
+            beacon: 'staging-bam.nr-data.net',
+            errorBeacon: 'staging-bam.nr-data.net',
           },
         },
+
         segment: {
           segmentWriteKey: 'n9T9St8geATEFC1tmc0XH7XzEsOSVZCK',
           section: 'theme_demo',
