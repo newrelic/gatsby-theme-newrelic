@@ -5,7 +5,7 @@ const onPreRenderHTML = ({
   replaceHeadComponents,
   pathname,
 }) => {
-  const languages = { kr: 'ko', jp: 'ja' };
+  const languages = { kr: 'ko', jp: 'ja', es: 'es', pt: 'pt-br' };
 
   const getCurrentLanguage = () => {
     let matchingLanguage = 'en';
