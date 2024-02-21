@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.3.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.9...v9.3.0) (2024-02-21)
+
+### Bug Fixes
+
+- update gatsby-plugin-newrelic config ([58e5ce9](https://github.com/newrelic/gatsby-theme-newrelic/commit/58e5ce95d18d8473c6ca8fa28685f1df074d750d))
+
+### Features
+
+- Add language support for es and pt ([64adebb](https://github.com/newrelic/gatsby-theme-newrelic/commit/64adebb3547378d1abafe44f61b52d623e45ed42))
+
 ## [9.2.9](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.8...v9.2.9) (2024-01-31)
 
 ### Bug Fixes
