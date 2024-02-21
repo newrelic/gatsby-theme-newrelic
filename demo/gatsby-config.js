@@ -38,7 +38,7 @@ module.exports = {
         },
         i18n: {
           translationsPath: `${__dirname}/src/i18n/translations`,
-          additionalLocales: ['jp', 'kr'],
+          additionalLocales: ['jp', 'kr', 'pt', 'es'],
         },
         layout: {
           component: require.resolve('./src/layouts'),

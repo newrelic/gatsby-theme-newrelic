@@ -24,6 +24,20 @@ const LOCALE_CONFIGS = {
     hrefLang: 'ko',
     isDefault: false,
   },
+  es: {
+    name: 'Spanish',
+    localName: 'Español',
+    locale: 'es',
+    hrefLang: 'es',
+    isDefault: false,
+  },
+  pt: {
+    name: 'Portuguese',
+    localName: 'Português',
+    locale: 'pt',
+    hrefLang: 'pt',
+    isDefault: false,
+  },
 };
 
 const uniq = (arr) => [...new Set(arr)];
