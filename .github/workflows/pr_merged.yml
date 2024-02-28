@@ -62,7 +62,7 @@ jobs:
         if: always()
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.DEVEX_OPENSOURCE_BOT_TOKEN }}
+          github-token: ${{ secrets.DOCS_ENG_BOT_TOKEN }}
           previews: luke-cage-preview
           script: |
             const result = await github.rest.repos.updateBranchProtection({
@@ -80,7 +80,7 @@ jobs:
         if: steps.generate-notices.outputs.commit == 'true'
         uses: ad-m/github-push-action@v0.6.0
         with:
-          github_token: ${{ secrets.DEVEX_OPENSOURCE_BOT_TOKEN }}
+          github_token: ${{ secrets.DOCS_ENG_BOT_TOKEN }}
           branch: develop
 
       - name: Re-enable "required_pull_request_reviews" branch protection
@@ -88,7 +88,7 @@ jobs:
         if: always()
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.DEVEX_OPENSOURCE_BOT_TOKEN }}
+          github-token: ${{ secrets.DOCS_ENG_BOT_TOKEN }}
           previews: luke-cage-preview
           script: |
             const result = await github.rest.repos.updateBranchProtection({
