@@ -17,7 +17,7 @@ import SideBySide from './SideBySide';
 import Walkthrough from './Walkthrough';
 
 const defaultComponents = {
-  a: MDXLink,
+  a: (props) => <MDXLink {...props} displayExternalIcon />,
   code: MDXCodeBlock,
   pre: (props) => props.children,
   Button,
