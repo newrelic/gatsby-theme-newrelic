@@ -17,6 +17,16 @@ const isSignup = (to) => to.startsWith('https://newrelic.com/signup');
 const isImageLink = (className) => className === 'gatsby-resp-image-link';
 const isRelativePath = (to) => !to.startsWith('http') && to.startsWith('/');
 
+// Prevents our rewrites to our i18n Netlify sites showing external link icons
+const i18nNetlifySites = [
+  'docs-website-kr.netlify.app/kr/',
+  'docs-website-pt.netlify.app/jp/',
+  'docs-website-es.netlify.app/es/',
+  'docs-website-pt.netlify.app/pt/',
+];
+const isI18nNetlifySite = (to) =>
+  i18nNetlifySites.some((site) => to.includes(site));
+
 const Link = forwardRef(
   (
     {
@@ -85,7 +95,7 @@ const Link = forwardRef(
       );
     }
 
-    if (isExternal(to) || isEmbedPageLink) {
+    if ((isExternal(to) || isEmbedPageLink) && !isI18nNetlifySite(to)) {
       if (isRelativePath(to)) {
         to = siteUrl + to;
       }
