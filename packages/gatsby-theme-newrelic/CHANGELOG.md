@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.3.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.3.0...v9.3.1) (2024-03-06)
+
+### Bug Fixes
+
+- add exclusion to external sites icon for i18n preview sites ([1b7b6bc](https://github.com/newrelic/gatsby-theme-newrelic/commit/1b7b6bc9eabe97186252f7ff6427cf9cb897d99a))
+- bump gatsby-plugin-newrelic ([18d788d](https://github.com/newrelic/gatsby-theme-newrelic/commit/18d788d5175d2d822ffe22cf5b1f92431fe32292))
+
 # [9.3.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.2.9...v9.3.0) (2024-02-21)
 
 ### Bug Fixes
