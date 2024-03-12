@@ -12,11 +12,14 @@ const BarItem = ({ className, index, children, id, disabled }) => {
     index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
   const handleTabClick = useInstrumentedHandler(
-    () => {
+    async () => {
       !disabled && setCurrentTabIndex(index);
       const params = new URLSearchParams(location.search);
       params.set(`tabs-${parentTabsId}`, id);
-      navigate(`?${params}`);
+      let scrollTo = window.scrollTo.bind(window);
+      window.scrollTo = () => {};
+      await navigate(`?${params}`);
+      window.scrollTo = scrollTo;
     },
     {
       eventName: 'tabClick',
