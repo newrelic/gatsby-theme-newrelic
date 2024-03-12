@@ -7,14 +7,16 @@ import useTabs from './useTabs';
 import useInstrumentedHandler from '../../hooks/useInstrumentedHandler';
 
 const BarItem = ({ className, index, children, id, disabled }) => {
-  const { currentTabIndex, setCurrentTabIndex } = useTabs();
+  const { currentTabIndex, parentTabsId, setCurrentTabIndex } = useTabs();
   const isSelected =
     index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
   const handleTabClick = useInstrumentedHandler(
     () => {
       !disabled && setCurrentTabIndex(index);
-      navigate(`#${id}`);
+      const params = new URLSearchParams(location.search);
+      params.set(`tabs-${parentTabsId}`, id);
+      navigate(`?${params}`);
     },
     {
       eventName: 'tabClick',

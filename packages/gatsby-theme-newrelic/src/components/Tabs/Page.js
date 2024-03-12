@@ -42,6 +42,7 @@ const Page = ({ index, children, id, className }) => {
       // https://stackoverflow.com/questions/44145740
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
+          if (tabpanel.current == null) return;
           tabpanel.current.style.transitionProperty = `visibility, transform, opacity`;
           tabpanel.current.style.transform = 'translateX(0%)';
         });
@@ -51,6 +52,7 @@ const Page = ({ index, children, id, className }) => {
       // with the animation for the entering tab.
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
+          if (tabpanel.current == null) return;
           const amount = transitionDirection === 'left' ? '-100%' : '100%';
           tabpanel.current.style.transform = `translateX(${amount})`;
         });
