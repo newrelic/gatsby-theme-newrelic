@@ -70,6 +70,8 @@ const Lightbox = ({ children }) => {
                     img {
                       max-height: unset;
                       max-width: unset;
+                      // removes any manually set img width from mdx when opened in lightbox
+                      width: 100%;
                     }
                   `}
                   onClick={() => setLightboxOpen(false)}
@@ -106,7 +108,7 @@ const Lightbox = ({ children }) => {
                     </Button>
                     <div
                       css={css`
-                        overflow-y: scroll;
+                        overflow: hidden;
                       `}
                     >
                       {children}
