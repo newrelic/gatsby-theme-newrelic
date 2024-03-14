@@ -1,80 +1,89 @@
 {
-  "404": {
-    "headingText": "결과를 찾을 수 없습니다.",
-    "searchInputLabel": "검색 범위를 좁혀서 다시 시도해보세요.",
-    "searchResultMessage": "다음을 찾고 계셨나요?",
-    "docsHomeMessage": "<1>{{nrSubDomain}}홈</1>으로 돌아가기",
-    "fileIssueMessage": "찾으시는 정보가 없습니까?"
+  "404" : {
+    "headingText" : "결과를 찾을 수 없습니다.",
+    "searchInputLabel" : "검색 범위를 좁혀서 다시 시도해보세요.",
+    "searchResultMessage" : "다음을 찾고 계셨나요?",
+    "docsHomeMessage" : "<1>{{nrSubDomain}} 홈</1>으로 돌아가기",
+    "fileIssueMessage" : "찾으시는 정보가 없습니까?"
   },
-  "button": {
-    "close": "종료",
-    "copied": "복사됨",
-    "copy": "복사",
-    "login": "로그인",
-    "startNow": "지금 시작하기"
+  "button" : {
+    "close" : "닫기",
+    "copied" : "복사됨",
+    "copy" : "카피",
+    "login" : "로그인",
+    "startNow" : "지금 시작하기"
   },
-  "callout": {
-    "tip": "팁",
-    "caution": "주의",
-    "important": "중요",
-    "course": "코스"
+  "callout" : {
+    "tip" : "팁",
+    "caution" : "주의",
+    "important" : "중요",
+    "course" : "코스"
   },
-  "github": {
-    "createIssue": "문제 신고",
-    "editPage": "GitHub에서 편집"
+  "github" : {
+    "createIssue" : "문제 신고",
+    "editPage" : "문서 수정하기"
   },
-  "contributing": {
-    "guide": "변경 제안 및 <1>기여 방법</1>"
+  "contributing" : {
+    "guide" : "변경 제안 및 <1>기여</1> 방법"
   },
-  "cookieConsent": {
-    "title": "이 웹사이트는 쿠키를 사용합니다.",
-    "statement": "뉴렐릭은 사용자의 경험을 향상하고 관련된 콘텐츠를 제공하기 위해 당사 웹 사이트 및 서비스에 (\"쿠키\") 및 기타 유사 기술을 사용합니다. 웹사이트와 서비스를 계속 이용하시면 쿠키 사용을 허락하는 것으로 간주합니다. <2>여기</2>에서 보다 자세한 내용을 확인하실 수 있습니다. 쿠키에 동의하시면, <4>예</4>를 클릭하십시오.",
-    "agree": "예",
-    "disagree": "아니요"
+  "cookieConsent" : {
+    "title" : "이 웹사이트는 쿠키를 사용합니다.",
+    "statement" : "뉴렐릭은 귀하의 경험을 향상하고 관련된 콘텐츠를 제공하기 위해 당사 웹사이트와 서비스에서 쿠키 및 기타 유사한 기술(이하 ‘쿠키’)을 사용합니다. 사이트를 계속 이용하시면 쿠키 사용을 허락하는 것으로 간주합니다. <2>여기</2>에서 보다 자세한 내용을 확인하실 수 있습니다. 쿠키에 동의하시면, <4>예</4>를 클릭하십시오.",
+    "agree" : "예",
+    "disagree" : "아니요"
   },
-  "feedback": {
-    "question": "이 페이지가 도움이 되었습니까?",
-    "yes": "예",
-    "no": "아니요",
-    "somewhat": "다소",
-    "comments": "좀 더 자세한 정보를 알려주세요.(선택사항)",
-    "email": "귀하의 이메일(선택사항)",
-    "emailDisclaimer": "이 이메일은 귀하의 피드백에 대한 후속 질문이 있는 경우에만 사용됩니다..",
-    "validEmail": "유효한 이메일 주소를 입력해주세요.",
-    "submitButton": "피드백 제출하기",
-    "submitMessage": "자세한 피드백을 주셔서 감사합니다.",
-    "reset": "재설정"
+  "feedback" : {
+    "question" : "이 페이지가 도움이 되었습니까?",
+    "yes" : "예",
+    "no" : "아니요",
+    "comments" : "좀 더 자세한 정보를 알려주세요.(선택사항)",
+    "email" : "귀하의 이메일(선택사항)",
+    "emailDisclaimer" : "이 이메일은 귀하의 피드백에 대한 후속 질문이 있는 경우에만 사용됩니다.",
+    "validEmail" : "유효한 이메일 주소를 입력해주세요.",
+    "submitButton" : "피드백 제출하기",
+    "submitMessage" : "자세한 피드백을 주셔서 감사합니다.",
+    "reset" : "재설정"
   },
-  "footer": {
-    "copyright": "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
-    "careers": "채용정보",
-    "terms": "서비스 이용약관",
-    "dmcaPolicy": "DMCA 정책",
-    "privacyNotice": "개인정보 고지",
-    "privacyChoices": "개인정보 보호 옵션",
-    "cookiePolicy": "쿠키 정책",
-    "ukSlaveryAct": "영국 현대판 노예법"
+  "footer" : {
+    "copyright" : "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
+    "careers" : "채용정보",
+    "terms" : "서비스 이용약관",
+    "dmcaPolicy" : "DMCA 정책",
+    "privacyNotice" : "개인정보 고지",
+    "privacyChoices" : "개인정보 보호 옵션",
+    "cookiePolicy" : "쿠키 정책",
+    "ukSlaveryAct" : "영국 현대판 노예법"
   },
-  "licenseKey": {
-    "buttonText": "계정 라이선스 키",
-    "popover": {
-      "header": "라이선스 키",
-      "explainer": "라이선스 키는 계정에 유입되는 데이터를 연관시키는 데 사용됩니다.",
-      "learnMore": "자세히 보기",
-      "getYourKey": "키 받기",
-      "createAccount": "계정 생성"
+  "inlineSignup" : {
+    "ctaButton" : "지금 시작하기",
+    "ctaText" : "가입 후 설치하기",
+    "emailLabel" : "회사 이메일",
+    "emailValidationHint" : "\"user@example.com” 형식의 이메일을 사용하십시오.",
+    "nameLabel" : "이름",
+    "nameValidationHint" : "이름을 입력해주십시오.",
+    "submitError" : "계정을 생성하는 동안 오류가 발생했습니다. 나중에 다시 시도해주십시오.",
+    "terms" : "100 GB + 사용자 1명. 무료로 액세스하십시오. 신용카드는 필요하지 않습니다.<1/> 계정을 신청하시면 뉴렐릭의 <4>서비스 이용 약관</4> 및 <8>개인정보 취급방침</8>에 동의하는 것으로 간주합니다."
+  },
+  "licenseKey" : {
+    "buttonText" : "라이선스 키",
+    "popover" : {
+      "header" : "라이선스 키",
+      "explainer" : "라이선스 키는 계정에 유입되는 데이터를 연관시키는 데 사용됩니다.",
+      "learnMore" : "자세히 보기",
+      "getYourKey" : "키 받기",
+      "createAccount" : "계정 생성"
     }
   },
-  "mobileNav": {
-    "header": "페이지"
+  "mobileNav" : {
+    "header" : "페이지"
   },
-  "relatedResources": {
-    "title": "관련 리소스"
+  "relatedResources" : {
+    "title" : "관련 리소스"
   },
-  "searchInput": {
-    "placeholder": "문서 검색"
+  "searchInput" : {
+    "placeholder" : "문서 검색"
   },
-  "tableOfContents": {
-    "title": "이 페이지"
+  "tableOfContents" : {
+    "title" : "이 페이지"
   }
 }

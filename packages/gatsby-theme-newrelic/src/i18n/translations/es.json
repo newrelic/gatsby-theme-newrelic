@@ -3,7 +3,7 @@
     "headingText" : "Qué raro. No lo encontramos.",
     "searchInputLabel" : "Intenta refinar la búsqueda.",
     "searchResultMessage" : "¿Buscabas uno de estos?",
-    "docsHomeMessage" : "Vuelve a &lt;1&gt;{{nrSubDomain}} home&lt;/1&gt;.",
+    "docsHomeMessage" : "Vuelve a <1>{{nrSubDomain}} home</1>.",
     "fileIssueMessage" : "¿Aún no lo encuentras?"
   },
   "button" : {
@@ -24,11 +24,11 @@
     "editPage" : "Edita este documento"
   },
   "contributing" : {
-    "guide" : "Sugiere un cambio y aprende a &lt;1&gt;contribuir&lt;/1&gt;"
+    "guide" : "Sugiere un cambio y aprende a <1>contribuir</1>"
   },
   "cookieConsent" : {
     "title" : "Este sitio utiliza cookies",
-    "statement" : "Utilizamos cookies y otras tecnologías similares (&quot;Cookies&quot;) en nuestro sitio web y servicio para mejorar tu experiencia y ofrecer contenido pertinente. Al usar nuestro sitio web y nuestros servicios, aceptas el uso de cookies. Puedes leer más &lt;2&gt;aquí&lt;/2&gt;. Si aceptas que utilicemos cookies, haz clic en &lt;4&gt;Yes&lt;/4&gt;.",
+    "statement" : "Utilizamos cookies y otras tecnologías similares (&quot;Cookies&quot;) en nuestro sitio web y servicio para mejorar tu experiencia y ofrecer contenido pertinente. Al usar nuestro sitio web y nuestros servicios, aceptas el uso de cookies. Puedes leer más <2>aquí</2>. Si aceptas que utilicemos cookies, haz clic en <4>Yes</4>.",
     "agree" : "Sí",
     "disagree" : "No"
   },
@@ -62,7 +62,7 @@
     "nameLabel" : "Nombre",
     "nameValidationHint" : "Escribe tu nombre",
     "submitError" : "Ocurrió un error al intentar crear tu cuenta. Vuelve a intentar más tarde.",
-    "terms" : "100 GB + 1 usuario gratis. Para siempre.<br/> No se necesita tarjeta de crédito.&lt;1 /&gt;Al registrarte, aceptas los &lt;4&gt;Términos de servicio&lt;/4&gt; y el &lt;8&gt;Aviso de privacidad de los servicios.&lt;/8&gt;"
+    "terms" : "100 GB + 1 usuario gratis. Para siempre.<br/> No se necesita tarjeta de crédito.<1 />Al registrarte, aceptas los <4>Términos de servicio</4> y el <8>Aviso de privacidad de los servicios.</8>"
   },
   "licenseKey" : {
     "buttonText" : "clave de licencia",

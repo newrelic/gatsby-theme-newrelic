@@ -1,80 +1,89 @@
 {
-  "404": {
-    "headingText": "見つかりませんでした",
-    "searchInputLabel": "検索を絞り込んでみてください",
-    "searchResultMessage": "お探しのものはありましたか？",
-    "docsHomeMessage": "<1>{{nrSubDomain}}ホーム</1>に戻ります。",
-    "fileIssueMessage": "お探しのものが見つからない場合"
+  "404" : {
+    "headingText" : "見つかりませんでした",
+    "searchInputLabel" : "検索を絞り込んでみてください",
+    "searchResultMessage" : "お探しのものはありましたか？",
+    "docsHomeMessage" : "<1>{{nrSubDomain}} ホーム</1>に戻る。",
+    "fileIssueMessage" : "お探しのものが見つからない場合"
   },
-  "button": {
-    "close": "閉じる",
-    "copied": "コピー済み",
-    "copy": "コピー",
-    "login": "ログイン",
-    "startNow": "今すぐ開始"
+  "button" : {
+    "close" : "閉じる",
+    "copied" : "コピー済み",
+    "copy" : "コピー",
+    "login" : "ログイン",
+    "startNow" : "今すぐ開始"
   },
-  "callout": {
-    "tip": "ヒント",
-    "caution": "注意",
-    "important": "重要",
-    "course": "コース"
+  "callout" : {
+    "tip" : "ヒント",
+    "caution" : "注意",
+    "important" : "重要",
+    "course" : "コース"
   },
-  "github": {
-    "createIssue": "問題を作成する",
-    "editPage": "GitHub上で編集"
+  "github" : {
+    "createIssue" : "問題を作成する",
+    "editPage" : "この資料を編集"
   },
-  "contributing": {
-    "guide": "変更案を記載し、こちらから<1>貢献</1>方法について確認してください"
+  "contributing" : {
+    "guide" : "こちらから<1>貢献</1>方法について確認してください"
   },
-  "cookieConsent": {
-    "title": "本サイトはCookiesを使用しています",
-    "statement": "当社は、お客様の体験を向上し、関連性あるコンテンツを提供するため、Webサイトおよびサービスで(\"Cookies\")およびその他の類似の技術を用いています。当社のWebサイトおよびサービスを利用する場合、お客様がCookiesの利用に同意したものと見なします。詳しくは<2>こちら</2>からご覧下さい。当社のCookiesの使用に同意する場合は、<4>はい</4>をクリックしてください。",
-    "agree": "はい",
-    "disagree": "いいえ"
+  "cookieConsent" : {
+    "title" : "本サイトはCookiesを使用しています",
+    "statement" : "当社は、お客様の体験を向上し、関連性あるコンテンツを提供するため、WebサイトおよびサービスでCookiesおよびその他の類似の技術を用いています（「Cookies」）。当社のWebサイトおよびサービスを利用する場合、お客様がCookiesの利用に同意したものと見なします。詳しくは<2>こちら</2>からご覧下さい。当社のCookiesの使用に同意する場合は、<4>はい</4>をクリックしてください。",
+    "agree" : "はい",
+    "disagree" : "いいえ"
   },
-  "feedback": {
-    "question": "本資料は役に立ちましたか?",
-    "yes": "はい",
-    "no": "いいえ",
-    "somewhat": "ある程度そう思う",
-    "comments": "詳しくお聞かせください（オプション)",
-    "email": "メールアドレス（オプション）",
-    "emailDisclaimer": "このメールアドレスは、あなたのフィードバックに対してフォローアップするための質問に関してのみ使用いたします.",
-    "validEmail": "有効なメールアドレスをご入力ください",
-    "submitButton": "フィードバックを提出する",
-    "submitMessage": "詳細なフィードバックありがとうございました",
-    "reset": "リセット"
+  "feedback" : {
+    "question" : "本資料は役に立ちましたか？",
+    "yes" : "はい",
+    "no" : "いいえ",
+    "comments" : "詳しくお聞かせください（オプション）",
+    "email" : "メールアドレス（オプション）",
+    "emailDisclaimer" : "このメールアドレスは、フィードバックに関してフォローアップする質問にのみ使用します。",
+    "validEmail" : "有効なメールアドレスをご入力ください",
+    "submitButton" : "フィードバックを提出する",
+    "submitMessage" : "詳細なフィードバックありがとうございました",
+    "reset" : "リセット"
   },
-  "footer": {
-    "copyright": "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
-    "careers": "採用情報",
-    "terms": "サービス利用規約",
-    "dmcaPolicy": "DMCAポリシー",
-    "privacyNotice": "プライバシー通知",
-    "privacyChoices": "プライバシーに関するお客様の選択",
-    "cookiePolicy": "Cookie ポリシー",
-    "ukSlaveryAct": "英国現代奴隷法"
+  "footer" : {
+    "copyright" : "Copyright {{copyrightSymbol}} {{year}} New Relic株式会社。",
+    "careers" : "採用情報",
+    "terms" : "サービス利用規約",
+    "dmcaPolicy" : "DMCAポリシー",
+    "privacyNotice" : "プライバシー通知",
+    "privacyChoices" : "プライバシーに関するお客様の選択",
+    "cookiePolicy" : "Cookie ポリシー",
+    "ukSlaveryAct" : "英国現代奴隷法"
   },
-  "licenseKey": {
-    "buttonText": "アカウントのライセンスキー",
-    "popover": {
-      "header": "ライセンスキー",
-      "explainer": "ライセンスキーを使用すると、受信データをお使いのアカウントに関連付けできます。",
-      "learnMore": "詳細情報",
-      "getYourKey": "キーの取得",
-      "createAccount": "アカウントの作成"
+  "inlineSignup" : {
+    "ctaButton" : "今すぐ開始",
+    "ctaText" : "サインアップしてインストール",
+    "emailLabel" : "会社のEメール",
+    "emailValidationHint" : "Eメールを次のようにフォーマットしてください：user@example.com",
+    "nameLabel" : "氏名",
+    "nameValidationHint" : "名前を入力してください",
+    "submitError" : "アカウントの作成中にエラーが発生しました。後でもう一度お試しください。",
+    "terms" : "100GB + 1ユーザー無料。期間無制限です。クレジットカードは不要です。<1/>サインアップすると、<4>利用規約</4>および<8>サービスプライバシー通知</8>に同意したことになります。"
+  },
+  "licenseKey" : {
+    "buttonText" : "ライセンスキー",
+    "popover" : {
+      "header" : "ライセンスキー",
+      "explainer" : "ライセンスキーは、受信データをアカウントに関連付けるために使用します。",
+      "learnMore" : "詳細情報",
+      "getYourKey" : "キーを入手",
+      "createAccount" : "アカウントを作成"
     }
   },
-  "mobileNav": {
-    "header": "ページ"
+  "mobileNav" : {
+    "header" : "ページ"
   },
-  "relatedResources": {
-    "title": "関連資料"
+  "relatedResources" : {
+    "title" : "関連資料"
   },
-  "searchInput": {
-    "placeholder": "ドキュメントを検索"
+  "searchInput" : {
+    "placeholder" : "ドキュメントを検索"
   },
-  "tableOfContents": {
-    "title": "このページの目次"
+  "tableOfContents" : {
+    "title" : "このページの目次"
   }
 }
