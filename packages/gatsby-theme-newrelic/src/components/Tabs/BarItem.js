@@ -30,16 +30,12 @@ const BarItem = ({ className, index, children, id, disabled }) => {
       type="button"
       onClick={handleTabClick}
       css={css`
-        background: none;
         border: none;
-        border-bottom: #afe2e3 solid 1px;
-        border-top: var(--primary-background-color) solid 1px;
+        background: none;
         color: var(--primary-text-color);
         cursor: pointer;
-        flex-grow: 1;
         font-weight: bold;
-        padding: 0.75em 0.5em 0.75em 1em;
-        text-align: left;
+        padding: 0.5em 0.5em 0.5em 0.5em;
         transition: 500ms background ease-in;
         user-select: none;
         white-space: nowrap;
@@ -51,15 +47,7 @@ const BarItem = ({ className, index, children, id, disabled }) => {
         &.isSelected {
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
-          background: var(--secondary-background-color);
-
-          border: var(--border-color) solid 1px;
-          border: #afe2e3 solid 1px;
-          border-bottom: var(--secondary-background-color) solid 1px;
-
-          .dark-mode & {
-            border-bottom: var(--secondary-background-color) solid 1px;
-          }
+          border-bottom: var(--brand-button-primary-accent) solid 1.5px;
         }
       `}
       className={cx(

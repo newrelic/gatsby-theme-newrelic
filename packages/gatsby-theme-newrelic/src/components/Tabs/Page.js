@@ -65,7 +65,6 @@ const Page = ({ index, children, id, className }) => {
       ref={tabpanel}
       css={css`
         opacity: 1;
-        background: var(--secondary-background-color);
         top: 1em;
         left: 1em;
 

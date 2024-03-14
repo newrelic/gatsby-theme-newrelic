@@ -95,8 +95,9 @@ const Bar = ({ children, className }) => {
         className={className}
         role="tablist"
         css={css`
-          border: none;
           display: flex;
+          /* flex-flow: row wrap; */
+          /* align-content: flex-start; */
           width: 100%;
           overflow: auto;
           @media screen and (max-width: ${mobileBreakpoint}) {
