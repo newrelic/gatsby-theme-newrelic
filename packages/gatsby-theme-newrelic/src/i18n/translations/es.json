@@ -1,0 +1,89 @@
+{
+  "404" : {
+    "headingText" : "Qué raro. No lo encontramos.",
+    "searchInputLabel" : "Intenta refinar la búsqueda.",
+    "searchResultMessage" : "¿Buscabas uno de estos?",
+    "docsHomeMessage" : "Vuelve a <1>{{nrSubDomain}} home</1>.",
+    "fileIssueMessage" : "¿Aún no lo encuentras?"
+  },
+  "button" : {
+    "close" : "Cierra",
+    "copied" : "Copiado",
+    "copy" : "Copia",
+    "login" : "Inicia sesión",
+    "startNow" : "Comenzar ahora"
+  },
+  "callout" : {
+    "tip" : "Sugerencia",
+    "caution" : "Advertencia",
+    "important" : "Importante",
+    "course" : "Curso"
+  },
+  "github" : {
+    "createIssue" : "Crea problema",
+    "editPage" : "Edita este documento"
+  },
+  "contributing" : {
+    "guide" : "Sugiere un cambio y aprende a <1>contribuir</1>"
+  },
+  "cookieConsent" : {
+    "title" : "Este sitio utiliza cookies",
+    "statement" : "Utilizamos cookies y otras tecnologías similares (&quot;Cookies&quot;) en nuestro sitio web y servicio para mejorar tu experiencia y ofrecer contenido pertinente. Al usar nuestro sitio web y nuestros servicios, aceptas el uso de cookies. Puedes leer más <2>aquí</2>. Si aceptas que utilicemos cookies, haz clic en <4>Yes</4>.",
+    "agree" : "Sí",
+    "disagree" : "No"
+  },
+  "feedback" : {
+    "question" : "¿Fue útil este documento?",
+    "yes" : "Sí",
+    "no" : "No",
+    "comments" : "Dinos algo más (opcional)",
+    "email" : "Tu correo electrónico (opcional)",
+    "emailDisclaimer" : "Utilizaremos el correo únicamente para enviarte preguntas de seguimiento relacionadas con tus comentarios.",
+    "validEmail" : "Proporciona un correo electrónico válido",
+    "submitButton" : "Envía comentarios",
+    "submitMessage" : "Agradecemos tus comentarios detallados",
+    "reset" : "Restablecer"
+  },
+  "footer" : {
+    "copyright" : "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
+    "careers" : "Carreras",
+    "terms" : "Términos de servicio",
+    "dmcaPolicy" : "Política de DMCA",
+    "privacyNotice" : "Aviso de privacidad",
+    "privacyChoices" : "Tus opciones de privacidad",
+    "cookiePolicy" : "Política de cookies",
+    "ukSlaveryAct" : "UK Slavery Act (Ley contra la esclavitud del RU)"
+  },
+  "inlineSignup" : {
+    "ctaButton" : "Comenzar ahora",
+    "ctaText" : "Regístrate e instala",
+    "emailLabel" : "Correo electrónico de la compañía",
+    "emailValidationHint" : "Estructura tu correo electrónico así: \"usuario@ejemplo.com\"",
+    "nameLabel" : "Nombre",
+    "nameValidationHint" : "Escribe tu nombre",
+    "submitError" : "Ocurrió un error al intentar crear tu cuenta. Vuelve a intentar más tarde.",
+    "terms" : "100 GB + 1 usuario gratis. Para siempre.<br/> No se necesita tarjeta de crédito.<1 />Al registrarte, aceptas los <4>Términos de servicio</4> y el <8>Aviso de privacidad de los servicios.</8>"
+  },
+  "licenseKey" : {
+    "buttonText" : "clave de licencia",
+    "popover" : {
+      "header" : "Clave de licencia",
+      "explainer" : "La clave de licencia se utiliza para asociar los datos entrantes con tu cuenta.",
+      "learnMore" : "Más información",
+      "getYourKey" : "Obtén tu clave",
+      "createAccount" : "Crea cuenta"
+    }
+  },
+  "mobileNav" : {
+    "header" : "Páginas"
+  },
+  "relatedResources" : {
+    "title" : "Recursos relacionados"
+  },
+  "searchInput" : {
+    "placeholder" : "Documentos de búsqueda"
+  },
+  "tableOfContents" : {
+    "title" : "En esta página"
+  }
+}
