@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.3.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.3.1...v9.3.2) (2024-03-14)
+
+### Bug Fixes
+
+- Refactor encoded characters ([7f97602](https://github.com/newrelic/gatsby-theme-newrelic/commit/7f976028a74da935458002712e4e6dd87ee499d3))
+- Update translated json ([1b2ff6a](https://github.com/newrelic/gatsby-theme-newrelic/commit/1b2ff6adc6c76f1f258ac8c04f91de7cf35b1692))
+
 ## [9.3.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.3.0...v9.3.1) (2024-03-06)
 
 ### Bug Fixes
