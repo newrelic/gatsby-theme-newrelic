@@ -30,6 +30,29 @@ const MarkdownContainer = ({
             }
           }
         }
+        
+        ol > li {
+          counter-increment: listitem 1;
+          list-style-type: none;
+          position: relative;
+          
+          &::before {
+            background: var(--border-color);
+            border-radius: 10px;
+            color: var(--system-text-primary);
+            content: counter(listitem);
+            font-size: 12px;
+            font-weight: 500;
+            height: 10px;
+            left: -24px;
+            line-height: 10px;
+            padding: 5px 0;
+            position: absolute;
+            text-align: center;
+            top: 3px;
+            width: 20px;
+          }
+        }
 
         blockquote:not(:last-child) {
           margin-bottom: var(--block-element-spacing);
