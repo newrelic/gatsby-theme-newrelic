@@ -34,7 +34,7 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
 
           &::after {
             background: var(--secondary-text-color);
-            bottom: 0;
+            bottom: 10px;
             content: '';
             position: absolute;
             right: calc(var(--timeline-width) * -1);
