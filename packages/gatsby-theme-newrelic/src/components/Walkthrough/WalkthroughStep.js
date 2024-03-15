@@ -16,7 +16,7 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
               color: black;
               font-weight: 500;
               transform: scale(1.18) translateX(14px);
-              transition: background-color 325ms, border 325ms, color 325ms, 
+              transition: background-color 325ms, border 325ms, color 325ms,
                 transform 325ms;
             }
 
@@ -72,7 +72,7 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
             text-align: center;
             top: -4px;
             transform: translateX(50%);
-            transition: background-color 325ms, border 325ms, color 325ms, 
+            transition: background-color 325ms, border 325ms, color 325ms,
               transform 325ms;
             width: var(--ring-size);
 
