@@ -30,12 +30,12 @@ const MarkdownContainer = ({
             }
           }
         }
-        
+
         ol > li {
           counter-increment: listitem 1;
           list-style-type: none;
           position: relative;
-          
+
           &::before {
             background: var(--border-color);
             border-radius: 10px;
