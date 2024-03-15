@@ -11,10 +11,12 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
         &:hover {
           aside {
             div {
+              background-color: var(--brand-button-primary-accent);
               border-color: var(--brand-button-primary-accent);
-              color: var(--brand-button-primary-accent);
-              font-weight: 600;
-              transition: border 325ms, color 325ms, font-weight 325ms;
+              color: black;
+              font-weight: 500;
+              transform: scale(1.18) translateX(14px);
+              transition: background-color 325ms, border 325ms, color 325ms, transform 325ms;
             }
 
             &::after {
@@ -36,7 +38,7 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
             content: '';
             position: absolute;
             right: calc(var(--timeline-width) * -1);
-            top: 0;
+            top: 35px;
             transition: background 325ms;
             width: var(--timeline-width);
             z-index: -1;
@@ -60,7 +62,7 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
             border: var(--ring-border-width) var(--secondary-text-color) solid;
             color: var(--secondary-text-color);
             display: grid;
-            font-size: 23px; // Centering gets weird w/ circle divs
+            font-size: 18px;
             font-weight: 400;
             height: var(--ring-size);
             place-items: center;
@@ -69,7 +71,7 @@ const WalkthroughStep = ({ className, children, title, number, id }) => {
             text-align: center;
             top: -4px;
             transform: translateX(50%);
-            transition: border 325ms, color 325ms;
+            transition: background-color 325ms, border 325ms, color 325ms, transform 325ms;
             width: var(--ring-size);
 
             @media screen and (max-width: 1000px) {
