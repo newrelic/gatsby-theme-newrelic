@@ -12,7 +12,7 @@ const Walkthrough = ({ className, children }) => {
     <div
       css={css`
         --timeline-width: 2px;
-        --ring-size: 2.5rem;
+        --ring-size: 34px;
         --ring-border-width: 2px;
 
         display: flex;
