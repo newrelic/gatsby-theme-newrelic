@@ -95,12 +95,20 @@ const Bar = ({ children, className }) => {
         className={className}
         role="tablist"
         css={css`
-          border: none;
           display: flex;
           width: 100%;
           overflow: auto;
+          position: relative;
           @media screen and (max-width: ${mobileBreakpoint}) {
             display: none;
+          }
+          &:before {
+            border-bottom: 1px solid #cdd3d5;
+            bottom: 251px;
+            content: '';
+            left: 0;
+            position: absolute;
+            right: 0;
           }
         `}
       >

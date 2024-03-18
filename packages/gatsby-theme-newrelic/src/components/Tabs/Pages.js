@@ -11,11 +11,6 @@ const Pages = ({ children }) => {
       css={css`
         padding: 1em;
         margin-bottom: 1em;
-        background: var(--secondary-background-color);
-        border: #afe2e3 solid 1px;
-        border-top: none;
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
         overflow: hidden;
         position: relative;
 
