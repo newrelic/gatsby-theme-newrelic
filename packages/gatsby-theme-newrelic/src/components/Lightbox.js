@@ -108,7 +108,8 @@ const Lightbox = ({ children }) => {
                     </Button>
                     <div
                       css={css`
-                        overflow: hidden;
+                        overflow-y: scroll;
+                        overflow-x: hidden;
                       `}
                     >
                       {children}
