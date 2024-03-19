@@ -49,7 +49,7 @@ const MarkdownContainer = ({
             padding: 5px 0;
             position: absolute;
             text-align: center;
-            top: 3px;
+            top: 6px;
             width: 20px;
           }
         }
