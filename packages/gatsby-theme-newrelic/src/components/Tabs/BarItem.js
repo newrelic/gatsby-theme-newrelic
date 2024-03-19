@@ -32,13 +32,9 @@ const BarItem = ({ className, index, children, id, disabled }) => {
       css={css`
         background: none;
         border: none;
-        border-bottom: #afe2e3 solid 1px;
-        border-top: var(--primary-background-color) solid 1px;
         color: var(--primary-text-color);
         cursor: pointer;
-        flex-grow: 1;
-        font-weight: bold;
-        padding: 0.75em 0.5em 0.75em 1em;
+        padding: 0.5em;
         text-align: left;
         transition: 500ms background ease-in;
         user-select: none;
@@ -49,17 +45,9 @@ const BarItem = ({ className, index, children, id, disabled }) => {
         }
 
         &.isSelected {
-          border-top-left-radius: 4px;
-          border-top-right-radius: 4px;
-          background: var(--secondary-background-color);
-
-          border: var(--border-color) solid 1px;
-          border: #afe2e3 solid 1px;
-          border-bottom: var(--secondary-background-color) solid 1px;
-
-          .dark-mode & {
-            border-bottom: var(--secondary-background-color) solid 1px;
-          }
+          border-bottom: #0c74df solid 2px;
+          font-weight: 600;
+          z-index: 1;
         }
       `}
       className={cx(
