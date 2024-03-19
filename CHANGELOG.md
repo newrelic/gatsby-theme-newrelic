@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.4.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.3.2...v9.4.0) (2024-03-19)
+
+### Bug Fixes
+
+- adjust Walkthrough styles ([20dfe9b](https://github.com/newrelic/gatsby-theme-newrelic/commit/20dfe9b694d2b46a2a4c850883b71365b49b9b65))
+- Align style with product ([b341985](https://github.com/newrelic/gatsby-theme-newrelic/commit/b341985a30d9e486dc4e52d3ef0f52f5d0e899e9))
+- center the li's a bit more ([602f344](https://github.com/newrelic/gatsby-theme-newrelic/commit/602f344bb38b3466ecbddad4186758114b5dfcb7))
+- forgot to adjust bottom of line ([da2c000](https://github.com/newrelic/gatsby-theme-newrelic/commit/da2c0002d2abd552ee1cc5b4c07db92688c3ef51))
+- linting issue: ([dd21a4f](https://github.com/newrelic/gatsby-theme-newrelic/commit/dd21a4f873469d93261448ec881b9d2b1ff6134a))
+- linting issue: ([244c47a](https://github.com/newrelic/gatsby-theme-newrelic/commit/244c47a54b25014058d5fb99536c4d621975738d))
+- remove scroll from lightbox ([c05f9e0](https://github.com/newrelic/gatsby-theme-newrelic/commit/c05f9e0b188428971e36187cd278363b00873011))
+- remove whitespace ([280a17a](https://github.com/newrelic/gatsby-theme-newrelic/commit/280a17a323150464d6f62b6fd3666d31eafce2b6))
+
+### Features
+
+- add new li style ([15511da](https://github.com/newrelic/gatsby-theme-newrelic/commit/15511da7320f5a9cb1655bc7c03714bb57211241))
+- adjust line-height and margins for shape up ([d1809d2](https://github.com/newrelic/gatsby-theme-newrelic/commit/d1809d28b66b3dfd0347236cac95ffa5a351083a))
+
 ## [9.3.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.3.1...v9.3.2) (2024-03-14)
 
 ### Bug Fixes
