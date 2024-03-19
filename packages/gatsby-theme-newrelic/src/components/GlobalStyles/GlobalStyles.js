@@ -51,7 +51,7 @@ const GlobalStyles = ({ layout }) => (
       p {
         margin-top: 0;
         margin-bottom: var(--paragraph-spacing);
-        line-height: 1.75;
+        line-height: 1.969rem;
 
         &:last-child {
           margin-bottom: 0;
@@ -102,13 +102,13 @@ const GlobalStyles = ({ layout }) => (
       }
 
       h1 {
-        line-height: 1.15;
+        line-height: 1.5rem;
         font-weight: bold;
         margin-bottom: 1rem;
       }
 
       h2 {
-        line-height: 1.25;
+        line-height: 1.125rem;
         margin-bottom: 0.75rem;
         font-weight: 600;
       }
@@ -131,7 +131,8 @@ const GlobalStyles = ({ layout }) => (
         padding-left: 1.75rem;
 
         > li {
-          margin: 0.5rem 0;
+          line-height: 1.969rem;
+          margin: 0.344rem 0;
         }
       }
 

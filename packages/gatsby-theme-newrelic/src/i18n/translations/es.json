@@ -20,7 +20,7 @@
     "course" : "Curso"
   },
   "github" : {
-    "createIssue" : "Crea problema",
+    "createIssue" : "Crea una propuesta",
     "editPage" : "Edita este documento"
   },
   "contributing" : {
@@ -61,7 +61,7 @@
     "emailValidationHint" : "Estructura tu correo electrónico así: \"usuario@ejemplo.com\"",
     "nameLabel" : "Nombre",
     "nameValidationHint" : "Escribe tu nombre",
-    "submitError" : "Ocurrió un error al intentar crear tu cuenta. Vuelve a intentar más tarde.",
+    "submitError" : "Ocurrió un error al intentar crear tu cuenta. Vuelve a intentarlo más tarde.",
     "terms" : "100 GB + 1 usuario gratis. Para siempre.<br/> No se necesita tarjeta de crédito.<1 />Al registrarte, aceptas los <4>Términos de servicio</4> y el <8>Aviso de privacidad de los servicios.</8>"
   },
   "licenseKey" : {

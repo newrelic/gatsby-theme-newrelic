@@ -39,6 +39,7 @@ const Lightbox = ({ children }) => {
           width: 100%;
           padding: 0;
           background: none;
+          margin-top: 0.5rem;
           img {
             cursor: -moz-zoom-in;
             cursor: -webkit-zoom-in;
@@ -70,6 +71,8 @@ const Lightbox = ({ children }) => {
                     img {
                       max-height: unset;
                       max-width: unset;
+                      // removes any manually set img width from mdx when opened in lightbox
+                      width: 100%;
                     }
                   `}
                   onClick={() => setLightboxOpen(false)}
@@ -107,6 +110,7 @@ const Lightbox = ({ children }) => {
                     <div
                       css={css`
                         overflow-y: scroll;
+                        overflow-x: hidden;
                       `}
                     >
                       {children}
