@@ -39,6 +39,7 @@ const Lightbox = ({ children }) => {
           width: 100%;
           padding: 0;
           background: none;
+          margin-top: 0.5rem;
           img {
             cursor: -moz-zoom-in;
             cursor: -webkit-zoom-in;
