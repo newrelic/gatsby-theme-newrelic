@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.4.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.1...v9.4.2) (2024-03-20)
+
+### Bug Fixes
+
+- missed a variable ([609fa20](https://github.com/newrelic/gatsby-theme-newrelic/commit/609fa201a25c5d370ff758a69f9e4732f1b8df2a))
+
 ## [9.4.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.0...v9.4.1) (2024-03-20)
 
 ### Bug Fixes
