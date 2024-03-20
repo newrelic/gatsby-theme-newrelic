@@ -150,13 +150,13 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
           z-index: 80;
           height: var(--global-header-height);
           @media screen and (max-width: ${LAYOUT_BREAKPOINT}) and (min-width: ${NAV_BREAKPOINT}) {
-            grid-template-columns: calc(150px + var(--site-content-padding)) minmax(
+            grid-template-columns: calc(150px + 1.5rem) minmax(
                 0,
                 1fr
               );
           }
           @media screen and (max-width: ${mobileBreakpoint}) {
-            grid-template-columns: calc(150px + var(--site-content-padding)) minmax(
+            grid-template-columns: calc(150px + 1.5rem) minmax(
                 0,
                 1fr
               );
@@ -166,7 +166,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
         <nav
           css={css`
             grid-area: logo;
-            padding: 0 var(--site-content-padding);
+            padding: 0 1.5rem;
             display: flex;
             align-items: center;
             height: 100%;
@@ -235,7 +235,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
             grid-area: nav;
             display: flex;
             justify-content: space-between;
-            padding: 0 var(--site-content-padding);
+            padding: 0 1.5rem;
             width: 100%;
             max-width: var(--site-max-width);
             margin: auto;
