@@ -12,6 +12,10 @@ const Main = ({ className, children }) => {
         max-width: var(--site-max-width);
         margin: 0 auto;
         width: 100%;
+
+        @media screen and (max-width: 1000px) {
+          padding: 1.5rem;
+        }
       `}
     >
       {children}

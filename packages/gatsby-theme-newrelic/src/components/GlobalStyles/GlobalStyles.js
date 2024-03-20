@@ -102,7 +102,7 @@ const GlobalStyles = ({ layout }) => (
       }
 
       h1 {
-        line-height: 1.5rem;
+        line-height: 1.15;
         font-weight: bold;
         margin-bottom: 1rem;
       }
