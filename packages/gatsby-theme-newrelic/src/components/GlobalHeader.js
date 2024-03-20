@@ -150,16 +150,10 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
           z-index: 80;
           height: var(--global-header-height);
           @media screen and (max-width: ${LAYOUT_BREAKPOINT}) and (min-width: ${NAV_BREAKPOINT}) {
-            grid-template-columns: calc(150px + 1.5rem) minmax(
-                0,
-                1fr
-              );
+            grid-template-columns: calc(150px + 1.5rem) minmax(0, 1fr);
           }
           @media screen and (max-width: ${mobileBreakpoint}) {
-            grid-template-columns: calc(150px + 1.5rem) minmax(
-                0,
-                1fr
-              );
+            grid-template-columns: calc(150px + 1.5rem) minmax(0, 1fr);
           }
         `}
       >
