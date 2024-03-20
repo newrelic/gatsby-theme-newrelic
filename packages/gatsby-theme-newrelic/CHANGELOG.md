@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.4.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.0...v9.4.1) (2024-03-20)
+
+### Bug Fixes
+
+- linting issue ([fe7e9bc](https://github.com/newrelic/gatsby-theme-newrelic/commit/fe7e9bcc1f70b48284cdcc0075239e86d2a62ded))
+- update padding for mobile ([cb4d818](https://github.com/newrelic/gatsby-theme-newrelic/commit/cb4d818d8075fe8c30d1a513cec0838272b8d261))
+
 # [9.4.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.3.2...v9.4.0) (2024-03-19)
 
 ### Bug Fixes
