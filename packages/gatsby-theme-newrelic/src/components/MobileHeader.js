@@ -35,7 +35,7 @@ const MobileHeader = ({ children, className }) => {
     <header
       css={css`
         display: none;
-        padding: 1rem var(--site-content-padding);
+        padding: 1rem 1.5rem;
         justify-content: space-between;
         align-items: center;
 
