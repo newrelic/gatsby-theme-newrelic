@@ -4,6 +4,7 @@ require('dotenv').config({
 
 module.exports = {
   trailingSlash: 'always',
+  assetPrefix: 'https://theme-rewrite-test-2.netlify.app/',
   flags: {
     DEV_SSR: true,
   },
