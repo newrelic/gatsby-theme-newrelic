@@ -38,13 +38,13 @@ const MarkdownContainer = ({
 
           &::before {
             background: var(--border-color);
-            border-radius: 10px;
+            border-radius: 50%;
             color: var(--system-text-primary);
             content: counter(listitem);
             font-size: 12px;
-            font-weight: 500;
+            font-weight: 600;
             height: 10px;
-            left: -24px;
+            left: -28px;
             line-height: 10px;
             padding: 5px 0;
             position: absolute;
