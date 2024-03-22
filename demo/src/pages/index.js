@@ -788,10 +788,20 @@ const IndexPage = () => {
             />
           </section>
           <section>
-            <h2>Internal Links</h2>
+            <h2>Internal Links i am the rewrite site</h2>
             <p>
-              This <Link to="/build-apps">Internal Link</Link> automatically
-              uses localized path if on translated site.
+              This{' '}
+              <Link to="/build-apps" displayExternalIcon>
+                Internal Link
+              </Link>{' '}
+              automatically uses localized path if on translated site.
+            </p>
+            <p>
+              This{' '}
+              <Link to="/build-apps" displayExternalIcon>
+                Internal Link
+              </Link>{' '}
+              automatically uses localized path if on translated site.
             </p>
             <p>
               This{' '}
