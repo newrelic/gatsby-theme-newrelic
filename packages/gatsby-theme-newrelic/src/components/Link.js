@@ -95,7 +95,6 @@ const Link = forwardRef(
       );
     }
     if ((isExternal(to) || isEmbedPageLink) && !isI18nNetlifySite(to)) {
-      console.log(to);
       if (isRelativePath(to)) {
         to = siteUrl + to;
       }
