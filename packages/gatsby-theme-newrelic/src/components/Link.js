@@ -20,7 +20,7 @@ const isRelativePath = (to) => !to.startsWith('http') && to.startsWith('/');
 // Prevents our rewrites to our i18n Netlify sites showing external link icons
 const i18nNetlifySites = [
   'docs-website-kr.netlify.app/kr/',
-  'docs-website-pt.netlify.app/jp/',
+  'docs-website-jp.netlify.app/jp/',
   'docs-website-es.netlify.app/es/',
   'docs-website-pt.netlify.app/pt/',
 ];
@@ -94,7 +94,6 @@ const Link = forwardRef(
         />
       );
     }
-
     if ((isExternal(to) || isEmbedPageLink) && !isI18nNetlifySite(to)) {
       if (isRelativePath(to)) {
         to = siteUrl + to;
