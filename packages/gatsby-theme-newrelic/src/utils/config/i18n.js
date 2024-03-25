@@ -1,5 +1,5 @@
 const DEFAULT_NAMESPACE = 'translation';
-const SUPPORTED_LOCALES = ['en', 'jp', 'kr'];
+const SUPPORTED_LOCALES = ['en', 'jp', 'kr', 'es', 'pt'];
 const THEME_NAMESPACE = 'gatsby-theme-newrelic';
 
 const LOCALE_CONFIGS = {
