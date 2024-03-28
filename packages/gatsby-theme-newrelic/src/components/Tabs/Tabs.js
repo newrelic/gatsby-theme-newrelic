@@ -9,7 +9,13 @@ import BarItem from './BarItem';
 import Pages from './Pages';
 import Page from './Page';
 
+let numTabs = 0;
+
 const Tabs = ({ children, initialTab = 0 }) => {
+  // Tabs don't have ids, so to allow multi-tab selections in the query params,
+  // we just use the index of the Tabs instance on the page.
+  // TODO: use tab id instead
+  const instanceIndex = useRef(numTabs++);
   const [currentTabIndex, setCurrentTabIndex] = useState(initialTab);
   const [previousTabIndex, setPreviousTabIndex] = useState(initialTab);
   const tabsContainer = useRef(null);
@@ -41,8 +47,10 @@ const Tabs = ({ children, initialTab = 0 }) => {
   // for every single tab id on the page.
   // i don't think we can do this with Gatsby.
   useEffect(() => {
-    const hash = location.hash.replace('#', '');
-    if (hash !== '') {
+    // const hash = location.hash.replace('#', '');
+    const queryParams = new URLSearchParams(location.search);
+    const selectedTab = queryParams.get(`tabs-${instanceIndex.current}`);
+    if (selectedTab !== '') {
       const [_tabBar, tabPages] = children;
       // Tabs should always look like this:
       // ```
@@ -52,24 +60,17 @@ const Tabs = ({ children, initialTab = 0 }) => {
       // </Tabs>
       // ```
       const pages = tabPages.props.children;
-      const index = pages.findIndex((page) => page.props.id === hash);
+      const index = pages.findIndex((page) => page.props.id === selectedTab);
       if (index !== -1) {
         // this is so the animation doesn't play on page load
         // if the first tab is selected.
         if (index !== 0) {
           setTab(index);
         }
-        const y =
-          tabsContainer.current.getBoundingClientRect().top +
-          window.scrollY -
-          // header height
-          72;
-
-        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.hash, children]);
+  }, [location.search, children]);
 
   const {
     site: {
@@ -91,6 +92,7 @@ const Tabs = ({ children, initialTab = 0 }) => {
     previousTabIndex,
     transitionDirection,
     mobileBreakpoint,
+    parentTabsId: instanceIndex.current,
     setCurrentTabIndex: setTab,
     setPreviousTabIndex,
     updateHeight,
