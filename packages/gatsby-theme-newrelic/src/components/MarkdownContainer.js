@@ -52,6 +52,10 @@ const MarkdownContainer = ({
             top: 6px;
             width: 20px;
           }
+
+          code {
+            line-height: normal;
+          }
         }
 
         blockquote:not(:last-child) {
