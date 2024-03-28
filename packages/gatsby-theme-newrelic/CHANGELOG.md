@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.4.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.3...v9.4.4) (2024-03-28)
+
+### Bug Fixes
+
+- removing extra slug portion of redirect urls ([f098cae](https://github.com/newrelic/gatsby-theme-newrelic/commit/f098caecd00da4408e7cace7523278fc7a6820b6))
+
 ## [9.4.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.2...v9.4.3) (2024-03-25)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
