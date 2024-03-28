@@ -54,7 +54,7 @@ const MarkdownContainer = ({
           }
 
           code {
-            line-height: normal;
+            line-height: 1.5;
           }
         }
 
