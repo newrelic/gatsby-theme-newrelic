@@ -19,10 +19,10 @@ const isRelativePath = (to) => !to.startsWith('http') && to.startsWith('/');
 
 // Prevents our rewrites to our i18n Netlify sites showing external link icons
 const i18nNetlifySites = [
-  'docs-website-kr.netlify.app/',
-  'docs-website-jp.netlify.app/',
-  'docs-website-es.netlify.app/',
-  'docs-website-pt.netlify.app/',
+  'docs-website-kr.netlify.app/kr/',
+  'docs-website-jp.netlify.app/jp/',
+  'docs-website-es.netlify.app/es/',
+  'docs-website-pt.netlify.app/pt/',
 ];
 const isI18nNetlifySite = (to) =>
   i18nNetlifySites.some((site) => to.includes(site));
