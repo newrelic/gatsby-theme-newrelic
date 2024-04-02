@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.4.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.4...v9.4.5) (2024-04-02)
+
+### Bug Fixes
+
+- Revert external link fix ([8b1a059](https://github.com/newrelic/gatsby-theme-newrelic/commit/8b1a0593cce78828868c2e09d9d5dc4979352fc2))
+
 ## [9.4.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.3...v9.4.4) (2024-03-28)
 
 ### Bug Fixes
