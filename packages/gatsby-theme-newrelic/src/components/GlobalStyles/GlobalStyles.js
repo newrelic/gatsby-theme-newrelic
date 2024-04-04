@@ -108,7 +108,7 @@ const GlobalStyles = ({ layout }) => (
       }
 
       h2 {
-        line-height: 1.125rem;
+        line-height: 1.75rem;
         margin-bottom: 0.75rem;
         font-weight: 600;
       }
