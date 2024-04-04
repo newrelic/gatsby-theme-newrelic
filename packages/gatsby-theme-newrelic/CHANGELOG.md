@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.4.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.5...v9.4.6) (2024-04-04)
+
+### Bug Fixes
+
+- Bump line-height to match other codeblocks ([bdaef38](https://github.com/newrelic/gatsby-theme-newrelic/commit/bdaef38e5d46bfb1b04cba3c0f9d65c839fb4981))
+- spacing in table of contents and h2s ([c16e97b](https://github.com/newrelic/gatsby-theme-newrelic/commit/c16e97bc4b166f2257cb885f59784ba65edb7ef0))
+- Use normal line height for codeblocks in OLs ([48d2a10](https://github.com/newrelic/gatsby-theme-newrelic/commit/48d2a107cb8ff8a36bdc7408ef16918c3244fe8b))
+
 ## [9.4.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.4...v9.4.5) (2024-04-02)
 
 ### Bug Fixes
