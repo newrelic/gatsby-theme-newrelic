@@ -50,7 +50,8 @@ const TableOfContents = ({ headings }) => {
               <li
                 key={id}
                 css={css`
-                  margin: 0;
+                  margin: 5px 0 0;
+                  line-height: 1.33rem;
                 `}
               >
                 <a
