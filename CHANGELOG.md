@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.5.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.6...v9.5.0) (2024-04-12)
+
+### Features
+
+- update `gatsby-plugin-newrelic` to 2.6.0 ([880ed59](https://github.com/newrelic/gatsby-theme-newrelic/commit/880ed594581e6c28e2060a3f5c12692ebb1b4907))
+
 ## [9.4.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.5...v9.4.6) (2024-04-04)
 
 ### Bug Fixes
