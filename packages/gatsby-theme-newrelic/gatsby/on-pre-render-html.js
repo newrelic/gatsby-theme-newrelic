@@ -23,7 +23,7 @@ const onPreRenderHTML = ({
     [
       process.env.ENVIRONMENT === 'production' && (
         <script
-          src={`https://cmp.osano.com/AzZVWOTJtg1WY32RK/cd381ba3-ebca-488c-a528-376a86764609/osano.js?language=${currentLanguage}&variant=one`}
+          src={`https://cmp.osano.com/AzZVWOTJtg1WY32RK/cd381ba3-ebca-488c-a528-376a86764609/osano.js?language=${currentLanguage}`}
         />
       ),
       ...getHeadComponents(),
