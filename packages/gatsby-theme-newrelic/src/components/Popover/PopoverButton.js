@@ -82,6 +82,7 @@ const PopoverButton = ({ children, nrBrowserAgentCategory, Popover }) => {
         display: inline-flex;
         justify-content: center;
         padding: 1px;
+        margin-right: 2px;
       `}
       ref={button}
       onClick={(e) => {
