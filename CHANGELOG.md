@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.0...v9.5.1) (2024-04-25)
+
+### Bug Fixes
+
+- `margin-right` on PopoverButton for better spacing ([fe0d172](https://github.com/newrelic/gatsby-theme-newrelic/commit/fe0d17210d6e190c652d49a4aeca4563e5736585))
+- PopoverButton `padding` set to 1px all around ([94b5045](https://github.com/newrelic/gatsby-theme-newrelic/commit/94b5045b5acaeeb250ef82d91b362b6f06a02732))
+
 # [9.5.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.4.6...v9.5.0) (2024-04-12)
 
 ### Features
