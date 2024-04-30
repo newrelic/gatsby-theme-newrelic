@@ -11,7 +11,7 @@ export default css`
   --system-text-secondary-light: #535e65;
   --system-text-secondary-inverted-light: #cdd3d5;
   --system-text-muted-light: #6b757b;
-  --system-background-app-light: #f3f4f4;
+  --system-background-app-light: #f9fafa;
   --system-background-surface-1-light: #ffffff;
   --system-background-muted-light: #dcdede;
   --system-border-strong-light: #cdd3d5;
