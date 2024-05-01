@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.2...v9.5.3) (2024-05-01)
+
+### Bug Fixes
+
+- update background color value ([6dbb894](https://github.com/newrelic/gatsby-theme-newrelic/commit/6dbb894888e0f80825b2495d1692cc32c2276f5f))
+
 ## [9.5.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.1...v9.5.2) (2024-04-29)
 
 ### Bug Fixes
