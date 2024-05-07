@@ -9,7 +9,7 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 
 const prop = (name) => (obj) => obj[name];
 
-const TableOfContents = ({ headings }) => {
+const TableOfContents = ({ className, headings }) => {
   const { t } = useThemeTranslation();
   const headingIds = useDeepMemo(() => headings.map(prop('id')), [headings]);
   const activeHash = useActiveHash(headingIds);
@@ -22,10 +22,24 @@ const TableOfContents = ({ headings }) => {
 
   return headings.length === 0 ? null : (
     <PageTools.Section
+      className={className}
       css={css`
         display: flex;
         flex-direction: column;
         min-height: 150px;
+        border: none;
+        border-radius: 0;
+        margin-bottom: 0;
+        background: var(--system-text-primary-dark);
+        border-bottom: 1px solid var(--system-text-disabled-dark);
+
+        .dark-mode && {
+          background: var(--erno-black);
+          border-bottom: 1px solid var(--system-background-hover-dark);
+        }
+        h4 {
+          font-weight: 500;
+        }
       `}
     >
       <PageTools.Title>{t('tableOfContents.title')}</PageTools.Title>
@@ -62,23 +76,25 @@ const TableOfContents = ({ headings }) => {
                     display: flex;
                     align-items: center;
                     font-size: 0.875rem;
-                    padding: 0.5rem 1rem;
+                    padding: 0.5rem 1rem 0.5rem 1.25rem;
                     color: var(--primary-text-color);
                     transition: background-color 0.2s ease-out,
                       color 0.2s ease-out;
                     text-decoration: none;
                     position: relative;
-                    border-left: 4px solid transparent;
+                    font-weight: 400;
+
+                    &:hover {
+                      color: #0E74DF;
+
+                    }
+
 
                     &.active {
-                      background: var(--primary-hover-color);
-                      border-left-color: var(
-                        --system-text-secondary-inverted-light
-                      );
-                      .dark-mode & {
-                        border-left-color: var(
-                          --system-background-selected-low-contrast-dark
-                        );
+                      background: #0E74DF;
+                      color: var(--system-background-app-light);
+                      font-weight: 500;
+                     
                       }
                     }
                   `}
@@ -95,6 +111,7 @@ const TableOfContents = ({ headings }) => {
 };
 
 TableOfContents.propTypes = {
+  className: PropTypes.string,
   headings: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
