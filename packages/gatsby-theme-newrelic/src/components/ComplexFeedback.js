@@ -12,7 +12,7 @@ import useThemeTranslation from '../hooks/useThemeTranslation';
 import { addPageAction } from '../utils/nrBrowserAgent.js';
 import { FEEDBACK_FORM_TYPE } from '../utils/constants';
 
-const ComplexFeedback = ({ pageTitle }) => {
+const ComplexFeedback = ({ className, pageTitle }) => {
   const [feedbackType, setfeedbackType] = useState(null);
   const [userComments, setUserComments] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -97,24 +97,31 @@ const ComplexFeedback = ({ pageTitle }) => {
 
   return (
     <PageTools.Section
+      className={className}
       css={css`
         display: flex;
         border: none;
+        border-radius: 0;
         flex-direction: column;
         max-width: 320px;
-        background: #afe2e3;
+        margin: 0;
+        background: var(--system-text-primary-dark);
+        .dark-mode && {
+          background: var(--erno-black);
+        }
         gap: 1rem;
         p {
-          color: var(--system-text-primary-light);
+          color: var(--primary-text-color);
           margin: 0;
           font-size: 14px;
+          font-weight: 400;
         }
         input::placeholder {
-          color: var(--system-text-primary-light);
+          color: var(--primary-text-color);
         }
         h5,
         h4 {
-          color: var(--system-text-primary-light);
+          color: var(--primary-text-color);
         }
       `}
     >
@@ -140,14 +147,14 @@ const ComplexFeedback = ({ pageTitle }) => {
         </h5>
       ) : (
         <>
-          <h4
+          <p
             css={css`
               margin-bottom: 0;
               text-align: center;
             `}
           >
             {t('feedback.question')}
-          </h4>
+          </p>
           <div
             css={css`
               display: flex;
@@ -157,8 +164,16 @@ const ComplexFeedback = ({ pageTitle }) => {
 
               button {
                 width: 45%;
-                font-size: 14px;
+                font-size: 0.875rem;
+                font-weight: 400;
                 border: none;
+                border-radius: 3px;
+                color: var(--primary-text-color);
+                background: var(--system-text-secondary-dark);
+
+                .dark-mode & {
+                  background: var(--primary-hover-color);
+                }
               }
 
               @supports not (gap: 0.5rem) {
@@ -175,14 +190,6 @@ const ComplexFeedback = ({ pageTitle }) => {
               css={css`
                 height: 3rem;
                 margin-bottom: 0.5rem;
-                color: var(--system-text-primary-light);
-                background: var(--system-background-app-light);
-
-                ${feedbackType === 'yes' &&
-                css`
-                  background: var(--system-text-primary-light);
-                  color: var(--system-text-primary-dark);
-                `}
               `}
             >
               <div
@@ -202,14 +209,6 @@ const ComplexFeedback = ({ pageTitle }) => {
               css={css`
                 height: 3rem;
                 margin-bottom: 0.5rem;
-                color: var(--system-text-primary-light);
-                background: var(--system-background-app-light);
-
-                ${feedbackType === 'no' &&
-                css`
-                  background: var(--system-text-primary-light);
-                  color: var(--system-text-primary-dark);
-                `}
               `}
             >
               <div
@@ -236,7 +235,7 @@ const ComplexFeedback = ({ pageTitle }) => {
                   font-size: 0.75rem;
                   padding: 0.5rem;
                   min-height: 100px;
-                  border-radius: 4px;
+                  border-radius: 3px;
                   border: none;
                 `}
               />
@@ -262,7 +261,7 @@ const ComplexFeedback = ({ pageTitle }) => {
                 css={css`
                   font-size: 0.75rem;
                   padding: 0.5rem;
-                  border-radius: 4px;
+                  border-radius: 3px;
                   border: none;
                 `}
               />
@@ -309,6 +308,7 @@ const ComplexFeedback = ({ pageTitle }) => {
 };
 
 ComplexFeedback.propTypes = {
+  className: PropTypes.string,
   pageTitle: PropTypes.string.isRequired,
 };
 
