@@ -14,7 +14,7 @@ const BarItem = ({ className, index, children, id, disabled }) => {
   const handleTabClick = useInstrumentedHandler(
     () => {
       !disabled && setCurrentTabIndex(index);
-      navigate(`#${id}`);
+      history.pushState(null,null,`#${id}`);
     },
     {
       eventName: 'tabClick',
