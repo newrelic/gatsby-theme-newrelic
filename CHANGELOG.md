@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.3...v9.5.4) (2024-05-07)
+
+### Bug Fixes
+
+- update PageTools feedback styles ([32b5429](https://github.com/newrelic/gatsby-theme-newrelic/commit/32b5429ec8b4c6009c8c11a48dd86dea03280c73))
+- update TOC styles ([60e8e27](https://github.com/newrelic/gatsby-theme-newrelic/commit/60e8e27e5ecd3f25de5ea688212c92fb9c197589))
+
 ## [9.5.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.2...v9.5.3) (2024-05-01)
 
 ### Bug Fixes
