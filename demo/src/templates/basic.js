@@ -11,6 +11,7 @@ import {
   RelatedResources,
   SimpleFeedback,
   TableOfContents,
+  ComplexFeedback,
 } from '@newrelic/gatsby-theme-newrelic';
 import GitHubSlugger from 'github-slugger';
 import toString from 'mdast-util-to-string';
@@ -71,12 +72,18 @@ const BasicTemplate = ({ data, location }) => {
         </Layout.Content>
 
         <Layout.PageTools>
-          <SimpleFeedback pageTitle="Demo Site" />
+          <TableOfContents
+            headings={headings}
+            css={css`
+              margin-bottom: -1rem;
+            `}
+          />
+          <ComplexFeedback pageTitle={frontmatter.title} />
           <ContributingGuidelines
             fileRelativePath={fields.fileRelativePath}
             pageTitle={frontmatter.title}
           />
-          <TableOfContents headings={headings} />
+          <SimpleFeedback pageTitle="Demo Site" />
           <RelatedResources resources={relatedResources} />
         </Layout.PageTools>
       </Layout.Main>
