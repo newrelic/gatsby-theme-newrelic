@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { css } from '@emotion/react';
-import { navigate } from '@reach/router';
 import useTabs from './useTabs';
 import useInstrumentedHandler from '../../hooks/useInstrumentedHandler';
 
@@ -14,7 +13,8 @@ const BarItem = ({ className, index, children, id, disabled }) => {
   const handleTabClick = useInstrumentedHandler(
     () => {
       !disabled && setCurrentTabIndex(index);
-      navigate(`#${id}`);
+      // prettier-ignore
+      history.pushState(null , null, `#${id}`);
     },
     {
       eventName: 'tabClick',
