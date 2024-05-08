@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.5...v9.5.6) (2024-05-08)
+
+### Bug Fixes
+
+- add new color variables for redesign ([7aefeb7](https://github.com/newrelic/gatsby-theme-newrelic/commit/7aefeb77da72671b76f250c4a647841912f5be0a))
+- put back complex feedback type highlight styles ([293bdc5](https://github.com/newrelic/gatsby-theme-newrelic/commit/293bdc5595768b5747f56e4ee0d01372a33fe21d))
+
 ## [9.5.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.4...v9.5.5) (2024-05-08)
 
 ### Bug Fixes
