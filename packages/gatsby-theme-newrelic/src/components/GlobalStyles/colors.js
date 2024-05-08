@@ -7,6 +7,9 @@ export default css`
   --erno-black: #1d252c;
   --erno-yellow: #fdebb8;
 
+  --product-blue: #0e74df;
+  --product-blue-hover: #0958a9;
+
   --system-text-primary-light: #293338;
   --system-text-secondary-light: #535e65;
   --system-text-secondary-inverted-light: #cdd3d5;

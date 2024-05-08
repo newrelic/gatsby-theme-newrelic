@@ -168,12 +168,6 @@ const ComplexFeedback = ({ className, pageTitle }) => {
                 font-weight: 400;
                 border: none;
                 border-radius: 3px;
-                color: var(--primary-text-color);
-                background: var(--system-text-secondary-dark);
-
-                .dark-mode & {
-                  background: var(--primary-hover-color);
-                }
               }
 
               @supports not (gap: 0.5rem) {
@@ -190,6 +184,21 @@ const ComplexFeedback = ({ className, pageTitle }) => {
               css={css`
                 height: 3rem;
                 margin-bottom: 0.5rem;
+                color: var(--primary-text-color);
+                background: var(--system-text-secondary-dark);
+
+                .dark-mode & {
+                  background: var(--primary-hover-color);
+                }
+
+                ${feedbackType === 'yes' &&
+                css`
+                  color: var(--system-text-primary-dark);
+                  .dark-mode &,
+                  .light-mode & {
+                    background: var(--product-blue);
+                  }
+                `}
               `}
             >
               <div
@@ -209,6 +218,21 @@ const ComplexFeedback = ({ className, pageTitle }) => {
               css={css`
                 height: 3rem;
                 margin-bottom: 0.5rem;
+                color: var(--primary-text-color);
+                background: var(--system-text-secondary-dark);
+
+                .dark-mode & {
+                  background: var(--primary-hover-color);
+                }
+
+                ${feedbackType === 'no' &&
+                css`
+                  color: var(--system-text-primary-dark);
+                  .dark-mode &,
+                  .light-mode & {
+                    background: var(--product-blue);
+                  }
+                `}
               `}
             >
               <div
@@ -263,6 +287,14 @@ const ComplexFeedback = ({ className, pageTitle }) => {
                   padding: 0.5rem;
                   border-radius: 3px;
                   border: none;
+
+                  .dark-mode &,
+                  .light-mode & {
+                    &::placeholder {
+                      opacity: 50%;
+                      color: #1d252c;
+                    }
+                  }
                 `}
               />
               {userEmail && !isValidEmail(userEmail) && (
