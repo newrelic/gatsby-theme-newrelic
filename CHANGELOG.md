@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.5.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.4...v9.5.5) (2024-05-08)
+
+### Bug Fixes
+
+- linting errors ([0b3cd6f](https://github.com/newrelic/gatsby-theme-newrelic/commit/0b3cd6f288afef900e81a4a03821bcb41f05e588))
+- sharpen and space out the li numbers ([6788787](https://github.com/newrelic/gatsby-theme-newrelic/commit/67887878aee2ebc74654fb917b43a13789b79d1d))
+- use push state vs navigation to keep page from scrolling ([3803745](https://github.com/newrelic/gatsby-theme-newrelic/commit/380374577f8aaa068cfb5ce74d0f5d5eac1d4b09))
+
 ## [9.5.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.3...v9.5.4) (2024-05-07)
 
 ### Bug Fixes
