@@ -211,6 +211,8 @@ exports.onCreateBabelConfig = ({ actions }, themeOptions) => {
         'cpp',
         'css',
         'css-extras',
+        'docker',
+        'dockerfile',
         'javascript',
         'jsx',
         'js-extras',
