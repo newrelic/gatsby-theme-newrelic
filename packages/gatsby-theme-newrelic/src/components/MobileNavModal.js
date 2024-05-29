@@ -76,6 +76,7 @@ const MobileNavModal = ({ children, style, onClose }) => {
             {t('mobileNav.header')}
           </span>
           <button
+            aria-label="Close"
             type="button"
             onClick={onClose}
             css={css`
