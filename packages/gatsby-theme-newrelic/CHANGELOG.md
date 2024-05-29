@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.6.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.6...v9.6.0) (2024-05-29)
+
+### Features
+
+- add aria label to mobile nav close button ([9c89b61](https://github.com/newrelic/gatsby-theme-newrelic/commit/9c89b6128a72e83b35460af4ef985c330e588231))
+
 ## [9.5.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.5...v9.5.6) (2024-05-08)
 
 ### Bug Fixes
