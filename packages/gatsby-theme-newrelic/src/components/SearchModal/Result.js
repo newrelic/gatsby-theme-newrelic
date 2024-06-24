@@ -7,11 +7,12 @@ import Tag from '../Tag';
 import useLocale from '../../hooks/useLocale';
 
 const Result = memo(
-  forwardRef(({ result, selected, onSelect }, ref) => {
+  forwardRef(({ position, result, selected, onSelect }, ref) => {
     const locale = useLocale();
 
     return (
       <Link
+        instrumentation={{ searchResult: true, position }}
         to={result.url}
         ref={ref}
         role="option"
@@ -92,6 +93,11 @@ const Result = memo(
 );
 
 Result.propTypes = {
+  /**
+   * The result's index in the list of results.
+   * Used for instrumentation, starts at 0.
+   */
+  position: PropTypes.number.isRequired,
   result: PropTypes.object.isRequired,
   selected: PropTypes.bool,
   onSelect: PropTypes.func,

@@ -39,6 +39,7 @@ const ResultList = ({ results, selectedIndex, onSelectIndex }) => {
 
     return (
       <Result
+        position={idx}
         key={result.id}
         ref={isSelected ? selectedRef : null}
         selected={isSelected}
