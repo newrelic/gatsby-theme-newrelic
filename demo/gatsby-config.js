@@ -14,6 +14,8 @@ module.exports = {
     branch: 'develop',
   },
   plugins: [
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     'gatsby-plugin-netlify',
     {
       resolve: '@newrelic/gatsby-theme-newrelic',
@@ -132,6 +134,14 @@ module.exports = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1200,
+              linkImagesToOriginal: false,
+              wrapperStyle: 'margin-bottom: var(--paragraph-spacing);',
+            },
+          },
           {
             resolve: 'gatsby-remark-autolink-headers',
             options: {
