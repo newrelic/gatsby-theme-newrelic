@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.6.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.6.0...v9.6.1) (2024-06-27)
+
+### Bug Fixes
+
+- remove gatsby sharp plugins ([613df11](https://github.com/newrelic/gatsby-theme-newrelic/commit/613df11a54815cf18eb05841085be03a259949c6))
+
 # [9.6.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.5.6...v9.6.0) (2024-05-29)
 
 ### Features
