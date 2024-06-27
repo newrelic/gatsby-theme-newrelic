@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.6.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.6.1...v9.6.2) (2024-06-27)
+
+### Bug Fixes
+
+- add image packages back ([84952d5](https://github.com/newrelic/gatsby-theme-newrelic/commit/84952d5a1572653a67c269e03165ded467ef13a1))
+
 ## [9.6.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.6.0...v9.6.1) (2024-06-27)
 
 ### Bug Fixes
