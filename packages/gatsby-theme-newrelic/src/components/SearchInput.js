@@ -32,18 +32,18 @@ const HORIZONTAL_SPACING = {
 const SearchInput = forwardRef(
   (
     {
-      focusWithHotKey,
-      onClear,
-      onSubmit,
-      value,
-      width,
-      size = 'medium',
-      className,
-      iconName = 'fe-search',
       alignIcon = 'left',
+      className,
+      focusWithHotKey,
+      iconName = 'fe-search',
       isIconClickable = false,
       onBlur,
+      onClear,
       onFocus,
+      onSubmit,
+      size = 'medium',
+      value,
+      width,
       ...props
     },
     ref

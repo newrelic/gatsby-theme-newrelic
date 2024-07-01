@@ -130,9 +130,11 @@ const NotFoundPage = ({
                       text-decoration: none;
                     `}
                     instrumentation={{
+                      position: index,
                       component: '404SuggestedLink',
                       href: result.url,
                       searchTerm,
+                      searchResult: true,
                     }}
                     displayExternalIcon
                   >
