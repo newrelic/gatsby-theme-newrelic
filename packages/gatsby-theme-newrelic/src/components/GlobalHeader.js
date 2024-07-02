@@ -22,7 +22,6 @@ import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 export const NR_SITES = {
   DOCS: 'DOCS',
-  DEVELOPER: 'DEVELOPER',
   COMMUNITY: 'COMMUNITY',
   LEARN: 'LEARN',
 };
@@ -33,10 +32,6 @@ HEADER_LINKS.set(NR_SITES.DOCS, {
   text: 'Docs',
   href: 'https://docs.newrelic.com/',
 })
-  .set(NR_SITES.DEVELOPER, {
-    text: 'Developer',
-    href: 'https://developer.newrelic.com/',
-  })
   .set(NR_SITES.COMMUNITY, {
     text: 'Community',
     href: 'https://discuss.newrelic.com/',
