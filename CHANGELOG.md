@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.7.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.7.0...v9.7.1) (2024-07-02)
+
+### Bug Fixes
+
+- **Developer site:** Removed Developer link in header ([0e93783](https://github.com/newrelic/gatsby-theme-newrelic/commit/0e9378396c6cd09dcfd142fd116ba2a2f1fb77ee))
+
 # [9.7.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.6.2...v9.7.0) (2024-07-01)
 
 ### Features
