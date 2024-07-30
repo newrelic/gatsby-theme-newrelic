@@ -21,6 +21,7 @@ const MarkdownContainer = ({
 
         ul,
         ol {
+          counter-reset: listitem;
           &:not(:last-child) {
             margin-bottom: var(--text-spacing);
           }
