@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.7.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.7.1...v9.7.2) (2024-07-30)
+
+### Bug Fixes
+
+- reset ordered list counter on listitems ([fabce57](https://github.com/newrelic/gatsby-theme-newrelic/commit/fabce570ecfb43947a5f3366a05f6d6e57bc7b5c))
+
 ## [9.7.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.7.0...v9.7.1) (2024-07-02)
 
 ### Bug Fixes
