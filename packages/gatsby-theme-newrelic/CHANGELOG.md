@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.8.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.7.3...v9.8.0) (2024-08-20)
+
+### Features
+
+- add `children-nowrap` class ([3daf2f6](https://github.com/newrelic/gatsby-theme-newrelic/commit/3daf2f6cdd95a5483d75125134632f1a9cc18772))
+
 ## [9.7.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.7.2...v9.7.3) (2024-08-16)
 
 ### Bug Fixes
