@@ -229,6 +229,9 @@ const GlobalStyles = ({ layout }) => (
         transform: translateX(-100%);
         padding-right: 4px;
       }
+      .children-nowrap * {
+        white-space: nowrap;
+      }
     `}
   />
 );
