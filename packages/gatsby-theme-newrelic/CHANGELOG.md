@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.8.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.8.0...v9.8.1) (2024-08-22)
+
+### Bug Fixes
+
+- remove Osano variant ([ca708f4](https://github.com/newrelic/gatsby-theme-newrelic/commit/ca708f4ed53f22b2d89a8ca7045c600d342d9dc1))
+
 # [9.8.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.7.3...v9.8.0) (2024-08-20)
 
 ### Features
