@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useMedia from 'use-media';
 import path from 'path';
 import { css } from '@emotion/react';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 import { useLocation } from '@reach/router';
+
 import AnnouncementBanner from './AnnouncementBanner';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
@@ -14,10 +15,9 @@ import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import GlobalNavLink from './GlobalNavLink';
 import SearchInput from './SearchInput';
-import SearchModal from './SearchModal';
-import useQueryParams from '../hooks/useQueryParams';
+import SearchDropdown from './SearchDropdown';
+
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import useHasMounted from '../hooks/useHasMounted';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
 export const NR_SITES = {
@@ -80,9 +80,9 @@ const LOGO_TEXT_BREAKPOINT = '460px';
 const LAYOUT_BREAKPOINT = '1150px';
 
 const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
-  const hasMounted = useHasMounted();
+  const [query, setQuery] = useState('');
+  const searchRef = useRef(null);
   const location = useLocation();
-  const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
   const { t } = useThemeTranslation();
 
   const {
@@ -121,14 +121,11 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
     locale,
   }));
 
+  const showSearchDropdown =
+    query.length > 1 && document.activeElement === searchRef.current;
+
   return (
     <>
-      <SearchModal
-        onClose={() => {
-          deleteQueryParam('q');
-        }}
-        isOpen={hasMounted && queryParams.has('q')}
-      />
       <AnnouncementBanner />
       <div
         data-swiftype-index={false}
@@ -287,8 +284,8 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
             <li
               css={css`
                 margin: 0rem 1rem;
+                position: relative;
                 width: 100%;
-                max-width: 320px;
 
                 @media screen and (max-width: 930px) {
                   margin-right: 1rem;
@@ -304,12 +301,15 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
               {!hideSearch && (
                 <>
                   <SearchInput
+                    value={query}
+                    setValue={setQuery}
+                    ref={searchRef}
                     placeholder={t('searchInput.placeholder')}
                     size={SearchInput.SIZE.MEDIUM}
                     css={css`
                       --icon-size: 1.5rem;
-                      min-width: 150px;
-                      max-width: 450px;
+                      width: 26.625rem;
+
                       svg {
                         width: 1.5rem;
                         height: 1.5rem;
@@ -320,10 +320,9 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                         height: 40px;
                       }
                     `}
-                    onFocus={() => {
-                      setQueryParam('q', '');
-                    }}
+                    onFocus={() => {}}
                   />
+                  {showSearchDropdown && <SearchDropdown />}
                 </>
               )}
             </li>

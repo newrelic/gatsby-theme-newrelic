@@ -41,6 +41,7 @@ const SearchInput = forwardRef(
       onClear,
       onFocus,
       onSubmit,
+      setValue,
       size = 'medium',
       value,
       width,
@@ -64,6 +65,8 @@ const SearchInput = forwardRef(
         css={css`
           --horizontal-spacing: ${HORIZONTAL_SPACING[size]};
 
+          border: 1px solid #eaecec;
+          border-radius: 4px;
           position: relative;
           width: ${width || '100%'};
           ${size && styles.size[size].container}
@@ -120,6 +123,7 @@ const SearchInput = forwardRef(
           value={value}
           {...props}
           type="text"
+          onInput={(e) => setValue(e.target.value)}
           onFocus={composeHandlers(onFocus, () => setShowHotkey(false))}
           onBlur={composeHandlers(onBlur, () =>
             setShowHotkey(Boolean(focusWithHotKey))
