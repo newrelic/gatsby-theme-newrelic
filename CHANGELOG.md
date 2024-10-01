@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.8.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.8.2...v9.8.3) (2024-10-01)
+
+### Bug Fixes
+
+- Add a spooky color ([d717df0](https://github.com/newrelic/gatsby-theme-newrelic/commit/d717df0f53bf207c894d2f23f9eacabf7e81859e))
+- Trigger release ([c33d45d](https://github.com/newrelic/gatsby-theme-newrelic/commit/c33d45db336fbbe24d16e371058ac60a1b235eeb))
+
 ## [9.8.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.8.1...v9.8.2) (2024-10-01)
 
 ### Bug Fixes
