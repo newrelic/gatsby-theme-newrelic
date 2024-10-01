@@ -67,6 +67,7 @@ export { default as Video } from './src/components/Video';
 export { default as Walkthrough } from './src/components/Walkthrough';
 
 export { default as formatCode } from './src/utils/formatCode';
+export { default as search } from './src/components/SearchModal/search';
 export { default as useActiveHash } from './src/hooks/useActiveHash';
 export { default as useClipboard } from './src/hooks/useClipboard';
 export { default as useDarkMode } from './src/hooks/useDarkMode';
