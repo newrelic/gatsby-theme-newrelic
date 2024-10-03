@@ -77,11 +77,15 @@ const NavList = ({ listType, activeSite = null }) => {
 // swaps out logo into collapsable nav
 const NAV_BREAKPOINT = '1070px';
 const LOGO_TEXT_BREAKPOINT = '460px';
-const LAYOUT_BREAKPOINT = '1150px';
+const SEARCH_BREAKPOINT = '1355px';
+const SEARCH_BREAKPOINT_2 = '865px';
+const NAVLIST_BREAKPOINT = '1507px';
 
 const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
+  const [mobileSearchClicked, setMobileSearchClicked] = useState(false);
   const [query, setQuery] = useState('');
   const searchRef = useRef(null);
+  const mobileSearchRef = useRef(null);
   const location = useLocation();
   const { t } = useThemeTranslation();
 
@@ -122,11 +126,63 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
   }));
 
   const showSearchDropdown =
-    query.length > 1 && document.activeElement === searchRef.current;
+    query.length > 1 &&
+    (document.activeElement === searchRef.current || mobileSearchClicked);
+  const showMobileSearch = mobileSearchClicked;
 
   return (
     <>
       <AnnouncementBanner />
+      {showMobileSearch && (
+        <SearchInput
+          autoFocus
+          onClear={() => setMobileSearchClicked(false)}
+          css={css`
+            border: 0;
+            height: var(--global-header-height);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 99;
+
+            & input {
+              border-radius: 0;
+              border-left: none;
+              border-right: none;
+              border-top: none;
+              height: var(--global-header-height);
+            }
+            & input:focus {
+              border: 0;
+              border-bottom: 1px solid var(--search-dropdown-border);
+              box-shadow: none;
+            }
+            @media screen and (min-width: ${mobileBreakpoint}) {
+              display: none;
+            }
+          `}
+          placeholder={t('searchInput.placeholder')}
+          ref={mobileSearchRef}
+          setValue={setQuery}
+          size={SearchInput.SIZE.MEDIUM}
+          value={query}
+        />
+      )}
+      {showMobileSearch && showSearchDropdown && (
+        <SearchDropdown
+          css={css`
+            --search-width: 100%;
+            border: 0;
+            border-radius: 0;
+            top: var(--global-header-height);
+
+            @media screen and (min-width: ${mobileBreakpoint}) {
+              display: none;
+            }
+          `}
+        />
+      )}
       <div
         data-swiftype-index={false}
         className={className}
@@ -141,7 +197,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
           top: 0;
           z-index: 80;
           height: var(--global-header-height);
-          @media screen and (max-width: ${LAYOUT_BREAKPOINT}) and (min-width: ${NAV_BREAKPOINT}) {
+          @media screen and (max-width: ${NAVLIST_BREAKPOINT}) {
             grid-template-columns: calc(150px + 1.5rem) minmax(0, 1fr);
           }
           @media screen and (max-width: ${mobileBreakpoint}) {
@@ -283,15 +339,26 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
           >
             <li
               css={css`
-                margin: 0rem 1rem;
+                --search-width: 26.625rem;
+                --search-dropdown-width: 26.625rem;
+
+                display: flex;
+                justify-content: end;
+                margin: 0rem 0.5rem 0 1rem;
                 position: relative;
-                width: 100%;
+                width: var(--search-width);
 
                 @media screen and (max-width: 930px) {
                   margin-right: 1rem;
                 }
                 @media screen and (max-width: ${NAV_BREAKPOINT}) {
                   margin-left: 0;
+                }
+                @media (max-width: ${SEARCH_BREAKPOINT}) {
+                  --search-width: 13.3125rem;
+                }
+                @media (max-width: ${SEARCH_BREAKPOINT_2}) {
+                  --search-width: 12rem;
                 }
                 @media screen and (max-width: ${mobileBreakpoint}) {
                   display: none;
@@ -308,11 +375,11 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                     size={SearchInput.SIZE.MEDIUM}
                     css={css`
                       --icon-size: 1.5rem;
-                      width: 26.625rem;
+                      width: var(--search-width);
 
                       svg {
-                        width: 1.5rem;
-                        height: 1.5rem;
+                        width: 1rem;
+                        height: 1rem;
                       }
 
                       input {
@@ -336,20 +403,19 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                 }
               `}
             >
-              <Link
-                to="?q="
+              <Button
+                variant={Button.VARIANT.PLAIN}
+                onClick={() => setMobileSearchClicked((v) => !v)}
                 css={css`
-                  color: var(--system-text-primary-dark);
-                  transition: all 0.2s ease-out;
                   align-self: center;
-                  padding-right: 1rem;
+                  color: var(--system-text-primary-dark);
                   display: none;
+                  margin-right: 8px;
+                  padding: 8px;
+                  transition: all 0.2s ease-out;
 
                   @media screen and (max-width: ${mobileBreakpoint}) {
                     display: block;
-                  }
-                  @media screen and (max-width: ${mobileBreakpoint}) {
-                    padding-right: 0.25rem;
                   }
                 `}
               >
@@ -359,9 +425,9 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                     display: block;
                   `}
                   name="fe-search"
-                  size="1.5rem"
+                  size="1.25rem"
                 />
-              </Link>
+              </Button>
               {locales.length > 1 && (
                 <Dropdown align="right">
                   <Dropdown.Toggle

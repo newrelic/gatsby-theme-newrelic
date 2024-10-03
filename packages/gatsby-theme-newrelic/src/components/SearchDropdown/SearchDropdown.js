@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import KeyboardLegend from './KeyboardLegend';
 import Results from './Results';
 
-const SearchDropdown = () => {
+const SearchDropdown = (props) => {
   // this is all mock data, will be replaced in a later change
   const recentQueries = ['alerts', 'NRQL', 'performance', 'gurngus'];
   const results = [
@@ -54,7 +54,7 @@ const SearchDropdown = () => {
 
   return (
     <>
-      <Container>
+      <Container {...props}>
         <SectionHeading>Recent search terms</SectionHeading>
         {recentQueries.length > 0 && (
           <RecentQueries>
@@ -98,7 +98,7 @@ const Container = styled.div`
   padding: var(--outer-padding);
   position: absolute;
   top: 48px;
-  width: 100%;
+  width: var(--search-dropdown-width);
   z-index: 1;
 `;
 
