@@ -41,7 +41,7 @@ HEADER_LINKS.set(NR_SITES.DOCS, {
     href: 'https://learn.newrelic.com/',
   });
 
-const createNavList = (listType, activeSite = null) => {
+const NavList = ({ listType, activeSite = null }) => {
   const navList = [];
   HEADER_LINKS.forEach(({ text, href }) => {
     switch (listType) {
@@ -212,7 +212,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
               />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              {createNavList('dropdown', activeSite)}
+              <NavList listType="dropdown" activeSite={activeSite} />
             </Dropdown.Menu>
           </Dropdown>
         </nav>
@@ -252,7 +252,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                 }
               `}
             >
-              {createNavList('main', activeSite)}
+              <NavList listType="main" activeSite={activeSite} />
             </ul>
           </nav>
 
