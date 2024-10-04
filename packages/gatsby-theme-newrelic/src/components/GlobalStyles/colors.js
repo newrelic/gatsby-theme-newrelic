@@ -78,4 +78,5 @@ export default css`
   --color-purple: #b294bb;
 
   --search-dropdown-emphasis: #00ac69;
+  --spooky-white: #f8f8ff;
 `;
