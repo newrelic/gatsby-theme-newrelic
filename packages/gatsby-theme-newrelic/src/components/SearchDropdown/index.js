@@ -1,1 +1,1 @@
-export { default } from './SearchDropdown';
+export { default, SAVED_SEARCH_KEY } from './SearchDropdown';

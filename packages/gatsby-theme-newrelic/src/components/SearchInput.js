@@ -41,6 +41,7 @@ const SearchInput = forwardRef(
       onClear,
       onFocus,
       onSubmit,
+      onMove,
       setValue,
       size = 'medium',
       value,
@@ -130,6 +131,12 @@ const SearchInput = forwardRef(
           )}
           onKeyDown={(e) => {
             switch (e.key) {
+              case 'ArrowUp':
+                onMove('prev');
+                break;
+              case 'ArrowDown':
+                onMove('next');
+                break;
               case 'Escape':
                 onClear && onClear();
                 e.target.blur();

@@ -2,41 +2,50 @@ import React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import Icon from '../Icon';
 
-const Results = ({ results, onViewMore }) => {
+const Results = ({ selected, results, onViewMore }) => {
   return (
     <>
       <List>
-        {results.map((result) => (
-          <Result>
-            <p
-              css={css`
-                color: var(--secondary-text-color);
-                font-size: 0.625rem;
-                line-height: 1.125;
-                margin: 0 0 0.25rem;
-              `}
-            >
-              {result.breadcrumb}
-            </p>
-            <p
-              css={css`
-                font-size: 0.875rem;
-                font-weight: 500;
-                line-height: 1.25;
-                margin-bottom: 0.25rem;
-              `}
-              dangerouslySetInnerHTML={{ __html: result.title }}
-            />
-            <p
-              css={css`
-                font-size: 0.75rem;
-                line-height: 1.4;
-              `}
-              dangerouslySetInnerHTML={{ __html: result.blurb }}
-            />
+        {results.map((result, i) => (
+          <Result className={cx({ selected: selected === i })} key={result.url}>
+            <a href={result.url}>
+              <p
+                css={css`
+                  color: var(--secondary-text-color);
+                  font-size: 0.625rem;
+                  line-height: 1.125;
+                  margin: 0 0 0.25rem;
+                `}
+              >
+                {result.url.replace('https://docs.newrelic.com/docs/', '')}
+              </p>
+              <p
+                css={css`
+                  font-size: 0.875rem;
+                  font-weight: 500;
+                  line-height: 1.25;
+                  margin-bottom: 0.25rem;
+                `}
+                dangerouslySetInnerHTML={{ __html: result.highlight.title }}
+              />
+              <p
+                css={css`
+                  -webkit-box-orient: vertical;
+                  -webkit-line-clamp: 3;
+                  display: -webkit-box;
+                  font-size: 0.75rem;
+                  line-height: 1.4;
+                  overflow: hidden;
+                `}
+                dangerouslySetInnerHTML={{
+                  __html: result.highlight.body,
+                }}
+              />
+            </a>
           </Result>
         ))}
       </List>
@@ -57,6 +66,8 @@ const Results = ({ results, onViewMore }) => {
 const List = styled.ul`
   list-style: none;
   margin: 0 calc(-1 * var(--outer-padding));
+  max-height: 31.5rem;
+  overflow-y: scroll;
   padding: 0;
 
   & em {
@@ -70,6 +81,9 @@ const Result = styled.li`
   cursor: pointer;
   margin: calc(-1 * var(--top-padding)) 0 0;
   padding: var(--top-padding) var(--outer-padding) 0.5rem;
+  &.selected {
+    background: var(--search-dropdown-hover);
+  }
 
   &:not(:last-of-type) {
     margin-bottom: 0.5rem;
@@ -77,6 +91,11 @@ const Result = styled.li`
 
   &:hover {
     background: var(--search-dropdown-hover);
+  }
+
+  & a {
+    color: currentColor;
+    text-decoration: none;
   }
 `;
 
@@ -100,6 +119,7 @@ Results.propTypes = {
       breadcrumb: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       blurb: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
     })
   ),
 };
