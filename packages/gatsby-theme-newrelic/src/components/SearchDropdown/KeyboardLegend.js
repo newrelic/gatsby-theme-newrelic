@@ -49,6 +49,10 @@ const LegendContainer = styled.div`
     padding: 2px 4px;
     place-items: center;
   }
+
+  @media (max-width: 760px) {
+    display: none;
+  }
 `;
 
 export default KeyboardLegend;
