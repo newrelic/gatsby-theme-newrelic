@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import cx from 'classnames';
 
 import KeyboardLegend from './KeyboardLegend';
 import Results from './Results';
@@ -8,6 +9,7 @@ import Skeleton from './Skeleton';
 
 const SearchDropdown = ({
   fetchNextPage,
+  onResultClick,
   query,
   recentQueries,
   results,
@@ -23,8 +25,8 @@ const SearchDropdown = ({
         <SectionHeading>Recent search terms</SectionHeading>
         {recentQueries.length > 0 && (
           <RecentQueries>
-            {recentQueries.map((query) => (
-              <li>
+            {recentQueries.map((query, i) => (
+              <li className={cx({ selected: selected === i })}>
                 <a href="/search-results?query=${query}&page=1">{query}</a>
               </li>
             ))}
@@ -36,8 +38,9 @@ const SearchDropdown = ({
         {loading && !error && <Skeleton />}
         {!loading && !error && (
           <Results
-            selected={selected}
+            selected={selected - recentQueries.length}
             results={results}
+            onResultClick={onResultClick}
             onViewMore={fetchNextPage}
           />
         )}
@@ -103,7 +106,8 @@ const RecentQueries = styled.ul`
   & li {
     line-height: 1.125;
   }
-  & li:hover {
+  & li:hover,
+  & li.selected {
     text-decoration: underline;
   }
 

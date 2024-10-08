@@ -6,12 +6,16 @@ import cx from 'classnames';
 
 import Icon from '../Icon';
 
-const Results = ({ selected, results, onViewMore }) => {
+const Results = ({ onResultClick, onViewMore, results, selected }) => {
   return (
     <>
       <List>
         {results.map((result, i) => (
-          <Result className={cx({ selected: selected === i })} key={result.url}>
+          <Result
+            className={cx({ selected: selected === i })}
+            key={result.url}
+            onClick={() => onResultClick(result)}
+          >
             <a href={result.url}>
               <p
                 css={css`

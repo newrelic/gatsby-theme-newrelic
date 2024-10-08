@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { navigate, useLocation } from '@reach/router';
+import React, { useEffect, useRef, useState } from 'react';
+import { navigate } from '@reach/router';
 import { css } from '@emotion/react';
 
 import useKeyPress from '../hooks/useKeyPress';
@@ -7,38 +7,52 @@ import useSearch from './SearchModal/useSearch';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 
 import SearchInput from './SearchInput';
-import SearchDropdown, { SAVED_SEARCH_KEY } from './SearchDropdown';
+import SearchDropdown, {
+  DEFAULT_FILTER_TYPES,
+  SAVED_SEARCH_KEY,
+} from './SearchDropdown';
 
-const GlobalSearch = ({}) => {
+const GlobalSearch = () => {
   const [query, setQuery] = useState('');
-  const recentQueries = JSON.parse(
-    localStorage.getItem(SAVED_SEARCH_KEY) ?? '[]'
-  );
   const { fetchNextPage, results, status } = useSearch({
     searchTerm: query,
     filters: DEFAULT_FILTER_TYPES,
   });
-
+  // a const assignment here is causing the dev server to fail to build
+  let recentQueries = [];
+  try {
+    recentQueries = JSON.parse(localStorage.getItem(SAVED_SEARCH_KEY) ?? '[]');
+  } catch (err) {}
+  // `null` when we're just in the searchbar and nothing is selected
+  // otherwise, `selected` is an int.
   const [selected, setSelected] = useState(null);
+  const possibleSelections = results.length + recentQueries.length;
+
   const moveUp = () =>
     setSelected((s) => {
-      if (s == null) return results.length - 1;
+      if (s == null) return possibleSelections - 1;
       const next = s - 1;
       if (next < 0) {
-        return results.length - 1;
+        return possibleSelections - 1;
       }
       return next;
     });
+
   const moveDown = () =>
     setSelected((s) => {
       console.log(s, results.length);
       if (s == null) return 0;
       const next = s + 1;
-      if (next > results.length) {
+      if (next > possibleSelections - 1) {
         return 0;
       }
       return next;
     });
+
+  useEffect(() => {
+    setSelected(null);
+  }, [query]);
+
   const searchRef = useRef(null);
   const { t } = useThemeTranslation();
 
@@ -65,8 +79,14 @@ const GlobalSearch = ({}) => {
         }}
         onSubmit={(value) => {
           if (value.length < 2) return;
-          saveSearch(value);
-          navigate(`/search-results?query=value&page=1`);
+          if (selected != null) {
+            const selectedResult = results[selected];
+            saveSearch(value);
+            navigate(selectedResult.url);
+          } else {
+            saveSearch(value);
+            navigate(`/search-results?query=value&page=1`);
+          }
         }}
         placeholder={t('searchInput.placeholder')}
         ref={searchRef}
@@ -108,6 +128,7 @@ const GlobalSearch = ({}) => {
       {showSearchDropdown && (
         <SearchDropdown
           fetchNextPage={fetchNextPage}
+          onResultClick={() => saveSearch(query)}
           query={query}
           recentQueries={recentQueries}
           results={results}
@@ -128,22 +149,5 @@ const saveSearch = (value) => {
   const updated = savedSearches.slice(-4);
   localStorage.setItem(SAVED_SEARCH_KEY, JSON.stringify(updated));
 };
-
-const defaultFilters = [
-  { name: 'docs', isSelected: false },
-  { name: 'developer', isSelected: false },
-  { name: 'opensource', isSelected: false },
-  { name: 'quickstarts', isSelected: false },
-];
-
-const defaultSearchByFilters = [
-  { name: 'title', isSelected: false },
-  { name: 'body', isSelected: false },
-];
-
-const DEFAULT_FILTER_TYPES = [
-  { type: 'source', defaultFilters: defaultFilters },
-  { type: 'searchBy', defaultFilters: defaultSearchByFilters },
-];
 
 export default GlobalSearch;
