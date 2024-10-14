@@ -25,7 +25,12 @@ const Results = ({ onResultClick, onViewMore, results, selected }) => {
                   margin: 0 0 0.25rem;
                 `}
               >
-                {result.url.replace('https://docs.newrelic.com/docs/', '')}
+                {breadcrumbify(
+                  result.url.replace(
+                    /https:\/\/docs.newrelic.com(?:\/docs)?\//,
+                    ''
+                  )
+                )}
               </p>
               <p
                 css={css`
@@ -126,6 +131,36 @@ Results.propTypes = {
       url: PropTypes.string.isRequired,
     })
   ),
+};
+
+// we use the url segments for breadcrumbs, since we don't have real breadcrumbs.
+// breadcrumbs that would wrap to two lines get their middle parts truncated away.
+// we always want to keep the first and last URL segments.
+// in the very rare case that the length of the first and last segments plus ' / ... / '
+// is greater than 80, we'll only show the last part, like '... / last-segment'
+const breadcrumbify = (str) => {
+  // URLs should be all lowercase, so using lowercase 'o' as a reference,
+  // 72 about the upper limit on number of characters for us not wrap to two lines.
+  // in practice, many characters in the URL will
+  // be slimmer than an o, so we can use a higher limit.
+  const DESIRED_LENGTH = 80;
+  str = str.replace(/\/$/, '');
+
+  let parts = str.split('/');
+  let result = parts.join(' / ');
+
+  if (result.length <= DESIRED_LENGTH) return result;
+
+  parts[parts.length - 2] = '...';
+  result = parts.join(' / ');
+
+  while (result.length > DESIRED_LENGTH) {
+    // keep the last item and the '...' in the second to last place
+    parts.splice(parts.length - 3, 1);
+    result = parts.join(' / ');
+  }
+
+  return result;
 };
 
 export default Results;

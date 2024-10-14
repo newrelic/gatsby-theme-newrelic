@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { navigate } from '@reach/router';
 import { css } from '@emotion/react';
+import { useThrottle } from 'react-use';
 
 import useKeyPress from '../hooks/useKeyPress';
 import useSearch from './SearchModal/useSearch';
@@ -14,8 +15,9 @@ import SearchDropdown, {
 
 const GlobalSearch = () => {
   const [query, setQuery] = useState('');
+  const throttledQuery = useThrottle(query, 300);
   const { fetchNextPage, results, status } = useSearch({
-    searchTerm: query,
+    searchTerm: throttledQuery,
     filters: DEFAULT_FILTER_TYPES,
   });
   // a const assignment here is causing the dev server to fail to build
@@ -24,7 +26,7 @@ const GlobalSearch = () => {
     recentQueries = JSON.parse(localStorage.getItem(SAVED_SEARCH_KEY) ?? '[]');
   } catch (err) {}
   // `null` when we're just in the searchbar and nothing is selected
-  // otherwise, `selected` is an int.
+  // otherwise, `selected` is an integer.
   const [selected, setSelected] = useState(null);
   const possibleSelections = results.length + recentQueries.length;
 
@@ -80,7 +82,8 @@ const GlobalSearch = () => {
         onSubmit={(value) => {
           if (value.length < 2) return;
           if (selected != null) {
-            const selectedResult = results[selected];
+            console.log(selected, results);
+            const selectedResult = results[selected - recentQueries.length];
             saveSearch(value);
             navigate(selectedResult.url);
           } else {
