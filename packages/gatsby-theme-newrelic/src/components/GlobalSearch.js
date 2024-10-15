@@ -11,7 +11,8 @@ import useSearch from './SearchModal/useSearch';
 import SearchInput from './SearchInput';
 import SearchDropdown, { DEFAULT_FILTER_TYPES } from './SearchDropdown';
 
-const GlobalSearch = () => {
+const GlobalSearch = ({ onClose }) => {
+  const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const throttledQuery = useThrottle(query, 300);
   const { fetchNextPage, results, status } = useSearch({
@@ -62,13 +63,17 @@ const GlobalSearch = () => {
     requestAnimationFrame(() => searchRef.current?.focus());
   });
 
-  const showSearchDropdown =
-    query.length > 1 && document.activeElement === searchRef.current;
+  const showSearchDropdown = query.length > 1 && open;
 
   return (
     <>
       <SearchInput
-        onFocus={() => {}}
+        onClear={() => {
+          setQuery('');
+          setOpen(false);
+          onClose();
+        }}
+        onFocus={() => setOpen(true)}
         onMove={(direction) => {
           if (direction === 'prev') {
             moveUp();
@@ -160,6 +165,7 @@ const GlobalSearch = () => {
       {showSearchDropdown && (
         <SearchDropdown
           fetchNextPage={fetchNextPage}
+          onClose={() => setOpen(false)}
           onRecentClick={(query, i) => {
             addPageAction({
               eventName: 'savedQuerySearch',

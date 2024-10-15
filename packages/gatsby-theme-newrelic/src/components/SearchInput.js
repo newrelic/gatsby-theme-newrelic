@@ -1,6 +1,8 @@
 import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import { graphql, useStaticQuery } from 'gatsby';
+
 import Icon from './Icon';
 import Link from './Link';
 import composeHandlers from '../utils/composeHandlers';
@@ -50,6 +52,19 @@ const SearchInput = forwardRef(
     },
     ref
   ) => {
+    const {
+      site: {
+        layout: { mobileBreakpoint },
+      },
+    } = useStaticQuery(graphql`
+      query GlobalHeaderQuery {
+        site {
+          layout {
+            mobileBreakpoint
+          }
+        }
+      }
+    `);
     const inputRef = useSyncedRef(ref);
     const [showHotKey, setShowHotkey] = useState(Boolean(focusWithHotKey));
 
@@ -178,13 +193,35 @@ const SearchInput = forwardRef(
             }
           `}
         />
-        {value && onClear && (
+        <kbd
+          css={css`
+            border: 1px solid currentColor;
+            border-radius: 4px;
+            display: inline-grid;
+            line-height: 1.1;
+            margin-right: 0.25rem;
+            padding: 2px 4px;
+            place-items: center;
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+
+            @media (max-width: ${mobileBreakpoint}) {
+              display: none;
+            }
+          `}
+        >
+          /
+        </kbd>
+        {onClear && (
           <button
             onClick={(e) => {
               e.preventDefault();
               onClear();
             }}
             css={css`
+              display: none;
               right: ${alignIcon === 'right'
                 ? ' calc(var(--horizontal-spacing) + 0.5rem + var(--icon-size))'
                 : 'var(--horizontal-spacing)'};
@@ -202,6 +239,10 @@ const SearchInput = forwardRef(
               padding: 0;
               outline: none;
               z-index: 123;
+
+              @media (max-width: ${mobileBreakpoint}) {
+                display: block;
+              }
             `}
             type="button"
           >

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useMedia from 'use-media';
 import path from 'path';
@@ -27,9 +27,10 @@ const SEARCH_BREAKPOINT = '1355px';
 const SEARCH_BREAKPOINT_2 = '865px';
 const NAVLIST_BREAKPOINT = '1507px';
 
-const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
+const GlobalHeader = ({ className, activeSite }) => {
   const location = useLocation();
   const { t } = useThemeTranslation();
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   const {
     allLocale: { nodes: locales },
@@ -70,7 +71,6 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
   return (
     <>
       <AnnouncementBanner />
-      {/* mobile search dropdown was here */}
       <div
         data-swiftype-index={false}
         className={className}
@@ -249,12 +249,12 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                   --search-width: 12rem;
                 }
                 @media screen and (max-width: ${mobileBreakpoint}) {
+                  display: ${mobileSearchOpen ? 'block' : 'none'};
                   position: static;
                 }
               `}
             >
-              <GlobalSearch />
-              {/* desktop search was here */}
+              <GlobalSearch onClose={() => setMobileSearchOpen(false)} />
             </li>
             <li
               css={css`
@@ -268,7 +268,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
             >
               <Button
                 variant={Button.VARIANT.PLAIN}
-                onClick={() => setMobileSearchClicked((v) => !v)}
+                onClick={() => setMobileSearchOpen(true)}
                 css={css`
                   align-self: center;
                   color: var(--system-text-primary-dark);
@@ -409,7 +409,6 @@ export const NR_SITES = {
 GlobalHeader.propTypes = {
   className: PropTypes.string,
   activeSite: PropTypes.oneOf(Object.values(NR_SITES)),
-  hideSearch: PropTypes.bool,
 };
 
 const HEADER_LINKS = new Map();

@@ -10,6 +10,7 @@ import Skeleton from './Skeleton';
 
 const SearchDropdown = ({
   fetchNextPage,
+  onClose,
   onRecentClick,
   onResultClick,
   query,
@@ -51,13 +52,14 @@ const SearchDropdown = ({
         )}
         <KeyboardLegend />
       </Container>
-      <Overlay />
+      <Overlay onClick={onClose} />
     </>
   );
 };
 
 SearchDropdown.propTypes = {
   fetchNextPage: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   onRecentClick: PropTypes.func.isRequired,
   onResultClick: PropTypes.func.isRequired,
   query: PropTypes.string,
