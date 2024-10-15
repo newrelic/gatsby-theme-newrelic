@@ -14,7 +14,7 @@ const Results = ({ onResultClick, onViewMore, results, selected }) => {
           <Result
             className={cx({ selected: selected === i })}
             key={result.url}
-            onClick={() => onResultClick(result)}
+            onClick={() => onResultClick(result, i)}
           >
             <a href={result.url}>
               <p
@@ -122,15 +122,15 @@ const ViewMore = styled.button`
   }
 `;
 
+export const ResultType = PropTypes.shape({
+  breadcrumb: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  blurb: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+});
+
 Results.propTypes = {
-  results: PropTypes.arrayOf(
-    PropTypes.shape({
-      breadcrumb: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      blurb: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    })
-  ),
+  results: PropTypes.arrayOf(ResultType),
 };
 
 // we use the url segments for breadcrumbs, since we don't have real breadcrumbs.

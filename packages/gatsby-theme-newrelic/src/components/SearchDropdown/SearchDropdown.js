@@ -1,14 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import cx from 'classnames';
 
 import KeyboardLegend from './KeyboardLegend';
-import Results from './Results';
+import Results, { ResultType } from './Results';
 import Skeleton from './Skeleton';
 
 const SearchDropdown = ({
   fetchNextPage,
+  onRecentClick,
   onResultClick,
   query,
   recentQueries,
@@ -26,8 +28,11 @@ const SearchDropdown = ({
         {recentQueries.length > 0 && (
           <RecentQueries>
             {recentQueries.map((query, i) => (
-              <li className={cx({ selected: selected === i })}>
-                <a href="/search-results?query=${query}&page=1">{query}</a>
+              <li
+                className={cx({ selected: selected === i })}
+                onClick={() => onRecentClick(query, i)}
+              >
+                <a href={`/search-results?query=${query}&page=1`}>{query}</a>
               </li>
             ))}
           </RecentQueries>
@@ -49,6 +54,17 @@ const SearchDropdown = ({
       <Overlay />
     </>
   );
+};
+
+SearchDropdown.propTypes = {
+  fetchNextPage: PropTypes.func.isRequired,
+  onRecentClick: PropTypes.func.isRequired,
+  onResultClick: PropTypes.func.isRequired,
+  query: PropTypes.string,
+  recentQueries: PropTypes.arrayOf(PropTypes.string).isRequired,
+  results: PropTypes.arrayOf(ResultType),
+  selected: PropTypes.number,
+  status: PropTypes.oneOf(['idle', 'loading', 'error']).isRequired,
 };
 
 const Error = () => (
@@ -116,7 +132,5 @@ const RecentQueries = styled.ul`
     text-decoration: none;
   }
 `;
-
-export const SAVED_SEARCH_KEY = 'gatsby-theme-newrelic:saved-searches';
 
 export default SearchDropdown;

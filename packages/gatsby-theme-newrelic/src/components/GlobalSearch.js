@@ -4,14 +4,12 @@ import { css } from '@emotion/react';
 import { useThrottle } from 'react-use';
 
 import useKeyPress from '../hooks/useKeyPress';
-import useSearch from './SearchModal/useSearch';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import { addPageAction } from '../utils/nrBrowserAgent';
 
+import useSearch from './SearchModal/useSearch';
 import SearchInput from './SearchInput';
-import SearchDropdown, {
-  DEFAULT_FILTER_TYPES,
-  SAVED_SEARCH_KEY,
-} from './SearchDropdown';
+import SearchDropdown, { DEFAULT_FILTER_TYPES } from './SearchDropdown';
 
 const GlobalSearch = () => {
   const [query, setQuery] = useState('');
@@ -42,7 +40,6 @@ const GlobalSearch = () => {
 
   const moveDown = () =>
     setSelected((s) => {
-      console.log(s, results.length);
       if (s == null) return 0;
       const next = s + 1;
       if (next > possibleSelections - 1) {
@@ -82,13 +79,45 @@ const GlobalSearch = () => {
         onSubmit={(value) => {
           if (value.length < 2) return;
           if (selected != null) {
-            console.log(selected, results);
-            const selectedResult = results[selected - recentQueries.length];
-            saveSearch(value);
-            navigate(selectedResult.url);
+            if (selected > recentQueries.length - 1) {
+              const position = selected - recentQueries.length;
+              const selectedResult = results[position];
+              saveSearch(value);
+              addPageAction({
+                eventName: 'swiftypeSearchResult',
+                category: 'GlobalSearch',
+                path: location.pathname,
+                resultCount: results.length,
+                position,
+                searchTerm: query,
+                searchType: 'globalSearch',
+                url: selectedResult.url,
+              });
+              navigate(selectedResult.url);
+            } else {
+              const position = selected;
+              const recentQuery = recentQueries[position];
+              addPageAction({
+                eventName: 'savedQuerySearch',
+                category: 'GlobalSearch',
+                path: location.pathname,
+                searchTerm: recentQuery,
+                position,
+                searchType: 'globalSearch',
+              });
+              navigate(`/search-results?query=${recentQuery}&page=1`);
+            }
           } else {
             saveSearch(value);
-            navigate(`/search-results?query=value&page=1`);
+            addPageAction({
+              eventName: 'swiftypeSearchInput',
+              category: 'GlobalSearch',
+              path: location.pathname,
+              resultCount: results.length,
+              searchTerm: query,
+              searchType: 'globalSearch',
+            });
+            navigate(`/search-results?query=${value}&page=1`);
           }
         }}
         placeholder={t('searchInput.placeholder')}
@@ -131,7 +160,29 @@ const GlobalSearch = () => {
       {showSearchDropdown && (
         <SearchDropdown
           fetchNextPage={fetchNextPage}
-          onResultClick={() => saveSearch(query)}
+          onRecentClick={(query, i) => {
+            addPageAction({
+              eventName: 'savedQuerySearch',
+              category: 'GlobalSearch',
+              path: location.pathname,
+              searchTerm: query,
+              position: i,
+              searchType: 'globalSearch',
+            });
+          }}
+          onResultClick={(result, i) => {
+            addPageAction({
+              eventName: 'swiftypeSearchResult',
+              category: 'GlobalSearch',
+              path: location.pathname,
+              resultCount: results.length,
+              position: i,
+              searchTerm: query,
+              searchType: 'globalSearch',
+              url: result.url,
+            });
+            saveSearch(query);
+          }}
           query={query}
           recentQueries={recentQueries}
           results={results}
@@ -142,6 +193,8 @@ const GlobalSearch = () => {
     </>
   );
 };
+
+const SAVED_SEARCH_KEY = 'gatsby-theme-newrelic:saved-searches';
 
 const saveSearch = (value) => {
   const savedSearches = JSON.parse(

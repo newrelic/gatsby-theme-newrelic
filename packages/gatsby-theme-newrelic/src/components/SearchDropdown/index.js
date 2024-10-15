@@ -15,4 +15,4 @@ export const DEFAULT_FILTER_TYPES = [
   { type: 'searchBy', defaultFilters: defaultSearchByFilters },
 ];
 
-export { default, SAVED_SEARCH_KEY } from './SearchDropdown';
+export { default } from './SearchDropdown';
