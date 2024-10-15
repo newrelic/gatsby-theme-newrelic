@@ -38,6 +38,13 @@ const LOCALE_CONFIGS = {
     hrefLang: 'pt',
     isDefault: false,
   },
+  fr: {
+    name: 'French',
+    localName: 'Français',
+    locale: 'fr',
+    hrefLang: 'fr',
+    isDefault: false,
+  },
 };
 
 const uniq = (arr) => [...new Set(arr)];
