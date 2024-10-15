@@ -27,7 +27,7 @@ const Results = ({ onResultClick, onViewMore, results, selected }) => {
               >
                 {breadcrumbify(
                   result.url.replace(
-                    /https:\/\/docs.newrelic.com(?:\/docs)?\//,
+                    /https:\/\/docs\.newrelic\.com(?:\/docs)?\//,
                     ''
                   )
                 )}
