@@ -57,7 +57,7 @@ const SearchInput = forwardRef(
         layout: { mobileBreakpoint },
       },
     } = useStaticQuery(graphql`
-      query GlobalHeaderQuery {
+      query SearchInputQuery {
         site {
           layout {
             mobileBreakpoint
