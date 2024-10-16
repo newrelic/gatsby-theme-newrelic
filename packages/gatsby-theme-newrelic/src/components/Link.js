@@ -23,6 +23,7 @@ const i18nNetlifySites = [
   'docs-website-jp.netlify.app/jp/',
   'docs-website-es.netlify.app/es/',
   'docs-website-pt.netlify.app/pt/',
+  'docs-website-fr.netlify.app/fr/',
 ];
 const isI18nNetlifySite = (to) =>
   i18nNetlifySites.some((site) => to.includes(site));
