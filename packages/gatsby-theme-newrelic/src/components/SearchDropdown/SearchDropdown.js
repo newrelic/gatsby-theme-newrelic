@@ -13,7 +13,6 @@ const SearchDropdown = ({
   onClose,
   onRecentClick,
   onResultClick,
-  query,
   recentQueries,
   results,
   selected,
@@ -30,11 +29,13 @@ const SearchDropdown = ({
             <SectionHeading>Recent search terms</SectionHeading>
             <RecentQueries>
               {recentQueries.map((query, i) => (
-                <li
-                  className={cx({ selected: selected === i })}
-                  onClick={() => onRecentClick(query, i)}
-                >
-                  <a href={`/search-results?query=${query}&page=1`}>{query}</a>
+                <li key={query} className={cx({ selected: selected === i })}>
+                  <a
+                    href={`/search-results?query=${query}&page=1`}
+                    onClick={() => onRecentClick(query, i)}
+                  >
+                    {query}
+                  </a>
                 </li>
               ))}
             </RecentQueries>
@@ -68,7 +69,6 @@ SearchDropdown.propTypes = {
   onClose: PropTypes.func.isRequired,
   onRecentClick: PropTypes.func.isRequired,
   onResultClick: PropTypes.func.isRequired,
-  query: PropTypes.string,
   recentQueries: PropTypes.arrayOf(PropTypes.string).isRequired,
   results: PropTypes.arrayOf(ResultType),
   selected: PropTypes.number,

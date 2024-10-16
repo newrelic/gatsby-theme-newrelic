@@ -131,6 +131,9 @@ export const ResultType = PropTypes.shape({
 });
 
 Results.propTypes = {
+  onViewMore: PropTypes.func.isRequired,
+  onResultClick: PropTypes.func.isRequired,
+  selected: PropTypes.number,
   results: PropTypes.arrayOf(ResultType),
 };
 
@@ -147,7 +150,7 @@ const breadcrumbify = (str) => {
   const DESIRED_LENGTH = 80;
   str = str.replace(/\/$/, '');
 
-  let parts = str.split('/');
+  const parts = str.split('/');
   let result = parts.join(' / ');
 
   if (result.length <= DESIRED_LENGTH) return result;
