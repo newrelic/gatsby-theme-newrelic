@@ -1,5 +1,4 @@
-import { useCallback, useState, useEffect, useReducer, useMemo } from 'react';
-import { useThrottle } from 'react-use';
+import { useCallback, useEffect, useReducer, useMemo } from 'react';
 import search from './search';
 import { useQuery } from 'react-query';
 import useLocale from '../../hooks/useLocale';
