@@ -1,0 +1,89 @@
+{
+  "404": {
+    "headingText": "Hmm... We can't find this",
+    "searchInputLabel": "Try refining your search.",
+    "searchResultMessage": "Were you looking for any of these?",
+    "docsHomeMessage": "Go back to <1>{{nrSubDomain}} home</1>.",
+    "fileIssueMessage": "Still can't find what you're looking for?"
+  },
+  "button": {
+    "close": "Close",
+    "copied": "Copied",
+    "copy": "Copy",
+    "login": "Log in",
+    "startNow": "Start now"
+  },
+  "callout": {
+    "tip": "Tip",
+    "caution": "Caution",
+    "important": "Important",
+    "course": "Course"
+  },
+  "github": {
+    "createIssue": "Create issue",
+    "editPage": "Edit this doc"
+  },
+  "contributing": {
+    "guide": "Suggest a change and learn how to <1>contribute</1>"
+  },
+  "cookieConsent": {
+    "title": "This site uses cookies",
+    "statement": "We use cookies and other similar technologies (\"Cookies\") on our websites and services to enhance your experience and to provide you with relevant content. By using our websites and services you are agreeing to the use of cookies. You can read more <2>here</2>. If you consent to our cookies, please click <4>Yes</4>.",
+    "agree": "Yes",
+    "disagree": "No"
+  },
+  "feedback": {
+    "question": "Was this doc helpful?",
+    "yes": "Yes",
+    "no": "No",
+    "comments": "Tell us more (optional)",
+    "email": "Your email (optional)",
+    "emailDisclaimer": "We'll only use this email for follow-up questions about your feedback.",
+    "validEmail": "Please provide a valid email",
+    "submitButton": "Submit feedback",
+    "submitMessage": "Thanks for your detailed feedback",
+    "reset": "Reset"
+  },
+  "footer": {
+    "copyright": "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
+    "careers": "Careers",
+    "terms": "Terms of Service",
+    "dmcaPolicy": "DMCA Policy",
+    "privacyNotice": "Privacy Notice",
+    "privacyChoices": "Your Privacy Choices",
+    "cookiePolicy": "Cookie Policy",
+    "ukSlaveryAct": "UK Slavery Act"
+  },
+  "inlineSignup": {
+    "ctaButton": "Start now",
+    "ctaText": "Sign up and install",
+    "emailLabel": "Company Email",
+    "emailValidationHint": "Please format your email like \"user@example.com\"",
+    "nameLabel": "Name",
+    "nameValidationHint": "Please enter your name",
+    "submitError": "An error occurred trying to create your account. Please try again later.",
+    "terms": "100 GB + 1 user free. Forever. No credit card required.<1 />By signing up you're agreeing to <4>Terms of Service</4> and <8>Services Privacy Notice.</8>"
+  },
+  "licenseKey": {
+    "buttonText": "license key",
+    "popover": {
+      "header": "License key",
+      "explainer": "Your license key is used to associate your incoming data with your account.",
+      "learnMore": "Learn more",
+      "getYourKey": "Get your key",
+      "createAccount": "Create account"
+    }
+  },
+  "mobileNav": {
+    "header": "Pages"
+  },
+  "relatedResources": {
+    "title": "Related resources"
+  },
+  "searchInput": {
+    "placeholder": "Search docs"
+  },
+  "tableOfContents": {
+    "title": "On this page"
+  }
+}
