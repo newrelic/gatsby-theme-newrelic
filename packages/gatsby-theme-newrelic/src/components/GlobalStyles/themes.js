@@ -37,6 +37,7 @@ export default css`
     --search-dropdown-background: #fff;
     --search-dropdown-border: #e7e9ea;
     --search-dropdown-hover: rgba(0, 0, 0, 0.06);
+    --search-input-border: none;
 
     input::placeholder {
       color: var(--primary-text-color);
@@ -82,6 +83,7 @@ export default css`
     --search-dropdown-background: #1a2125;
     --search-dropdown-border: #eaecec;
     --search-dropdown-hover: rgba(255, 255, 255, 0.1);
+    --search-input-border: 1px solid #eaecec;
 
     input::placeholder {
       color: var(--primary-text-color);

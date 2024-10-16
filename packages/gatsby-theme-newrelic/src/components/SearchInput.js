@@ -81,7 +81,7 @@ const SearchInput = forwardRef(
         css={css`
           --horizontal-spacing: ${HORIZONTAL_SPACING[size]};
 
-          border: 1px solid #eaecec;
+          border: var(--search-input-border);
           border-radius: 4px;
           position: relative;
           width: ${width || '100%'};
