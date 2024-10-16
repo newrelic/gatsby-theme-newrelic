@@ -153,6 +153,9 @@ const SearchInput = forwardRef(
                 onMove('next');
                 break;
               case 'Escape':
+                // without this, if the user is in fullscreen on Mac Firefox,
+                // Esc will exit fullscreen as well.
+                e.preventDefault();
                 onClear && onClear();
                 e.target.blur();
                 break;

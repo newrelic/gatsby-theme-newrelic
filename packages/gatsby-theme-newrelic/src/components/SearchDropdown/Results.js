@@ -123,9 +123,10 @@ const ViewMore = styled.button`
 `;
 
 export const ResultType = PropTypes.shape({
-  breadcrumb: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  blurb: PropTypes.string.isRequired,
+  highlight: PropTypes.shape({
+    body: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
   url: PropTypes.string.isRequired,
 });
 
