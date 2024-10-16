@@ -26,14 +26,37 @@ const FEEDBACK_FORM_TYPE = {
   install: 'userInstallFeedback',
 };
 
+const NR_SITES = {
+  DOCS: 'DOCS',
+  COMMUNITY: 'COMMUNITY',
+  LEARN: 'LEARN',
+};
+
+const HEADER_LINKS = new Map();
+
+HEADER_LINKS.set(NR_SITES.DOCS, {
+  text: 'Docs',
+  href: 'https://docs.newrelic.com/',
+})
+  .set(NR_SITES.COMMUNITY, {
+    text: 'Community',
+    href: 'https://discuss.newrelic.com/',
+  })
+  .set(NR_SITES.LEARN, {
+    text: 'Learn',
+    href: 'https://learn.newrelic.com/',
+  });
+
 module.exports = {
-  STORAGE_KEYS,
-  TRACKING_COOKIE_NAME,
-  DEV_SEGMENT_WRITE_KEY,
-  SWIFTYPE_ENGINE_KEY,
   CAMEL_CASE,
-  TITLE_CASE,
+  DEV_SEGMENT_WRITE_KEY,
+  FEEDBACK_FORM_TYPE,
+  HEADER_LINKS,
+  NR_SITES,
   SPLITS,
   SPLIT_TRACKING_EVENTS,
-  FEEDBACK_FORM_TYPE,
+  STORAGE_KEYS,
+  SWIFTYPE_ENGINE_KEY,
+  TITLE_CASE,
+  TRACKING_COOKIE_NAME,
 };

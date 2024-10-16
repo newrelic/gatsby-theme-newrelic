@@ -34,6 +34,10 @@ export default css`
     --callout-tip-background-color: #d1f7d925;
     --callout-course-background-color: #00b3c310;
 
+    --search-dropdown-background: #fff;
+    --search-dropdown-border: #e7e9ea;
+    --search-dropdown-hover: rgba(0, 0, 0, 0.06);
+
     input::placeholder {
       color: var(--primary-text-color);
       opacity: 80%;
@@ -74,6 +78,10 @@ export default css`
     --callout-caution-background-color: #1b000020;
     --callout-important-background-color: #14110020;
     --callout-tip-background-color: #02120020;
+
+    --search-dropdown-background: #1a2125;
+    --search-dropdown-border: #eaecec;
+    --search-dropdown-hover: rgba(255, 255, 255, 0.1);
 
     input::placeholder {
       color: var(--primary-text-color);

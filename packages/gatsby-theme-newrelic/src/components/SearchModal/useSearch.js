@@ -1,5 +1,4 @@
-import { useCallback, useState, useEffect, useReducer, useMemo } from 'react';
-import { useDebounce } from 'react-use';
+import { useCallback, useEffect, useReducer, useMemo } from 'react';
 import search from './search';
 import { useQuery } from 'react-query';
 import useLocale from '../../hooks/useLocale';
@@ -37,7 +36,6 @@ const reducer = (state, action) => {
 const useSearch = ({ searchTerm, filters }) => {
   const locale = useLocale();
   const [{ page, results }, dispatch] = useReducer(reducer, initialState);
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
   const defaultSources = locale.isDefault
     ? ['developer', 'docs', 'opensource', 'quickstarts']
     : [
@@ -68,8 +66,8 @@ const useSearch = ({ searchTerm, filters }) => {
   }, [filters, locale]);
 
   const queryKey = useMemo(
-    () => ['searchResults', debouncedSearchTerm, page, swiftypeFilters],
-    [debouncedSearchTerm, page, swiftypeFilters]
+    () => ['searchResults', searchTerm, page, swiftypeFilters],
+    [searchTerm, page, swiftypeFilters]
   );
 
   const { status } = useQuery(
@@ -80,17 +78,15 @@ const useSearch = ({ searchTerm, filters }) => {
         defaultSources,
         filters,
         page,
-        perPage: 7,
+        perPage: 5,
       }),
     {
-      enabled: Boolean(debouncedSearchTerm),
+      enabled: Boolean(searchTerm),
       onSuccess: (data) =>
         dispatch({ type: ACTIONS.RECEIVE_PAGE_DATA, payload: { page, data } }),
       select: ({ records }) => records.page,
     }
   );
-
-  useDebounce(() => setDebouncedSearchTerm(searchTerm), 200, [searchTerm]);
 
   useEffect(() => {
     dispatch({ type: ACTIONS.RESET });
