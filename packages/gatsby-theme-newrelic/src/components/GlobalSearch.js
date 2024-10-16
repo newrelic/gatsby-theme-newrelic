@@ -208,9 +208,16 @@ GlobalSearch.propTypes = {
 const SAVED_SEARCH_KEY = 'gatsby-theme-newrelic:saved-searches';
 
 const saveSearch = (value) => {
+  value = value.trim();
   const savedSearches = JSON.parse(
     localStorage.getItem(SAVED_SEARCH_KEY) ?? '[]'
   );
+  const set = new Set(savedSearches);
+
+  if (set.has(value)) {
+    return;
+  }
+
   savedSearches.push(value);
   // only save the four most recent searches
   const updated = savedSearches.slice(-4);
