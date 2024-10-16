@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useMedia from 'use-media';
 import path from 'path';
 import { css } from '@emotion/react';
-import { graphql, useStaticQuery, Link } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { useLocation } from '@reach/router';
 
 import AnnouncementBanner from './AnnouncementBanner';
@@ -14,64 +14,11 @@ import Dropdown from './Dropdown';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import GlobalNavLink from './GlobalNavLink';
-import SearchInput from './SearchInput';
-import SearchDropdown from './SearchDropdown';
+import GlobalSearch from './GlobalSearch';
 
+import { HEADER_LINKS, NR_SITES } from '../utils/constants';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
-
-export const NR_SITES = {
-  DOCS: 'DOCS',
-  COMMUNITY: 'COMMUNITY',
-  LEARN: 'LEARN',
-};
-
-const HEADER_LINKS = new Map();
-
-HEADER_LINKS.set(NR_SITES.DOCS, {
-  text: 'Docs',
-  href: 'https://docs.newrelic.com/',
-})
-  .set(NR_SITES.COMMUNITY, {
-    text: 'Community',
-    href: 'https://discuss.newrelic.com/',
-  })
-  .set(NR_SITES.LEARN, {
-    text: 'Learn',
-    href: 'https://learn.newrelic.com/',
-  });
-
-const NavList = ({ listType, activeSite = null }) => {
-  const navList = [];
-  HEADER_LINKS.forEach(({ text, href }) => {
-    switch (listType) {
-      case 'main':
-        navList.push(
-          <li key={href}>
-            <GlobalNavLink
-              href={href}
-              activeSite={activeSite && HEADER_LINKS.get(activeSite)}
-              instrumentation={{
-                component: 'globalHeader',
-                layoutElement: 'globalHeader',
-              }}
-            >
-              {text}
-            </GlobalNavLink>
-          </li>
-        );
-        break;
-      case 'dropdown':
-        navList.push(
-          <Dropdown.MenuItem key={href} href={href}>
-            {text}
-          </Dropdown.MenuItem>
-        );
-        break;
-    }
-  });
-  return navList;
-};
 
 // removes the site nav from the header in favor of the search bar
 // swaps out logo into collapsable nav
@@ -81,13 +28,10 @@ const SEARCH_BREAKPOINT = '1355px';
 const SEARCH_BREAKPOINT_2 = '865px';
 const NAVLIST_BREAKPOINT = '1507px';
 
-const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
-  const [mobileSearchClicked, setMobileSearchClicked] = useState(false);
-  const [query, setQuery] = useState('');
-  const searchRef = useRef(null);
-  const mobileSearchRef = useRef(null);
+const GlobalHeader = ({ className, activeSite }) => {
   const location = useLocation();
   const { t } = useThemeTranslation();
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   const {
     allLocale: { nodes: locales },
@@ -125,64 +69,9 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
     locale,
   }));
 
-  const showSearchDropdown =
-    query.length > 1 &&
-    (document.activeElement === searchRef.current || mobileSearchClicked);
-  const showMobileSearch = mobileSearchClicked;
-
   return (
     <>
       <AnnouncementBanner />
-      {showMobileSearch && (
-        <SearchInput
-          autoFocus
-          onClear={() => setMobileSearchClicked(false)}
-          css={css`
-            border: 0;
-            height: var(--global-header-height);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 99;
-
-            & input {
-              border-radius: 0;
-              border-left: none;
-              border-right: none;
-              border-top: none;
-              height: var(--global-header-height);
-            }
-            & input:focus {
-              border: 0;
-              border-bottom: 1px solid var(--search-dropdown-border);
-              box-shadow: none;
-            }
-            @media screen and (min-width: ${mobileBreakpoint}) {
-              display: none;
-            }
-          `}
-          placeholder={t('searchInput.placeholder')}
-          ref={mobileSearchRef}
-          setValue={setQuery}
-          size={SearchInput.SIZE.MEDIUM}
-          value={query}
-        />
-      )}
-      {showMobileSearch && showSearchDropdown && (
-        <SearchDropdown
-          css={css`
-            --search-width: 100%;
-            border: 0;
-            border-radius: 0;
-            top: var(--global-header-height);
-
-            @media screen and (min-width: ${mobileBreakpoint}) {
-              display: none;
-            }
-          `}
-        />
-      )}
       <div
         data-swiftype-index={false}
         className={className}
@@ -361,37 +250,12 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                   --search-width: 12rem;
                 }
                 @media screen and (max-width: ${mobileBreakpoint}) {
-                  display: none;
+                  display: ${mobileSearchOpen ? 'block' : 'none'};
+                  position: static;
                 }
               `}
             >
-              {!hideSearch && (
-                <>
-                  <SearchInput
-                    value={query}
-                    setValue={setQuery}
-                    ref={searchRef}
-                    placeholder={t('searchInput.placeholder')}
-                    size={SearchInput.SIZE.MEDIUM}
-                    css={css`
-                      --icon-size: 1.5rem;
-                      width: var(--search-width);
-
-                      svg {
-                        width: 1rem;
-                        height: 1rem;
-                      }
-
-                      input {
-                        border: none;
-                        height: 40px;
-                      }
-                    `}
-                    onFocus={() => {}}
-                  />
-                  {showSearchDropdown && <SearchDropdown />}
-                </>
-              )}
+              <GlobalSearch onClose={() => setMobileSearchOpen(false)} />
             </li>
             <li
               css={css`
@@ -405,7 +269,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
             >
               <Button
                 variant={Button.VARIANT.PLAIN}
-                onClick={() => setMobileSearchClicked((v) => !v)}
+                onClick={() => setMobileSearchOpen(true)}
                 css={css`
                   align-self: center;
                   color: var(--system-text-primary-dark);
@@ -540,7 +404,38 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
 GlobalHeader.propTypes = {
   className: PropTypes.string,
   activeSite: PropTypes.oneOf(Object.values(NR_SITES)),
-  hideSearch: PropTypes.bool,
+};
+
+const NavList = ({ listType, activeSite = null }) => {
+  const navList = [];
+  HEADER_LINKS.forEach(({ text, href }) => {
+    switch (listType) {
+      case 'main':
+        navList.push(
+          <li key={href}>
+            <GlobalNavLink
+              href={href}
+              activeSite={activeSite && HEADER_LINKS.get(activeSite)}
+              instrumentation={{
+                component: 'globalHeader',
+                layoutElement: 'globalHeader',
+              }}
+            >
+              {text}
+            </GlobalNavLink>
+          </li>
+        );
+        break;
+      case 'dropdown':
+        navList.push(
+          <Dropdown.MenuItem key={href} href={href}>
+            {text}
+          </Dropdown.MenuItem>
+        );
+        break;
+    }
+  });
+  return navList;
 };
 
 export default GlobalHeader;

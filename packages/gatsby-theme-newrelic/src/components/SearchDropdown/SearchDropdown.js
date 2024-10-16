@@ -1,65 +1,40 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import cx from 'classnames';
 
 import KeyboardLegend from './KeyboardLegend';
-import Results from './Results';
+import Results, { ResultType } from './Results';
+import Skeleton from './Skeleton';
 
-const SearchDropdown = (props) => {
-  // this is all mock data, will be replaced in a later change
-  const recentQueries = ['alerts', 'NRQL', 'performance', 'gurngus'];
-  const results = [
-    {
-      breadcrumb:
-        'Application performance monitoring / ... / Installation and configuration',
-      title: '<em>Analyze</em> model data',
-      blurb:
-        'AI monitoring surfaces data about your AI models so you can <em>analyze</em>  AI model performance alongside AI app performance',
-    },
-    {
-      breadcrumb:
-        'Application performance monitoring / ... / Monitoring / External services page',
-      title:
-        'New Relic advises updating .NET agent for customers employing Microsoft Extensions Logging with log forwarding...',
-      blurb:
-        'Change tracking allows you to <em>analyze</em> changes, such as deployments, on any part of your system and use them to <em>analyze</em>  performance data',
-    },
-    {
-      breadcrumb:
-        'Mobile monitoring / Explore your AI data / Analyze model data',
-      title: 'Capture and analyze changes in your systems',
-      blurb:
-        'The HTTP errors page helps you understand why network failures are occuring and share actionable data with your team',
-    },
-    {
-      breadcrumb:
-        'Mobile monitoring / Explore your AI data / Analyze model data',
-      title:
-        'Automated user management: How your identity <em>analyze</em>s groups map to our groups',
-      blurb:
-        'AI monitoring surfaces data about your AI models so you can <em>analyze</em> AI model performance alongside AI app performance',
-    },
-    {
-      breadcrumb:
-        'Mobile monitoring / Explore your AI data / Analyze model data',
-      title:
-        'Understand your system with the New Relic <em>analyze</em> entity explorer, Lookout, and Navigator',
-      blurb:
-        'AI monitoring surfaces data about your AI models so you can <em>analyze</em> AI model performance alongside AI app performance',
-    },
-  ];
-  const loading = false;
-  const error = false;
-  const loadMore = () => {};
-
+const SearchDropdown = ({
+  fetchNextPage,
+  onClose,
+  onRecentClick,
+  onResultClick,
+  query,
+  recentQueries,
+  results,
+  selected,
+  status,
+  ...rest
+}) => {
+  const loading = status === 'loading';
+  const error = status === 'error';
   return (
     <>
-      <Container {...props}>
+      <Container {...rest}>
         <SectionHeading>Recent search terms</SectionHeading>
         {recentQueries.length > 0 && (
           <RecentQueries>
-            {recentQueries.map((query) => (
-              <li>{query}</li>
+            {recentQueries.map((query, i) => (
+              <li
+                className={cx({ selected: selected === i })}
+                onClick={() => onRecentClick(query, i)}
+              >
+                <a href={`/search-results?query=${query}&page=1`}>{query}</a>
+              </li>
             ))}
           </RecentQueries>
         )}
@@ -68,13 +43,30 @@ const SearchDropdown = (props) => {
         {error && <Error />}
         {loading && !error && <Skeleton />}
         {!loading && !error && (
-          <Results results={results} onViewMore={loadMore} />
+          <Results
+            selected={selected - recentQueries.length}
+            results={results}
+            onResultClick={onResultClick}
+            onViewMore={fetchNextPage}
+          />
         )}
         <KeyboardLegend />
       </Container>
-      <Overlay />
+      <Overlay onClick={onClose} />
     </>
   );
+};
+
+SearchDropdown.propTypes = {
+  fetchNextPage: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onRecentClick: PropTypes.func.isRequired,
+  onResultClick: PropTypes.func.isRequired,
+  query: PropTypes.string,
+  recentQueries: PropTypes.arrayOf(PropTypes.string).isRequired,
+  results: PropTypes.arrayOf(ResultType),
+  selected: PropTypes.number,
+  status: PropTypes.oneOf(['idle', 'loading', 'error']).isRequired,
 };
 
 const Error = () => (
@@ -100,6 +92,11 @@ const Container = styled.div`
   top: 48px;
   width: var(--search-dropdown-width);
   z-index: 1;
+
+  @media (max-width: 760px) {
+    top: var(--global-header-height);
+    width: 100vw;
+  }
 `;
 
 const SectionHeading = styled.p`
@@ -126,6 +123,15 @@ const RecentQueries = styled.ul`
 
   & li {
     line-height: 1.125;
+  }
+  & li:hover,
+  & li.selected {
+    text-decoration: underline;
+  }
+
+  & a {
+    color: currentColor;
+    text-decoration: none;
   }
 `;
 
