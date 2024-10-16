@@ -75,9 +75,9 @@ const Results = ({ onResultClick, onViewMore, results, selected }) => {
 const List = styled.ul`
   list-style: none;
   margin: 0 calc(-1 * var(--outer-padding));
-  max-height: 31.5rem;
+  max-height: 32rem;
   overflow-y: scroll;
-  padding: 0;
+  padding: 0.25rem 0 0;
 
   & em {
     color: var(--search-dropdown-emphasis);
