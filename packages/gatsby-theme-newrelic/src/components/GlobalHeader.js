@@ -16,6 +16,7 @@ import Icon from './Icon';
 import GlobalNavLink from './GlobalNavLink';
 import GlobalSearch from './GlobalSearch';
 
+import { HEADER_LINKS, NR_SITES } from '../utils/constants';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
 
@@ -400,31 +401,10 @@ const GlobalHeader = ({ className, activeSite }) => {
   );
 };
 
-export const NR_SITES = {
-  DOCS: 'DOCS',
-  COMMUNITY: 'COMMUNITY',
-  LEARN: 'LEARN',
-};
-
 GlobalHeader.propTypes = {
   className: PropTypes.string,
   activeSite: PropTypes.oneOf(Object.values(NR_SITES)),
 };
-
-const HEADER_LINKS = new Map();
-
-HEADER_LINKS.set(NR_SITES.DOCS, {
-  text: 'Docs',
-  href: 'https://docs.newrelic.com/',
-})
-  .set(NR_SITES.COMMUNITY, {
-    text: 'Community',
-    href: 'https://discuss.newrelic.com/',
-  })
-  .set(NR_SITES.LEARN, {
-    text: 'Learn',
-    href: 'https://learn.newrelic.com/',
-  });
 
 const NavList = ({ listType, activeSite = null }) => {
   const navList = [];
