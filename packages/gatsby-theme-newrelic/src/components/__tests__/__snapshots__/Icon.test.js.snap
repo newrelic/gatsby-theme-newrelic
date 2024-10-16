@@ -1059,6 +1059,75 @@ exports[`nr-ai icon matches its snapshot 1`] = `
 </svg>
 `;
 
+exports[`nr-arrow-down icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+}
+
+<svg
+  className="emotion-0"
+  fill="none"
+  height="15"
+  viewBox="0 0 14 15"
+  width="14"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clipRule="evenodd"
+    d="M11.0273 8.025L7.00234 12.1375V2.25H6.12734V12.1375L2.10234 8.025L1.40234 8.725L6.56484 13.8L11.7273 8.725L11.0273 8.025Z"
+    fill="currentColor"
+    fillRule="evenodd"
+  />
+</svg>
+`;
+
+exports[`nr-arrow-go-to icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+}
+
+<svg
+  className="emotion-0"
+  fill="none"
+  height="15"
+  viewBox="0 0 14 15"
+  width="14"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clipRule="evenodd"
+    d="M5.775 13.1016L6.475 12.4016L3.2375 9.25156L13.125 9.25156L13.125 2.25156L12.25 2.25156L12.25 8.37656L3.2375 8.37656L6.475 5.22656L5.775 4.52656L1.575 8.81406L5.775 13.1016Z"
+    fill="currentColor"
+    fillRule="evenodd"
+  />
+</svg>
+`;
+
+exports[`nr-arrow-up icon matches its snapshot 1`] = `
+.emotion-0 {
+  width: 1em;
+  height: 1em;
+}
+
+<svg
+  className="emotion-0"
+  fill="none"
+  height="15"
+  viewBox="0 0 14 15"
+  width="14"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    clipRule="evenodd"
+    d="M11.7273 6.27031L6.56484 1.19531L1.40234 6.27031L2.10234 6.97031L6.12734 2.85781V12.7453H7.00234V2.85781L11.0273 6.97031L11.7273 6.27031Z"
+    fill="currentColor"
+    fillRule="evenodd"
+  />
+</svg>
+`;
+
 exports[`nr-dark-mode-toggle icon matches its snapshot 1`] = `
 .emotion-0 {
   width: 1em;
