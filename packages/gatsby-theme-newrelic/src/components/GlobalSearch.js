@@ -144,7 +144,6 @@ const GlobalSearch = ({ onClose }) => {
             height: 40px;
           }
 
-          // TODO: use right bp here
           @media (max-width: 760px) {
             border: 0;
             border-radius: 0;
