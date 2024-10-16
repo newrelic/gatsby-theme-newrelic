@@ -77,5 +77,6 @@ export default css`
   --color-green: #b5bd68;
   --color-purple: #b294bb;
 
+  --search-dropdown-emphasis: #00ac69;
   --spooky-white: #f8f8ff;
 `;

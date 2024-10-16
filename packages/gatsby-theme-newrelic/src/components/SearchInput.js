@@ -1,6 +1,8 @@
 import React, { forwardRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/react';
+import { graphql, useStaticQuery } from 'gatsby';
+
 import Icon from './Icon';
 import Link from './Link';
 import composeHandlers from '../utils/composeHandlers';
@@ -41,6 +43,8 @@ const SearchInput = forwardRef(
       onClear,
       onFocus,
       onSubmit,
+      onMove,
+      setValue,
       size = 'medium',
       value,
       width,
@@ -48,6 +52,19 @@ const SearchInput = forwardRef(
     },
     ref
   ) => {
+    const {
+      site: {
+        layout: { mobileBreakpoint },
+      },
+    } = useStaticQuery(graphql`
+      query SearchInputQuery {
+        site {
+          layout {
+            mobileBreakpoint
+          }
+        }
+      }
+    `);
     const inputRef = useSyncedRef(ref);
     const [showHotKey, setShowHotkey] = useState(Boolean(focusWithHotKey));
 
@@ -64,6 +81,8 @@ const SearchInput = forwardRef(
         css={css`
           --horizontal-spacing: ${HORIZONTAL_SPACING[size]};
 
+          border: var(--search-input-border);
+          border-radius: 4px;
           position: relative;
           width: ${width || '100%'};
           ${size && styles.size[size].container}
@@ -120,13 +139,23 @@ const SearchInput = forwardRef(
           value={value}
           {...props}
           type="text"
+          onInput={(e) => setValue(e.target.value)}
           onFocus={composeHandlers(onFocus, () => setShowHotkey(false))}
           onBlur={composeHandlers(onBlur, () =>
             setShowHotkey(Boolean(focusWithHotKey))
           )}
           onKeyDown={(e) => {
             switch (e.key) {
+              case 'ArrowUp':
+                onMove('prev');
+                break;
+              case 'ArrowDown':
+                onMove('next');
+                break;
               case 'Escape':
+                // without this, if the user is in fullscreen on Mac Firefox,
+                // Esc will exit fullscreen as well.
+                e.preventDefault();
                 onClear && onClear();
                 e.target.blur();
                 break;
@@ -167,13 +196,35 @@ const SearchInput = forwardRef(
             }
           `}
         />
-        {value && onClear && (
+        <kbd
+          css={css`
+            border: 1px solid currentColor;
+            border-radius: 4px;
+            display: inline-grid;
+            line-height: 1.1;
+            margin-right: 0.25rem;
+            padding: 2px 4px;
+            place-items: center;
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+
+            @media (max-width: ${mobileBreakpoint}) {
+              display: none;
+            }
+          `}
+        >
+          /
+        </kbd>
+        {onClear && (
           <button
             onClick={(e) => {
               e.preventDefault();
               onClear();
             }}
             css={css`
+              display: none;
               right: ${alignIcon === 'right'
                 ? ' calc(var(--horizontal-spacing) + 0.5rem + var(--icon-size))'
                 : 'var(--horizontal-spacing)'};
@@ -191,6 +242,10 @@ const SearchInput = forwardRef(
               padding: 0;
               outline: none;
               z-index: 123;
+
+              @media (max-width: ${mobileBreakpoint}) {
+                display: block;
+              }
             `}
             type="button"
           >
@@ -228,18 +283,20 @@ const SearchInput = forwardRef(
 );
 
 SearchInput.propTypes = {
+  alignIcon: PropTypes.oneOf(Object.values(ICON_ALIGNMENTS)),
   className: PropTypes.string,
   focusWithHotKey: PropTypes.string,
-  onClear: PropTypes.func,
-  onSubmit: PropTypes.func,
-  value: PropTypes.string,
-  width: PropTypes.string,
-  size: PropTypes.oneOf(Object.values(SIZES)),
   iconName: PropTypes.oneOf(Object.values(ICONS)),
-  alignIcon: PropTypes.oneOf(Object.values(ICON_ALIGNMENTS)),
   isIconClickable: PropTypes.bool,
   onBlur: PropTypes.func,
+  onClear: PropTypes.func,
   onFocus: PropTypes.func,
+  onMove: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
+  setValue: PropTypes.func.isRequired,
+  size: PropTypes.oneOf(Object.values(SIZES)),
+  value: PropTypes.string,
+  width: PropTypes.string,
 };
 
 SearchInput.SIZE = SIZES;
