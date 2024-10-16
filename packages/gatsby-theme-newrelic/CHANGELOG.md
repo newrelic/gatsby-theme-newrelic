@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.9.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.8.3...v9.9.0) (2024-10-16)
+
+### Features
+
+- search redesign ([#1097](https://github.com/newrelic/gatsby-theme-newrelic/issues/1097)) ([083cd83](https://github.com/newrelic/gatsby-theme-newrelic/commit/083cd8317a74db83f92a37c036fb592c78b321df))
+
 ## [9.8.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.8.2...v9.8.3) (2024-10-01)
 
 ### Bug Fixes
