@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useMedia from 'use-media';
 import path from 'path';
 import { css } from '@emotion/react';
-import { graphql, useStaticQuery, Link } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 import { useLocation } from '@reach/router';
+
 import AnnouncementBanner from './AnnouncementBanner';
 import DarkModeToggle from './DarkModeToggle';
 import ExternalLink from './ExternalLink';
@@ -13,77 +14,24 @@ import Dropdown from './Dropdown';
 import NewRelicLogo from './NewRelicLogo';
 import Icon from './Icon';
 import GlobalNavLink from './GlobalNavLink';
-import SearchInput from './SearchInput';
-import SearchModal from './SearchModal';
-import useQueryParams from '../hooks/useQueryParams';
+import GlobalSearch from './GlobalSearch';
+
+import { HEADER_LINKS, NR_SITES } from '../utils/constants';
 import useThemeTranslation from '../hooks/useThemeTranslation';
-import useHasMounted from '../hooks/useHasMounted';
 import useInstrumentedHandler from '../hooks/useInstrumentedHandler';
-
-export const NR_SITES = {
-  DOCS: 'DOCS',
-  COMMUNITY: 'COMMUNITY',
-  LEARN: 'LEARN',
-};
-
-const HEADER_LINKS = new Map();
-
-HEADER_LINKS.set(NR_SITES.DOCS, {
-  text: 'Docs',
-  href: 'https://docs.newrelic.com/',
-})
-  .set(NR_SITES.COMMUNITY, {
-    text: 'Community',
-    href: 'https://discuss.newrelic.com/',
-  })
-  .set(NR_SITES.LEARN, {
-    text: 'Learn',
-    href: 'https://learn.newrelic.com/',
-  });
-
-const createNavList = (listType, activeSite = null) => {
-  const navList = [];
-  HEADER_LINKS.forEach(({ text, href }) => {
-    switch (listType) {
-      case 'main':
-        navList.push(
-          <li key={href}>
-            <GlobalNavLink
-              href={href}
-              activeSite={activeSite && HEADER_LINKS.get(activeSite)}
-              instrumentation={{
-                component: 'globalHeader',
-                layoutElement: 'globalHeader',
-              }}
-            >
-              {text}
-            </GlobalNavLink>
-          </li>
-        );
-        break;
-      case 'dropdown':
-        navList.push(
-          <Dropdown.MenuItem key={href} href={href}>
-            {text}
-          </Dropdown.MenuItem>
-        );
-        break;
-    }
-  });
-  return navList;
-};
 
 // removes the site nav from the header in favor of the search bar
 // swaps out logo into collapsable nav
 const NAV_BREAKPOINT = '1070px';
 const LOGO_TEXT_BREAKPOINT = '460px';
-const LAYOUT_BREAKPOINT = '1150px';
+const SEARCH_BREAKPOINT = '1355px';
+const SEARCH_BREAKPOINT_2 = '865px';
+const NAVLIST_BREAKPOINT = '1507px';
 
-const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
-  const hasMounted = useHasMounted();
+const GlobalHeader = ({ className, activeSite }) => {
   const location = useLocation();
-  const { queryParams, setQueryParam, deleteQueryParam } = useQueryParams();
   const { t } = useThemeTranslation();
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   const {
     allLocale: { nodes: locales },
@@ -123,12 +71,6 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
 
   return (
     <>
-      <SearchModal
-        onClose={() => {
-          deleteQueryParam('q');
-        }}
-        isOpen={hasMounted && queryParams.has('q')}
-      />
       <AnnouncementBanner />
       <div
         data-swiftype-index={false}
@@ -144,7 +86,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
           top: 0;
           z-index: 80;
           height: var(--global-header-height);
-          @media screen and (max-width: ${LAYOUT_BREAKPOINT}) and (min-width: ${NAV_BREAKPOINT}) {
+          @media screen and (max-width: ${NAVLIST_BREAKPOINT}) {
             grid-template-columns: calc(150px + 1.5rem) minmax(0, 1fr);
           }
           @media screen and (max-width: ${mobileBreakpoint}) {
@@ -215,7 +157,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
               />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              {createNavList('dropdown', activeSite)}
+              <NavList listType="dropdown" activeSite={activeSite} />
             </Dropdown.Menu>
           </Dropdown>
         </nav>
@@ -255,7 +197,7 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                 }
               `}
             >
-              {createNavList('main', activeSite)}
+              <NavList listType="main" activeSite={activeSite} />
             </ul>
           </nav>
 
@@ -286,9 +228,14 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
           >
             <li
               css={css`
-                margin: 0rem 1rem;
-                width: 100%;
-                max-width: 320px;
+                --search-width: 26.625rem;
+                --search-dropdown-width: 26.625rem;
+
+                display: flex;
+                justify-content: end;
+                margin: 0rem 0.5rem 0 1rem;
+                position: relative;
+                width: var(--search-width);
 
                 @media screen and (max-width: 930px) {
                   margin-right: 1rem;
@@ -296,36 +243,19 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                 @media screen and (max-width: ${NAV_BREAKPOINT}) {
                   margin-left: 0;
                 }
+                @media (max-width: ${SEARCH_BREAKPOINT}) {
+                  --search-width: 13.3125rem;
+                }
+                @media (max-width: ${SEARCH_BREAKPOINT_2}) {
+                  --search-width: 12rem;
+                }
                 @media screen and (max-width: ${mobileBreakpoint}) {
-                  display: none;
+                  display: ${mobileSearchOpen ? 'block' : 'none'};
+                  position: static;
                 }
               `}
             >
-              {!hideSearch && (
-                <>
-                  <SearchInput
-                    placeholder={t('searchInput.placeholder')}
-                    size={SearchInput.SIZE.MEDIUM}
-                    css={css`
-                      --icon-size: 1.5rem;
-                      min-width: 150px;
-                      max-width: 450px;
-                      svg {
-                        width: 1.5rem;
-                        height: 1.5rem;
-                      }
-
-                      input {
-                        border: none;
-                        height: 40px;
-                      }
-                    `}
-                    onFocus={() => {
-                      setQueryParam('q', '');
-                    }}
-                  />
-                </>
-              )}
+              <GlobalSearch onClose={() => setMobileSearchOpen(false)} />
             </li>
             <li
               css={css`
@@ -337,20 +267,19 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                 }
               `}
             >
-              <Link
-                to="?q="
+              <Button
+                variant={Button.VARIANT.PLAIN}
+                onClick={() => setMobileSearchOpen(true)}
                 css={css`
-                  color: var(--system-text-primary-dark);
-                  transition: all 0.2s ease-out;
                   align-self: center;
-                  padding-right: 1rem;
+                  color: var(--system-text-primary-dark);
                   display: none;
+                  margin-right: 8px;
+                  padding: 8px;
+                  transition: all 0.2s ease-out;
 
                   @media screen and (max-width: ${mobileBreakpoint}) {
                     display: block;
-                  }
-                  @media screen and (max-width: ${mobileBreakpoint}) {
-                    padding-right: 0.25rem;
                   }
                 `}
               >
@@ -360,9 +289,9 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
                     display: block;
                   `}
                   name="fe-search"
-                  size="1.5rem"
+                  size="1.25rem"
                 />
-              </Link>
+              </Button>
               {locales.length > 1 && (
                 <Dropdown align="right">
                   <Dropdown.Toggle
@@ -475,7 +404,38 @@ const GlobalHeader = ({ className, activeSite, hideSearch = false }) => {
 GlobalHeader.propTypes = {
   className: PropTypes.string,
   activeSite: PropTypes.oneOf(Object.values(NR_SITES)),
-  hideSearch: PropTypes.bool,
+};
+
+const NavList = ({ listType, activeSite = null }) => {
+  const navList = [];
+  HEADER_LINKS.forEach(({ text, href }) => {
+    switch (listType) {
+      case 'main':
+        navList.push(
+          <li key={href}>
+            <GlobalNavLink
+              href={href}
+              activeSite={activeSite && HEADER_LINKS.get(activeSite)}
+              instrumentation={{
+                component: 'globalHeader',
+                layoutElement: 'globalHeader',
+              }}
+            >
+              {text}
+            </GlobalNavLink>
+          </li>
+        );
+        break;
+      case 'dropdown':
+        navList.push(
+          <Dropdown.MenuItem key={href} href={href}>
+            {text}
+          </Dropdown.MenuItem>
+        );
+        break;
+    }
+  });
+  return navList;
 };
 
 export default GlobalHeader;
