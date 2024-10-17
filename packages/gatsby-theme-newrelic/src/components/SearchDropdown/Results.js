@@ -83,6 +83,10 @@ const List = styled.ul`
     color: var(--search-dropdown-emphasis);
     font-style: normal;
   }
+
+  @media (max-height: 980px) {
+    max-height: 24rem;
+  }
 `;
 
 const Result = styled.li`
