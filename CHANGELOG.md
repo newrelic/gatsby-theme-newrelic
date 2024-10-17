@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.10.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.9.0...v9.10.0) (2024-10-17)
+
+### Bug Fixes
+
+- don't save duplicate searches to recents ([fb08e76](https://github.com/newrelic/gatsby-theme-newrelic/commit/fb08e7647edc8f9f144e16ce7ea7035950747928))
+- double border on search input in light mode ([699e00c](https://github.com/newrelic/gatsby-theme-newrelic/commit/699e00c329d0445358c406dfc347b479fb03109c))
+- fix snapshot tests ([305aeef](https://github.com/newrelic/gatsby-theme-newrelic/commit/305aeeff70a7cfbb08ea1ab1ba05617e0a3bedf0))
+- handle recentQueries.length === 0 better ([3503c1c](https://github.com/newrelic/gatsby-theme-newrelic/commit/3503c1ccc525b230e854abb95063666550e1afc6))
+- lint errors ([fdd9817](https://github.com/newrelic/gatsby-theme-newrelic/commit/fdd9817d78c5fdf1c86993ef4b22579405790024))
+- make top result padding match rest ([9770f81](https://github.com/newrelic/gatsby-theme-newrelic/commit/9770f81a1ee80b31836fcf03a4d91b33512da6f9))
+
+### Features
+
+- Update locales to include french ([3af2f6a](https://github.com/newrelic/gatsby-theme-newrelic/commit/3af2f6ae5d488b8f63d942accd1019d846b41748))
+
 # [9.9.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.8.3...v9.9.0) (2024-10-16)
 
 ### Features
