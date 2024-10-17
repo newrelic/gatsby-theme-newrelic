@@ -46,6 +46,7 @@ const SearchInput = forwardRef(
       onMove,
       setValue,
       size = 'medium',
+      showShortcut = false,
       value,
       width,
       ...props
@@ -196,27 +197,29 @@ const SearchInput = forwardRef(
             }
           `}
         />
-        <kbd
-          css={css`
-            border: 1px solid currentColor;
-            border-radius: 4px;
-            display: inline-grid;
-            line-height: 1.1;
-            margin-right: 0.25rem;
-            padding: 2px 4px;
-            place-items: center;
-            position: absolute;
-            right: 0.5rem;
-            top: 50%;
-            transform: translateY(-50%);
+        {showShortcut && (
+          <kbd
+            css={css`
+              border: 1px solid currentColor;
+              border-radius: 4px;
+              display: inline-grid;
+              line-height: 1.1;
+              margin-right: 0.25rem;
+              padding: 2px 4px;
+              place-items: center;
+              position: absolute;
+              right: 0.5rem;
+              top: 50%;
+              transform: translateY(-50%);
 
-            @media (max-width: ${mobileBreakpoint}) {
-              display: none;
-            }
-          `}
-        >
-          /
-        </kbd>
+              @media (max-width: ${mobileBreakpoint}) {
+                display: none;
+              }
+            `}
+          >
+            /
+          </kbd>
+        )}
         {onClear && (
           <button
             onClick={(e) => {
@@ -295,6 +298,7 @@ SearchInput.propTypes = {
   onSubmit: PropTypes.func,
   setValue: PropTypes.func.isRequired,
   size: PropTypes.oneOf(Object.values(SIZES)),
+  showShortcut: PropTypes.bool,
   value: PropTypes.string,
   width: PropTypes.string,
 };

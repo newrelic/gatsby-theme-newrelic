@@ -130,6 +130,7 @@ const GlobalSearch = ({ onClose }) => {
         placeholder={t('searchInput.placeholder')}
         ref={searchRef}
         setValue={setQuery}
+        showShortcut
         size={SearchInput.SIZE.MEDIUM}
         value={query}
         css={css`
