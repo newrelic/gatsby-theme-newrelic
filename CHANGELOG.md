@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.10.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.10.0...v9.10.1) (2024-10-17)
+
+### Bug Fixes
+
+- add prop for kbd shortcut display ([3a1f1a3](https://github.com/newrelic/gatsby-theme-newrelic/commit/3a1f1a3c28c950a2ffdac4413a518a556220988a))
+
 # [9.10.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.9.0...v9.10.0) (2024-10-17)
 
 ### Bug Fixes
