@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 import { css } from '@emotion/react';
 import { useThrottle } from 'react-use';
@@ -23,6 +24,7 @@ const GlobalSearch = ({ onClose }) => {
   let recentQueries = [];
   try {
     recentQueries = JSON.parse(localStorage.getItem(SAVED_SEARCH_KEY) ?? '[]');
+    // eslint-disable-next-line no-empty
   } catch (err) {}
   // `null` when we're just in the searchbar and nothing is selected
   // otherwise, `selected` is an integer.
@@ -199,12 +201,23 @@ const GlobalSearch = ({ onClose }) => {
   );
 };
 
+GlobalSearch.propTypes = {
+  onClose: PropTypes.func.isRequired,
+};
+
 const SAVED_SEARCH_KEY = 'gatsby-theme-newrelic:saved-searches';
 
 const saveSearch = (value) => {
+  value = value.trim();
   const savedSearches = JSON.parse(
     localStorage.getItem(SAVED_SEARCH_KEY) ?? '[]'
   );
+  const set = new Set(savedSearches);
+
+  if (set.has(value)) {
+    return;
+  }
+
   savedSearches.push(value);
   // only save the four most recent searches
   const updated = savedSearches.slice(-4);

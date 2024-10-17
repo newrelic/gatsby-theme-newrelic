@@ -75,9 +75,9 @@ const Results = ({ onResultClick, onViewMore, results, selected }) => {
 const List = styled.ul`
   list-style: none;
   margin: 0 calc(-1 * var(--outer-padding));
-  max-height: 31.5rem;
+  max-height: 32rem;
   overflow-y: scroll;
-  padding: 0;
+  padding: 0.25rem 0 0;
 
   & em {
     color: var(--search-dropdown-emphasis);
@@ -123,13 +123,17 @@ const ViewMore = styled.button`
 `;
 
 export const ResultType = PropTypes.shape({
-  breadcrumb: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  blurb: PropTypes.string.isRequired,
+  highlight: PropTypes.shape({
+    body: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
   url: PropTypes.string.isRequired,
 });
 
 Results.propTypes = {
+  onViewMore: PropTypes.func.isRequired,
+  onResultClick: PropTypes.func.isRequired,
+  selected: PropTypes.number,
   results: PropTypes.arrayOf(ResultType),
 };
 
@@ -146,7 +150,7 @@ const breadcrumbify = (str) => {
   const DESIRED_LENGTH = 80;
   str = str.replace(/\/$/, '');
 
-  let parts = str.split('/');
+  const parts = str.split('/');
   let result = parts.join(' / ');
 
   if (result.length <= DESIRED_LENGTH) return result;

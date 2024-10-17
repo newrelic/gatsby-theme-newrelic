@@ -81,7 +81,7 @@ const SearchInput = forwardRef(
         css={css`
           --horizontal-spacing: ${HORIZONTAL_SPACING[size]};
 
-          border: 1px solid #eaecec;
+          border: var(--search-input-border);
           border-radius: 4px;
           position: relative;
           width: ${width || '100%'};
@@ -153,6 +153,9 @@ const SearchInput = forwardRef(
                 onMove('next');
                 break;
               case 'Escape':
+                // without this, if the user is in fullscreen on Mac Firefox,
+                // Esc will exit fullscreen as well.
+                e.preventDefault();
                 onClear && onClear();
                 e.target.blur();
                 break;
@@ -280,18 +283,20 @@ const SearchInput = forwardRef(
 );
 
 SearchInput.propTypes = {
+  alignIcon: PropTypes.oneOf(Object.values(ICON_ALIGNMENTS)),
   className: PropTypes.string,
   focusWithHotKey: PropTypes.string,
-  onClear: PropTypes.func,
-  onSubmit: PropTypes.func,
-  value: PropTypes.string,
-  width: PropTypes.string,
-  size: PropTypes.oneOf(Object.values(SIZES)),
   iconName: PropTypes.oneOf(Object.values(ICONS)),
-  alignIcon: PropTypes.oneOf(Object.values(ICON_ALIGNMENTS)),
   isIconClickable: PropTypes.bool,
   onBlur: PropTypes.func,
+  onClear: PropTypes.func,
   onFocus: PropTypes.func,
+  onMove: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
+  setValue: PropTypes.func.isRequired,
+  size: PropTypes.oneOf(Object.values(SIZES)),
+  value: PropTypes.string,
+  width: PropTypes.string,
 };
 
 SearchInput.SIZE = SIZES;
