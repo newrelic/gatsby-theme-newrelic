@@ -55,10 +55,12 @@ const Tabs = ({ children, initialTab = 0 }) => {
       const index = pages.findIndex((page) => page.props.id === hash);
       if (index !== -1) {
         // this is so the animation doesn't play on page load
-        // if the first tab is selected.
-        if (index !== 0) {
-          setTab(index);
+        if (index === 0 && currentTabIndex === 0 && previousTabIndex === 0) {
+          return;
         }
+
+        setTab(index);
+
         const y =
           tabsContainer.current.getBoundingClientRect().top +
           window.scrollY -
