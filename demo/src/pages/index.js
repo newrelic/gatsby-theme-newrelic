@@ -35,9 +35,7 @@ import {
 } from '@newrelic/gatsby-theme-newrelic';
 import CustomPopoverExample from '../../../packages/gatsby-theme-newrelic/src/components/Popover/CustomPopoverExample';
 import config from '../content/configFiles/javaConfig';
-import tallImage from '../images/nr-one-ajax-browser.png';
 import regularImage from '../images/apm-intro-overview.png';
-import transparentBackgroundImage from '../images/intro-DT.png';
 
 const codeSample = `
 import React from 'react';
