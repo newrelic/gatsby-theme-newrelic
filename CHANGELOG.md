@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.10.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.10.2...v9.10.3) (2024-10-22)
+
+### Bug Fixes
+
+- add id to mobile search button ([2bb897a](https://github.com/newrelic/gatsby-theme-newrelic/commit/2bb897a8101b725653c4056f760af29d5bc965ed))
+
 ## [9.10.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.10.1...v9.10.2) (2024-10-17)
 
 ### Bug Fixes
