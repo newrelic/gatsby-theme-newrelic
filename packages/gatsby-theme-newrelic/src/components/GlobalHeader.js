@@ -268,6 +268,7 @@ const GlobalHeader = ({ className, activeSite }) => {
               `}
             >
               <Button
+                id="mobile-search-expand"
                 variant={Button.VARIANT.PLAIN}
                 onClick={() => setMobileSearchOpen(true)}
                 css={css`
