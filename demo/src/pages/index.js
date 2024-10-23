@@ -31,14 +31,11 @@ import {
   useTranslation,
   ExternalLink,
   SignupModal,
-  Lightbox,
   LoggedInProvider,
 } from '@newrelic/gatsby-theme-newrelic';
 import CustomPopoverExample from '../../../packages/gatsby-theme-newrelic/src/components/Popover/CustomPopoverExample';
 import config from '../content/configFiles/javaConfig';
-import tallImage from '../images/nr-one-ajax-browser.png';
 import regularImage from '../images/apm-intro-overview.png';
-import transparentBackgroundImage from '../images/intro-DT.png';
 
 const codeSample = `
 import React from 'react';
@@ -800,37 +797,6 @@ const IndexPage = () => {
               </Link>{' '}
               does not automatically use localized path if on translated site.
             </p>
-          </section>
-          <section>
-            <h2>An image wrapped in the lightbox component</h2>
-            <h3>give it a click!</h3>
-            <Lightbox>
-              <img
-                alt="a very average screenshot"
-                css={css`
-                  width: 100%;
-                `}
-                src={regularImage}
-              />
-            </Lightbox>
-            <Lightbox>
-              <img
-                alt="a very tall screenshot"
-                css={css`
-                  width: 100%;
-                `}
-                src={tallImage}
-              />
-            </Lightbox>
-            <Lightbox>
-              <img
-                alt="a screenshot with a transparent background"
-                css={css`
-                  width: 100%;
-                `}
-                src={transparentBackgroundImage}
-              />
-            </Lightbox>
           </section>
           <section>
             <h2>External Links</h2>
