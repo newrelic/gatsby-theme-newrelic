@@ -229,7 +229,12 @@ const NotFoundPage = ({
               <SearchInput
                 placeholder={searchTerm}
                 onFocus={() =>
-                  navigate(`?q=${searchTerm.replaceAll(' ', '+')}`)
+                  navigate(
+                    `search-results/?query=${searchTerm.replaceAll(
+                      ' ',
+                      '+'
+                    )}&page=1`
+                  )
                 }
                 css={css`
                   min-width: 200px;

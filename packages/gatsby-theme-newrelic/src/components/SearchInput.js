@@ -91,7 +91,7 @@ const SearchInput = forwardRef(
       >
         {isIconClickable ? (
           <Link
-            to={`?q=${value}`}
+            to={`search-results/?query=${value}&page=1`}
             css={css`
               color: var(--brand-button-primary-accent);
               &:hover {
