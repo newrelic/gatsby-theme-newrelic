@@ -100,7 +100,7 @@ const SEO = ({ title, location, type, children }) => {
                 "@type": "SearchAction",
                 "target": {
                   "@type": "EntryPoint",
-                  "urlTemplate": "${siteUrl}/?q={search_term_string}"
+                  "urlTemplate": "${siteUrl}/search-results/?query=search_term_string&page=1}"search_term_string
                 },
                 "query-input": "required name=search_term_string"
               }]
