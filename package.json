@@ -11,7 +11,7 @@
     "release": "lerna publish --no-verify-access --conventional-commits --create-release github --no-private",
     "test": "jest",
     "test:watch": "yarn test --watch",
-    "lint": "lerna run lint",
+    "lint": "lerna run lint --skip-nx-cache",
     "extract-i18n": "yarn workspace @newrelic/gatsby-theme-newrelic extract-i18n"
   },
   "devDependencies": {
