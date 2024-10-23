@@ -161,6 +161,8 @@ project. If you have any questions, or to execute our corporate CLA, required
 if your contribution is on behalf of a company, please drop us an email at
 opensource@newrelic.com.
 
+Ensure your git commits and PRs follow the [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## License
 
 `gatsby-theme-newrelic` is licensed under the [Apache
