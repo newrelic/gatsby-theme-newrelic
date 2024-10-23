@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.10.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.10.4...v9.10.5) (2024-10-23)
+
+### Bug Fixes
+
+- add useScrollFreeze to Search header ([e8e4a48](https://github.com/newrelic/gatsby-theme-newrelic/commit/e8e4a482d5f8b36ca1c2df8b44749b26af8a649a))
+- another typo ([4781891](https://github.com/newrelic/gatsby-theme-newrelic/commit/4781891ee5d5543cf5564241680c61ae3d522da6))
+- Remove the use of old search query params ([cddc074](https://github.com/newrelic/gatsby-theme-newrelic/commit/cddc074eb24039e3100801d9b967c7364fa44c6b))
+- typo ([46358ae](https://github.com/newrelic/gatsby-theme-newrelic/commit/46358ae93998ef552e4db74c4e40f0883bf052be))
+
 ## [9.10.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.10.3...v9.10.4) (2024-10-23)
 
 ### Bug Fixes
