@@ -6,6 +6,7 @@ import { useThrottle } from 'react-use';
 
 import useKeyPress from '../hooks/useKeyPress';
 import useThemeTranslation from '../hooks/useThemeTranslation';
+import useScrollFreeze from '../hooks/useScrollFreeze';
 import { addPageAction } from '../utils/nrBrowserAgent';
 
 import useSearch from './SearchModal/useSearch';
@@ -30,6 +31,8 @@ const GlobalSearch = ({ onClose }) => {
   // otherwise, `selected` is an integer.
   const [selected, setSelected] = useState(null);
   const possibleSelections = results.length + recentQueries.length;
+
+  useScrollFreeze(open);
 
   const moveUp = () =>
     setSelected((s) => {
