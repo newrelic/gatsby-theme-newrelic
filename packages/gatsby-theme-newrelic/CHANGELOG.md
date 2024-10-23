@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.10.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.10.3...v9.10.4) (2024-10-23)
+
+### Bug Fixes
+
+- Remove the Lightbox ([29bfab2](https://github.com/newrelic/gatsby-theme-newrelic/commit/29bfab25119d55e378533d5e4aa8ae5a9f044ba7))
+
 ## [9.10.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.10.2...v9.10.3) (2024-10-22)
 
 ### Bug Fixes
