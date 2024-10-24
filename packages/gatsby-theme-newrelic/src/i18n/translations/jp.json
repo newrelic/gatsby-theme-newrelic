@@ -44,6 +44,9 @@
     "submitMessage" : "詳細なフィードバックありがとうございました",
     "reset" : "リセット"
   },
+  "header": {
+    "newRelicLogoLink": "https://newrelic.com/jp/"
+  },
   "footer" : {
     "copyright" : "Copyright {{copyrightSymbol}} {{year}} New Relic株式会社。",
     "careers" : "採用情報",

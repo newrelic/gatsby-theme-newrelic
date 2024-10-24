@@ -44,6 +44,9 @@
     "submitMessage": "Thanks for your detailed feedback",
     "reset": "Reset"
   },
+  "header": {
+    "newRelicLogoLink": "https://newrelic.com/fr/"
+  },
   "footer": {
     "copyright": "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
     "careers": "Careers",

@@ -105,7 +105,7 @@ const GlobalHeader = ({ className, activeSite }) => {
           `}
         >
           <ExternalLink
-            href="https://newrelic.com/"
+            href={t('header.newRelicLogoLink')}
             css={css`
               display: flex;
               align-items: center;
