@@ -44,6 +44,9 @@
     "submitMessage" : "자세한 피드백을 주셔서 감사합니다.",
     "reset" : "재설정"
   },
+  "header": {
+    "newRelicLogoLink": "https://newrelic.com/kr/"
+  },
   "footer" : {
     "copyright" : "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
     "careers" : "채용정보",
