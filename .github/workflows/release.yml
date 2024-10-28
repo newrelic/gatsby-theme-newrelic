@@ -34,6 +34,25 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > .npmrc
 
+      - name: Temporarily disable "required_pull_request_reviews" branch protection
+        id: disable-branch-protection
+        if: always()
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.DOCS_ENG_BOT_TOKEN }}
+          previews: luke-cage-preview
+          script: |
+            const result = await github.rest.repos.updateBranchProtection({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              branch: 'main',
+              required_status_checks: null,
+              restrictions: null,
+              enforce_admins: null,
+              required_pull_request_reviews: null
+            })
+            console.log("Result:", result)
+
       - name: Lerna Publish
         env:
           GIT_AUTHOR_NAME: ${{ env.BOT_NAME }}
@@ -42,3 +61,24 @@ jobs:
           GIT_COMMITTER_EMAIL: ${{ env.BOT_EMAIL }}
           GH_TOKEN: ${{ secrets.DOCS_ENG_BOT_TOKEN }}
         run: yarn release
+
+      - name: Re-enable "required_pull_request_reviews" branch protection
+        id: enable-branch-protection
+        if: always()
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.DOCS_ENG_BOT_TOKEN }}
+          previews: luke-cage-preview
+          script: |
+            const result = await github.rest.repos.updateBranchProtection({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              branch: 'main',
+              required_status_checks: null,
+              restrictions: null,
+              enforce_admins: true,
+              required_pull_request_reviews: {
+                required_approving_review_count: 0
+              }
+            })
+            console.log("Result:", result)
