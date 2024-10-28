@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.10.6](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.10.5...v9.10.6) (2024-10-28)
+
+### Bug Fixes
+
+- clicking NR banner sends to local sites ([806e261](https://github.com/newrelic/gatsby-theme-newrelic/commit/806e2614ef28041816ad31bad0351e605322c08e))
+
 ## [9.10.5](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.10.4...v9.10.5) (2024-10-23)
 
 ### Bug Fixes
