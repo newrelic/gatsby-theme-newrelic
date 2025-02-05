@@ -35,35 +35,35 @@ const Tabs = ({ children, initialTab = 0 }) => {
   const location = useLocation();
 
   const findPageIndexById = (pages, hash) => {
-    const findInChildren = (children, hash) =>  {
+    const findInChildren = (children, hash) => {
       if (!Array.isArray(children)) {
         return false;
       }
       for (const child of children) {
         if (child.props?.id === hash) {
-          return true; 
+          return true;
         }
         if (child.props?.children) {
           if (findInChildren(child.props.children, hash)) {
-            return true; 
+            return true;
           }
         }
       }
       return false;
-    }
-  
+    };
     for (let index = 0; index < pages.length; index++) {
       const page = pages[index];
-        if (page.props?.id === hash) {
-          return index; 
-        }
-        else if (page.props?.children && findInChildren(page.props.children, hash)) {
-          return index; 
-        }
-      
+      if (page.props?.id === hash) {
+        return index;
+      } else if (
+        page.props?.children &&
+        findInChildren(page.props.children, hash)
+      ) {
+        return index;
+      }
     }
     return -1;
-  }
+  };
 
   // this needs to run in a useEffect since the hash
   // isn't available on the server during SSG.

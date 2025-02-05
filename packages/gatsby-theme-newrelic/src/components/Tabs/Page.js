@@ -25,23 +25,30 @@ const Page = ({ index, children, id, className }) => {
   const isSelected =
     index === currentTabIndex || (currentTabIndex === undefined && index === 0);
 
-  //overide the default scrolling of mdx plugin  
+  // overide the default scrolling of mdx plugin
   useEffect(() => {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function(e) {
-              e.preventDefault();
-              const targetId = this.getAttribute('href').substring(1);
-              const targetElement = document.getElementById(targetId);
+    const anchorClickHandler = (e) => {
+      e.preventDefault();
+      const targetId = e.currentTarget.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+        });
+      }
+      history.pushState(null, null, `#${targetId}`);
+    };
 
-              if (targetElement) {
-                targetElement.scrollIntoView({
-                  behavior: 'smooth'
-              });
-              }
-              history.pushState(null, null, `#${targetId}`);
-          });
+    const anchors = document.querySelectorAll('a[href^="#"]');
+    anchors.forEach((anchor) => {
+      anchor.addEventListener('click', anchorClickHandler);
+    });
+
+    return () => {
+      anchors.forEach((anchor) => {
+        anchor.removeEventListener('click', anchorClickHandler);
       });
-
+    };
   }, []);
   useEffect(() => {
     if (
