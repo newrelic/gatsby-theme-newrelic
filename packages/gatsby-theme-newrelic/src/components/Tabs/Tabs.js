@@ -34,6 +34,37 @@ const Tabs = ({ children, initialTab = 0 }) => {
 
   const location = useLocation();
 
+  const findPageIndexById = (pages, hash) => {
+    const findInChildren = (children, hash) => {
+      if (!Array.isArray(children)) {
+        return false;
+      }
+      for (const child of children) {
+        if (child.props?.id === hash) {
+          return true;
+        }
+        if (child.props?.children) {
+          if (findInChildren(child.props.children, hash)) {
+            return true;
+          }
+        }
+      }
+      return false;
+    };
+    for (let index = 0; index < pages.length; index++) {
+      const page = pages[index];
+      if (page.props?.id === hash) {
+        return index;
+      } else if (
+        page.props?.children &&
+        findInChildren(page.props.children, hash)
+      ) {
+        return index;
+      }
+    }
+    return -1;
+  };
+
   // this needs to run in a useEffect since the hash
   // isn't available on the server during SSG.
   // to put it another way, in order to have this work with SSG
@@ -51,8 +82,11 @@ const Tabs = ({ children, initialTab = 0 }) => {
       //   <Tabs.Pages>...</Tabs.Pages>
       // </Tabs>
       // ```
+      const bars = _tabBar.props.children;
       const pages = tabPages.props.children;
-      const index = pages.findIndex((page) => page.props.id === hash);
+      // const index = pages.findIndex((page) => page.props.id === hash);
+      const index = findPageIndexById(pages, hash);
+      const isTabBar = bars.some((bar) => bar.props.id === hash);
       if (index !== -1) {
         // this is so the animation doesn't play on page load
         // if the first tab is selected.
@@ -65,7 +99,7 @@ const Tabs = ({ children, initialTab = 0 }) => {
           // header height
           72;
 
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        isTabBar && window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

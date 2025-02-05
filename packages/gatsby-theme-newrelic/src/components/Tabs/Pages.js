@@ -12,7 +12,6 @@ const Pages = ({ children }) => {
         padding: 1em;
         margin-bottom: 1em;
         overflow: hidden;
-        position: relative;
 
         @media screen and (max-width: ${mobileBreakpoint}) {
           border-top: #afe2e3 solid 1px;
