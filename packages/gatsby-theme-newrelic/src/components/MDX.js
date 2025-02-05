@@ -15,6 +15,7 @@ import MDXTable from './MDXTable';
 import MDXVideo from './MDXVideo';
 import SideBySide from './SideBySide';
 import Walkthrough from './Walkthrough';
+import Tabs from './Tabs';
 
 const defaultComponents = {
   a: (props) => <MDXLink {...props} displayExternalIcon />,
@@ -33,6 +34,11 @@ const defaultComponents = {
   Step: Walkthrough.Step,
   table: MDXTable,
   Video: MDXVideo,
+  Tabs: Tabs,
+  TabsBar: Tabs.Bar,
+  TabsBarItem: Tabs.BarItem,
+  TabsPageItem: Tabs.Page,
+  TabsPages: Tabs.Pages,
 };
 
 const MDX = ({ body, components }) => {
