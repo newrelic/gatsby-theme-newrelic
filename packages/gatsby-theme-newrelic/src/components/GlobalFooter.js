@@ -67,6 +67,7 @@ const GlobalFooter = ({ className }) => {
             margin: 0 auto;
 
             @media screen and (max-width: 760px) {
+              font-size: 0.5rem;
               justify-content: center;
               text-align: center;
               grid-template-columns: auto;
@@ -102,7 +103,7 @@ const GlobalFooter = ({ className }) => {
                 flex-wrap: wrap;
                 justify-content: flex-end;
                 grid-area: legal;
-                max-width: ${osanoPresent ? '29rem' : '32rem'};
+                max-width: ${osanoPresent ? 'fit-content' : '32rem'};
 
                 a {
                   margin-left: 0.75rem;
@@ -140,6 +141,10 @@ const GlobalFooter = ({ className }) => {
 
                     &:hover svg {
                       filter: invert(100%);
+                    }
+
+                    @media screen and (max-width: 760px) {
+                      font-size: 0.5rem;
                     }
                   `}
                   onClick={handlePrivacyClick}
