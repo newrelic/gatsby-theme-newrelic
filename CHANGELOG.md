@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.11.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.11.0...v9.11.1) (2025-03-13)
+
+### Bug Fixes
+
+- unscrollable , t&c content ([7507c38](https://github.com/newrelic/gatsby-theme-newrelic/commit/7507c389a159155141966b37f0ce7223e2c7ec8a))
+- unscrollable , t&c content ([fd965ab](https://github.com/newrelic/gatsby-theme-newrelic/commit/fd965abec0dd09447f6d97b596f3fac50d3905d2))
+
 # [9.11.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.10.7...v9.11.0) (2025-03-05)
 
 ### Features
