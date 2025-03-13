@@ -67,7 +67,7 @@ const GlobalFooter = ({ className }) => {
             margin: 0 auto;
 
             @media screen and (max-width: 760px) {
-              font-size: 0.50rem;
+              font-size: 0.5rem;
               justify-content: center;
               text-align: center;
               grid-template-columns: auto;
@@ -144,7 +144,7 @@ const GlobalFooter = ({ className }) => {
                     }
 
                     @media screen and (max-width: 760px) {
-                      font-size: 0.50rem;
+                      font-size: 0.5rem;
                     }
                   `}
                   onClick={handlePrivacyClick}
