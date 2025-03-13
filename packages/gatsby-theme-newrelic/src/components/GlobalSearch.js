@@ -32,8 +32,6 @@ const GlobalSearch = ({ onClose }) => {
   const [selected, setSelected] = useState(null);
   const possibleSelections = results.length + recentQueries.length;
 
-  useScrollFreeze(open);
-
   const moveUp = () =>
     setSelected((s) => {
       if (s == null) return possibleSelections - 1;
@@ -69,6 +67,7 @@ const GlobalSearch = ({ onClose }) => {
   });
 
   const showSearchDropdown = query.length > 1 && open;
+  useScrollFreeze(showSearchDropdown);
 
   return (
     <>
