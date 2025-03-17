@@ -1,92 +1,92 @@
 {
-  "404": {
-    "headingText": "Hmm... We can't find this",
-    "searchInputLabel": "Try refining your search.",
-    "searchResultMessage": "Were you looking for any of these?",
-    "docsHomeMessage": "Go back to <1>{{nrSubDomain}} home</1>.",
-    "fileIssueMessage": "Still can't find what you're looking for?"
+  "404" : {
+    "headingText" : "Hmm... Nous ne pouvons pas trouver cela",
+    "searchInputLabel" : "Essayez d'affiner votre recherche.",
+    "searchResultMessage" : "Vous cherchiez l’un de ces éléments ?",
+    "docsHomeMessage" : "Retourner à la page d'accueil de <1>{{nrSubDomain}}</1>.",
+    "fileIssueMessage" : "Vous ne trouvez toujours pas ce que vous cherchez ?"
   },
-  "button": {
-    "close": "Close",
-    "copied": "Copied",
-    "copy": "Copy",
-    "login": "Log in",
-    "startNow": "Start now"
+  "button" : {
+    "close" : "Fermer",
+    "copied" : "Copié",
+    "copy" : "Copier",
+    "login" : "Se connecter",
+    "startNow" : "Démarrer"
   },
-  "callout": {
-    "tip": "Tip",
-    "caution": "Caution",
-    "important": "Important",
-    "course": "Course"
+  "callout" : {
+    "tip" : "Conseil",
+    "caution" : "Prudence",
+    "important" : "Important",
+    "course" : "Cours"
   },
-  "github": {
-    "createIssue": "Create issue",
-    "editPage": "Edit this doc"
+  "github" : {
+    "createIssue" : "Créer un problème",
+    "editPage" : "Modifier ce document"
   },
-  "contributing": {
-    "guide": "Suggest a change and learn how to <1>contribute</1>"
+  "contributing" : {
+    "guide" : "Proposer un changement et apprendre à <1>contribuer</1>"
   },
-  "cookieConsent": {
-    "title": "This site uses cookies",
-    "statement": "We use cookies and other similar technologies (\"Cookies\") on our websites and services to enhance your experience and to provide you with relevant content. By using our websites and services you are agreeing to the use of cookies. You can read more <2>here</2>. If you consent to our cookies, please click <4>Yes</4>.",
-    "agree": "Yes",
-    "disagree": "No"
+  "cookieConsent" : {
+    "title" : "Ce site utilise des cookies",
+    "statement" : "Nous utilisons des cookies et d'autres technologies similaires (« Cookies ») sur nos sites Web et services pour améliorer votre expérience et vous fournir un contenu pertinent. En utilisant nos sites Web et nos services, vous acceptez l'utilisation de cookies. Vous pouvez en lire plus <2>ici</2>. Si vous acceptez nos cookies, veuillez cliquer sur <4>Oui</4>.",
+    "agree" : "Oui",
+    "disagree" : "Non"
   },
-  "feedback": {
-    "question": "Was this doc helpful?",
-    "yes": "Yes",
-    "no": "No",
-    "comments": "Tell us more (optional)",
-    "email": "Your email (optional)",
-    "emailDisclaimer": "We'll only use this email for follow-up questions about your feedback.",
-    "validEmail": "Please provide a valid email",
-    "submitButton": "Submit feedback",
-    "submitMessage": "Thanks for your detailed feedback",
-    "reset": "Reset"
+  "feedback" : {
+    "question" : "Ce document vous a-t-il été utile ?",
+    "yes" : "Oui",
+    "no" : "Non",
+    "comments" : "Dites-nous en plus (facultatif)",
+    "email" : "Votre email (facultatif)",
+    "emailDisclaimer" : "Nous n'utiliserons cet e-mail que pour des questions de suivi concernant vos commentaires.",
+    "validEmail" : "Veuillez fournir une adresse e-mail valide",
+    "submitButton" : "Envoyer des commentaires",
+    "submitMessage" : "Merci pour votre retour détaillé",
+    "reset" : "Réinitialiser"
   },
-  "header": {
-    "newRelicLogoLink": "https://newrelic.com/fr/"
+  "header" : {
+    "newRelicLogoLink" : "https://newrelic.com/"
   },
-  "footer": {
-    "copyright": "Copyright {{copyrightSymbol}} {{year}} New Relic Inc.",
-    "careers": "Careers",
-    "terms": "Terms of Service",
-    "dmcaPolicy": "DMCA Policy",
-    "privacyNotice": "Privacy Notice",
-    "privacyChoices": "Your Privacy Choices",
-    "cookiePolicy": "Cookie Policy",
-    "ukSlaveryAct": "UK Slavery Act"
+  "footer" : {
+    "copyright" : "Droits d'auteur {{copyrightSymbol}} {{year}} New Relic Inc.",
+    "careers" : "Recrutement",
+    "terms" : "Conditions de service",
+    "dmcaPolicy" : "Politique DMCA",
+    "privacyNotice" : "Avis de confidentialité",
+    "privacyChoices" : "Vos choix de confidentialité",
+    "cookiePolicy" : "Cookies",
+    "ukSlaveryAct" : "Loi britannique sur l'esclavage"
   },
-  "inlineSignup": {
-    "ctaButton": "Start now",
-    "ctaText": "Sign up and install",
-    "emailLabel": "Company Email",
-    "emailValidationHint": "Please format your email like \"user@example.com\"",
-    "nameLabel": "Name",
-    "nameValidationHint": "Please enter your name",
-    "submitError": "An error occurred trying to create your account. Please try again later.",
-    "terms": "100 GB + 1 user free. Forever. No credit card required.<1 />By signing up you're agreeing to <4>Terms of Service</4> and <8>Services Privacy Notice.</8>"
+  "inlineSignup" : {
+    "ctaButton" : "Démarrer",
+    "ctaText" : "Inscrivez-vous et installez",
+    "emailLabel" : "Adresse e-mail de la société",
+    "emailValidationHint" : "Veuillez formater votre e-mail comme « utilisateur@exemple.com »",
+    "nameLabel" : "Nom",
+    "nameValidationHint" : "Veuillez entrer votre nom",
+    "submitError" : "Une erreur s'est produite lors de la création de votre compte. Veuillez réessayer plus tard.",
+    "terms" : "100 Go + 1 utilisateur gratuit. Pour toujours. Aucune carte de crédit requise.<1 />En vous inscrivant, vous acceptez les <4>Conditions d'utilisation</4> et <8>Avis de confidentialité des services.</8>"
   },
-  "licenseKey": {
-    "buttonText": "license key",
-    "popover": {
-      "header": "License key",
-      "explainer": "Your license key is used to associate your incoming data with your account.",
-      "learnMore": "Learn more",
-      "getYourKey": "Get your key",
-      "createAccount": "Create account"
+  "licenseKey" : {
+    "buttonText" : "clé de licence",
+    "popover" : {
+      "header" : "Clé de licence",
+      "explainer" : "Votre clé de licence est utilisée pour associer vos données entrantes à votre compte.",
+      "learnMore" : "En savoir plus",
+      "getYourKey" : "Obtenir votre clé",
+      "createAccount" : "Créer un compte"
     }
   },
-  "mobileNav": {
-    "header": "Pages"
+  "mobileNav" : {
+    "header" : "Pages"
   },
-  "relatedResources": {
-    "title": "Related resources"
+  "relatedResources" : {
+    "title" : "Ressources connexes"
   },
-  "searchInput": {
-    "placeholder": "Search docs"
+  "searchInput" : {
+    "placeholder" : "Rechercher des documents"
   },
-  "tableOfContents": {
-    "title": "On this page"
+  "tableOfContents" : {
+    "title" : "Sur cette page"
   }
 }
