@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.11.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.11.2...v9.11.3) (2025-05-06)
+
+**Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
+
 ## [9.11.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.11.1...v9.11.2) (2025-04-08)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
