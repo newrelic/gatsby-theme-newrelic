@@ -11086,10 +11086,10 @@ gatsby-plugin-netlify@^5.1.1:
     lodash.mergewith "^4.6.2"
     webpack-assets-manifest "^5.0.6"
 
-gatsby-plugin-newrelic@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-newrelic/-/gatsby-plugin-newrelic-2.8.0.tgz#36c8666391ed1d1a5181961cbfbff96344ab0045"
-  integrity sha512-gl/9lcXCiffK5VD0Q/t4bqHMJQzGWePZyHJSZK756UnBrDVJs65HI1xtGsqyGJzxmUtxW1dwfX1cc+joaTZxyQ==
+gatsby-plugin-newrelic@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-newrelic/-/gatsby-plugin-newrelic-2.9.0.tgz#7a93f89cf58a20a17f91091626b74aadd8b6588a"
+  integrity sha512-8cSq2I5eXm9U9TPUIzWgowobB4DgRJPCRmQEqL+AnBNG9o2aC5phHDJPIJ6/rN/sKDAQ0/PtLVgKh0iMWIokUQ==
   dependencies:
     "@babel/runtime" "^7.12.5"
 
