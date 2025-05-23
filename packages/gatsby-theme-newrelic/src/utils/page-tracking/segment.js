@@ -42,26 +42,20 @@ const getNRVisitedCookie = () => {
   // Check if the cookie is already set
   const existingCookie = Cookies.get(cookieName);
 
-  if(existingCookie) {
+  if (existingCookie) {
     return existingCookie;
   } else {
     // If not set, set the cookie with the current Unix epoch time
     const currentUnixEpoch = Math.floor(Date.now() / 1000); // Convert milliseconds to seconds
-    try {
-      Cookies.set(cookieName, currentUnixEpoch, { 
-        expires: 365, // Set cookie to expire in 1 year
-        domain: '.newrelic.com', // Set the domain to .newrelic.com
-        path: '/', // Set the path to /
-        sameSite: 'Lax' // Set the SameSite attribute to Lax
-      }); 
-    } catch (error) {
-      console.error('Failed to set cookie:', error);
-    }
+    Cookies.set(cookieName, currentUnixEpoch, {
+      expires: 365, // Set cookie to expire in 1 year
+      domain: '.newrelic.com', // Set the domain to .newrelic.com
+      path: '/', // Set the path to /
+      sameSite: 'Lax', // Set the SameSite attribute to Lax
+    });
     return currentUnixEpoch;
   }
-}
-
-
+};
 
 const trackViaSegment = ({ location, prevLocation }, themeOptions) => {
   const env = getResolvedEnv(themeOptions);
@@ -74,7 +68,6 @@ const trackViaSegment = ({ location, prevLocation }, themeOptions) => {
           ? segmentConfig.segmentWriteKey
           : DEV_SEGMENT_WRITE_KEY,
     });
-  
     if (!segmentConfig) {
       return;
     }
@@ -90,23 +83,26 @@ const trackViaSegment = ({ location, prevLocation }, themeOptions) => {
         });
       });
     });
-  }
+  };
 
   // get nr_pn_visited cookie. If it doesn't exist, set it
   const visitedTimestamp = getNRVisitedCookie();
 
   const delay = 30; // delay of 30 seconds before tracking cookies
 
-  if (visitedTimestamp && Math.round(Date.now() / 1000) - visitedTimestamp > delay) {
+  if (
+    visitedTimestamp &&
+    Math.round(Date.now() / 1000) - visitedTimestamp > delay
+  ) {
     sendDataToSegment();
   } else {
     // Schedule sending data to Segment after the delay
-    const remainingDelay = delay - (Math.round(Date.now() / 1000) - visitedTimestamp);
+    const remainingDelay =
+      delay - (Math.round(Date.now() / 1000) - visitedTimestamp);
     setTimeout(() => {
       sendDataToSegment();
     }, remainingDelay * 1000); // Convert seconds to milliseconds
   }
-
 };
 
 export default trackViaSegment;
