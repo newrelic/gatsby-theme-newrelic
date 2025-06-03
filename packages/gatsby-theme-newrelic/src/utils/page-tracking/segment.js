@@ -87,21 +87,30 @@ const trackViaSegment = ({ location, prevLocation }, themeOptions) => {
 
   // get nr_pn_visited cookie. If it doesn't exist, set it
   const visitedTimestamp = getNRVisitedCookie();
+  const userCountry =
+    typeof window !== 'undefined' && window.userCountry !== 'undefined'
+      ? window.userCountry
+      : null;
+  window.gatsbyUserCountry = userCountry;
 
-  const delay = 30; // delay of 30 seconds before tracking cookies
+  if (userCountry === 'US') {
+    const delay = 30; // delay of 30 seconds before tracking cookies
 
-  if (
-    visitedTimestamp &&
-    Math.round(Date.now() / 1000) - visitedTimestamp > delay
-  ) {
-    sendDataToSegment();
-  } else {
-    // Schedule sending data to Segment after the delay
-    const remainingDelay =
-      delay - (Math.round(Date.now() / 1000) - visitedTimestamp);
-    setTimeout(() => {
+    if (
+      visitedTimestamp &&
+      Math.round(Date.now() / 1000) - visitedTimestamp > delay
+    ) {
       sendDataToSegment();
-    }, remainingDelay * 1000); // Convert seconds to milliseconds
+    } else {
+      // Schedule sending data to Segment after the delay
+      const remainingDelay =
+        delay - (Math.round(Date.now() / 1000) - visitedTimestamp);
+      setTimeout(() => {
+        sendDataToSegment();
+      }, remainingDelay * 1000); // Convert seconds to milliseconds
+    }
+  } else {
+    sendDataToSegment();
   }
 };
 
