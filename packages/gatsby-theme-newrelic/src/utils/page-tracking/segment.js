@@ -116,12 +116,3 @@ const trackViaSegment = ({ location, prevLocation }, themeOptions) => {
   }
 };
 */
-
-// No-op function to replace segment tracking
-const trackViaSegment = ({ location, prevLocation }, themeOptions) => {
-  // Segment tracking disabled to avoid edge function costs
-  console.log('Segment tracking disabled');
-  return;
-};
-
-export default trackViaSegment;

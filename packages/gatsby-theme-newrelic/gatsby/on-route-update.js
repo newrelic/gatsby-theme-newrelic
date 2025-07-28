@@ -1,7 +1,5 @@
 import Cookies from 'js-cookie';
 
-// Commented out segment tracking to avoid edge function costs
-// import trackViaSegment from '../src/utils/page-tracking/segment';  
 import getLocale from './utils/getLocale';
 import {
   checkIfUserLoggedIn,
