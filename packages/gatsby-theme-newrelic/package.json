@@ -50,7 +50,7 @@
     "react-helmet": "^6.1.0"
   },
   "dependencies": {
-    "@segment/analytics-next": "1.63.0",
+    // "@segment/analytics-next": "1.63.0", // Commented out to disable segment tracking
     "@wry/equality": "^0.4.0",
     "@xstate/react": "^1.3.1",
     "babel-plugin-prismjs": "^2.0.1",
