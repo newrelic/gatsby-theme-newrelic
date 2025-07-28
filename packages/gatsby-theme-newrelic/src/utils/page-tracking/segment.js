@@ -1,9 +1,11 @@
-import { AnalyticsBrowser } from '@segment/analytics-next';
-import warning from 'warning';
-import { getResolvedEnv, getSegmentConfig } from '../config';
-import Cookies from 'js-cookie';
-import { DEV_SEGMENT_WRITE_KEY } from '../constants';
+// Commented out all segment tracking functionality to avoid edge function costs
+// import { AnalyticsBrowser } from '@segment/analytics-next';
+// import warning from 'warning';
+// import { getResolvedEnv, getSegmentConfig } from '../config';
+// import Cookies from 'js-cookie';
+// import { DEV_SEGMENT_WRITE_KEY } from '../constants';
 
+/* Commented out to avoid edge function costs
 const warnAboutNoop = (section, platform) => {
   warning(
     section && platform,
@@ -112,6 +114,14 @@ const trackViaSegment = ({ location, prevLocation }, themeOptions) => {
   } else {
     sendDataToSegment();
   }
+};
+*/
+
+// No-op function to replace segment tracking
+const trackViaSegment = ({ location, prevLocation }, themeOptions) => {
+  // Segment tracking disabled to avoid edge function costs
+  console.log('Segment tracking disabled');
+  return;
 };
 
 export default trackViaSegment;

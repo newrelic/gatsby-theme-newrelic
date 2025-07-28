@@ -7,7 +7,8 @@ const STORAGE_KEYS = {
 
 const TRACKING_COOKIE_NAME = 'newrelic-gdpr-consent';
 
-const DEV_SEGMENT_WRITE_KEY = 'n9T9St8geATEFC1tmc0XH7XzEsOSVZCK';
+// Commented out to disable segment tracking and avoid edge function costs
+// const DEV_SEGMENT_WRITE_KEY = 'n9T9St8geATEFC1tmc0XH7XzEsOSVZCK';
 
 const SWIFTYPE_ENGINE_KEY = 'Ad9HfGjDw4GRkcmJjUut';
 
@@ -49,7 +50,7 @@ HEADER_LINKS.set(NR_SITES.DOCS, {
 
 module.exports = {
   CAMEL_CASE,
-  DEV_SEGMENT_WRITE_KEY,
+  // DEV_SEGMENT_WRITE_KEY, // Commented out to disable segment tracking
   FEEDBACK_FORM_TYPE,
   HEADER_LINKS,
   NR_SITES,
