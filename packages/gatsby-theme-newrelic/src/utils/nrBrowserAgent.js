@@ -62,7 +62,7 @@ const nrBrowserAction =
     }
 
     const customerId = getCookie('ajs_user_id');
-    const anonymousId = getCookie('ajs_anonymous_id');
+    // const anonymousId = getCookie('ajs_anonymous_id'); // Commented out to disable segment tracking
     properties.env = getResolvedEnv({});
 
     // if a site doesn't configure this in the theme options,
@@ -80,7 +80,7 @@ const nrBrowserAction =
       ...properties,
       category,
       customer_user_id: customerId,
-      anonymousId,
+      // anonymousId, // Commented out to disable segment tracking
     });
   };
 

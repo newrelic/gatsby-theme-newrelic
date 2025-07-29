@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 
-import trackViaSegment from '../src/utils/page-tracking/segment';
 import getLocale from './utils/getLocale';
 import {
   checkIfUserLoggedIn,
@@ -8,7 +7,8 @@ import {
 } from '../src/hooks/useLoggedIn';
 
 const onRouteUpdate = ({ location, prevLocation }, themeOptions) => {
-  trackViaSegment({ location, prevLocation }, themeOptions);
+  // Commented out segment tracking to avoid edge function costs
+  // trackViaSegment({ location, prevLocation }, themeOptions);
   const getCookie = (key) => Cookies.get(key)?.replace(/%22/g, '') || null;
   const loggedIn = getSavedLoggedInStatus() ?? checkIfUserLoggedIn();
 
