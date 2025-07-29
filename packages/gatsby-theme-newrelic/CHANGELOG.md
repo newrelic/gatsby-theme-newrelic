@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.12.3](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.12.2...v9.12.3) (2025-07-29)
+
+### Bug Fixes
+
+- **edge-functions:** remove segment tracking ([800d4ac](https://github.com/newrelic/gatsby-theme-newrelic/commit/800d4ac21fd30ff3087645c0e2ce323f40edba58))
+- **segment-tacking:** remove segment tracking from onRouteUpdate ([4bdfd0f](https://github.com/newrelic/gatsby-theme-newrelic/commit/4bdfd0fe72d3bff2e5fb234faac60918c5808fc7))
+- **segment-tracking:** remove segment analytics dependency ([90bf50c](https://github.com/newrelic/gatsby-theme-newrelic/commit/90bf50ccd045236ad82ab764408db7e09e30175b))
+- **segment-tracking:** remove segment analytics package ([5745419](https://github.com/newrelic/gatsby-theme-newrelic/commit/5745419eb5f7cbdea415aa7241a36b13670aa2d3))
+- **segment-tracking:** remove segment tracking calls ([fd888b0](https://github.com/newrelic/gatsby-theme-newrelic/commit/fd888b06a2679046bfd282dba194433879a037da))
+- **segment-tracking:** remove trackViaSegment method ([7627eb4](https://github.com/newrelic/gatsby-theme-newrelic/commit/7627eb40b315328a1d700dd4c481bea45b04160e))
+
 ## [9.12.2](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.12.1...v9.12.2) (2025-06-04)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
