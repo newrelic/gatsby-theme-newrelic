@@ -41,7 +41,7 @@ HEADER_LINKS.set(NR_SITES.DOCS, {
 })
   .set(NR_SITES.COMMUNITY, {
     text: 'Community',
-    href: 'https://discuss.newrelic.com/',
+    href: 'https://support.newrelic.com/',
   })
   .set(NR_SITES.LEARN, {
     text: 'Learn',
