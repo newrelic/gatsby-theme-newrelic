@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.13.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.12.4...v9.13.0) (2025-09-29)
+
+### Bug Fixes
+
+- **dependencies:** update dependencies for maths equations support ([2cb4207](https://github.com/newrelic/gatsby-theme-newrelic/commit/2cb42075e7556e63e7ceaf08d9cb63c467f1a4b3))
+
+### Features
+
+- **maths-support:** add support for mathematical equations ([b083cc7](https://github.com/newrelic/gatsby-theme-newrelic/commit/b083cc78428526207c82cd4ff295f97d592e02a6))
+
 ## [9.12.4](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.12.3...v9.12.4) (2025-09-19)
 
 **Note:** Version bump only for package @newrelic/gatsby-theme-newrelic
