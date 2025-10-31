@@ -8,7 +8,7 @@
   "scripts": {
     "clean": "yarn workspace demo clean",
     "start": "yarn workspace demo develop",
-    "release": "lerna publish --no-verify-access --conventional-commits --create-release github --no-private",
+    "release": "lerna publish --no-verify-access --conventional-commits --create-release github --no-private --provenance",
     "test": "jest",
     "test:watch": "yarn test --watch",
     "lint": "lerna run lint --skip-nx-cache",
