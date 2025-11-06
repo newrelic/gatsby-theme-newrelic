@@ -1,0 +1,23 @@
+{
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [],
+      "cache": true
+    },
+    "clean": {
+      "dependsOn": [],
+      "cache": true
+    },
+    "develop": {
+      "dependsOn": []
+    },
+    "extract-i18n": {
+      "dependsOn": [],
+      "cache": true
+    },
+    "lint": {
+      "dependsOn": [],
+      "cache": true
+    }
+  }
+}
