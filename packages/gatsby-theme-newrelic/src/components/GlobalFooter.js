@@ -125,6 +125,9 @@ const GlobalFooter = ({ className }) => {
               <ExternalLink href="https://newrelic.com/termsandconditions/dmca">
                 {t('footer.dmcaPolicy', 'DMCA Policy')}
               </ExternalLink>
+              <ExternalLink href="https://newrelic.com/termsandconditions/patent-notice">
+                {t('footer.patentNotice', 'Patent Notice')}
+              </ExternalLink>
               <ExternalLink href="https://newrelic.com/termsandconditions/services-notices">
                 {t('footer.privacyNotice', 'Privacy Notice')}
               </ExternalLink>
