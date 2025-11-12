@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.14.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.13.0...v9.14.0) (2025-11-12)
+
+### Features
+
+- add patent notice in the footer ([0b831d2](https://github.com/newrelic/gatsby-theme-newrelic/commit/0b831d2f66f97a8fe3a74496d2908b4bd672be13))
+
 # [9.13.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.12.4...v9.13.0) (2025-09-29)
 
 ### Bug Fixes
