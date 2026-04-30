@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.15.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.14.0...v9.15.0) (2026-04-30)
+
+### Bug Fixes
+
+- change privacy text in the footer ([684d6b6](https://github.com/newrelic/gatsby-theme-newrelic/commit/684d6b6255879e44780bc6642676c15d02966397))
+
+### Features
+
+- Add JP datacenter deployment support ([0817c72](https://github.com/newrelic/gatsby-theme-newrelic/commit/0817c72c83f8b0b7066c75d6f874cc923192849b))
+
 # [9.14.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.13.0...v9.14.0) (2025-11-12)
 
 ### Features
