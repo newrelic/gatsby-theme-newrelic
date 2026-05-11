@@ -10,7 +10,7 @@ const utmNames = [
 ];
 
 const getUrlParameter = (name) => {
-  name = name.replace(/[\\[]/, '\\[').replace(/[\]]/, '\\]');
+  name = name.replace(/[\\[]/g, '\\[').replace(/[\]]/g, '\\]');
 
   const regex = new RegExp(`[\\?&]${name}=([^&#]*)`);
   const results = regex.exec(window.location.search);

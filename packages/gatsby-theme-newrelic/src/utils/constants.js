@@ -12,8 +12,8 @@ const TRACKING_COOKIE_NAME = 'newrelic-gdpr-consent';
 
 const SWIFTYPE_ENGINE_KEY = 'Ad9HfGjDw4GRkcmJjUut';
 
-const CAMEL_CASE = /^[a-z]+([A-Z][a-z]*|[0-9]+)*$/;
-const TITLE_CASE = /^((^| )[A-Z\d][\w-]+)+$/;
+const CAMEL_CASE = /^[a-z][a-zA-Z0-9]*$/;
+const TITLE_CASE = /^[A-Z\d][\w-]+( [A-Z\d][\w-]+)*$/;
 const SPLITS = {
   SIGNUP_BUTTON_TEXT: 'deven_signupbutton_text',
 };
