@@ -28,7 +28,14 @@
     "@babel/helpers": "^7.26.10",
     "@babel/runtime": "^7.26.10",
     "@sideway/formula": "^3.0.1",
-    "react-dev-utils/loader-utils": "^3.2.1"
+    "react-dev-utils/loader-utils": "^3.2.1",
+    "path-to-regexp": "^0.1.13",
+    "handlebars": "^4.7.9",
+    "fast-uri": "^3.1.2",
+    "flatted": "^3.4.2",
+    "svgo": "^2.8.1",
+    "immutable": "^3.8.3",
+    "@babel/plugin-transform-modules-systemjs": "^7.29.4"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
