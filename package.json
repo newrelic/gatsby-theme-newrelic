@@ -40,7 +40,11 @@
     "jpeg-js": "^0.4.4",
     "socket.io-parser": "^4.2.6",
     "gatsby/axios": "^0.32.0",
-    "nx/axios": "^1.15.1"
+    "nx/axios": "^1.15.1",
+    "form-data": "^4.0.4",
+    "cacache/tar": "^7.5.11",
+    "node-gyp/tar": "^7.5.11",
+    "pacote/tar": "^7.5.11"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
