@@ -35,7 +35,12 @@
     "flatted": "^3.4.2",
     "svgo": "^2.8.1",
     "immutable": "^3.8.3",
-    "@babel/plugin-transform-modules-systemjs": "^7.29.4"
+    "@babel/plugin-transform-modules-systemjs": "^7.29.4",
+    "devcert": "^1.2.1",
+    "jpeg-js": "^0.4.4",
+    "socket.io-parser": "^4.2.6",
+    "gatsby/axios": "^0.32.0",
+    "nx/axios": "^1.15.1"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
