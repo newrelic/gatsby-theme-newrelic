@@ -1,61 +1,17 @@
-const ENDPOINT =
-  'https://search-api.swiftype.com/api/v1/public/engines/search.json';
+// Public package export (see index.js). Thin wrapper over the SearchGPT REST
+// client so the existing `search` import path keeps working for consumers
+// (e.g. the docs-website /search-results page).
+//
+// Returns the normalized hybrid-search shape:
+//   { results, nextCursor, prevCursor, totalCount }
+// Each result: { id, url, title, summary, bodyHighlights, sourceLabel, score,
+//                tags, createdDate, lastModifiedDate }.
+//
+// NOTE: this is a breaking change from the Swiftype shape ({ records: { page }}
+// with result.highlight.title/body). Consumers must update accordingly.
+import { search as searchGPT } from '../../utils/searchGPT';
 
-const search = async ({
-  searchTerm,
-  filters = [],
-  defaultSources,
-  perPage = 10,
-  page = 1,
-}) => {
-  const { searchBy, source } = filters.reduce(
-    (acc, { type, defaultFilters }) => ({
-      ...acc,
-      [type]: defaultFilters,
-    }),
-    {}
-  );
-
-  const searchByFilters = searchBy?.map((filter) =>
-    filter.isSelected ? `${filter.name}^10` : `${filter.name}^0`
-  );
-
-  const sourceFilters = { type: source.length > 0 ? source : defaultSources };
-  const res = await fetch(ENDPOINT, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      q: searchTerm,
-      engine_key: 'Ad9HfGjDw4GRkcmJjUut',
-      page,
-      per_page: perPage,
-      search_fields: {
-        page: searchByFilters,
-      },
-      highlight_fields: {
-        page: {
-          title: {
-            size: 100,
-            fallback: true,
-          },
-          body: {
-            size: 400,
-            fallback: true,
-          },
-        },
-      },
-      filters: {
-        page: {
-          ...sourceFilters,
-          document_type: ['!views_page_menu', '!views_page_content'],
-        },
-      },
-    }),
-  });
-
-  return res.json();
-};
+const search = ({ searchTerm, sources, cursor, sort, since, until, tags }) =>
+  searchGPT({ searchTerm, sources, cursor, sort, since, until, tags });
 
 export default search;

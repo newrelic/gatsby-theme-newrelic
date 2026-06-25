@@ -10,8 +10,6 @@ const TRACKING_COOKIE_NAME = 'newrelic-gdpr-consent';
 // Commented out to disable segment tracking and avoid edge function costs
 // const DEV_SEGMENT_WRITE_KEY = 'n9T9St8geATEFC1tmc0XH7XzEsOSVZCK';
 
-const SWIFTYPE_ENGINE_KEY = 'Ad9HfGjDw4GRkcmJjUut';
-
 const CAMEL_CASE = /^[a-z][a-zA-Z0-9]*$/;
 const TITLE_CASE = /^[A-Z\d][\w-]+( [A-Z\d][\w-]+)*$/;
 const SPLITS = {
@@ -57,7 +55,6 @@ module.exports = {
   SPLITS,
   SPLIT_TRACKING_EVENTS,
   STORAGE_KEYS,
-  SWIFTYPE_ENGINE_KEY,
   TITLE_CASE,
   TRACKING_COOKIE_NAME,
 };
