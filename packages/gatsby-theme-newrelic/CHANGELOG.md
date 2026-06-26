@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.16.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.15.0...v9.16.0) (2026-06-26)
+
+### Bug Fixes
+
+- **deps:** bump lodash to 4.18.1 and add resolutions for trim, nth-check, node-fetch (Dependabot batch 2) ([f99e0f7](https://github.com/newrelic/gatsby-theme-newrelic/commit/f99e0f7c9d5819f427a6b7613f98f018141bdfc7)), closes [#211](https://github.com/newrelic/gatsby-theme-newrelic/issues/211) [#276](https://github.com/newrelic/gatsby-theme-newrelic/issues/276) [#277](https://github.com/newrelic/gatsby-theme-newrelic/issues/277) [#1](https://github.com/newrelic/gatsby-theme-newrelic/issues/1) [#23](https://github.com/newrelic/gatsby-theme-newrelic/issues/23) [#33](https://github.com/newrelic/gatsby-theme-newrelic/issues/33)
+- **deps:** bump prismjs, gatsby-plugin-sharp, terser, ua-parser-js (Dependabot batch 1) ([f729c4e](https://github.com/newrelic/gatsby-theme-newrelic/commit/f729c4e2105592133d45658be33311d1e8e9afce)), closes [#160](https://github.com/newrelic/gatsby-theme-newrelic/issues/160) [#91](https://github.com/newrelic/gatsby-theme-newrelic/issues/91) [#92](https://github.com/newrelic/gatsby-theme-newrelic/issues/92) [#57](https://github.com/newrelic/gatsby-theme-newrelic/issues/57) [#58](https://github.com/newrelic/gatsby-theme-newrelic/issues/58) [#195](https://github.com/newrelic/gatsby-theme-newrelic/issues/195)
+- resolve all open CodeQL security alerts ([620af36](https://github.com/newrelic/gatsby-theme-newrelic/commit/620af36b997896c262971bcc838690645773cf02))
+
+### Features
+
+- **search:** migrate from Swiftype to SearchGPT REST API ([c90a553](https://github.com/newrelic/gatsby-theme-newrelic/commit/c90a553dcb801632afc1edd036fa6d5944ec8582))
+
 # [9.15.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.14.0...v9.15.0) (2026-04-30)
 
 ### Bug Fixes
