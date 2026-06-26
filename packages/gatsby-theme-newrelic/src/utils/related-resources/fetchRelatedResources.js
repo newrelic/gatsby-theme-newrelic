@@ -15,7 +15,7 @@ const getExcludedUrls = (node, siteUrl) => {
 
 const warn = once((reporter) => {
   reporter.warn(
-    '[@newrelic/gatsby-theme-newrelic] You are attempting to fetch Swiftype ' +
+    '[@newrelic/gatsby-theme-newrelic] You are attempting to fetch search ' +
       'results for related resources in development mode. As a precaution, ' +
       'this has been disabled to prevent the accidental execution of queries ' +
       'for large sites. Please disable the `relatedResources.swiftype.refetch` ' +
@@ -23,8 +23,8 @@ const warn = once((reporter) => {
   );
 });
 
-const getResultsFromSwiftype = ({ node, siteUrl, slug }, swiftypeOptions) => {
-  const { engineKey, limit, getParams = () => ({}) } = swiftypeOptions;
+const getResultsFromSearch = ({ node, siteUrl, slug }, swiftypeOptions) => {
+  const { limit, getParams = () => ({}) } = swiftypeOptions;
   const { frontmatter = {} } = node;
   const defaultParams = { q: frontmatter.title };
   const params = getParams({ node, slug });
@@ -33,7 +33,6 @@ const getResultsFromSwiftype = ({ node, siteUrl, slug }, swiftypeOptions) => {
     siteUrl + slug,
     { ...defaultParams, ...params },
     {
-      engineKey,
       limit,
       excludedUrls: getExcludedUrls(node, siteUrl),
     }
@@ -57,7 +56,7 @@ module.exports = async (helpers, swiftypeOptions) => {
 
   if (refetch) {
     if (isProdEnv) {
-      return getResultsFromSwiftype(helpers, swiftypeOptions);
+      return getResultsFromSearch(helpers, swiftypeOptions);
     }
 
     warn(reporter);
