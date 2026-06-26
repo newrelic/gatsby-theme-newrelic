@@ -13,6 +13,8 @@ on:
       - 'src/nav/*'
       - '**/images/*'
 
+permissions: {}
+
 jobs:
   track_pr:
     runs-on: ubuntu-latest

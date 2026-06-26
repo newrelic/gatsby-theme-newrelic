@@ -140,6 +140,22 @@ yarn:
 yarn add @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/mdx @mdx-js/react @splitsoftware/splitio-react gatsby-plugin-mdx
 ```
 
+## Environment variables
+
+Search is powered by the SearchGPT REST API and is configured via environment
+variables:
+
+- `GATSBY_SEARCHGPT_API_KEY` _(required)_: New Relic API key used to authenticate
+  search requests. Because it is `GATSBY_`-prefixed, it is inlined into the
+  client bundle and used by the global search dropdown, the search results page,
+  and the 404 page.
+- `GATSBY_SEARCHGPT_BASE_URL` _(optional)_: Base URL of the SearchGPT service.
+  Defaults to `https://support-search.service.newrelic.com`. Point this at a
+  proxy or staging endpoint to override it without code changes.
+- `SEARCHGPT_API_KEY` / `SEARCHGPT_BASE_URL` _(optional)_: Server-side fallbacks
+  used by the build-time related-resources lookup. If unset, the `GATSBY_`
+  variables above are used.
+
 ## Configuration
 
 You can configure `gatsby-theme-newrelic` using the following configuration
@@ -258,13 +274,18 @@ only `Mdx` nodes are supported.
 The related resources component is controlled by specific front matter slugs
 that are defined on a page by setting the front matter for `resources`. If no
 resources are available in the page front matter, the component will backfill
-use the related resource items using Swiftype. See the `swiftype` options below
-for more information on customizing the search behavior.
+the related resource items using a SearchGPT search. See the `swiftype` options
+below for more information on customizing the search behavior.
+
+> **Note:** related resources are now sourced from the SearchGPT REST API. The
+> option key is still named `swiftype` for backward compatibility. Authentication
+> is configured via the `SEARCHGPT_API_KEY` environment variable (see
+> [Environment variables](#environment-variables)), not a per-engine key.
 
 In short, the order of priority for populating content is driven by:
 
 1. Resources defined via the `resources` front matter item.
-2. Resources defined from executing a Swiftype search for the page.
+2. Resources defined from executing a SearchGPT search for the page.
 
 **Options:**
 
@@ -273,26 +294,23 @@ In short, the order of priority for populating content is driven by:
   underneath the link. Use this to add additional labels not covered by the
   default set of labels.
 
-- `swiftype` _(object | false)_: Configuration used for fetching results from
-  Swiftype for an `Mdx` node. Set this to `false` (the default) to disable
-  fetching related resources through Swiftype. If this is disabled, related
-  resources can only be sourced via front matter. If enabled, this takes the
-  following configuration:
+- `swiftype` _(object | false)_: Configuration used for fetching related
+  resources for an `Mdx` node via SearchGPT. Set this to `false` (the default)
+  to disable fetching related resources through search. If this is disabled,
+  related resources can only be sourced via front matter. If enabled, this takes
+  the following configuration:
 
-  - `resultsPath` _(string)_ **required**: Path to the file where Swiftype
+  - `resultsPath` _(string)_ **required**: Path to the file where search
     results will be stored. If the `refetch` option is set to `false` (the
     default), this file will be used to read related resource values for each
     `Mdx` node. This file is only written to when `refetch` is set to `true`.
 
-  - `refetch` _(boolean)_: Determines whether to refetch results from Swiftype
+  - `refetch` _(boolean)_: Determines whether to refetch results from SearchGPT
     for every `Mdx` node during a build. It's a good idea to only set this on a
-    special build (e.g. a build that happens on a cron job) so that Swiftype is
-    not searched on development or every build on the site.
+    special build (e.g. a build that happens on a cron job) so that search is
+    not run on development or every build on the site.
 
     - **Default**: `false`
-
-  - `engineKey` _(string)_ **required**: Swiftype's engine key used to fetch
-    results from a Swiftype search engine.
 
   - `getSlug` _(function)_: Function to get the slug for an `Mdx` node.
     Useful if the slug is set from something other than the filesystem. By
@@ -307,12 +325,12 @@ In short, the order of priority for populating content is driven by:
     `node` and a key of `slug` (i.e. `filter: ({ node, slug }) => { /* do something */ }`).
 
   - `getParams` _(function)_: Function that allows you to specify additional
-    params passed to Swiftype when running a search query. Useful if you want to
-    provide additional filters or field boosts. This function should accept an
-    object as its only argument with a key of `node` and a key of `slug`.
+    params passed to the search query (e.g. `q`). This function should accept an
+    object as its only argument with a key of `node` and a key of `slug`. Note
+    that SearchGPT does not support field boosting.
 
   - `limit` _(integer)_: The limit of related resources that should be fetched
-    from Swiftype.
+    from the search.
 
     - **Default**: `5`
 

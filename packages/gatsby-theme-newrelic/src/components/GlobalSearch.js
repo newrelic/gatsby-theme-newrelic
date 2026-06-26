@@ -17,7 +17,7 @@ const GlobalSearch = ({ onClose }) => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const throttledQuery = useThrottle(query, 300);
-  const { fetchNextPage, results, status } = useSearch({
+  const { results, status, fetchNextPage, hasMore } = useSearch({
     searchTerm: throttledQuery,
     filters: DEFAULT_FILTER_TYPES,
   });
@@ -114,7 +114,7 @@ const GlobalSearch = ({ onClose }) => {
                 position,
                 searchType: 'globalSearch',
               });
-              navigate(`/search-results?query=${recentQuery}&page=1`);
+              navigate(`/search-results/?query=${recentQuery}&page=1`);
             }
           } else {
             saveSearch(value);
@@ -126,7 +126,7 @@ const GlobalSearch = ({ onClose }) => {
               searchTerm: query,
               searchType: 'globalSearch',
             });
-            navigate(`/search-results?query=${value}&page=1`);
+            navigate(`/search-results/?query=${value}&page=1`);
           }
         }}
         placeholder={t('searchInput.placeholder')}
@@ -168,7 +168,8 @@ const GlobalSearch = ({ onClose }) => {
       />
       {showSearchDropdown && (
         <SearchDropdown
-          fetchNextPage={fetchNextPage}
+          hasMore={hasMore}
+          onViewMore={fetchNextPage}
           onClose={() => setOpen(false)}
           onRecentClick={(query, i) => {
             addPageAction({

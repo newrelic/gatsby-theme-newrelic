@@ -15,11 +15,9 @@ import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from '../components/Trans';
 import { addPageAction } from '../utils/nrBrowserAgent.js';
+import { suggest } from '../utils/searchGPT';
 
-const NotFoundPage = ({
-  location,
-  pageContext: { themeOptions, swiftypeEngineKey },
-}) => {
+const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
   const {
     site: {
       siteMetadata: { siteUrl },
@@ -54,57 +52,27 @@ const NotFoundPage = ({
   );
 
   const getSearchResults = useCallback(async () => {
-    const localePostFix = () => {
-      return pageLocale === 'en' ? '' : `-${pageLocale}`;
-    };
+    if (searchTerm === null) {
+      return;
+    }
 
-    const search = async () => {
-      const res = await fetch(
-        'https://search-api.swiftype.com/api/v1/public/engines/search.json',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            q: searchTerm,
-            engine_key: swiftypeEngineKey,
-            per_page: 5,
-            filters: {
-              page: {
-                type: [
-                  `docs${localePostFix()}`,
-                  `developers${localePostFix()}`,
-                  `opensource${localePostFix()}`,
-                  `quickstarts${localePostFix()}`,
-                ],
-                document_type: [
-                  '!views_page_menu',
-                  '!term_page_api_menu',
-                  '!term_page_landing_page',
-                ],
-              },
-            },
-          }),
-        }
-      );
-
-      const { records } = await res.json();
-
-      return records.page;
-    };
-
-    if (searchTerm !== null) {
-      const results = await search();
-      const trimmedResults = results.map((r) => {
-        return { url: r.url, title: r.title, type: r.type };
-      });
+    try {
+      // suggest() is the lexical typeahead endpoint: not rate limited and
+      // lightweight, which suits 404 path-based suggestions.
+      const { results } = await suggest({ searchTerm, limit: 5 });
+      const trimmedResults = results.map((r) => ({
+        url: r.url,
+        title: r.title,
+        sourceLabel: r.sourceLabel,
+      }));
 
       setSearchResult(trimmedResults);
+    } catch {
+      setSearchResult([]);
     }
-  }, [pageLocale, searchTerm, swiftypeEngineKey]);
+  }, [searchTerm]);
 
-  const displaySearchResults = (locale) => {
+  const displaySearchResults = () => {
     if (!searchResult || searchResult.length === 0) {
       return null;
     }
@@ -148,7 +116,7 @@ const NotFoundPage = ({
                   `}
                   uppercase
                 >
-                  {result.type?.replace(`-${locale}`, '').replace('_', ' ')}
+                  {result.sourceLabel}
                 </Tag>
               </li>
             );
@@ -244,7 +212,7 @@ const NotFoundPage = ({
                 `}
               />
             </div>
-            {displaySearchResults(pageLocale)}
+            {displaySearchResults()}
 
             <div
               css={css`
@@ -295,7 +263,6 @@ NotFoundPage.propTypes = {
   }).isRequired,
   pageContext: PropTypes.shape({
     themeOptions: PropTypes.object.isRequired,
-    swiftypeEngineKey: PropTypes.string.isRequired,
   }).isRequired,
 };
 

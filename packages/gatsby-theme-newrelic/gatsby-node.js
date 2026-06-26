@@ -8,7 +8,6 @@ const { getResolvedEnv, getI18nConfig } = require('./src/utils/config');
 const pageTransforms = require('./gatsby/page-transforms');
 const { getFileRelativePath } = require('./gatsby/utils/fs');
 const { SCHEMA_CUSTOMIZATION_TYPES } = require('./gatsby/type-defs');
-const { SWIFTYPE_ENGINE_KEY } = require('./src/utils/constants');
 
 let writeableRelatedResourceData = {};
 
@@ -300,7 +299,6 @@ exports.onCreatePage = (helpers, themeOptions) => {
         ...page.context,
         layout: 'basic',
         themeOptions,
-        swiftypeEngineKey: SWIFTYPE_ENGINE_KEY,
       },
     });
   }
@@ -446,19 +444,16 @@ const createRelatedResources = async (
 };
 
 const validateSwiftypeOptions = (swiftypeOptions) => {
-  const { resultsPath, engineKey } = swiftypeOptions;
+  const { resultsPath } = swiftypeOptions;
 
   if (!resultsPath) {
     throw new Error(
-      "You have enabled swiftype searches, but the 'resultsPath' is not defined. Please define a 'relatedResources.swiftype.resultsPath' option"
+      "You have enabled related-resources search, but the 'resultsPath' is not defined. Please define a 'relatedResources.swiftype.resultsPath' option"
     );
   }
 
-  if (!engineKey) {
-    throw new Error(
-      "You have enabled swiftype searches, but the 'engineKey' is missing. Please define a 'relatedResources.swiftype.engineKey' option"
-    );
-  }
+  // engineKey is no longer required: related-resources now use the SearchGPT
+  // REST API (auth via the SEARCHGPT_API_KEY env var), not a Swiftype engine key.
 };
 
 const validateSignupOptions = (signupOptions) => {
