@@ -9,10 +9,12 @@ import Results, { ResultType } from './Results';
 import Skeleton from './Skeleton';
 
 const SearchDropdown = ({
-  fetchNextPage,
+  onViewMore,
+  hasMore,
   onClose,
   onRecentClick,
   onResultClick,
+  query,
   recentQueries,
   results,
   selected,
@@ -31,7 +33,7 @@ const SearchDropdown = ({
               {recentQueries.map((query, i) => (
                 <li key={query} className={cx({ selected: selected === i })}>
                   <a
-                    href={`/search-results?query=${query}&page=1`}
+                    href={`/search-results/?query=${query}&page=1`}
                     onClick={() => onRecentClick(query, i)}
                   >
                     {query}
@@ -53,8 +55,10 @@ const SearchDropdown = ({
                 : selected - (recentQueries.length ?? 0)
             }
             results={results}
+            query={query}
+            hasMore={hasMore}
             onResultClick={onResultClick}
-            onViewMore={fetchNextPage}
+            onViewMore={onViewMore}
           />
         )}
         <KeyboardLegend />
@@ -65,10 +69,12 @@ const SearchDropdown = ({
 };
 
 SearchDropdown.propTypes = {
-  fetchNextPage: PropTypes.func.isRequired,
+  onViewMore: PropTypes.func.isRequired,
+  hasMore: PropTypes.bool,
   onClose: PropTypes.func.isRequired,
   onRecentClick: PropTypes.func.isRequired,
   onResultClick: PropTypes.func.isRequired,
+  query: PropTypes.string,
   recentQueries: PropTypes.arrayOf(PropTypes.string).isRequired,
   results: PropTypes.arrayOf(ResultType),
   selected: PropTypes.number,

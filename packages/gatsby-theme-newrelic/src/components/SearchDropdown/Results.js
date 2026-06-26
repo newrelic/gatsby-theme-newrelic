@@ -5,8 +5,16 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import Icon from '../Icon';
+import highlightText from '../../utils/highlightText';
 
-const Results = ({ onResultClick, onViewMore, results, selected }) => {
+const Results = ({
+  onResultClick,
+  onViewMore,
+  hasMore,
+  query,
+  results,
+  selected,
+}) => {
   return (
     <>
       <List>
@@ -39,7 +47,9 @@ const Results = ({ onResultClick, onViewMore, results, selected }) => {
                   line-height: 1.25;
                   margin-bottom: 0.25rem;
                 `}
-                dangerouslySetInnerHTML={{ __html: result.highlight.title }}
+                dangerouslySetInnerHTML={{
+                  __html: highlightText(result.title, query),
+                }}
               />
               <p
                 css={css`
@@ -51,7 +61,7 @@ const Results = ({ onResultClick, onViewMore, results, selected }) => {
                   overflow: hidden;
                 `}
                 dangerouslySetInnerHTML={{
-                  __html: result.highlight.body,
+                  __html: result.summary,
                 }}
               />
             </a>
@@ -59,15 +69,17 @@ const Results = ({ onResultClick, onViewMore, results, selected }) => {
         ))}
       </List>
 
-      <ViewMore onClick={onViewMore}>
-        View more{' '}
-        <Icon
-          css={css`
-            padding-top: 2px;
-          `}
-          name="fe-chevron-down"
-        />
-      </ViewMore>
+      {hasMore && (
+        <ViewMore onClick={onViewMore}>
+          View more{' '}
+          <Icon
+            css={css`
+              padding-top: 2px;
+            `}
+            name="fe-chevron-down"
+          />
+        </ViewMore>
+      )}
     </>
   );
 };
@@ -79,7 +91,7 @@ const List = styled.ul`
   overflow-y: scroll;
   padding: 0.25rem 0 0;
 
-  & em {
+  & .highlight {
     color: var(--search-dropdown-emphasis);
     font-style: normal;
   }
@@ -127,16 +139,20 @@ const ViewMore = styled.button`
 `;
 
 export const ResultType = PropTypes.shape({
-  highlight: PropTypes.shape({
-    body: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
   url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  // highlighted snippet containing <span class='highlight'>…</span>
+  summary: PropTypes.string,
+  sourceLabel: PropTypes.string,
+  score: PropTypes.number,
+  tags: PropTypes.arrayOf(PropTypes.string),
 });
 
 Results.propTypes = {
   onViewMore: PropTypes.func.isRequired,
+  hasMore: PropTypes.bool,
   onResultClick: PropTypes.func.isRequired,
+  query: PropTypes.string,
   selected: PropTypes.number,
   results: PropTypes.arrayOf(ResultType),
 };
