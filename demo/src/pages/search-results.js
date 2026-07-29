@@ -52,7 +52,7 @@ const SearchResultPageView = () => {
 
     (async () => {
       try {
-        const res = await search({ searchTerm: query, cursor });
+        const res = await search({ searchTerm: query, cursor, limit: 5 });
         if (cancelled) return;
         setState({
           results: res.results,
