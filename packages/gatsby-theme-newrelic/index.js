@@ -68,6 +68,7 @@ export { default as Walkthrough } from './src/components/Walkthrough';
 export { default as formatCode } from './src/utils/formatCode';
 export { default as highlightText } from './src/utils/highlightText';
 export { default as search } from './src/components/SearchModal/search';
+export { localeToSearchLanguage } from './src/utils/searchGPT';
 export { default as useActiveHash } from './src/hooks/useActiveHash';
 export { default as useClipboard } from './src/hooks/useClipboard';
 export { default as useDarkMode } from './src/hooks/useDarkMode';
