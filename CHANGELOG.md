@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.17.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.16.0...v9.17.0) (2026-07-31)
+
+### Features
+
+- **search:** add page pagination and language param to SearchGPT client ([1d66f35](https://github.com/newrelic/gatsby-theme-newrelic/commit/1d66f35c228057b4023571f828ef79ba4bea0dfe))
+- **search:** support a limit param on /v2/search (5 results per page) ([78521f7](https://github.com/newrelic/gatsby-theme-newrelic/commit/78521f703fea9d3f39a8dffe48f4206f99ef3229))
+
 # [9.16.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.15.0...v9.16.0) (2026-06-26)
 
 ### Bug Fixes
