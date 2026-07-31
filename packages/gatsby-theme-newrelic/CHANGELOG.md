@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.17.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.17.0...v9.17.1) (2026-07-31)
+
+### Bug Fixes
+
+- **search:** preserve locale when navigating to search-results ([4b37d82](https://github.com/newrelic/gatsby-theme-newrelic/commit/4b37d82564909a67d50688e4cc63ad9a851e03e7))
+
 # [9.17.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.16.0...v9.17.0) (2026-07-31)
 
 ### Features
