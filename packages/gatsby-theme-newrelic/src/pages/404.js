@@ -12,9 +12,11 @@ import Tag from '../components/Tag';
 import CreateIssueButton from '../components/CreateIssueButton';
 import Button from '../components/Button';
 import getLocale from '../../gatsby/utils/getLocale';
+import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from '../components/Trans';
 import { addPageAction } from '../utils/nrBrowserAgent.js';
+import { localizePath } from '../utils/localization';
 import { suggest, localeToSearchLanguage } from '../utils/searchGPT';
 
 const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
@@ -32,6 +34,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
     }
   `);
   const { t: translate } = useThemeTranslation();
+  const locale = useLocale();
   const [searchTerm, setSearchTerm] = useState(null);
   const [searchResult, setSearchResult] = useState(null);
 
@@ -204,10 +207,13 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
                 placeholder={searchTerm}
                 onFocus={() =>
                   navigate(
-                    `search-results/?query=${searchTerm.replaceAll(
-                      ' ',
-                      '+'
-                    )}&page=1`
+                    localizePath({
+                      path: `/search-results/?query=${searchTerm.replaceAll(
+                        ' ',
+                        '+'
+                      )}&page=1`,
+                      locale,
+                    })
                   )
                 }
                 css={css`

@@ -5,9 +5,11 @@ import { css } from '@emotion/react';
 import { useThrottle } from 'react-use';
 
 import useKeyPress from '../hooks/useKeyPress';
+import useLocale from '../hooks/useLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import useScrollFreeze from '../hooks/useScrollFreeze';
 import { addPageAction } from '../utils/nrBrowserAgent';
+import { localizePath } from '../utils/localization';
 
 import useSearch from './SearchModal/useSearch';
 import SearchInput from './SearchInput';
@@ -58,6 +60,7 @@ const GlobalSearch = ({ onClose }) => {
 
   const searchRef = useRef(null);
   const { t } = useThemeTranslation();
+  const locale = useLocale();
 
   useKeyPress('/', (e) => {
     // prevent quick search from opening in Firefox
@@ -114,7 +117,12 @@ const GlobalSearch = ({ onClose }) => {
                 position,
                 searchType: 'globalSearch',
               });
-              navigate(`/search-results/?query=${recentQuery}&page=1`);
+              navigate(
+                localizePath({
+                  path: `/search-results/?query=${recentQuery}&page=1`,
+                  locale,
+                })
+              );
             }
           } else {
             saveSearch(value);
@@ -126,7 +134,12 @@ const GlobalSearch = ({ onClose }) => {
               searchTerm: query,
               searchType: 'globalSearch',
             });
-            navigate(`/search-results/?query=${value}&page=1`);
+            navigate(
+              localizePath({
+                path: `/search-results/?query=${value}&page=1`,
+                locale,
+              })
+            );
           }
         }}
         placeholder={t('searchInput.placeholder')}
