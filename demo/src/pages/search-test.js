@@ -9,6 +9,8 @@ import {
   suggest,
 } from '../../../packages/gatsby-theme-newrelic/src/utils/searchGPT';
 
+const LIMIT = 5;
+
 const SearchTest = () => {
   const [term, setTerm] = useState('infrastructure');
   const [mode, setMode] = useState(null); // 'search' | 'suggest'
@@ -16,26 +18,43 @@ const SearchTest = () => {
   const [results, setResults] = useState([]);
   const [cursor, setCursor] = useState(null);
   const [totalCount, setTotalCount] = useState(null);
+  // New v2 params: 1-indexed numbered page, and a comma-delimited language CSV
+  // (e.g. "en" or "en,ja"; blank = all languages).
+  const [page, setPage] = useState(1);
+  const [language, setLanguage] = useState('');
 
-  const run = async (which, { append = false } = {}) => {
+  const totalPages = totalCount != null ? Math.ceil(totalCount / LIMIT) : null;
+
+  const run = async (which, { append = false, pageOverride } = {}) => {
     setMode(which);
     setState({ status: 'loading' });
+    const lang = language.trim() || undefined;
     try {
       if (which === 'suggest') {
-        const res = await suggest({ searchTerm: term, limit: 5 });
+        const res = await suggest({
+          searchTerm: term,
+          limit: LIMIT,
+          language: lang,
+        });
         console.log('[suggest] response', res);
         setResults(res.results);
         setCursor(null);
         setTotalCount(null);
       } else {
+        const targetPage = pageOverride ?? page;
         const res = await search({
           searchTerm: term,
           cursor: append ? cursor : undefined,
+          // page is honored only when cursor is absent (cursor wins if both).
+          page: append ? undefined : targetPage,
+          limit: LIMIT,
+          language: lang,
         });
         console.log('[search] response', res);
         setResults((prev) => (append ? prev.concat(res.results) : res.results));
         setCursor(res.nextCursor);
         setTotalCount(res.totalCount);
+        if (!append) setPage(targetPage);
       }
       setState({ status: 'success' });
     } catch (err) {
@@ -105,6 +124,14 @@ const SearchTest = () => {
           onChange={(e) => setTerm(e.target.value)}
           placeholder="search term"
         />
+        <input
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+          placeholder="language CSV (e.g. en,ja)"
+          css={css`
+            width: 200px;
+          `}
+        />
         <button type="submit">Search (/v2/search)</button>
         <button type="button" onClick={() => run('suggest')}>
           Suggest (/v2/search/suggest)
@@ -115,6 +142,8 @@ const SearchTest = () => {
         status: <strong>{state.status}</strong>
         {mode && ` · mode: ${mode}`}
         {totalCount != null && ` · totalCount: ${totalCount}`}
+        {totalPages != null && ` · totalPages: ${totalPages}`}
+        {mode === 'search' && ` · page: ${page}`}
         {` · showing: ${results.length}`}
       </p>
 
@@ -156,9 +185,44 @@ const SearchTest = () => {
         ))}
       </ul>
 
+      {mode === 'search' && totalPages > 1 && (
+        <div
+          css={css`
+            margin-top: 1rem;
+          `}
+        >
+          <button
+            type="button"
+            disabled={page <= 1}
+            onClick={() => run('search', { pageOverride: page - 1 })}
+          >
+            ← Prev
+          </button>
+          <span className="meta">
+            page {page} / {totalPages}
+          </span>
+          <button
+            type="button"
+            disabled={page >= totalPages}
+            onClick={() => run('search', { pageOverride: page + 1 })}
+            css={css`
+              margin-left: 0.5rem;
+            `}
+          >
+            Next →
+          </button>
+        </div>
+      )}
+
       {mode === 'search' && cursor && (
-        <button type="button" onClick={() => run('search', { append: true })}>
-          Load more (cursor: {cursor})
+        <button
+          type="button"
+          onClick={() => run('search', { append: true })}
+          css={css`
+            margin-top: 1rem;
+          `}
+        >
+          Load more (cursor walk)
         </button>
       )}
     </div>

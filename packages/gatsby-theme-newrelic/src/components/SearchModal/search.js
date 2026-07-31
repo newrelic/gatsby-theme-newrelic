@@ -16,11 +16,24 @@ const search = ({
   sources,
   cursor,
   limit,
+  page,
   sort,
   since,
   until,
   tags,
+  language,
 }) =>
-  searchGPT({ searchTerm, sources, cursor, limit, sort, since, until, tags });
+  searchGPT({
+    searchTerm,
+    sources,
+    cursor,
+    limit,
+    page,
+    sort,
+    since,
+    until,
+    tags,
+    language,
+  });
 
 export default search;

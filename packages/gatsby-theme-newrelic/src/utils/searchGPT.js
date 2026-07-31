@@ -16,6 +16,24 @@ const DEFAULT_BASE_URL = 'https://support-search.service.newrelic.com';
 // single source covers everything we previously queried in Swiftype.
 const DEFAULT_SOURCES = ['nr-docs'];
 
+// Maps a New Relic docs locale (en, jp, kr, es, pt, fr — see config/i18n.js) to
+// the ISO language code the search API accepts (en, de, es, fr, ja, ko, pt-br).
+// Most match directly; jp→ja, kr→ko, and pt→pt-br are the exceptions. Returns
+// undefined for an unknown locale so callers can omit `language` (searching
+// across all languages) rather than send a code the API would reject with 400.
+const LOCALE_TO_SEARCH_LANGUAGE = {
+  en: 'en',
+  jp: 'ja',
+  kr: 'ko',
+  es: 'es',
+  pt: 'pt-br',
+  fr: 'fr',
+  de: 'de',
+};
+
+export const localeToSearchLanguage = (locale) =>
+  LOCALE_TO_SEARCH_LANGUAGE[locale] || undefined;
+
 const getBaseUrl = () =>
   process.env.GATSBY_SEARCHGPT_BASE_URL || DEFAULT_BASE_URL;
 
@@ -36,11 +54,16 @@ const buildUrl = (path, params) => {
 
   Object.entries(params).forEach(([key, value]) => {
     if (value == null || value === '') return;
-    // array params (sources, tags) are passed as a JSON-encoded string
-    url.searchParams.set(
-      key,
-      Array.isArray(value) ? JSON.stringify(value) : value
-    );
+    // `language` is a comma-delimited string (e.g. "en,ja"); every other array
+    // param (sources, tags) is passed as a JSON-encoded string.
+    if (key === 'language') {
+      url.searchParams.set(key, Array.isArray(value) ? value.join(',') : value);
+    } else {
+      url.searchParams.set(
+        key,
+        Array.isArray(value) ? JSON.stringify(value) : value
+      );
+    }
   });
 
   return url.toString();
@@ -84,28 +107,38 @@ const normalizeResult = (result) => ({
 });
 
 /**
- * Hybrid search with full bodies and cursor pagination. Rate limited.
- * Use on submit / results page, not on keystroke.
+ * Hybrid search with full bodies. Rate limited. Use on submit / results page,
+ * not on keystroke.
+ *
+ * Pagination: pass either `cursor` (opaque next/prev walk) OR `page` (1-indexed
+ * jump to a numbered page). If both are given the API ignores `page` and honors
+ * the cursor. `limit` is only applied on the first request (cursor absent); the
+ * page size is then encoded into the returned cursors. Compute the page count
+ * for numbered controls as ceil(totalCount / limit).
  */
 export const search = async ({
   searchTerm,
   sources = DEFAULT_SOURCES,
   cursor,
   limit,
+  page,
   sort,
   since,
   until,
   tags,
+  language,
 }) => {
   const body = await request('/v2/search', {
     q: searchTerm,
     sources,
     cursor,
     limit,
+    page,
     sort,
     since,
     until,
     tags,
+    language,
   });
 
   const results = (body.results || []).map(normalizeResult);
@@ -130,12 +163,14 @@ export const suggest = async ({
   sources = DEFAULT_SOURCES,
   tags,
   limit,
+  language,
 }) => {
   const body = await request('/v2/search/suggest', {
     q: searchTerm,
     sources,
     tags,
     limit,
+    language,
   });
 
   return {
@@ -144,8 +179,11 @@ export const suggest = async ({
 };
 
 /** Available tag values for the given sources, for building filter UI. */
-export const fetchTags = async ({ sources = DEFAULT_SOURCES } = {}) => {
-  const body = await request('/v2/search/tags', { sources });
+export const fetchTags = async ({
+  sources = DEFAULT_SOURCES,
+  language,
+} = {}) => {
+  const body = await request('/v2/search/tags', { sources, language });
 
   return body.tags || [];
 };
