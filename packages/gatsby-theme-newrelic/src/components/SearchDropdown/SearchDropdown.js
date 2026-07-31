@@ -7,6 +7,8 @@ import cx from 'classnames';
 import KeyboardLegend from './KeyboardLegend';
 import Results, { ResultType } from './Results';
 import Skeleton from './Skeleton';
+import useLocale from '../../hooks/useLocale';
+import { localizePath } from '../../utils/localization';
 
 const SearchDropdown = ({
   onViewMore,
@@ -22,6 +24,7 @@ const SearchDropdown = ({
   ...rest
 }) => {
   const loading = status === 'loading';
+  const locale = useLocale();
   const error = status === 'error';
   return (
     <>
@@ -33,7 +36,10 @@ const SearchDropdown = ({
               {recentQueries.map((query, i) => (
                 <li key={query} className={cx({ selected: selected === i })}>
                   <a
-                    href={`/search-results/?query=${query}&page=1`}
+                    href={localizePath({
+                      path: `/search-results/?query=${query}&page=1`,
+                      locale,
+                    })}
                     onClick={() => onRecentClick(query, i)}
                   >
                     {query}
