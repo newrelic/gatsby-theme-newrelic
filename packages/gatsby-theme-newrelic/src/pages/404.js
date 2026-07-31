@@ -15,7 +15,7 @@ import getLocale from '../../gatsby/utils/getLocale';
 import useThemeTranslation from '../hooks/useThemeTranslation';
 import Trans from '../components/Trans';
 import { addPageAction } from '../utils/nrBrowserAgent.js';
-import { suggest } from '../utils/searchGPT';
+import { suggest, localeToSearchLanguage } from '../utils/searchGPT';
 
 const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
   const {
@@ -58,8 +58,14 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
 
     try {
       // suggest() is the lexical typeahead endpoint: not rate limited and
-      // lightweight, which suits 404 path-based suggestions.
-      const { results } = await suggest({ searchTerm, limit: 5 });
+      // lightweight, which suits 404 path-based suggestions. Scope to the
+      // page's locale (jp→ja, kr→ko, pt→pt-br) so a mistyped localized path
+      // surfaces same-language docs.
+      const { results } = await suggest({
+        searchTerm,
+        limit: 5,
+        language: localeToSearchLanguage(pageLocale),
+      });
       const trimmedResults = results.map((r) => ({
         url: r.url,
         title: r.title,
@@ -70,7 +76,7 @@ const NotFoundPage = ({ location, pageContext: { themeOptions } }) => {
     } catch {
       setSearchResult([]);
     }
-  }, [searchTerm]);
+  }, [searchTerm, pageLocale]);
 
   const displaySearchResults = () => {
     if (!searchResult || searchResult.length === 0) {

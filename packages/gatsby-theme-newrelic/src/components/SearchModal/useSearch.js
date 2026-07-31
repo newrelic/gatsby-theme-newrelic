@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useQuery } from 'react-query';
-import { suggest, DEFAULT_SOURCES } from '../../utils/searchGPT';
+import {
+  suggest,
+  DEFAULT_SOURCES,
+  localeToSearchLanguage,
+} from '../../utils/searchGPT';
+import useLocale from '../../hooks/useLocale';
 
 // The header dropdown is an as-you-type surface, so it uses the lexical
 // /v2/search/suggest endpoint: not rate limited and safe on every keystroke.
@@ -25,14 +30,21 @@ const useSearch = ({ searchTerm, filters }) => {
 
   const [limit, setLimit] = useState(PAGE_SIZE);
 
+  // Scope suggestions to the site's language (jp→ja, kr→ko, pt→pt-br); on the
+  // default English site this is `en`. undefined for an unmapped locale, which
+  // omits the param and searches across all languages.
+  const { locale } = useLocale() || {};
+  const language = localeToSearchLanguage(locale);
+
   // reset back to the first page whenever the query or filters change
   useEffect(() => {
     setLimit(PAGE_SIZE);
   }, [searchTerm, tags]);
 
   const { status, data } = useQuery(
-    ['searchSuggest', searchTerm, tags, limit],
-    () => suggest({ searchTerm, sources: DEFAULT_SOURCES, tags, limit }),
+    ['searchSuggest', searchTerm, tags, limit, language],
+    () =>
+      suggest({ searchTerm, sources: DEFAULT_SOURCES, tags, limit, language }),
     {
       enabled: Boolean(searchTerm),
       select: ({ results }) => results,

@@ -11,7 +11,29 @@
 // with result.highlight.title/body). Consumers must update accordingly.
 import { search as searchGPT } from '../../utils/searchGPT';
 
-const search = ({ searchTerm, sources, cursor, sort, since, until, tags }) =>
-  searchGPT({ searchTerm, sources, cursor, sort, since, until, tags });
+const search = ({
+  searchTerm,
+  sources,
+  cursor,
+  limit,
+  page,
+  sort,
+  since,
+  until,
+  tags,
+  language,
+}) =>
+  searchGPT({
+    searchTerm,
+    sources,
+    cursor,
+    limit,
+    page,
+    sort,
+    since,
+    until,
+    tags,
+    language,
+  });
 
 export default search;
