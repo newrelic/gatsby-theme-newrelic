@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useDebounce } from 'react-use';
 import { useQuery } from 'react-query';
 import {
   suggest,
@@ -13,6 +14,15 @@ import useLocale from '../../hooks/useLocale';
 // limit and re-queries — appending the next page of results inline. Because
 // suggest isn't rate limited, re-fetching a slightly larger list is cheap.
 const PAGE_SIZE = 5;
+
+// Wait for the user to pause typing before firing a request, rather than firing
+// on every keystroke. This is the single point where suggest() is called, so
+// debouncing here rate-limits every consumer (header dropdown, search modal) and
+// can't be bypassed. It collapses a burst of keystrokes into one request, which
+// cuts both the load on the search service and — behind the same-origin proxy —
+// the number of proxy (Netlify function) invocations. 300ms is imperceptible
+// while typing but eliminates the intermediate requests a throttle would send.
+const DEBOUNCE_MS = 300;
 
 const useSearch = ({ searchTerm, filters }) => {
   // `filters` is retained for API compatibility. SearchGPT queries a single
@@ -30,23 +40,39 @@ const useSearch = ({ searchTerm, filters }) => {
 
   const [limit, setLimit] = useState(PAGE_SIZE);
 
+  // The debounced term is what actually drives the query. It trails `searchTerm`
+  // by DEBOUNCE_MS and only settles once typing pauses, so intermediate
+  // keystrokes never reach suggest(). Seeded with searchTerm so a term that's
+  // present on mount (e.g. the modal opened with a `q` param) searches
+  // immediately rather than after a delay.
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  useDebounce(() => setDebouncedSearchTerm(searchTerm), DEBOUNCE_MS, [
+    searchTerm,
+  ]);
+
   // Scope suggestions to the site's language (jp→ja, kr→ko, pt→pt-br); on the
   // default English site this is `en`. undefined for an unmapped locale, which
   // omits the param and searches across all languages.
   const { locale } = useLocale() || {};
   const language = localeToSearchLanguage(locale);
 
-  // reset back to the first page whenever the query or filters change
+  // reset back to the first page whenever the (settled) query or filters change
   useEffect(() => {
     setLimit(PAGE_SIZE);
-  }, [searchTerm, tags]);
+  }, [debouncedSearchTerm, tags]);
 
   const { status, data } = useQuery(
-    ['searchSuggest', searchTerm, tags, limit, language],
+    ['searchSuggest', debouncedSearchTerm, tags, limit, language],
     () =>
-      suggest({ searchTerm, sources: DEFAULT_SOURCES, tags, limit, language }),
+      suggest({
+        searchTerm: debouncedSearchTerm,
+        sources: DEFAULT_SOURCES,
+        tags,
+        limit,
+        language,
+      }),
     {
-      enabled: Boolean(searchTerm),
+      enabled: Boolean(debouncedSearchTerm),
       select: ({ results }) => results,
       // keep the current results visible while the larger page loads, so
       // growing the limit reads as an append rather than a reload

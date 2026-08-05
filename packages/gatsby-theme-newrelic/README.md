@@ -145,16 +145,36 @@ yarn add @newrelic/gatsby-theme-newrelic @emotion/core @emotion/styled @mdx-js/m
 Search is powered by the SearchGPT REST API and is configured via environment
 variables:
 
-- `GATSBY_SEARCHGPT_API_KEY` _(required)_: New Relic API key used to authenticate
-  search requests. Because it is `GATSBY_`-prefixed, it is inlined into the
-  client bundle and used by the global search dropdown, the search results page,
-  and the 404 page.
-- `GATSBY_SEARCHGPT_BASE_URL` _(optional)_: Base URL of the SearchGPT service.
-  Defaults to `https://support-search.service.newrelic.com`. Point this at a
-  proxy or staging endpoint to override it without code changes.
-- `SEARCHGPT_API_KEY` / `SEARCHGPT_BASE_URL` _(optional)_: Server-side fallbacks
-  used by the build-time related-resources lookup. If unset, the `GATSBY_`
-  variables above are used.
+There are two ways to authenticate. **Production sites should use the proxy
+model** so that no API key is ever shipped to browsers.
+
+**Recommended — backend proxy (no key in the client):**
+
+- `GATSBY_SEARCHGPT_BASE_URL="/"`: routes search through a same-origin proxy. A
+  value starting with `/` is resolved against the current origin, so the client
+  calls `<origin>/v2/*` with **no** credentials. Stand up a proxy that answers
+  `/v2/*`, injects the `api-key` header server-side, and forwards to the
+  SearchGPT service. See `netlify/functions/searchgpt-proxy.mjs` in docs-website
+  for the reference implementation, and `demo/gatsby-node.js` (`onCreateDevServer`)
+  for the local-dev equivalent. Leave `GATSBY_SEARCHGPT_API_KEY` **unset** here.
+- `SEARCHGPT_API_KEY` _(server-side)_: the key the proxy — and the build-time
+  related-resources lookup — use. Set it in your deploy platform's env UI; never
+  commit it. It is **not** `GATSBY_`-prefixed, so it is never inlined into the
+  client bundle.
+
+**Direct-to-service (local development only):**
+
+- `GATSBY_SEARCHGPT_API_KEY`: API key used to authenticate search requests
+  directly from the browser (global search dropdown, search results page, 404
+  page). ⚠️ Because it is `GATSBY_`-prefixed, Gatsby inlines it into the **public
+  client bundle** at build time — anyone can read it. Do not use this in
+  production; prefer the proxy model above. If you must, use only a scoped,
+  non-personal, public-safe key.
+- `GATSBY_SEARCHGPT_BASE_URL` _(optional)_: absolute base URL of the SearchGPT
+  service. Defaults to `https://support-search.service.newrelic.com`.
+- `SEARCHGPT_BASE_URL` _(optional)_: server-side base URL override for the
+  build-time related-resources lookup. Falls back to `GATSBY_SEARCHGPT_BASE_URL`,
+  then the default.
 
 ## Configuration
 

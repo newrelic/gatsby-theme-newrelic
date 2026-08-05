@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { navigate } from '@reach/router';
 import { css } from '@emotion/react';
-import { useThrottle } from 'react-use';
 
 import useKeyPress from '../hooks/useKeyPress';
 import useLocale from '../hooks/useLocale';
@@ -18,9 +17,10 @@ import SearchDropdown, { DEFAULT_FILTER_TYPES } from './SearchDropdown';
 const GlobalSearch = ({ onClose }) => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
-  const throttledQuery = useThrottle(query, 300);
+  // useSearch debounces internally, so the raw query is passed straight through
+  // — no throttle needed here (that would just add a second, redundant limiter).
   const { results, status, fetchNextPage, hasMore } = useSearch({
-    searchTerm: throttledQuery,
+    searchTerm: query,
     filters: DEFAULT_FILTER_TYPES,
   });
   // a const assignment here is causing the dev server to fail to build
