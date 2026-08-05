@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [9.18.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.17.1...v9.18.0) (2026-08-05)
+
+### Features
+
+- **search:** debounce suggest() in useSearch, drop redundant throttle ([b11b883](https://github.com/newrelic/gatsby-theme-newrelic/commit/b11b883145d58ae068c582fd1a1b77db4fecce75))
+- **search:** proxy-aware SearchGPT client (keep api-key server-side) ([dd06243](https://github.com/newrelic/gatsby-theme-newrelic/commit/dd06243a1501f651876163270f34e5d35022e8c6))
+
 ## [9.17.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.17.0...v9.17.1) (2026-07-31)
 
 ### Bug Fixes
