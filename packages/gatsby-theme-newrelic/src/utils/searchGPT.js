@@ -34,9 +34,28 @@ const LOCALE_TO_SEARCH_LANGUAGE = {
 export const localeToSearchLanguage = (locale) =>
   LOCALE_TO_SEARCH_LANGUAGE[locale] || undefined;
 
-const getBaseUrl = () =>
-  process.env.GATSBY_SEARCHGPT_BASE_URL || DEFAULT_BASE_URL;
+// When GATSBY_SEARCHGPT_BASE_URL is a relative path (e.g. "/"), search runs
+// through a same-origin backend proxy: it is resolved against the current origin
+// so the browser calls <origin>/v2/* — and deploy previews hit their own proxy
+// rather than production. The proxy injects the api-key server-side, so no key
+// ships to the client. An absolute URL is used verbatim; when unset we call the
+// service directly. There is no `window` during SSR/build, so fall back to the
+// default there (the build-time related-resources path has its own server-side
+// key and does not go through this).
+const getBaseUrl = () => {
+  const configured = process.env.GATSBY_SEARCHGPT_BASE_URL;
+  if (!configured) return DEFAULT_BASE_URL;
+  if (configured.startsWith('/')) {
+    return typeof window !== 'undefined'
+      ? window.location.origin
+      : DEFAULT_BASE_URL;
+  }
+  return configured;
+};
 
+// Undefined when proxying: the key lives only in the proxy's server env, never
+// in the client bundle. request() then omits the api-key header and the proxy
+// adds it.
 const getApiKey = () => process.env.GATSBY_SEARCHGPT_API_KEY;
 
 // Thrown on HTTP 429 so callers can surface a "try again" state and read the
@@ -70,8 +89,12 @@ const buildUrl = (path, params) => {
 };
 
 const request = async (path, params) => {
+  const apiKey = getApiKey();
   const res = await fetch(buildUrl(path, params), {
-    headers: { 'api-key': getApiKey() },
+    // Only send the api-key when we have one (direct-to-service mode). Behind a
+    // same-origin proxy the browser has no key and the proxy injects it, so we
+    // send no header rather than an empty one.
+    headers: apiKey ? { 'api-key': apiKey } : undefined,
   });
 
   const body = await res.json();
