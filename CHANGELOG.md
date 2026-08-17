@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [9.18.1](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.18.0...v9.18.1) (2026-08-17)
+
+### Bug Fixes
+
+- rename footer label to Modern Slavery Act ([60960f6](https://github.com/newrelic/gatsby-theme-newrelic/commit/60960f666710ca65f708bfb693dd19926feab2d5))
+- update broken UK Slavery Act footer link to modern-slavery-act ([b0d6fb7](https://github.com/newrelic/gatsby-theme-newrelic/commit/b0d6fb727547c0104f5bbaacff903c453fb96ae9))
+- update Modern Slavery Act footer label in kr/fr/pt/es/jp ([eb8d10b](https://github.com/newrelic/gatsby-theme-newrelic/commit/eb8d10b52a3896cce2512ac1f20d6a1c5f1cae25))
+
 # [9.18.0](https://github.com/newrelic/gatsby-theme-newrelic/compare/v9.17.1...v9.18.0) (2026-08-05)
 
 ### Features
