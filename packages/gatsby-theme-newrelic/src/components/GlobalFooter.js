@@ -168,7 +168,7 @@ const GlobalFooter = ({ className }) => {
                 {t('footer.patentNotice', 'Patent Notice')}
               </ExternalLink>
               <ExternalLink href="https://newrelic.com/termsandconditions/modern-slavery-act">
-                {t('footer.ukSlaveryAct', 'UK Slavery Act')}
+                {t('footer.ukSlaveryAct', 'Modern Slavery Act')}
               </ExternalLink>
             </div>
             <RecaptchaFooter />
