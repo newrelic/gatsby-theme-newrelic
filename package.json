@@ -30,7 +30,7 @@
     "@sideway/formula": "^3.0.1",
     "**/react-dev-utils/loader-utils": "^3.2.1",
     "path-to-regexp": "^0.1.13",
-    "handlebars": "^4.7.9",
+    "handlebars": "^4.7.10",
     "fast-uri": "^3.1.6",
     "flatted": "^3.4.2",
     "svgo": "^2.8.4",
@@ -55,7 +55,6 @@
     "**/@graphql-tools/url-loader/ws": "^7.5.10",
     "**/gatsby/multer": "^2.3.0",
     "**/compression/on-headers": "^1.1.0",
-    "**/@lerna/create/nx": "^22.7.12",
     "**/external-editor/tmp": "^0.2.6",
     "**/parse-bmfont-xml/xml2js": "^0.5.0",
     "**/http-proxy-agent/@tootallnate/once": "^2.0.1",
@@ -67,8 +66,10 @@
     "**/lerna/minimatch": "^3.1.5",
     "**/@lerna/create/minimatch": "^3.1.5",
     "**/@nx/devkit/minimatch": "^9.0.9",
-    "**/lerna/nx": "^22.7.12",
-    "**/gatsby/socket.io": "^4.8.0"
+    "**/gatsby/socket.io": "^4.8.0",
+    "**/nx/smol-toml": "^1.9.1",
+    "**/lerna/tar": "^7.5.22",
+    "**/@lerna/create/tar": "^7.5.22"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
@@ -85,7 +86,7 @@
     "jest-emotion": "^10.0.32",
     "jest-fetch-mock": "^3.0.3",
     "jest-localstorage-mock": "^2.4.3",
-    "lerna": "^9.0.0",
+    "lerna": "^9.0.7",
     "nx": "^22.0.2",
     "prettier": "^2.0.5",
     "react-test-renderer": "^16.13.1"
