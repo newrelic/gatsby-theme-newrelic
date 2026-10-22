@@ -69,7 +69,21 @@
     "**/gatsby/socket.io": "^4.8.0",
     "**/nx/smol-toml": "^1.9.1",
     "**/lerna/tar": "^7.5.22",
-    "**/@lerna/create/tar": "^7.5.22"
+    "**/@lerna/create/tar": "^7.5.22",
+    "**/@mdx-js/mdx/@babel/core": "^7.29.6",
+    "**/remark-mdx/@babel/core": "^7.29.6",
+    "**/nx/brace-expansion": "^5.0.12",
+    "**/gatsby/compression": "^1.8.2",
+    "**/express/proxy-addr": "^2.0.8",
+    "**/nx/follow-redirects": "^1.16.1",
+    "**/axios/follow-redirects": "^1.16.1",
+    "**/latest-version/package-json": "^7.0.0",
+    "**/gatsby-plugin-sharp/sharp": "^0.35.5",
+    "**/gatsby-transformer-sharp/sharp": "^0.35.5",
+    "**/gatsby-sharp/sharp": "^0.35.5",
+    "**/gatsby/uuid": "^11.1.1",
+    "**/node-notifier/uuid": "^11.1.1",
+    "**/gatsby/webpack-dev-middleware": "^7.4.6"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",
