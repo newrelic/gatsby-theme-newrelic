@@ -1280,13 +1280,13 @@ import { GlobalHeader } from '@newrelic/gatsby-theme-newrelic';
 **Examples**
 
 ```js
-import { GlobalHeader } from '@newrelic/gatsby-theme-newrelic';
+import { GlobalHeader, NR_SITES } from '@newrelic/gatsby-theme-newrelic';
 
 // Normal use
 return <GlobalHeader />;
 
 // With a custom-set active page
-return <GlobalHeader activeSite={GlobalHeader.NR_SITES.IO} />;
+return <GlobalHeader activeSite={NR_SITES.DOCS} />;
 ```
 
 ### `HamburgerMenu`
